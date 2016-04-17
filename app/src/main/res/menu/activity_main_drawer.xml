@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/home" />
+        <item
+            android:id="@+id/category"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/category" />
+        <item
+            android:id="@+id/club_disc"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/club_disc" />
+        <item
+            android:id="@+id/created_events"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/created_events" />
+        <item
+            android:id="@+id/find_people"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/find_people" />
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/about" />
+
+    </group>
+
+    <item android:title="@string/settings">
+        <menu>
+            <item
+                android:id="@+id/acc_mang"
+                android:icon="@drawable/ic_menu_share"
+                android:title="@string/acc_mang" />
+            <item
+                android:id="@+id/log_out"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/log_out" />
+        </menu>
+    </item>
+
+</menu>
