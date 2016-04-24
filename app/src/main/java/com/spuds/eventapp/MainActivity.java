@@ -15,6 +15,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.firebase.client.Firebase;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity
         setupFragments();
         setupToolbar();
         setupDrawer();
+
+        Firebase.setAndroidContext(this);
+        // other setup code
 
     }
 
