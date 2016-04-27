@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.spuds.eventapp.login_page"
+    tools:context="com.spuds.eventapp.sign_up"
     android:background="@drawable/blue">
 
     <ImageView
@@ -34,10 +34,10 @@
         android:layout_width="500dp"
         android:layout_height="50dp"
         android:id="@+id/email"
-        android:inputType="textEmailAddress"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:hint="EMAIL ADDRESS"
+        android:inputType="textEmailAddress"
         android:textColorHint="#FFFFFF"
         android:background="@drawable/roundedbox"
         android:backgroundTint="#000000"
@@ -68,42 +68,38 @@
         android:textIsSelectable="false"
         android:textSize="10dp" />
 
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:id="@+id/confirm"
+        android:inputType="textPassword"
+        android:layout_below="@+id/password"
+        android:layout_marginTop="10dp"
+        android:hint="CONFIRM PASSWORD"
+        android:textColorHint="#FFFFFF"
+        android:background="@drawable/roundedbox"
+        android:backgroundTint="#000000"
+        android:drawableLeft="@drawable/lock"
+        android:drawablePadding="30dp"
+        android:paddingLeft="20dp"
+        android:layout_alignLeft="@+id/email"
+        android:layout_alignStart="@+id/email"
+        android:layout_alignRight="@+id/email"
+        android:layout_alignEnd="@+id/email"
+        android:textIsSelectable="false"
+        android:textSize="10dp" />
+
     <Button
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
-        android:text="Sign In"
-        android:id="@+id/sign_in"
-        android:layout_below="@+id/password"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:text="Sign Up"
+        android:id="@+id/sign_in"
         android:background="@drawable/roundedbutton"
         android:backgroundTint="#031a42"
-        android:textColor="#FFFFFF" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:textAllCaps="false"
-        android:text="Forgot Password?"
-        android:id="@+id/forgot_password"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/sign_in"
-        android:layout_centerHorizontal="true"
-        android:background="#0000"
-        android:textColor="#FFFFFF" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:textAllCaps="false"
-        android:text="New here? Sign up."
-        android:id="@+id/button"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="#0000"
-        android:textColor="#FFFFFF"/>
+        android:layout_below="@+id/confirm"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
