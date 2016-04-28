@@ -18,11 +18,11 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class PublicFeedFragment extends Fragment {
 
     private List<Event> events;
 
-    public HomeFragment() {
+    public PublicFeedFragment() {
     }
 
 

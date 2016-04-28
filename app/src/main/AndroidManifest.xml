@@ -14,7 +14,6 @@
             android:name=".MainActivity"
             android:label="Eventory"
             android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -33,9 +32,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".change_password" />
-        <activity android:name=".forgot_password" />
-        <activity android:name=".sign_up"></activity>
+        <activity android:name=".ForgotPasswordActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>

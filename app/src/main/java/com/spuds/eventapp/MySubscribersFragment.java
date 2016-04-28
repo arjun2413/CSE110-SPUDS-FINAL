@@ -1,7 +1,6 @@
 package com.spuds.eventapp;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SubFragment extends Fragment {
+public class MySubscribersFragment extends Fragment {
     private List<Subscriber> subscribers;
-    public SubFragment() {
+    public MySubscribersFragment() {
         // Required empty public constructor
     }
 
@@ -41,7 +40,7 @@ public class SubFragment extends Fragment {
         subscribers.add(new Subscriber("arjun", R.drawable.arjun));
 
 
-        SubRVA adapter = new SubRVA(subscribers);
+        MySubscribersRVAdapter adapter = new MySubscribersRVAdapter(subscribers);
         rv.setAdapter(adapter);
 
         return v;

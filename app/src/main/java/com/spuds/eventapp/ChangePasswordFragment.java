@@ -1,30 +1,42 @@
 package com.spuds.eventapp;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class change_password extends AppCompatActivity {
+public class ChangePasswordFragment extends Fragment {
 
     private EditText current_pw;
     private EditText new_pw;
     private EditText confirm_pw;
     private Button change_pw;
     private TextView sys_message;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.change_password);
 
-        current_pw = (EditText) findViewById(R.id.current_password);
-        new_pw = (EditText) findViewById(R.id.new_password);
-        confirm_pw = (EditText) findViewById(R.id.confirm_password);
-        change_pw = (Button) findViewById(R.id.change_password);
-        sys_message = (TextView) findViewById(R.id.system_message);
+    public ChangePasswordFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_change_password, container, false);
+        current_pw = (EditText) view.findViewById(R.id.current_password);
+        new_pw = (EditText) view.findViewById(R.id.new_password);
+        confirm_pw = (EditText) view.findViewById(R.id.confirm_password);
+        change_pw = (Button) view.findViewById(R.id.change_password);
+        sys_message = (TextView) view.findViewById(R.id.system_message);
 
         change_pw.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +73,17 @@ public class change_password extends AppCompatActivity {
             }
         });
 
-
+        return view;
     }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
 }

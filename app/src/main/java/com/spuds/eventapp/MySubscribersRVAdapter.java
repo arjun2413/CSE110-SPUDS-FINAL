@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by David on 4/22/16.
  */
-public class SubRVA extends RecyclerView.Adapter<SubRVA.SubViewHolder>{
+public class MySubscribersRVAdapter extends RecyclerView.Adapter<MySubscribersRVAdapter.SubViewHolder>{
 
     public static class SubViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
@@ -31,7 +31,7 @@ public class SubRVA extends RecyclerView.Adapter<SubRVA.SubViewHolder>{
 
     List<Subscriber> subscribers;
 
-    SubRVA(List<Subscriber> persons){
+    MySubscribersRVAdapter(List<Subscriber> persons){
 
         this.subscribers = subscribers;
     }
@@ -43,7 +43,7 @@ public class SubRVA extends RecyclerView.Adapter<SubRVA.SubViewHolder>{
 
     @Override
     public SubViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.sub, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_my_subscribers, viewGroup, false);
         SubViewHolder svh = new SubViewHolder(v);
         return svh;
     }

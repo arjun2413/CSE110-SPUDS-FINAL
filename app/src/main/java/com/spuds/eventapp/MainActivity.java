@@ -11,21 +11,18 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Fragment currentFragment;
-    HomeFragment homeFragment;
+    PublicFeedFragment publicFeedFragment;
     List<Subscriber> subscribers;
 
     @Override
@@ -74,15 +71,15 @@ public class MainActivity extends AppCompatActivity
         currentFragment = fragmentManager.findFragmentByTag(homeTag);
 
         if (currentFragment == null) {
-            homeFragment = new HomeFragment();
+            publicFeedFragment = new PublicFeedFragment();
 
             fragmentTransaction
-                    .add(R.id.fragment_frame_layout, homeFragment, homeTag)
+                    .add(R.id.fragment_frame_layout, publicFeedFragment, homeTag)
                     .commit();
 
-            currentFragment = homeFragment;
+            currentFragment = publicFeedFragment;
         } else {
-            homeFragment = (HomeFragment) currentFragment;
+            publicFeedFragment = (PublicFeedFragment) currentFragment;
         }
     }
 

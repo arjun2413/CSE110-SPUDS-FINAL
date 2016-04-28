@@ -3,11 +3,11 @@ package com.spuds.eventapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class forgot_password extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.forgot_password);
+        setContentView(R.layout.activity_sign_up);
     }
 }
