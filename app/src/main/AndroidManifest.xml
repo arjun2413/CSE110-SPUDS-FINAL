@@ -33,6 +33,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".change_password" />
+        <activity android:name=".forgot_password" />
+        <activity android:name=".sign_up"></activity>
     </application>
 
 </manifest>
