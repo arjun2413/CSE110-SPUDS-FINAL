@@ -15,15 +15,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Fragment currentFragment;
     PublicFeedFragment publicFeedFragment;
-    List<Subscriber> subscribers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +32,6 @@ public class MainActivity extends AppCompatActivity
 
         //Firebase.setAndroidContext(this);
         // other setup code
-
-
 
 
     }

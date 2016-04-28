@@ -25,7 +25,7 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity android:name=".login_page">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +34,6 @@
         </activity>
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>

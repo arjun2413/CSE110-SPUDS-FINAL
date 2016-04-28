@@ -2,81 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/tina/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
-        <dex dex="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_9c1b047c6c8b6da8fa6421e6bab4e946ebb37335/classes.dex" />
-    </item>
-    <item
-        jar="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="debf30ce0a7560396b6235edef77e447006454c2">
-        <dex dex="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.3.0_5d3cba997bd1c7d840a512e9495bb54421021e46/classes.dex" />
-    </item>
-    <item
         jar="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         revision="23.0.1"
-        sha1="37c8c3541f1a04c4414e281198d78262711f43d4">
+        sha1="b87f9cbc566639e11bab437fa6001c4f7f05afed">
         <dex dex="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_f7c4412f22e56d40f1b2a0a88963d8de4abfa057/classes.dex" />
-    </item>
-    <item
-        jar="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
-        <dex dex="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_7a4330bfeda3c34e12957f1e6fb94f7a14faa12e/classes.dex" />
-    </item>
-    <item
-        jar="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
-        <dex dex="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.3.0_1174928f83f39a27b0badc122bfc90de34cf5fcf/classes.dex" />
-    </item>
-    <item
-        jar="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
-        <dex dex="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_0c8f57c7f46fbde63e581d0637be6910462b3fb6/classes.dex" />
-    </item>
-    <item
-        jar="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
-        <dex dex="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_e8cc9a72c7f9fee33dc0d2cd549e352fbf66c2f9/classes.dex" />
-    </item>
-    <item
-        jar="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="82ce13fd19cdfde0e392f03c27edeba8d4333648">
-        <dex dex="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-23.3.0_9363439f9cb34ecba2c12e5f1eb5be614dff9c36/classes.dex" />
-    </item>
-    <item
-        jar="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
-        <dex dex="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_0a519a2b5100eb3e4a260b29a1be45eef845975d/classes.dex" />
-    </item>
-    <item
-        jar="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="fbc4ab09c36424dec187aadd50ebff577c5dd9ba">
-        <dex dex="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_13b9c3ef27f7838c791dae364e7e8eaae7a6f90d/classes.dex" />
-    </item>
-    <item
-        jar="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
-        <dex dex="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_9b4e5c09b3abddb5b550ee2aa191b11e379932ae/classes.dex" />
     </item>
 
 </items>
