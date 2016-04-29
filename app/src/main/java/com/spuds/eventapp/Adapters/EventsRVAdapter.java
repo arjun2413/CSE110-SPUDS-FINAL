@@ -29,7 +29,7 @@ public class EventsRVAdapter extends RecyclerView.Adapter<EventsRVAdapter.Person
 
     List<Event> events;
 
-    EventsRVAdapter(List<Event> events){
+    public EventsRVAdapter(List<Event> events){
         this.events = events;
     }
 

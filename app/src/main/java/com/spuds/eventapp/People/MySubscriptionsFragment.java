@@ -19,6 +19,8 @@ import java.util.List;
 
 public class MySubscriptionsFragment extends Fragment {
     private List<Subscription> subscriptions;
+    public MySubscriptionsRVAdapter adapter;
+
     public MySubscriptionsFragment() {
         // Required empty public constructor
     }
@@ -43,7 +45,7 @@ public class MySubscriptionsFragment extends Fragment {
         subscriptions.add(new Subscription("arjun", R.drawable.arjun));
 
 
-        MySubscriptionsRVAdapter adapter = new MySubscriptionsRVAdapter(subscriptions);
+        adapter = new MySubscriptionsRVAdapter(subscriptions);
         rv.setAdapter(adapter);
 
         return v;

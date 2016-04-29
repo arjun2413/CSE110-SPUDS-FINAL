@@ -33,7 +33,7 @@ public class MySubscriptionsRVAdapter extends RecyclerView.Adapter<MySubscriptio
 
     List<Subscription> subscriptions;
 
-    MySubscriptionsRVAdapter(List<Subscription> subscriptions){
+    public MySubscriptionsRVAdapter(List<Subscription> subscriptions){
 
         this.subscriptions = subscriptions;
     }

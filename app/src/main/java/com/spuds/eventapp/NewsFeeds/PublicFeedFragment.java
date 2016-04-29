@@ -25,6 +25,7 @@ import java.util.List;
 public class PublicFeedFragment extends Fragment {
 
     private List<Event> events;
+    public EventsRVAdapter adapter;
 
     public PublicFeedFragment() {
     }
@@ -50,7 +51,7 @@ public class PublicFeedFragment extends Fragment {
         events.add(new Event("Foosh Show", "Muir"));
         events.add(new Event("Sungod", "Sungod Lawn"));
 
-        EventsRVAdapter adapter = new EventsRVAdapter(events);
+        adapter = new EventsRVAdapter(events);
         rv.setAdapter(adapter);
 
         return v;
