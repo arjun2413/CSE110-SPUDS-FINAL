@@ -1,10 +1,12 @@
-package com.spuds.eventapp;
+package com.spuds.eventapp.Adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.spuds.eventapp.R;
 
 import java.util.List;
 

@@ -17,6 +17,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.spuds.eventapp.EventDetails.CategoriesListFragment;
+import com.spuds.eventapp.Login.LoginActivity;
+import com.spuds.eventapp.NewsFeeds.MyEventsFragment;
+import com.spuds.eventapp.NewsFeeds.MySubscriptionFeedFragment;
+import com.spuds.eventapp.NewsFeeds.NotificationsFragment;
+import com.spuds.eventapp.NewsFeeds.PublicFeedFragment;
+import com.spuds.eventapp.People.FindPeopleFragment;
+import com.spuds.eventapp.People.MySubscriptionsFragment;
+import com.spuds.eventapp.People.ProfileFragment;
+import com.spuds.eventapp.Settings.AboutFragment;
+import com.spuds.eventapp.Settings.SettingsFragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 

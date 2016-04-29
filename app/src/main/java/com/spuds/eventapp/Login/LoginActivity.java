@@ -1,4 +1,4 @@
-package com.spuds.eventapp;
+package com.spuds.eventapp.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.spuds.eventapp.MainActivity;
+import com.spuds.eventapp.R;
 
 public class LoginActivity extends AppCompatActivity {
 

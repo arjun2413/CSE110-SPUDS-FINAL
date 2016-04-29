@@ -1,4 +1,4 @@
-package com.spuds.eventapp;
+package com.spuds.eventapp.People;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,11 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.spuds.eventapp.R;
 
 
-public class FindPeopleFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
-    public FindPeopleFragment() {
+    public ProfileFragment() {
     }
 
     @Override
@@ -22,7 +23,7 @@ public class FindPeopleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_find_people, container, false);
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
     @Override

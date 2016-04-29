@@ -1,4 +1,4 @@
-package com.spuds.eventapp;
+package com.spuds.eventapp.Settings;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.spuds.eventapp.R;
 
 public class ChangePasswordFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package com.spuds.eventapp;
+package com.spuds.eventapp.NewsFeeds;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -14,6 +14,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.spuds.eventapp.Adapters.Event;
+import com.spuds.eventapp.Adapters.EventsRVAdapter;
+import com.spuds.eventapp.R;
 
 import java.util.ArrayList;
 import java.util.List;

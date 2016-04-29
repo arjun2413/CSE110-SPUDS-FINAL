@@ -1,4 +1,4 @@
-package com.spuds.eventapp;
+package com.spuds.eventapp.Login;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.spuds.eventapp.R;
 
 public class SignUpActivity extends AppCompatActivity {
 
