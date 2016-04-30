@@ -15,10 +15,10 @@
     <string name="profile">Profile</string>
 
     <!-- Tags for Fragments
-    <string name="fragment_public_feed">PublicFeedFragment</string>
+    <string name="fragment_public_feed_tabs">PublicFeedTabsFragment</string>
     <string name="fragment_notif">NotificationsFragment</string>
     <string name="fragment_categ_list">CategoriesListFragment</string>
-    <string name="item_my_events">MyEventsFragment</string>
+    <string name="item_my_events">MyEventsTabsFragment</string>
     <string name="fragment_my_sub">MySubscriptionsFragment</string>
     <string name="fragment_find_people">FindPeopleFragment</string>
     <string name="fragment_my_sub_feed">MySubscriptionFeedFragment</string>

@@ -19,10 +19,10 @@ import android.view.MenuItem;
 
 import com.spuds.eventapp.EventDetails.CategoriesListFragment;
 import com.spuds.eventapp.Login.LoginActivity;
-import com.spuds.eventapp.NewsFeeds.MyEventsFragment;
-import com.spuds.eventapp.NewsFeeds.MySubscriptionFeedFragment;
+import com.spuds.eventapp.NewsFeeds.MyEventsTabsFragment;
+import com.spuds.eventapp.NewsFeeds.MySubscriptionFeedTabsFragment;
 import com.spuds.eventapp.NewsFeeds.NotificationsFragment;
-import com.spuds.eventapp.NewsFeeds.PublicFeedFragment;
+import com.spuds.eventapp.NewsFeeds.PublicFeedTabsFragment;
 import com.spuds.eventapp.People.FindPeopleFragment;
 import com.spuds.eventapp.People.MySubscriptionsFragment;
 import com.spuds.eventapp.People.ProfileFragment;
@@ -33,13 +33,13 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Fragment currentFragment;
-    PublicFeedFragment publicFeedFragment;
+    PublicFeedTabsFragment publicFeedTabsFragment;
     NotificationsFragment notificationsFragment;
     CategoriesListFragment categoriesListFragment;
-    MyEventsFragment myEventsFragment;
+    MyEventsTabsFragment myEventsTabsFragment;
     MySubscriptionsFragment mySubscriptionsFragment;
     FindPeopleFragment findPeopleFragment;
-    MySubscriptionFeedFragment mySubscriptionFeedFragment;
+    MySubscriptionFeedTabsFragment mySubscriptionFeedTabsFragment;
     AboutFragment aboutFragment;
     SettingsFragment settingsFragment;
 
@@ -99,13 +99,13 @@ public class MainActivity extends AppCompatActivity
         currentFragment = fragmentManager.findFragmentByTag(getString(R.string.home));
 
         if (currentFragment == null) {
-            publicFeedFragment = new PublicFeedFragment();
+            publicFeedTabsFragment = new PublicFeedTabsFragment();
             notificationsFragment = new NotificationsFragment();
             categoriesListFragment = new CategoriesListFragment();
-            myEventsFragment = new MyEventsFragment();
+            myEventsTabsFragment = new MyEventsTabsFragment();
             mySubscriptionsFragment = new MySubscriptionsFragment();
             findPeopleFragment = new FindPeopleFragment();
-            mySubscriptionFeedFragment = new MySubscriptionFeedFragment();
+            mySubscriptionFeedTabsFragment = new MySubscriptionFeedTabsFragment();
             aboutFragment = new AboutFragment();
             settingsFragment = new SettingsFragment();
 
@@ -116,37 +116,37 @@ public class MainActivity extends AppCompatActivity
                     .hide(settingsFragment)
                     .add(R.id.fragment_frame_layout, aboutFragment, getString(R.string.about))
                     .hide(aboutFragment)
-                    .add(R.id.fragment_frame_layout, mySubscriptionFeedFragment, getString(R.string.subscriptionFeed))
-                    .hide(mySubscriptionFeedFragment)
+                    .add(R.id.fragment_frame_layout, mySubscriptionFeedTabsFragment, getString(R.string.subscriptionFeed))
+                    .hide(mySubscriptionFeedTabsFragment)
                     .add(R.id.fragment_frame_layout, findPeopleFragment, getString(R.string.findPeople))
                     .hide(findPeopleFragment)
-                    .add(R.id.fragment_frame_layout, mySubscriptionsFragment, getString(R.string.subscriptionFeed))
+                    .add(R.id.fragment_frame_layout, mySubscriptionsFragment, getString(R.string.subscriptions))
                     .hide(mySubscriptionsFragment)
-                    .add(R.id.fragment_frame_layout, myEventsFragment, getString(R.string.myEvents))
-                    .hide(myEventsFragment)
+                    .add(R.id.fragment_frame_layout, myEventsTabsFragment, getString(R.string.myEvents))
+                    .hide(myEventsTabsFragment)
                     .add(R.id.fragment_frame_layout, categoriesListFragment, getString(R.string.category))
                     .hide(categoriesListFragment)
                     .add(R.id.fragment_frame_layout, notificationsFragment, getString(R.string.notifications))
                     .hide(notificationsFragment)
                     .add(R.id.fragment_frame_layout, profileFragment, getString(R.string.profile))
                     .hide(profileFragment)
-                    .add(R.id.fragment_frame_layout, publicFeedFragment, getString(R.string.home))
+                    .add(R.id.fragment_frame_layout, publicFeedTabsFragment, getString(R.string.home))
                     .commit();
 
-            currentFragment = publicFeedFragment;
+            currentFragment = publicFeedTabsFragment;
         } else {
-            publicFeedFragment = (PublicFeedFragment) currentFragment;
+            publicFeedTabsFragment = (PublicFeedTabsFragment) currentFragment;
             notificationsFragment = (NotificationsFragment) getSupportFragmentManager().
                     findFragmentByTag(getString(R.string.notifications));
             categoriesListFragment = (CategoriesListFragment) getSupportFragmentManager().
                     findFragmentByTag(getString(R.string.category));
-            myEventsFragment = (MyEventsFragment) getSupportFragmentManager().
+            myEventsTabsFragment = (MyEventsTabsFragment) getSupportFragmentManager().
                     findFragmentByTag(getString(R.string.myEvents));
             mySubscriptionsFragment = (MySubscriptionsFragment) getSupportFragmentManager().
                     findFragmentByTag(getString(R.string.subscriptions));
             findPeopleFragment = (FindPeopleFragment) getSupportFragmentManager().
                     findFragmentByTag(getString(R.string.findPeople));
-            mySubscriptionFeedFragment = (MySubscriptionFeedFragment) getSupportFragmentManager().
+            mySubscriptionFeedTabsFragment = (MySubscriptionFeedTabsFragment) getSupportFragmentManager().
                     findFragmentByTag(getString(R.string.subscriptionFeed));
             aboutFragment = (AboutFragment) getSupportFragmentManager().
                     findFragmentByTag(getString(R.string.about));
@@ -155,6 +155,18 @@ public class MainActivity extends AppCompatActivity
 
             profileFragment = (ProfileFragment) getSupportFragmentManager().
                     findFragmentByTag(getString(R.string.profile));
+
+            fragmentTransaction
+                    .hide(notificationsFragment)
+                    .hide(categoriesListFragment)
+                    .hide(myEventsTabsFragment)
+                    .hide(mySubscriptionsFragment)
+                    .hide(findPeopleFragment)
+                    .hide(mySubscriptionFeedTabsFragment)
+                    .hide(aboutFragment)
+                    .hide(settingsFragment)
+                    .hide(profileFragment)
+                    .commit();
         }
     }
 
@@ -168,7 +180,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.home) {
 
-            switchTo(publicFeedFragment, title);
+            switchTo(publicFeedTabsFragment, title);
 
         } else if (id == R.id.notifications) {
 
@@ -180,7 +192,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.myEvents) {
 
-            switchTo(myEventsFragment, title);
+            switchTo(myEventsTabsFragment, title);
 
         } else if (id == R.id.subscriptions) {
 
@@ -192,7 +204,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.subscriptionFeed) {
 
-            switchTo(mySubscriptionFeedFragment, title);
+            switchTo(mySubscriptionFeedTabsFragment, title);
 
         } else if (id == R.id.about) {
 
@@ -250,6 +262,8 @@ public class MainActivity extends AppCompatActivity
         t.commit();
 
     }
+
+
 
     @Override
     public void onBackPressed() {

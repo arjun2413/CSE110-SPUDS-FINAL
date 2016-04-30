@@ -1,13 +1,10 @@
 package com.spuds.eventapp.NewsFeeds;
 
-import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.spuds.eventapp.Adapters.Event;
-import com.spuds.eventapp.Adapters.EventsRVAdapter;
+import com.spuds.eventapp.Adapters.EventsFeedRVAdapter;
 import com.spuds.eventapp.R;
 
 import java.util.ArrayList;
@@ -25,11 +22,10 @@ import java.util.List;
 public class PublicFeedFragment extends Fragment {
 
     private List<Event> events;
-    public EventsRVAdapter adapter;
+    public EventsFeedRVAdapter adapter;
 
     public PublicFeedFragment() {
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,22 +35,23 @@ public class PublicFeedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.recycler, container, false);
-        RecyclerView rv=(RecyclerView) v.findViewById(R.id.rv);
+        View view = inflater.inflate(R.layout.recycler, container, false);
+        RecyclerView rv=(RecyclerView) view.findViewById(R.id.rv);
 
-        LinearLayoutManager llm = new LinearLayoutManager(v.getContext());
+        LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
 
         events = new ArrayList<>();
-        events.add(new Event("Find a Roommate", "Warren"));
-        events.add(new Event("Foosh Show", "Muir"));
-        events.add(new Event("Sungod", "Sungod Lawn"));
+        events.add(new Event("1", "yj.jpg", "SunGod", "UCSD", "04.29.16", 1054,
+                "Social", "Concert", "UCSD"));
+        events.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "04.28.16", 51,
+                "Social", null, "Foosh Improv Comedy Club"));
 
-        adapter = new EventsRVAdapter(events);
+        adapter = new EventsFeedRVAdapter(events);
         rv.setAdapter(adapter);
 
-        return v;
+        return view;
     }
 
     @Override
@@ -67,39 +64,9 @@ public class PublicFeedFragment extends Fragment {
         super.onDetach();
     }
 
-
-    SearchView searchView;
-    SearchView.OnQueryTextListener queryTextListener;
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.dashboard, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
-
-
-        if (searchItem != null) {
-            searchView = (SearchView) searchItem.getActionView();
-        }
-        if (searchView != null) {
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-
-            queryTextListener = new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    Log.i("onQueryTextChange", newText);
-
-                    return true;
-                }
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    Log.i("onQueryTextSubmit", query);
-
-                    return true;
-                }
-            };
-            searchView.setOnQueryTextListener(queryTextListener);
-        }
-        searchView.setMaxWidth(Integer.MAX_VALUE);
 
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -113,7 +80,6 @@ public class PublicFeedFragment extends Fragment {
             default:
                 break;
         }
-        searchView.setOnQueryTextListener(queryTextListener);
         return super.onOptionsItemSelected(item);
     }
 }
