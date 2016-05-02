@@ -12,10 +12,6 @@
         "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/support_simple_spinner_dropdown_item.xml"
     },
     {
-        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/fragment_create_edit_event.xml",
-        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/src/main/res/layout/fragment_create_edit_event.xml"
-    },
-    {
         "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/fragment_categories_list.xml",
         "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/src/main/res/layout/fragment_categories_list.xml"
     },
@@ -38,10 +34,6 @@
     {
         "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/item_event_feed.xml",
         "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/src/main/res/layout/item_event_feed.xml"
-    },
-    {
-        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/fragment_blank.xml",
-        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/src/main/res/layout/fragment_blank.xml"
     },
     {
         "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/notification_template_big_media.xml",
@@ -228,36 +220,16 @@
         "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_navigation_item_subheader.xml"
     },
     {
-        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
-        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/notification_media_action.xml"
-    },
-    {
         "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/fragment_feed_tabs.xml",
         "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/src/main/res/layout/fragment_feed_tabs.xml"
-    },
-    {
-        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/design_navigation_item_header.xml",
-        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_navigation_item_header.xml"
     },
     {
         "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/activity_forgot_password.xml",
         "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/src/main/res/layout/activity_forgot_password.xml"
     },
     {
-        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/activity_login.xml",
-        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/src/main/res/layout/activity_login.xml"
-    },
-    {
-        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/fragment_about.xml",
-        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/src/main/res/layout/fragment_about.xml"
-    },
-    {
         "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/fragment_event_details.xml",
         "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/src/main/res/layout/fragment_event_details.xml"
-    },
-    {
-        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
-        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/abc_screen_content_include.xml"
     },
     {
         "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
@@ -276,6 +248,46 @@
         "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/abc_select_dialog_material.xml"
     },
     {
+        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/fragment_edit_event.xml",
+        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/src/main/res/layout/fragment_edit_event.xml"
+    },
+    {
+        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/design_bottom_sheet_dialog.xml",
+        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_bottom_sheet_dialog.xml"
+    },
+    {
+        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/design_navigation_item_separator.xml",
+        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_navigation_item_separator.xml"
+    },
+    {
+        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/design_navigation_menu.xml",
+        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_navigation_menu.xml"
+    },
+    {
+        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
+        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/notification_media_action.xml"
+    },
+    {
+        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/design_navigation_item_header.xml",
+        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_navigation_item_header.xml"
+    },
+    {
+        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/activity_login.xml",
+        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/src/main/res/layout/activity_login.xml"
+    },
+    {
+        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/fragment_create_event.xml",
+        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/src/main/res/layout/fragment_create_event.xml"
+    },
+    {
+        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/fragment_about.xml",
+        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/src/main/res/layout/fragment_about.xml"
+    },
+    {
+        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
+        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/abc_screen_content_include.xml"
+    },
+    {
         "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
         "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/abc_dialog_title_material.xml"
     },
@@ -288,19 +300,7 @@
         "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_layout_snackbar.xml"
     },
     {
-        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/design_bottom_sheet_dialog.xml",
-        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_bottom_sheet_dialog.xml"
-    },
-    {
         "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
         "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/notification_template_media.xml"
-    },
-    {
-        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/design_navigation_item_separator.xml",
-        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_navigation_item_separator.xml"
-    },
-    {
-        "merged": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/design_navigation_menu.xml",
-        "source": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_navigation_menu.xml"
     }
 ]

@@ -9,17 +9,10 @@
         <dex dex="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_700d0fd40a128858a1089da1bbfd9719ce2fe9e9/classes.dex" />
     </item>
     <item
-        jar="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
-        <dex dex="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_247299c198c24793c95e7d8e3ef93ace239b69a3/classes.dex" />
-    </item>
-    <item
         jar="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         revision="23.0.1"
-        sha1="7265ec7b3681d5761105740a182f67bbc500c9ae">
+        sha1="301fecc1e32cf7c2532057c1083052ee8986dfc4">
         <dex dex="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_1f4cf3b394cb8bc7b4d7fcd10451220b3dd782fb/classes.dex" />
     </item>
     <item
@@ -28,6 +21,34 @@
         revision="23.0.1"
         sha1="82ce13fd19cdfde0e392f03c27edeba8d4333648">
         <dex dex="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-23.3.0_579c8c877d452485adfa0c806406589c8df1d000/classes.dex" />
+    </item>
+    <item
+        jar="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_70e0e2c3dc32b42de291dbf53437b0488989ddbb/classes.dex" />
+    </item>
+    <item
+        jar="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.3.0_24a1ab7e684a3639dc9c23b04ebd7115f517d65e/classes.dex" />
+    </item>
+    <item
+        jar="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.soundcloud.android/android-crop/1.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="11a65cf2b30c192b38a881d626fa771a78a2293d">
+        <dex dex="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.soundcloud.android-android-crop-1.0.1_89f13208131b4a7ce47917b48e0686c4ec173f9c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_247299c198c24793c95e7d8e3ef93ace239b69a3/classes.dex" />
     </item>
     <item
         jar="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
@@ -51,32 +72,11 @@
         <dex dex="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.3.0_75bf193b9377b29356754054dfc81d4e2dfdabf4/classes.dex" />
     </item>
     <item
-        jar="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
-        <dex dex="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_70e0e2c3dc32b42de291dbf53437b0488989ddbb/classes.dex" />
-    </item>
-    <item
-        jar="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
-        <dex dex="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.3.0_24a1ab7e684a3639dc9c23b04ebd7115f517d65e/classes.dex" />
-    </item>
-    <item
         jar="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         revision="23.0.1"
-        sha1="6efd7b6c0cf848edc3faa6b228a37f92ef7d5842">
+        sha1="3a1c6f80c428d3abdb22d38ea084f980071a5c9e">
         <dex dex="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_34640fdb27ba6071a1c99ad63b0674e82531945f/classes.dex" />
-    </item>
-    <item
-        jar="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.soundcloud.android/android-crop/1.0.1/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="11a65cf2b30c192b38a881d626fa771a78a2293d">
-        <dex dex="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.soundcloud.android-android-crop-1.0.1_89f13208131b4a7ce47917b48e0686c4ec173f9c/classes.dex" />
     </item>
     <item
         jar="/Users/David/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"

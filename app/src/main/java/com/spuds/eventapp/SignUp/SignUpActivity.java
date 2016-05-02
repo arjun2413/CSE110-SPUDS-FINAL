@@ -23,11 +23,14 @@ public class SignUpActivity extends AppCompatActivity {
     EditText signupPassword2;
 
     //Error TextViews
-    TextView signupPasswordMatch;
-    TextView signupInvalidEmail;
+    TextView signupPasswordMatchError;
+    TextView signupInvalidEmailError;
 
     //I don't know but it seems important
     ImageView signup_logo;
+
+    //Error check, switch to FALSE if there exists any error
+    Boolean error = true;
 
     public final static boolean isValidEmail(CharSequence target) {
         if (target == null)
@@ -58,10 +61,10 @@ public class SignUpActivity extends AppCompatActivity {
         signupPassword2 = (EditText)findViewById(R.id.signupPassword2);
 
         //Fetch invisible Password Warning Text
-        signupPasswordMatch = (TextView)findViewById(R.id.signupPasswordMatch);
+        signupPasswordMatchError = (TextView)findViewById(R.id.signupPasswordMatchError);
 
         //Fetch invisible Invalid Email text
-        signupInvalidEmail = (TextView)findViewById(R.id.signupInvalidEmail);
+        signupInvalidEmailError = (TextView)findViewById(R.id.signupInvalidEmailError);
 
         //Upon User clicking "Sign Up", convert editable text fields to Strings
         signupButton.setOnClickListener(new View.OnClickListener() {
@@ -73,17 +76,37 @@ public class SignUpActivity extends AppCompatActivity {
                   */
                 if (!signupPassword1.getText().toString().equals(signupPassword2.getText().toString())) {
                     //reveal Invalid Password Match text
-                    signupPasswordMatch.setVisibility(View.VISIBLE);
+                    signupPasswordMatchError.setVisibility(View.VISIBLE);
 
+                    //set error flag to FALSE since there is an error now
+                    error = false;
+                }
+                else{
+                    //hide it
+                    signupPasswordMatchError.setVisibility(View.INVISIBLE);
+
+                    //correct error flag to true, everything is good now
+                    error = true;
                 }
                 //If email is not valid, user gets error popup
-                else if (!isValidEmail(signupEmail.getText().toString())) {
+                if (!isValidEmail(signupEmail.getText().toString())) {
                     //reveal Invalid Email text
-                    signupInvalidEmail.setVisibility(View.VISIBLE);
+                    signupInvalidEmailError.setVisibility(View.VISIBLE);
+
+                    //set error flag to FALSE since there is an error now
+                    error = false;
 
                 }
+                else{
+                    //hide it
+                    signupInvalidEmailError.setVisibility(View.INVISIBLE);
+
+                    //correct error flag to true, everything is good now
+                    error = true;
+                }
+
                 //If everything is good, then proceed to database query
-                else {
+                if(error) {
                     //TODO Check if email is taken already with database
 
                     //TODO If email isn't taken already, go through with account creation

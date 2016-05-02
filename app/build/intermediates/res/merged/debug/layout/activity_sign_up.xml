@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Login.SignUpActivity"
+    tools:context=".SignUp.SignUpActivity"
     android:background="@drawable/blue">
 
     <ImageView
@@ -125,7 +125,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Passwords must match."
-        android:id="@+id/signupPasswordMatch"
+        android:id="@+id/signupPasswordMatchError"
         android:layout_below="@+id/signupPassword2"
         android:layout_alignLeft="@+id/signupPassword2"
         android:layout_alignStart="@+id/signupPassword2"
@@ -136,7 +136,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Must enter valid email."
-        android:id="@+id/signupInvalidEmail"
+        android:id="@+id/signupInvalidEmailError"
         android:layout_below="@+id/signupEmail"
         android:layout_alignLeft="@+id/signupEmail"
         android:layout_alignStart="@+id/signupEmail"
