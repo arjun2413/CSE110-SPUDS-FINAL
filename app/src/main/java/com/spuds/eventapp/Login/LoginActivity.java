@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.spuds.eventapp.MainActivity;
+import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.R;
 
 public class LoginActivity extends AppCompatActivity {

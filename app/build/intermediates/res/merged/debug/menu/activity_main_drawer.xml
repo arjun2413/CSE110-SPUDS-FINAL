@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/home" />
+        <item
+            android:id="@+id/notifications"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/notifications" />
+        <item
+            android:id="@+id/category"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/category" />
+        <item
+            android:id="@+id/myEvents"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/myEvents" />
+        <item
+            android:id="@+id/subscriptions"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/subscriptions" />
+        <item
+            android:id="@+id/find_people"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/findPeople" />
+        <item
+            android:id="@+id/subscriptionFeed"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/subscriptionFeed" />
+    </group>
+    <item android:title="Extra">
+        <menu>
+            <item
+                android:id="@+id/about"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/about"/>
+            <item
+                android:id="@+id/accMang"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="@string/settings" />
+            <item
+                android:id="@+id/logOut"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/logOut" />
+        </menu>
+    </item>
+</menu>

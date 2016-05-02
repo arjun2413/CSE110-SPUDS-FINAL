@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Shared.MainActivity"
             android:label="Eventory"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -34,8 +34,8 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".Login.ForgotPasswordActivity" />
-        <activity android:name=".Login.SignUpActivity" />
+        <activity android:name=".ForgotPassword.ForgotPasswordActivity" />
+        <activity android:name=".SignUp.SignUpActivity" />
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
     </application>
 
