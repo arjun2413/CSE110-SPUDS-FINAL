@@ -34,7 +34,7 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".ForgotPassword.ForgotPasswordActivity" />
+        <activity android:name=".ResetPassword.ResetPasswordActivity" />
         <activity android:name=".SignUp.SignUpActivity" />
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
     </application>
