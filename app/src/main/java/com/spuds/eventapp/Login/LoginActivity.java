@@ -117,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void signUpFunc() {
         //create a button for the sign in
-        final Button signUp = (Button) findViewById(R.id.signupButton);
+        final Button signUp = (Button) findViewById(R.id.signup_button);
         //set a on click listener to see when the button is clicked
         if (signUp != null) {
             signUp.setOnClickListener(new View.OnClickListener() {
@@ -130,5 +130,3 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 }
-
-:w
