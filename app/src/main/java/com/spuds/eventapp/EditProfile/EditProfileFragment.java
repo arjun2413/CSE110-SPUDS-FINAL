@@ -13,6 +13,7 @@ import com.spuds.eventapp.R;
 public class EditProfileFragment extends Fragment {
 
     public EditProfileFragment() {
+
     }
 
     @Override

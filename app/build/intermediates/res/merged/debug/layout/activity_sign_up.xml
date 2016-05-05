@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Eventory"
-        android:id="@+id/signupHeader"
+        android:id="@+id/signup_header"
         android:layout_below="@+id/signupLogo"
         android:layout_centerHorizontal="true"
         android:textColor="#FFFFFF"
@@ -31,7 +31,7 @@
     <EditText
         android:layout_width="500dp"
         android:layout_height="50dp"
-        android:id="@+id/signupName"
+        android:id="@+id/signup_name"
         android:hint="NAME"
         android:inputType="textEmailAddress"
         android:textColorHint="#FFFFFF"
@@ -43,16 +43,16 @@
         android:textIsSelectable="false"
         android:textSize="10dp"
         android:layout_marginBottom="10dp"
-        android:layout_above="@+id/signupEmail"
+        android:layout_above="@+id/signup_email"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/signupEmail"
-        android:layout_alignStart="@+id/signupEmail" />
+        android:layout_alignLeft="@+id/signup_email"
+        android:layout_alignStart="@+id/signup_email" />
 
     <EditText
         android:layout_width="500dp"
         android:layout_height="50dp"
-        android:id="@+id/signupEmail"
+        android:id="@+id/signup_email"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:hint="EMAIL ADDRESS"
@@ -69,9 +69,9 @@
     <EditText
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:id="@+id/signupPassword1"
+        android:id="@+id/signup_password_1"
         android:inputType="textPassword"
-        android:layout_below="@+id/signupEmail"
+        android:layout_below="@+id/signup_email"
         android:layout_marginTop="10dp"
         android:hint="PASSWORD"
         android:textColorHint="#FFFFFF"
@@ -80,19 +80,19 @@
         android:drawableLeft="@drawable/lock"
         android:drawablePadding="30dp"
         android:paddingLeft="20dp"
-        android:layout_alignLeft="@+id/signupEmail"
-        android:layout_alignStart="@+id/signupEmail"
-        android:layout_alignRight="@+id/signupEmail"
-        android:layout_alignEnd="@+id/signupEmail"
+        android:layout_alignLeft="@+id/signup_email"
+        android:layout_alignStart="@+id/signup_email"
+        android:layout_alignRight="@+id/signup_email"
+        android:layout_alignEnd="@+id/signup_email"
         android:textIsSelectable="false"
         android:textSize="10dp" />
 
     <EditText
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:id="@+id/signupPassword2"
+        android:id="@+id/signup_password_2"
         android:inputType="textPassword"
-        android:layout_below="@+id/signupPassword1"
+        android:layout_below="@+id/signup_password_1"
         android:layout_marginTop="10dp"
         android:hint="CONFIRM PASSWORD"
         android:textColorHint="#FFFFFF"
@@ -101,10 +101,10 @@
         android:drawableLeft="@drawable/lock"
         android:drawablePadding="30dp"
         android:paddingLeft="20dp"
-        android:layout_alignLeft="@+id/signupEmail"
-        android:layout_alignStart="@+id/signupEmail"
-        android:layout_alignRight="@+id/signupEmail"
-        android:layout_alignEnd="@+id/signupEmail"
+        android:layout_alignLeft="@+id/signup_email"
+        android:layout_alignStart="@+id/signup_email"
+        android:layout_alignRight="@+id/signup_email"
+        android:layout_alignEnd="@+id/signup_email"
         android:textIsSelectable="false"
         android:textSize="10dp" />
 
@@ -113,7 +113,7 @@
         android:layout_height="wrap_content"
         android:textAllCaps="false"
         android:text="Sign Up"
-        android:id="@+id/signupButton"
+        android:id="@+id/signup_button"
         android:background="@drawable/roundedbutton"
         android:backgroundTint="#031a42"
         android:layout_alignParentBottom="true"
@@ -126,9 +126,9 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Passwords must match."
         android:id="@+id/signupPasswordMatchError"
-        android:layout_below="@+id/signupPassword2"
-        android:layout_alignLeft="@+id/signupPassword2"
-        android:layout_alignStart="@+id/signupPassword2"
+        android:layout_below="@+id/signup_password_2"
+        android:layout_alignLeft="@+id/signup_password_2"
+        android:layout_alignStart="@+id/signup_password_2"
         android:visibility="invisible" />
 
     <TextView
@@ -137,9 +137,9 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Must enter valid email."
         android:id="@+id/signupInvalidEmailError"
-        android:layout_below="@+id/signupEmail"
-        android:layout_alignLeft="@+id/signupEmail"
-        android:layout_alignStart="@+id/signupEmail"
+        android:layout_below="@+id/signup_email"
+        android:layout_alignLeft="@+id/signup_email"
+        android:layout_alignStart="@+id/signup_email"
         android:visibility="invisible" />
 
 
