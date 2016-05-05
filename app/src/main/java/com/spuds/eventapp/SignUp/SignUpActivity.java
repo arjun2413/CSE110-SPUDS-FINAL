@@ -14,13 +14,13 @@ import com.spuds.eventapp.R;
 public class SignUpActivity extends AppCompatActivity {
 
     //Submit button, catalyst for any action on page
-    Button signup_button;
+    Button signupButton;
 
     //User Entered Text
-    EditText signup_name;
-    EditText signup_email;
-    EditText signup_password_1;
-    EditText signup_password_2;
+    EditText signupName;
+    EditText signupEmail;
+    EditText signupPassword1;
+    EditText signupPassword2;
 
     //Error TextViews
     TextView signupPasswordMatchError;
@@ -46,19 +46,19 @@ public class SignUpActivity extends AppCompatActivity {
 
         //Use findViewById for all variables
         //Define "Sign Up" button that user clicks, prompting al this information to be processed
-        signup_button = (Button)findViewById(R.id.signup_button);
+        signupButton = (Button)findViewById(R.id.signup_button);
 
         //Fetch User Inputted "name" in String form
-        signup_name = (EditText)findViewById(R.id.signup_name);
+        signupName = (EditText)findViewById(R.id.signup_name);
 
         //Fetch User's entered email address
-        signup_email = (EditText)findViewById(R.id.signup_email);
+        signupEmail = (EditText)findViewById(R.id.signup_email);
 
         //Fetch User's entered new password, referred to as "signup_password_1"
-        signup_password_1 = (EditText)findViewById(R.id.signup_password_1);
+        signupPassword1 = (EditText)findViewById(R.id.signup_password_1);
 
         //Fetch User's entered confirm password, referred to as "signup_password_2"
-        signup_password_2 = (EditText)findViewById(R.id.signup_password_2);
+        signupPassword1 = (EditText)findViewById(R.id.signup_password_2);
 
         //Fetch invisible Password Warning Text
         signupPasswordMatchError = (TextView)findViewById(R.id.signupPasswordMatchError);
@@ -67,14 +67,14 @@ public class SignUpActivity extends AppCompatActivity {
         signupInvalidEmailError = (TextView)findViewById(R.id.signupInvalidEmailError);
 
         //Upon User clicking "Sign Up", convert editable text fields to Strings
-        signup_button.setOnClickListener(new View.OnClickListener() {
+        signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 /*Make sure passwords are matching. If passwords are not equal, display popup
                  that says "Passwords must match.
                   */
-                if (!signup_password_1.getText().toString().equals(signup_password_2.getText().toString())) {
+                if (!signupPassword1.getText().toString().equals(signupPassword1.getText().toString())) {
                     //reveal Invalid Password Match text
                     signupPasswordMatchError.setVisibility(View.VISIBLE);
 
@@ -89,7 +89,7 @@ public class SignUpActivity extends AppCompatActivity {
                     error = true;
                 }
                 //If email is not valid, user gets error popup
-                if (!isValidEmail(signup_email.getText().toString())) {
+                if (!isValidEmail(signupEmail.getText().toString())) {
                     //reveal Invalid Email text
                     signupInvalidEmailError.setVisibility(View.VISIBLE);
 
@@ -111,9 +111,9 @@ public class SignUpActivity extends AppCompatActivity {
 
                     //TODO If email isn't taken already, go through with account creation
                     //Make these console logs instead route to database.
-                    Log.v("signup_name", signup_name.getText().toString());
-                    Log.v("signup_email", signup_email.getText().toString());
-                    Log.v("signupPassword", signup_password_1.getText().toString());
+                    Log.v("signup_name", signupName.getText().toString());
+                    Log.v("signup_email", signupEmail.getText().toString());
+                    Log.v("signupPassword", signupPassword1.getText().toString());
                 }
             }
         });

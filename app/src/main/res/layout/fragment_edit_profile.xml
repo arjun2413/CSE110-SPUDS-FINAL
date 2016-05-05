@@ -64,53 +64,6 @@
         android:layout_alignParentStart="true"
         android:textColor="#000000" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/edit_full_name"
-        android:layout_below="@+id/text_full_name"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:editable="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/edit_college"
-        android:layout_below="@+id/text_college"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:editable="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/edit_major"
-        android:layout_below="@+id/text_major"
-        android:layout_alignLeft="@+id/text_major"
-        android:layout_alignStart="@+id/text_major"
-        android:text="Medium Text"
-        android:editable="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/edit_description"
-        android:layout_below="@+id/text_description"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:editable="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:drawableTint="#c54444" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -119,5 +72,37 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="29dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_full_name"
+        android:layout_below="@+id/text_full_name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_college"
+        android:layout_below="@+id/text_college"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_major"
+        android:layout_below="@+id/text_major"
+        android:layout_alignLeft="@+id/text_major"
+        android:layout_alignStart="@+id/text_major" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_description"
+        android:layout_below="@+id/text_description"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
