@@ -15,7 +15,6 @@ import com.spuds.eventapp.R;
 import java.util.ArrayList;
 
 public class EditEventFragment extends Fragment {
-
     private ImageView eventImage;
     private EditText eventName;
     private EditText eventDate;
@@ -23,10 +22,30 @@ public class EditEventFragment extends Fragment {
     private EditText eventDescription;
     private Button editEventDelete;
     private Button editEventDone;
-
     private ArrayList editEventFields;
 
-    protected void getEventDetails(View view) {
+
+    public EditEventFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_edit_event, container, false);
+
+        getPageElements(view);
+        setupWindow();
+
+        return view;
+    }
+
+    protected void getPageElements(View view) {
         eventImage = (ImageView) view.findViewById(R.id.eventImage);
         eventName = (EditText) view.findViewById(R.id.eventName);
         eventDate = (EditText) view.findViewById(R.id.eventDate);
@@ -34,7 +53,6 @@ public class EditEventFragment extends Fragment {
         eventDescription = (EditText) view.findViewById(R.id.eventDescription);
         editEventDelete = (Button) view.findViewById(R.id.editEventDelete);
         editEventDone = (Button) view.findViewById(R.id.editEventDone);
-
         editEventFields = new ArrayList<String>();
     }
 
@@ -57,7 +75,6 @@ public class EditEventFragment extends Fragment {
                 }
                 */
 
-
                 if (eventNameString == null | eventDateString == null |
                         eventLocationString == null | eventDescriptionString == null) {
                     // TODO return error
@@ -72,26 +89,6 @@ public class EditEventFragment extends Fragment {
         });
     }
 
-    public EditEventFragment() {
-        // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_edit_event, container, false);
-
-        getEventDetails(view);
-        setupWindow();
-
-        return view;
-    }
 
 
 
