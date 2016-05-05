@@ -8,9 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d505c2a1-7884-42b8-bda2-26c1469152cf" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditProfile/EditProfileFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditProfile/EditProfileFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SignUp/SignUpActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SignUp/SignUpActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_edit_profile.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_edit_profile.xml" />
     </list>
     <ignored path="CSE110-SPUDS-FINAL.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -2324,7 +2321,13 @@
       <option name="project" value="LOCAL" />
       <updated>1462420789309</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Actually fixed camelCase and snake_case stuff. Started EdiProfileFragment.java's variables by initializing interactable elements.">
+      <created>1462424938618</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1462424938618</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2398,7 +2401,8 @@
     <MESSAGE value="Fixed snake_case and camelCase standardization changes to SignUpActivity.java and activity_sign_up.xml" />
     <MESSAGE value="Fixed snake_case and camelCase standardization changes to SignUpActivity.java and activity_sign_up.xml files." />
     <MESSAGE value="Started fragment_edit_profile.xml file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Started fragment_edit_profile.xml file." />
+    <MESSAGE value="Actually fixed camelCase and snake_case stuff. Started EdiProfileFragment.java's variables by initializing interactable elements." />
+    <option name="LAST_COMMIT_MESSAGE" value="Actually fixed camelCase and snake_case stuff. Started EdiProfileFragment.java's variables by initializing interactable elements." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
