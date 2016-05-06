@@ -5,9 +5,18 @@
     tools:context=".CreateComment.CreateCommentFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="237dp"
+        android:id="@+id/comment_input"
+        android:layout_gravity="left|top"
+        android:hint="Write Comment" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SUBMIT"
+        android:id="@+id/comment_submit"
+        android:layout_gravity="center" />
 </FrameLayout>
