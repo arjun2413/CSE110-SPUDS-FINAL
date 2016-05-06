@@ -22,9 +22,11 @@ public class EditProfileFragment extends Fragment {
     EditText editCollege;
     EditText editMajor;
     EditText editDescription;
+    Fragment editProfileFragment;
 
     public EditProfileFragment() {
-
+        //this is to leave this fragment when done
+        editProfileFragment = this;
     }
 
     @Override
@@ -49,20 +51,22 @@ public class EditProfileFragment extends Fragment {
         editCollege.setHint("shit");
         editMajor.setHint("shit");
         editDescription.setHint("shit");
+
+        //When update button is clicked, get the Text the user input, and send to Firebase.
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editFullName.getText().toString();
-                editCollege.getText().toString();
-                editMajor.getText().toString();
-                editDescription.getText().toString();
+                //TODO: Firebase pull
+                editFullName.getText().toString();      //Full Name to update to db
+                editCollege.getText().toString();       //College text to update to db
+                editMajor.getText().toString();         //Major text to update to db
+                editDescription.getText().toString();   //description to update to db
+
+                //exit this fragment when done
+                getActivity().getSupportFragmentManager().beginTransaction().remove(editProfileFragment).commit();
+
             }
         });
-        //TODO: upon button clicklistener:
-        //Button listener for when user clicks submit changes
-        //get text for every edit text field and upon submit send to server
-        //TODO: push these strings to firebase and update.
-
 
 
         //TODO: exit Edit Page and return to profile page.

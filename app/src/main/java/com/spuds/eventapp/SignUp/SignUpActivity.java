@@ -1,5 +1,6 @@
 package com.spuds.eventapp.SignUp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -114,6 +116,9 @@ public class SignUpActivity extends AppCompatActivity {
                     Log.v("signup_name", signupName.getText().toString());
                     Log.v("signup_email", signupEmail.getText().toString());
                     Log.v("signupPassword", signupPassword1.getText().toString());
+
+                    //When done, leave this page and go to main screen.
+                    startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                 }
             }
         });
