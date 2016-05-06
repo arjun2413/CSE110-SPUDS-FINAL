@@ -15,6 +15,8 @@ import com.spuds.eventapp.R;
 
 public class ChangePasswordFragment extends Fragment {
 
+
+    //parts of the fragment
     private EditText current_pw;
     private EditText new_pw;
     private EditText confirm_pw;
@@ -34,6 +36,7 @@ public class ChangePasswordFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        //initializing parts of the fragment
         final View view = inflater.inflate(R.layout.fragment_change_password, container, false);
         current_pw = (EditText) view.findViewById(R.id.current_password);
         new_pw = (EditText) view.findViewById(R.id.new_password);
@@ -52,37 +55,63 @@ public class ChangePasswordFragment extends Fragment {
                 //      3. check if second field fulfills all password requirements
                 //      4. check if second and third fields match
                 //      5. show snackbar on success or error message accordingly.
+
+
+                //Checks if all fields have been entered
                 if ((current_pw.getText().length() > 0) && (new_pw.getText().length() >
                         0) && (confirm_pw.getText().length() > 0)) {
+
+                    //checks if an error has been found
                     boolean is_error = false;
+
+                    //default comparison password to user password
                     String user_pw = "a";
+
+                    //gets all entered strings to perform logic
                     String first_pw = current_pw.getText().toString();
                     String second_pw = new_pw.getText().toString();
                     String third_pw = confirm_pw.getText().toString();
+
+                    //default string set to append error to
                     String message = "";
+
+                    //checks if first field matches user current password
                     if(!(first_pw.equals(user_pw))){
-                        String wrong_user_pw = "Error 1: incorrect current password";
-                        message = message + wrong_user_pw;
+
+                        //get error message and set that an error was found
+                        message = message + getString(R.string.incorrect_password_error);
                         is_error = true;
                     }
+
+                    //checks if second and third fields are the same
                     if(!(second_pw.equals(third_pw))){
-                        String different_pw = "Error 2: new passwords do not match";
+
+                        //append to error message if one already found
                         if(is_error){
                             message = message + "\n";
                         }
-                        message = message + different_pw;
+                        message = message + getString(R.string.mismatched_fields_error);
                         is_error = true;
                     }
+
+                    //pops up a snackbar with successful change message if no error was found
                     if(!is_error) {
 
                         //TODO: need to test if snackbar works properly
-                        Snackbar snackbar = Snackbar.make(view, "Password Changed", Snackbar.LENGTH_LONG);
+                        Snackbar snackbar = Snackbar.make
+                                (view,getString(R.string.password_change_success),
+                                        Snackbar.LENGTH_LONG);
                         snackbar.show();
                     }
-                    sys_message.setText(message);
-                } else {
-                    String incomplete_input = "Error 3: not all fields complete";
-                    sys_message.setText(incomplete_input);
+                    else {
+
+                        //show concatinated error messages
+                        sys_message.setText(message);
+                    }
+                }
+                //Tells the user that they must fill all fields
+                else {
+                    sys_message.setText(getString(R.string.missing_fields_error));
                 }
             }
         });
