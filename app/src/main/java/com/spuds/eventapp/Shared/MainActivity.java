@@ -17,18 +17,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.spuds.eventapp.About.AboutFragment;
 import com.spuds.eventapp.CategoriesList.CategoriesListFragment;
+import com.spuds.eventapp.FindPeople.FindPeopleFragment;
+import com.spuds.eventapp.HomeFeed.HomeFeedTabsFragment;
 import com.spuds.eventapp.Login.LoginActivity;
 import com.spuds.eventapp.MyEvents.MyEventsTabsFragment;
-import com.spuds.eventapp.R;
-import com.spuds.eventapp.SubscriptionFeed.SubscriptionFeedTabsFragment;
 import com.spuds.eventapp.Notifications.NotificationsFragment;
-import com.spuds.eventapp.HomeFeed.HomeFeedTabsFragment;
-import com.spuds.eventapp.FindPeople.FindPeopleFragment;
-import com.spuds.eventapp.SubscriptionsList.SubscriptionsListFragment;
 import com.spuds.eventapp.Profile.ProfileFragment;
-import com.spuds.eventapp.About.AboutFragment;
+import com.spuds.eventapp.R;
 import com.spuds.eventapp.Settings.SettingsFragment;
+import com.spuds.eventapp.SubscriptionFeed.SubscriptionFeedTabsFragment;
+import com.spuds.eventapp.SubscriptionsList.SubscriptionsListFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -54,10 +54,6 @@ public class MainActivity extends AppCompatActivity
         setupFragments();
         setupToolbar();
         setupDrawer();
-
-        //Firebase.setAndroidContext(this);
-        // other setup code
-
 
     }
 

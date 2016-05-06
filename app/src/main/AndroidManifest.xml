@@ -24,17 +24,17 @@
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
+
+        </activity>
+        <activity android:name=".Login.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-        <activity android:name=".ResetPassword.ResetPasswordActivity" />
+        <activity android:name=".ForgotPasswordActivity.ForgotPasswordActivity" />
         <activity android:name=".SignUp.SignUpActivity" />
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
     </application>

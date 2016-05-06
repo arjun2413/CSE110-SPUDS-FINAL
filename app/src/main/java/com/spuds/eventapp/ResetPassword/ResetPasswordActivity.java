@@ -1,7 +1,6 @@
 package com.spuds.eventapp.ResetPassword;
 
-import android.content.Intent;
-import android.net.Uri;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,76 +10,57 @@ import android.widget.EditText;
 import com.spuds.eventapp.R;
 
 public class ResetPasswordActivity extends AppCompatActivity {
-    private EditText emailTextField;
-    private Button getPassButton;
 
+    private EditText input;
+    private Button send;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
-        getPageElements();
-        setupWindow();
-    }
+        input = (EditText)findViewById(R.id.email);
+        send = (Button) findViewById(R.id.send_password);
 
-    protected void getPageElements() {
-        emailTextField = (EditText) findViewById(R.id.email);
-        getPassButton = (Button) findViewById(R.id.sign_in);
-    }
-
-    protected void setupWindow() {
-        getPassButton.setOnClickListener(new View.OnClickListener() {
+        send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String emailString = emailTextField.getText().toString();
+                //TODO: move error checking logic to model file.
+                //Logic:
+                //      1. check if all fields are entered.
+                //      2. check if first is an email
+                //      3. check if first field exists in the database
+                //      5. show snackbar on success or error message accordingly.
+                String message = "";
+                if(input.getText().length() > 0){
+                    int end = input.getText().length();
+                    int eduCheck = end -9;
+                    //Checks if end of string is "@ucsd.edu"
+                    //NOTE: this does not properly check if email is from ucsd.
+                    String emailCheck = (String)input.getText().subSequence( eduCheck,end);
+                    String valid = "@ucsd.edu";
+                    if(!emailCheck.equals(valid)){
+                        message = "Please enter a valid @ucsd.edu email";
+                    }
+                    else{
+                        //TODO: check database
+                        if(true){
+                            //Email is a valid email
+                            //have firebase send email.
 
-                if (isValidEmail(emailString)) {
-                    // TODO send emailString to database to see if it exists
-                    // if true, call sendEmail()
-                    // else, say email not found in database
+                        }
+                        else{
+                            message = "Email not found";
+                        }
+                    }
 
-                    // TODO below only if true in this block
-                    sendEmail(emailString);
                 }
-                else {
-                    // TODO return invalid email error
+                else{
+                    message = "Please fill all fields";
                 }
+
+                //TODO: display the message of success/failure somehow
             }
         });
     }
-
-    // TODO set up sending email and page for user to reset password
-    // http://stackoverflow.com/questions/28546703/how-to-code-using-android-studio-to-send-an-email
-    protected void sendEmail(String email) {
-        String[] TO = {email};
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
-
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Eventory Password Reset");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Hi! Click this link to reset your password");
-
-        try {
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            finish();
-        } catch (android.content.ActivityNotFoundException ex) {
-            // TODO can't connect and need error message
-            /*
-            Toast.makeText(MainActivity.this,
-                    "There is no email client installed.", Toast.LENGTH_SHORT).show();
-            */
-        }
-    }
-
-    // determines if a string contains the @ucsd.edu extension
-    private boolean isValidEmail(String email) {
-        if (!email.toLowerCase().contains("@ucsd.edu")) {
-            return false;
-        }
-        return true;
-    }
-
-
 }
