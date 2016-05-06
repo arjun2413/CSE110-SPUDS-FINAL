@@ -1,5 +1,6 @@
 package com.spuds.eventapp.SignUp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,8 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -59,7 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
         signupPassword1 = (EditText)findViewById(R.id.signup_password_1);
 
         //Fetch User's entered confirm password, referred to as "signup_password_2"
-        signupPassword2 = (EditText)findViewById(R.id.signup_password_2);
+        signupPassword1 = (EditText)findViewById(R.id.signup_password_2);
 
         //Fetch invisible Password Warning Text
         signupPasswordMatchError = (TextView)findViewById(R.id.signupPasswordMatchError);
@@ -115,8 +116,9 @@ public class SignUpActivity extends AppCompatActivity {
                     Log.v("signup_name", signupName.getText().toString());
                     Log.v("signup_email", signupEmail.getText().toString());
                     Log.v("signupPassword", signupPassword1.getText().toString());
-                    AccountFirebase accountFirebase = new AccountFirebase();
-                    accountFirebase.createAccount("signup_email", "signupPassword");
+
+                    //When done, leave this page and go to main screen.
+                    startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                 }
             }
         });
