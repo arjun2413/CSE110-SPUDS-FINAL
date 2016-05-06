@@ -14,11 +14,11 @@ package com.spuds.eventapp.Firebase;
      * Created by Arjun on 5/5/16.
      */
     public class AccountFirebase {
-        void createAccount() {
+        public void createAccount(String email, String password) {
 
 
             Firebase ref = new Firebase("https://eventory.firebaseio.com");
-            ref.createUser("bobtony@firebase.com","correcthorsebatterystaple",new Firebase.ValueResultHandler<Map<String, Object>>()
+            ref.createUser(email, password, new Firebase.ValueResultHandler<Map<String, Object>>()
 
                     {
                         @Override
@@ -34,7 +34,7 @@ package com.spuds.eventapp.Firebase;
 
             );
         }
-        void logIn() {
+       public void logIn() {
             Firebase ref = new Firebase("https://eventory.firebaseio.com");
             ref.authWithPassword("bobtony@firebase.com", "correcthorsebatterystaple", new Firebase.AuthResultHandler() {
                 @Override
@@ -76,7 +76,7 @@ package com.spuds.eventapp.Firebase;
                 }
             });
         }
-        void removingAccount() {
+       public void removingAccount() {
             Firebase ref = new Firebase("https://eventory.firebaseio.com");
             ref.removeUser("bobtony@firebase.com", "correcthorsebatterystaple", new Firebase.ResultHandler() {
                 @Override
