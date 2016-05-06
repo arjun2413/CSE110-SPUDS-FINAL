@@ -790,12 +790,12 @@ int id search_plate 0x7f0d0063
 int id search_src_text 0x7f0d0064
 int id search_voice_btn 0x7f0d0068
 int id select_dialog_listview 0x7f0d0069
+int id send_password 0x7f0d006d
 int id shortcut 0x7f0d0054
 int id showCustom 0x7f0d0011
 int id showHome 0x7f0d0012
 int id showTitle 0x7f0d0013
 int id signIn 0x7f0d0070
-int id sign_in 0x7f0d006d
 int id signupInvalidEmailError 0x7f0d007f
 int id signupLogo 0x7f0d0077
 int id signupPasswordMatchError 0x7f0d007e

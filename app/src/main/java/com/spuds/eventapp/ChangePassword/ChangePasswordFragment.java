@@ -2,6 +2,7 @@ package com.spuds.eventapp.ChangePassword;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,7 @@ public class ChangePasswordFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_change_password, container, false);
+        final View view = inflater.inflate(R.layout.fragment_change_password, container, false);
         current_pw = (EditText) view.findViewById(R.id.current_password);
         new_pw = (EditText) view.findViewById(R.id.new_password);
         confirm_pw = (EditText) view.findViewById(R.id.confirm_password);
@@ -43,6 +44,14 @@ public class ChangePasswordFragment extends Fragment {
         change_pw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //TODO: move error checking logic to model file.
+                //Logic:
+                //      1. check if all fields are entered.
+                //      2. check if first field matches user password
+                //      3. check if second field fulfills all password requirements
+                //      4. check if second and third fields match
+                //      5. show snackbar on success or error message accordingly.
                 if ((current_pw.getText().length() > 0) && (new_pw.getText().length() >
                         0) && (confirm_pw.getText().length() > 0)) {
                     boolean is_error = false;
@@ -65,7 +74,10 @@ public class ChangePasswordFragment extends Fragment {
                         is_error = true;
                     }
                     if(!is_error) {
-                        message = "Password Changed";
+
+                        //TODO: need to test if snackbar works properly
+                        Snackbar snackbar = Snackbar.make(view, "Password Changed", Snackbar.LENGTH_LONG);
+                        snackbar.show();
                     }
                     sys_message.setText(message);
                 } else {

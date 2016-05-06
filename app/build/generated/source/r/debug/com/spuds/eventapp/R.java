@@ -2616,12 +2616,12 @@ containing a value of this type.
         public static final int search_src_text=0x7f0d0064;
         public static final int search_voice_btn=0x7f0d0068;
         public static final int select_dialog_listview=0x7f0d0069;
+        public static final int send_password=0x7f0d006d;
         public static final int shortcut=0x7f0d0054;
         public static final int showCustom=0x7f0d0011;
         public static final int showHome=0x7f0d0012;
         public static final int showTitle=0x7f0d0013;
         public static final int signIn=0x7f0d0070;
-        public static final int sign_in=0x7f0d006d;
         public static final int signupInvalidEmailError=0x7f0d007f;
         public static final int signupLogo=0x7f0d0077;
         public static final int signupPasswordMatchError=0x7f0d007e;
