@@ -42,9 +42,9 @@ public class SubscriptionFeedFragment extends Fragment {
 
         events = new ArrayList<>();
         events.add(new Event("1", "yj.jpg", "SunGod", "UCSD", "04.29.16", 1054,
-                "Social", "Concert", "UCSD"));
+                "Social", "Concert", "UCSD", "desc"));
         events.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "04.28.16", 51,
-                "Social", null, "Foosh Improv Comedy Club"));
+                "Social", null, "Foosh Improv Comedy Club", "desc"));
 
         adapter = new EventsFeedRVAdapter(events);
         rv.setAdapter(adapter);

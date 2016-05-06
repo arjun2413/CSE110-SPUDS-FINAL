@@ -13,9 +13,10 @@ public class Event {
     public String categOne;
     public String categTwo;
     public String host;
+    public String description;
 
-    public Event(String id, String picFileName, String name, String location, String date, int attendees,
-                 String categOne, String categTwo, String host) {
+     public Event(String id, String picFileName, String name, String location, String date, int attendees,
+                 String categOne, String categTwo, String host, String description) {
         this.id = id;
         this.name = name;
         this.picFileName = picFileName;
@@ -25,5 +26,6 @@ public class Event {
         this.categOne = categOne;
         this.categTwo = categTwo;
         this.host = host;
+        this.description = description;
     }
 }
