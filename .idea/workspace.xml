@@ -6,10 +6,10 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d505c2a1-7884-42b8-bda2-26c1469152cf" name="Default" comment="">
+    <list default="true" id="d505c2a1-7884-42b8-bda2-26c1469152cf" name="Default" comment="Further updated EditProfileFragment.java file. TODO: interface with Firebase, and implement OnClickListener.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditProfile/EditProfileFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditProfile/EditProfileFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SignUp/SignUpActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SignUp/SignUpActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_edit_profile.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_edit_profile.xml" />
     </list>
     <ignored path="CSE110-SPUDS-FINAL.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,13 +35,15 @@
           <file leaf-file-name="EditProfileFragment.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditProfile/EditProfileFragment.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.78038067">
-                  <caret line="62" column="58" selection-start-line="62" selection-start-column="58" selection-end-line="62" selection-end-column="58" />
+                <state vertical-scroll-proportion="0.5168375">
+                  <caret line="60" column="42" selection-start-line="60" selection-start-column="42" selection-end-line="60" selection-end-column="42" />
                   <folding>
-                    <element signature="e#2302#2303#0" expanded="true" />
-                    <element signature="e#2341#2342#0" expanded="true" />
-                    <element signature="e#2385#2386#0" expanded="true" />
-                    <element signature="e#2417#2418#0" expanded="true" />
+                    <element signature="e#1785#2107#0" expanded="true" />
+                    <element signature="e#2106#2107#0" expanded="true" />
+                    <element signature="e#2496#2497#0" expanded="true" />
+                    <element signature="e#2535#2536#0" expanded="true" />
+                    <element signature="e#2579#2580#0" expanded="true" />
+                    <element signature="e#2611#2612#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -53,8 +55,8 @@
                 <state />
               </provider>
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-6.225">
-                  <caret line="78" column="39" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="39" />
+                <state vertical-scroll-proportion="-1.125">
+                  <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
                   <folding />
                 </state>
               </provider>
@@ -92,12 +94,12 @@
         <leaf>
           <file leaf-file-name="fragment_edit_profile.xml" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_edit_profile.xml">
-              <provider editor-type-id="android-designer">
+              <provider selected="true" editor-type-id="android-designer">
                 <state />
               </provider>
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.71428573">
-                  <caret line="78" column="39" selection-start-line="78" selection-start-column="39" selection-end-line="78" selection-end-column="39" />
+              <provider editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-18.75">
+                  <caret line="81" column="39" selection-start-line="81" selection-start-column="39" selection-end-line="81" selection-end-column="39" />
                   <folding />
                 </state>
               </provider>
@@ -1797,8 +1799,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_edit_profile.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SignUp/SignUpActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_edit_profile.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditProfile/EditProfileFragment.java" />
       </list>
     </option>
@@ -2362,7 +2364,13 @@
       <option name="project" value="LOCAL" />
       <updated>1462424955376</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Further updated EditProfileFragment.java file. TODO: interface with Firebase, and implement OnClickListener.">
+      <created>1462428008321</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1462428008321</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2429,6 +2437,14 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -2437,7 +2453,8 @@
     <MESSAGE value="Fixed snake_case and camelCase standardization changes to SignUpActivity.java and activity_sign_up.xml files." />
     <MESSAGE value="Started fragment_edit_profile.xml file." />
     <MESSAGE value="Actually fixed camelCase and snake_case stuff. Started EdiProfileFragment.java's variables by initializing interactable elements." />
-    <option name="LAST_COMMIT_MESSAGE" value="Actually fixed camelCase and snake_case stuff. Started EdiProfileFragment.java's variables by initializing interactable elements." />
+    <MESSAGE value="Further updated EditProfileFragment.java file. TODO: interface with Firebase, and implement OnClickListener." />
+    <option name="LAST_COMMIT_MESSAGE" value="Further updated EditProfileFragment.java file. TODO: interface with Firebase, and implement OnClickListener." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -2518,17 +2535,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_edit_profile.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.225">
-          <caret line="78" column="39" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SignUp/SignUpActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.185185">
@@ -2540,15 +2546,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_edit_profile.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.125">
+          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditProfile/EditProfileFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78038067">
-          <caret line="62" column="58" selection-start-line="62" selection-start-column="58" selection-end-line="62" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.5168375">
+          <caret line="60" column="42" selection-start-line="60" selection-start-column="42" selection-end-line="60" selection-end-column="42" />
           <folding>
-            <element signature="e#2302#2303#0" expanded="true" />
-            <element signature="e#2341#2342#0" expanded="true" />
-            <element signature="e#2385#2386#0" expanded="true" />
-            <element signature="e#2417#2418#0" expanded="true" />
+            <element signature="e#1785#2107#0" expanded="true" />
+            <element signature="e#2106#2107#0" expanded="true" />
+            <element signature="e#2496#2497#0" expanded="true" />
+            <element signature="e#2535#2536#0" expanded="true" />
+            <element signature="e#2579#2580#0" expanded="true" />
+            <element signature="e#2611#2612#0" expanded="true" />
           </folding>
         </state>
       </provider>

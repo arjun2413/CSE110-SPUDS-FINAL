@@ -49,15 +49,20 @@ public class EditProfileFragment extends Fragment {
         editCollege.setHint("shit");
         editMajor.setHint("shit");
         editDescription.setHint("shit");
-
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editFullName.getText().toString();
+                editCollege.getText().toString();
+                editMajor.getText().toString();
+                editDescription.getText().toString();
+            }
+        });
         //TODO: upon button clicklistener:
         //Button listener for when user clicks submit changes
         //get text for every edit text field and upon submit send to server
         //TODO: push these strings to firebase and update.
-        editFullName.getText().toString();
-        editCollege.getText().toString();
-        editMajor.getText().toString();
-        editDescription.getText().toString();
+
 
 
         //TODO: exit Edit Page and return to profile page.
