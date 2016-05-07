@@ -6,9 +6,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -37,7 +34,7 @@ public class SubscriptionFeedTabsFragment extends Fragment {
     }
     private void tabs(View view) {
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
-        final ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        final ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
 
         viewPager.setAdapter(subscriptionFeedViewPagerAdapter);
         viewPager.setOffscreenPageLimit(3);
@@ -79,7 +76,7 @@ public class SubscriptionFeedTabsFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        subscriptionFeedViewPagerAdapter = new SubscriptionFeedViewPagerAdapter(getChildFragmentManager()); //here used child fragment manager
+        subscriptionFeedViewPagerAdapter = new SubscriptionFeedViewPagerAdapter(getChildFragmentManager(), this); //here used child fragment manager
     }
 
     @Override
@@ -87,24 +84,7 @@ public class SubscriptionFeedTabsFragment extends Fragment {
         super.onDetach();
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.dashboard, menu);
 
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                // Not implemented here
-                return false;
-            default:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
 
 

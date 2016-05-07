@@ -18,6 +18,9 @@ public class CreateCommentFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // If bundle is null then it is a root comment
+        // If bundle has parent then it is a reply comment
     }
 
     @Override

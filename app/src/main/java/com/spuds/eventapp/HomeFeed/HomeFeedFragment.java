@@ -43,12 +43,12 @@ public class HomeFeedFragment extends Fragment {
         rv.setHasFixedSize(true);
 
         events = new ArrayList<>();
-        events.add(new Event("1", "yj.jpg", "SunGod", "UCSD", "04.29.16", 1054,
-                "Social", "Concert", "UCSD", "Description"));
+        events.add(new Event("1", "yj.jpg", "Sun God Festival", "RIMAC Field", "04.29.16", 1054,
+                "Social", "Concert", "UCSD", "spr lame"));
         events.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "04.28.16", 51,
-                "Social", null, "Foosh Improv Comedy Club", "Description"));
+                "Social", null, "Foosh Improv Comedy Club", "spr funny"));
 
-        adapter = new EventsFeedRVAdapter(events);
+        adapter = new EventsFeedRVAdapter(events, this, getString(R.string.fragment_home_feed));
         rv.setAdapter(adapter);
 
         return view;

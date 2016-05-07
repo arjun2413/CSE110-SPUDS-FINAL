@@ -8,19 +8,42 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.spuds.eventapp.CreateComment.CreateCommentFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Comment;
+import com.spuds.eventapp.Shared.Event;
+import com.spuds.eventapp.Shared.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class EventDetailsFragment extends Fragment {
 
-    List<Comment> comments;
-    CommentsRVAdapter adapter;
+    // Holds event details
+    Event event;
+
+    // Views for event details
+    ImageView eventPic;
+    TextView eventName;
+    TextView eventLocation;
+    TextView eventDate;
+    TextView eventAttendees;
+    TextView eventCategories;
+    TextView eventHost;
+    TextView eventDescription;
+    Button addComment;
+
+    // Reference to itself
+    Fragment eventDetailsFragment;
+
+    // Comments
     RecyclerView rv;
+    CommentsRVAdapter adapter;
+    List<Comment> comments;
 
     public EventDetailsFragment() {
     }
@@ -28,6 +51,11 @@ public class EventDetailsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle extras = getArguments();
+        event = (Event) extras.get(getString(R.string.event_details));
+        eventDetailsFragment = this;
+
     }
 
     @Override
@@ -35,21 +63,82 @@ public class EventDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_event_details, container, false);
 
-        // Create bundle to get event detail info & put it into fragment
+        setUpEventInformation(view);
 
-        rv = (RecyclerView) view.findViewById(R.id.rv);
-
-        LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
-        rv.setLayoutManager(llm);
-        rv.setHasFixedSize(true);
-
-        comments = new ArrayList<>();
-        // make fake data
-
-        adapter = new CommentsRVAdapter(comments);
-        rv.setAdapter(adapter);
+        setUpComments(view);
 
         return view;
+    }
+
+    void setUpEventInformation(View view) {
+
+        eventPic = (ImageView) view.findViewById(R.id.event_pic);
+        eventName = (TextView) view.findViewById(R.id.event_name);
+        eventLocation = (TextView) view.findViewById(R.id.event_loc);
+        eventDate = (TextView) view.findViewById(R.id.event_date);
+        eventAttendees = (TextView) view.findViewById(R.id.event_attendees);
+        eventCategories = (TextView) view.findViewById(R.id.event_categories);
+        eventHost = (TextView) view.findViewById(R.id.event_host);
+        eventDescription = (TextView) view.findViewById(R.id.event_description);
+        addComment = (Button) view.findViewById(R.id.button_add_comment);
+
+        //TODO: picasso for event pic
+        eventName.setText(event.name);
+        eventLocation.setText(event.location);
+        eventDate.setText(event.date);
+        eventAttendees.setText(String.valueOf(event.attendees));
+        eventHost.setText(event.host);
+        eventDescription.setText(event.description);
+
+        // String for two categories; String for one category
+        if (event.categTwo != null)
+            eventCategories.setText(event.categOne + ", " + event.categTwo);
+        else
+            eventCategories.setText(event.categOne);
+
+        // Click listener for the Add Comment button
+        addComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Creates Create Comment Fragment
+                CreateCommentFragment createCommentFragment = new CreateCommentFragment();
+                String createCommentFragmentTag = getString(R.string.fragment_create_comment);
+
+                // Adds Create Comment Fragment to fragment manager
+                getFragmentManager().beginTransaction()
+                        .add(R.id.fragment_frame_layout, createCommentFragment, createCommentFragmentTag)
+                        .hide(createCommentFragment)
+                        .commit();
+
+                ((MainActivity) getActivity()).switchTo(eventDetailsFragment, createCommentFragment, createCommentFragmentTag);
+
+            }
+        });
+
+    }
+
+    void setUpComments(View view) {
+        rv = (RecyclerView) view.findViewById(R.id.rv);
+
+        //Set type of layout manager
+        LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
+        rv.setLayoutManager(llm);
+
+        //TODO: Get comments from database
+        comments = new ArrayList<>();
+        comments.add(new Comment("1", null, "Tina Nguyen", "tina.jpg", "05.06.16", "I'm the bestest", false));
+        comments.add(new Comment("2", null, "Reggie Wu", "reggie.jpg", "05.06.16", "This event is fun!", false));
+        comments.add(new Comment("1", null, "Tina Nguyen", "tina.jpg", "05.06.16", "I'm the bestest", false));
+        comments.add(new Comment("2", null, "Reggie Wu", "reggie.jpg", "05.06.16", "This event is fun!", false));
+        comments.add(new Comment("1", null, "Tina Nguyen", "tina.jpg", "05.06.16", "I'm the bestest", false));
+        comments.add(new Comment("2", null, "Reggie Wu", "reggie.jpg", "05.06.16", "This event is fun!", false));
+
+
+        // Create adapter for comments
+        adapter = new CommentsRVAdapter(comments, this);
+        // Attach adpater to RecyclerView
+        rv.setAdapter(adapter);
     }
 
     @Override

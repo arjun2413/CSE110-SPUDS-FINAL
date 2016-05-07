@@ -184,12 +184,12 @@
         "source": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_navigation_item.xml"
     },
     {
-        "merged": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/fragment_create_event.xml",
-        "source": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/res/layout/fragment_create_event.xml"
-    },
-    {
         "merged": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/nav_header_profile.xml",
         "source": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/res/layout/nav_header_profile.xml"
+    },
+    {
+        "merged": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/fragment_create_event.xml",
+        "source": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/res/layout/fragment_create_event.xml"
     },
     {
         "merged": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/notification_template_lines.xml",

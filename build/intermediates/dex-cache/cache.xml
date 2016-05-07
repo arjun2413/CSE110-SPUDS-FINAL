@@ -1,12 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
-
-    <item
-        jar="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="9acc4e2249d48f70741b46060a65820af0ee9db1">
-        <dex dex="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_f7c4412f22e56d40f1b2a0a88963d8de4abfa057/classes.dex" />
-    </item>
-
-</items>
+<items version="2" />

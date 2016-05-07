@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.spuds.eventapp.HomeFeed.HomeFeedViewPagerAdapter;
 import com.spuds.eventapp.R;
 
 public class HomeFeedTabsFragment extends Fragment {
@@ -37,7 +36,7 @@ public class HomeFeedTabsFragment extends Fragment {
     }
     private void tabs(View view) {
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
-        final ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        final ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
 
         viewPager.setAdapter(myHomeFeedViewPagerAdapter);
         viewPager.setOffscreenPageLimit(3);
@@ -48,7 +47,7 @@ public class HomeFeedTabsFragment extends Fragment {
 
         newFilter.setText("New");
         hotFilter.setText("Hot");
-        happeningNowFilter.setText("Happening Now");
+        happeningNowFilter.setText("Now");
 
         tabLayout.addTab(newFilter, 0);
         tabLayout.addTab(hotFilter, 1);
@@ -79,7 +78,7 @@ public class HomeFeedTabsFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        myHomeFeedViewPagerAdapter = new HomeFeedViewPagerAdapter(getChildFragmentManager());
+        myHomeFeedViewPagerAdapter = new HomeFeedViewPagerAdapter(getChildFragmentManager(), this);
     }
 
     @Override

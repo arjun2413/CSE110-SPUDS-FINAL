@@ -9,8 +9,11 @@ import android.support.v4.app.FragmentStatePagerAdapter;
  */
 public class HomeFeedViewPagerAdapter extends FragmentStatePagerAdapter {
 
-    public HomeFeedViewPagerAdapter(FragmentManager fm) {
+    Fragment homeFeedTabsFragment;
+
+    public HomeFeedViewPagerAdapter(FragmentManager fm, Fragment homeFeedTabsFragment) {
         super(fm);
+        this.homeFeedTabsFragment = homeFeedTabsFragment;
     }
 
     //TODO: Create different fragments passing in filter

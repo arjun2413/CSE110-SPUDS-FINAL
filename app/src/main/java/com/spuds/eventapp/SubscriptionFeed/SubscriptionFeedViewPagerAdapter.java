@@ -9,8 +9,12 @@ import android.support.v4.app.FragmentStatePagerAdapter;
  */
 public class SubscriptionFeedViewPagerAdapter extends FragmentStatePagerAdapter {
 
-    public SubscriptionFeedViewPagerAdapter(FragmentManager fm) {
+    Fragment subscriptionFeedTabsFragment;
+
+    public SubscriptionFeedViewPagerAdapter(FragmentManager fm, Fragment subscriptionFeedTabsFragment) {
         super(fm);
+
+        this.subscriptionFeedTabsFragment = subscriptionFeedTabsFragment;
     }
 
     //TODO: Create different fragments passing in filter

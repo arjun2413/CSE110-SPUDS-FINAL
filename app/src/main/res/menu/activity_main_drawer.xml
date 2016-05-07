@@ -16,7 +16,7 @@
         <item
             android:id="@+id/myEvents"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/myEvents" />
+            android:title="@string/my_events" />
         <item
             android:id="@+id/subscriptions"
             android:icon="@drawable/ic_menu_gallery"
@@ -32,6 +32,7 @@
     </group>
     <item android:title="Extra">
         <menu>
+            <group android:checkableBehavior="single">
             <item
                 android:id="@+id/about"
                 android:icon="@drawable/ic_menu_slideshow"
@@ -40,6 +41,7 @@
                 android:id="@+id/accMang"
                 android:icon="@drawable/ic_menu_manage"
                 android:title="@string/settings" />
+            </group>
             <item
                 android:id="@+id/logOut"
                 android:icon="@drawable/ic_menu_send"

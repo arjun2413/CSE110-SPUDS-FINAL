@@ -2,7 +2,7 @@
     <string name="app_name">Eventory</string>
     <string name="home">Home</string>
     <string name="category">Categories</string>
-    <string name="myEvents">My Events</string>
+    <string name="my_events">My Events</string>
     <string name="findPeople">Find People</string>
     <string name="about">About</string>
     <string name="logOut">Log Out</string>
@@ -14,16 +14,19 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="profile">Profile</string>
 
-    <!-- Tags for Fragments
-    <string name="fragment_public_feed_tabs">PublicFeedTabsFragment</string>
+    <string name="fragment_home_feed">Home Feed Fragment</string>
+    <string name="fragment_my_events">My Events Fragment</string>
+    <string name="fragment_create_comment">Create Comment Fragment</string>
     <string name="fragment_notif">NotificationsFragment</string>
     <string name="fragment_categ_list">CategoriesListFragment</string>
     <string name="item_my_events">MyEventsTabsFragment</string>
     <string name="fragment_my_sub">MySubscriptionsFragment</string>
     <string name="fragment_find_people">FindPeopleFragment</string>
-    <string name="fragment_my_sub_feed">MySubscriptionFeedFragment</string>
-    <string name="fragment_about">AboutFragment</string>
-    <string name="fragment_settings">SettingsFragment</string>-->
+    <string name="fragment_my_sub_feed">My Subscription Feed Fragment</string>
+    <string name="fragment_about">About Fragment</string>
+    <string name="fragment_settings">Settings Fragment</string>
+    <string name="event_details_fragment">Event Details Fragment</string>
+    <string name="event_details">Event Details</string>
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>

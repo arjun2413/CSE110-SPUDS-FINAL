@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.spuds.eventapp.MyEvents.MyEventsViewPagerAdapter;
 import com.spuds.eventapp.R;
 
 
@@ -35,7 +34,7 @@ public class MyEventsTabsFragment extends Fragment {
 
     private void tabs(View view) {
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
-        final ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        final ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
 
         viewPager.setAdapter(myEventsViewPagerAdapter);
         viewPager.setOffscreenPageLimit(2);
@@ -75,7 +74,7 @@ public class MyEventsTabsFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        myEventsViewPagerAdapter = new MyEventsViewPagerAdapter(getChildFragmentManager());
+        myEventsViewPagerAdapter = new MyEventsViewPagerAdapter(getChildFragmentManager(), this);
     }
 
     @Override

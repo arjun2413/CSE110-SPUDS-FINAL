@@ -13,7 +13,7 @@ import android.widget.ImageButton;
 import com.spuds.eventapp.R;
 
 
-public class EditProfileFragment extends Fragment {
+public class  EditProfileFragment extends Fragment {
 
     //interactable objects
     Button updateButton;

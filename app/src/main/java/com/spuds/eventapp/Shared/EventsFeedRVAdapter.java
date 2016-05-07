@@ -1,5 +1,8 @@
 package com.spuds.eventapp.Shared;
 
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.spuds.eventapp.EventDetails.EventDetailsFragment;
 import com.spuds.eventapp.R;
 
 import java.util.List;
@@ -18,6 +22,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
     public static class EventViewHolder extends RecyclerView.ViewHolder {
 
+        CardView card;
         ImageView eventPic;
         TextView eventName;
         TextView eventLocation;
@@ -28,6 +33,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
         EventViewHolder(View itemView) {
             super(itemView);
+            card = (CardView) itemView.findViewById(R.id.cv);
             eventPic = (ImageView)itemView.findViewById(R.id.event_pic);
             eventName = (TextView)itemView.findViewById(R.id.event_name);
             eventLocation = (TextView)itemView.findViewById(R.id.event_loc);
@@ -36,17 +42,17 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             eventCategories = (TextView)itemView.findViewById(R.id.event_categories);
             eventHost = (TextView)itemView.findViewById(R.id.event_host);
         }
+
     }
 
     List<Event> events;
+    Fragment currentFragment;
+    String tagCurrentFragment;
 
-    public EventsFeedRVAdapter(List<Event> events){
+    public EventsFeedRVAdapter(List<Event> events, Fragment currentFragment, String tagCurrentFragment){
         this.events = events;
-    }
-
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
+        this.currentFragment = currentFragment;
+        this.tagCurrentFragment = tagCurrentFragment;
     }
 
     @Override
@@ -69,8 +75,49 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         else
             eventViewHolder.eventCategories.setText(events.get(i).categOne);
 
-        eventViewHolder.eventHost.setText(events.get(i).host);
+        final int test = i;
+
+        eventViewHolder.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment eventDetailsFragment = new EventDetailsFragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(currentFragment.getString(R.string.event_details), events.get(test));
+                eventDetailsFragment.setArguments(bundle);
+
+                // Makes sure the fragment being hidden is the tabs fragment which includes each page fragment,
+                // not just one of the view page fragments
+                String tabFragmentTag = "";
+                if (tagCurrentFragment.equals(currentFragment.getString(R.string.fragment_home_feed))) {
+                    tabFragmentTag = currentFragment.getString(R.string.home);
+                } else if(tagCurrentFragment.equals(currentFragment.getString(R.string.fragment_my_events))) {
+                    tabFragmentTag = currentFragment.getString(R.string.my_events);
+                } else if (tagCurrentFragment.equals(currentFragment.getString(R.string.fragment_my_sub_feed))) {
+                    tabFragmentTag = currentFragment.getString(R.string.subscriptionFeed);
+                }
+
+                if (!tabFragmentTag.equals("")) {
+                    //make if else statements for all fragments that have tags
+                    currentFragment = currentFragment.getActivity().getSupportFragmentManager()
+                            .findFragmentByTag(tabFragmentTag);
+                }
+
+
+                // Add Event Details Fragment to fragment manager
+                currentFragment.getActivity().getSupportFragmentManager().beginTransaction()
+                        .add(R.id.fragment_frame_layout, eventDetailsFragment, currentFragment.getString(R.string.event_details_fragment))
+                        .hide(eventDetailsFragment)
+                        .commit();
+
+                MainActivity mainActivity = (MainActivity) currentFragment.getActivity();
+                mainActivity.switchTo(currentFragment, eventDetailsFragment, tabFragmentTag);
+            }
+        });
+
     }
+
+
 
     @Override
     public int getItemCount() {

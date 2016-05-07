@@ -46,7 +46,7 @@ public class SubscriptionFeedFragment extends Fragment {
         events.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "04.28.16", 51,
                 "Social", null, "Foosh Improv Comedy Club", "desc"));
 
-        adapter = new EventsFeedRVAdapter(events);
+        adapter = new EventsFeedRVAdapter(events, this, getString(R.string.fragment_my_sub_feed));
         rv.setAdapter(adapter);
 
         return view;    }

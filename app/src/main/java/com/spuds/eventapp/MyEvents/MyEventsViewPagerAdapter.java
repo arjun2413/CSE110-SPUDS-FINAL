@@ -9,13 +9,18 @@ import android.support.v4.app.FragmentStatePagerAdapter;
  */
 public class MyEventsViewPagerAdapter extends FragmentStatePagerAdapter {
 
-    public MyEventsViewPagerAdapter(FragmentManager fm) {
+    Fragment myEventsFeedTabsFragment;
+
+    public MyEventsViewPagerAdapter(FragmentManager fm, Fragment myEventsFeedTabsFragment) {
         super(fm);
+        this.myEventsFeedTabsFragment = myEventsFeedTabsFragment;
     }
 
     @Override
     public Fragment getItem(int position) {
+
         return new MyEventsFeedFragment();
+
     }
 
     @Override

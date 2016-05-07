@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity
                     .hide(findPeopleFragment)
                     .add(R.id.fragment_frame_layout, subscriptionsListFragment, getString(R.string.subscriptions))
                     .hide(subscriptionsListFragment)
-                    .add(R.id.fragment_frame_layout, myEventsTabsFragment, getString(R.string.myEvents))
+                    .add(R.id.fragment_frame_layout, myEventsTabsFragment, getString(R.string.my_events))
                     .hide(myEventsTabsFragment)
                     .add(R.id.fragment_frame_layout, categoriesListFragment, getString(R.string.category))
                     .hide(categoriesListFragment)
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity
             categoriesListFragment = (CategoriesListFragment) getSupportFragmentManager().
                     findFragmentByTag(getString(R.string.category));
             myEventsTabsFragment = (MyEventsTabsFragment) getSupportFragmentManager().
-                    findFragmentByTag(getString(R.string.myEvents));
+                    findFragmentByTag(getString(R.string.my_events));
             subscriptionsListFragment = (SubscriptionsListFragment) getSupportFragmentManager().
                     findFragmentByTag(getString(R.string.subscriptions));
             findPeopleFragment = (FindPeopleFragment) getSupportFragmentManager().
@@ -177,39 +177,39 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.home) {
 
-            switchTo(homeFeedTabsFragment, title);
+            switchTo(currentFragment, homeFeedTabsFragment, title);
 
         } else if (id == R.id.notifications) {
 
-            switchTo(notificationsFragment, title);
+            switchTo(currentFragment, notificationsFragment, title);
 
         } else if (id == R.id.category) {
 
-            switchTo(categoriesListFragment, title);
+            switchTo(currentFragment, categoriesListFragment, title);
 
         } else if (id == R.id.myEvents) {
 
-            switchTo(myEventsTabsFragment, title);
+            switchTo(currentFragment, myEventsTabsFragment, title);
 
         } else if (id == R.id.subscriptions) {
 
-            switchTo(subscriptionsListFragment, title);
+            switchTo(currentFragment, subscriptionsListFragment, title);
 
         } else if (id == R.id.find_people) {
 
-            switchTo(findPeopleFragment, title);
+            switchTo(currentFragment, findPeopleFragment, title);
 
         } else if (id == R.id.subscriptionFeed) {
 
-            switchTo(subscriptionFeedTabsFragment, title);
+            switchTo(currentFragment, subscriptionFeedTabsFragment, title);
 
         } else if (id == R.id.about) {
 
-            switchTo(aboutFragment, title);
+            switchTo(currentFragment, aboutFragment, title);
 
         } else if (id == R.id.accMang) {
 
-            switchTo(settingsFragment, title);
+            switchTo(currentFragment, settingsFragment, title);
 
         } else if (id == R.id.logOut) {
             new AlertDialog.Builder(this)
@@ -234,33 +234,39 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void switchTo (Fragment fragment, String name) {
+    public void switchTo (Fragment currentFragment, Fragment nextFragment, String name) {
 
-        if (fragment.isVisible())
+        if (nextFragment.isVisible())
             return;
 
-        if (fragment == null)
+        if (nextFragment == null)
             return;
 
-        FragmentTransaction t = getSupportFragmentManager().beginTransaction();
+        if (currentFragment == null) {
+            System.out.println("LOL"+  "switchTo");
+            return;
+        }
+
+        FragmentTransaction t = currentFragment.getActivity().getSupportFragmentManager().beginTransaction();
+
         t.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
 
         // Make sure the next view is below the current one
-        fragment.getView().bringToFront ();
+        if (nextFragment.getView() != null)
+            nextFragment.getView().bringToFront ();
         // And bring the current one to the very top
         currentFragment.getView().bringToFront ();
 
         // Hide the current fragment
         t.hide (currentFragment);
-        t.show(fragment);
-        currentFragment = fragment;
+        t.show(nextFragment);
 
-        t.addToBackStack(null);
+        t.addToBackStack(name);
         t.commit();
 
+        this.currentFragment = nextFragment;
+
     }
-
-
 
     @Override
     public void onBackPressed() {
@@ -268,8 +274,32 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+
+
+
+            // Fix back button issue, correctly defines currentFragment
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            int countOfFragments = fragmentManager.getBackStackEntryCount();
+
+            if (countOfFragments > 0) {
+                FragmentManager.BackStackEntry backStackEntry = fragmentManager.getBackStackEntryAt(countOfFragments - 1);
+                String tagBackStackEntry = backStackEntry.getName();
+                Fragment nextFragment = fragmentManager.findFragmentByTag(tagBackStackEntry);
+                currentFragment = nextFragment;
+
+
+                if (currentFragment == null) {
+                    System.out.println("LOL"+  "backpressed");
+                    System.out.println("LOL"+  "tagname= " + tagBackStackEntry);
+
+                }
+                fragmentManager.popBackStack();
+            } else {
+                super.onBackPressed();
+            }
+
         }
+
     }
 
     @Override
