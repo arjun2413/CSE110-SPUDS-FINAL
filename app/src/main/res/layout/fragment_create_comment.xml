@@ -1,10 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateComment.CreateCommentFragment">
 
-    <TextView
+    <!-- TODO: Update blank fragment layout -->
+
+    <EditText
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Create Comment" />
-</LinearLayout>
+        android:layout_height="237dp"
+        android:id="@+id/comment_input"
+        android:layout_gravity="left|top"
+        android:hint="Write Comment" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SUBMIT"
+        android:id="@+id/comment_submit"
+        android:layout_gravity="center" />
+</FrameLayout>
