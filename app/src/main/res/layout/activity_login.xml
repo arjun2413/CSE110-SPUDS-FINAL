@@ -34,6 +34,7 @@
         android:id="@+id/email"
         android:inputType="textEmailAddress"
         android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="10dp"
         android:hint="EMAIL ADDRESS"
         android:textColorHint="#FFFFFF"
@@ -63,6 +64,7 @@
         android:layout_alignStart="@+id/email"
         android:layout_alignRight="@+id/email"
         android:layout_alignEnd="@+id/email"
+        android:layout_centerHorizontal="true"
         android:textIsSelectable="false"
         android:textSize="10dp" />
 
@@ -111,6 +113,7 @@
         android:layout_alignRight="@+id/imageView"
         android:layout_alignEnd="@+id/imageView"
         android:layout_alignParentStart="false"
+        android:layout_alignParentLeft="false"
         android:gravity="center_horizontal" />
 
 
