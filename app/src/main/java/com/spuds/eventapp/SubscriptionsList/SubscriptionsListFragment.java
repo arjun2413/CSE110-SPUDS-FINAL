@@ -39,8 +39,11 @@ public class SubscriptionsListFragment extends Fragment {
         rv.setLayoutManager(llm);
 
         subscriptions = new ArrayList<>();
-        subscriptions.add(new Subscription("arjun", R.drawable.arjun));
-
+        subscriptions.add(new Subscription("Arjun", R.drawable.arjun));
+        subscriptions.add(new Subscription("Jiggly", R.drawable.arjun));
+        subscriptions.add(new Subscription("Joe", R.drawable.arjun));
+        subscriptions.add(new Subscription("Kraken", R.drawable.arjun));
+        subscriptions.add(new Subscription("Regirock", R.drawable.arjun));
 
         adapter = new SubscriptionsListRVAdapter(subscriptions);
         rv.setAdapter(adapter);
