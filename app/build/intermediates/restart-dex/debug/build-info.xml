@@ -4,31 +4,34 @@
     api-level="22"
     density="560dpi"
     format="7"
-    timestamp="1463013838042706000" >
+    timestamp="1463014107797474000" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="316" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="53" />
     <task
         name="verifier"
-        duration="0" />
+        duration="3" />
+
+    <artifact
+        location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex"
+        type="DEX" />
 
     <build timestamp="1463012824826022000" >
         <artifact
             location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
             type="MAIN" />
     </build>
-    <build timestamp="1463012968206626000" >
+    <build timestamp="1463014107797474000" >
         <artifact
             location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex"
             type="DEX" />
     </build>
-    <build timestamp="1463013838042706000" />
 
 </instant-run>
