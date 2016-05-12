@@ -23,12 +23,14 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
         CardView cv;
         TextView subName;
         ImageView subPhoto;
+        ImageView toggleFollow;
 
         SubViewHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv);
             subName = (TextView)itemView.findViewById(R.id.sub_name);
             subPhoto = (ImageView)itemView.findViewById(R.id.sub_photo);
+            toggleFollow = (ImageView)itemView.findViewById(R.id.follow_toggle);
         }
     }
 
@@ -38,6 +40,7 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
 
         this.subscriptions = subscriptions;
     }
+
 
     @Override
     public int getItemCount() {
@@ -52,9 +55,32 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
     }
 
     @Override
-    public void onBindViewHolder(SubViewHolder personViewHolder, int i) {
-        personViewHolder.subName.setText(subscriptions.get(i).name);
-        personViewHolder.subPhoto.setImageResource(subscriptions.get(i).photoId);
+    public void onBindViewHolder(SubViewHolder subViewHolder, int i) {
+        final Subscription currentSub = subscriptions.get(i);
+        final SubViewHolder currentSubViewHolder = subViewHolder;
+        subViewHolder.subName.setText(subscriptions.get(i).name);
+        subViewHolder.subPhoto.setImageResource(subscriptions.get(i).photoId);
+
+
+        subViewHolder.toggleFollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // already following this user
+                if (currentSub.follow){
+                    currentSub.follow = false;
+                    // TODO (V): Add image for "Follow" button
+                    //currentSubViewHolder.toggleFollow.setImageResource(R.drawable.button_not_subscribed);
+                    // TODO (M): Update database for follow boolean
+                }
+                else{
+                    currentSub.follow = true;
+                    // TODO (V): Add image for "Unfollow" button
+                    //currentSubViewHolder.toggleFollow.setImageResource(R.drawable.button_subscribed);
+                    // TODO (M): Update database for follow boolean
+
+                }
+            }
+        });
     }
 
 
