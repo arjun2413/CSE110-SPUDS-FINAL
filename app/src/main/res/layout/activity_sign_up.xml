@@ -44,16 +44,17 @@
         android:textSize="10dp"
         android:layout_marginBottom="10dp"
         android:layout_above="@+id/signup_email"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignLeft="@+id/signup_email"
-        android:layout_alignStart="@+id/signup_email" />
+        android:layout_alignStart="@+id/signup_email"
+        android:layout_alignRight="@+id/signup_email"
+        android:layout_alignEnd="@+id/signup_email" />
 
     <EditText
         android:layout_width="500dp"
         android:layout_height="50dp"
         android:id="@+id/signup_email"
         android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="10dp"
         android:hint="EMAIL ADDRESS"
         android:inputType="textEmailAddress"
@@ -80,6 +81,7 @@
         android:drawableLeft="@drawable/lock"
         android:drawablePadding="30dp"
         android:paddingLeft="20dp"
+        android:layout_centerHorizontal="true"
         android:layout_alignLeft="@+id/signup_email"
         android:layout_alignStart="@+id/signup_email"
         android:layout_alignRight="@+id/signup_email"
@@ -140,6 +142,7 @@
         android:layout_below="@+id/signup_email"
         android:layout_alignLeft="@+id/signup_email"
         android:layout_alignStart="@+id/signup_email"
+        android:layout_centerHorizontal="true"
         android:visibility="invisible" />
 
 
