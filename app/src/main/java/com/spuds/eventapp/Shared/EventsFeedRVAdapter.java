@@ -2,11 +2,13 @@ package com.spuds.eventapp.Shared;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,17 +32,19 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         TextView eventAttendees;
         TextView eventCategories;
         TextView eventHost;
+        TextView seeMore;
 
         EventViewHolder(View itemView) {
             super(itemView);
             card = (CardView) itemView.findViewById(R.id.cv);
-            eventPic = (ImageView)itemView.findViewById(R.id.event_pic);
-            eventName = (TextView)itemView.findViewById(R.id.event_name);
-            eventLocation = (TextView)itemView.findViewById(R.id.event_loc);
-            eventDate = (TextView)itemView.findViewById(R.id.event_date);
-            eventAttendees = (TextView)itemView.findViewById(R.id.event_attendees);
-            eventCategories = (TextView)itemView.findViewById(R.id.event_categories);
-            eventHost = (TextView)itemView.findViewById(R.id.event_host);
+            eventPic = (ImageView) itemView.findViewById(R.id.event_pic);
+            eventName = (TextView) itemView.findViewById(R.id.event_name);
+            eventLocation = (TextView) itemView.findViewById(R.id.event_loc);
+            eventDate = (TextView) itemView.findViewById(R.id.event_date);
+            eventAttendees = (TextView) itemView.findViewById(R.id.event_attendees);
+            eventCategories = (TextView) itemView.findViewById(R.id.event_categories);
+            eventHost = (TextView) itemView.findViewById(R.id.event_host);
+            seeMore = (TextView) itemView.findViewById(R.id.label_see_more);
         }
 
     }
@@ -64,6 +68,22 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
     @Override
     public void onBindViewHolder(EventViewHolder eventViewHolder, int i) {
+
+
+        if (tagCurrentFragment.equals(currentFragment.getString(R.string.fragment_profile)) && i == 3) {
+            eventViewHolder.seeMore.setVisibility(View.VISIBLE);
+
+
+            ((ViewManager)eventViewHolder.eventPic.getParent()).removeView(eventViewHolder.eventPic);
+            ((ViewManager)eventViewHolder.eventName.getParent()).removeView(eventViewHolder.eventName);
+            ((ViewManager)eventViewHolder.eventLocation.getParent()).removeView(eventViewHolder.eventLocation);
+            ((ViewManager)eventViewHolder.eventDate.getParent()).removeView(eventViewHolder.eventDate);
+            ((ViewManager)eventViewHolder.eventAttendees.getParent()).removeView(eventViewHolder.eventAttendees);
+            ((ViewManager)eventViewHolder.eventCategories.getParent()).removeView(eventViewHolder.eventCategories);
+            //((ViewManager)eventViewHolder.eventHost.getParent()).removeView(eventViewHolder.eventHost);
+            return;
+        }
+
         /* Picasso for eventPic*/
         eventViewHolder.eventName.setText(events.get(i).name);
         eventViewHolder.eventLocation.setText(events.get(i).location);
@@ -80,6 +100,8 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         eventViewHolder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // Pass the event object in a bundle to pass to Event Details Fragment
                 Fragment eventDetailsFragment = new EventDetailsFragment();
 
                 Bundle bundle = new Bundle();
@@ -106,12 +128,11 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
                 // Add Event Details Fragment to fragment manager
                 currentFragment.getActivity().getSupportFragmentManager().beginTransaction()
-                        .add(R.id.fragment_frame_layout, eventDetailsFragment, currentFragment.getString(R.string.event_details_fragment))
-                        .hide(eventDetailsFragment)
+                        .replace(R.id.fragment_frame_layout, eventDetailsFragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(tabFragmentTag)
                         .commit();
 
-                MainActivity mainActivity = (MainActivity) currentFragment.getActivity();
-                mainActivity.switchTo(currentFragment, eventDetailsFragment, tabFragmentTag);
             }
         });
 

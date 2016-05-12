@@ -3,6 +3,7 @@ package com.spuds.eventapp.EventDetails;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,7 +17,6 @@ import com.spuds.eventapp.CreateComment.CreateCommentFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Comment;
 import com.spuds.eventapp.Shared.Event;
-import com.spuds.eventapp.Shared.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,11 +107,10 @@ public class EventDetailsFragment extends Fragment {
 
                 // Adds Create Comment Fragment to fragment manager
                 getFragmentManager().beginTransaction()
-                        .add(R.id.fragment_frame_layout, createCommentFragment, createCommentFragmentTag)
-                        .hide(createCommentFragment)
+                        .replace(R.id.fragment_frame_layout, createCommentFragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(createCommentFragmentTag)
                         .commit();
-
-                ((MainActivity) getActivity()).switchTo(eventDetailsFragment, createCommentFragment, createCommentFragmentTag);
 
             }
         });
@@ -125,7 +124,7 @@ public class EventDetailsFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
 
-        //TODO: Get comments from database
+        // TODO (M): Get comments from database
         comments = new ArrayList<>();
         comments.add(new Comment("1", null, "Tina Nguyen", "tina.jpg", "05.06.16", "I'm the bestest", false));
         comments.add(new Comment("2", null, "Reggie Wu", "reggie.jpg", "05.06.16", "This event is fun!", false));
@@ -133,7 +132,6 @@ public class EventDetailsFragment extends Fragment {
         comments.add(new Comment("2", null, "Reggie Wu", "reggie.jpg", "05.06.16", "This event is fun!", false));
         comments.add(new Comment("1", null, "Tina Nguyen", "tina.jpg", "05.06.16", "I'm the bestest", false));
         comments.add(new Comment("2", null, "Reggie Wu", "reggie.jpg", "05.06.16", "This event is fun!", false));
-
 
         // Create adapter for comments
         adapter = new CommentsRVAdapter(comments, this);

@@ -45,7 +45,7 @@ public class SubscriptionFeedTabsFragment extends Fragment {
 
         newFilter.setText("New");
         hotFilter.setText("Hot");
-        happeningNowFilter.setText("Happening Now");
+        happeningNowFilter.setText("Now");
 
         tabLayout.addTab(newFilter, 0);
         tabLayout.addTab(hotFilter, 1);

@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by tina on 4/16/16.
  */
 public class Event implements Serializable{
-    public String id;
+    public String eventId;
     public String name;
     public String picFileName;
     public String location;
@@ -19,7 +19,7 @@ public class Event implements Serializable{
 
      public Event(String id, String picFileName, String name, String location, String date, int attendees,
                  String categOne, String categTwo, String host, String description) {
-        this.id = id;
+        this.eventId = id;
         this.name = name;
         this.picFileName = picFileName;
         this.location = location;

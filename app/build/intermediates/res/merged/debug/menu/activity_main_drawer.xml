@@ -17,6 +17,12 @@
             android:id="@+id/myEvents"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/my_events" />
+
+        <item
+            android:id="@+id/subscriptionFeed"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/subscriptionFeed" />
+
         <item
             android:id="@+id/subscriptions"
             android:icon="@drawable/ic_menu_gallery"
@@ -25,10 +31,7 @@
             android:id="@+id/find_people"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/findPeople" />
-        <item
-            android:id="@+id/subscriptionFeed"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/subscriptionFeed" />
+
     </group>
     <item android:title="Extra">
         <menu>

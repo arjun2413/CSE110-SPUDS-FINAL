@@ -14,6 +14,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="profile">Profile</string>
 
+    <string name="fragment_profile">Profile Fragment</string>
     <string name="fragment_home_feed">Home Feed Fragment</string>
     <string name="fragment_my_events">My Events Fragment</string>
     <string name="fragment_create_comment">Create Comment Fragment</string>
@@ -26,7 +27,9 @@
     <string name="fragment_about">About Fragment</string>
     <string name="fragment_settings">Settings Fragment</string>
     <string name="event_details_fragment">Event Details Fragment</string>
+
     <string name="event_details">Event Details</string>
+    <string name="user_details">Profile Details</string>
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -3,14 +3,40 @@ package com.spuds.eventapp.Profile;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.Event;
+import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
+import com.spuds.eventapp.Shared.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProfileFragment extends Fragment {
+
+    ImageView userImage;
+    TextView userName;
+    ImageView userVerified;
+    ImageView buttonSubscribed;
+    TextView numberFollowing;
+    TextView numberHosting;
+    RecyclerView eventsHostingRV;
+    RecyclerView eventsGoingRV;
+    User user;
+    Fragment profileFragment;
+
+    List<Event> eventsHosting;
+    List<Event> eventsGoing;
+
 
     public ProfileFragment() {
     }
@@ -18,14 +44,92 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Bundle extras = getArguments();
+        //if ()
+        //String user =extras.getString("ihateu");
+        user = new User(1, "Reggie Wu", "#wutangclan", true, 100,
+                1, "reggie.jpg", false);
+        profileFragment = this;
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        setUpProfileDetails(view);
+
+        return view;
     }
 
+    private void setUpProfileDetails(View view) {
+
+        userImage = (ImageView) view.findViewById(R.id.user_image);
+        userName = (TextView) view.findViewById(R.id.user_name);
+        userVerified = (ImageView) view.findViewById(R.id.user_verified);
+        buttonSubscribed = (ImageView) view.findViewById(R.id.button_subscribe);
+        numberFollowing = (TextView) view.findViewById(R.id.user_number_following);
+        numberHosting = (TextView) view.findViewById(R.id.user_number_hosting);
+        eventsHostingRV = (RecyclerView) view.findViewById(R.id.rv_events_hosting);
+        eventsGoingRV = (RecyclerView) view.findViewById(R.id.rv_events_going);
+
+        // TODO (M): Picasso for userImage
+
+        userName.setText(user.name);
+
+        if (!user.verified) {
+            ((ViewManager) userVerified.getParent()).removeView(userVerified);
+        }
+
+        // TODO (V): Drawables for toggle subscribe button
+        /*if (user.subscribed) {
+            buttonSubscribed.setImageResource(R.drawable.button_subscribed);
+        } else {
+            buttonSubscribed.setImageResource(R.drawable.button_not_subscribed);
+        }*/
+
+        numberFollowing.setText(String.valueOf(user.numberFollowing));
+        numberHosting.setText(String.valueOf(user.numberHosting));
+
+        // List for events hosting
+        LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
+        eventsHostingRV.setLayoutManager(llm);
+        eventsHostingRV.setHasFixedSize(true);
+
+        // TODO (M): Get first three events for events hosting
+        eventsHosting = new ArrayList<>();
+        eventsHosting.add(new Event("1", "yj.jpg", "Sun God Festival", "RIMAC Field", "04.29.16", 1054,
+                "Social", "Concert", "UCSD", "spr lame"));
+        eventsHosting.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "04.28.16", 51,
+                "Social", null, "Foosh Improv Comedy Club", "spr funny"));
+        eventsHosting.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "04.28.16", 51,
+                "Social", null, "Foosh Improv Comedy Club", "spr funny"));
+        eventsHosting.add(null);
+
+        EventsFeedRVAdapter eventsFeedRVAdapterHosting = new EventsFeedRVAdapter(eventsHosting, this, getString(R.string.fragment_profile));
+        eventsHostingRV.setAdapter(eventsFeedRVAdapterHosting);
+
+
+        // List for events hosting
+        llm = new LinearLayoutManager(view.getContext());
+        eventsGoingRV.setLayoutManager(llm);
+        eventsGoingRV.setHasFixedSize(true);
+
+        // TODO (M): Get first three events for events going
+        eventsGoing = new ArrayList<>();
+        eventsGoing.add(new Event("1", "yj.jpg", "Sun God Festival", "RIMAC Field", "04.29.16", 1054,
+                "Social", "Concert", "UCSD", "spr lame"));
+        eventsGoing.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "04.28.16", 51,
+                "Social", null, "Foosh Improv Comedy Club", "spr funny"));
+        eventsGoing.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "04.28.16", 51,
+                "Social", null, "Foosh Improv Comedy Club", "spr funny"));
+        eventsGoing.add(null);
+
+        EventsFeedRVAdapter eventsFeedRVAdapterGoing = new EventsFeedRVAdapter(eventsGoing, this, getString(R.string.fragment_profile));
+        eventsGoingRV.setAdapter(eventsFeedRVAdapterGoing);
+    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

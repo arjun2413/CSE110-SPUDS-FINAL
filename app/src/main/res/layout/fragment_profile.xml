@@ -1,10 +1,8 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Profile.ProfileFragment">
-
-    <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:orientation="vertical"
@@ -19,27 +17,103 @@
             android:layout_gravity="center_horizontal"
             android:background="#000000" />
 
-        <TextView
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Christine Wu"
-            android:id="@+id/user_name"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Christine Wu"
+                android:id="@+id/user_name"
+                 />
 
-        <Button
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/user_verified"
+                android:layout_toRightOf="@id/user_name"
+                android:background="#000000" />
+        </RelativeLayout>
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Subscribe"
-            android:id="@+id/edit_button"
+            android:id="@+id/button_subscribe"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/roundedbutton"/>
+            android:src="@drawable/roundedbutton"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="98"
+                android:id="@+id/user_number_following"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Subscribers"
+                android:layout_below="@id/user_number_following"
+                android:id="@+id/label_user_number_following"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="10"
+                android:layout_alignParentRight="true"
+                android:id="@+id/user_number_hosting"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Hosted Events"
+                android:id="@+id/label_user_number_hosting"
+                android:textStyle="bold"
+                android:layout_below="@+id/user_number_hosting"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Events Hosting"
-            android:id="@+id/user_hosting" />
+            android:id="@+id/label_events_hosting"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/rv_events_hosting">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Events Going"
+            android:id="@+id/label_events_going"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/rv_events_going">
+
+        </android.support.v7.widget.RecyclerView>
     </LinearLayout>
-</FrameLayout>
+</ScrollView>

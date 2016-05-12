@@ -14,8 +14,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.spuds.eventapp.About.AboutFragment;
 import com.spuds.eventapp.CategoriesList.CategoriesListFragment;
@@ -43,7 +45,6 @@ public class MainActivity extends AppCompatActivity
     SubscriptionFeedTabsFragment subscriptionFeedTabsFragment;
     AboutFragment aboutFragment;
     SettingsFragment settingsFragment;
-
     ProfileFragment profileFragment;
 
     @Override
@@ -76,16 +77,6 @@ public class MainActivity extends AppCompatActivity
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.home);
-
-        // Doesn't work for some reason
-        /*ImageView header = (ImageView) findViewById(R.id.profilePic);
-        header.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switchTo(profileFragment, getString(R.string.profile));
-                //TODO: uncheck fragment highlighted in  hamburger menu
-            }
-        });*/
     }
 
     void setupFragments() {
@@ -96,6 +87,12 @@ public class MainActivity extends AppCompatActivity
         currentFragment = fragmentManager.findFragmentByTag(getString(R.string.home));
 
         if (currentFragment == null) {
+
+            // TODO (M): POST request to get account information
+            // ex: who subscribing to, first 10 for each feed, profile information
+            // sending information to respective fragments
+            // talk about what to load first, what to load later
+
             homeFeedTabsFragment = new HomeFeedTabsFragment();
             notificationsFragment = new NotificationsFragment();
             categoriesListFragment = new CategoriesListFragment();
@@ -175,41 +172,42 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         String title = item.getTitle().toString();
 
+        Fragment newFragment = null;
         if (id == R.id.home) {
 
-            switchTo(currentFragment, homeFeedTabsFragment, title);
+            newFragment = homeFeedTabsFragment;
 
         } else if (id == R.id.notifications) {
 
-            switchTo(currentFragment, notificationsFragment, title);
+            newFragment = notificationsFragment;
 
         } else if (id == R.id.category) {
 
-            switchTo(currentFragment, categoriesListFragment, title);
+            newFragment = categoriesListFragment;
 
         } else if (id == R.id.myEvents) {
 
-            switchTo(currentFragment, myEventsTabsFragment, title);
+            newFragment = myEventsTabsFragment;
 
         } else if (id == R.id.subscriptions) {
 
-            switchTo(currentFragment, subscriptionsListFragment, title);
+            newFragment = subscriptionsListFragment;
 
         } else if (id == R.id.find_people) {
 
-            switchTo(currentFragment, findPeopleFragment, title);
+            newFragment = findPeopleFragment;
 
         } else if (id == R.id.subscriptionFeed) {
 
-            switchTo(currentFragment, subscriptionFeedTabsFragment, title);
+            newFragment = subscriptionFeedTabsFragment;
 
         } else if (id == R.id.about) {
 
-            switchTo(currentFragment, aboutFragment, title);
+            newFragment = aboutFragment;
 
         } else if (id == R.id.accMang) {
 
-            switchTo(currentFragment, settingsFragment, title);
+            newFragment = settingsFragment;
 
         } else if (id == R.id.logOut) {
             new AlertDialog.Builder(this)
@@ -228,46 +226,46 @@ public class MainActivity extends AppCompatActivity
                     .show();
         }
 
+        if (newFragment != null) {
+            Log.v("MainActivity", "newFragment != null switching to " + title);
+            getSupportFragmentManager().beginTransaction()
+                    .show(newFragment)
+                    .replace(R.id.fragment_frame_layout, newFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(title)
+                    .commit();
+        }
+
+        // Close drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
         return true;
     }
 
-    public void switchTo (Fragment currentFragment, Fragment nextFragment, String name) {
+    public void goToProfile(View view) {
+        Fragment profileFragment = new ProfileFragment();
 
-        if (nextFragment.isVisible())
-            return;
+        // TODO (M): GET request to get user details
 
-        if (nextFragment == null)
-            return;
+        /*Bundle bundle = new Bundle();
+        bundle.putString("ihateu", "aiowehf");
+        profileFragment.setArguments(bundle);*/
 
-        if (currentFragment == null) {
-            System.out.println("LOL"+  "switchTo");
-            return;
-        }
+        // Add Event Details Fragment to fragment manager
+        getSupportFragmentManager().beginTransaction()
+                .show(profileFragment)
+                .replace(R.id.fragment_frame_layout, profileFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(getString(R.string.fragment_profile))
+                .commit();
 
-        FragmentTransaction t = currentFragment.getActivity().getSupportFragmentManager().beginTransaction();
-
-        t.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
-
-        // Make sure the next view is below the current one
-        if (nextFragment.getView() != null)
-            nextFragment.getView().bringToFront ();
-        // And bring the current one to the very top
-        currentFragment.getView().bringToFront ();
-
-        // Hide the current fragment
-        t.hide (currentFragment);
-        t.show(nextFragment);
-
-        t.addToBackStack(name);
-        t.commit();
-
-        this.currentFragment = nextFragment;
+        // Close drawer
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
 
     }
-
+    
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -275,31 +273,14 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
 
-
-
-            // Fix back button issue, correctly defines currentFragment
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            int countOfFragments = fragmentManager.getBackStackEntryCount();
-
-            if (countOfFragments > 0) {
-                FragmentManager.BackStackEntry backStackEntry = fragmentManager.getBackStackEntryAt(countOfFragments - 1);
-                String tagBackStackEntry = backStackEntry.getName();
-                Fragment nextFragment = fragmentManager.findFragmentByTag(tagBackStackEntry);
-                currentFragment = nextFragment;
-
-
-                if (currentFragment == null) {
-                    System.out.println("LOL"+  "backpressed");
-                    System.out.println("LOL"+  "tagname= " + tagBackStackEntry);
-
-                }
-                fragmentManager.popBackStack();
-            } else {
                 super.onBackPressed();
-            }
 
         }
 
+    }
+
+    void setCurrentFragment(Fragment fragment) {
+        this.currentFragment = fragment;
     }
 
     @Override

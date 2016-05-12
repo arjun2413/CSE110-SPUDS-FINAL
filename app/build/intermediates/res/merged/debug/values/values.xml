@@ -326,6 +326,7 @@
     <string name="fragment_my_sub">MySubscriptionsFragment</string>
     <string name="fragment_my_sub_feed">My Subscription Feed Fragment</string>
     <string name="fragment_notif">NotificationsFragment</string>
+    <string name="fragment_profile">Profile Fragment</string>
     <string name="fragment_settings">Settings Fragment</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
@@ -335,7 +336,6 @@
     <string name="logOut">Log Out</string>
     <string name="mismatched_fields_error">Error #: Fields Do Not Match</string>
     <string name="missing_fields_error">Error #: Not All Fields Completed</string>
-    <string name="myEvents">My Events</string>
     <string name="my_events">My Events</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -347,6 +347,7 @@
     <string name="subscriptionFeed">Subscription Feed</string>
     <string name="subscriptions">Subscriptions</string>
     <string name="title_activity_search">SearchActivity</string>
+    <string name="user_details">Profile Details</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>

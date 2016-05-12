@@ -1,153 +1,155 @@
 <ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    tools:context=".EventDetails.EventDetailsFragment">
-
-
-    <ImageView
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/event_pic" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/event_name"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:text="Sun God Festival"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/event_date"
-        android:text="05.01.16"
-        android:layout_below="@+id/event_name"
-        android:layout_centerHorizontal="true" />
+        tools:context=".EventDetails.EventDetailsFragment">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/event_host"
-        android:text="Hosted by UCSD"
-        android:layout_below="@+id/event_date"
-        android:layout_centerHorizontal="true" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_pic" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_name"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Sun God Festival"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_date"
+            android:text="05.01.16"
+            android:layout_below="@+id/event_name"
+            android:layout_centerHorizontal="true" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/event_attendees"
-        android:text="1,049 attendees"
-        android:layout_below="@+id/event_host"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_going"
-        android:layout_below="@+id/event_attendees"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_host"
+            android:text="Hosted by UCSD"
+            android:layout_below="@+id/event_date"
+            android:layout_centerHorizontal="true" />
 
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_attendees"
+            android:text="1,049 attendees"
+            android:layout_below="@+id/event_host"
+            android:layout_centerHorizontal="true" />
 
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/button_going"
-        android:id="@+id/label_location"
-        android:text="Location:"
-        android:textStyle="bold"
-        android:textSize="18dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/label_location"
-        android:id="@+id/event_loc"
-        android:text="RIMAC Field"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_going"
+            android:layout_below="@+id/event_attendees"/>
 
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/event_loc"
-        android:id="@+id/text_description"
-        android:text="Description:"
-        android:textStyle="bold"
-        android:textSize="18dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/event_description"
-        android:text="Lots of fun!"
-        android:layout_below="@id/text_description"/>
 
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_going"
+            android:id="@+id/label_location"
+            android:text="Location:"
+            android:textStyle="bold"
+            android:textSize="18dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/event_description"
-        android:id="@+id/text_categories"
-        android:text="Categories:"
-        android:textStyle="bold"
-        android:textSize="18dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text_categories"
-        android:id="@+id/event_categories"
-        android:text="Social, Food, Concert" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Invite People"
-        android:id="@+id/invite_people"
-        android:layout_below="@+id/event_categories" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Comment:"
-        android:id="@+id/comments_text"
-        android:textIsSelectable="false"
-        android:textStyle="bold"
-        android:textSize="30dp"
-        android:layout_below="@+id/invite_people"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Comment"
-        android:id="@+id/button_add_comment"
-        android:layout_alignBottom="@+id/comments_text"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/label_location"
+            android:id="@+id/event_loc"
+            android:text="RIMAC Field"/>
 
 
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:id="@+id/rv"
-        android:layout_below="@+id/button_add_comment">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/event_loc"
+            android:id="@+id/text_description"
+            android:text="Description:"
+            android:textStyle="bold"
+            android:textSize="18dp" />
 
-    </android.support.v7.widget.RecyclerView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_description"
+            android:text="Lots of fun!"
+            android:layout_below="@id/text_description"/>
 
-</RelativeLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/event_description"
+            android:id="@+id/text_categories"
+            android:text="Categories:"
+            android:textStyle="bold"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_categories"
+            android:id="@+id/event_categories"
+            android:text="Social, Food, Concert" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Invite People"
+            android:id="@+id/invite_people"
+            android:layout_below="@+id/event_categories" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comment:"
+            android:id="@+id/comments_text"
+            android:textIsSelectable="false"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:layout_below="@+id/invite_people"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Comment"
+            android:id="@+id/button_add_comment"
+            android:layout_alignBottom="@+id/comments_text"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/rv"
+            android:layout_below="@+id/button_add_comment">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
 </ScrollView>
 
