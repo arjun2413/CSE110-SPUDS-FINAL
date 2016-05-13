@@ -4,6 +4,8 @@ package com.spuds.eventapp.Firebase;
  * Created by Arjun on 5/5/16.
  */
 
+import android.util.Log;
+
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -28,7 +30,7 @@ public class AccountFirebase {
 
                     @Override
                     public void onError (FirebaseError firebaseError){
-                        // there was an error
+                        Log.v("AccountFirebase", "ERROR Creating an Account");
                     }
                 }
 
