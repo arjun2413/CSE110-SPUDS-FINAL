@@ -23,53 +23,65 @@ public class LoginActivity extends AppCompatActivity {
         signInFunc();
     }
 
-    public void signInFunc(){
+    public void signInFunc() {
         //create a button for the sign in
         final Button signIn = (Button) findViewById(R.id.signIn);
         //set a on click listener to see when the button is clicked
-        signIn.setOnClickListener(new View.OnClickListener(){
-            //what happens when the button is clicked
-            public void onClick(View v){
-                //get the user input for email field
-                String email = getEmail();
-                //get user input for password field
-                String password = getPassword();
+        if (signIn != null) {
+            signIn.setOnClickListener(new View.OnClickListener() {
+                //what happens when the button is clicked
+                public void onClick(View v) {
+                    //get the user input for email field
+                    String email = getEmail();
+                    //get user input for password field
+                    String password = getPassword();
 
-                //make sure that something is entered for email and password
-                if(email == "" || password == "" ){
-                    TextView errorMessage = (TextView)findViewById(R.id.errorMessage);
-                    errorMessage.setText("Missing fields. Please try again.");
-                }
-                //check if email is in database
+                    //make sure that something is entered for email and password
+                    if (email.equals("") || password.equals("")) {
+                        TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
+                        if(errorMessage != null) {
+                            String error = "Missing fields. Please try again.";
+                            errorMessage.setText(error);
+                        }
+                    }
+                    //check if email is in database
                 /*else if(email ){
                     TextView errorMessage = (TextView)findViewById(R.id.errorMessage);
                     errorMessage.setText("The email you've entered doesn't match any account.
                     Sign up for an account");
                 }
                  */
-                //check if password is correct
+                    //check if password is correct
                 /*else if(password){
                     TextView errorMessage = (TextView)findViewById(R.id.errorMessage);
                     errorMessage.setText("The password you've entered is incorrect");
                 }
                  */
-                //email and password match and are correct
-                //Switch to the Main Activity
-                //else{
+                    //email and password match and are correct
+                    //Switch to the Main Activity
+                    //else{
                     //TODO:
                     //Pass through an id of the user [coding decision: should we pass image first and last name?]
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                //}
-            }
-        });
+                    //}
+                }
+            });
+
+        }
     }
     public String getEmail(){
         EditText email = (EditText) findViewById(R.id.email);
-        return email.getText().toString();
+        if(email != null) {
+            return email.getText().toString();
+        }
+        return "";
     }
     public String getPassword() {
         EditText password = (EditText) findViewById(R.id.password);
-        return password.getText().toString();
+        if(password != null) {
+            return password.getText().toString();
+        }
+        return "";
     }
 
 
