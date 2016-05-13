@@ -6,10 +6,12 @@ package com.spuds.eventapp.Shared;
 public class Subscription {
     public String name;
     public int photoId;
+    public boolean follow;
 
-    public Subscription(String name, int photoId) {
+    public Subscription(String name, int photoId, boolean follow) {
         this.name = name;
         this.photoId = photoId;
+        this.follow = follow;
     }
 
 }
