@@ -1,6 +1,7 @@
 package com.spuds.eventapp.Login;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
+import com.spuds.eventapp.SignUp.SignUpActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -18,14 +20,33 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "name_font.ttf");
+        TextView tx = (TextView)findViewById(R.id.app_name);
+        tx.setTypeface(custom_font);
         //a function to allow the user to sign in
         signInFunc();
+        signUpFunc();
+    }
+
+
+    public void signUpFunc(){
+        //create a button for the sign up
+        final Button signUp = (Button) findViewById(R.id.button);
+
+        //set a on click listener to see when the button is clicked
+        signUp.setOnClickListener(new View.OnClickListener(){
+            //what happens when the button is clicked
+            public void onClick(View v){
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+                //}
+            }
+        });
     }
 
     public void signInFunc(){
         //create a button for the sign in
         final Button signIn = (Button) findViewById(R.id.signIn);
+
         //set a on click listener to see when the button is clicked
         signIn.setOnClickListener(new View.OnClickListener(){
             //what happens when the button is clicked
