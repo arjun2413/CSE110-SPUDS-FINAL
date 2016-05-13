@@ -56,6 +56,9 @@ public class CreateCommentFragment extends Fragment {
                                     Snackbar.LENGTH_LONG);
                     snackbar.show();
 
+                    // Pop this fragment from backstack
+                    getActivity().getSupportFragmentManager().popBackStack();
+
                     //TODO: submit comment to database
                 }
                 //Tells the user that they must fill all fields

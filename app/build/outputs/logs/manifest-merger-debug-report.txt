@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/AndroidManifest.xml:2:1-44:12
+ADDED from /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/AndroidManifest.xml:2:1-45:12
 	xmlns:android
 		ADDED from /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/AndroidManifest.xml:2:11-69
 	package
@@ -18,7 +18,7 @@ ADDED from /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/AndroidManifest.xm
 	android:name
 		ADDED from /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/AndroidManifest.xml:5:22-64
 application
-ADDED from /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/AndroidManifest.xml:7:5-42:19
+ADDED from /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/AndroidManifest.xml:7:5-43:19
 MERGED from [com.android.support:appcompat-v7:23.3.0] /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-vector-drawable:23.3.0] /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/AndroidManifest.xml:7:5-20
 MERGED from [com.android.support:support-v4:23.3.0] /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/AndroidManifest.xml:22:5-20
@@ -96,13 +96,13 @@ ADDED from /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/AndroidManifest.xm
 	android:name
 		ADDED from /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/AndroidManifest.xml:39:19-80
 activity#com.spuds.eventapp.SignUp.SignUpActivity
-ADDED from /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/AndroidManifest.xml:40:9-59
+ADDED from /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/AndroidManifest.xml:40:9-41:20
 	android:name
 		ADDED from /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/AndroidManifest.xml:40:19-56
 activity#com.soundcloud.android.crop.CropImageActivity
-ADDED from /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/AndroidManifest.xml:41:9-82
+ADDED from /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/AndroidManifest.xml:42:9-82
 	android:name
-		ADDED from /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/AndroidManifest.xml:41:19-79
+		ADDED from /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/AndroidManifest.xml:42:19-79
 uses-sdk
 INJECTED from /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.3.0] /Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/AndroidManifest.xml:21:5-23:78

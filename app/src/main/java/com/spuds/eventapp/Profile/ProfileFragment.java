@@ -23,20 +23,23 @@ import java.util.List;
 
 public class ProfileFragment extends Fragment {
 
+    // Reference to this fragment
+    ProfileFragment profileFragment;
+
+    String profileType;
+
     ImageView userImage;
     TextView userName;
     ImageView userVerified;
-    ImageView buttonSubscribed;
+    ImageView buttonSubscribedOrEdit;
     TextView numberFollowing;
     TextView numberHosting;
     RecyclerView eventsHostingRV;
     RecyclerView eventsGoingRV;
     User user;
-    Fragment profileFragment;
 
     List<Event> eventsHosting;
     List<Event> eventsGoing;
-
 
     public ProfileFragment() {
     }
@@ -45,11 +48,9 @@ public class ProfileFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Bundle extras = getArguments();
-        //if ()
-        //String user =extras.getString("ihateu");
-        user = new User(1, "Reggie Wu", "#wutangclan", true, 100,
-                1, "reggie.jpg", false);
+        Bundle extras = getArguments();
+        profileType = extras.getString(getString(R.string.profile_type));
+        user = (User) extras.getSerializable(getString(R.string.user_details));
         profileFragment = this;
 
     }
@@ -69,7 +70,7 @@ public class ProfileFragment extends Fragment {
         userImage = (ImageView) view.findViewById(R.id.user_image);
         userName = (TextView) view.findViewById(R.id.user_name);
         userVerified = (ImageView) view.findViewById(R.id.user_verified);
-        buttonSubscribed = (ImageView) view.findViewById(R.id.button_subscribe);
+        buttonSubscribedOrEdit = (ImageView) view.findViewById(R.id.button_subscribe);
         numberFollowing = (TextView) view.findViewById(R.id.user_number_following);
         numberHosting = (TextView) view.findViewById(R.id.user_number_hosting);
         eventsHostingRV = (RecyclerView) view.findViewById(R.id.rv_events_hosting);
@@ -83,18 +84,65 @@ public class ProfileFragment extends Fragment {
             ((ViewManager) userVerified.getParent()).removeView(userVerified);
         }
 
-        // TODO (V): Drawables for toggle subscribe button
-        /*if (user.subscribed) {
-            buttonSubscribed.setImageResource(R.drawable.button_subscribed);
+        // Set image for button for subscribe or edit profile
+        /*if (profileType.equals(getString(R.string.profile_type_owner))) {
+
+            // TODO (V): Uncomment when edit_profile picture is inserted in drawable
+            buttonSubscribedOrEdit.setImageResource(R.drawable.edit_profile);
+            buttonSubscribedOrEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Add in
+                    EditProfileFragment editProfileFragment = new EditProfileFragment();
+
+                    // TODO (C): Add user in a bundle to editProfileFragment
+
+                    profileFragment.getFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_frame_layout, editProfileFragment)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .addToBackStack(getString(R.string.fragment_edit_profile))
+                            .commit();
+                }
+            });
+
         } else {
-            buttonSubscribed.setImageResource(R.drawable.button_not_subscribed);
+
+            // TODO (V): Uncomment once get drawables for subscribe buttons
+            if (user.subscribed)
+                buttonSubscribedOrEdit.setImageResource(R.drawable.button_subscribed);
+            else
+                buttonSubscribedOrEdit.setImageResource(R.drawable.button_not_subscribed);
+
+            buttonSubscribedOrEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    // TODO (M): Update subscribed boolean in database & error checking
+                    user.subscribed = !user.subscribed;
+                    if (user.subscribed)
+                        buttonSubscribedOrEdit.setImageResource(R.drawable.button_subscribed);
+                    else
+                        buttonSubscribedOrEdit.setImageResource(R.drawable.button_not_subscribed);
+
+                }
+            });
+
         }*/
 
         numberFollowing.setText(String.valueOf(user.numberFollowing));
         numberHosting.setText(String.valueOf(user.numberHosting));
 
+        setUpRecyclerViewsGoingAndHosting();
+
+    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
+    void setUpRecyclerViewsGoingAndHosting() {
         // List for events hosting
-        LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
         eventsHostingRV.setLayoutManager(llm);
         eventsHostingRV.setHasFixedSize(true);
 
@@ -108,12 +156,12 @@ public class ProfileFragment extends Fragment {
                 "Social", null, "Foosh Improv Comedy Club", "spr funny"));
         eventsHosting.add(null);
 
-        EventsFeedRVAdapter eventsFeedRVAdapterHosting = new EventsFeedRVAdapter(eventsHosting, this, getString(R.string.fragment_profile));
+        EventsFeedRVAdapter eventsFeedRVAdapterHosting = new EventsFeedRVAdapter(eventsHosting, this, getString(R.string.fragment_profile), getString(R.string.tab_hosting), user.userId);
         eventsHostingRV.setAdapter(eventsFeedRVAdapterHosting);
 
 
         // List for events hosting
-        llm = new LinearLayoutManager(view.getContext());
+        llm = new LinearLayoutManager(getContext());
         eventsGoingRV.setLayoutManager(llm);
         eventsGoingRV.setHasFixedSize(true);
 
@@ -127,12 +175,8 @@ public class ProfileFragment extends Fragment {
                 "Social", null, "Foosh Improv Comedy Club", "spr funny"));
         eventsGoing.add(null);
 
-        EventsFeedRVAdapter eventsFeedRVAdapterGoing = new EventsFeedRVAdapter(eventsGoing, this, getString(R.string.fragment_profile));
+        EventsFeedRVAdapter eventsFeedRVAdapterGoing = new EventsFeedRVAdapter(eventsGoing, this, getString(R.string.fragment_profile), getString(R.string.tab_going), user.userId);
         eventsGoingRV.setAdapter(eventsFeedRVAdapterGoing);
-    }
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
     }
 
     @Override

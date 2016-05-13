@@ -42,7 +42,8 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity android:name="com.spuds.eventapp.ForgotPasswordActivity.ForgotPasswordActivity" />
-        <activity android:name="com.spuds.eventapp.SignUp.SignUpActivity" />
+        <activity android:name="com.spuds.eventapp.SignUp.SignUpActivity" >
+        </activity>
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
     </application>
 

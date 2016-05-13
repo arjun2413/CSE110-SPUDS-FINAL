@@ -307,6 +307,7 @@
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <string name="bottom_sheet_behavior" translatable="false">android.support.design.widget.BottomSheetBehavior</string>
     <string name="category">Categories</string>
+    <string name="category_feed">Category Feed</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
     <string name="comment_submit_success">Comment Submitted</string>
     <string name="crop__cancel" ns1:ignore="ButtonCase">CANCEL</string>
@@ -316,10 +317,14 @@
     <string name="crop__wait">Please wait…</string>
     <string name="event_details">Event Details</string>
     <string name="event_details_fragment">Event Details Fragment</string>
+    <string name="filter_category">Category Filter</string>
     <string name="findPeople">Find People</string>
+    <string name="first_four_events">First Four Events List</string>
     <string name="fragment_about">About Fragment</string>
     <string name="fragment_categ_list">CategoriesListFragment</string>
+    <string name="fragment_category_feed">Category Feed Fragment</string>
     <string name="fragment_create_comment">Create Comment Fragment</string>
+    <string name="fragment_edit_profile">Edit Profile Fragment</string>
     <string name="fragment_find_people">FindPeopleFragment</string>
     <string name="fragment_home_feed">Home Feed Fragment</string>
     <string name="fragment_my_events">My Events Fragment</string>
@@ -327,6 +332,7 @@
     <string name="fragment_my_sub_feed">My Subscription Feed Fragment</string>
     <string name="fragment_notif">NotificationsFragment</string>
     <string name="fragment_profile">Profile Fragment</string>
+    <string name="fragment_profile_feed">Profile Feed Fragment</string>
     <string name="fragment_settings">Settings Fragment</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
@@ -342,12 +348,22 @@
     <string name="notifications">Notifications</string>
     <string name="password_change_success">Password Changed</string>
     <string name="profile">Profile</string>
+    <string name="profile_type">Profile Type</string>
+    <string name="profile_type_other">Other User Profile</string>
+    <string name="profile_type_owner">My Profile</string>
     <string name="settings">Settings</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="subscriptionFeed">Subscription Feed</string>
     <string name="subscriptions">Subscriptions</string>
+    <string name="tab_going">Going</string>
+    <string name="tab_hosting">Hosting</string>
+    <string name="tab_hot">Hot</string>
+    <string name="tab_new">New</string>
+    <string name="tab_now">Now</string>
+    <string name="tab_tag">Tab Tag</string>
     <string name="title_activity_search">SearchActivity</string>
     <string name="user_details">Profile Details</string>
+    <string name="user_id">User Id</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>

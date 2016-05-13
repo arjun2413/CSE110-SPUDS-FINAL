@@ -13,6 +13,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="profile">Profile</string>
+    <string name="category_feed">Category Feed</string>
 
     <string name="fragment_profile">Profile Fragment</string>
     <string name="fragment_home_feed">Home Feed Fragment</string>
@@ -26,6 +27,10 @@
     <string name="fragment_my_sub_feed">My Subscription Feed Fragment</string>
     <string name="fragment_about">About Fragment</string>
     <string name="fragment_settings">Settings Fragment</string>
+    <string name="fragment_edit_profile">Edit Profile Fragment</string>
+    <string name="fragment_category_feed">Category Feed Fragment</string>
+    <string name="fragment_profile_feed">Profile Feed Fragment</string>
+
     <string name="event_details_fragment">Event Details Fragment</string>
 
     <string name="event_details">Event Details</string>
@@ -42,4 +47,23 @@
     <string name="incorrect_password_error">Error #: Incorrect Password</string>
     <string name="invalid_password_error">Error #: Invalid Password</string>
     <string name="mismatched_fields_error">Error #: Fields Do Not Match</string>
+
+
+    <string name="profile_type">Profile Type</string>
+    <string name="profile_type_owner">My Profile</string>
+    <string name="profile_type_other">Other User Profile</string>
+
+    <string name="filter_category">Category Filter</string>
+
+    <!-- Base Filters -->
+    <string name="tab_tag">Tab Tag</string>
+    <string name="tab_new">New</string>
+    <string name="tab_hot">Hot</string>
+    <string name="tab_now">Now</string>
+    <string name="tab_going">Going</string>
+    <string name="tab_hosting">Hosting</string>
+
+    <string name="user_id">User Id</string>
+    <string name="first_four_events">First Four Events List</string>
+
 </resources>
