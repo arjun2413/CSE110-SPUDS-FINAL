@@ -21,7 +21,6 @@
             android:textAllCaps="false"
             android:background="#45ada8"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/food"
             android:paddingLeft="10dp" />
 
         <Button
@@ -33,7 +32,6 @@
             android:textAllCaps="false"
             android:background="#547980"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/social"
             android:paddingLeft="10dp"/>
 
         <Button
@@ -45,7 +43,6 @@
             android:textAllCaps="false"
             android:background="#9de0ad"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/concerts"
             android:paddingLeft="10dp"/>
 
         <Button
@@ -57,7 +54,6 @@
             android:textAllCaps="false"
             android:background="#45ada8"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/sports"
             android:paddingLeft="10dp"/>
 
         <Button
@@ -69,7 +65,6 @@
             android:textAllCaps="false"
             android:background="#547980"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/campus"
             android:paddingLeft="10dp" />
 
         <Button
@@ -81,7 +76,6 @@
             android:textAllCaps="false"
             android:background="#9de0ad"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/academic"
             android:paddingLeft="10dp"/>
 
         <Button
@@ -93,7 +87,6 @@
             android:textAllCaps="false"
             android:background="#45ada8"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/free"
             android:paddingLeft="10dp"/>
     </LinearLayout>
 </RelativeLayout>
