@@ -4,9 +4,12 @@ package com.spuds.eventapp.Firebase;
  * Created by Arjun on 5/5/16.
  */
 
+import android.util.Log;
+
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.spuds.eventapp.ChangePassword.ChangePasswordForm;
 
 import java.util.Map;
 
@@ -28,7 +31,7 @@ public class AccountFirebase {
 
                     @Override
                     public void onError (FirebaseError firebaseError){
-                        // there was an error
+                        Log.v("AccountFirebase", "ERROR Creating an Account");
                     }
                 }
 
@@ -48,9 +51,9 @@ public class AccountFirebase {
             }
         });
     }
-    void changePass() {
+    public void changePass(ChangePasswordForm form) {
         Firebase ref = new Firebase("https://eventory.firebaseio.com");
-        ref.changePassword("bobtony@firebase.com", "correcthorsebatterystaple", "securenewpassword", new Firebase.ResultHandler() {
+        ref.changePassword("bobtony@firebase.com", form.getCurrent(), form.getNext(), new Firebase.ResultHandler() {
             @Override
             public void onSuccess() {
                 // password changed
