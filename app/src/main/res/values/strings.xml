@@ -34,6 +34,7 @@
     <string name="event_details_fragment">Event Details Fragment</string>
 
     <string name="event_details">Event Details</string>
+    <string name="event_id">Event Id</string>
     <string name="user_details">Profile Details</string>
 
     <string name="category_bundle"></string>
@@ -66,5 +67,9 @@
 
     <string name="user_id">User Id</string>
     <string name="first_four_events">First Four Events List</string>
+
+    <string name="notification_type_reply">Reply Notification</string>
+    <string name="notification_type_update">Update Notification</string>
+    <string name="notification_type_invite">Invite Notification</string>
 
 </resources>

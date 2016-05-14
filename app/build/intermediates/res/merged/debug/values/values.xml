@@ -318,6 +318,7 @@
     <string name="crop__wait">Please wait…</string>
     <string name="event_details">Event Details</string>
     <string name="event_details_fragment">Event Details Fragment</string>
+    <string name="event_id">Event Id</string>
     <string name="filter_category">Category Filter</string>
     <string name="findPeople">Find People</string>
     <string name="first_four_events">First Four Events List</string>
@@ -346,6 +347,9 @@
     <string name="my_events">My Events</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="notification_type_invite">Invite Notification</string>
+    <string name="notification_type_reply">Reply Notification</string>
+    <string name="notification_type_update">Update Notification</string>
     <string name="notifications">Notifications</string>
     <string name="password_change_success">Password Changed</string>
     <string name="profile">Profile</string>

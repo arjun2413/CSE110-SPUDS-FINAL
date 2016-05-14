@@ -50,7 +50,13 @@ public class ProfileFragment extends Fragment {
 
         Bundle extras = getArguments();
         profileType = extras.getString(getString(R.string.profile_type));
-        user = (User) extras.getSerializable(getString(R.string.user_details));
+
+        // TODO (M): GET request to get user details
+
+        //fake data
+        user = new User("1", "Reggie Wu", "#wutangclan", true, 100,
+                1, "reggie.jpg", false);
+
         profileFragment = this;
 
     }

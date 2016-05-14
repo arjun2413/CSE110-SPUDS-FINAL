@@ -4,12 +4,172 @@
     <shared>
       <config />
     </shared>
+    <layouts>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_notifications.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+    </layouts>
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d505c2a1-7884-42b8-bda2-26c1469152cf" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Notifications/NotificationsRVAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/Date.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/Notification.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_notifications.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/item_my_events.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_notifications.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_my_events.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugUnitTestJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugUnitTestJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugUnitTestJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugUnitTestJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugUnitTestJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugUnitTestJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/design/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/design/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/design/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/design/R$layout.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$layout.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/ChangePassword/ChangePasswordFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/ChangePassword/ChangePasswordFragment$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/ChangePassword/ChangePasswordFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/ChangePassword/ChangePasswordFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/EventDetails/EventDetailsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/EventDetails/EventDetailsFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/FilteredCategoryFeed/CategoryFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/FilteredCategoryFeed/CategoryFeedFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/HomeFeed/HomeFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/HomeFeed/HomeFeedFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/HomeFeed/HomeFeedViewPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/HomeFeed/HomeFeedViewPagerAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Login/LoginActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Login/LoginActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/MyEvents/MyEventsFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/MyEvents/MyEventsFeedFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/MyEvents/MyEventsViewPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/MyEvents/MyEventsViewPagerAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Notifications/NotificationsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Notifications/NotificationsFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Profile/ProfileFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Profile/ProfileFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R$integer.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R$integer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R$layout.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R$menu.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R$menu.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R$mipmap.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R$mipmap.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R$string.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R$style.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R$style.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R$styleable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R$styleable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R$xml.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R$xml.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/R.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Settings/SettingsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Settings/SettingsFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Shared/EventsFeedRVAdapter$EventViewHolder.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Shared/EventsFeedRVAdapter$EventViewHolder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Shared/EventsFeedRVAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Shared/EventsFeedRVAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Shared/MainActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Shared/MainActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedViewPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedViewPagerAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter$SubViewHolder.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter$SubViewHolder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/android/support/design/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/android/support/design/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/android/support/design/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/android/support/design/R$layout.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/android/support/v7/appcompat/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/android/support/v7/appcompat/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/android/support/v7/appcompat/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/android/support/v7/appcompat/R$layout.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/ChangePassword/ChangePasswordFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/ChangePassword/ChangePasswordFragment$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/ChangePassword/ChangePasswordFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/ChangePassword/ChangePasswordFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/EventDetails/EventDetailsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/EventDetails/EventDetailsFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/FilteredCategoryFeed/CategoryFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/FilteredCategoryFeed/CategoryFeedFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/HomeFeed/HomeFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/HomeFeed/HomeFeedFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/HomeFeed/HomeFeedViewPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/HomeFeed/HomeFeedViewPagerAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Login/LoginActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Login/LoginActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/MyEvents/MyEventsFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/MyEvents/MyEventsFeedFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/MyEvents/MyEventsViewPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/MyEvents/MyEventsViewPagerAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Notifications/NotificationsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Notifications/NotificationsFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Profile/ProfileFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Profile/ProfileFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R$integer.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R$integer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R$layout.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R$menu.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R$menu.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R$mipmap.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R$mipmap.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R$string.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R$style.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R$style.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R$styleable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R$styleable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R$xml.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R$xml.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/R.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Settings/SettingsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Settings/SettingsFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Shared/EventsFeedRVAdapter$EventViewHolder.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Shared/EventsFeedRVAdapter$EventViewHolder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Shared/EventsFeedRVAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Shared/EventsFeedRVAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Shared/MainActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Shared/MainActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedViewPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedViewPagerAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter$SubViewHolder.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter$SubViewHolder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/instant-run-support/debug/classes.zip" afterPath="$PROJECT_DIR$/app/build/intermediates/instant-run-support/debug/classes.zip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/instant-run-support/debug/resources.zip" afterPath="$PROJECT_DIR$/app/build/intermediates/instant-run-support/debug/resources.zip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug-androidTest.ap_" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/android/support/design/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/android/support/design/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/android/support/design/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/android/support/design/R$layout.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/android/support/v7/appcompat/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/android/support/v7/appcompat/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/android/support/v7/appcompat/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/android/support/v7/appcompat/R$layout.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/ChangePassword/ChangePasswordFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/ChangePassword/ChangePasswordFragment$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/ChangePassword/ChangePasswordFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/ChangePassword/ChangePasswordFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/EventDetails/EventDetailsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/EventDetails/EventDetailsFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/FilteredCategoryFeed/CategoryFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/FilteredCategoryFeed/CategoryFeedFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/HomeFeed/HomeFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/HomeFeed/HomeFeedFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/HomeFeed/HomeFeedViewPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/HomeFeed/HomeFeedViewPagerAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Login/LoginActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Login/LoginActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/MyEvents/MyEventsFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/MyEvents/MyEventsFeedFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/MyEvents/MyEventsViewPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/MyEvents/MyEventsViewPagerAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Notifications/NotificationsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Notifications/NotificationsFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Profile/ProfileFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Profile/ProfileFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R$integer.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R$integer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R$layout.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R$menu.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R$menu.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R$mipmap.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R$mipmap.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R$string.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R$style.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R$style.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R$styleable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R$styleable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R$xml.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R$xml.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/R.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Settings/SettingsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Settings/SettingsFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Shared/EventsFeedRVAdapter$EventViewHolder.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Shared/EventsFeedRVAdapter$EventViewHolder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Shared/EventsFeedRVAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Shared/EventsFeedRVAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Shared/MainActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Shared/MainActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedViewPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedViewPagerAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionsList/SubscriptionsListFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionsList/SubscriptionsListFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter$SubViewHolder.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter$SubViewHolder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_0/com/spuds/eventapp/MyEvents/MyEventsFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_0/com/spuds/eventapp/MyEvents/MyEventsFeedFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_2/com/spuds/eventapp/HomeFeed/HomeFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_2/com/spuds/eventapp/HomeFeed/HomeFeedFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_2/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_2/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_2/com/spuds/eventapp/Login/LoginActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_2/com/spuds/eventapp/Login/LoginActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/spuds/eventapp/Profile/ProfileFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/spuds/eventapp/Profile/ProfileFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/spuds/eventapp/Shared/EventsFeedRVAdapter$EventViewHolder.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/spuds/eventapp/Shared/EventsFeedRVAdapter$EventViewHolder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/spuds/eventapp/Shared/MainActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/spuds/eventapp/Shared/MainActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/com/spuds/eventapp/EventDetails/EventDetailsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/com/spuds/eventapp/EventDetails/EventDetailsFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/com/spuds/eventapp/Notifications/NotificationsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/com/spuds/eventapp/Notifications/NotificationsFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R$integer.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R$integer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R$layout.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R$menu.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R$menu.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R$mipmap.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R$mipmap.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R$string.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R$style.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R$style.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R$styleable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R$styleable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R$xml.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R$xml.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/spuds/eventapp/R.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/android_crop_1_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/android_crop_1_0_1.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_23_3_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_23_3_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_3_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_3_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/cardview_v7_23_3_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/cardview_v7_23_3_0.xml" />
@@ -18,8 +178,166 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_3_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_3_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_23_3_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_23_3_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_23_3_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_23_3_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/design/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/design/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/spuds/eventapp/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/spuds/eventapp/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-af.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-af.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-am.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-am.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ar.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ar.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-az-rAZ.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-az-rAZ.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-bg.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-bg.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-bn-rBD.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-bn-rBD.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ca.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ca.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-cs.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-cs.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-da.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-da.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-de.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-de.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-el.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-el.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-en-rAU.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-en-rAU.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-en-rGB.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-en-rGB.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-en-rIN.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-en-rIN.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-es-rUS.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-es-rUS.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-es.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-es.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-et-rEE.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-et-rEE.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-eu-rES.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-eu-rES.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-fa.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-fa.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-fi.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-fi.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-fr-rCA.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-fr-rCA.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-fr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-fr.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-gl-rES.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-gl-rES.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-gu-rIN.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-gu-rIN.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-h320dp-v13.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-h320dp-v13.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-h720dp-v13.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-h720dp-v13.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-hdpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-hdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-hi.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-hi.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-hr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-hr.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-hu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-hu.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-hy-rAM.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-hy-rAM.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-in.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-in.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-is-rIS.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-is-rIS.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-it.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-it.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-iw.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-iw.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ja.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ja.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ka-rGE.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ka-rGE.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-kk-rKZ.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-kk-rKZ.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-km-rKH.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-km-rKH.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-kn-rIN.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-kn-rIN.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ko.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ko.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ky-rKG.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ky-rKG.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-land.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-land.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-large-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-large-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ldltr-v21.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ldltr-v21.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-lo-rLA.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-lo-rLA.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-lt.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-lt.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-lv.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-lv.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-mk-rMK.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-mk-rMK.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ml-rIN.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ml-rIN.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-mn-rMN.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-mn-rMN.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-mr-rIN.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-mr-rIN.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ms-rMY.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ms-rMY.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-my-rMM.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-my-rMM.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-nb.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-nb.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ne-rNP.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ne-rNP.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-night-v8.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-night-v8.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-nl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-nl.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-pa-rIN.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-pa-rIN.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-pl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-pl.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-port.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-port.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-pt-rBR.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-pt-rBR.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-pt-rPT.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-pt-rPT.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-pt.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-pt.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ro.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ro.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ru.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ru.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-si-rLK.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-si-rLK.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-sk.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-sk.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-sl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-sl.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-sq-rAL.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-sq-rAL.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-sr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-sr.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-sv.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-sv.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-sw.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-sw.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-sw600dp-v13.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-sw600dp-v13.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ta-rIN.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ta-rIN.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-te-rIN.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-te-rIN.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-th.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-th.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-tl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-tl.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-tr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-tr.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-uk.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-uk.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ur-rPK.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ur-rPK.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-uz-rUZ.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-uz-rUZ.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v11.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v11.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v12.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v12.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v13.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v13.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v14.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v14.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v17.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v17.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v18.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v18.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v21.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v21.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v22.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v22.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v23.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v23.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-vi.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-vi.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-w360dp-v13.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-w360dp-v13.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-w480dp-v13.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-w480dp-v13.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-w500dp-v13.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-w500dp-v13.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-w600dp-v13.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-w600dp-v13.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-w720dp-v13.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-w720dp-v13.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-w820dp-v13.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-w820dp-v13.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-xlarge-land-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-xlarge-land-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-xlarge-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-xlarge-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-zh-rCN.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-zh-rCN.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-zh-rHK.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-zh-rHK.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-zh-rTW.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-zh-rTW.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-zh.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-zh.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-zu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-zu.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/anim-v21.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/anim-v21.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/anim.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/anim.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/color-v11.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/color-v11.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/color-v23.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/color-v23.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/color.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/color.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-hdpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-hdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-ldrtl-hdpi-v17.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-ldrtl-hdpi-v17.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-ldrtl-mdpi-v17.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-ldrtl-mdpi-v17.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-ldrtl-xhdpi-v17.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-ldrtl-xhdpi-v17.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-ldrtl-xxhdpi-v17.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-ldrtl-xxhdpi-v17.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-ldrtl-xxxhdpi-v17.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-ldrtl-xxxhdpi-v17.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-mdpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-mdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-v21.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-v21.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-v23.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-v23.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-xhdpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-xhdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-xxhdpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-xxhdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-xxxhdpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-xxxhdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/layout-sw600dp-v13.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/layout-sw600dp-v13.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/layout.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/layout.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/menu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/menu.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/mipmap-hdpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/mipmap-hdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/mipmap-mdpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/mipmap-mdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/mipmap-xhdpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/mipmap-xhdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/mipmap-xxhdpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/mipmap-xxhdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/mipmap-xxxhdpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/mipmap-xxxhdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/xml.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/xml.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAndroidTestAssets/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAndroidTestAssets/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAndroidTestShaders/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAndroidTestShaders/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAssets/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugShaders/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/instant-run-support/debug/coldswap.marker" afterPath="$PROJECT_DIR$/app/build/intermediates/instant-run-support/debug/coldswap.marker" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/activity_login.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/activity_login.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/activity_sign_up.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/activity_sign_up.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_categories_list.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_categories_list.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/restart-dex/debug/build-info.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/restart-dex/debug/build-info.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EventDetails/EventDetailsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EventDetails/EventDetailsFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Notifications/NotificationsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Notifications/NotificationsFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Profile/ProfileFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Profile/ProfileFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_categories_list.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_categories_list.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
     </list>
     <ignored path="CSE110-SPUDS-FINAL.iws" />
@@ -40,61 +358,7 @@
     <favorites_list name="CSE110-SPUDS-FINAL" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AccountFirebase.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Firebase/AccountFirebase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResetPasswordActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/ResetPassword/ResetPasswordActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="46" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ForgotPasswordActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/ForgotPasswordActivity/ForgotPasswordActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="33" selection-start-line="11" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_sign_up.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="50" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CategoriesListFragment.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/CategoriesList/CategoriesListFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.88251364">
-              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1469,7 +1733,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4386631433979" />
+        <entry key="$PROJECT_DIR$" value="4385703572000" />
         <entry key="C:\Users\akalathil\CSE110-SPUDS-FINAL" value="4387597383175" />
       </map>
     </option>
@@ -1493,7 +1757,8 @@
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder/2.1.0/525d7c91bd7acccecba4a6a4e611b772b0824f21/builder-2.1.0.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint/25.1.0/a40d910d75e4af864e82e557acd43d9083138aed/lint-25.1.0-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint/25.1.0/2bc7dab70d203eebda02f12b20a6170c190f6b29/lint-25.1.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/transform-api/2.0.0-deprecated-use-gradle-api/transform-api-2.0.0-deprecated-use-gradle-api.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/transform-api/2.0.0-deprecated-use-gradle-api/e4075c49e16e086140fe40eea56b2de7516874ee/transform-api-2.0.0-deprecated-use-gradle-api-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/transform-api/2.0.0-deprecated-use-gradle-api/85bee1acea9e27152b920746c68133b30b11431/transform-api-2.0.0-deprecated-use-gradle-api.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle-api/2.1.0/238ff26e6c5e1dde40ab10140f4b993c86dde46f/gradle-api-2.1.0-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle-api/2.1.0/f3278f0caee0382a1cc3dfccd08d7981b1d69013/gradle-api-2.1.0.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.databinding/compilerCommon/2.1.0/cf1a00b7904387dd88d86e337fd868f35cf309c6/compilerCommon-2.1.0-sources.jar" />
@@ -1521,10 +1786,8 @@
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/manifest-merger/25.1.0/db4c07f151804f5091156fe128312d817535126a/manifest-merger-25.1.0.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.ddms/ddmlib/25.1.0/4c3a6baefa41aa1ffa0886e3024e9ef5dc7ff440/ddmlib-25.1.0-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.ddms/ddmlib/25.1.0/7aae7364ea2a1d632fd86938bd71b1078930bd2c/ddmlib-25.1.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.jack/jack-api/0.10.0/93c3b096c028929ae9ec7414bd8da03b4feb6893/jack-api-0.10.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.jack/jack-api/0.10.0/f44f53e8f713714f9a1bf9b2cabfea3584b00878/jack-api-0.10.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.jill/jill-api/0.10.0/86d40c97b995035915303e5aa051980b9ec2d252/jill-api-0.10.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.jill/jill-api/0.10.0/7dfd6360ae4af1e171ec67b92e0cf065d59eef19/jill-api-0.10.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/jack/jack-api/0.10.0/jack-api-0.10.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/jill/jill-api/0.10.0/jill-api-0.10.0.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/squareup/javawriter/2.5.0/javawriter-2.5.0-sources.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/squareup/javawriter/2.5.0/javawriter-2.5.0.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/bouncycastle/bcpkix-jdk15on/1.48/bcpkix-jdk15on-1.48-sources.jar" />
@@ -1605,7 +1868,8 @@
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder/2.1.0/525d7c91bd7acccecba4a6a4e611b772b0824f21/builder-2.1.0.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint/25.1.0/a40d910d75e4af864e82e557acd43d9083138aed/lint-25.1.0-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint/25.1.0/2bc7dab70d203eebda02f12b20a6170c190f6b29/lint-25.1.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/transform-api/2.0.0-deprecated-use-gradle-api/transform-api-2.0.0-deprecated-use-gradle-api.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/transform-api/2.0.0-deprecated-use-gradle-api/e4075c49e16e086140fe40eea56b2de7516874ee/transform-api-2.0.0-deprecated-use-gradle-api-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/transform-api/2.0.0-deprecated-use-gradle-api/85bee1acea9e27152b920746c68133b30b11431/transform-api-2.0.0-deprecated-use-gradle-api.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle-api/2.1.0/238ff26e6c5e1dde40ab10140f4b993c86dde46f/gradle-api-2.1.0-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle-api/2.1.0/f3278f0caee0382a1cc3dfccd08d7981b1d69013/gradle-api-2.1.0.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.databinding/compilerCommon/2.1.0/cf1a00b7904387dd88d86e337fd868f35cf309c6/compilerCommon-2.1.0-sources.jar" />
@@ -1633,10 +1897,8 @@
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/manifest-merger/25.1.0/db4c07f151804f5091156fe128312d817535126a/manifest-merger-25.1.0.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.ddms/ddmlib/25.1.0/4c3a6baefa41aa1ffa0886e3024e9ef5dc7ff440/ddmlib-25.1.0-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.ddms/ddmlib/25.1.0/7aae7364ea2a1d632fd86938bd71b1078930bd2c/ddmlib-25.1.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.jack/jack-api/0.10.0/93c3b096c028929ae9ec7414bd8da03b4feb6893/jack-api-0.10.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.jack/jack-api/0.10.0/f44f53e8f713714f9a1bf9b2cabfea3584b00878/jack-api-0.10.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.jill/jill-api/0.10.0/86d40c97b995035915303e5aa051980b9ec2d252/jill-api-0.10.0-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.jill/jill-api/0.10.0/7dfd6360ae4af1e171ec67b92e0cf065d59eef19/jill-api-0.10.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/jack/jack-api/0.10.0/jack-api-0.10.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/jill/jill-api/0.10.0/jill-api-0.10.0.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/squareup/javawriter/2.5.0/javawriter-2.5.0-sources.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/squareup/javawriter/2.5.0/javawriter-2.5.0.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/bouncycastle/bcpkix-jdk15on/1.48/bcpkix-jdk15on-1.48-sources.jar" />
@@ -1698,16 +1960,16 @@
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/lombok/lombok-ast/0.2.3/lombok-ast-0.2.3-sources.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/lombok/lombok-ast/0.2.3/lombok-ast-0.2.3.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/abego/treelayout/org.abego.treelayout.core/1.0.1/org.abego.treelayout.core-1.0.1.jar" />
-                            <option value="$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/appcompat-v7/23.3.0/appcompat-v7-23.3.0.aar" />
-                            <option value="$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/design/23.3.0/design-23.3.0.aar" />
-                            <option value="$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/support-v4/23.3.0/support-v4-23.3.0.aar" />
-                            <option value="$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/recyclerview-v7/23.3.0/recyclerview-v7-23.3.0.aar" />
-                            <option value="$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/cardview-v7/23.3.0/cardview-v7-23.3.0.aar" />
+                            <option value="$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/appcompat-v7/23.3.0/appcompat-v7-23.3.0.aar" />
+                            <option value="$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/design/23.3.0/design-23.3.0.aar" />
+                            <option value="$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/support-v4/23.3.0/support-v4-23.3.0.aar" />
+                            <option value="$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/recyclerview-v7/23.3.0/recyclerview-v7-23.3.0.aar" />
+                            <option value="$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/cardview-v7/23.3.0/cardview-v7-23.3.0.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.soundcloud.android/android-crop/1.0.1/d2f63653147495c67a6cc00beabd2a42b09430be/android-crop-1.0.1.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-android/2.5.2/f19f10d6276aa0b380e2d05d2ab3272d693a5433/firebase-client-android-2.5.2.jar" />
-                            <option value="$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/support-vector-drawable/23.3.0/support-vector-drawable-23.3.0.aar" />
-                            <option value="$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/animated-vector-drawable/23.3.0/animated-vector-drawable-23.3.0.aar" />
-                            <option value="$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar" />
+                            <option value="$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/support-vector-drawable/23.3.0/support-vector-drawable-23.3.0.aar" />
+                            <option value="$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/animated-vector-drawable/23.3.0/animated-vector-drawable-23.3.0.aar" />
+                            <option value="$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-jvm/2.5.2/91731b8f5868a3e8a8a773f29b8d06b5c358f5bb/firebase-client-jvm-2.5.2.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.2.2/3c8f6018eaa72d43b261181e801e6f8676c16ef6/jackson-databind-2.2.2.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.firebase/tubesock/0.0.12/6ec0bbd3e161a73ed672284b587fd32309a86d7a/tubesock-0.0.12.jar" />
@@ -1807,19 +2069,16 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_event_details.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/Event.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Firebase/EventsFirebase.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Login/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_comment.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/Comment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EventDetails/EventDetailsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EventDetails/CommentsRVAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml" />
         <option value="$PROJECT_DIR$/local.properties" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/ChangePassword/ChangePasswordFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_create_comment.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/CreateComment/CreateCommentFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditProfile/EditProfileFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_forgot_password.xml" />
@@ -1832,14 +2091,23 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Firebase/AccountFirebase.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SignUp/SignUpActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_categories_list.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/Date.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_notifications.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/Notification.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Profile/ProfileFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Notifications/NotificationsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EventDetails/EventDetailsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Notifications/NotificationsRVAdapter.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="773" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -1866,9 +2134,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
+      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1901,8 +2170,98 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xml" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSE110-SPUDS-FINAL" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSE110-SPUDS-FINAL" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSE110-SPUDS-FINAL" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSE110-SPUDS-FINAL" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSE110-SPUDS-FINAL" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eventapp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SubscriptionsList" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1941,13 +2300,100 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="CategoriesList" />
+              <option name="myItemId" value="Profile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSE110-SPUDS-FINAL" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eventapp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Notifications" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSE110-SPUDS-FINAL" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eventapp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HomeFeed" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSE110-SPUDS-FINAL" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eventapp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EventDetails" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSE110-SPUDS-FINAL" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eventapp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CreateComment" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1964,12 +2410,38 @@
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="device.picker.selection" value="192.168.58.101:5555" />
+    <property name="device.picker.selection" value="36694e99" />
     <property name="recentsLimit" value="5" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager2.SHOW" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.PaletteToolWindowManager.SHOW" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteToolWindowManager.SHOW" value="false" />
   </component>
   <component name="RunManager" selected="Android Application.app">
+    <configuration default="false" name="xml in app" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="xml.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="app" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="xml" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="DEPLOY" value="true" />
@@ -1988,15 +2460,15 @@
       <option name="PREFERRED_AVD" value="" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <Hybrid>
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+      </Hybrid>
       <Native>
         <option name="WORKING_DIR" value="" />
         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
       </Native>
       <Java />
-      <Hybrid>
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-      </Hybrid>
       <Profilers>
         <option name="GAPID_DISABLE_PCS" value="false" />
       </Profilers>
@@ -2023,15 +2495,15 @@
       <option name="PREFERRED_AVD" value="" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <Hybrid>
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+      </Hybrid>
       <Native>
         <option name="WORKING_DIR" value="" />
         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
       </Native>
       <Java />
-      <Hybrid>
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-      </Hybrid>
       <Profilers>
         <option name="GAPID_DISABLE_PCS" value="false" />
       </Profilers>
@@ -2076,8 +2548,45 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="JUnitTestDiscovery" factoryName="JUnit Test Discovery" changeList="All">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SCRATCH_FILE_ID" value="0" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
       <envs />
       <method />
     </configuration>
@@ -2117,7 +2626,35 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="false" name="app" type="AndroidRunConfigurationType" factoryName="Android Application">
+    <configuration default="true" type="TestNGTestDiscovery" factoryName="TestNG Test Discovery" changeList="All">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="false" name="app" type="AndroidRunConfigurationType" factoryName="Android Application" activateToolWindowBeforeRun="false">
       <module name="app" />
       <option name="DEPLOY" value="true" />
       <option name="ARTIFACT_NAME" value="" />
@@ -2135,15 +2672,15 @@
       <option name="PREFERRED_AVD" value="" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <Hybrid>
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+      </Hybrid>
       <Native>
         <option name="WORKING_DIR" value="" />
         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
       </Native>
       <Java />
-      <Hybrid>
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-      </Hybrid>
       <Profilers>
         <option name="GAPID_DISABLE_PCS" value="false" />
       </Profilers>
@@ -2151,9 +2688,15 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Android Application.app" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.xml in app" />
     </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.xml in app" />
+      </list>
+    </recent_temporary>
     <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
       <option name="HTML_FILE_NAME" />
@@ -2223,73 +2766,89 @@
     <option name="localTasksCounter" value="8" />
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="xml_in_app - 2016.05.13 at 22h 21m 48s.xml">
+      <configuration name="xml in app" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="xml_in_app - 2016.05.13 at 22h 22m 25s.xml">
+      <configuration name="xml in app" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1280" height="773" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32147938" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32724506" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3242009" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32770744" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32630098" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32764506" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32267883" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24508321" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32724506" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32115677" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24474959" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.325723" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32489452" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32348806" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32770744" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32630098" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32489452" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24678111" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32770744" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24678111" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32630098" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32348806" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -2310,76 +2869,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/MyEvents/MyEventsFeedFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17170112">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4753577">
-          <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/EventsFeedRVAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4753577">
-          <caret line="61" column="55" selection-start-line="61" selection-start-column="55" selection-end-line="61" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Firebase/EventsFirebase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14308426">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23847377">
-          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Login/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.8523002">
-          <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_comment.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_event_details.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3385416">
-          <caret line="80" column="17" selection-start-line="80" selection-start-column="17" selection-end-line="80" selection-end-column="17" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/Comment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.072463766">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/Event.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.072463766">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
@@ -2391,13 +2881,6 @@
         <state vertical-scroll-proportion="0.03846154">
           <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EventDetails/EventDetailsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -2416,53 +2899,23 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_create_comment.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/ChangePassword/ChangePasswordFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.033333335">
-          <caret line="103" column="40" selection-start-line="99" selection-start-column="24" selection-end-line="103" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/CreateComment/CreateCommentFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.033333335">
-          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_create_comment.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6599496">
           <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39849624">
-          <caret line="32" column="59" selection-start-line="32" selection-start-column="59" selection-end-line="32" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.033333335">
-          <caret line="95" column="60" selection-start-line="95" selection-start-column="60" selection-end-line="95" selection-end-column="60" />
           <folding />
         </state>
       </provider>
@@ -2475,47 +2928,47 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_create_event.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_edit_event.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_forgot_password.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.125">
           <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml">
@@ -2534,28 +2987,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-32.54717">
-          <caret line="115" column="46" selection-start-line="115" selection-start-column="46" selection-end-line="115" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_categories_list.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-v21/delete.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -2567,14 +2998,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_settings.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3715278">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/roundedbutton.xml">
@@ -2597,75 +3028,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/HomeFeed/HomeFeedFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6149341">
-          <caret line="47" column="27" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.3396779">
           <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SubscriptionsList/SubscriptionsListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46666667">
-          <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Profile/ProfileFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.022222223">
-          <caret line="47" column="14" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2888889">
-          <caret line="67" column="46" selection-start-line="67" selection-start-column="46" selection-end-line="67" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_event_feed.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.024115756">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_my_subscriptions.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46945336">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/Subscription.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22222222">
-          <caret line="10" column="62" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
         </state>
       </provider>
     </entry>
@@ -2703,25 +3069,301 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="50" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
           <folding />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/CategoriesList/CategoriesListFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.88251364">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.107913665">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <element signature="e#1415#1450#0" expanded="false" />
+            <element signature="e#1809#2020#0" expanded="false" />
+            <element signature="e#2019#2020#0" expanded="false" />
+            <element signature="e#2262#2470#0" expanded="false" />
+            <element signature="e#2469#2470#0" expanded="false" />
+            <element signature="e#2712#2921#0" expanded="false" />
+            <element signature="e#2920#2921#0" expanded="false" />
+            <element signature="e#3153#3360#0" expanded="false" />
+            <element signature="e#3359#3360#0" expanded="false" />
+            <element signature="e#3592#3799#0" expanded="false" />
+            <element signature="e#3798#3799#0" expanded="false" />
+            <element signature="e#4051#4262#0" expanded="false" />
+            <element signature="e#4261#4262#0" expanded="false" />
+            <element signature="e#4509#4718#0" expanded="false" />
+            <element signature="e#4717#4718#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_categories_list.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.86538464">
+          <caret line="21" column="40" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/Subscription.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23847377">
+          <caret line="10" column="62" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3100159">
+          <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.75">
+          <caret line="115" column="46" selection-start-line="115" selection-start-column="46" selection-end-line="115" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/ChangePassword/ChangePasswordFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35215947">
+          <caret line="134" column="40" selection-start-line="134" selection-start-column="40" selection-end-line="134" selection-end-column="40" />
+          <folding>
+            <element signature="e#2151#5074#0" expanded="false" />
+            <element signature="e#4508#4551#0" expanded="false" />
+            <element signature="e#5073#5074#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/CreateComment/CreateCommentFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.54689986">
+          <caret line="69" column="36" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
+          <folding>
+            <element signature="e#1722#1764#0" expanded="false" />
+            <element signature="e#2247#2287#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SubscriptionsList/SubscriptionsListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8848921">
+          <caret line="43" column="15" selection-start-line="43" selection-start-column="15" selection-end-line="43" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6115108">
+          <caret line="67" column="46" selection-start-line="67" selection-start-column="46" selection-end-line="67" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_my_subscriptions.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.6071428">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_event_feed.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.082417585">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="8" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/Date.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38848922">
+          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/Notification.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66613674">
+          <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Notifications/NotificationsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6899841">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9183303">
+          <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18272425">
+          <caret line="243" column="43" selection-start-line="243" selection-start-column="37" selection-end-line="243" selection-end-column="43" />
+          <folding>
+            <element signature="e#2743#2774#0" expanded="true" />
+            <element signature="e#2776#2808#0" expanded="true" />
+            <element signature="e#3402#3426#0" expanded="true" />
+            <element signature="e#4420#4448#0" expanded="true" />
+            <element signature="e#4562#4587#0" expanded="true" />
+            <element signature="e#4713#4749#0" expanded="true" />
+            <element signature="e#4880#4910#0" expanded="true" />
+            <element signature="e#5038#5071#0" expanded="true" />
+            <element signature="e#5201#5230#0" expanded="true" />
+            <element signature="e#5357#5385#0" expanded="true" />
+            <element signature="e#5513#5546#0" expanded="true" />
+            <element signature="e#5672#5696#0" expanded="true" />
+            <element signature="e#6001#6034#0" expanded="true" />
+            <element signature="e#6166#6194#0" expanded="true" />
+            <element signature="e#6322#6351#0" expanded="true" />
+            <element signature="e#6489#6522#0" expanded="true" />
+            <element signature="e#6646#6676#0" expanded="true" />
+            <element signature="e#6820#6856#0" expanded="true" />
+            <element signature="e#6970#6995#0" expanded="true" />
+            <element signature="e#7115#7143#0" expanded="true" />
+            <element signature="e#10425#10457#0" expanded="true" />
+            <element signature="e#10459#10497#0" expanded="true" />
+            <element signature="e#10940#10976#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Profile/ProfileFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3338633">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/HomeFeed/HomeFeedFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31319556">
+          <caret line="41" column="55" selection-start-line="40" selection-start-column="19" selection-end-line="41" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_notifications.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.2916667">
+          <caret line="91" column="24" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
+          <folding>
+            <element signature="e#500#533#0" expanded="true" />
+            <element signature="e#562#597#0" expanded="true" />
+            <element signature="e#627#662#0" expanded="true" />
+            <element signature="e#690#723#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EventDetails/EventDetailsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45310014">
+          <caret line="63" column="50" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
+          <folding>
+            <element signature="e#1487#1520#0" expanded="true" />
+            <element signature="e#1591#1619#0" expanded="true" />
+            <element signature="e#3877#3920#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Notifications/NotificationsRVAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.4418604">
+          <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2936#3923#0" expanded="true" />
+            <element signature="e#3175#3223#0" expanded="true" />
+            <element signature="e#3225#3279#0" expanded="true" />
+            <element signature="e#3315#3358#0" expanded="true" />
+            <element signature="e#3811#3863#0" expanded="true" />
+            <element signature="e#3922#3923#0" expanded="true" />
+            <element signature="e#4492#5543#0" expanded="true" />
+            <element signature="e#4751#4799#0" expanded="true" />
+            <element signature="e#4801#4855#0" expanded="true" />
+            <element signature="e#4895#4938#0" expanded="true" />
+            <element signature="e#5419#5471#0" expanded="true" />
+            <element signature="e#5542#5543#0" expanded="true" />
+            <element signature="e#5931#6968#0" expanded="true" />
+            <element signature="e#6273#6317#0" expanded="true" />
+            <element signature="e#6367#6416#0" expanded="true" />
+            <element signature="e#6850#6908#0" expanded="true" />
+            <element signature="e#6967#6968#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/EventsFeedRVAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16534181">
+          <caret line="139" column="37" selection-start-line="139" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
           <folding />
         </state>
       </provider>

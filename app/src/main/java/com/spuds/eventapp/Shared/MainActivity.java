@@ -239,12 +239,10 @@ public class MainActivity extends AppCompatActivity
     public void goToProfile(View view) {
         Fragment profileFragment = new ProfileFragment();
 
-        // TODO (M): GET request to get user details
-
         Bundle bundle = new Bundle();
         bundle.putString(getString(R.string.profile_type), getString(R.string.profile_type_owner));
-        bundle.putSerializable(getString(R.string.user_details), new User("1", "Reggie Wu", "#wutangclan", true, 100,
-                1, "reggie.jpg", false));
+        bundle.putString(getString(R.string.user_id), "1adsf");
+
         profileFragment.setArguments(bundle);
 
         // Add Event Details Fragment to fragment manager
