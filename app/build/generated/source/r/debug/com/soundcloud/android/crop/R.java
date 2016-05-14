@@ -24,20 +24,20 @@ public final class R {
 		public static final int crop__bar_height = 0x7f090005;
 	}
 	public static final class drawable {
-		public static final int crop__divider = 0x7f02004d;
-		public static final int crop__ic_cancel = 0x7f02004e;
-		public static final int crop__ic_done = 0x7f02004f;
-		public static final int crop__selectable_background = 0x7f020050;
-		public static final int crop__texture = 0x7f020051;
-		public static final int crop__tile = 0x7f020052;
+		public static final int crop__divider = 0x7f020051;
+		public static final int crop__ic_cancel = 0x7f020052;
+		public static final int crop__ic_done = 0x7f020053;
+		public static final int crop__selectable_background = 0x7f020054;
+		public static final int crop__texture = 0x7f020055;
+		public static final int crop__tile = 0x7f020056;
 	}
 	public static final class id {
 		public static final int always = 0x7f0d0030;
-		public static final int btn_cancel = 0x7f0d008a;
-		public static final int btn_done = 0x7f0d008b;
+		public static final int btn_cancel = 0x7f0d0088;
+		public static final int btn_done = 0x7f0d0089;
 		public static final int changing = 0x7f0d0031;
-		public static final int crop_image = 0x7f0d0089;
-		public static final int done_cancel_bar = 0x7f0d0088;
+		public static final int crop_image = 0x7f0d0087;
+		public static final int done_cancel_bar = 0x7f0d0086;
 		public static final int never = 0x7f0d0032;
 	}
 	public static final class layout {

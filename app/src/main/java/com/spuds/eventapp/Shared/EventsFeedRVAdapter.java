@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spuds.eventapp.EventDetails.EventDetailsFragment;
+import com.spuds.eventapp.Profile.ProfileFeedFragment;
 import com.spuds.eventapp.R;
 
 import java.util.List;
@@ -52,11 +53,21 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
     List<Event> events;
     Fragment currentFragment;
     String tagCurrentFragment;
+    String tabType;
+    String userId;
 
     public EventsFeedRVAdapter(List<Event> events, Fragment currentFragment, String tagCurrentFragment){
         this.events = events;
         this.currentFragment = currentFragment;
         this.tagCurrentFragment = tagCurrentFragment;
+    }
+
+    public EventsFeedRVAdapter(List<Event> events, Fragment currentFragment, String tagCurrentFragment, String tabType, String userId) {
+        this.events = events;
+        this.currentFragment = currentFragment;
+        this.tagCurrentFragment = tagCurrentFragment;
+        this.tabType = tabType;
+        this.userId = userId;
     }
 
     @Override
@@ -69,7 +80,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
     @Override
     public void onBindViewHolder(EventViewHolder eventViewHolder, int i) {
 
-
+        // Add card See More... for profile fragment
         if (tagCurrentFragment.equals(currentFragment.getString(R.string.fragment_profile)) && i == 3) {
             eventViewHolder.seeMore.setVisibility(View.VISIBLE);
 
@@ -80,7 +91,28 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             ((ViewManager)eventViewHolder.eventDate.getParent()).removeView(eventViewHolder.eventDate);
             ((ViewManager)eventViewHolder.eventAttendees.getParent()).removeView(eventViewHolder.eventAttendees);
             ((ViewManager)eventViewHolder.eventCategories.getParent()).removeView(eventViewHolder.eventCategories);
-            //((ViewManager)eventViewHolder.eventHost.getParent()).removeView(eventViewHolder.eventHost);
+
+            eventViewHolder.card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ProfileFeedFragment profileFeedFragment = new ProfileFeedFragment();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString(currentFragment.getString(R.string.tab_tag), tabType);
+                    bundle.putString(currentFragment.getString(R.string.user_id), userId);
+
+                    profileFeedFragment.setArguments(bundle);
+
+                    // Add Event Details Fragment to fragment manager
+                    currentFragment.getFragmentManager().beginTransaction()
+                            .show(profileFeedFragment)
+                            .replace(R.id.fragment_frame_layout, profileFeedFragment)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .addToBackStack(currentFragment.getString(R.string.fragment_profile_feed))
+                            .commit();
+                }
+            });
+
             return;
         }
 
@@ -117,6 +149,9 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
                     tabFragmentTag = currentFragment.getString(R.string.my_events);
                 } else if (tagCurrentFragment.equals(currentFragment.getString(R.string.fragment_my_sub_feed))) {
                     tabFragmentTag = currentFragment.getString(R.string.subscriptionFeed);
+                } else if (tagCurrentFragment.equals(currentFragment.getString(R.string.fragment_category_feed)))
+                {
+                    tabFragmentTag = currentFragment.getString(R.string.category_feed);
                 }
 
                 if (!tabFragmentTag.equals("")) {

@@ -12,9 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
-import com.spuds.eventapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +23,7 @@ public class MyEventsFeedFragment extends Fragment {
 
     private List<Event> events;
     public EventsFeedRVAdapter adapter;
+    String myEventsTab;
 
     public MyEventsFeedFragment() {
     }
@@ -30,6 +31,17 @@ public class MyEventsFeedFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle extras = getArguments();
+        myEventsTab = extras.getString(getString(R.string.tab_tag));
+
+        // TODO (M): Get arraylist of events based on my events filter [going or hosting]
+        events = new ArrayList<>();
+        events.add(new Event("1", "yj.jpg", "SunGod", "UCSD", "04.29.16", 1054,
+                "Social", "Concert", "UCSD", "desc"));
+        events.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "04.28.16", 51,
+                "Social", null, "Foosh Improv Comedy Club", "desc"));
+
     }
 
     @Override
@@ -41,12 +53,6 @@ public class MyEventsFeedFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
-
-        events = new ArrayList<>();
-        events.add(new Event("1", "yj.jpg", "SunGod", "UCSD", "04.29.16", 1054,
-                "Social", "Concert", "UCSD", "desc"));
-        events.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "04.28.16", 51,
-                "Social", null, "Foosh Improv Comedy Club", "desc"));
 
         adapter = new EventsFeedRVAdapter(events, this, getString(R.string.fragment_my_events));
         rv.setAdapter(adapter);

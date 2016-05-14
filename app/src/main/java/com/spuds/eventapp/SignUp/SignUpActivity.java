@@ -1,6 +1,7 @@
 package com.spuds.eventapp.SignUp;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
 
@@ -46,6 +48,11 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "name_font.ttf");
+        TextView header = (TextView)findViewById(R.id.signup_header);
+        header.setTypeface(custom_font);
+
+
         //Use findViewById for all variables
         //Define "Sign Up" button that user clicks, prompting al this information to be processed
         signupButton = (Button)findViewById(R.id.signup_button);
@@ -63,10 +70,10 @@ public class SignUpActivity extends AppCompatActivity {
         signupPassword1 = (EditText)findViewById(R.id.signup_password_2);
 
         //Fetch invisible Password Warning Text
-        signupPasswordMatchError = (TextView)findViewById(R.id.signupPasswordMatchError);
+        //signupPasswordMatchError = (TextView)findViewById(R.id.signupPasswordMatchError);
 
         //Fetch invisible Invalid Email text
-        signupInvalidEmailError = (TextView)findViewById(R.id.signupInvalidEmailError);
+        //signupInvalidEmailError = (TextView)findViewById(R.id.signupInvalidEmailError);
 
         //Upon User clicking "Sign Up", convert editable text fields to Strings
         signupButton.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +123,9 @@ public class SignUpActivity extends AppCompatActivity {
                     Log.v("signup_name", signupName.getText().toString());
                     Log.v("signup_email", signupEmail.getText().toString());
                     Log.v("signupPassword", signupPassword1.getText().toString());
-
+                    AccountFirebase accountFirebase = new AccountFirebase();
+                    accountFirebase.createAccount(signupEmail.getText().toString(),
+                            signupPassword1.getText().toString());
                     //When done, leave this page and go to main screen.
                     startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                 }

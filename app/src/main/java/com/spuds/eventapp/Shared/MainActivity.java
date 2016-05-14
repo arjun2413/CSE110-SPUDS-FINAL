@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
     SubscriptionFeedTabsFragment subscriptionFeedTabsFragment;
     AboutFragment aboutFragment;
     SettingsFragment settingsFragment;
-    ProfileFragment profileFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,8 +103,6 @@ public class MainActivity extends AppCompatActivity
             aboutFragment = new AboutFragment();
             settingsFragment = new SettingsFragment();
 
-            profileFragment = new ProfileFragment();
-
             fragmentTransaction
                     .add(R.id.fragment_frame_layout, settingsFragment, getString(R.string.settings))
                     .hide(settingsFragment)
@@ -122,8 +120,6 @@ public class MainActivity extends AppCompatActivity
                     .hide(categoriesListFragment)
                     .add(R.id.fragment_frame_layout, notificationsFragment, getString(R.string.notifications))
                     .hide(notificationsFragment)
-                    .add(R.id.fragment_frame_layout, profileFragment, getString(R.string.profile))
-                    .hide(profileFragment)
                     .add(R.id.fragment_frame_layout, homeFeedTabsFragment, getString(R.string.home))
                     .commit();
 
@@ -147,8 +143,6 @@ public class MainActivity extends AppCompatActivity
             settingsFragment = (SettingsFragment) getSupportFragmentManager().
                     findFragmentByTag(getString(R.string.settings));
 
-            profileFragment = (ProfileFragment) getSupportFragmentManager().
-                    findFragmentByTag(getString(R.string.profile));
 
             fragmentTransaction
                     .hide(notificationsFragment)
@@ -159,7 +153,6 @@ public class MainActivity extends AppCompatActivity
                     .hide(subscriptionFeedTabsFragment)
                     .hide(aboutFragment)
                     .hide(settingsFragment)
-                    .hide(profileFragment)
                     .commit();
         }
     }
@@ -246,11 +239,12 @@ public class MainActivity extends AppCompatActivity
     public void goToProfile(View view) {
         Fragment profileFragment = new ProfileFragment();
 
-        // TODO (M): GET request to get user details
+        Bundle bundle = new Bundle();
+        bundle.putString(getString(R.string.profile_type), getString(R.string.profile_type_owner));
+        // TODO (M): app owner's id
+        bundle.putString(getString(R.string.user_id), "1adsf");
 
-        /*Bundle bundle = new Bundle();
-        bundle.putString("ihateu", "aiowehf");
-        profileFragment.setArguments(bundle);*/
+        profileFragment.setArguments(bundle);
 
         // Add Event Details Fragment to fragment manager
         getSupportFragmentManager().beginTransaction()
@@ -277,10 +271,6 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-    }
-
-    void setCurrentFragment(Fragment fragment) {
-        this.currentFragment = fragment;
     }
 
     @Override

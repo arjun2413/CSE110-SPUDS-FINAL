@@ -26,6 +26,7 @@ public class SubscriptionsListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -42,11 +43,11 @@ public class SubscriptionsListFragment extends Fragment {
         // fake data
 
         subscriptions = new ArrayList<>();
-        subscriptions.add(new Subscription("Arjun", R.drawable.arjun, true));
-        subscriptions.add(new Subscription("Jiggly", R.drawable.arjun, true));
-        subscriptions.add(new Subscription("Joe", R.drawable.arjun, true));
-        subscriptions.add(new Subscription("Kraken", R.drawable.arjun, true));
-        subscriptions.add(new Subscription("Regirock", R.drawable.arjun, true));
+        subscriptions.add(new Subscription("1", "Arjun", R.drawable.arjun, true));
+        subscriptions.add(new Subscription("1", "Jiggly", R.drawable.arjun, true));
+        subscriptions.add(new Subscription("1", "Joe", R.drawable.arjun, true));
+        subscriptions.add(new Subscription("1", "Kraken", R.drawable.arjun, true));
+        subscriptions.add(new Subscription("1", "Regirock", R.drawable.arjun, true));
 
         adapter = new SubscriptionsListRVAdapter(subscriptions, this);
         rv.setAdapter(adapter);
