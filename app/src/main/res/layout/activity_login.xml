@@ -48,6 +48,7 @@
             android:background="@drawable/border"
             android:drawableLeft="@drawable/email"
             android:paddingLeft="100dp"
+            android:paddingRight="100dp"
             android:drawablePadding="10dp" />
 
         <EditText
@@ -65,6 +66,7 @@
             android:background="@drawable/border"
             android:drawableLeft="@drawable/lock_changepass"
             android:paddingLeft="100dp"
+            android:paddingRight="100dp"
             android:drawablePadding="10dp" />
 
         <TextView
