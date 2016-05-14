@@ -1,6 +1,5 @@
 package com.spuds.eventapp.ChangePassword;
 
-import android.accounts.Account;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -12,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.firebase.client.Firebase;
 import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.R;
 
@@ -23,7 +21,7 @@ public class ChangePasswordFragment extends Fragment {
     private EditText current_pw;
     private EditText new_pw;
     private EditText confirm_pw;
-    private Button change_pw;
+    private Button changeButton;
     private TextView sys_message;
 
     private String error_string;
@@ -42,7 +40,7 @@ public class ChangePasswordFragment extends Fragment {
         current_pw = (EditText) view.findViewById(R.id.current_password);
         new_pw = (EditText) view.findViewById(R.id.new_password);
         confirm_pw = (EditText) view.findViewById(R.id.confirm_password);
-        change_pw = (Button) view.findViewById(R.id.change_password);
+        changeButton = (Button) view.findViewById(R.id.change_button);
         sys_message = (TextView) view.findViewById(R.id.system_message);
 
         return new ChangePasswordForm(current_pw,new_pw,confirm_pw);
@@ -71,9 +69,9 @@ public class ChangePasswordFragment extends Fragment {
         //initializing parts of the fragment
         final View view = inflater.inflate(R.layout.fragment_change_password, container, false);
 
+        final ChangePasswordForm form = getUserInputs(view);
 
-
-        change_pw.setOnClickListener(new View.OnClickListener() {
+        changeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -85,7 +83,7 @@ public class ChangePasswordFragment extends Fragment {
                 //      4. check if second and third fields match
                 //      5. show snackbar on success or error message accordingly.
 
-                ChangePasswordForm form = getUserInputs(view);
+
 
                 if(form.allFilled()){
 
@@ -128,6 +126,9 @@ public class ChangePasswordFragment extends Fragment {
                         AccountFirebase af = new AccountFirebase();
 
                         af.changePass(form);
+
+                        // Pop this fragment from backstack
+                        getActivity().getSupportFragmentManager().popBackStack();
 
                         //TODO: need to test if snackbar works properly
                         Snackbar snackbar = Snackbar.make

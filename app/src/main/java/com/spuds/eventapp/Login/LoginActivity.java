@@ -21,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         Typeface custom_font = Typeface.createFromAsset(getAssets(),  "name_font.ttf");
         TextView tx = (TextView)findViewById(R.id.app_name);
         tx.setTypeface(custom_font);

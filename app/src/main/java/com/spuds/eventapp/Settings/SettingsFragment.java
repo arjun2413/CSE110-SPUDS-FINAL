@@ -1,6 +1,5 @@
 package com.spuds.eventapp.Settings;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,7 +10,6 @@ import android.view.ViewGroup;
 
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Setting;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +43,7 @@ public class SettingsFragment extends Fragment {
         settings.add(new Setting("Delete Account", R.drawable.delete));
 
 
-        adapter = new SettingsRVAdapter(settings);
+        adapter = new SettingsRVAdapter(settings, this);
         rv.setAdapter(adapter);
 
         return v;

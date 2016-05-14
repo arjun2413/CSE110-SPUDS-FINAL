@@ -1,6 +1,10 @@
 package com.spuds.eventapp.Settings;
 
-import android.media.audiofx.BassBoost;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.spuds.eventapp.ChangePassword.ChangePasswordFragment;
+import com.spuds.eventapp.Login.LoginActivity;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Setting;
 
@@ -22,16 +28,17 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<SettingsRVAdapter.Se
     // notifications are on by default
     boolean isNotification = true;
     List<Setting> settings;
+    Fragment currentFragment;
 
     public static class SettingsViewHolder extends RecyclerView.ViewHolder{
-        CardView cv;
+        CardView card;
         ImageView settingPhoto;
         TextView settingName;
         ImageView toggleNotifications;
 
         public SettingsViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView)itemView.findViewById(R.id.cv);
+            card = (CardView)itemView.findViewById(R.id.cv);
             settingPhoto = (ImageView)itemView.findViewById(R.id.settings_photo);
             settingName = (TextView)itemView.findViewById(R.id.settings_name);
             toggleNotifications = (ImageView)itemView.findViewById(R.id.settings_toggle);
@@ -40,8 +47,9 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<SettingsRVAdapter.Se
     }
 
 
-    public SettingsRVAdapter(List<Setting> settings){
+    public SettingsRVAdapter(List<Setting> settings, Fragment currentFragment){
         this.settings = settings;
+        this.currentFragment = currentFragment;
     }
 
     @Override
@@ -79,6 +87,47 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<SettingsRVAdapter.Se
                 }
             }
         });
+
+        switch (i) {
+            case 0:
+                settingsViewHolder.card.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ChangePasswordFragment changePasswordFragment = new ChangePasswordFragment();
+
+                        // Add Change Password Fragment to fragment manager
+                        currentFragment.getFragmentManager().beginTransaction()
+                                .show(changePasswordFragment)
+                                .replace(R.id.fragment_frame_layout, changePasswordFragment)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                .addToBackStack(currentFragment.getString(R.string.fragment_change_password))
+                                .commit();
+                    }
+                });
+                break;
+            case 2:
+                settingsViewHolder.card.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        new AlertDialog.Builder(currentFragment.getActivity())
+                                .setTitle("Delete Account")
+                                .setMessage("Are you sure you want to delete your account?")
+                                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // TODO (M): Delete account
+                                        currentFragment.startActivity(new Intent(currentFragment.getActivity(), LoginActivity.class));
+                                    }
+                                })
+                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                    }
+                                })
+                                //.setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                    }
+                });
+                break;
+        }
 
     }
 

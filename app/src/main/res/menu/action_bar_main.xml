@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- "Create Event", should always appear in the action bar -->
+    <item
+        android:id="@+id/action_create_event"
+        android:icon="@drawable/campus"
+        android:title="Create Event"
+        app:showAsAction="always"/>
+</menu>
