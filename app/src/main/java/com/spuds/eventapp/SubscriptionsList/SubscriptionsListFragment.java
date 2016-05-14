@@ -38,6 +38,9 @@ public class SubscriptionsListFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(v.getContext());
         rv.setLayoutManager(llm);
 
+        // TODO (M): database call, populate with real data
+        // fake data
+
         subscriptions = new ArrayList<>();
         subscriptions.add(new Subscription("Arjun", R.drawable.arjun, true));
         subscriptions.add(new Subscription("Jiggly", R.drawable.arjun, true));
@@ -45,7 +48,7 @@ public class SubscriptionsListFragment extends Fragment {
         subscriptions.add(new Subscription("Kraken", R.drawable.arjun, true));
         subscriptions.add(new Subscription("Regirock", R.drawable.arjun, true));
 
-        adapter = new SubscriptionsListRVAdapter(subscriptions);
+        adapter = new SubscriptionsListRVAdapter(subscriptions, this);
         rv.setAdapter(adapter);
 
         return v;

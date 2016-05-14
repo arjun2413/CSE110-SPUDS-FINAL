@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.soundcloud.android.crop.Crop;
 import com.spuds.eventapp.R;
 
 
@@ -17,7 +18,7 @@ public class  EditProfileFragment extends Fragment {
 
     //interactable objects
     Button updateButton;
-    ImageButton editProfilePicture;
+    ImageButton editProfilePictureButton;
     EditText editFullName;
     EditText editCollege;
     EditText editMajor;
@@ -38,7 +39,7 @@ public class  EditProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
 
         updateButton = (Button) view.findViewById(R.id.update_button);
-        editProfilePicture = (ImageButton) view.findViewById(R.id.edit_profile_picture);
+        editProfilePictureButton = (ImageButton) view.findViewById(R.id.edit_profile_picture);
         editFullName = (EditText) view.findViewById(R.id.edit_full_name);
         editCollege = (EditText) view.findViewById(R.id.edit_college);
         editMajor = (EditText) view.findViewById(R.id.edit_major);
@@ -51,6 +52,8 @@ public class  EditProfileFragment extends Fragment {
         editCollege.setHint("shit");
         editMajor.setHint("shit");
         editDescription.setHint("shit");
+
+
 
         //When update button is clicked, get the Text the user input, and send to Firebase.
         updateButton.setOnClickListener(new View.OnClickListener() {
@@ -82,4 +85,6 @@ public class  EditProfileFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
+
+
 }

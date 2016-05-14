@@ -1,5 +1,11 @@
 package com.spuds.eventapp.SubscriptionsList;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,6 +25,9 @@ import java.util.List;
  */
 public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<SubscriptionsListRVAdapter.SubViewHolder>{
 
+    public Fragment frag;
+    List<Subscription> subscriptions;
+
     public static class SubViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         TextView subName;
@@ -34,11 +43,11 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
         }
     }
 
-    List<Subscription> subscriptions;
 
-    public SubscriptionsListRVAdapter(List<Subscription> subscriptions){
 
+    public SubscriptionsListRVAdapter(List<Subscription> subscriptions, Fragment frag){
         this.subscriptions = subscriptions;
+        this.frag = frag;
     }
 
 
@@ -59,7 +68,15 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
         final Subscription currentSub = subscriptions.get(i);
         final SubViewHolder currentSubViewHolder = subViewHolder;
         subViewHolder.subName.setText(subscriptions.get(i).name);
+
         subViewHolder.subPhoto.setImageResource(subscriptions.get(i).photoId);
+
+
+        Bitmap src = BitmapFactory.decodeResource(frag.getResources(), R.drawable.arjun);
+        RoundedBitmapDrawable dr =
+                RoundedBitmapDrawableFactory.create(frag.getResources(), src);
+        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
+        currentSubViewHolder.subPhoto.setImageDrawable(dr);
 
 
         subViewHolder.toggleFollow.setOnClickListener(new View.OnClickListener() {

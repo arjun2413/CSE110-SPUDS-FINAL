@@ -2457,8 +2457,8 @@ containing a value of this type.
         public static final int side_nav_bar=0x7f020063;
     }
     public static final class id {
-        public static final int about=0x7f0d00ee;
-        public static final int accMang=0x7f0d00ef;
+        public static final int about=0x7f0d00ef;
+        public static final int accMang=0x7f0d00f0;
         public static final int action0=0x7f0d00dc;
         public static final int action_bar=0x7f0d005b;
         public static final int action_bar_activity_content=0x7f0d0000;
@@ -2474,7 +2474,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0d0058;
         public static final int action_mode_bar_stub=0x7f0d0057;
         public static final int action_mode_close_button=0x7f0d003d;
-        public static final int action_search=0x7f0d00f1;
+        public static final int action_search=0x7f0d00f2;
         public static final int activity_chooser_view_content=0x7f0d003e;
         public static final int alertTitle=0x7f0d004a;
         public static final int always=0x7f0d0030;
@@ -2492,7 +2492,7 @@ containing a value of this type.
         public static final int button_subscribe=0x7f0d00c1;
         public static final int button_view_replies=0x7f0d00d3;
         public static final int cancel_action=0x7f0d00dd;
-        public static final int category=0x7f0d00e9;
+        public static final int category=0x7f0d00ea;
         public static final int center=0x7f0d001e;
         public static final int center_horizontal=0x7f0d001f;
         public static final int center_vertical=0x7f0d0020;
@@ -2517,10 +2517,9 @@ containing a value of this type.
         public static final int current_password=0x7f0d0095;
         public static final int custom=0x7f0d0051;
         public static final int customPanel=0x7f0d0050;
-        public static final int cv=0x7f0d00cd;
+        public static final int cv=0x7f0d00ca;
         public static final int decor_content_parent=0x7f0d0059;
         public static final int default_activity_button=0x7f0d0041;
-        public static final int delete_account=0x7f0d00cb;
         public static final int design_bottom_sheet=0x7f0d008d;
         public static final int design_menu_item_action_area=0x7f0d0094;
         public static final int design_menu_item_action_area_stub=0x7f0d0093;
@@ -2562,7 +2561,7 @@ containing a value of this type.
         public static final int fill=0x7f0d002e;
         public static final int fill_horizontal=0x7f0d002f;
         public static final int fill_vertical=0x7f0d0022;
-        public static final int find_people=0x7f0d00ed;
+        public static final int find_people=0x7f0d00ee;
         public static final int fixed=0x7f0d0039;
         public static final int follow_toggle=0x7f0d00d8;
         public static final int forgot_password=0x7f0d0071;
@@ -2588,20 +2587,19 @@ containing a value of this type.
         public static final int line3=0x7f0d00e5;
         public static final int listMode=0x7f0d000b;
         public static final int list_item=0x7f0d0042;
-        public static final int logOut=0x7f0d00f0;
+        public static final int logOut=0x7f0d00f1;
         public static final int media_actions=0x7f0d00df;
         public static final int middle=0x7f0d0035;
         public static final int mini=0x7f0d0033;
         public static final int multiply=0x7f0d0027;
-        public static final int myEvents=0x7f0d00ea;
-        public static final int mySwitch=0x7f0d00cc;
+        public static final int myEvents=0x7f0d00eb;
         public static final int nav_view=0x7f0d0076;
         public static final int navigation_header_container=0x7f0d0090;
         public static final int never=0x7f0d0032;
         public static final int new_password=0x7f0d0096;
         public static final int none=0x7f0d0010;
         public static final int normal=0x7f0d000c;
-        public static final int notifications=0x7f0d00ca;
+        public static final int notifications=0x7f0d00e9;
         public static final int parallax=0x7f0d001b;
         public static final int parentPanel=0x7f0d0047;
         public static final int password=0x7f0d006f;
@@ -2633,6 +2631,9 @@ containing a value of this type.
         public static final int search_voice_btn=0x7f0d0068;
         public static final int select_dialog_listview=0x7f0d0069;
         public static final int send_password=0x7f0d006d;
+        public static final int settings_name=0x7f0d00cc;
+        public static final int settings_photo=0x7f0d00cb;
+        public static final int settings_toggle=0x7f0d00cd;
         public static final int shortcut=0x7f0d0054;
         public static final int showCustom=0x7f0d0011;
         public static final int showHome=0x7f0d0012;
@@ -2660,8 +2661,8 @@ containing a value of this type.
         public static final int sub_name=0x7f0d00d7;
         public static final int sub_photo=0x7f0d00d6;
         public static final int submit_area=0x7f0d0066;
-        public static final int subscriptionFeed=0x7f0d00eb;
-        public static final int subscriptions=0x7f0d00ec;
+        public static final int subscriptionFeed=0x7f0d00ec;
+        public static final int subscriptions=0x7f0d00ed;
         public static final int system_message=0x7f0d0099;
         public static final int tabMode=0x7f0d000d;
         public static final int tabs=0x7f0d00bd;
