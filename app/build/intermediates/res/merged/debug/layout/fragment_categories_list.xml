@@ -19,9 +19,11 @@
             android:id="@+id/food"
             android:textSize="30dp"
             android:textAllCaps="false"
-            android:background="#45ada8"
+            android:background="#2d4152"
             android:layout_weight="1"
-            android:paddingLeft="10dp" />
+            android:drawableLeft="@drawable/food"
+            android:paddingLeft="20dp"
+            android:textColor="#ffffff" />
 
         <Button
             android:layout_width="fill_parent"
@@ -30,9 +32,11 @@
             android:id="@+id/social"
             android:textSize="30dp"
             android:textAllCaps="false"
-            android:background="#547980"
+            android:background="#a4c1c1"
             android:layout_weight="1"
-            android:paddingLeft="10dp"/>
+            android:drawableLeft="@drawable/social"
+            android:paddingLeft="20dp"
+            android:textColor="#ffffff" />
 
         <Button
             android:layout_width="fill_parent"
@@ -41,9 +45,11 @@
             android:id="@+id/concerts"
             android:textSize="30dp"
             android:textAllCaps="false"
-            android:background="#9de0ad"
+            android:background="#428a86"
             android:layout_weight="1"
-            android:paddingLeft="10dp"/>
+            android:drawableLeft="@drawable/concerts"
+            android:paddingLeft="20dp"
+            android:textColor="#ffffff" />
 
         <Button
             android:layout_width="fill_parent"
@@ -52,9 +58,11 @@
             android:id="@+id/sports"
             android:textSize="30dp"
             android:textAllCaps="false"
-            android:background="#45ada8"
+            android:background="#2d4152"
             android:layout_weight="1"
-            android:paddingLeft="10dp"/>
+            android:drawableLeft="@drawable/sports"
+            android:paddingLeft="20dp"
+            android:textColor="#ffffff" />
 
         <Button
             android:layout_width="fill_parent"
@@ -63,9 +71,11 @@
             android:id="@+id/campus_orgs"
             android:textSize="25dp"
             android:textAllCaps="false"
-            android:background="#547980"
+            android:background="#a4c1c1"
             android:layout_weight="1"
-            android:paddingLeft="10dp" />
+            android:drawableLeft="@drawable/campus"
+            android:paddingLeft="20dp"
+            android:textColor="#ffffff" />
 
         <Button
             android:layout_width="fill_parent"
@@ -74,9 +84,11 @@
             android:id="@+id/academic"
             android:textSize="30dp"
             android:textAllCaps="false"
-            android:background="#9de0ad"
+            android:background="#428a86"
             android:layout_weight="1"
-            android:paddingLeft="10dp"/>
+            android:drawableLeft="@drawable/academic"
+            android:paddingLeft="20dp"
+            android:textColor="#ffffff" />
 
         <Button
             android:layout_width="fill_parent"
@@ -85,8 +97,10 @@
             android:id="@+id/free"
             android:textSize="30dp"
             android:textAllCaps="false"
-            android:background="#45ada8"
+            android:background="#2d4152"
             android:layout_weight="1"
-            android:paddingLeft="10dp"/>
+            android:drawableLeft="@drawable/free"
+            android:paddingLeft="20dp"
+            android:textColor="#ffffff" />
     </LinearLayout>
 </RelativeLayout>

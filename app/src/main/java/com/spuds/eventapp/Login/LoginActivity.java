@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.spuds.eventapp.ForgotPasswordActivity.ForgotPasswordActivity;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.SignUp.SignUpActivity;
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         //a function to allow the user to sign in
         signInFunc();
         signUpFunc();
+        forgotPassFunc();
     }
 
 
@@ -33,14 +35,32 @@ public class LoginActivity extends AppCompatActivity {
         //create a button for the sign up
         final Button signUp = (Button) findViewById(R.id.button);
 
+        if(signUp != null) {
+
+            //set a on click listener to see when the button is clicked
+            signUp.setOnClickListener(new View.OnClickListener() {
+                //what happens when the button is clicked
+                public void onClick(View v) {
+                    startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+
+                }
+            });
+        }
+    }
+
+    public void forgotPassFunc() {
+        //create a button for the forgot password
+        final Button forgotPass = (Button) findViewById(R.id.forgot_password);
         //set a on click listener to see when the button is clicked
-        signUp.setOnClickListener(new View.OnClickListener(){
-            //what happens when the button is clicked
-            public void onClick(View v){
-                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
-                //}
-            }
-        });
+        if (forgotPass != null) {
+            forgotPass.setOnClickListener(new View.OnClickListener() {
+                //what happens when the button is clicked
+                public void onClick(View v) {
+                    startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+
+                }
+            });
+        }
     }
 
     public void signInFunc() {
@@ -65,8 +85,15 @@ public class LoginActivity extends AppCompatActivity {
                             errorMessage.setText(error);
                         }
                     }
+                    else if (!email.endsWith("@ucsd.edu")) {
+                        TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
+                        String message = "Please use a ucsd.edu email to log in.";
+                        if(errorMessage != null) {
+                            errorMessage.setText(message);
+                        }
+                    }
                     //check if email is in database
-                /*else if(email ){
+                /*else if(email.endsWith("@ucsd.edu") ){
                     TextView errorMessage = (TextView)findViewById(R.id.errorMessage);
                     errorMessage.setText("The email you've entered doesn't match any account.
                     Sign up for an account");

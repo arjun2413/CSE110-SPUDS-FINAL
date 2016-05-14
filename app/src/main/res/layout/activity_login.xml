@@ -48,6 +48,7 @@
             android:background="@drawable/border"
             android:drawableLeft="@drawable/email"
             android:paddingLeft="100dp"
+            android:paddingRight="100dp"
             android:drawablePadding="10dp" />
 
         <EditText
@@ -65,7 +66,23 @@
             android:background="@drawable/border"
             android:drawableLeft="@drawable/lock_changepass"
             android:paddingLeft="100dp"
+            android:paddingRight="100dp"
             android:drawablePadding="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/errorMessage"
+            android:layout_below="@+id/imageView"
+            android:layout_alignRight="@+id/imageView"
+            android:layout_marginTop="5dp"
+            android:layout_alignEnd="@+id/imageView"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:gravity="center_horizontal"
+            android:text="Invalid Email"
+            android:textColor="#990000"
+            android:textSize="13sp" />
 
         <Button
             android:layout_width="match_parent"
@@ -75,7 +92,7 @@
             android:id="@+id/signIn"
             android:layout_below="@+id/password"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/roundedbutton"
@@ -110,17 +127,6 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="bottom|center_horizontal"
             android:gravity="bottom|center_horizontal" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/errorMessage"
-            android:layout_below="@+id/imageView"
-            android:layout_alignRight="@+id/imageView"
-            android:layout_alignEnd="@+id/imageView"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentLeft="false"
-            android:gravity="center_horizontal" />
 
     </LinearLayout>
 
