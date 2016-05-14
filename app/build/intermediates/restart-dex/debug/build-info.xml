@@ -4,7 +4,7 @@
     api-level="23"
     density="560dpi"
     format="7"
-    timestamp="7290529596187" >
+    timestamp="12660927972920" >
 
     <task
         name="javac"
@@ -28,7 +28,7 @@
             location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
             type="MAIN" />
     </build>
-    <build timestamp="7290529596187" >
+    <build timestamp="12660927972920" >
         <artifact
             location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/resources-debug.ap_"
             type="RESOURCES" />
