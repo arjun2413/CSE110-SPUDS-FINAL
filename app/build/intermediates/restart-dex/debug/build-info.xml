@@ -1,118 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
     abi="x86"
-    api-level="23"
-    density="560dpi"
+    api-level="21"
+    density="xhdpi"
     format="7"
-    timestamp="5885526322491" >
+    timestamp="46892960560856" >
 
     <task
         name="javac"
-        duration="1090" />
+        duration="7683" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="4523" />
     <task
         name="verifier"
-        duration="0" />
+        duration="1029" />
 
-    <build timestamp="1178795322766" >
+    <artifact
+        location="C:\Users\Karen\AndroidStudioProjects\CSE110-SPUDS-FINAL\app\build\outputs\apk\app-debug.apk"
+        type="MAIN" />
+
+    <build timestamp="46892960560856" >
         <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
+            location="C:\Users\Karen\AndroidStudioProjects\CSE110-SPUDS-FINAL\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
-    <build timestamp="5574737714894" >
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/resources-debug.ap_"
-            type="RESOURCES" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-core-2.2.2_e2dc8b0653f980df47db4a4e4adb464846a2484b/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.3.0_5cc26466a8f72d6d61634dc6df93c74d5237f39d/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/firebase-client-jvm-2.5.2_9dbb6dc8d1ecf1bd85bf4b8b674cc9cb33802470/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_ca45b1a2f4b83eed4ac86bd0593c79be1ac055ff/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_0/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.3.0_6893578e877b41c8e4a9029ef658bf000bc4c821/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_14fac49ca136a5d8c782925ef892aa1b5d6d320f/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_cfd81064d3c4aad1d6edec539993fddee5035ad2/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_1/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/firebase-client-android-2.5.2_cc410c8bab035b5e4e6d607569596af601165f79/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/tubesock-0.0.12_7760be56ec1e0c941f77701ae826feec114283ed/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.soundcloud.android-android-crop-1.0.1_33d5e6b6644a431233d9b2bfa0d1899ed9ca7139/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-23.3.0_0000f2920f34586bc5ec4c9ded7f33f8603b7410/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_7/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_8/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_9/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_aa88c6f629a4e2888f079370560e69b05e754a71/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_6/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_9740c35ddc0be5091db17d5bc41a00ac7dde18a4/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_adb124171406cf3b19d9b3ba0dc24a59699f7ba0/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_ec5fdd965fa189b36f3e63f61d7289f963285159/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-annotations-2.2.2_2fa151023e545eeeb27fbad68ef3934402aa4739/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_e2c50579ee2b68ca3959335318f30fb39b63ce40/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-databind-2.2.2_329b06a8aa9340a4aabeb50a101528b372e81aa7/classes.dex"
-            type="DEX" />
-    </build>
-    <build timestamp="5885526322491" />
 
 </instant-run>
