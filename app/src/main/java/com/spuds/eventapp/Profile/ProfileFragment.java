@@ -27,6 +27,7 @@ public class ProfileFragment extends Fragment {
     ProfileFragment profileFragment;
 
     String profileType;
+    String userId;
 
     ImageView userImage;
     TextView userName;
@@ -51,8 +52,8 @@ public class ProfileFragment extends Fragment {
         Bundle extras = getArguments();
         profileType = extras.getString(getString(R.string.profile_type));
 
-        // TODO (M): GET request to get user details
-
+        userId = extras.getString(getString(R.string.user_id));
+        // TODO (M): GET request to get user details using userId
         //fake data
         user = new User("1", "Reggie Wu", "#wutangclan", true, 100,
                 1, "reggie.jpg", false);

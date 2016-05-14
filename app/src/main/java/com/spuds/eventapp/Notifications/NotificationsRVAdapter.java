@@ -87,7 +87,7 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
 
                 Bundle bundle = new Bundle();
                 bundle.putString(currentFragment.getString(R.string.profile_type), currentFragment.getString(R.string.profile_type_owner));
-                bundle.putString(currentFragment.getString(R.string.user_id), "1adsf");
+                bundle.putString(currentFragment.getString(R.string.user_id), noti.userId);
 
                 profileFragment.setArguments(bundle);
 
@@ -125,7 +125,7 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
 
                     Bundle bundle = new Bundle();
                     bundle.putString(currentFragment.getString(R.string.profile_type), currentFragment.getString(R.string.profile_type_owner));
-                    bundle.putString(currentFragment.getString(R.string.user_id), "1adsf");
+                    bundle.putString(currentFragment.getString(R.string.user_id), noti.userId);
 
                     profileFragment.setArguments(bundle);
 

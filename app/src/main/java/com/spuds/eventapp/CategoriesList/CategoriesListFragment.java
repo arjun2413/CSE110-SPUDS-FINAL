@@ -3,6 +3,7 @@ package com.spuds.eventapp.CategoriesList;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class CategoriesListFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
+
     public void pickCategory(View view) {
         academicButton(view);
         sportsButton(view);
@@ -50,11 +52,6 @@ public class CategoriesListFragment extends Fragment {
         socialButton(view);
         sportsButton(view);
 
-        Bundle category = new Bundle();
-        category.putString(getString(R.string.category_bundle), type);
-
-        CategoryFeedTabsFragment categoryFeedTab = new CategoryFeedTabsFragment();
-        categoryFeedTab.setArguments(category);
     }
 
     public String academicButton(View view) {
@@ -65,6 +62,8 @@ public class CategoriesListFragment extends Fragment {
                     if (type == null) {
                         type = "academic";
                     }
+
+                    startFeed();
                 }
             });
         }
@@ -79,6 +78,8 @@ public class CategoriesListFragment extends Fragment {
                     if (type== null) {
                         type = "sports";
                     }
+
+                    startFeed();
                 }
             });
         }
@@ -93,6 +94,8 @@ public class CategoriesListFragment extends Fragment {
                     if (type == null) {
                         type = "social";
                     }
+
+                    startFeed();
                 }
             });
         }
@@ -107,6 +110,8 @@ public class CategoriesListFragment extends Fragment {
                     if (type == null) {
                         type = "free";
                     }
+
+                    startFeed();
                 }
             });
         }
@@ -121,6 +126,8 @@ public class CategoriesListFragment extends Fragment {
                     if (type == null) {
                         type = "food";
                     }
+
+                    startFeed();
                 }
             });
         }
@@ -135,6 +142,8 @@ public class CategoriesListFragment extends Fragment {
                     if (type == null) {
                         type = "concerts";
                     }
+
+                    startFeed();
                 }
             });
         }
@@ -149,10 +158,26 @@ public class CategoriesListFragment extends Fragment {
                     if (type == null) {
                         type = "campus";
                     }
+
+                    startFeed();
                 }
             });
         }
         return type;
     }
 
+    void startFeed() {
+        Bundle category = new Bundle();
+        category.putString(getString(R.string.category_bundle), type);
+
+        CategoryFeedTabsFragment categoryFeedTab = new CategoryFeedTabsFragment();
+
+        categoryFeedTab.setArguments(category);
+        getFragmentManager().beginTransaction()
+                .show(categoryFeedTab)
+                .replace(R.id.fragment_frame_layout, categoryFeedTab)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(getString(R.string.fragment_category_feed))
+                .commit();
+    }
 }

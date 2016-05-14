@@ -1,5 +1,8 @@
 package com.spuds.eventapp.SubscriptionsList;
 
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Subscription;
 
@@ -20,14 +24,14 @@ import java.util.List;
 public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<SubscriptionsListRVAdapter.SubViewHolder>{
 
     public static class SubViewHolder extends RecyclerView.ViewHolder {
-        CardView cv;
+        CardView card;
         TextView subName;
         ImageView subPhoto;
         ImageView toggleFollow;
 
         SubViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView)itemView.findViewById(R.id.cv);
+            card = (CardView)itemView.findViewById(R.id.cv);
             subName = (TextView)itemView.findViewById(R.id.sub_name);
             subPhoto = (ImageView)itemView.findViewById(R.id.sub_photo);
             toggleFollow = (ImageView)itemView.findViewById(R.id.follow_toggle);
@@ -35,10 +39,12 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
     }
 
     List<Subscription> subscriptions;
+    Fragment currentFragment;
 
-    public SubscriptionsListRVAdapter(List<Subscription> subscriptions){
+    public SubscriptionsListRVAdapter(List<Subscription> subscriptions, Fragment currentFragment){
 
         this.subscriptions = subscriptions;
+        this.currentFragment = currentFragment;
     }
 
 
@@ -79,6 +85,27 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
                     // TODO (M): Update database for follow boolean
 
                 }
+            }
+        });
+
+        subViewHolder.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment profileFragment = new ProfileFragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putString(currentFragment.getString(R.string.profile_type), currentFragment.getString(R.string.profile_type_other));
+                bundle.putString(currentFragment.getString(R.string.user_id), currentSub.userId);
+
+                profileFragment.setArguments(bundle);
+
+                // Add Event Details Fragment to fragment manager
+                currentFragment.getFragmentManager().beginTransaction()
+                        .show(profileFragment)
+                        .replace(R.id.fragment_frame_layout, profileFragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(currentFragment.getString(R.string.fragment_profile))
+                        .commit();
             }
         });
     }

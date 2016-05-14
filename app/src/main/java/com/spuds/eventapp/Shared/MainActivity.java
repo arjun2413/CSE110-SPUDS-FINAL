@@ -241,6 +241,7 @@ public class MainActivity extends AppCompatActivity
 
         Bundle bundle = new Bundle();
         bundle.putString(getString(R.string.profile_type), getString(R.string.profile_type_owner));
+        // TODO (M): app owner's id
         bundle.putString(getString(R.string.user_id), "1adsf");
 
         profileFragment.setArguments(bundle);
