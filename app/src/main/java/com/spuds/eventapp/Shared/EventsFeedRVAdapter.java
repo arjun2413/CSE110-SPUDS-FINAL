@@ -46,6 +46,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             eventCategories = (TextView) itemView.findViewById(R.id.event_categories);
             eventHost = (TextView) itemView.findViewById(R.id.event_host);
             seeMore = (TextView) itemView.findViewById(R.id.label_see_more);
+
         }
 
     }
