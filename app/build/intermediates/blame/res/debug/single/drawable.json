@@ -4,12 +4,12 @@
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable/abc_ratingbar_full_material.xml"
     },
     {
-        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/lock_changepass.png",
-        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable/lock_changepass.png"
-    },
-    {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/social.png",
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable/social.png"
+    },
+    {
+        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/lock_changepass.png",
+        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable/lock_changepass.png"
     },
     {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background_dark.xml",
@@ -90,6 +90,10 @@
     {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/design_snackbar_background.xml",
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/drawable/design_snackbar_background.xml"
+    },
+    {
+        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/add.png",
+        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable/add.png"
     },
     {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/side_nav_bar.xml",
@@ -176,6 +180,10 @@
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable/free.png"
     },
     {
+        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/roundedcorner.xml",
+        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable/roundedcorner.xml"
+    },
+    {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_small_material.xml",
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable/abc_ratingbar_small_material.xml"
     },
@@ -198,5 +206,9 @@
     {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_dark.xml",
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable/abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/rave.jpg",
+        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable/rave.jpg"
     }
 ]
