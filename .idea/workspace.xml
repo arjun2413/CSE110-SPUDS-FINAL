@@ -21,16 +21,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d505c2a1-7884-42b8-bda2-26c1469152cf" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/SmoothCheckBoxLibrary/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/SmoothCheckBoxLibrary/build.gradle" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/SmoothCheckBoxLibrary/proguard-rules.pro" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/SmoothCheckBoxLibrary/src/main/AndroidManifest.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/SmoothCheckBoxLibrary/src/main/java/cn/refactor/library/CompatUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/SmoothCheckBoxLibrary/src/main/java/cn/refactor/library/SmoothCheckBox.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/SmoothCheckBoxLibrary/src/main/res/values/attrs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/SmoothCheckBoxLibrary/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
     </list>
     <ignored path="CSE110-SPUDS-FINAL.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -4022,7 +4013,13 @@
       <option name="project" value="LOCAL" />
       <updated>1463273292844</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Libs folder">
+      <created>1463275515323</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1463275515323</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -4121,7 +4118,8 @@
     <MESSAGE value="Connected Settings to corresponding fragments; connected Subscriptions to Profile; connected Create Event" />
     <MESSAGE value="Added circular pictures to notifications, removed some useless code &#10;" />
     <MESSAGE value="Merge conflicts" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge conflicts" />
+    <MESSAGE value="Libs folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Libs folder" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
