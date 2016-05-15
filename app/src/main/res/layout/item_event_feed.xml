@@ -6,12 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="10dp"
     app:cardUseCompatPadding="true"
-    android:id="@+id/cv">
+    android:id="@+id/cv"
+    >
 
     <RelativeLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="#f0f5f5">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,28 +30,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
                 android:id="@+id/event_pic"
                 android:background="#bfbfbf"
-                android:layout_marginRight="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/date_month"
-                    android:text="MAY"/>
+                />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/date_day"
-                    android:layout_below="@id/date_month"
-                    android:text="20"/>
+
+                    android:text="20"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="60sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/date_month"
+                    android:layout_below="@id/date_day"
+                    android:text="M A Y"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"

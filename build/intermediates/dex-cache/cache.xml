@@ -1,2 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/youngjinyun/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-android/2.5.2/f19f10d6276aa0b380e2d05d2ab3272d693a5433/firebase-client-android-2.5.2.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="f19f10d6276aa0b380e2d05d2ab3272d693a5433">
+        <dex dex="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/firebase-client-android-2.5.2_04cbc2ad89894104ccc6c4f4c9634f81816db7a6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/youngjinyun/.gradle/caches/modules-2/files-2.1/com.firebase/tubesock/0.0.12/6ec0bbd3e161a73ed672284b587fd32309a86d7a/tubesock-0.0.12.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="6ec0bbd3e161a73ed672284b587fd32309a86d7a">
+        <dex dex="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/tubesock-0.0.12_0156ce7f91989574da516608d41219119894cb7e/classes.dex" />
+    </item>
+    <item
+        jar="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_75832d1e72e8c931092faa545043db6fadabac87/classes.dex" />
+    </item>
+    <item
+        jar="/Users/youngjinyun/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-jvm/2.5.2/91731b8f5868a3e8a8a773f29b8d06b5c358f5bb/firebase-client-jvm-2.5.2.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="91731b8f5868a3e8a8a773f29b8d06b5c358f5bb">
+        <dex dex="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/firebase-client-jvm-2.5.2_41f812d05d9fd34d75224e952dd822ca48d6a11f/classes.dex" />
+    </item>
+    <item
+        jar="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="82ce13fd19cdfde0e392f03c27edeba8d4333648">
+        <dex dex="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-23.3.0_45d322d27f471aa1da9203fac5fb104474ff7aa6/classes.dex" />
+    </item>
+    <item
+        jar="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.3.0_cd33b18163c80e22c202f66ce319820c28eb8608/classes.dex" />
+    </item>
+    <item
+        jar="/Users/youngjinyun/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_7490fe80bf73d983294dded43a12537664c4d619/classes.dex" />
+    </item>
+    <item
+        jar="/Users/youngjinyun/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.2.2/d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b/jackson-core-2.2.2.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
+        <dex dex="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-core-2.2.2_c8d03c746aa6c7f14b41d24192a7b7e66e7dfb88/classes.dex" />
+    </item>
+    <item
+        jar="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_426b4081f73bbb4f8fca3fc17b3f474cd9b69676/classes.dex" />
+    </item>
+    <item
+        jar="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.3.0_497da6cac31706729d3b810f03a1f0df1d7e6d8f/classes.dex" />
+    </item>
+    <item
+        jar="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="6e0edaefd4e464ed6531b735139c18231a474fc6">
+        <dex dex="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_5fd1b2ff26ae8e32752267305d592c12af58b93b/classes.dex" />
+    </item>
+    <item
+        jar="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_585720f33ff0d071972e942fe596659809f35fa8/classes.dex" />
+    </item>
+    <item
+        jar="/Users/youngjinyun/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.2.2/3c8f6018eaa72d43b261181e801e6f8676c16ef6/jackson-databind-2.2.2.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="3c8f6018eaa72d43b261181e801e6f8676c16ef6">
+        <dex dex="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-databind-2.2.2_51bc81aae88cf8748733a40215a286d1e3ea0f40/classes.dex" />
+    </item>
+    <item
+        jar="/Users/youngjinyun/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.2.2/285cb9c666f0f0f3dd8a1be04e1f457eb7b15113/jackson-annotations-2.2.2.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="285cb9c666f0f0f3dd8a1be04e1f457eb7b15113">
+        <dex dex="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-annotations-2.2.2_4ad556db04b2b535a66be06b901a8a026371857b/classes.dex" />
+    </item>
+    <item
+        jar="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_191d582b6fba1444355d443dadf070e67c18601c/classes.dex" />
+    </item>
+    <item
+        jar="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="3ae49c4d23d045f3707a5664649a58ce40573926">
+        <dex dex="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_bf68c322179996a56b6acaecb2d95e3c6a61071d/classes.dex" />
+    </item>
+    <item
+        jar="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_ff0a13df1be79b6a8e46e5397c06e216c1b8cb2c/classes.dex" />
+    </item>
+    <item
+        jar="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.soundcloud.android/android-crop/1.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="11a65cf2b30c192b38a881d626fa771a78a2293d">
+        <dex dex="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.soundcloud.android-android-crop-1.0.1_315e92e29d9a831d2da813655ef84638ab61f24b/classes.dex" />
+    </item>
+
+</items>

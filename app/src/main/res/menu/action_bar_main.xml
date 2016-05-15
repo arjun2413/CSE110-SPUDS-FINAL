@@ -4,7 +4,7 @@
     <!-- "Create Event", should always appear in the action bar -->
     <item
         android:id="@+id/action_create_event"
-        android:icon="@drawable/campus"
+        android:icon="@drawable/add"
         android:title="Create Event"
         app:showAsAction="always"/>
 </menu>
