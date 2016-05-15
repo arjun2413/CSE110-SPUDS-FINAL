@@ -2,7 +2,9 @@ package com.spuds.eventapp.Shared;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -18,7 +20,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewManager;
+import android.widget.Toast;
 
+import com.quinny898.library.persistentsearch.SearchBox;
+import com.quinny898.library.persistentsearch.SearchResult;
 import com.spuds.eventapp.About.AboutFragment;
 import com.spuds.eventapp.CategoriesList.CategoriesListFragment;
 import com.spuds.eventapp.CreateEvent.CreateEventFragment;
@@ -32,6 +38,8 @@ import com.spuds.eventapp.R;
 import com.spuds.eventapp.Settings.SettingsFragment;
 import com.spuds.eventapp.SubscriptionFeed.SubscriptionFeedTabsFragment;
 import com.spuds.eventapp.SubscriptionsList.SubscriptionsListFragment;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,6 +55,7 @@ public class MainActivity extends AppCompatActivity
     AboutFragment aboutFragment;
     SettingsFragment settingsFragment;
 
+    SearchBox search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,17 +63,15 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         setupFragments();
-        setupToolbar();
+        setupMainToolbar();
+        setupSearchToolbar();
         setupDrawer();
 
     }
 
-    void setupToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+    void setupMainToolbar() {
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.action_bar_main);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -84,6 +91,72 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+    }
+
+    void setupSearchToolbar() {
+        search = (SearchBox) findViewById(R.id.searchbox);
+
+        search.setLogoText("Search for Events");
+        search.setLogoTextColor(Color.parseColor("#bfbfbf"));
+        search.setDrawerLogo(R.drawable.campus);
+
+        final ArrayList<SearchResult> list = new ArrayList<SearchResult>();
+
+        search.setSearchables(list);
+
+        search.setSearchListener(new SearchBox.SearchListener(){
+
+            @Override
+            public void onSearchTermChanged(String s) {
+                //React to the search term changing
+                //Called after it has updated results
+                Log.v("onSearchTermChanged", s);
+
+                SearchResult option = new SearchResult(s, getResources().getDrawable(R.drawable.email));
+                list.add(option);
+                option = new SearchResult(s, getResources().getDrawable(R.drawable.email));
+
+                list.add(option);
+                option = new SearchResult(s, getResources().getDrawable(R.drawable.email));
+
+                list.add(option);
+
+                search.setSearchables(list);
+                search.updateResults();
+
+            }
+
+            @Override
+            public void onSearch(String searchTerm) {
+                Toast.makeText(MainActivity.this, searchTerm +" Searched", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onResultClick(SearchResult result) {
+                //React to a result being clicked
+            }
+
+
+            @Override
+            public void onSearchOpened() {
+
+            }
+
+            @Override
+            public void onSearchCleared() {
+
+            }
+
+            @Override
+            public void onSearchClosed() {
+
+            }
+
+        });
+    }
+
+    public void removeSearchToolbar() {
+        ((ViewManager) search.getParent()).removeView(search);
     }
 
     void setupDrawer() {
@@ -303,6 +376,16 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == SearchBox.VOICE_RECOGNITION_CODE && resultCode == RESULT_OK) {
+            ArrayList<String> matches = data
+                    .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            search.populateEditText(matches.get(0));
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 }

@@ -34,6 +34,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         TextView eventCategories;
         TextView eventHost;
         TextView seeMore;
+        TextView monthDate, dayDate;
 
         EventViewHolder(View itemView) {
             super(itemView);
@@ -46,6 +47,8 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             eventCategories = (TextView) itemView.findViewById(R.id.event_categories);
             eventHost = (TextView) itemView.findViewById(R.id.event_host);
             seeMore = (TextView) itemView.findViewById(R.id.label_see_more);
+            monthDate = (TextView) itemView.findViewById(R.id.date_month);
+            dayDate = (TextView) itemView.findViewById(R.id.date_day);
         }
 
     }
@@ -91,6 +94,9 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             ((ViewManager)eventViewHolder.eventDate.getParent()).removeView(eventViewHolder.eventDate);
             ((ViewManager)eventViewHolder.eventAttendees.getParent()).removeView(eventViewHolder.eventAttendees);
             ((ViewManager)eventViewHolder.eventCategories.getParent()).removeView(eventViewHolder.eventCategories);
+            ((ViewManager)eventViewHolder.monthDate.getParent()).removeView(eventViewHolder.monthDate);
+            ((ViewManager)eventViewHolder.dayDate.getParent()).removeView(eventViewHolder.dayDate);
+
 
             eventViewHolder.card.setOnClickListener(new View.OnClickListener() {
                 @Override
