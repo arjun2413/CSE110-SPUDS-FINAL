@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.firebase.client.Firebase;
 import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
@@ -44,6 +45,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Firebase.setAndroidContext(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
