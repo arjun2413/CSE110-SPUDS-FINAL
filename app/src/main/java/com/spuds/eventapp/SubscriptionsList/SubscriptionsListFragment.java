@@ -43,9 +43,10 @@ public class SubscriptionsListFragment extends Fragment {
         // fake data
 
         subscriptions = new ArrayList<>();
-        subscriptions.add(new Subscription("1", "Arjun", R.drawable.arjun, true));
+        subscriptions.add(new Subscription("1", "Arjune", R.drawable.arjun, true));
         subscriptions.add(new Subscription("1", "Jiggly", R.drawable.arjun, true));
-        subscriptions.add(new Subscription("1", "Joe", R.drawable.arjun, true));
+        subscriptions.add(new Subscription("1", "18uh", R.drawable.arjun, true));
+        subscriptions.add(new Subscription("1", "Jone Ayy Thin", R.drawable.arjun, true));
         subscriptions.add(new Subscription("1", "Kraken", R.drawable.arjun, true));
         subscriptions.add(new Subscription("1", "Regirock", R.drawable.arjun, true));
 
