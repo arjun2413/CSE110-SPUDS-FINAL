@@ -117,14 +117,37 @@ public class LoginActivity extends AppCompatActivity {
                     //TODO:
                     //Pass through an id of the user [coding decision: should we pass image first and last name?]
                     else{
+                        Object time = new Object();
                         Log.v("sadasdasdasd", email);
                         Log.v("asdasdasdasd", password);
                         obj.logIn(email.toString(), password.toString());
-                        Log.v("asdasdasdasd", String.valueOf(obj.status));
-                        if(obj.status) {
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        }
 
+
+
+                            new Thread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    while (obj.status == 0) {
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+                                    if (obj.status == 1) {
+
+                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    }
+
+                                }
+                            }).start();
+
+                            Log.v("asdasdasdasd", String.valueOf(obj.status));
+
+                        Log.v("asdasdasdasd", String.valueOf(obj.status));
+obj.status = 0;
                     }
                 }
             });
