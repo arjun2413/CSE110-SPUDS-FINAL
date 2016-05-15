@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.firebase.client.Firebase;
+import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.ForgotPasswordActivity.ForgotPasswordActivity;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
@@ -21,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Firebase.setAndroidContext(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -91,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    AccountFirebase obj = new AccountFirebase();
     public void signInFunc() {
         //create a button for the sign in
         final Button signIn = (Button) findViewById(R.id.signIn);
@@ -138,8 +143,16 @@ public class LoginActivity extends AppCompatActivity {
                     //else{
                     //TODO:
                     //Pass through an id of the user [coding decision: should we pass image first and last name?]
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    //}
+                    else{
+                        Log.v("sadasdasdasd", email);
+                        Log.v("asdasdasdasd", password);
+                        obj.logIn(email.toString(), password.toString());
+                        Log.v("asdasdasdasd", String.valueOf(obj.status));
+                        if(obj.status) {
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        }
+
+                    }
                 }
             });
 
