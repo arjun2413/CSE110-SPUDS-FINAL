@@ -40,7 +40,7 @@ public class CreateCommentFragment extends Fragment {
         comment = (EditText) view.findViewById(R.id.comment_input);
         submit = (Button) view.findViewById(R.id.comment_submit);
 
-        // TODO: Migrate logic to model
+        // TODO (M): Migrate logic to model
         //     1. Check if all fields are filled.
         //     2. Show snackbar if successful.
 
@@ -59,7 +59,7 @@ public class CreateCommentFragment extends Fragment {
                     // Pop this fragment from backstack
                     getActivity().getSupportFragmentManager().popBackStack();
 
-                    //TODO: submit comment to database
+                    // TODO (M): submit comment to database
                 }
                 //Tells the user that they must fill all fields
                 else {

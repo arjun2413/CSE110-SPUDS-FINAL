@@ -307,6 +307,7 @@
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <string name="bottom_sheet_behavior" translatable="false">android.support.design.widget.BottomSheetBehavior</string>
     <string name="category">Categories</string>
+    <string name="category_bundle"/>
     <string name="category_feed">Category Feed</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
     <string name="comment_submit_success">Comment Submitted</string>
@@ -317,13 +318,16 @@
     <string name="crop__wait">Please wait…</string>
     <string name="event_details">Event Details</string>
     <string name="event_details_fragment">Event Details Fragment</string>
+    <string name="event_id">Event Id</string>
     <string name="filter_category">Category Filter</string>
     <string name="findPeople">Find People</string>
     <string name="first_four_events">First Four Events List</string>
     <string name="fragment_about">About Fragment</string>
     <string name="fragment_categ_list">CategoriesListFragment</string>
     <string name="fragment_category_feed">Category Feed Fragment</string>
+    <string name="fragment_change_password">Change Password Fragment</string>
     <string name="fragment_create_comment">Create Comment Fragment</string>
+    <string name="fragment_create_event">Create Event Fragment</string>
     <string name="fragment_edit_profile">Edit Profile Fragment</string>
     <string name="fragment_find_people">FindPeopleFragment</string>
     <string name="fragment_home_feed">Home Feed Fragment</string>
@@ -345,6 +349,9 @@
     <string name="my_events">My Events</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="notification_type_invite">Invite Notification</string>
+    <string name="notification_type_reply">Reply Notification</string>
+    <string name="notification_type_update">Update Notification</string>
     <string name="notifications">Notifications</string>
     <string name="password_change_success">Password Changed</string>
     <string name="profile">Profile</string>
@@ -374,9 +381,9 @@
     </style>
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">#1a1a1a</item>
+        <item name="colorPrimaryDark">#090d11</item>
+        <item name="colorAccent">#3a928d</item>
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.NoActionBar">

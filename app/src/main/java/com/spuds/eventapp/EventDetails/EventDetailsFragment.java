@@ -25,6 +25,7 @@ public class EventDetailsFragment extends Fragment {
 
     // Holds event details
     Event event;
+    String eventId;
 
     // Views for event details
     ImageView eventPic;
@@ -54,6 +55,14 @@ public class EventDetailsFragment extends Fragment {
 
         Bundle extras = getArguments();
         event = (Event) extras.get(getString(R.string.event_details));
+        if (event == null) {
+            eventId = extras.getString(getString(R.string.event_id));
+
+            // TODO: Fetch event using eventId
+            // fake data
+            event = new Event("1", "yj.jpg", "Sun God Festival", "RIMAC Field", "04.29.16", 1054,
+                    "Social", "Concert", "UCSD", "spr lame");
+        }
         eventDetailsFragment = this;
 
     }

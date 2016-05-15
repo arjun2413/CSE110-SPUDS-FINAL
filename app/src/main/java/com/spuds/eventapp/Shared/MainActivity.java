@@ -21,6 +21,7 @@ import android.view.View;
 
 import com.spuds.eventapp.About.AboutFragment;
 import com.spuds.eventapp.CategoriesList.CategoriesListFragment;
+import com.spuds.eventapp.CreateEvent.CreateEventFragment;
 import com.spuds.eventapp.FindPeople.FindPeopleFragment;
 import com.spuds.eventapp.HomeFeed.HomeFeedTabsFragment;
 import com.spuds.eventapp.Login.LoginActivity;
@@ -62,6 +63,26 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.inflateMenu(R.menu.action_bar_main);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if(item.getItemId() == R.id.action_create_event){
+                    CreateEventFragment createEventFragment = new CreateEventFragment();
+
+                    // Add Event Details Fragment to fragment manager
+                    getSupportFragmentManager().beginTransaction()
+                            .show(createEventFragment)
+                            .replace(R.id.fragment_frame_layout, createEventFragment)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .addToBackStack(getString(R.string.fragment_create_event))
+                            .commit();
+                }
+                return false;
+            }
+        });
 
     }
 
@@ -239,12 +260,11 @@ public class MainActivity extends AppCompatActivity
     public void goToProfile(View view) {
         Fragment profileFragment = new ProfileFragment();
 
-        // TODO (M): GET request to get user details
-
         Bundle bundle = new Bundle();
         bundle.putString(getString(R.string.profile_type), getString(R.string.profile_type_owner));
-        bundle.putSerializable(getString(R.string.user_details), new User("1", "Reggie Wu", "#wutangclan", true, 100,
-                1, "reggie.jpg", false));
+        // TODO (M): app owner's id
+        bundle.putString(getString(R.string.user_id), "1adsf");
+
         profileFragment.setArguments(bundle);
 
         // Add Event Details Fragment to fragment manager

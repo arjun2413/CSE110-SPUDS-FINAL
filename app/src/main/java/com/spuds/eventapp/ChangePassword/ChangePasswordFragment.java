@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.R;
 
 public class ChangePasswordFragment extends Fragment {
@@ -20,8 +21,10 @@ public class ChangePasswordFragment extends Fragment {
     private EditText current_pw;
     private EditText new_pw;
     private EditText confirm_pw;
-    private Button change_pw;
+    private Button changeButton;
     private TextView sys_message;
+
+    private String error_string;
 
     public ChangePasswordFragment() {
         // Required empty public constructor
@@ -32,19 +35,43 @@ public class ChangePasswordFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    private ChangePasswordForm getUserInputs( View view ){
+
+        current_pw = (EditText) view.findViewById(R.id.current_password);
+        new_pw = (EditText) view.findViewById(R.id.new_password);
+        confirm_pw = (EditText) view.findViewById(R.id.confirm_password);
+        changeButton = (Button) view.findViewById(R.id.change_button);
+        sys_message = (TextView) view.findViewById(R.id.system_message);
+
+        return new ChangePasswordForm(current_pw,new_pw,confirm_pw);
+    }
+
+    private void addError(){
+        error_string = error_string + "\n";
+    }
+
+    private void appendError(String error){
+        error_string = error_string + error;
+    }
+
+    private void restartError(){
+        error_string = "";
+    }
+
+    private String getError(){
+        return error_string;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         //initializing parts of the fragment
         final View view = inflater.inflate(R.layout.fragment_change_password, container, false);
-        current_pw = (EditText) view.findViewById(R.id.current_password);
-        new_pw = (EditText) view.findViewById(R.id.new_password);
-        confirm_pw = (EditText) view.findViewById(R.id.confirm_password);
-        change_pw = (Button) view.findViewById(R.id.change_password);
-        sys_message = (TextView) view.findViewById(R.id.system_message);
 
-        change_pw.setOnClickListener(new View.OnClickListener() {
+        final ChangePasswordForm form = getUserInputs(view);
+
+        changeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -57,9 +84,8 @@ public class ChangePasswordFragment extends Fragment {
                 //      5. show snackbar on success or error message accordingly.
 
 
-                //Checks if all fields have been entered
-                if ((current_pw.getText().length() > 0) && (new_pw.getText().length() >
-                        0) && (confirm_pw.getText().length() > 0)) {
+
+                if(form.allFilled()){
 
                     //checks if an error has been found
                     boolean is_error = false;
@@ -69,33 +95,40 @@ public class ChangePasswordFragment extends Fragment {
 
                     //gets all entered strings to perform logic
                     String first_pw = current_pw.getText().toString();
-                    String second_pw = new_pw.getText().toString();
-                    String third_pw = confirm_pw.getText().toString();
+
 
                     //default string set to append error to
-                    String message = "";
+                    restartError();
 
+                    //TODO: maybe already done by firebase.
                     //checks if first field matches user current password
                     if(!(first_pw.equals(user_pw))){
 
                         //get error message and set that an error was found
-                        message = message + getString(R.string.incorrect_password_error);
+                        appendError(getString(R.string.incorrect_password_error));
                         is_error = true;
                     }
 
                     //checks if second and third fields are the same
-                    if(!(second_pw.equals(third_pw))){
+                    if(!form.matchingPw()){
 
                         //append to error message if one already found
                         if(is_error){
-                            message = message + "\n";
+                            addError();
                         }
-                        message = message + getString(R.string.mismatched_fields_error);
+                        appendError(getString(R.string.mismatched_fields_error));
                         is_error = true;
                     }
 
                     //pops up a snackbar with successful change message if no error was found
                     if(!is_error) {
+
+                        AccountFirebase af = new AccountFirebase();
+
+                        af.changePass(form);
+
+                        // Pop this fragment from backstack
+                        getActivity().getSupportFragmentManager().popBackStack();
 
                         //TODO: need to test if snackbar works properly
                         Snackbar snackbar = Snackbar.make
@@ -106,7 +139,7 @@ public class ChangePasswordFragment extends Fragment {
                     else {
 
                         //show concatinated error messages
-                        sys_message.setText(message);
+                        sys_message.setText(getError());
                     }
                 }
                 //Tells the user that they must fill all fields

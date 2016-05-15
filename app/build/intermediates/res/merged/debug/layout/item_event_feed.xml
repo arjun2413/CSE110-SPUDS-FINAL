@@ -24,12 +24,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:id="@+id/event_pic"
                 android:background="#bfbfbf"
                 android:layout_marginRight="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/date_month"
+                    android:text="MAY"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/date_day"
+                    android:layout_below="@id/date_month"
+                    android:text="20"/>
+            </RelativeLayout>
 
             <LinearLayout
                 android:orientation="vertical"

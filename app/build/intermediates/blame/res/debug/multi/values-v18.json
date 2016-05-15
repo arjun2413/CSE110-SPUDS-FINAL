@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\Arjun\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-v18\\values-v18.xml",
+        "outputFile": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/values-v18/values-v18.xml",
         "map": [
             {
                 "to": {
@@ -11,103 +11,7 @@
                     "endOffset": 99
                 },
                 "from": {
-                    "file": "C:\\Users\\Arjun\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\values-v18\\values-v18.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 48,
-                        "endOffset": 99
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "C:\\Users\\Arjun\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\CSE110-SPUDS-FINAL\\C:\\Users\\akalathil\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-v18\\values-v18.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 48,
-                    "endOffset": 99
-                },
-                "from": {
-                    "file": "C:\\Users\\Arjun\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\CSE110-SPUDS-FINAL\\C:\\Users\\akalathil\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\values-v18\\values-v18.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 48,
-                        "endOffset": 99
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "C:\\Users\\akalathil\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-v18\\values-v18.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 48,
-                    "endOffset": 99
-                },
-                "from": {
-                    "file": "C:\\Users\\akalathil\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\values-v18\\values-v18.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 48,
-                        "endOffset": 99
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "C:\\Users\\Arjun\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\CSE110-SPUDS-FINAL\\C:\\Users\\David\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-v18\\values-v18.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 48,
-                    "endOffset": 99
-                },
-                "from": {
-                    "file": "C:\\Users\\Arjun\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\CSE110-SPUDS-FINAL\\C:\\Users\\David\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\values-v18\\values-v18.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 48,
-                        "endOffset": 99
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "C:\\Users\\Arjun\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\CSE110-SPUDS-FINAL\\C:\\Users\\tina\\CSE110\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-v18\\values-v18.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 48,
-                    "endOffset": 99
-                },
-                "from": {
-                    "file": "C:\\Users\\Arjun\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\CSE110-SPUDS-FINAL\\C:\\Users\\tina\\CSE110\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\values-v18\\values-v18.xml",
+                    "file": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/values-v18/values-v18.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

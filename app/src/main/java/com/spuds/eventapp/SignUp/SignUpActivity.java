@@ -1,6 +1,7 @@
 package com.spuds.eventapp.SignUp;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,6 +50,11 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "name_font.ttf");
+        TextView header = (TextView)findViewById(R.id.signup_header);
+        header.setTypeface(custom_font);
+
+
         //Use findViewById for all variables
         //Define "Sign Up" button that user clicks, prompting al this information to be processed
         signupButton = (Button)findViewById(R.id.signup_button);
@@ -66,10 +72,10 @@ public class SignUpActivity extends AppCompatActivity {
         signupPassword1 = (EditText)findViewById(R.id.signup_password_2);
 
         //Fetch invisible Password Warning Text
-        signupPasswordMatchError = (TextView)findViewById(R.id.signupPasswordMatchError);
+        //signupPasswordMatchError = (TextView)findViewById(R.id.signupPasswordMatchError);
 
         //Fetch invisible Invalid Email text
-        signupInvalidEmailError = (TextView)findViewById(R.id.signupInvalidEmailError);
+        //signupInvalidEmailError = (TextView)findViewById(R.id.signupInvalidEmailError);
 
         //Upon User clicking "Sign Up", convert editable text fields to Strings
         signupButton.setOnClickListener(new View.OnClickListener() {

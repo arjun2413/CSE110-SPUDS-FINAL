@@ -5,40 +5,65 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#ffffff"
         tools:context=".EventDetails.EventDetailsFragment">
 
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/event_pic" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/event_main">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:id="@+id/event_pic"
+                android:background="@drawable/rave" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/event_name"
+            android:layout_marginTop="50dp"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:text="Sun God Festival"
+            android:text="SUN GOD FESTIVAL"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:shadowColor="#7F000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/event_date"
-            android:text="05.01.16"
+            android:text="May 1, 2016 | 12:00 PM"
             android:layout_below="@+id/event_name"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:shadowColor="#7F000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"/>
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/event_host"
-            android:text="Hosted by UCSD"
+            android:text="Hosted by A.S. Concerts and Events"
             android:layout_below="@+id/event_date"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:shadowColor="#7F000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"/>
 
 
         <TextView
@@ -47,109 +72,172 @@
             android:id="@+id/event_attendees"
             android:text="1,049 attendees"
             android:layout_below="@+id/event_host"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:shadowColor="#7F000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"/>
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
             android:id="@+id/button_going"
-            android:layout_below="@+id/event_attendees"/>
+            android:layout_below="@+id/event_attendees"
+            android:background="#ffffff"
+            android:layout_centerHorizontal="true"/>
 
 
-
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/button_going"
-            android:id="@+id/label_location"
-            android:text="Location:"
-            android:textStyle="bold"
-            android:textSize="18dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/label_location"
-            android:id="@+id/event_loc"
-            android:text="RIMAC Field"/>
-
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/event_loc"
-            android:id="@+id/text_description"
-            android:text="Description:"
-            android:textStyle="bold"
-            android:textSize="18dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/event_description"
-            android:text="Lots of fun!"
-            android:layout_below="@id/text_description"/>
-
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/event_description"
-            android:id="@+id/text_categories"
-            android:text="Categories:"
-            android:textStyle="bold"
-            android:textSize="18dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_categories"
-            android:id="@+id/event_categories"
-            android:text="Social, Food, Concert" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Invite People"
-            android:id="@+id/invite_people"
-            android:layout_below="@+id/event_categories" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Comment:"
-            android:id="@+id/comments_text"
-            android:textIsSelectable="false"
-            android:textStyle="bold"
-            android:textSize="30dp"
-            android:layout_below="@+id/invite_people"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/event_main"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add Comment"
-            android:id="@+id/button_add_comment"
-            android:layout_alignBottom="@+id/comments_text"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentStart="true">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/button_going"
+                android:id="@+id/label_location"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:text="LOCATION"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textColor="#1a1a1a" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_location"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/event_loc"
+                android:text="RIMAC Field"
+                android:textColor="#1a1a1a" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#8c8c8c"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/event_loc"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/text_description"
+                android:text="DESCRIPTION"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textColor="#1a1a1a" />
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:id="@+id/rv"
-            android:layout_below="@+id/button_add_comment">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/event_description"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="Sick of finals? TIred? Don&apos;t worry we got you covered! Order some of these bomb-ass tacos. WOWOWOWOWWW TACOS hell yeah!"
+                android:layout_below="@id/text_description"
+                android:textColor="#1a1a1a" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#8c8c8c"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/event_description"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/text_categories"
+                android:text="CATEGORIES"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textColor="#1a1a1a" />
 
-        </android.support.v7.widget.RecyclerView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_categories"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/event_categories"
+                android:text="Social, Food, Concert"
+                android:textColor="#1a1a1a" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#8c8c8c"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Invite People"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/invite_people"
+                android:background="@drawable/roundedcorner"
+                android:layout_below="@+id/event_categories"
+                android:backgroundTint="#737373" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#8c8c8c"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="COMMENTS"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/comments_text"
+                android:textIsSelectable="false"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:layout_below="@+id/invite_people"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textColor="#1a1a1a" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Comment"
+                android:id="@+id/button_add_comment"
+                android:layout_alignBottom="@+id/comments_text"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="right" />
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/rv"
+                android:layout_below="@+id/button_add_comment">
+
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+
 
     </RelativeLayout>
 </ScrollView>
-
