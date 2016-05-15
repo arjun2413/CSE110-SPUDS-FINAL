@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.spuds.eventapp.EventDetails.EventDetailsFragment;
 import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.Shared.Notification;
 
 import java.util.List;
@@ -95,6 +96,7 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
 
                 profileFragment.setArguments(bundle);
 
+                ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
                 // Add Event Details Fragment to fragment manager
                 currentFragment.getFragmentManager().beginTransaction()
                         .show(profileFragment)
@@ -138,6 +140,7 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
 
                     profileFragment.setArguments(bundle);
 
+                    ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
                     // Add Event Details Fragment to fragment manager
                     currentFragment.getFragmentManager().beginTransaction()
                             .show(profileFragment)
@@ -170,7 +173,7 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
                 bundle.putString(currentFragment.getString(R.string.event_details), null);
                 eventDetailsFragment.setArguments(bundle);
 
-
+                ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
                 // Add Event Details Fragment to fragment manager
                 currentFragment.getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_frame_layout, eventDetailsFragment)

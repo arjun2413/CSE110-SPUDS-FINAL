@@ -308,6 +308,13 @@
     <string name="app_name">Eventory</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <string name="bottom_sheet_behavior" translatable="false">android.support.design.widget.BottomSheetBehavior</string>
+    <string name="cat_academic">Academic Category</string>
+    <string name="cat_campus">Campus Organizations Category</string>
+    <string name="cat_concerts">Concerts Category</string>
+    <string name="cat_food">Food Category</string>
+    <string name="cat_free">Free Category</string>
+    <string name="cat_social">Social Category</string>
+    <string name="cat_sports">Sports Category</string>
     <string name="category">Categories</string>
     <string name="category_bundle"/>
     <string name="category_feed">Category Feed</string>

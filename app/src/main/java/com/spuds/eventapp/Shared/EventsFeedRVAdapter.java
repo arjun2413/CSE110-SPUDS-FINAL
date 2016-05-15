@@ -109,6 +109,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
                     profileFeedFragment.setArguments(bundle);
 
+                    ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
                     // Add Event Details Fragment to fragment manager
                     currentFragment.getFragmentManager().beginTransaction()
                             .show(profileFeedFragment)
@@ -167,6 +168,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
                 }
 
 
+                ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
                 // Add Event Details Fragment to fragment manager
                 currentFragment.getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_frame_layout, eventDetailsFragment)

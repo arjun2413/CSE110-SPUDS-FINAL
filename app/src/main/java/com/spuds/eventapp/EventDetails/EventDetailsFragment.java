@@ -17,6 +17,7 @@ import com.spuds.eventapp.CreateComment.CreateCommentFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Comment;
 import com.spuds.eventapp.Shared.Event;
+import com.spuds.eventapp.Shared.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,6 @@ public class EventDetailsFragment extends Fragment {
                     "Social", "Concert", "UCSD", "spr lame");
         }
         eventDetailsFragment = this;
-
     }
 
     @Override
@@ -114,6 +114,7 @@ public class EventDetailsFragment extends Fragment {
                 CreateCommentFragment createCommentFragment = new CreateCommentFragment();
                 String createCommentFragmentTag = getString(R.string.fragment_create_comment);
 
+                ((MainActivity) getActivity()).removeSearchToolbar();
                 // Adds Create Comment Fragment to fragment manager
                 getFragmentManager().beginTransaction()
                         .replace(R.id.fragment_frame_layout, createCommentFragment)

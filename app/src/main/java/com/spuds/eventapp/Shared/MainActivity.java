@@ -21,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewManager;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.quinny898.library.persistentsearch.SearchBox;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity
     SettingsFragment settingsFragment;
 
     SearchBox search;
-
+    public String searchType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity
         setupSearchToolbar();
         setupDrawer();
 
+        searchType = getString(R.string.fragment_home_feed);
     }
 
     void setupMainToolbar() {
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity
                 if(item.getItemId() == R.id.action_create_event){
                     CreateEventFragment createEventFragment = new CreateEventFragment();
 
+                    removeSearchToolbar();
                     // Add Event Details Fragment to fragment manager
                     getSupportFragmentManager().beginTransaction()
                             .show(createEventFragment)
@@ -121,6 +124,37 @@ public class MainActivity extends AppCompatActivity
 
                 list.add(option);
 
+
+                // TODO (M): Search
+
+                if (searchType.equals(R.string.fragment_home_feed)) {
+
+                } else if (searchType.equals(R.string.my_events)) {
+
+                } else if (searchType.equals(R.string.fragment_my_sub)) {
+
+                } else if (searchType.equals(R.string.fragment_my_sub_feed)) {
+
+                } else if (searchType.equals(R.string.fragment_find_people)) {
+
+                } else if (searchType.equals(R.string.cat_academic)) {
+
+                } else if (searchType.equals(R.string.cat_campus)) {
+
+                } else if (searchType.equals(R.string.cat_concerts)) {
+
+                } else if (searchType.equals(R.string.cat_food)) {
+
+                } else if (searchType.equals(R.string.cat_free)) {
+
+                } else if (searchType.equals(R.string.cat_social)) {
+
+                } else if (searchType.equals(R.string.cat_sports)) {
+
+                } else {
+                    Log.v("search: ", "something went wrong");
+                }
+
                 search.setSearchables(list);
                 search.updateResults();
 
@@ -153,10 +187,28 @@ public class MainActivity extends AppCompatActivity
             }
 
         });
+        params = (RelativeLayout.LayoutParams) search.getLayoutParams();
+
     }
 
+    RelativeLayout.LayoutParams params;
+
     public void removeSearchToolbar() {
-        ((ViewManager) search.getParent()).removeView(search);
+
+
+        if (findViewById(R.id.search) != null)
+            ((ViewManager) search.getParent()).removeView(search);
+
+    }
+
+    public void addSearchToolbar() {
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (findViewById(R.id.search) == null)
+            ((ViewManager) toolbar.getParent()).addView(search, params);
+
+        search.setLogoText("Search for Events");
+
     }
 
     void setupDrawer() {
@@ -262,38 +314,54 @@ public class MainActivity extends AppCompatActivity
         Fragment newFragment = null;
         if (id == R.id.home) {
 
+            addSearchToolbar();
+            searchType = getString(R.string.fragment_home_feed);
             newFragment = homeFeedTabsFragment;
 
         } else if (id == R.id.notifications) {
 
+            removeSearchToolbar();
             newFragment = notificationsFragment;
 
         } else if (id == R.id.category) {
 
+            removeSearchToolbar();
             newFragment = categoriesListFragment;
 
         } else if (id == R.id.myEvents) {
 
+            addSearchToolbar();
+            searchType = getString(R.string.fragment_my_events);
             newFragment = myEventsTabsFragment;
 
         } else if (id == R.id.subscriptions) {
 
+            addSearchToolbar();
+            searchType = getString(R.string.fragment_my_sub);
+            search.setLogoText("Search for Subscriptions");
             newFragment = subscriptionsListFragment;
 
         } else if (id == R.id.find_people) {
 
+            addSearchToolbar();
+            searchType = getString(R.string.fragment_find_people);
+            search.setLogoText("Search for People");
             newFragment = findPeopleFragment;
 
         } else if (id == R.id.subscriptionFeed) {
 
+            addSearchToolbar();
+            searchType = getString(R.string.fragment_my_sub_feed);
             newFragment = subscriptionFeedTabsFragment;
 
         } else if (id == R.id.about) {
 
+            removeSearchToolbar();
             newFragment = aboutFragment;
 
         } else if (id == R.id.accMang) {
 
+            removeSearchToolbar();
             newFragment = settingsFragment;
 
         } else if (id == R.id.logOut) {
@@ -340,6 +408,7 @@ public class MainActivity extends AppCompatActivity
 
         profileFragment.setArguments(bundle);
 
+        removeSearchToolbar();
         // Add Event Details Fragment to fragment manager
         getSupportFragmentManager().beginTransaction()
                 .show(profileFragment)
@@ -364,6 +433,7 @@ public class MainActivity extends AppCompatActivity
                 super.onBackPressed();
 
         }
+        removeSearchToolbar();
 
     }
 
