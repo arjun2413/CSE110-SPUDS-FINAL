@@ -106,4 +106,10 @@ public class AccountFirebase {
         String data = (String)ref.getAuth().getProviderData().get("email");
         return data;
     }
+
+    public String getUserEmail(){
+        Firebase ref = new Firebase("https://eventory.firebaseio.com");
+        String data = (String) ref.getAuth().getProviderData().get("email");
+        return data;
+    }
 }
