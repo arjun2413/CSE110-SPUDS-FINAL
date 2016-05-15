@@ -52,7 +52,9 @@ public class AccountFirebase {
             }
         });
     }
+
     public void changePass(ChangePasswordForm form) {
+        Log.v("email: ", form.getEmail());
         Firebase ref = new Firebase("https://eventory.firebaseio.com");
         ref.changePassword(form.getEmail(), form.getCurrent(), form.getNext(), new Firebase.ResultHandler() {
             @Override
@@ -101,7 +103,7 @@ public class AccountFirebase {
 
         //TODO: make it so we can retreive the email somehow
         Firebase ref = new Firebase("https://eventory.firebaseio.com");
-        AuthData data = ref.getAuth();
-        return "";
+        String data = (String)ref.getAuth().getProviderData().get("email");
+        return data;
     }
 }
