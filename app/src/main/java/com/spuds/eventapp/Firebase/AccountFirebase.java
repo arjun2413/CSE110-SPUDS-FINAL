@@ -11,6 +11,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.spuds.eventapp.ChangePassword.ChangePasswordForm;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -37,20 +38,33 @@ public class AccountFirebase {
 
         );
     }
-    public void logIn() {
-        Firebase ref = new Firebase("https://eventory.firebaseio.com");
-        ref.authWithPassword("bobtony@firebase.com", "correcthorsebatterystaple", new Firebase.AuthResultHandler() {
+    public boolean status = false;
+    public void logIn(String email, String password) {
+
+        final Firebase ref = new Firebase("https://eventory.firebaseio.com");
+
+        ref.authWithPassword(email, password, new Firebase.AuthResultHandler() {
             @Override
             public void onAuthenticated(AuthData authData) {
-                System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
+                status = true;
+                // Authentication just completed successfully smile emoticon
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("provider", authData.getProvider());
+                if (authData.getProviderData().containsKey("displayName")) {
+                    map.put("displayName", authData.getProviderData().get("displayName").toString());
+                }
+                ref.child("users").child(authData.getUid()).setValue(map);
             }
 
             @Override
             public void onAuthenticationError(FirebaseError firebaseError) {
-                // there was an error
+                Log.v("AccountFirebase", "ERROR Logging In");
+                status = false;
             }
+
         });
     }
+
     public void changePass(ChangePasswordForm form) {
         Firebase ref = new Firebase("https://eventory.firebaseio.com");
         ref.changePassword("bobtony@firebase.com", form.getCurrent(), form.getNext(), new Firebase.ResultHandler() {
