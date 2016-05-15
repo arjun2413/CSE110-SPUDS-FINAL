@@ -3,6 +3,7 @@ package com.spuds.eventapp.CreateEvent;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,9 @@ import android.widget.ImageView;
 import com.spuds.eventapp.R;
 
 import java.util.ArrayList;
+
+import cn.refactor.library.SmoothCheckBox;
+
 
 public class CreateEventFragment extends Fragment {
 
@@ -80,6 +84,8 @@ public class CreateEventFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
     }
 
     @Override
@@ -89,6 +95,14 @@ public class CreateEventFragment extends Fragment {
 
         getEventDetails(view);
         setupWindow();
+
+        final SmoothCheckBox scb = (SmoothCheckBox) view.findViewById(R.id.scb);
+        scb.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
+                Log.d("SmoothCheckBox", String.valueOf(isChecked));
+            }
+        });
 
         return view;
     }

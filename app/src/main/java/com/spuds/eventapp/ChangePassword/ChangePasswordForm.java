@@ -7,11 +7,13 @@ import android.widget.EditText;
  */
 public class ChangePasswordForm {
 
+    private String email;
     private String current;
     private String next;
     private String confirm;
 
-    public ChangePasswordForm(EditText current_pw, EditText next_pw, EditText confirm_pw){
+    public ChangePasswordForm(String user_email, EditText current_pw, EditText next_pw, EditText confirm_pw){
+        email = user_email;
         current = current_pw.toString();
         next = next_pw.toString();
         confirm = confirm_pw.toString();
@@ -29,6 +31,8 @@ public class ChangePasswordForm {
     public boolean matchingPw(){
         return next.equals(confirm);
     }
+
+    public String getEmail(){ return email; }
 
     public String getCurrent(){
         return current;
