@@ -1,8 +1,12 @@
 package com.spuds.eventapp.Profile;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -86,10 +90,18 @@ public class ProfileFragment extends Fragment {
         // TODO (M): Picasso for userImage
 
         userName.setText(user.name);
+        Bitmap src = BitmapFactory.decodeResource(this.getResources(), R.drawable.arjun);
+        RoundedBitmapDrawable dr =
+                RoundedBitmapDrawableFactory.create(this.getResources(), src);
+        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
+        userImage.setImageDrawable(dr);
+
 
         if (!user.verified) {
             ((ViewManager) userVerified.getParent()).removeView(userVerified);
         }
+
+
 
         // Set image for button for subscribe or edit profile
         /*if (profileType.equals(getString(R.string.profile_type_owner))) {

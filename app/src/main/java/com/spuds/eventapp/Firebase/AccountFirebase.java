@@ -31,7 +31,7 @@ public class AccountFirebase {
 
                     @Override
                     public void onError (FirebaseError firebaseError){
-                        Log.v("AccountFirebase", "ERROR Creating an Account");
+                        Log.v("AccountFirebase", firebaseError.getMessage());
                     }
                 }
 
@@ -48,20 +48,25 @@ public class AccountFirebase {
             @Override
             public void onAuthenticationError(FirebaseError firebaseError) {
                 // there was an error
+                Log.v("AccountFirebase:LI",firebaseError.getMessage() );
             }
         });
     }
+
     public void changePass(ChangePasswordForm form) {
+        Log.v("email: ", form.getEmail());
         Firebase ref = new Firebase("https://eventory.firebaseio.com");
-        ref.changePassword("bobtony@firebase.com", form.getCurrent(), form.getNext(), new Firebase.ResultHandler() {
+        ref.changePassword(form.getEmail(), form.getCurrent(), form.getNext(), new Firebase.ResultHandler() {
             @Override
             public void onSuccess() {
                 // password changed
+                System.out.println("Password Changed");
             }
 
             @Override
             public void onError(FirebaseError firebaseError) {
                 // error encountered
+                Log.v("AccountFirebase: CP", firebaseError.getMessage());
             }
         });
     }
@@ -92,5 +97,13 @@ public class AccountFirebase {
                 // error encountered
             }
         });
+    }
+
+    public String getEmail(){
+
+        //TODO: make it so we can retreive the email somehow
+        Firebase ref = new Firebase("https://eventory.firebaseio.com");
+        String data = (String)ref.getAuth().getProviderData().get("email");
+        return data;
     }
 }
