@@ -36,7 +36,7 @@ public class ChangePasswordFragment extends Fragment {
     }
 
     private ChangePasswordForm getUserInputs( AccountFirebase af ){
-        String email = af.getEmail();
+        String email = af.getUserEmail();
         return new ChangePasswordForm(email,current_pw,new_pw,confirm_pw);
     }
 
