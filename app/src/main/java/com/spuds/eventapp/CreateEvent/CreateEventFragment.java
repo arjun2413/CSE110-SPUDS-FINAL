@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.firebase.client.Firebase;
+import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.R;
 
 import java.util.ArrayList;
@@ -94,6 +96,8 @@ public class CreateEventFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_create_event, container, false);
 
         getEventDetails(view);
+
+        final EventsFirebase eventsFirebase = new EventsFirebase();
         editEventDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,7 +119,7 @@ public class CreateEventFragment extends Fragment {
                     if (addImage) {
                         // TODO push to editEventFields array list
                     }
-
+                    eventsFirebase.createEvent(form);
                 }
                 else {
                     // TODO return error
