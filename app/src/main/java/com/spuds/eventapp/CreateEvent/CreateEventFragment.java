@@ -30,7 +30,7 @@ public class CreateEventFragment extends Fragment {
 
     private ArrayList editEventFields;
 
-    protected void getEventDetails(View view) {
+    protected CreateEventForm getEventDetails(View view) {
         eventImage = (ImageView) view.findViewById(R.id.eventImage);
         eventName = (EditText) view.findViewById(R.id.eventName);
         eventDate = (EditText) view.findViewById(R.id.eventDate);
@@ -40,16 +40,16 @@ public class CreateEventFragment extends Fragment {
         editEventDone = (Button) view.findViewById(R.id.editEventDone);
 
         editEventFields = new ArrayList<String>();
+
+        return new CreateEventForm(eventName,eventDate,eventLocation,eventDescription);
     }
 
+    /*
     protected void setupWindow() {
         editEventDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String eventNameString = eventName.getText().toString();
-                String eventDateString = eventDate.getText().toString();
-                String eventLocationString = eventLocation.getText().toString();
-                String eventDescriptionString = eventDescription.getText().toString();
+                CreateEventForm form = getEventDetails(view);
 
                 boolean addImage = false;
 
@@ -61,7 +61,7 @@ public class CreateEventFragment extends Fragment {
                 }
                 */
 
-
+/*
                 if (eventNameString == null | eventDateString == null |
                         eventLocationString == null | eventDescriptionString == null) {
                     // TODO return error
@@ -74,7 +74,7 @@ public class CreateEventFragment extends Fragment {
                 }
             }
         });
-    }
+    }*/
 
     public CreateEventFragment() {
         // Required empty public constructor
@@ -91,10 +91,37 @@ public class CreateEventFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_create_event, container, false);
+        final View view = inflater.inflate(R.layout.fragment_create_event, container, false);
 
         getEventDetails(view);
-        setupWindow();
+        editEventDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CreateEventForm form = getEventDetails(view);
+
+                boolean addImage = false;
+
+                /* TODO get the image of the event
+                Matrix uploadedEventImage = eventImage.getImageMatrix()
+
+                if (uploadedEventImage != null) {
+                    addImage = true;
+                }
+                */
+
+
+                if (form.allFilled()) {
+                    // TODO send to database the event details (in a method)
+                    if (addImage) {
+                        // TODO push to editEventFields array list
+                    }
+
+                }
+                else {
+                    // TODO return error
+                }
+            }
+        });
 
         final SmoothCheckBox scb = (SmoothCheckBox) view.findViewById(R.id.scb);
         scb.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {

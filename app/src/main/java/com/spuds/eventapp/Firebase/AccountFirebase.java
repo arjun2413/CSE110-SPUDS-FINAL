@@ -80,6 +80,7 @@ public class AccountFirebase {
             @Override
             public void onSuccess() {
                 // password changed
+                System.out.println("Password Changed");
             }
 
             @Override
@@ -166,4 +167,6 @@ public class AccountFirebase {
         });
         return check;
     }
+
+
 }

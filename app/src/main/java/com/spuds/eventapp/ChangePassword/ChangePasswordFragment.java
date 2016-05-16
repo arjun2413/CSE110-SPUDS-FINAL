@@ -83,41 +83,43 @@ public class ChangePasswordFragment extends Fragment {
                 //default string set to append error to
                 restartError();
 
-                if(form.allFilled()){
+                //checks if an error has been found
+                boolean is_error = false;
 
-                    //checks if an error has been found
-                    boolean is_error = false;
 
-                    //checks if second and third fields are the same
-                    if(!form.matchingPw()){
-                        appendError(getString(R.string.mismatched_fields_error));
-                        is_error = true;
-                    }
-
-                    //pops up a snackbar with successful change message if no error was found
-                    if(!is_error) {
-
-                        af.changePass(form);
-
-                        // Pop this fragment from backstack
-                        getActivity().getSupportFragmentManager().popBackStack();
-
-                        //TODO: need to test if snackbar works properly
-                        Snackbar snackbar = Snackbar.make
-                                (view,getString(R.string.password_change_success),
-                                        Snackbar.LENGTH_LONG);
-                        snackbar.show();
-                    }
-                    else {
-                        //show concatinated error messages
-                        sys_message.setText(getError());
-                    }
-                }
-                //Tells the user that they must fill all fields
-                else {
+                if(!form.allFilled()) {
                     appendError(getString(R.string.missing_fields_error));
+                    is_error = true;
+                }
+
+                //checks if second and third fields are the same
+                if(!form.matchingPw()){
+                    if(is_error) {
+                        appendError("\n");
+                    }
+                    appendError(getString(R.string.mismatched_fields_error));
+                    is_error = true;
+                }
+
+                //pops up a snackbar with successful change message if no error was found
+                if(!is_error) {
+
+                    af.changePass(form);
+
+                    // Pop this fragment from backstack
+                    getActivity().getSupportFragmentManager().popBackStack();
+
+                    //TODO: need to test if snackbar works properly
+                    Snackbar snackbar = Snackbar.make
+                            (view,getString(R.string.password_change_success),
+                                    Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
+                else {
+                    //show concatinated error messages
                     sys_message.setText(getError());
                 }
+
             }
         });
 

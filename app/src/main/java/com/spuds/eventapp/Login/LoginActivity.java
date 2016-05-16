@@ -174,7 +174,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.v("asdasdasdasd", String.valueOf(obj.status));
 
                         Log.v("asdasdasdasd", String.valueOf(obj.status));
-obj.status = 0;
+                        obj.status = 0;
                     }
                 }
             });
