@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.Shared.Subscription;
 
 import java.util.List;
@@ -111,6 +112,7 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
 
                 profileFragment.setArguments(bundle);
 
+                ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
                 // Add Event Details Fragment to fragment manager
                 currentFragment.getFragmentManager().beginTransaction()
                         .show(profileFragment)

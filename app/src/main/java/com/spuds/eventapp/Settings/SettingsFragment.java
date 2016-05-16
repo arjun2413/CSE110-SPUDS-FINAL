@@ -1,5 +1,6 @@
 package com.spuds.eventapp.Settings;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -48,6 +49,9 @@ public class SettingsFragment extends Fragment {
 
         return v;
     }
-
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
 
 }

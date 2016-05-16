@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.firebase.client.Firebase;
 import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
@@ -45,6 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Firebase.setAndroidContext(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
@@ -67,7 +69,7 @@ public class SignUpActivity extends AppCompatActivity {
         signupPassword1 = (EditText)findViewById(R.id.signup_password_1);
 
         //Fetch User's entered confirm password, referred to as "signup_password_2"
-        signupPassword1 = (EditText)findViewById(R.id.signup_password_2);
+        signupPassword2 = (EditText)findViewById(R.id.signup_password_2);
 
         //Fetch invisible Password Warning Text
         //signupPasswordMatchError = (TextView)findViewById(R.id.signupPasswordMatchError);
@@ -83,16 +85,16 @@ public class SignUpActivity extends AppCompatActivity {
                 /*Make sure passwords are matching. If passwords are not equal, display popup
                  that says "Passwords must match.
                   */
-                if (!signupPassword1.getText().toString().equals(signupPassword1.getText().toString())) {
+                if (!signupPassword1.getText().toString().equals(signupPassword2.getText().toString())) {
                     //reveal Invalid Password Match text
-                    signupPasswordMatchError.setVisibility(View.VISIBLE);
+                    //signupPasswordMatchError.setVisibility(View.VISIBLE);
 
                     //set error flag to FALSE since there is an error now
                     error = false;
                 }
                 else{
                     //hide it
-                    signupPasswordMatchError.setVisibility(View.INVISIBLE);
+                    //signupPasswordMatchError.setVisibility(View.INVISIBLE);
 
                     //correct error flag to true, everything is good now
                     error = true;
@@ -100,7 +102,7 @@ public class SignUpActivity extends AppCompatActivity {
                 //If email is not valid, user gets error popup
                 if (!isValidEmail(signupEmail.getText().toString())) {
                     //reveal Invalid Email text
-                    signupInvalidEmailError.setVisibility(View.VISIBLE);
+                    //signupInvalidEmailError.setVisibility(View.VISIBLE);
 
                     //set error flag to FALSE since there is an error now
                     error = false;
@@ -108,7 +110,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }
                 else{
                     //hide it
-                    signupInvalidEmailError.setVisibility(View.INVISIBLE);
+                    //signupInvalidEmailError.setVisibility(View.INVISIBLE);
 
                     //correct error flag to true, everything is good now
                     error = true;
@@ -125,7 +127,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Log.v("signupPassword", signupPassword1.getText().toString());
                     AccountFirebase accountFirebase = new AccountFirebase();
                     accountFirebase.createAccount(signupEmail.getText().toString(),
-                            signupPassword1.getText().toString());
+                            signupPassword1.getText().toString(), signupName.getText().toString());
                     //When done, leave this page and go to main screen.
                     startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                 }

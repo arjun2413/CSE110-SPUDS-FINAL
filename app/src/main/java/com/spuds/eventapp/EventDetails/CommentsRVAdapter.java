@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.spuds.eventapp.CreateComment.CreateCommentFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Comment;
+import com.spuds.eventapp.Shared.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,6 +129,7 @@ public class CommentsRVAdapter extends RecyclerView.Adapter<CommentsRVAdapter.Co
 
                 CreateCommentFragment createCommentFragment = new CreateCommentFragment();
 
+                ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
                 currentFragment.getFragmentManager().beginTransaction()
                         .replace(R.id.fragment_frame_layout, createCommentFragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

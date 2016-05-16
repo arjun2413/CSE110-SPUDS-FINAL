@@ -1,9 +1,11 @@
 package com.spuds.eventapp.HomeFeed;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -54,7 +56,7 @@ public class HomeFeedTabsFragment extends Fragment {
         tabLayout.addTab(happeningNowFilter, 2);
 
 
-        //tabLayout.setTabTextColors(ContextCompat.getColorStateList(this, R.color.tab_selector));
+        //tabLayout.setTabTextColors(ContextCompat.getColorStateList(this, Color.WHITE));
         //tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.indicator));
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));

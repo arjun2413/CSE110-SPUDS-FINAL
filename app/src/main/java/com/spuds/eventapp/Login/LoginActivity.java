@@ -17,6 +17,8 @@ import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.SignUp.SignUpActivity;
 
+import org.w3c.dom.Text;
+
 public class LoginActivity extends AppCompatActivity {
 
 
@@ -26,9 +28,34 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //Typefaces for two different fonts
         Typeface custom_font = Typeface.createFromAsset(getAssets(),  "name_font.ttf");
+        Typeface raleway_light = Typeface.createFromAsset(getAssets(),  "raleway-light.ttf");
+
+        //title font
         TextView tx = (TextView)findViewById(R.id.app_name);
         tx.setTypeface(custom_font);
+
+        //all other text font is raleway-light
+        EditText enterEmail = (EditText)findViewById(R.id.email);
+        enterEmail.setTypeface(raleway_light);
+
+        EditText enterPassword = (EditText)findViewById(R.id.password);
+        enterPassword.setTypeface(raleway_light);
+
+        TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
+        errorMessage.setTypeface(raleway_light);
+
+        Button signInButton = (Button) findViewById(R.id.signIn);
+        signInButton.setTypeface(raleway_light);
+
+        Button forgotPassword = (Button) findViewById(R.id.forgot_password);
+        forgotPassword.setTypeface(raleway_light);
+
+        Button registerButton = (Button) findViewById(R.id.register);
+        registerButton.setTypeface(raleway_light);
+
+
         //a function to allow the user to sign in
         signInFunc();
         signUpFunc();
@@ -38,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void signUpFunc(){
         //create a button for the sign up
-        final Button signUp = (Button) findViewById(R.id.button);
+        final Button signUp = (Button) findViewById(R.id.register);
 
         if(signUp != null) {
 
@@ -117,14 +144,37 @@ public class LoginActivity extends AppCompatActivity {
                     //TODO:
                     //Pass through an id of the user [coding decision: should we pass image first and last name?]
                     else{
+                        Object time = new Object();
                         Log.v("sadasdasdasd", email);
                         Log.v("asdasdasdasd", password);
                         obj.logIn(email.toString(), password.toString());
-                        Log.v("asdasdasdasd", String.valueOf(obj.status));
-                        if(obj.status) {
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        }
 
+
+
+                            new Thread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    while (obj.status == 0) {
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+                                    if (obj.status == 1) {
+
+                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    }
+
+                                }
+                            }).start();
+
+                            Log.v("asdasdasdasd", String.valueOf(obj.status));
+
+                        Log.v("asdasdasdasd", String.valueOf(obj.status));
+obj.status = 0;
                     }
                 }
             });

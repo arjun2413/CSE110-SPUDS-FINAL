@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.spuds.eventapp.ChangePassword.ChangePasswordFragment;
 import com.spuds.eventapp.Login.LoginActivity;
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.Shared.Setting;
 
 import java.util.List;
@@ -95,6 +96,7 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<SettingsRVAdapter.Se
                     public void onClick(View v) {
                         ChangePasswordFragment changePasswordFragment = new ChangePasswordFragment();
 
+                        ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
                         // Add Change Password Fragment to fragment manager
                         currentFragment.getFragmentManager().beginTransaction()
                                 .show(changePasswordFragment)

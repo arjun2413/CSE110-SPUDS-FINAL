@@ -9,6 +9,7 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -116,6 +117,7 @@ public class ProfileFragment extends Fragment {
 
                     // TODO (C): Add user in a bundle to editProfileFragment
 
+                    ((MainActivity) getActivity()).removeSearchToolbar();
                     profileFragment.getFragmentManager().beginTransaction()
                             .replace(R.id.fragment_frame_layout, editProfileFragment)
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -153,10 +155,6 @@ public class ProfileFragment extends Fragment {
 
         setUpRecyclerViewsGoingAndHosting();
 
-    }
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
     }
 
     void setUpRecyclerViewsGoingAndHosting() {
@@ -196,6 +194,11 @@ public class ProfileFragment extends Fragment {
 
         EventsFeedRVAdapter eventsFeedRVAdapterGoing = new EventsFeedRVAdapter(eventsGoing, this, getString(R.string.fragment_profile), getString(R.string.tab_going), user.userId);
         eventsGoingRV.setAdapter(eventsFeedRVAdapterGoing);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
     }
 
     @Override

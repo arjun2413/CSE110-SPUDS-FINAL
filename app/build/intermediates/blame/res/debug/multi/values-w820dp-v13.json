@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\Reggie\\StudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "outputFile": "C:\\Volumes\\storedge128\\Files\\AndroidProjects\\CSE-SPUDS-1\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-w820dp-v13\\values-w820dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,31 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "C:\\Users\\Reggie\\StudioProjects\\CSE110-SPUDS-FINAL\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "file": "C:\\Volumes\\storedge128\\Files\\AndroidProjects\\CSE-SPUDS-1\\CSE110-SPUDS-FINAL\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 291,
+                        "endColumn": 57,
+                        "endOffset": 344
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "C:\\Users\\akalathil\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 57,
+                    "endOffset": 108
+                },
+                "from": {
+                    "file": "C:\\Users\\akalathil\\CSE110-SPUDS-FINAL\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
