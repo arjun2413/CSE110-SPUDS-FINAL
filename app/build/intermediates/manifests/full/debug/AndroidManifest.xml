@@ -43,6 +43,7 @@
         <activity android:name="com.spuds.eventapp.ForgotPasswordActivity.ForgotPasswordActivity" />
         <activity android:name="com.spuds.eventapp.SignUp.SignUpActivity" >
         </activity>
+        <activity android:name="com.spuds.eventapp.ResetPassword.ResetPasswordActivity" />
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
     </application>
 

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 import com.spuds.eventapp.Firebase.AccountFirebase;
-import com.spuds.eventapp.ForgotPasswordActivity.ForgotPasswordActivity;
+import com.spuds.eventapp.ResetPassword.ResetPasswordActivity;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.SignUp.SignUpActivity;
@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             forgotPass.setOnClickListener(new View.OnClickListener() {
                 //what happens when the button is clicked
                 public void onClick(View v) {
-                    startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+                    startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
 
                 }
             });
