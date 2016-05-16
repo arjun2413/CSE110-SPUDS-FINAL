@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\akalathil\CSE110-SPUDS-FINAL\app\src\main\AndroidManifest.xml:2:1-47:12
+ADDED from C:\Users\akalathil\CSE110-SPUDS-FINAL\app\src\main\AndroidManifest.xml:2:1-48:12
 	xmlns:android
 		ADDED from C:\Users\akalathil\CSE110-SPUDS-FINAL\app\src\main\AndroidManifest.xml:2:11-69
 	package
@@ -18,7 +18,7 @@ ADDED from C:\Users\akalathil\CSE110-SPUDS-FINAL\app\src\main\AndroidManifest.xm
 	android:name
 		ADDED from C:\Users\akalathil\CSE110-SPUDS-FINAL\app\src\main\AndroidManifest.xml:5:22-64
 application
-ADDED from C:\Users\akalathil\CSE110-SPUDS-FINAL\app\src\main\AndroidManifest.xml:7:5-45:19
+ADDED from C:\Users\akalathil\CSE110-SPUDS-FINAL\app\src\main\AndroidManifest.xml:7:5-46:19
 MERGED from [com.android.support:appcompat-v7:23.3.0] C:\Users\akalathil\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-vector-drawable:23.3.0] C:\Users\akalathil\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\AndroidManifest.xml:7:5-20
 MERGED from [com.android.support:support-v4:23.3.0] C:\Users\akalathil\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\AndroidManifest.xml:22:5-20
@@ -115,10 +115,14 @@ activity#com.spuds.eventapp.SignUp.SignUpActivity
 ADDED from C:\Users\akalathil\CSE110-SPUDS-FINAL\app\src\main\AndroidManifest.xml:42:9-43:20
 	android:name
 		ADDED from C:\Users\akalathil\CSE110-SPUDS-FINAL\app\src\main\AndroidManifest.xml:42:19-56
-activity#com.soundcloud.android.crop.CropImageActivity
+activity#com.spuds.eventapp.ResetPassword.ResetPasswordActivity
 ADDED from C:\Users\akalathil\CSE110-SPUDS-FINAL\app\src\main\AndroidManifest.xml:44:9-82
 	android:name
-		ADDED from C:\Users\akalathil\CSE110-SPUDS-FINAL\app\src\main\AndroidManifest.xml:44:19-79
+		ADDED from C:\Users\akalathil\CSE110-SPUDS-FINAL\app\src\main\AndroidManifest.xml:44:19-70
+activity#com.soundcloud.android.crop.CropImageActivity
+ADDED from C:\Users\akalathil\CSE110-SPUDS-FINAL\app\src\main\AndroidManifest.xml:45:9-82
+	android:name
+		ADDED from C:\Users\akalathil\CSE110-SPUDS-FINAL\app\src\main\AndroidManifest.xml:45:19-79
 uses-sdk
 INJECTED from C:\Users\akalathil\CSE110-SPUDS-FINAL\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.3.0] C:\Users\akalathil\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\AndroidManifest.xml:21:5-23:78

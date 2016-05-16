@@ -16,7 +16,7 @@ public class EventsFirebase {
         map.put("date", date);
         map.put("location", location);
         map.put("description", description);
-        ref.child("events").child(name);
+        ref.child("events").child(name).setValue(map);
     }
 
 }
