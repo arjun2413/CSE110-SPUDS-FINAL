@@ -51,9 +51,9 @@ public class ResetPasswordActivity extends AppCompatActivity {
                     }
                     else{
                         //TODO: check database
-                        accountFirebase.checkEmail(email);
+                        boolean check = accountFirebase.checkEmail(email);
 
-                        if(true){
+                        if(check){
                             //Email is a valid email
                             //have firebase send email.
                             accountFirebase.resetPass(input.getText().toString());
