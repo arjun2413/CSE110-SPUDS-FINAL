@@ -127,7 +127,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Log.v("signupPassword", signupPassword1.getText().toString());
                     AccountFirebase accountFirebase = new AccountFirebase();
                     accountFirebase.createAccount(signupEmail.getText().toString(),
-                            signupPassword1.getText().toString());
+                            signupPassword1.getText().toString(), signupName.getText().toString());
                     //When done, leave this page and go to main screen.
                     startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                 }

@@ -18,16 +18,22 @@ import java.util.Map;
  * Created by Arjun on 5/5/16.
  */
 public class AccountFirebase {
-    public void createAccount(String email, String password) {
+    public void createAccount(final String email, String password, final String name) {
 
 
-        Firebase ref = new Firebase("https://eventory.firebaseio.com");
+        final Firebase ref = new Firebase("https://eventory.firebaseio.com");
         ref.createUser(email, password, new Firebase.ValueResultHandler<Map<String, Object>>()
 
                 {
                     @Override
                     public void onSuccess (Map < String, Object > result){
                         System.out.println("Successfully created user account with uid: " + result.get("uid"));
+                        // Authentication just completed successfully smile emoticon
+                        Map<String, String> map = new HashMap<String, String>();
+                        map.put("provider", ref.getAuth().getProvider());
+                        map.put("Name", name);
+                        map.put("Email", email);
+                        ref.child("users").child(ref.getAuth().getUid()).setValue(map);
                     }
 
                     @Override
@@ -35,7 +41,9 @@ public class AccountFirebase {
                         // error encountered
                         Log.v("AccountFirebase:CA:", firebaseError.getMessage());
                     }
+
                 }
+
 
         );
     }
@@ -49,12 +57,7 @@ public class AccountFirebase {
             public void onAuthenticated(AuthData authData) {
                 status = 1;
                 // Authentication just completed successfully smile emoticon
-                Map<String, String> map = new HashMap<String, String>();
-                map.put("provider", authData.getProvider());
-                if (authData.getProviderData().containsKey("displayName")) {
-                    map.put("displayName", authData.getProviderData().get("displayName").toString());
-                }
-                ref.child("users").child(authData.getUid()).setValue(map);
+
             }
 
             @Override
