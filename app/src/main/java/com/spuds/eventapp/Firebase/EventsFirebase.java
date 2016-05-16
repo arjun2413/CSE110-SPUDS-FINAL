@@ -19,7 +19,10 @@ public class EventsFirebase {
         map.put("description", form.getDescription());
         map.put("createrID", ref.getAuth().getUid());
         map.put("number_going", "1");
-        ref.child("events").child(form.getName()).setValue(map);
+        ref.child("events").push().setValue(map);
+    }
+    public void editEvent(){
+
     }
 
 }
