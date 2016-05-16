@@ -2,7 +2,9 @@ package com.spuds.eventapp.Shared;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -18,7 +20,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewManager;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.quinny898.library.persistentsearch.SearchBox;
+import com.quinny898.library.persistentsearch.SearchResult;
 import com.spuds.eventapp.About.AboutFragment;
 import com.spuds.eventapp.CategoriesList.CategoriesListFragment;
 import com.spuds.eventapp.CreateEvent.CreateEventFragment;
@@ -32,6 +39,8 @@ import com.spuds.eventapp.R;
 import com.spuds.eventapp.Settings.SettingsFragment;
 import com.spuds.eventapp.SubscriptionFeed.SubscriptionFeedTabsFragment;
 import com.spuds.eventapp.SubscriptionsList.SubscriptionsListFragment;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,24 +56,24 @@ public class MainActivity extends AppCompatActivity
     AboutFragment aboutFragment;
     SettingsFragment settingsFragment;
 
-
+    SearchBox search;
+    public String searchType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         setupFragments();
-        setupToolbar();
+        setupMainToolbar();
+        setupSearchToolbar();
         setupDrawer();
 
+        searchType = getString(R.string.fragment_home_feed);
     }
 
-    void setupToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+    void setupMainToolbar() {
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.action_bar_main);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -72,6 +81,7 @@ public class MainActivity extends AppCompatActivity
                 if(item.getItemId() == R.id.action_create_event){
                     CreateEventFragment createEventFragment = new CreateEventFragment();
 
+                    removeSearchToolbar();
                     // Add Event Details Fragment to fragment manager
                     getSupportFragmentManager().beginTransaction()
                             .show(createEventFragment)
@@ -83,6 +93,121 @@ public class MainActivity extends AppCompatActivity
                 return false;
             }
         });
+
+    }
+
+    void setupSearchToolbar() {
+        search = (SearchBox) findViewById(R.id.searchbox);
+
+        search.setLogoText("Search for Events");
+        search.setLogoTextColor(Color.parseColor("#bfbfbf"));
+        search.setDrawerLogo(R.drawable.campus);
+
+        final ArrayList<SearchResult> list = new ArrayList<SearchResult>();
+
+        search.setSearchables(list);
+
+        search.setSearchListener(new SearchBox.SearchListener(){
+
+            @Override
+            public void onSearchTermChanged(String s) {
+                //React to the search term changing
+                //Called after it has updated results
+                Log.v("onSearchTermChanged", s);
+
+                SearchResult option = new SearchResult(s, getResources().getDrawable(R.drawable.email));
+                list.add(option);
+                option = new SearchResult(s, getResources().getDrawable(R.drawable.email));
+
+                list.add(option);
+                option = new SearchResult(s, getResources().getDrawable(R.drawable.email));
+
+                list.add(option);
+
+
+                // TODO (M): Search
+
+                if (searchType.equals(R.string.fragment_home_feed)) {
+
+                } else if (searchType.equals(R.string.my_events)) {
+
+                } else if (searchType.equals(R.string.fragment_my_sub)) {
+
+                } else if (searchType.equals(R.string.fragment_my_sub_feed)) {
+
+                } else if (searchType.equals(R.string.fragment_find_people)) {
+
+                } else if (searchType.equals(R.string.cat_academic)) {
+
+                } else if (searchType.equals(R.string.cat_campus)) {
+
+                } else if (searchType.equals(R.string.cat_concerts)) {
+
+                } else if (searchType.equals(R.string.cat_food)) {
+
+                } else if (searchType.equals(R.string.cat_free)) {
+
+                } else if (searchType.equals(R.string.cat_social)) {
+
+                } else if (searchType.equals(R.string.cat_sports)) {
+
+                } else {
+                    Log.v("search: ", "something went wrong");
+                }
+
+                search.setSearchables(list);
+                search.updateResults();
+
+            }
+
+            @Override
+            public void onSearch(String searchTerm) {
+                Toast.makeText(MainActivity.this, searchTerm +" Searched", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onResultClick(SearchResult result) {
+                //React to a result being clicked
+            }
+
+
+            @Override
+            public void onSearchOpened() {
+
+            }
+
+            @Override
+            public void onSearchCleared() {
+
+            }
+
+            @Override
+            public void onSearchClosed() {
+
+            }
+
+        });
+        params = (RelativeLayout.LayoutParams) search.getLayoutParams();
+
+    }
+
+    RelativeLayout.LayoutParams params;
+
+    public void removeSearchToolbar() {
+
+
+        if (findViewById(R.id.search) != null)
+            ((ViewManager) search.getParent()).removeView(search);
+
+    }
+
+    public void addSearchToolbar() {
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (findViewById(R.id.search) == null)
+            ((ViewManager) toolbar.getParent()).addView(search, params);
+
+        search.setLogoText("Search for Events");
 
     }
 
@@ -189,38 +314,54 @@ public class MainActivity extends AppCompatActivity
         Fragment newFragment = null;
         if (id == R.id.home) {
 
+            addSearchToolbar();
+            searchType = getString(R.string.fragment_home_feed);
             newFragment = homeFeedTabsFragment;
 
         } else if (id == R.id.notifications) {
 
+            removeSearchToolbar();
             newFragment = notificationsFragment;
 
         } else if (id == R.id.category) {
 
+            removeSearchToolbar();
             newFragment = categoriesListFragment;
 
         } else if (id == R.id.myEvents) {
 
+            addSearchToolbar();
+            searchType = getString(R.string.fragment_my_events);
             newFragment = myEventsTabsFragment;
 
         } else if (id == R.id.subscriptions) {
 
+            addSearchToolbar();
+            searchType = getString(R.string.fragment_my_sub);
+            search.setLogoText("Search for Subscriptions");
             newFragment = subscriptionsListFragment;
 
         } else if (id == R.id.find_people) {
 
+            addSearchToolbar();
+            searchType = getString(R.string.fragment_find_people);
+            search.setLogoText("Search for People");
             newFragment = findPeopleFragment;
 
         } else if (id == R.id.subscriptionFeed) {
 
+            addSearchToolbar();
+            searchType = getString(R.string.fragment_my_sub_feed);
             newFragment = subscriptionFeedTabsFragment;
 
         } else if (id == R.id.about) {
 
+            removeSearchToolbar();
             newFragment = aboutFragment;
 
         } else if (id == R.id.accMang) {
 
+            removeSearchToolbar();
             newFragment = settingsFragment;
 
         } else if (id == R.id.logOut) {
@@ -267,6 +408,7 @@ public class MainActivity extends AppCompatActivity
 
         profileFragment.setArguments(bundle);
 
+        removeSearchToolbar();
         // Add Event Details Fragment to fragment manager
         getSupportFragmentManager().beginTransaction()
                 .show(profileFragment)
@@ -291,6 +433,7 @@ public class MainActivity extends AppCompatActivity
                 super.onBackPressed();
 
         }
+        removeSearchToolbar();
 
     }
 
@@ -303,6 +446,16 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == SearchBox.VOICE_RECOGNITION_CODE && resultCode == RESULT_OK) {
+            ArrayList<String> matches = data
+                    .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            search.populateEditText(matches.get(0));
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 }
