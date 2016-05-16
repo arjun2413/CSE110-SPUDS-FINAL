@@ -86,10 +86,11 @@ public class ChangePasswordFragment extends Fragment {
                 //checks if an error has been found
                 boolean is_error = false;
 
-
+                Log.v("is_error 1:" , String.valueOf(is_error));
                 if(!form.allFilled()) {
                     appendError(getString(R.string.missing_fields_error));
                     is_error = true;
+                    Log.v("is_error 2:" , String.valueOf(is_error));
                 }
 
                 //checks if second and third fields are the same
@@ -99,11 +100,12 @@ public class ChangePasswordFragment extends Fragment {
                     }
                     appendError(getString(R.string.mismatched_fields_error));
                     is_error = true;
+                    Log.v("is_error 3:" , String.valueOf(is_error));
                 }
 
                 //pops up a snackbar with successful change message if no error was found
                 if(!is_error) {
-
+                    Log.v("is_error 4:" , String.valueOf(is_error));
                     af.changePass(form);
 
                     // Pop this fragment from backstack

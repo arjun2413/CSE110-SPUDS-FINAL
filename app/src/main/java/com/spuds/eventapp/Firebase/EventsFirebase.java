@@ -18,6 +18,7 @@ public class EventsFirebase {
         map.put("location", form.getLocation());
         map.put("description", form.getDescription());
         map.put("createrID", ref.getAuth().getUid());
+        map.put("number_going", "1");
         ref.child("events").child(form.getName()).setValue(map);
     }
 

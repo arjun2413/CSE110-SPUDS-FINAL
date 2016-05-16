@@ -12,10 +12,10 @@ public class CreateEventForm {
     private String description;
 
     public CreateEventForm(EditText event_name, EditText event_date, EditText event_location, EditText event_description){
-        name = event_name.toString();
-        date = event_date.toString();
-        location = event_location.toString();
-        description = event_description.toString();
+        name = event_name.getText().toString();
+        date = event_date.getText().toString();
+        location = event_location.getText().toString();
+        description = event_description.getText().toString();
     }
 
     public String getName(){

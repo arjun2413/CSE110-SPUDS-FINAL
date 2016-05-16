@@ -32,7 +32,12 @@ public class CreateEventFragment extends Fragment {
 
     private ArrayList editEventFields;
 
-    protected CreateEventForm getEventDetails(View view) {
+    private CreateEventForm makeForm(){
+        return new CreateEventForm(eventName,eventDate,eventLocation,eventDescription);
+
+    }
+
+    protected void getEventDetails(View view) {
         eventImage = (ImageView) view.findViewById(R.id.eventImage);
         eventName = (EditText) view.findViewById(R.id.eventName);
         eventDate = (EditText) view.findViewById(R.id.eventDate);
@@ -43,15 +48,15 @@ public class CreateEventFragment extends Fragment {
 
         editEventFields = new ArrayList<String>();
 
-        return new CreateEventForm(eventName,eventDate,eventLocation,eventDescription);
     }
 
-    /*
+
     protected void setupWindow() {
+        final EventsFirebase eventsFirebase = new EventsFirebase();
         editEventDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CreateEventForm form = getEventDetails(view);
+                CreateEventForm form = makeForm();
 
                 boolean addImage = false;
 
@@ -63,20 +68,21 @@ public class CreateEventFragment extends Fragment {
                 }
                 */
 
-/*
-                if (eventNameString == null | eventDateString == null |
-                        eventLocationString == null | eventDescriptionString == null) {
-                    // TODO return error
-                }
-                else {
+
+                if (form.allFilled()) {
                     // TODO send to database the event details (in a method)
                     if (addImage) {
                         // TODO push to editEventFields array list
                     }
+                    eventsFirebase.createEvent(form);
+                    getActivity().getSupportFragmentManager().popBackStack();
+                }
+                else {
+                    // TODO return error
                 }
             }
         });
-    }*/
+    }
 
     public CreateEventFragment() {
         // Required empty public constructor
@@ -97,35 +103,7 @@ public class CreateEventFragment extends Fragment {
 
         getEventDetails(view);
 
-        final EventsFirebase eventsFirebase = new EventsFirebase();
-        editEventDone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CreateEventForm form = getEventDetails(view);
-
-                boolean addImage = false;
-
-                /* TODO get the image of the event
-                Matrix uploadedEventImage = eventImage.getImageMatrix()
-
-                if (uploadedEventImage != null) {
-                    addImage = true;
-                }
-                */
-
-
-                if (form.allFilled()) {
-                    // TODO send to database the event details (in a method)
-                    if (addImage) {
-                        // TODO push to editEventFields array list
-                    }
-                    eventsFirebase.createEvent(form);
-                }
-                else {
-                    // TODO return error
-                }
-            }
-        });
+        setupWindow();
 
         final SmoothCheckBox scb = (SmoothCheckBox) view.findViewById(R.id.scb);
         scb.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
