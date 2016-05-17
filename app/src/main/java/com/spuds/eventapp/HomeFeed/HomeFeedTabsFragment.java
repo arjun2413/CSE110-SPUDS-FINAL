@@ -1,11 +1,10 @@
 package com.spuds.eventapp.HomeFeed;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,7 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.spuds.eventapp.CreateEvent.CreateEventFragment;
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 
 public class HomeFeedTabsFragment extends Fragment {
 
@@ -90,21 +91,26 @@ public class HomeFeedTabsFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.dashboard, menu);
 
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                // Not implemented here
-                return false;
-            default:
-                break;
+        if (item.getItemId() == R.id.action_create_event) {
+            CreateEventFragment createEventFragment = new CreateEventFragment();
+
+            ((MainActivity)getActivity()).removeSearchToolbar();
+            // Add Event Details Fragment to fragment manager
+            this.getFragmentManager().beginTransaction()
+                    .show(createEventFragment)
+                    .replace(R.id.fragment_frame_layout, createEventFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(getString(R.string.fragment_create_event))
+                    .commit();
         }
-        return super.onOptionsItemSelected(item);
+
+        return true;
     }
 }
 

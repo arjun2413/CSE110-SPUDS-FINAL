@@ -191,7 +191,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
-                android:id="@+id/invite_people"
+                android:id="@+id/button_invite_people"
                 android:background="@drawable/roundedcorner"
                 android:layout_below="@+id/event_categories"
                 android:backgroundTint="#737373" />
