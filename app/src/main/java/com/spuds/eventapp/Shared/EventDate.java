@@ -1,5 +1,5 @@
 package com.spuds.eventapp.Shared;
-import java.lang.String;
+
 import java.util.GregorianCalendar;
 
 /**
@@ -77,7 +77,7 @@ public class EventDate {
 
     private boolean validateString(String s){
         //use RegEx to ensure correct format. If it is in correct form, return true.
-        if(s.matches("\\d{2}/\\d{2}/\\d{4}|d{4}")){
+        if(s.matches("\\d{2}/\\d{2}/\\d{4}\\|\\d{4}")){
             return true;
         }
         //if bad form return false;

@@ -78,6 +78,7 @@ public class Notification {
     }
 
     void updateDateValues() {
+
         EventDate eventDateObject = new EventDate(date);
 
         time = eventDateObject.get12Time();
