@@ -78,13 +78,13 @@ public class Notification {
     }
 
     void updateDateValues() {
-        Date dateObject = new Date(date);
+        EventDate eventDateObject = new EventDate(date);
 
-        time = dateObject.getTime();
+        time = eventDateObject.get12Time();
 
         if (notificationType.equals(TYPE_UPDATE)) {
-            day = dateObject.getDay();
-            month = dateObject.getMonth(true);
+            day = eventDateObject.getDay();
+            month = eventDateObject.getMonth(true);
         }
     }
 
