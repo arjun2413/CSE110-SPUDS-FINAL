@@ -4,28 +4,28 @@
     api-level="23"
     density="420dpi"
     format="7"
-    timestamp="282522022573606" >
+    timestamp="1463459300928723000" >
 
     <task
         name="javac"
-        duration="5677" />
+        duration="8908" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="4119" />
+        duration="2174" />
     <task
         name="verifier"
-        duration="1542" />
+        duration="244" />
 
     <artifact
-        location="C:\Users\Quoc Toan Luong\Desktop\CSE 110\CSE110-SPUDS-FINAL\app\build\outputs\apk\app-debug.apk"
+        location="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
         type="MAIN" />
 
-    <build timestamp="282522022573606" >
+    <build timestamp="1463459300928723000" >
         <artifact
-            location="C:\Users\Quoc Toan Luong\Desktop\CSE 110\CSE110-SPUDS-FINAL\app\build\outputs\apk\app-debug.apk"
+            location="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
             type="MAIN" />
     </build>
 
