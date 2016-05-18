@@ -20,7 +20,8 @@
             android:id="@+id/user_image"
             android:background="#bfbfbf"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:src="@drawable/reggie" />
 
         <TextView
             android:layout_width="wrap_content"
