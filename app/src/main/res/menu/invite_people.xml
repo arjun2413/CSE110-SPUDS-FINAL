@@ -4,8 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/select_all"
+        app:showAsAction="always"
         android:title="Select All"
-        app:showAsAction="always"/>
+        />
     <item
         android:id="@+id/done"
         android:title="Done"
