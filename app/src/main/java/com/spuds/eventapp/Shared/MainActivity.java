@@ -28,6 +28,7 @@ import com.quinny898.library.persistentsearch.SearchBox;
 import com.quinny898.library.persistentsearch.SearchResult;
 import com.spuds.eventapp.About.AboutFragment;
 import com.spuds.eventapp.CategoriesList.CategoriesListFragment;
+import com.spuds.eventapp.CreateEvent.CreateEventFragment;
 import com.spuds.eventapp.FindPeople.FindPeopleFragment;
 import com.spuds.eventapp.HomeFeed.HomeFeedTabsFragment;
 import com.spuds.eventapp.Login.LoginActivity;
@@ -426,7 +427,18 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_create_event) {
+            CreateEventFragment createEventFragment = new CreateEventFragment();
 
+            removeSearchToolbar();
+            // Add Event Details Fragment to fragment manager
+            this.getSupportFragmentManager().beginTransaction()
+                    .show(createEventFragment)
+                    .replace(R.id.fragment_frame_layout, createEventFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(getString(R.string.fragment_create_event))
+                    .commit();
+        }
         // Must be left empty so onOptionsItemSelected will be called in subsequent fragments
         return super.onOptionsItemSelected(item);
 

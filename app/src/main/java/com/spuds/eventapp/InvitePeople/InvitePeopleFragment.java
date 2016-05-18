@@ -63,7 +63,7 @@ public class InvitePeopleFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.removeItem(R.id.action_create_event);
-        inflater.inflate(R.menu.invite_people, menu);
+        //ginflater.inflate(R.menu.invite_people, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -71,6 +71,7 @@ public class InvitePeopleFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
+            /*
             case R.id.select_all:
                 if (!adapter.selectAll) {
 
@@ -94,14 +95,19 @@ public class InvitePeopleFragment extends Fragment {
 
                 }
                 return true;
+
             case R.id.done:
                 // TODO (M): Send invited array to database & do notification
                 // Pop this fragment from backstack
                 getActivity().getSupportFragmentManager().popBackStack();
                 return true;
+            */
             default:
                 return true;
+
+
         }
+
     }
 
 }
