@@ -9,27 +9,127 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal|top"
+        android:layout_gravity="right|center_vertical"
         android:background="#0d1c28">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="123dp"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:id="@+id/user_image"
+                android:background="#bfbfbf"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="1">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="66dp"
+                    android:background="#0d1c28"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#8c8c8c"
+
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="100"
+                        android:id="@+id/user_number_following"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Subscribers"
+                        android:layout_below="@id/user_number_following"
+                        android:id="@+id/label_user_number_following"
+                        android:textColor="#ffffff"
+                        android:layout_marginLeft="10dp"/>
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="100"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/user_number_hosting"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Hosted Events"
+                        android:id="@+id/label_user_number_hosting"
+                        android:layout_below="@+id/user_number_hosting"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="#ffffff"
+                        android:layout_marginRight="10dp"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#8c8c8c"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="Subscribe"
+                    android:id="@+id/button_subscribe"
+                    android:backgroundTint="#ffffff"
+                    android:layout_weight="0.93"
+                    android:background="#ffffff"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp" />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="210dp"
+            android:layout_height="wrap_content"
             android:background="#0d1c28">
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:id="@+id/user_image"
-                android:layout_gravity="center_horizontal"
-                android:background="#000000"
-                android:layout_marginTop="10dp" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
+                >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -37,7 +137,9 @@
                     android:layout_marginTop="10dp"
                     android:text="Christine Wu"
                     android:id="@+id/user_name"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp" />
 
                 <ImageView
                     android:layout_width="20dp"
@@ -48,85 +150,18 @@
                     android:background="#ffffff" />
             </RelativeLayout>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Subscribe"
-                android:id="@+id/button_subscribe"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/roundedbutton"
-                android:backgroundTint="#3c575d" />
-        </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="63dp"
-            android:background="#b2c8cd">
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#8c8c8c"
-
-                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="100"
-                android:id="@+id/user_number_following"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="WOW CHRISTINE IS SO COOL OWOOWOWOWWWOWOWOWOWOWOWOWOWOWOWWOWOWOW"
+                android:id="@+id/user_description"
+                android:textColor="#ffffff"
                 android:layout_marginLeft="10dp"
-                android:textColor="#000000" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Subscribers"
-                android:layout_below="@id/user_number_following"
-                android:id="@+id/label_user_number_following"
-                android:textColor="#000000"
-                android:layout_marginLeft="10dp"/>
-
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="100"
-                android:layout_alignParentRight="true"
-                android:id="@+id/user_number_hosting"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:textColor="#000000" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Hosted Events"
-                android:id="@+id/label_user_number_hosting"
-                android:layout_below="@+id/user_number_hosting"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:textColor="#000000"
-                android:layout_marginRight="10dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#8c8c8c"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-
-        </RelativeLayout>
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -136,7 +171,7 @@
             android:id="@+id/label_events_hosting"
             android:textStyle="bold"
             android:layout_marginTop="20dp"
-            android:textColor="#000000" />
+            android:textColor="#ffffff" />
 
         <android.support.v7.widget.RecyclerView
             android:layout_height="wrap_content"
@@ -152,7 +187,7 @@
             android:text="EVENTS GOING"
             android:id="@+id/label_events_going"
             android:textStyle="bold"
-            android:textColor="#000000" />
+            android:textColor="#ffffff" />
 
         <android.support.v7.widget.RecyclerView
             android:layout_height="wrap_content"
