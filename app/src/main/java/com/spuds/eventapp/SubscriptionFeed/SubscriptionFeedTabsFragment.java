@@ -4,17 +4,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.spuds.eventapp.CreateEvent.CreateEventFragment;
 import com.spuds.eventapp.R;
-import com.spuds.eventapp.Shared.MainActivity;
 
 public class SubscriptionFeedTabsFragment extends Fragment {
 
@@ -87,24 +82,6 @@ public class SubscriptionFeedTabsFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_create_event) {
-            CreateEventFragment createEventFragment = new CreateEventFragment();
-
-            ((MainActivity)getActivity()).removeSearchToolbar();
-            // Add Event Details Fragment to fragment manager
-            this.getFragmentManager().beginTransaction()
-                    .show(createEventFragment)
-                    .replace(R.id.fragment_frame_layout, createEventFragment)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .addToBackStack(getString(R.string.fragment_create_event))
-                    .commit();
-        }
-
-        return true;
     }
 
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
     android:background="@drawable/side_nav_bar"
@@ -12,27 +12,27 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:id="@+id/headerLinearLayout"
-
     android:clickable="true">
 
     <ImageView
-        android:id="@+id/profilePic"
+        android:id="@+id/profile_pic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:layout_gravity="center"
-        android:onClick="goToProfile"
-        android:src="@android:drawable/sym_def_app_icon" />
+        android:layout_alignParentTop="true"
+        android:onClick="goToProfile" />
 
     <TextView
-        android:id="@+id/userName"
-        android:layout_width="match_parent"
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:gravity="center"
         android:onClick="goToProfile"
         android:textSize="20sp"
         android:text="First Last"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:layout_below="@id/profile_pic"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true" />
 
-</LinearLayout>
+</RelativeLayout>

@@ -21,7 +21,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewManager;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.quinny898.library.persistentsearch.SearchBox;
@@ -67,8 +69,22 @@ public class MainActivity extends AppCompatActivity
         setupMainToolbar();
         setupSearchToolbar();
         setupDrawer();
+        setupProfileDrawer();
 
         searchType = getString(R.string.fragment_home_feed);
+    }
+
+    void setupProfileDrawer() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        // TODO (M): app owner's id
+        View headerView =  navigationView.inflateHeaderView(R.layout.nav_header_profile);
+        TextView name = (TextView) headerView.findViewById(R.id.user_name);
+        String string = "Reggie Wu";
+        name.setText(string);
+        // TODO (M): Use picasso
+        ImageView profilePic = (ImageView) headerView.findViewById(R.id.profile_pic);
+        profilePic.setImageResource(R.drawable.arjun);
+
     }
 
     void setupMainToolbar() {

@@ -178,21 +178,4 @@ public class EventDetailsFragment extends Fragment {
         super.onDetach();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_create_event) {
-            CreateEventFragment createEventFragment = new CreateEventFragment();
-
-            ((MainActivity)getActivity()).removeSearchToolbar();
-            // Add Event Details Fragment to fragment manager
-            this.getFragmentManager().beginTransaction()
-                    .show(createEventFragment)
-                    .replace(R.id.fragment_frame_layout, createEventFragment)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .addToBackStack(getString(R.string.fragment_create_event))
-                    .commit();
-        }
-
-        return true;
-    }
 }

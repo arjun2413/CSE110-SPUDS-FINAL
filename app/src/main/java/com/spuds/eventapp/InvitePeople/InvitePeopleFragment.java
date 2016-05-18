@@ -97,8 +97,10 @@ public class InvitePeopleFragment extends Fragment {
                 return true;
 
             case R.id.done:
-                // TODO (M): Send invited array to database & do notification
-                // Pop this fragment from backstack
+                if (invited.size() != 0) {
+                    // TODO (M): Send invited array to database & do notification
+                    // Pop this fragment from backstack
+                }
                 getActivity().getSupportFragmentManager().popBackStack();
                 return true;
             */
