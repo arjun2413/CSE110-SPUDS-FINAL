@@ -12,12 +12,10 @@ import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 import com.spuds.eventapp.Firebase.AccountFirebase;
-import com.spuds.eventapp.ResetPassword.ResetPasswordActivity;
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.ResetPassword.ResetPasswordActivity;
 import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.SignUp.SignUpActivity;
-
-import org.w3c.dom.Text;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -157,7 +155,7 @@ public class LoginActivity extends AppCompatActivity {
                                 public void run() {
                                     while (obj.status == 0) {
                                         try {
-                                            Thread.sleep(1000);
+                                            Thread.sleep(500);
                                         } catch (InterruptedException e) {
                                             e.printStackTrace();
                                         }

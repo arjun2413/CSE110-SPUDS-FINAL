@@ -79,4 +79,6 @@ public class CategoryFeedTabsFragment extends Fragment {
         super.onAttach(context);
         categoryFeedViewPagerAdapter = new CategoryFeedViewPagerAdapter(getChildFragmentManager(), this);
     }
+
+
 }

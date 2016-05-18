@@ -184,4 +184,5 @@ public class CategoriesListFragment extends Fragment {
                 .addToBackStack(getString(R.string.fragment_category_feed))
                 .commit();
     }
+
 }

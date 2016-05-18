@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,11 +32,11 @@ public class NotificationsFragment extends Fragment {
         // TODO (M): get notifications for the user
         //fake data
         notificationList.add(new Notification("Invite Notification", "1", "1", "eventorprofile.jpg",
-                "David Shan", "04/20/2016|04:20 PM", "420 Blaze It"));
+                "David Shan", "04/20/2016|1620", "420 Blaze It"));
         notificationList.add(new Notification("Update Notification", "1", "1", "eventorprofile.jpg",
-                "A.S. Concert", "04/20/2016|04:20 PM", "Sun God"));
+                "A.S. Concert", "04/20/2016|1620", "Sun God"));
         notificationList.add(new Notification("Reply Notification", "1", "1", "eventorprofile.jpg",
-                "Reggie Wu", "04/20/2016|04:20 PM", "Birthday Party", "Will there be food?"));
+                "Reggie Wu", "04/20/2016|1620", "Birthday Party", "Will there be food?"));
 
         notificationsRVAdapter = new NotificationsRVAdapter(notificationList, this);
     }
@@ -65,4 +64,5 @@ public class NotificationsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
+
 }

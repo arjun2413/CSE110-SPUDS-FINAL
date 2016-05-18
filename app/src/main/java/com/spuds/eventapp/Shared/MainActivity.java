@@ -21,7 +21,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewManager;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.quinny898.library.persistentsearch.SearchBox;
@@ -67,32 +69,28 @@ public class MainActivity extends AppCompatActivity
         setupMainToolbar();
         setupSearchToolbar();
         setupDrawer();
+        setupProfileDrawer();
 
         searchType = getString(R.string.fragment_home_feed);
+    }
+
+    void setupProfileDrawer() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        // TODO (M): app owner's id
+        View headerView =  navigationView.inflateHeaderView(R.layout.nav_header_profile);
+        TextView name = (TextView) headerView.findViewById(R.id.user_name);
+        String string = "Reggie Wu";
+        name.setText(string);
+        // TODO (M): Use picasso
+        ImageView profilePic = (ImageView) headerView.findViewById(R.id.profile_pic);
+        profilePic.setImageResource(R.drawable.arjun);
+
     }
 
     void setupMainToolbar() {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.inflateMenu(R.menu.action_bar_main);
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if(item.getItemId() == R.id.action_create_event){
-                    CreateEventFragment createEventFragment = new CreateEventFragment();
-
-                    removeSearchToolbar();
-                    // Add Event Details Fragment to fragment manager
-                    getSupportFragmentManager().beginTransaction()
-                            .show(createEventFragment)
-                            .replace(R.id.fragment_frame_layout, createEventFragment)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                            .addToBackStack(getString(R.string.fragment_create_event))
-                            .commit();
-                }
-                return false;
-            }
-        });
+        setSupportActionBar(toolbar);
 
     }
 
@@ -439,13 +437,27 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.dashboard, menu);
+        getMenuInflater().inflate(R.menu.action_bar_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_create_event) {
+            CreateEventFragment createEventFragment = new CreateEventFragment();
+
+            removeSearchToolbar();
+            // Add Event Details Fragment to fragment manager
+            this.getSupportFragmentManager().beginTransaction()
+                    .show(createEventFragment)
+                    .replace(R.id.fragment_frame_layout, createEventFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(getString(R.string.fragment_create_event))
+                    .commit();
+        }
+        // Must be left empty so onOptionsItemSelected will be called in subsequent fragments
         return super.onOptionsItemSelected(item);
+
     }
 
     @Override

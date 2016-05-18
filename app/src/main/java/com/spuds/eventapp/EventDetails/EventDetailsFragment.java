@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -14,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spuds.eventapp.CreateComment.CreateCommentFragment;
+import com.spuds.eventapp.CreateEvent.CreateEventFragment;
+import com.spuds.eventapp.InvitePeople.InvitePeopleFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Comment;
 import com.spuds.eventapp.Shared.Event;
@@ -38,6 +41,7 @@ public class EventDetailsFragment extends Fragment {
     TextView eventHost;
     TextView eventDescription;
     Button addComment;
+    Button invitePeople;
 
     // Reference to itself
     Fragment eventDetailsFragment;
@@ -90,6 +94,7 @@ public class EventDetailsFragment extends Fragment {
         eventHost = (TextView) view.findViewById(R.id.event_host);
         eventDescription = (TextView) view.findViewById(R.id.event_description);
         addComment = (Button) view.findViewById(R.id.button_add_comment);
+        invitePeople = (Button) view.findViewById(R.id.button_invite_people);
 
         //TODO: picasso for event pic
         eventName.setText(event.name);
@@ -125,6 +130,20 @@ public class EventDetailsFragment extends Fragment {
             }
         });
 
+        invitePeople.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ((MainActivity) getActivity()).addSearchToolbar();
+                InvitePeopleFragment invitePeopleFragment = new InvitePeopleFragment();
+                // Add Event Details Fragment to fragment manager
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_frame_layout, invitePeopleFragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack("fragment_invite_people")
+                        .commit();
+            }
+        });
     }
 
     void setUpComments(View view) {
@@ -158,4 +177,5 @@ public class EventDetailsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
+
 }
