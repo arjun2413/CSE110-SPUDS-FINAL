@@ -160,87 +160,13 @@
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:id="@+id/rv_categories"
-                android:background="#262626" >
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="#262626">
 
             </android.support.v7.widget.RecyclerView>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="Food"
-                android:id="@+id/food_cat"
-                android:background="@drawable/roundedbox"
-                android:textColor="#000000"
-                android:backgroundTint="#d1e0e0" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="Social"
-                android:id="@+id/social_cat"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/roundedbox"
-                android:textColor="#000000"
-                android:backgroundTint="#d1e0e0" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="Concerts"
-                android:id="@+id/concerts_cat"
-                android:background="@drawable/roundedbox"
-                android:textColor="#000000"
-                android:backgroundTint="#d1e0e0" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="Sports"
-                android:id="@+id/sports_cat"
-                android:background="@drawable/roundedbox"
-                android:textColor="#000000"
-                android:backgroundTint="#d1e0e0" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Campus Organizations"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/campus_cat"
-                android:background="@drawable/roundedbox"
-                android:textColor="#000000"
-                android:backgroundTint="#d1e0e0" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="Academic"
-                android:id="@+id/academic_cat"
-                android:background="@drawable/roundedbox"
-                android:textColor="#000000"
-                android:backgroundTint="#d1e0e0" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="Free"
-                android:id="@+id/free_cat"
-                android:background="@drawable/roundedbox"
-                android:textColor="#000000"
-                android:backgroundTint="#d1e0e0" />
 
             <Button
                 android:layout_width="match_parent"
