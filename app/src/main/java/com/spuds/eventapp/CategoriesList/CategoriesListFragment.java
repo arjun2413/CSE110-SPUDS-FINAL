@@ -5,12 +5,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.spuds.eventapp.CreateEvent.CreateEventFragment;
 import com.spuds.eventapp.FilteredCategoryFeed.CategoryFeedTabsFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
@@ -187,21 +185,4 @@ public class CategoriesListFragment extends Fragment {
                 .commit();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_create_event) {
-            CreateEventFragment createEventFragment = new CreateEventFragment();
-
-            ((MainActivity)getActivity()).removeSearchToolbar();
-            // Add Event Details Fragment to fragment manager
-            this.getFragmentManager().beginTransaction()
-                    .show(createEventFragment)
-                    .replace(R.id.fragment_frame_layout, createEventFragment)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .addToBackStack(getString(R.string.fragment_create_event))
-                    .commit();
-        }
-
-        return true;
-    }
 }
