@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.Shared.Subscription;
 
 import java.util.List;
@@ -68,7 +69,6 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
     @Override
     public void onBindViewHolder(SubViewHolder subViewHolder, int i) {
         final Subscription currentSub = subscriptions.get(i);
-        final SubViewHolder currentSubViewHolder = subViewHolder;
         subViewHolder.subName.setText(subscriptions.get(i).name);
 
         subViewHolder.subPhoto.setImageResource(subscriptions.get(i).photoId);
@@ -78,7 +78,7 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
         RoundedBitmapDrawable dr =
                 RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
         dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
-        currentSubViewHolder.subPhoto.setImageDrawable(dr);
+        subViewHolder.subPhoto.setImageDrawable(dr);
 
 
         subViewHolder.toggleFollow.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +112,7 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
 
                 profileFragment.setArguments(bundle);
 
+                ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
                 // Add Event Details Fragment to fragment manager
                 currentFragment.getFragmentManager().beginTransaction()
                         .show(profileFragment)

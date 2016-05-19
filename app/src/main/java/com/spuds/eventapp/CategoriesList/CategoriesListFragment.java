@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.spuds.eventapp.FilteredCategoryFeed.CategoryFeedTabsFragment;
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 
 
 public class CategoriesListFragment extends Fragment {
@@ -60,7 +61,7 @@ public class CategoriesListFragment extends Fragment {
             academicButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (type == null) {
-                        type = "academic";
+                        type = getString(R.string.cat_academic);
                     }
 
                     startFeed();
@@ -76,7 +77,7 @@ public class CategoriesListFragment extends Fragment {
             sportsButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (type== null) {
-                        type = "sports";
+                        type = getString(R.string.cat_sports);
                     }
 
                     startFeed();
@@ -92,7 +93,7 @@ public class CategoriesListFragment extends Fragment {
             socialButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (type == null) {
-                        type = "social";
+                        type = getString(R.string.cat_social);
                     }
 
                     startFeed();
@@ -108,7 +109,7 @@ public class CategoriesListFragment extends Fragment {
             freeButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (type == null) {
-                        type = "free";
+                        type = getString(R.string.cat_free);
                     }
 
                     startFeed();
@@ -124,7 +125,7 @@ public class CategoriesListFragment extends Fragment {
             foodButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (type == null) {
-                        type = "food";
+                        type = getString(R.string.cat_food);
                     }
 
                     startFeed();
@@ -140,7 +141,7 @@ public class CategoriesListFragment extends Fragment {
             concertsButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (type == null) {
-                        type = "concerts";
+                        type = getString(R.string.cat_concerts);
                     }
 
                     startFeed();
@@ -156,7 +157,7 @@ public class CategoriesListFragment extends Fragment {
             campusButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (type == null) {
-                        type = "campus";
+                        type = getString(R.string.cat_campus);
                     }
 
                     startFeed();
@@ -173,6 +174,9 @@ public class CategoriesListFragment extends Fragment {
         CategoryFeedTabsFragment categoryFeedTab = new CategoryFeedTabsFragment();
 
         categoryFeedTab.setArguments(category);
+
+        ((MainActivity) getActivity()).addSearchToolbar();
+        ((MainActivity) getActivity()).searchType = type;
         getFragmentManager().beginTransaction()
                 .show(categoryFeedTab)
                 .replace(R.id.fragment_frame_layout, categoryFeedTab)
@@ -180,4 +184,5 @@ public class CategoriesListFragment extends Fragment {
                 .addToBackStack(getString(R.string.fragment_category_feed))
                 .commit();
     }
+
 }

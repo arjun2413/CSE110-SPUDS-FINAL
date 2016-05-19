@@ -1,5 +1,6 @@
 package com.spuds.eventapp.SubscriptionsList;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -44,9 +45,10 @@ public class SubscriptionsListFragment extends Fragment {
         // fake data
 
         subscriptions = new ArrayList<>();
-        subscriptions.add(new Subscription("1", "Arjun", R.drawable.arjun, true));
+        subscriptions.add(new Subscription("1", "Arjune", R.drawable.arjun, true));
         subscriptions.add(new Subscription("1", "Jiggly", R.drawable.arjun, true));
-        subscriptions.add(new Subscription("1", "Joe", R.drawable.arjun, true));
+        subscriptions.add(new Subscription("1", "18uh", R.drawable.arjun, true));
+        subscriptions.add(new Subscription("1", "Jone Ayy Thin", R.drawable.arjun, true));
         subscriptions.add(new Subscription("1", "Kraken", R.drawable.arjun, true));
         subscriptions.add(new Subscription("1", "Regirock", R.drawable.arjun, true));
 
@@ -58,18 +60,19 @@ public class SubscriptionsListFragment extends Fragment {
         return v;
     }
     //TODO: Needs database to finish
-    public void refreshing(View view){
+    public void refreshing(View view) {
         SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         mySwipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
-
-                        // This method performs the actual data-refresh operation.
-                        // The method calls setRefreshing(false) when it's finished.
                     }
                 }
         );
+    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
     }
 
 }

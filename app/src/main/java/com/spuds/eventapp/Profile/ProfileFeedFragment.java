@@ -1,5 +1,6 @@
 package com.spuds.eventapp.Profile;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -65,5 +66,11 @@ public class ProfileFeedFragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
 
 }

@@ -41,6 +41,7 @@
         <activity android:name=".ForgotPasswordActivity.ForgotPasswordActivity" />
         <activity android:name=".SignUp.SignUpActivity" >
         </activity>
+        <activity android:name=".ResetPassword.ResetPasswordActivity"></activity>
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
     </application>
 

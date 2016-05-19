@@ -1,8 +1,12 @@
 package com.spuds.eventapp.Notifications;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +19,7 @@ import android.widget.TextView;
 import com.spuds.eventapp.EventDetails.EventDetailsFragment;
 import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.Shared.Notification;
 
 import java.util.List;
@@ -91,6 +96,7 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
 
                 profileFragment.setArguments(bundle);
 
+                ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
                 // Add Event Details Fragment to fragment manager
                 currentFragment.getFragmentManager().beginTransaction()
                         .show(profileFragment)
@@ -116,7 +122,12 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
                 noti.notificationType.equals(TYPE_REPLY)) {
 
             // TODO (M): Picasso for image using noti.picFileName
-            holder.picture.setImageResource(R.drawable.arjun);
+            //holder.picture.setImageResource(R.drawable.arjun);
+
+            Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.arjun);
+            RoundedBitmapDrawable dr = RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+            dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
+            holder.picture.setImageDrawable(dr);
 
             holder.picture.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -129,6 +140,7 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
 
                     profileFragment.setArguments(bundle);
 
+                    ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
                     // Add Event Details Fragment to fragment manager
                     currentFragment.getFragmentManager().beginTransaction()
                             .show(profileFragment)
@@ -161,7 +173,7 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
                 bundle.putString(currentFragment.getString(R.string.event_details), null);
                 eventDetailsFragment.setArguments(bundle);
 
-
+                ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
                 // Add Event Details Fragment to fragment manager
                 currentFragment.getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_frame_layout, eventDetailsFragment)

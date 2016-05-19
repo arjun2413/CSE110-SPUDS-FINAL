@@ -6,9 +6,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -54,7 +51,7 @@ public class HomeFeedTabsFragment extends Fragment {
         tabLayout.addTab(happeningNowFilter, 2);
 
 
-        //tabLayout.setTabTextColors(ContextCompat.getColorStateList(this, R.color.tab_selector));
+        //tabLayout.setTabTextColors(ContextCompat.getColorStateList(this, Color.WHITE));
         //tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.indicator));
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -86,24 +83,7 @@ public class HomeFeedTabsFragment extends Fragment {
         super.onDetach();
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.dashboard, menu);
 
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                // Not implemented here
-                return false;
-            default:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
 
 

@@ -33,6 +33,7 @@
     <string name="fragment_change_password">Change Password Fragment</string>
     <string name="fragment_create_event">Create Event Fragment</string>
 
+
     <string name="event_details_fragment">Event Details Fragment</string>
 
     <string name="event_details">Event Details</string>
@@ -73,5 +74,16 @@
     <string name="notification_type_reply">Reply Notification</string>
     <string name="notification_type_update">Update Notification</string>
     <string name="notification_type_invite">Invite Notification</string>
+
+    <string name="cat_academic">Academic Category</string>
+    <string name="cat_sports">Sports Category</string>
+    <string name="cat_social">Social Category</string>
+    <string name="cat_free">Free Category</string>
+    <string name="cat_food">Food Category</string>
+    <string name="cat_concerts">Concerts Category</string>
+    <string name="cat_campus">Campus Organizations Category</string>
+
+
+
 
 </resources>
