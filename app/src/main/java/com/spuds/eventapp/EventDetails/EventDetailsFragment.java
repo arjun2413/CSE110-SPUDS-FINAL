@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -80,9 +81,21 @@ public class EventDetailsFragment extends Fragment {
 
         setUpComments(view);
 
+        //call refreshing function
+        refreshing(view);
         return view;
     }
-
+    //TODO: Needs database to finish
+    public void refreshing(View view) {
+        SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+        mySwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                    }
+                }
+        );
+    }
     void setUpEventInformation(View view) {
 
         eventPic = (ImageView) view.findViewById(R.id.event_pic);

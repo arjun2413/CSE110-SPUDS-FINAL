@@ -55,6 +55,7 @@ public class SubscriptionsListFragment extends Fragment {
         adapter = new SubscriptionsListRVAdapter(subscriptions, this);
         rv.setAdapter(adapter);
 
+        //calls the function to refresh the page.
         refreshing(v);
 
         return v;
