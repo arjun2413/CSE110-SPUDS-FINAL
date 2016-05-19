@@ -29,7 +29,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         ImageView eventPic;
         TextView eventName;
         TextView eventLocation;
-        TextView eventDate;
+
         TextView eventAttendees;
         TextView eventCategories;
         TextView eventHost;
@@ -42,7 +42,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             eventPic = (ImageView) itemView.findViewById(R.id.event_pic);
             eventName = (TextView) itemView.findViewById(R.id.event_name);
             eventLocation = (TextView) itemView.findViewById(R.id.event_loc);
-            eventDate = (TextView) itemView.findViewById(R.id.event_date);
+
             eventAttendees = (TextView) itemView.findViewById(R.id.event_attendees);
             eventCategories = (TextView) itemView.findViewById(R.id.event_categories);
             eventHost = (TextView) itemView.findViewById(R.id.event_host);
@@ -91,7 +91,6 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             ((ViewManager)eventViewHolder.eventPic.getParent()).removeView(eventViewHolder.eventPic);
             ((ViewManager)eventViewHolder.eventName.getParent()).removeView(eventViewHolder.eventName);
             ((ViewManager)eventViewHolder.eventLocation.getParent()).removeView(eventViewHolder.eventLocation);
-            ((ViewManager)eventViewHolder.eventDate.getParent()).removeView(eventViewHolder.eventDate);
             ((ViewManager)eventViewHolder.eventAttendees.getParent()).removeView(eventViewHolder.eventAttendees);
             ((ViewManager)eventViewHolder.eventCategories.getParent()).removeView(eventViewHolder.eventCategories);
             ((ViewManager)eventViewHolder.monthDate.getParent()).removeView(eventViewHolder.monthDate);
@@ -126,7 +125,6 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         /* Picasso for eventPic*/
         eventViewHolder.eventName.setText(events.get(i).name);
         eventViewHolder.eventLocation.setText(events.get(i).location);
-        eventViewHolder.eventDate.setText(events.get(i).date);
         eventViewHolder.eventAttendees.setText(String.valueOf(events.get(i).attendees));
 
         if (events.get(i).categTwo != null)
