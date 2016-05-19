@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +15,6 @@ import android.widget.ImageView;
 import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.CategoryTextButton;
-import com.spuds.eventapp.Shared.Subscription;
-import com.spuds.eventapp.SubscriptionsList.SubscriptionsListRVAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,15 +58,14 @@ public class CreateEventFragment extends Fragment {
 
 
     protected void setupWindow() {
-        /*
-        final EventsFirebase eventsFirebase = new EventsFirebase();
+        final EventsFirebase eventsFirebase = new EventsFirebase(null, 0, null);
         editEventDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CreateEventForm form = makeForm();
 
                 boolean addImage = false;
-        */
+
                 /* TODO get the image of the event
                 Matrix uploadedEventImage = eventImage.getImageMatrix()
 
@@ -78,7 +74,7 @@ public class CreateEventFragment extends Fragment {
                 }
                 */
 
-        /*
+
                 if (form.allFilled()) {
                     // TODO send to database the event details (in a method)
                     if (addImage) {
@@ -92,7 +88,6 @@ public class CreateEventFragment extends Fragment {
                 }
             }
         });
-        */
     }
 
     public CreateEventFragment() {

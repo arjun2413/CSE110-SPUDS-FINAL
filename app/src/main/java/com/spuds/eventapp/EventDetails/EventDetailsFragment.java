@@ -99,19 +99,19 @@ public class EventDetailsFragment extends Fragment {
         invitePeople = (Button) view.findViewById(R.id.button_invite_people);
 
         //TODO: picasso for event pic
-        eventName.setText(event.eventName);
-        eventLocation.setText(event.location);
-        eventDate.setText(event.date);
-        eventAttendees.setText(String.valueOf(event.attendees));
-        eventHost.setText(event.hostName);
-        eventDescription.setText(event.description);
+        eventName.setText(event.getEventName());
+        eventLocation.setText(event.getLocation());
+        eventDate.setText(event.getDate());
+        eventAttendees.setText(String.valueOf(event.getAttendees()));
+        eventHost.setText(event.getHostName());
+        eventDescription.setText(event.getDescription());
 
         // Categories
         String categories = "";
-        for (int i = 0; i < event.categories.size() - 1; ++i) {
-            categories += event.categories.get(i) + ",";
+        for (int i = 0; i < event.getCategories().size() - 1; ++i) {
+            categories += event.getCategories().get(i) + ", ";
         }
-        categories += event.categories.get(event.categories.size() - 1);
+        categories += event.getCategories().get(event.getCategories().size() - 1);
 
         eventCategories.setText(categories);
 

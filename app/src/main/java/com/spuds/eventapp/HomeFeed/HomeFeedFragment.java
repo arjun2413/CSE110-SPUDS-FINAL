@@ -18,13 +18,13 @@ import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HomeFeedFragment extends Fragment {
 
-    private List<Event> events;
+    private ArrayList<Event> events;
     public EventsFeedRVAdapter adapter;
     String tabType;
+
 
     public HomeFeedFragment() {
     }
@@ -36,20 +36,19 @@ public class HomeFeedFragment extends Fragment {
         Bundle extras = getArguments();
         tabType = extras.getString(getString(R.string.tab_tag));
 
+        events = new ArrayList<>();
+
         // TODO (M): Get arraylist of events based on tab type [new, hot, now]
         // Fake data
-        EventsFirebase ef = new EventsFirebase();
+        EventsFirebase ef = new EventsFirebase(events, 0, tabType);
         ef.createEL();
 
-        events = new ArrayList<>();
-        ArrayList<String> categories = new ArrayList<>();
-        categories.add("Social");
-        categories.add("Concert");
 
-        events.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04.29.16", 1054,
+
+        /*events.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04.29.16", 1054,
                 "yj.jpg", categories, "UCSD"));
         events.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04.28.16", 51,
-                "foosh.jpg", categories, "Foosh Improv Comedy Club"));
+                "foosh.jpg", categories, "Foosh Improv Comedy Club"));*/
     }
 
     @Override
