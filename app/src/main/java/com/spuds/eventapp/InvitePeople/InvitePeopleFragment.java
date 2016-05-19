@@ -2,6 +2,7 @@ package com.spuds.eventapp.InvitePeople;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -58,7 +59,20 @@ public class InvitePeopleFragment extends Fragment {
         adapter = new InvitePeopleRVAdapter(followers, invited, this);
         rv.setAdapter(adapter);
 
+        //calling refresh function
+        refreshing(view);
         return view;
+    }
+    //TODO: Needs database to finish
+    public void refreshing(View view) {
+        SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+        mySwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                    }
+                }
+        );
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
