@@ -126,15 +126,19 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         /* Picasso for eventPic*/
         eventViewHolder.
                 eventName.
-                setText(events.get(i).name);
+                setText(events.get(i).eventName);
         eventViewHolder.eventLocation.setText(events.get(i).location);
         eventViewHolder.eventDate.setText(events.get(i).date);
         eventViewHolder.eventAttendees.setText(String.valueOf(events.get(i).attendees));
 
-        if (events.get(i).categTwo != null)
-            eventViewHolder.eventCategories.setText(events.get(i).categOne + ", " + events.get(i).categTwo);
-        else
-            eventViewHolder.eventCategories.setText(events.get(i).categOne);
+        // Categories
+        String categories = "";
+        for (int index = 0; index < events.get(index).categories.size() - 1; ++index) {
+            categories += events.get(i).categories.get(index) + ",";
+        }
+        categories += events.get(i).categories.get(events.get(i).categories.size() - 1);
+
+        eventViewHolder.eventCategories.setText(categories);
 
         final int test = i;
 

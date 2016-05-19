@@ -9,7 +9,6 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -164,13 +163,16 @@ public class ProfileFragment extends Fragment {
         eventsHostingRV.setHasFixedSize(true);
 
         // TODO (M): Get first three events for events hosting
+        ArrayList<String> categories = new ArrayList<>();
+        categories.add("Social");
+        categories.add("Concert");
         eventsHosting = new ArrayList<>();
-        eventsHosting.add(new Event("1", "yj.jpg", "Sun God Festival", "RIMAC Field", "04.29.16", 1054,
-                "Social", "Concert", "UCSD", "spr lame"));
-        eventsHosting.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "04.28.16", 51,
-                "Social", null, "Foosh Improv Comedy Club", "spr funny"));
-        eventsHosting.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "04.28.16", 51,
-                "Social", null, "Foosh Improv Comedy Club", "spr funny"));
+        eventsHosting.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04.29.16", 1054,
+                "yj.jpg", categories, "UCSD"));
+        eventsHosting.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04.28.16", 51,
+                "foosh.jpg", categories, "Foosh Improv Comedy Club"));
+        eventsHosting.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04.28.16", 51,
+                "foosh.jpg", categories, "Foosh Improv Comedy Club"));
         eventsHosting.add(null);
 
         EventsFeedRVAdapter eventsFeedRVAdapterHosting = new EventsFeedRVAdapter(eventsHosting, this, getString(R.string.fragment_profile), getString(R.string.tab_hosting), user.userId);
@@ -184,12 +186,14 @@ public class ProfileFragment extends Fragment {
 
         // TODO (M): Get first three events for events going
         eventsGoing = new ArrayList<>();
-        eventsGoing.add(new Event("1", "yj.jpg", "Sun God Festival", "RIMAC Field", "04.29.16", 1054,
-                "Social", "Concert", "UCSD", "spr lame"));
-        eventsGoing.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "04.28.16", 51,
-                "Social", null, "Foosh Improv Comedy Club", "spr funny"));
-        eventsGoing.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "04.28.16", 51,
-                "Social", null, "Foosh Improv Comedy Club", "spr funny"));
+
+
+        eventsGoing.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04.29.16", 1054,
+                "yj.jpg", categories, "UCSD"));
+        eventsGoing.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04.28.16", 51,
+                "foosh.jpg", categories, "Foosh Improv Comedy Club"));
+        eventsGoing.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04.28.16", 51,
+                "foosh.jpg", categories, "Foosh Improv Comedy Club"));
         eventsGoing.add(null);
 
         EventsFeedRVAdapter eventsFeedRVAdapterGoing = new EventsFeedRVAdapter(eventsGoing, this, getString(R.string.fragment_profile), getString(R.string.tab_going), user.userId);

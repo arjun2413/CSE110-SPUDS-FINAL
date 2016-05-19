@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,10 +38,14 @@ public class CategoryFeedFragment extends Fragment {
         // TODO (M): Get arraylist of events based on tab type & category filter
         // Fake data
         events = new ArrayList<>();
-        events.add(new Event("1", "yj.jpg", "Sun God Festival", "RIMAC Field", "04.29.16", 1054,
-                "Social", "Concert", "UCSD", "spr lame"));
-        events.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "04.28.16", 51,
-                "Social", null, "Foosh Improv Comedy Club", "spr funny"));
+        ArrayList<String> categories = new ArrayList<>();
+        categories.add("Social");
+        categories.add("Concert");
+
+        events.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04.29.16", 1054,
+                "yj.jpg", categories, "UCSD"));
+        events.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04.28.16", 51,
+                "foosh.jpg", categories, "Foosh Improv Comedy Club"));
     }
 
     @Override
