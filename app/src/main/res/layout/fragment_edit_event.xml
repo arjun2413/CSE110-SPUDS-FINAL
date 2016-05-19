@@ -28,7 +28,10 @@
                 android:layout_height="150dp"
                 android:id="@+id/eventImage"
                 android:src="@drawable/upload"
-                android:backgroundTint="#bfbfbf" />
+                android:backgroundTint="#bfbfbf"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"

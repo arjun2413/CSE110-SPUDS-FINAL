@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity
         name.setText(string);
         // TODO (M): Use picasso
         ImageView profilePic = (ImageView) headerView.findViewById(R.id.profile_pic);
-        profilePic.setImageResource(R.drawable.arjun);
+        //profilePic.setImageResource(R.drawable.arjun);
 
     }
 
