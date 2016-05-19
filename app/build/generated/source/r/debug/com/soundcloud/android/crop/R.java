@@ -15,9 +15,9 @@ public final class R {
 		public static final int showThirds = 0x7f0100be;
 	}
 	public static final class color {
-		public static final int crop__button_bar = 0x7f0c001a;
-		public static final int crop__button_text = 0x7f0c001b;
-		public static final int crop__selector_focused = 0x7f0c001c;
+		public static final int crop__button_bar = 0x7f0c001b;
+		public static final int crop__button_text = 0x7f0c001c;
+		public static final int crop__selector_focused = 0x7f0c001d;
 		public static final int crop__selector_pressed = 0x7f0c0000;
 	}
 	public static final class dimen {

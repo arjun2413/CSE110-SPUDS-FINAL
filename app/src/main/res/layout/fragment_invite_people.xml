@@ -1,0 +1,48 @@
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.spuds.eventapp.InvitePeople.InvitePeopleFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="126dp"
+        android:layout_gravity="left|top">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/user_image"
+            android:background="#bfbfbf"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/reggie" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Reggie Wu"
+            android:id="@+id/user_name"
+            android:layout_marginLeft="10dp"
+
+            android:layout_marginTop="45dp"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:id="@+id/user_invite"
+        android:background="#bfbfbf"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="45dp"
+        android:layout_gravity="right|top" />
+
+</FrameLayout>

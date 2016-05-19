@@ -1,98 +1,177 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Profile.ProfileFragment">
+    tools:context=".Profile.ProfileFragment"
+    android:background="#94b8b8">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal|top">
+        android:layout_gravity="right|center_vertical"
+        android:background="#0d1c28">
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/user_image"
-            android:layout_gravity="center_horizontal"
-            android:background="#000000" />
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Christine Wu"
-                android:id="@+id/user_name"
-                 />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="123dp"
+            android:weightSum="1">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:id="@+id/user_verified"
-                android:layout_toRightOf="@id/user_name"
-                android:background="#000000" />
-        </RelativeLayout>
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:id="@+id/user_image"
+                android:background="#bfbfbf"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="1">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="66dp"
+                    android:background="#0d1c28"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#8c8c8c"
+
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="100"
+                        android:id="@+id/user_number_following"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Subscribers"
+                        android:layout_below="@id/user_number_following"
+                        android:id="@+id/label_user_number_following"
+                        android:textColor="#ffffff"
+                        android:layout_marginLeft="10dp"/>
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="100"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/user_number_hosting"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Hosted Events"
+                        android:id="@+id/label_user_number_hosting"
+                        android:layout_below="@+id/user_number_hosting"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="#ffffff"
+                        android:layout_marginRight="10dp"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#8c8c8c"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="Subscribe"
+                    android:id="@+id/button_subscribe"
+                    android:backgroundTint="#ffffff"
+                    android:layout_weight="0.93"
+                    android:background="#ffffff"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button_subscribe"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/roundedbutton"/>
+            android:background="#0d1c28">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="98"
-                android:id="@+id/user_number_following"
-                android:textStyle="bold" />
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_marginTop="10dp"
+                    android:text="Christine Wu"
+                    android:id="@+id/user_name"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Subscribers"
-                android:layout_below="@id/user_number_following"
-                android:id="@+id/label_user_number_following"
-                android:textStyle="bold" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/user_verified"
+                    android:layout_toRightOf="@id/user_name"
+                    android:layout_marginTop="10dp"
+                    android:background="#ffffff" />
+            </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="10"
-                android:layout_alignParentRight="true"
-                android:id="@+id/user_number_hosting"
-                android:textStyle="bold" />
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Hosted Events"
-                android:id="@+id/label_user_number_hosting"
-                android:textStyle="bold"
-                android:layout_below="@+id/user_number_hosting"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-
-        </RelativeLayout>
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="WOW CHRISTINE IS SO COOL OWOOWOWOWWWOWOWOWOWOWOWOWOWOWOWWOWOWOW"
+                android:id="@+id/user_description"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Events Hosting"
+            android:text="EVENTS HOSTING"
             android:id="@+id/label_events_hosting"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:textColor="#ffffff" />
 
         <android.support.v7.widget.RecyclerView
             android:layout_height="wrap_content"
@@ -105,9 +184,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Events Going"
+            android:text="EVENTS GOING"
             android:id="@+id/label_events_going"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#ffffff" />
 
         <android.support.v7.widget.RecyclerView
             android:layout_height="wrap_content"
@@ -116,4 +196,5 @@
 
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>
-</ScrollView>
+
+</FrameLayout>
