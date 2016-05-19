@@ -44,7 +44,7 @@ public class HomeFeedFragment extends Fragment {
         EventsFirebase ef = new EventsFirebase();
         ef.createEL();
 
-        events.add(new Event("1", "yj.jpg", "Sun God Festival", "RIMAC Field", "04.29.16", 1054, 
+        events.add(new Event("1", "yj.jpg", "Sun God Festival", "RIMAC Field", "04.29.16", 1054,  
                 "Social", "Concert", "UCSD", "spr lame"));
         events.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "04.28.16", 51,
                "Social", null, "Foosh Improv Comedy Club", "spr funny"));
