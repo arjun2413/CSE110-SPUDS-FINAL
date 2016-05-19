@@ -108,11 +108,12 @@ public class LoginActivity extends AppCompatActivity {
                  */
                     //email and password match and are correct
                     //Switch to the Main Activity
-                    //else{
+                    //
+                    else{
                     //TODO:
                     //Pass through an id of the user [coding decision: should we pass image first and last name?]
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    //}
+                    }
                 }
             });
 

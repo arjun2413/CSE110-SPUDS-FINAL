@@ -2,6 +2,7 @@ package com.spuds.eventapp.SubscriptionsList;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -52,9 +53,23 @@ public class SubscriptionsListFragment extends Fragment {
         adapter = new SubscriptionsListRVAdapter(subscriptions, this);
         rv.setAdapter(adapter);
 
+        refreshing(v);
+
         return v;
     }
+    //TODO: Needs database to finish
+    public void refreshing(View view){
+        SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+        mySwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
 
-
+                        // This method performs the actual data-refresh operation.
+                        // The method calls setRefreshing(false) when it's finished.
+                    }
+                }
+        );
+    }
 
 }

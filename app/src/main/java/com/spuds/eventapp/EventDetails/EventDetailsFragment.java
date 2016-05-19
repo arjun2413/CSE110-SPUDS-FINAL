@@ -144,7 +144,7 @@ public class EventDetailsFragment extends Fragment {
 
         // Create adapter for comments
         adapter = new CommentsRVAdapter(comments, this);
-        // Attach adpater to RecyclerView
+        // Attach adapter to RecyclerView
         rv.setAdapter(adapter);
     }
 
