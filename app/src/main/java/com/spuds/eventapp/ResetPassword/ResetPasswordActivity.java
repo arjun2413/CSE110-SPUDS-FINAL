@@ -1,5 +1,6 @@
 package com.spuds.eventapp.ResetPassword;
 
+import android.accounts.Account;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     private EditText input;
     private Button send;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Firebase.setAndroidContext(this);
@@ -34,7 +36,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AccountFirebase accountFirebase = new AccountFirebase();
+                final AccountFirebase accountFirebase = new AccountFirebase();
                 //TODO: move error checking logic to model file.
                 //Logic:
                 //      1. check if all fields are entered.
@@ -43,33 +45,70 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 //      5. show snackbar on success or error message accordingly, but ignore number 4
                 String message = "";
                 if(input.getText().length() > 0){
-                    String email = input.getText().toString();
-                    String valid = "@ucsd.edu";
+                    final int[] check = new int[1];
+                    check[0] = 0;
+
+                    final String email = input.getText().toString();
+                    final String valid = "@ucsd.edu";
                     //TODO: ERROR MESSAGE IMPLEMENTATION
-                    if(!email.endsWith(valid)){
-                        message = "Please enter a valid @ucsd.edu email";
-                    }
-                    else{
-                        //TODO: check database
-                        boolean check = accountFirebase.checkEmail(email);
 
-                        if(check){
-                            //Email is a valid email
-                            //have firebase send email.
-                            accountFirebase.resetPass(input.getText().toString());
-                            startActivity(new Intent(ResetPasswordActivity.this, LoginActivity.class));
+                    //TODO: here we are playing with threads!
+                    class myThread2 implements Runnable{
+                        public String emailCheck;
+                        public String isValid;
+                        public AccountFirebase af;
+
+                        public myThread2 (String one, String two, AccountFirebase red){
+                            emailCheck = one;
+                            isValid = two;
+                            af = red;
                         }
-                        else{
-                            message = "That email was not found";
+                        @Override
+                        public void run() {
+                            int counter = 0;
+                            System.out.println("thread2 start");
+                            check[0] = accountFirebase.getThreadCheck();
+                            //wait for query
+                            while (check[0] == 0) {
+                                if (counter > 50) {
+                                    System.out.println("ERROR TIME OUT");
+                                    break;
+                                }
+                                try {
+                                    System.out.println("I slept for " + counter);
+                                    Thread.sleep(100);
+                                    counter++;
+                                    check[0] = accountFirebase.getThreadCheck();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                            if (emailCheck.endsWith(isValid)){
+                                if (check[0] == 1) {
+                                    af.resetPass(emailCheck);
+                                    startActivity(new Intent(ResetPasswordActivity.this, LoginActivity.class));
+                                }
+                                else System.out.println("FAILED");
+                            }
+                            System.out.println("int check status is: " + check[0]);
+                            System.out.println("thread2 has finished");
                         }
                     }
 
-                }
-                else{
-                    message = "Please fill in all fields";
-                }
 
-                //TODO: display the message of success/failure somehow
+                    Runnable r2 = new myThread2(email, valid, accountFirebase);
+                    Thread cool2 = new Thread(r2);
+
+                    if (email.endsWith(valid)) {
+                        accountFirebase.checkEmail(email);
+                        cool2.start();
+                    }
+                    else {
+                        //TODO error invalid email
+                        //"Enter a valid ucsd.edu email
+                    }
+                }
             }
         });
     }

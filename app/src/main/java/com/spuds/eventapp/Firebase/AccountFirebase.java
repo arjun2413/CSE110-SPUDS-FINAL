@@ -12,6 +12,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
+import com.firebase.client.ValueEventListener;
 import com.spuds.eventapp.ChangePassword.ChangePasswordForm;
 
 import java.util.HashMap;
@@ -21,7 +22,8 @@ import java.util.Map;
  * Created by Arjun on 5/5/16.
  */
 public class AccountFirebase {
-    private boolean check;
+    private int threadCheck = 0;
+    //private Query queryRef;
     public void createAccount(final String email, String password, final String name) {
 
 
@@ -53,7 +55,7 @@ public class AccountFirebase {
     }
     public int status = 0;
     public void logIn(String email, String password) {
-
+        status = 0;
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
 
         ref.authWithPassword(email, password, new Firebase.AuthResultHandler() {
@@ -126,47 +128,43 @@ public class AccountFirebase {
         String data = (String) ref.getAuth().getProviderData().get("email");
         return data;
     }
-    public boolean checkEmail(final String email) {
+    public void checkEmail(final String email) {
+        threadCheck = 0;
         Firebase ref = new Firebase("https://eventory.firebaseio.com/users");
-        Query queryRef = ref.orderByKey();
+        Query queryRef = ref.orderByChild("Email").startAt(email).endAt(email);
+        System.out.println(queryRef);
 //        Firebase ref = new Firebase("https://dinosaur-facts.firebaseio.com/dinosaurs");
 //        Query queryRef = ref.orderByKey();
-        System.out.println("CHECK+");
-        check = false;
 
-        //https://www.firebase.com/docs/android/guide/saving-data.html
-        queryRef.addChildEventListener(new ChildEventListener() {
+        //https://www.firebase.com/docs/android/guide/retrieving-data.html
+        queryRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot snapshot, String previousChild) {
-                //checks each value to see if email is in database
-                if (email == snapshot.getKey()) {
-                    check = true;
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    threadCheck = 1;
+                    System.out.println("FOUND");
+                }
+                else {
+                    threadCheck = 2;
+                    System.out.println("NOTFOUND");
                 }
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                System.out.println("CHECK3");
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                System.out.println("CHECK4");
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-                System.out.println("CHECK5");
-            }
-
-            @Override
             public void onCancelled(FirebaseError firebaseError) {
-                System.out.println("WHY" + firebaseError.getMessage());
+
             }
+
+
             // ....
         });
-        return check;
-    }
 
+
+        //System.out.println(status + " | " + threadCheck);
+        //return threadCheck;
+    }
+    public int getThreadCheck() {
+        return threadCheck;
+    }
 
 }
