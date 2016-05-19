@@ -63,6 +63,12 @@
                     android:shadowDx="10"
                     android:shadowDy="10"
                     android:shadowRadius="10"/>
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/transparent_overlay"
+                    android:background="#80FFFFFF" />
             </RelativeLayout>
 
             <LinearLayout
