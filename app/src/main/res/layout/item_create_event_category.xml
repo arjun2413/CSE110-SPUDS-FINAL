@@ -3,30 +3,32 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="0dp"
     android:id="@+id/cv">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="#d1e0e0">
 
         <cn.refactor.library.SmoothCheckBox
             android:id="@+id/category_scb"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_margin="5dp"
-            app:color_checked="@color/colorAccent" />
+            app:color_checked="@color/pastelGreen" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/category_text"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/category_scb"
             android:layout_toEndOf="@+id/category_scb"
-            android:layout_marginLeft="25dp"
-            android:layout_marginStart="25dp" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
 
 
     </RelativeLayout>

@@ -123,7 +123,9 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         }
 
         /* Picasso for eventPic*/
-        eventViewHolder.eventName.setText(events.get(i).name);
+        eventViewHolder.
+                eventName.
+                setText(events.get(i).name);
         eventViewHolder.eventLocation.setText(events.get(i).location);
         eventViewHolder.eventAttendees.setText(String.valueOf(events.get(i).attendees));
 

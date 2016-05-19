@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
@@ -39,16 +40,14 @@ public class HomeFeedFragment extends Fragment {
         // TODO (M): Get arraylist of events based on tab type [new, hot, now]
         // Fake data
         events = new ArrayList<>();
-        events.add(new Event("1", "yj.jpg", "Sun God Festival", "RIMAC Field", "April 30, 2016", 1054,
+
+        EventsFirebase ef = new EventsFirebase();
+        ef.createEL();
+
+        events.add(new Event("1", "yj.jpg", "Sun God Festival", "RIMAC Field", "04.29.16", 1054,  
                 "Social", "Concert", "UCSD", "spr lame"));
-        events.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "January 1, 2016", 51,
-                "Social", null, "Foosh Improv Comedy Club", "spr funny"));
-        events.add(new Event("3", "foosh.jpg", "Christine Wu Birthday Party", "Apt 121", "May 6, 2016", 51,
-                "Social", null, "Christine Wu", "wow so cool"));
-        events.add(new Event("4", "foosh.jpg", "Reggie Wu GBM #1", "Reggie's Apartment", "June 17, 2016", 60,
-                "Social", "Academic", "Reggie's Fan Club", "wow reggie is so cool"));
-        events.add(new Event("5", "foosh.jpg", "Karaoke Party", "Karoke 101", "July 30, 2016", 405,
-                "Social", "Food", "TASA", "wow so fun"));
+        events.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "04.28.16", 51,
+               "Social", null, "Foosh Improv Comedy Club", "spr funny"));
     }
 
     @Override

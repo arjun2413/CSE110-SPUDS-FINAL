@@ -2,36 +2,31 @@
 <instant-run
     abi="x86"
     api-level="23"
-    density="560dpi"
+    density="420dpi"
     format="7"
-    timestamp="13786295108396" >
+    timestamp="1463628575746815000" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="4392" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="2085" />
     <task
         name="verifier"
-        duration="0" />
+        duration="461" />
 
     <artifact
-        location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/resources-debug.ap_"
-        type="RESOURCES" />
+        location="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
+        type="MAIN" />
 
-    <build timestamp="13545946934240" >
+    <build timestamp="1463628575746815000" >
         <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
+            location="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
             type="MAIN" />
-    </build>
-    <build timestamp="13786295108396" >
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/resources-debug.ap_"
-            type="RESOURCES" />
     </build>
 
 </instant-run>
