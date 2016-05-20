@@ -84,7 +84,7 @@ public class EventsFirebase {
                 queryRef = myFirebaseRef.orderByChild("number_going");
                 break;
             case tabNow:
-                // TODO
+                queryRef = myFirebaseRef.orderByChild("date");
                 break;
             case tabGoing:
                 break;
@@ -145,9 +145,12 @@ public class EventsFirebase {
 
                 newEvent.setCategories(categories);
 
-
-                eventsList.add(newEvent);
-
+                if(filter.equals(tabHot)) {
+                    eventsList.add(0, newEvent);
+                }
+                else {
+                    eventsList.add(newEvent);
+                }
             }
 
             @Override
