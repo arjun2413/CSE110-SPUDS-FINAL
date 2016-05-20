@@ -55,7 +55,7 @@ public class Notification {
         this.picFileName = picFileName;
         this.host = host;
         this.date = date;
-        this.eventName  = "in " + eventName;
+        this.eventName  = eventName;
         this.commentDescription = "\"" + commentDescription + "\"";
 
         updateActionText();

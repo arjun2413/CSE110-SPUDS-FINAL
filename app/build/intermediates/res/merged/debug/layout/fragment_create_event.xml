@@ -59,7 +59,8 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/roundedbox"
-                android:backgroundTint="#d1e0e0" />
+                android:backgroundTint="#d1e0e0"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -81,7 +82,8 @@
                 android:ems="10"
                 android:id="@+id/eventDate"
                 android:background="@drawable/roundedbox"
-                android:backgroundTint="#d1e0e0" />
+                android:backgroundTint="#d1e0e0"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -108,13 +110,16 @@
                     android:ems="10"
                     android:id="@+id/eventTime"
                     android:background="@drawable/roundedbox"
-                    android:backgroundTint="#d1e0e0" />
+                    android:backgroundTint="#d1e0e0"
+                    android:paddingLeft="10dp"/>
 
                 <Spinner
                     android:layout_width="wrap_content"
-                    android:layout_height="47dp"
+                    android:layout_height="23dp"
                     android:id="@+id/spinner"
-                    android:spinnerMode="dropdown" />
+                    android:spinnerMode="dropdown"
+                    android:backgroundTint="#d1e0e0"
+                    android:background="#d1e0e0" />
             </LinearLayout>
 
             <TextView
@@ -126,7 +131,8 @@
                 android:layout_marginTop="10dp"
                 android:text="Location *"
                 android:id="@+id/location"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                />
 
             <EditText
                 android:layout_width="match_parent"
@@ -135,7 +141,8 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/roundedbox"
-                android:backgroundTint="#d1e0e0" />
+                android:backgroundTint="#d1e0e0"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -155,7 +162,8 @@
                 android:layout_marginLeft="10dp"
                 android:id="@+id/eventDescription"
                 android:background="@drawable/roundedbox"
-                android:backgroundTint="#d1e0e0" />
+                android:backgroundTint="#d1e0e0"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"

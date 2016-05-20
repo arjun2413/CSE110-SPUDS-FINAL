@@ -62,7 +62,8 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/roundedbox"
-                android:backgroundTint="#d1e0e0" />
+                android:backgroundTint="#d1e0e0"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -84,7 +85,8 @@
                 android:ems="10"
                 android:id="@+id/eventDate"
                 android:background="@drawable/roundedbox"
-                android:backgroundTint="#d1e0e0" />
+                android:backgroundTint="#d1e0e0"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -111,7 +113,8 @@
                     android:ems="10"
                     android:id="@+id/eventTime"
                     android:background="@drawable/roundedbox"
-                    android:backgroundTint="#d1e0e0" />
+                    android:backgroundTint="#d1e0e0"
+                    android:paddingLeft="10dp"/>
 
                 <Spinner
                     android:layout_width="wrap_content"
@@ -138,7 +141,8 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/roundedbox"
-                android:backgroundTint="#d1e0e0" />
+                android:backgroundTint="#d1e0e0"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -158,7 +162,8 @@
                 android:layout_marginLeft="10dp"
                 android:id="@+id/eventDescription"
                 android:background="@drawable/roundedbox"
-                android:backgroundTint="#d1e0e0" />
+                android:backgroundTint="#d1e0e0"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
