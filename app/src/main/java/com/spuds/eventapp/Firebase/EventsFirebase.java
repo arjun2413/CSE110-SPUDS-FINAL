@@ -1,5 +1,6 @@
 package com.spuds.eventapp.Firebase;
 
+import android.text.format.Time;
 import android.util.Log;
 
 import com.firebase.client.ChildEventListener;
@@ -11,6 +12,8 @@ import com.spuds.eventapp.CreateEvent.CreateEventForm;
 import com.spuds.eventapp.Shared.Event;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,10 +37,14 @@ public class EventsFirebase {
     public static final String catCampus = "Campus Category";
 
 
-
     ArrayList<Event> eventsList;
     String filter;
     int loading;
+
+    public EventsFirebase() {
+
+    }
+
 
     public EventsFirebase(ArrayList<Event> eventsList, int loading, String filter) {
         this.eventsList = eventsList;
@@ -45,7 +52,7 @@ public class EventsFirebase {
         this.loading = loading;
     }
 
-    public void createEvent(CreateEventForm form){
+    public void createEvent(CreateEventForm form) {
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
         Map<String, String> map = new HashMap<String, String>();
         map.put("user_id", ref.getAuth().getUid());
@@ -55,21 +62,21 @@ public class EventsFirebase {
         map.put("date", form.getDate());
         map.put("number_going", "1");
         map.put("picture_file_name", "event.jpg");
-        map.put("created_at", "08:00");
+        map.put("created_at", "8:00pm");
         ref.child("events").push().setValue(map);
     }
 
-    public void editEvent(){
+    public void editEvent() {
 
     }
 
     Event item;
 
-    public Event createEL(){
+    public Event createEL() {
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
         Query queryRef = myFirebaseRef.orderByKey();
 
-        switch(filter) {
+        switch (filter) {
             case tabNew:
                 //queryRef = myFirebaseRef.orderByChild("create_at");
                 break;
@@ -103,7 +110,7 @@ public class EventsFirebase {
             @Override
             public void onChildAdded(DataSnapshot snapshot, String previousChild) {
                 Event newEvent = new Event();
-                for(DataSnapshot child: snapshot.getChildren()) {
+                for (DataSnapshot child : snapshot.getChildren()) {
                     switch (child.getKey()) {
                         case "date":
                             newEvent.setDate(String.valueOf(child.getValue()));
@@ -118,7 +125,7 @@ public class EventsFirebase {
                             newEvent.setLocation(String.valueOf(child.getValue()));
                             break;
                         case "number_going":
-                            newEvent.setAttendees(Integer.parseInt((String)child.getValue()));
+                            newEvent.setAttendees(Integer.parseInt((String) child.getValue()));
                             break;
                         case "picture_file_name":
                             newEvent.setPicFileName(String.valueOf(child.getValue()));
@@ -166,4 +173,52 @@ public class EventsFirebase {
         return item;
     }
 
+    public Event getEventDetails(final String eventID) {
+        final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
+        Query queryRef = myFirebaseRef.orderByKey();
+        queryRef.addChildEventListener(new ChildEventListener() {
+            Event newEvent = new Event();
+
+            @Override
+            public void onChildAdded(DataSnapshot snapshot, String previousChild) {
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    if (child.getValue() == eventID) {
+                        newEvent.setDate(String.valueOf(child.getValue()));
+                        newEvent.setDescription(String.valueOf(child.getValue()));
+                        newEvent.setEventName(String.valueOf(child.getValue()));
+                        newEvent.setLocation(String.valueOf(child.getValue()));
+                        newEvent.setAttendees(Integer.parseInt((String) child.getValue()));
+                        newEvent.setPicFileName(String.valueOf(child.getValue()));
+                        newEvent.setHostId(String.valueOf(child.getValue()));
+                        item = newEvent;
+                        break;
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+
+        });
+        return item;
+    }
 }

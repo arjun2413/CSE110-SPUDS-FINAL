@@ -35,6 +35,7 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
 
         CardView card;
         ImageView picture;
+        ImageView transparent;
         TextView host;
         TextView actionText;
         TextView eventName;
@@ -44,11 +45,13 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
 
         TextView monthDate;
         TextView dayDate;
+        TextView in;
 
         NotificationViewHolder(View itemView) {
             super(itemView);
             card = (CardView) itemView.findViewById(R.id.cv);
             picture = (ImageView) itemView.findViewById(R.id.picture);
+            transparent = (ImageView) itemView.findViewById(R.id.transparent_overlay);
             eventName = (TextView) itemView.findViewById(R.id.event_name);
             host = (TextView) itemView.findViewById(R.id.host);
             actionText = (TextView) itemView.findViewById(R.id.action_text);
@@ -56,6 +59,7 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
             commentDescription = (TextView) itemView.findViewById(R.id.comment_description);
             monthDate = (TextView) itemView.findViewById(R.id.date_month);
             dayDate = (TextView) itemView.findViewById(R.id.date_day);
+            in = (TextView) itemView.findViewById(R.id.in_text);
         }
     }
 
@@ -74,7 +78,7 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
     }
     @Override
     public NotificationViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_notifications, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_notifications_comment, viewGroup, false);
         NotificationViewHolder nvh = new NotificationViewHolder(v);
         return nvh;
     }
@@ -158,6 +162,8 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
         if (noti.notificationType.equals(TYPE_INVITE) ||
                 noti.notificationType.equals(TYPE_UPDATE)) {
             ((ViewManager)holder.commentDescription.getParent()).removeView(holder.commentDescription);
+            ((ViewManager)holder.in.getParent()).removeView(holder.in);
+            ((ViewManager)holder.transparent.getParent()).removeView(holder.transparent);
         }
 
 
