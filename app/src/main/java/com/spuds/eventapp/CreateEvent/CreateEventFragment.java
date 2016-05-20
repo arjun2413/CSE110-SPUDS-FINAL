@@ -8,9 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.R;
@@ -22,7 +26,7 @@ import java.util.List;
 import cn.refactor.library.SmoothCheckBox;
 
 
-public class CreateEventFragment extends Fragment {
+public class CreateEventFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private ImageView eventImage;
     private EditText eventName;
@@ -156,10 +160,41 @@ public class CreateEventFragment extends Fragment {
         adapter = new CreateEventRVAdapter(categories, this);
         rv.setAdapter(adapter);
 
+
+        // Spinner element
+        Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
+
+        // Spinner click listener
+        spinner.setOnItemSelectedListener(this);
+
+        // Spinner Drop down elements
+        List<String> categories = new ArrayList<String>();
+        categories.add("AM");
+        categories.add("PM");
+
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, categories);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinner.setAdapter(dataAdapter);
         return view;
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+        String item = parent.getItemAtPosition(position).toString();
 
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+    }
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
+    }
 
     @Override
     public void onAttach(Context context) {

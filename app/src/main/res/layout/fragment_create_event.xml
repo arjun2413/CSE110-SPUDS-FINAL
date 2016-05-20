@@ -94,16 +94,28 @@
                 android:id="@+id/time"
                 android:textColor="#ffffff" />
 
-            <EditText
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:inputType="time"
-                android:ems="10"
-                android:id="@+id/eventTime"
-                android:background="@drawable/roundedbox"
-                android:backgroundTint="#d1e0e0" />
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:layout_width="186dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:inputType="time"
+                    android:ems="10"
+                    android:id="@+id/eventTime"
+                    android:background="@drawable/roundedbox"
+                    android:backgroundTint="#d1e0e0" />
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="47dp"
+                    android:id="@+id/spinner"
+                    android:spinnerMode="dropdown" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
