@@ -15,11 +15,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spuds.eventapp.CreateComment.CreateCommentFragment;
+import com.spuds.eventapp.EditEvent.EditEventFragment;
 import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.InvitePeople.InvitePeopleFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Comment;
 import com.spuds.eventapp.Shared.Event;
+import com.spuds.eventapp.Shared.EventDate;
 import com.spuds.eventapp.Shared.MainActivity;
 
 import java.util.ArrayList;
@@ -42,9 +44,13 @@ public class EventDetailsFragment extends Fragment {
     TextView eventDescription;
     Button addComment;
     Button invitePeople;
+    ImageView buttonGoingOrEdit;
+    TextView eventTime;
 
     // Reference to itself
     Fragment eventDetailsFragment;
+
+    boolean going;
 
     // Comments
     RecyclerView rv;
@@ -105,20 +111,27 @@ public class EventDetailsFragment extends Fragment {
         eventName = (TextView) view.findViewById(R.id.event_name);
         eventLocation = (TextView) view.findViewById(R.id.event_loc);
         eventDate = (TextView) view.findViewById(R.id.event_date);
+        eventTime = (TextView) view.findViewById(R.id.event_time);
         eventAttendees = (TextView) view.findViewById(R.id.event_attendees);
         eventCategories = (TextView) view.findViewById(R.id.event_categories);
         eventHost = (TextView) view.findViewById(R.id.event_host);
         eventDescription = (TextView) view.findViewById(R.id.event_description);
         addComment = (Button) view.findViewById(R.id.button_add_comment);
         invitePeople = (Button) view.findViewById(R.id.button_invite_people);
+        buttonGoingOrEdit = (ImageView) view.findViewById(R.id.button_going);
 
         //TODO: picasso for event pic
         eventName.setText(event.getEventName());
         eventLocation.setText(event.getLocation());
-        eventDate.setText(event.getDate());
+
+        EventDate eD = new EventDate(event.getDate());
+        eventDate.setText(eD.getDate());
+        eventTime.setText(eD.get12Time());
         eventAttendees.setText(String.valueOf(event.getAttendees()));
         eventHost.setText(event.getHostName());
         eventDescription.setText(event.getDescription());
+
+
 
         // Categories
         String categories = "";
@@ -128,6 +141,9 @@ public class EventDetailsFragment extends Fragment {
         categories += event.getCategories().get(event.getCategories().size() - 1);
 
         eventCategories.setText(categories);
+
+
+
 
         // Click listener for the Add Comment button
         addComment.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +165,10 @@ public class EventDetailsFragment extends Fragment {
             }
         });
 
+
+
+
+
         invitePeople.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,6 +181,58 @@ public class EventDetailsFragment extends Fragment {
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack("fragment_invite_people")
                         .commit();
+            }
+        });
+
+
+
+
+
+        // TODO (M): Get id of the user
+        /*if (event.getHostId().equals(USER.GETUSERID())) {
+            buttonGoingOrEdit.setImageResource(R.drawable.button_edit_event);
+        } else {
+            // TODO (M): GET if the user is going to this event or not
+            going = true/false;
+            buttonGoingOrEdit.setImageResource(R.drawable.button_going);
+            buttonGoingOrEdit.setImageResource(R.drawable.button_not_going);
+
+        }*/
+
+        buttonGoingOrEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //if (event.getHostId().equals(USER.GETUSERID())) {
+
+                    EditEventFragment editEventFragment = new EditEventFragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(getString(R.string.event_details), event);
+                editEventFragment.setArguments(bundle);
+
+                    // TODO (C): Add user in a bundle to editProfileFragment
+
+                    ((MainActivity) getActivity()).removeSearchToolbar();
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_frame_layout, editEventFragment)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .addToBackStack(getString(R.string.fragment_edit_event))
+                            .commit();
+
+
+
+                //} else {
+                    // TODO (M): PUSH Going/Not Going
+                    // TODO (V): going/not going buttons
+                    /*if (going) {
+                        buttonGoingOrEdit.setImageResource(R.drawable.button_not_going);
+                        going = false;
+                    } else {
+                        buttonGoingOrEdit.setImageResource(R.drawable.button_going);
+                        going = true;
+                    }
+                }*/
             }
         });
     }

@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity
 
                 } else if (searchType.equals(R.string.cat_academic)) {
 
-                } else if (searchType.equals(R.string.cat_campus)) {
+                } else if (searchType.equals(R.string.cat_student_orgs)) {
 
                 } else if (searchType.equals(R.string.cat_concerts)) {
 

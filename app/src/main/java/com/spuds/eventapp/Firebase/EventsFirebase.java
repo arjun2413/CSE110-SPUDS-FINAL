@@ -1,6 +1,5 @@
 package com.spuds.eventapp.Firebase;
 
-import android.text.format.Time;
 import android.util.Log;
 
 import com.firebase.client.ChildEventListener;
@@ -12,8 +11,6 @@ import com.spuds.eventapp.CreateEvent.CreateEventForm;
 import com.spuds.eventapp.Shared.Event;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -109,7 +106,10 @@ public class EventsFirebase {
         queryRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot snapshot, String previousChild) {
+
                 Event newEvent = new Event();
+
+
                 for (DataSnapshot child : snapshot.getChildren()) {
                     switch (child.getKey()) {
                         case "date":
