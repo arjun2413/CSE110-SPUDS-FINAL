@@ -82,19 +82,23 @@ public class EventDetailsFragment extends Fragment {
         setUpComments(view);
 
         //call refreshing function
-        refreshing(view);
+        if(view != null) {
+            refreshing(view);
+        }
         return view;
     }
     //TODO: Needs database to finish
     public void refreshing(View view) {
         SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
-        mySwipeRefreshLayout.setOnRefreshListener(
-                new SwipeRefreshLayout.OnRefreshListener() {
-                    @Override
-                    public void onRefresh() {
+        if (mySwipeRefreshLayout != null) {
+            mySwipeRefreshLayout.setOnRefreshListener(
+                    new SwipeRefreshLayout.OnRefreshListener() {
+                        @Override
+                        public void onRefresh() {
+                        }
                     }
-                }
-        );
+            );
+        }
     }
     void setUpEventInformation(View view) {
 
