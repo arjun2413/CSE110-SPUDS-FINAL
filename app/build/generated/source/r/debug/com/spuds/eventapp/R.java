@@ -2714,6 +2714,7 @@ containing a value of this type.
         public static final int event_categories=0x7f0d00af;
         public static final int event_date=0x7f0d00c5;
         public static final int event_description=0x7f0d00d2;
+        public static final int event_going=0x7f0d00fb;
         public static final int event_host=0x7f0d00ca;
         public static final int event_invite=0x7f0d00b1;
         public static final int event_loc=0x7f0d00d0;
@@ -2748,7 +2749,6 @@ containing a value of this type.
         public static final int ifRoom=0x7f0d0037;
         public static final int image=0x7f0d0040;
         public static final int imageView=0x7f0d006a;
-        public static final int imageView2=0x7f0d00fb;
         public static final int in_text=0x7f0d0106;
         public static final int info=0x7f0d0113;
         public static final int invite_people=0x7f0d00d6;
@@ -2976,23 +2976,24 @@ containing a value of this type.
         public static final int item_event_feed=0x7f04003d;
         public static final int item_invite_people=0x7f04003e;
         public static final int item_my_subscriptions=0x7f04003f;
-        public static final int item_notifications_comment =0x7f040040;
-        public static final int nav_header_profile=0x7f040041;
-        public static final int notification_media_action=0x7f040042;
-        public static final int notification_media_cancel_action=0x7f040043;
-        public static final int notification_template_big_media=0x7f040044;
-        public static final int notification_template_big_media_narrow=0x7f040045;
-        public static final int notification_template_lines=0x7f040046;
-        public static final int notification_template_media=0x7f040047;
-        public static final int notification_template_part_chronometer=0x7f040048;
-        public static final int notification_template_part_time=0x7f040049;
-        public static final int recycler=0x7f04004a;
-        public static final int search_option=0x7f04004b;
-        public static final int searchbox=0x7f04004c;
-        public static final int select_dialog_item_material=0x7f04004d;
-        public static final int select_dialog_multichoice_material=0x7f04004e;
-        public static final int select_dialog_singlechoice_material=0x7f04004f;
-        public static final int support_simple_spinner_dropdown_item=0x7f040050;
+        public static final int item_notifications_comment=0x7f040040;
+        public static final int item_notifications_update_invite=0x7f040041;
+        public static final int nav_header_profile=0x7f040042;
+        public static final int notification_media_action=0x7f040043;
+        public static final int notification_media_cancel_action=0x7f040044;
+        public static final int notification_template_big_media=0x7f040045;
+        public static final int notification_template_big_media_narrow=0x7f040046;
+        public static final int notification_template_lines=0x7f040047;
+        public static final int notification_template_media=0x7f040048;
+        public static final int notification_template_part_chronometer=0x7f040049;
+        public static final int notification_template_part_time=0x7f04004a;
+        public static final int recycler=0x7f04004b;
+        public static final int search_option=0x7f04004c;
+        public static final int searchbox=0x7f04004d;
+        public static final int select_dialog_item_material=0x7f04004e;
+        public static final int select_dialog_multichoice_material=0x7f04004f;
+        public static final int select_dialog_singlechoice_material=0x7f040050;
+        public static final int support_simple_spinner_dropdown_item=0x7f040051;
     }
     public static final class menu {
         public static final int action_bar_main=0x7f0e0000;
