@@ -165,11 +165,11 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
                     tabFragmentTag = currentFragment.getString(R.string.category_feed);
                 }
 
-                if (!tabFragmentTag.equals("")) {
+                /*if (!tabFragmentTag.equals("")) {
                     //make if else statements for all fragments that have tags
                     currentFragment = currentFragment.getActivity().getSupportFragmentManager()
                             .findFragmentByTag(tabFragmentTag);
-                }
+                }*/
 
 
                 ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();

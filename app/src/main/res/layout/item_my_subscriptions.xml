@@ -34,7 +34,8 @@
                     android:layout_toRightOf="@+id/sub_photo"
                     android:layout_toEndOf="@+id/sub_photo"
                     android:layout_alignParentTop="true"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    android:layout_centerVertical="true" />
 
 
                 <ImageView

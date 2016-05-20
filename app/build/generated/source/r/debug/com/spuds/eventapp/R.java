@@ -2711,6 +2711,7 @@ containing a value of this type.
         public static final int event_categories=0x7f0d00af;
         public static final int event_date=0x7f0d00bd;
         public static final int event_description=0x7f0d00ca;
+        public static final int event_going=0x7f0d00f3;
         public static final int event_host=0x7f0d00c2;
         public static final int event_invite=0x7f0d00b1;
         public static final int event_loc=0x7f0d00c8;
@@ -2743,7 +2744,6 @@ containing a value of this type.
         public static final int ifRoom=0x7f0d0037;
         public static final int image=0x7f0d0040;
         public static final int imageView=0x7f0d006a;
-        public static final int imageView2=0x7f0d00f3;
         public static final int in_text=0x7f0d00ff;
         public static final int info=0x7f0d010c;
         public static final int invite_people=0x7f0d00ce;
