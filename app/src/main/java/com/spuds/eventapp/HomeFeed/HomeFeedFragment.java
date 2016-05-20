@@ -85,9 +85,12 @@ public class HomeFeedFragment extends Fragment {
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
+                        EventsFirebase ef = new EventsFirebase(events, 0, tabType);
+                        ef.createEL();
                     }
                 }
         );
+        
     }
     @Override
     public void onAttach(Context context) {
