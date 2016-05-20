@@ -90,6 +90,7 @@ public class HomeFeedFragment extends Fragment {
                     }
                 }
         );
+        
     }
     @Override
     public void onAttach(Context context) {
