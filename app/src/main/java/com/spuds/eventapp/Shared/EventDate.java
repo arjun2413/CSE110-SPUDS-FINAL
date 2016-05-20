@@ -13,6 +13,11 @@ public class EventDate {
     private String[] months = {"January","February","March","April","May","June","July","August",
                                "September","October","November","December"};
 
+
+    //real quick: add option for users to enter 12-hour time
+    //bro arvind
+
+    //ctor
     public EventDate(String date) {
 
         //Check for proper date form
