@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity
 
         search.setLogoText("Search for Events");
         search.setLogoTextColor(Color.parseColor("#bfbfbf"));
-        search.setDrawerLogo(R.drawable.campus);
+        search.setDrawerLogo(R.drawable.search);
 
         final ArrayList<SearchResult> list = new ArrayList<SearchResult>();
 
@@ -113,12 +113,12 @@ public class MainActivity extends AppCompatActivity
                 //Called after it has updated results
                 Log.v("onSearchTermChanged", s);
 
-                SearchResult option = new SearchResult(s, getResources().getDrawable(R.drawable.email));
+                SearchResult option = new SearchResult(s);
                 list.add(option);
-                option = new SearchResult(s, getResources().getDrawable(R.drawable.email));
+                option = new SearchResult(s);
 
                 list.add(option);
-                option = new SearchResult(s, getResources().getDrawable(R.drawable.email));
+                option = new SearchResult(s);
 
                 list.add(option);
 

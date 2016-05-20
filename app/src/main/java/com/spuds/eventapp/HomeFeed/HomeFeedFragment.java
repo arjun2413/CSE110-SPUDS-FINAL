@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,11 +19,10 @@ import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HomeFeedFragment extends Fragment {
 
-    private List<Event> events;
+    private ArrayList<Event> events;
     public EventsFeedRVAdapter adapter;
     String tabType;
 
@@ -38,17 +36,29 @@ public class HomeFeedFragment extends Fragment {
         Bundle extras = getArguments();
         tabType = extras.getString(getString(R.string.tab_tag));
 
-        // TODO (M): Get arraylist of events based on tab type [new, hot, now]
-        // Fake data
         events = new ArrayList<>();
 
-        EventsFirebase ef = new EventsFirebase();
+        // TODO (M): Get arraylist of events based on tab type [new, hot, now]
+        // Fake data
+        EventsFirebase ef = new EventsFirebase(events, 0, tabType);
         ef.createEL();
 
-        events.add(new Event("1", "yj.jpg", "Sun God Festival", "RIMAC Field", "04.29.16", 1054,  
+
+
+        /*events.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04.29.16", 1054,
+                "yj.jpg", categories, "UCSD"));
+        events.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04.28.16", 51,
+                "foosh.jpg", categories, "Foosh Improv Comedy Club"));*/
+        /*events.add(new Event("1", "yj.jpg", "Sun God Festival", "RIMAC Field", "April 30, 2016", 1054,
                 "Social", "Concert", "UCSD", "spr lame"));
-        events.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "04.28.16", 51,
+        events.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "May 5, 2016", 51,
                "Social", null, "Foosh Improv Comedy Club", "spr funny"));
+        events.add(new Event("3", "foosh.jpg", "Circle K GBM #1", "Center 101", "July 4, 2016", 51,
+                "Social", null, "Foosh Improv Comedy Club", "spr funny"));
+        events.add(new Event("4", "foosh.jpg", "David's Birthday Party", "420 Strip Club", "May 17, 2016", 51,
+                "Social", "Food", "Foosh Improv Comedy Club", "spr funny"));
+        events.add(new Event("5", "foosh.jpg", "Reggie Wu Fan Club", "Reggie's Apartment", "June 7, 2016", 51,
+                "Social", null, "Foosh Improv Comedy Club", "spr funny"));*/
     }
 
     @Override

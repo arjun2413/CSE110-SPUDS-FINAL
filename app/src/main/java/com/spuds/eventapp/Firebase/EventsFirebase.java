@@ -10,6 +10,7 @@ import com.firebase.client.Query;
 import com.spuds.eventapp.CreateEvent.CreateEventForm;
 import com.spuds.eventapp.Shared.Event;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,17 +18,47 @@ import java.util.Map;
  * Created by tina on 5/2/16.
  */
 public class EventsFirebase {
+
+    public static final String tabNew = "New";
+    public static final String tabHot = "Hot";
+    public static final String tabNow = "Now";
+    public static final String tabGoing = "Going";
+    public static final String tabHosting = "Hosting";
+
+    public static final String catAcademic = "Academic Category";
+    public static final String catSports = "Sports Category";
+    public static final String catSocial = "Social Category";
+    public static final String catFree = "Free Category";
+    public static final String catFood = "Food Category";
+    public static final String catConcerts = "Concerts Category";
+    public static final String catCampus = "Campus Category";
+
+
+
+    ArrayList<Event> eventsList;
+    String filter;
+    int loading;
+
+    public EventsFirebase(ArrayList<Event> eventsList, int loading, String filter) {
+        this.eventsList = eventsList;
+        this.filter = filter;
+        this.loading = loading;
+    }
+
     public void createEvent(CreateEventForm form){
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
         Map<String, String> map = new HashMap<String, String>();
-        map.put("Name", form.getName());
-        map.put("date", form.getDate());
-        map.put("location", form.getLocation());
+        map.put("user_id", ref.getAuth().getUid());
+        map.put("event_name", form.getName());
         map.put("description", form.getDescription());
-        map.put("createrID", ref.getAuth().getUid());
+        map.put("location", form.getLocation());
+        map.put("date", form.getDate());
         map.put("number_going", "1");
+        map.put("picture_file_name", "event.jpg");
+        map.put("created_at", "08:00");
         ref.child("events").push().setValue(map);
     }
+
     public void editEvent(){
 
     }
@@ -37,16 +68,79 @@ public class EventsFirebase {
     public Event createEL(){
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
         Query queryRef = myFirebaseRef.orderByKey();
+
+        switch(filter) {
+            case tabNew:
+                //queryRef = myFirebaseRef.orderByChild("create_at");
+                break;
+            case tabHot:
+                queryRef = myFirebaseRef.orderByChild("number_going");
+                break;
+            case tabNow:
+                // TODO
+                break;
+            case tabGoing:
+                break;
+            case tabHosting:
+                break;
+            case catAcademic:
+                break;
+            case catCampus:
+                break;
+            case catConcerts:
+                break;
+            case catFood:
+                break;
+            case catFree:
+                break;
+            case catSocial:
+                break;
+            case catSports:
+                break;
+        }
+
         queryRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot snapshot, String previousChild) {
-                int i = 0;
+                Event newEvent = new Event();
                 for(DataSnapshot child: snapshot.getChildren()) {
-                    Log.d("asdf", String.valueOf(child.getValue()));
-                    //item = snapshot.getValue(Event.class);
-                    i++;
-                    Log.d("asd", String.valueOf(i));
+                    switch (child.getKey()) {
+                        case "date":
+                            newEvent.setDate(String.valueOf(child.getValue()));
+                            break;
+                        case "description":
+                            newEvent.setDescription(String.valueOf(child.getValue()));
+                            break;
+                        case "event_name":
+                            newEvent.setEventName(String.valueOf(child.getValue()));
+                            break;
+                        case "location":
+                            newEvent.setLocation(String.valueOf(child.getValue()));
+                            break;
+                        case "number_going":
+                            newEvent.setAttendees(Integer.parseInt((String)child.getValue()));
+                            break;
+                        case "picture_file_name":
+                            newEvent.setPicFileName(String.valueOf(child.getValue()));
+                            break;
+                        case "host_id":
+                            newEvent.setHostId(String.valueOf(child.getValue()));
+                            break;
+                    }
+
+                    Log.d("asdf", String.valueOf(snapshot.getKey()));
+
                 }
+
+                ArrayList<String> categories = new ArrayList<>();
+                categories.add("Social");
+                categories.add("Concert");
+
+                newEvent.setCategories(categories);
+
+
+                eventsList.add(newEvent);
+
             }
 
             @Override

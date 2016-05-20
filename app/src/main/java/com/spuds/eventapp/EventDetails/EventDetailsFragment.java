@@ -8,7 +8,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spuds.eventapp.CreateComment.CreateCommentFragment;
-import com.spuds.eventapp.CreateEvent.CreateEventFragment;
 import com.spuds.eventapp.InvitePeople.InvitePeopleFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Comment;
@@ -66,8 +64,12 @@ public class EventDetailsFragment extends Fragment {
 
             // TODO: Fetch event using eventId
             // fake data
-            event = new Event("1", "yj.jpg", "Sun God Festival", "RIMAC Field", "04.29.16", 1054,
-                    "Social", "Concert", "UCSD", "spr lame");
+            ArrayList<String> categories = new ArrayList<>();
+            categories.add("Social");
+            categories.add("Concert");
+
+            event = new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04.29.16", 1054,
+                    "yj.jpg", categories, "UCSD");
         }
         eventDetailsFragment = this;
     }
@@ -114,18 +116,21 @@ public class EventDetailsFragment extends Fragment {
         invitePeople = (Button) view.findViewById(R.id.button_invite_people);
 
         //TODO: picasso for event pic
-        eventName.setText(event.name);
-        eventLocation.setText(event.location);
-        eventDate.setText(event.date);
-        eventAttendees.setText(String.valueOf(event.attendees));
-        eventHost.setText(event.host);
-        eventDescription.setText(event.description);
+        eventName.setText(event.getEventName());
+        eventLocation.setText(event.getLocation());
+        eventDate.setText(event.getDate());
+        eventAttendees.setText(String.valueOf(event.getAttendees()));
+        eventHost.setText(event.getHostName());
+        eventDescription.setText(event.getDescription());
 
-        // String for two categories; String for one category
-        if (event.categTwo != null)
-            eventCategories.setText(event.categOne + ", " + event.categTwo);
-        else
-            eventCategories.setText(event.categOne);
+        // Categories
+        String categories = "";
+        for (int i = 0; i < event.getCategories().size() - 1; ++i) {
+            categories += event.getCategories().get(i) + ", ";
+        }
+        categories += event.getCategories().get(event.getCategories().size() - 1);
+
+        eventCategories.setText(categories);
 
         // Click listener for the Add Comment button
         addComment.setOnClickListener(new View.OnClickListener() {
