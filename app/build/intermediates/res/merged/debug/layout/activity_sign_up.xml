@@ -115,7 +115,6 @@
             android:layout_alignParentLeft="false"
             android:layout_marginTop="5dp"
             android:gravity="center_horizontal"
-            android:text="Passwords do not match."
             android:textColor="#990000"
             android:textSize="13sp" />
 
