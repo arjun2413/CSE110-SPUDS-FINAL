@@ -11,9 +11,9 @@ public class CreateEventForm {
     private String location;
     private String description;
 
-    public CreateEventForm(EditText event_name, EditText event_date, EditText event_location, EditText event_description){
+    public CreateEventForm(EditText event_name, EditText event_date, EditText event_time, EditText event_location, EditText event_description){
         name = event_name.getText().toString();
-        date = event_date.getText().toString();
+        date = event_date.getText().toString() + "|" + event_time.getText().toString();
         location = event_location.getText().toString();
         description = event_description.getText().toString();
     }

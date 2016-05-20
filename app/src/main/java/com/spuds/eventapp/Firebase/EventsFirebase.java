@@ -1,5 +1,6 @@
 package com.spuds.eventapp.Firebase;
 
+import android.text.format.DateFormat;
 import android.text.format.Time;
 import android.util.Log;
 
@@ -10,9 +11,12 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.spuds.eventapp.CreateEvent.CreateEventForm;
 import com.spuds.eventapp.Shared.Event;
+import com.spuds.eventapp.CreateEvent.CreateEventRVAdapter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,8 +56,12 @@ public class EventsFirebase {
         this.loading = loading;
     }
 
-    public void createEvent(CreateEventForm form) {
+    public void createEvent(CreateEventForm form, CreateEventRVAdapter adapter) {
+        ArrayList<String> categoryList = adapter.getList();
+        Log.d("fuck", String.valueOf(categoryList));
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy|HH:mm");
+        Date dateobj = new Date();
         Map<String, String> map = new HashMap<String, String>();
         map.put("user_id", ref.getAuth().getUid());
         map.put("event_name", form.getName());
@@ -62,7 +70,10 @@ public class EventsFirebase {
         map.put("date", form.getDate());
         map.put("number_going", "1");
         map.put("picture_file_name", "event.jpg");
-        map.put("created_at", "8:00pm");
+        map.put("created_at", df.format(dateobj) );
+        map.put("category1",categoryList.get(0));
+        map.put("category2",categoryList.get(1));
+        map.put("category3",categoryList.get(2));
         ref.child("events").push().setValue(map);
     }
 
@@ -78,7 +89,7 @@ public class EventsFirebase {
 
         switch (filter) {
             case tabNew:
-                //queryRef = myFirebaseRef.orderByChild("create_at");
+                queryRef = myFirebaseRef.orderByChild("created_at");
                 break;
             case tabHot:
                 queryRef = myFirebaseRef.orderByChild("number_going");
