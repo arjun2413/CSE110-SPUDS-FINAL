@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spuds.eventapp.CreateComment.CreateCommentFragment;
+import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.InvitePeople.InvitePeopleFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Comment;
@@ -63,13 +64,13 @@ public class EventDetailsFragment extends Fragment {
             eventId = extras.getString(getString(R.string.event_id));
 
             // TODO: Fetch event using eventId
-            // fake data
+            EventsFirebase ef = new EventsFirebase();
+            ef.getEventDetails(eventId);
             ArrayList<String> categories = new ArrayList<>();
             categories.add("Social");
             categories.add("Concert");
 
-            event = new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04.29.16", 1054,
-                    "yj.jpg", categories, "UCSD");
+
         }
         eventDetailsFragment = this;
     }
@@ -84,7 +85,7 @@ public class EventDetailsFragment extends Fragment {
         setUpComments(view);
 
         //call refreshing function
-        refreshing(view);
+        // refreshing(view);
         return view;
     }
     //TODO: Needs database to finish
