@@ -797,6 +797,7 @@ int id event_attendees 0x7f0d00cc
 int id event_categories 0x7f0d00af
 int id event_date 0x7f0d00c5
 int id event_description 0x7f0d00d2
+int id event_going 0x7f0d00fb
 int id event_host 0x7f0d00ca
 int id event_invite 0x7f0d00b1
 int id event_loc 0x7f0d00d0
@@ -831,7 +832,6 @@ int id icon 0x7f0d0043
 int id ifRoom 0x7f0d0037
 int id image 0x7f0d0040
 int id imageView 0x7f0d006a
-int id imageView2 0x7f0d00fb
 int id in_text 0x7f0d0106
 int id info 0x7f0d0113
 int id invite_people 0x7f0d00d6
