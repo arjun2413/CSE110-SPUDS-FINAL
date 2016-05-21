@@ -39,6 +39,8 @@ public class DatabaseTable {
         mDatabaseOpenHelper = new DatabaseOpenHelper(context);
     }
 
+    /**/
+
     private static class DatabaseOpenHelper extends SQLiteOpenHelper {
 
         private final Context mHelperContext;
