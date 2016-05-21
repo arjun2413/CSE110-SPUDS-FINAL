@@ -19,11 +19,13 @@
             android:id="@+id/food"
             android:textSize="30dp"
             android:textAllCaps="false"
-            android:background="#2d4152"
+            android:background="#333333"
             android:layout_weight="1"
             android:drawableLeft="@drawable/food"
             android:paddingLeft="20dp"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:gravity="left|center_vertical"
+            android:drawablePadding="30dp"/>
 
         <Button
             android:layout_width="fill_parent"
@@ -32,11 +34,13 @@
             android:id="@+id/social"
             android:textSize="30dp"
             android:textAllCaps="false"
-            android:background="#a4c1c1"
+            android:background="#334d4d"
             android:layout_weight="1"
             android:drawableLeft="@drawable/social"
             android:paddingLeft="20dp"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:gravity="left|center_vertical"
+            android:drawablePadding="30dp"/>
 
         <Button
             android:layout_width="fill_parent"
@@ -45,11 +49,13 @@
             android:id="@+id/concerts"
             android:textSize="30dp"
             android:textAllCaps="false"
-            android:background="#428a86"
+            android:background="#616b6b"
             android:layout_weight="1"
             android:drawableLeft="@drawable/concerts"
             android:paddingLeft="20dp"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:gravity="left|center_vertical"
+            android:drawablePadding="30dp"/>
 
         <Button
             android:layout_width="fill_parent"
@@ -58,24 +64,28 @@
             android:id="@+id/sports"
             android:textSize="30dp"
             android:textAllCaps="false"
-            android:background="#2d4152"
+            android:background="#333333"
             android:layout_weight="1"
             android:drawableLeft="@drawable/sports"
             android:paddingLeft="20dp"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:gravity="left|center_vertical"
+            android:drawablePadding="30dp"/>
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Campus Organizations"
+            android:text="Student Orgs"
             android:id="@+id/campus_orgs"
-            android:textSize="25dp"
+            android:textSize="30dp"
             android:textAllCaps="false"
-            android:background="#a4c1c1"
+            android:background="#334d4d"
             android:layout_weight="1"
             android:drawableLeft="@drawable/campus"
             android:paddingLeft="20dp"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:gravity="left|center_vertical"
+            android:drawablePadding="30dp"/>
 
         <Button
             android:layout_width="fill_parent"
@@ -84,11 +94,13 @@
             android:id="@+id/academic"
             android:textSize="30dp"
             android:textAllCaps="false"
-            android:background="#428a86"
+            android:background="#616b6b"
             android:layout_weight="1"
             android:drawableLeft="@drawable/academic"
             android:paddingLeft="20dp"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:gravity="left|center_vertical"
+            android:drawablePadding="30dp"/>
 
         <Button
             android:layout_width="fill_parent"
@@ -97,10 +109,12 @@
             android:id="@+id/free"
             android:textSize="30dp"
             android:textAllCaps="false"
-            android:background="#2d4152"
+            android:background="#333333"
             android:layout_weight="1"
             android:drawableLeft="@drawable/free"
             android:paddingLeft="20dp"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:gravity="left|center_vertical"
+            android:drawablePadding="30dp"/>
     </LinearLayout>
 </RelativeLayout>

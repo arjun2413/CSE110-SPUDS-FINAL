@@ -18,18 +18,28 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:id="@+id/comment_pic"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:background="#bfbfbf"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Reggie Wu"
-            android:id="@+id/comment_name" />
+            android:id="@+id/comment_name"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/comment_pic"
+            android:layout_toEndOf="@+id/comment_pic"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#1a1a1a"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,43 +48,73 @@
             android:text="This comment is bomb"
             android:id="@+id/comment_text"
             android:layout_below="@+id/comment_name"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_toRightOf="@+id/comment_pic"
+            android:layout_toEndOf="@+id/comment_pic"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#1a1a1a" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="05.04.16"
+            android:text="May 4, 2016"
             android:id="@+id/comment_date"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp" />
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:text="Reply"
             android:id="@+id/button_reply"
+            android:textSize="10sp"
+            android:background="#00ffffff"
+            android:textColor="#737373"
             android:layout_below="@+id/comment_text"
-            android:layout_centerHorizontal="true" />
+            android:layout_toLeftOf="@+id/button_view_replies"
+            android:layout_toStartOf="@+id/button_view_replies"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:drawableLeft="@drawable/reply"
+            android:drawablePadding="5dp"
+            android:gravity="left|center_vertical"/>
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:text="View replies"
             android:id="@+id/button_view_replies"
             android:layout_alignBottom="@+id/button_reply"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:background="#00ffffff"
+            android:textSize="10sp"
+            android:textColor="#737373"
+            android:layout_marginLeft="5dp"
+            android:drawableLeft="@drawable/viewreplies"
+            android:drawablePadding="5dp"
+            android:gravity="left|center_vertical"
+            android:layout_marginRight="10dp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <Button
+            android:layout_width="90dp"
+            android:layout_height="30dp"
             android:id="@+id/button_follow"
+            android:background="#00ffffff"
             android:layout_alignTop="@+id/button_reply"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_toLeftOf="@+id/button_reply"
+            android:layout_toStartOf="@+id/button_reply"
+            android:text="Follow"
+            android:textSize="10sp"
+            android:drawableLeft="@drawable/follow"
+            android:gravity="left|center_vertical"
+            android:drawablePadding="5dp"
+            android:textColor="#737373" />
 
 
 
