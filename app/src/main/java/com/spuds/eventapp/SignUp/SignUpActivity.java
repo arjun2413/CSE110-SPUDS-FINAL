@@ -28,6 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText signupEmail;
     EditText signupPassword1;
     EditText signupPassword2;
+    TextView errorMessage;
 
     //I don't know but it seems important
     ImageView signup_logo;
@@ -66,20 +67,25 @@ public class SignUpActivity extends AppCompatActivity {
         //Use findViewById for all variables
         //Define "Sign Up" button that user clicks, prompting al this information to be processed
         signupButton = (Button)findViewById(R.id.signup_button);
+        signupButton.setTypeface(raleway_light);
 
         //Fetch User Inputted "name" in String form
         signupName = (EditText)findViewById(R.id.signup_name);
+        signupName.setTypeface(raleway_light);
 
         //Fetch User's entered email address
         signupEmail = (EditText)findViewById(R.id.signup_email);
+        signupEmail.setTypeface(raleway_light);
 
         //Fetch User's entered new password, referred to as "signup_password_1"
         signupPassword1 = (EditText)findViewById(R.id.signup_password_1);
+        signupPassword1.setTypeface(raleway_light);
 
         //Fetch User's entered confirm password, referred to as "signup_password_2"
         signupPassword2 = (EditText)findViewById(R.id.signup_password_2);
+        signupPassword2.setTypeface(raleway_light);
 
-        TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
+        errorMessage = (TextView) findViewById(R.id.errorMessage);
         errorMessage.setTypeface(raleway_light);
 
         //Upon User clicking "Sign Up", convert editable text fields to Strings
