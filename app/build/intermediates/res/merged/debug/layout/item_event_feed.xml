@@ -178,7 +178,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignLeft="@+id/event_time"
             android:layout_alignStart="@+id/event_time"
-            android:backgroundTint="#293d3d" />
+            android:backgroundTint="#5c8a8a" />
 
     </RelativeLayout>
 

@@ -182,7 +182,7 @@
             android:layout_below="@+id/attendees_layout"
             android:background="@drawable/roundedbutton"
             android:layout_centerHorizontal="true"
-            android:backgroundTint="#293d3d" />
+            android:backgroundTint="#5c8a8a" />
 
 
         <LinearLayout
