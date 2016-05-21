@@ -180,8 +180,9 @@
             android:layout_height="25dp"
             android:id="@+id/button_going"
             android:layout_below="@+id/attendees_layout"
-            android:background="#ffffff"
-            android:layout_centerHorizontal="true"/>
+            android:background="@drawable/roundedbutton"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#5c8a8a" />
 
 
         <LinearLayout
