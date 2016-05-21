@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -72,6 +73,8 @@ public class MainActivity extends AppCompatActivity
         setupProfileDrawer();
 
         searchType = getString(R.string.fragment_home_feed);
+
+
     }
 
     void setupProfileDrawer() {
@@ -137,7 +140,7 @@ public class MainActivity extends AppCompatActivity
 
                 } else if (searchType.equals(R.string.cat_academic)) {
 
-                } else if (searchType.equals(R.string.cat_campus)) {
+                } else if (searchType.equals(R.string.cat_student_orgs)) {
 
                 } else if (searchType.equals(R.string.cat_concerts)) {
 

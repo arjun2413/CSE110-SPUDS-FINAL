@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,6 +23,14 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //Hide Action Bar and Status Bar
+        //View decorView = getWindow().getDecorView();
+        // Hide the status bar.
+        //int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        //decorView.setSystemUiVisibility(uiOptions);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         Firebase.setAndroidContext(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -124,18 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                     //check if email is in database
-                /*else if(email.endsWith("@ucsd.edu") ){
-                    TextView errorMessage = (TextView)findViewById(R.id.errorMessage);
-                    errorMessage.setText("The email you've entered doesn't match any account.
-                    Sign up for an account");
-                }
-                 */
                     //check if password is correct
-                /*else if(password){
-                    TextView errorMessage = (TextView)findViewById(R.id.errorMessage);
-                    errorMessage.setText("The password you've entered is incorrect");
-                }
-                 */
                     //email and password match and are correct
                     //Switch to the Main Activity
                     //else{
@@ -161,6 +159,17 @@ public class LoginActivity extends AppCompatActivity {
                                         }
 
                                     }
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            if(obj.status == 2) {
+                                                TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
+                                                String message = "The email and password you entered don't match.";
+                                                errorMessage.setText(message);
+                                            }
+                                        }
+                                    });
+
                                     if (obj.status == 1) {
 
                                         startActivity(new Intent(LoginActivity.this, MainActivity.class));

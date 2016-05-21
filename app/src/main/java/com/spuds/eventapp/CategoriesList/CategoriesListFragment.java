@@ -157,7 +157,7 @@ public class CategoriesListFragment extends Fragment {
             campusButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (type == null) {
-                        type = getString(R.string.cat_campus);
+                        type = getString(R.string.cat_student_orgs);
                     }
 
                     startFeed();

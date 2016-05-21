@@ -6,8 +6,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 import com.spuds.eventapp.Firebase.AccountFirebase;
@@ -23,6 +25,14 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //Hide Action Bar and Status Bar
+        //View decorView = getWindow().getDecorView();
+        // Hide the status bar.
+        //int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        //decorView.setSystemUiVisibility(uiOptions);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         Firebase.setAndroidContext(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
@@ -30,7 +40,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
         input = (EditText)findViewById(R.id.email);
         send = (Button) findViewById(R.id.send_password);
         //TODO when errormessage is made
-        //errorMessage = (TextView) findViewById(R.id.errorMessage);
+        final TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
 
 
         send.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +117,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
                     else {
                         //TODO error invalid email
                         //"Enter a valid ucsd.edu email
+                        errorMessage.setText("Must enter a valid ucsd.edu email.");
+
                     }
                 }
             }

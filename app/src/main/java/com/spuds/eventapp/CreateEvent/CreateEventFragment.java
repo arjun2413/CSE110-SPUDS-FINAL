@@ -33,6 +33,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     private ImageView eventImage;
     private EditText eventName;
     private EditText eventDate;
+    private EditText eventTime;
     private EditText eventLocation;
     private EditText eventDescription;
     private Button editEventDelete;
@@ -45,7 +46,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     public CreateEventRVAdapter adapter;
 
     private CreateEventForm makeForm(){
-        return new CreateEventForm(eventName,eventDate,eventLocation,eventDescription);
+        return new CreateEventForm(eventName,eventDate,eventTime,eventLocation,eventDescription);
 
     }
 
@@ -53,6 +54,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         eventImage = (ImageView) view.findViewById(R.id.eventImage);
         eventName = (EditText) view.findViewById(R.id.eventName);
         eventDate = (EditText) view.findViewById(R.id.eventDate);
+        eventTime = (EditText) view.findViewById(R.id.eventTime);
         eventLocation = (EditText) view.findViewById(R.id.eventLocation);
         eventDescription = (EditText) view.findViewById(R.id.eventDescription);
         editEventDelete = (Button) view.findViewById(R.id.editEventDelete);
@@ -86,7 +88,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                     if (addImage) {
                         // TODO push to editEventFields array list
                     }
-                    eventsFirebase.createEvent(form);
+                    eventsFirebase.createEvent(form, adapter);
                     getActivity().getSupportFragmentManager().popBackStack();
                 }
                 else {
@@ -138,13 +140,13 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
 
         categories = new ArrayList<>();
 
-        categories.add(new CategoryTextButton("FOOD", scb));
-        categories.add(new CategoryTextButton("SOCIAL", scb));
-        categories.add(new CategoryTextButton("CONCERTS", scb));
-        categories.add(new CategoryTextButton("SPORTS", scb));
-        categories.add(new CategoryTextButton("CAMPUS ORGANIZATIONS", scb));
-        categories.add(new CategoryTextButton("ACADEMIC", scb));
-        categories.add(new CategoryTextButton("FREE", scb));
+        categories.add(new CategoryTextButton("FOOD", false));
+        categories.add(new CategoryTextButton("SOCIAL", false));
+        categories.add(new CategoryTextButton("CONCERTS", false));
+        categories.add(new CategoryTextButton("SPORTS", false));
+        categories.add(new CategoryTextButton("STUDENT ORGS", false));
+        categories.add(new CategoryTextButton("ACADEMIC", false));
+        categories.add(new CategoryTextButton("FREE", false));
 
 
         /*

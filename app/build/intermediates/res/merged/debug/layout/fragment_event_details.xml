@@ -325,15 +325,14 @@
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="right" />
 
-            <android.support.v7.widget.RecyclerView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/rv"
-                android:layout_below="@+id/button_add_comment">
-
-            </android.support.v7.widget.RecyclerView>
+                <android.support.v7.widget.RecyclerView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/rv"
+                    android:layout_below="@+id/button_add_comment">
+                </android.support.v7.widget.RecyclerView>
         </LinearLayout>
 
 

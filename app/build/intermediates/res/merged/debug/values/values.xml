@@ -312,12 +312,12 @@
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <string name="bottom_sheet_behavior" translatable="false">android.support.design.widget.BottomSheetBehavior</string>
     <string name="cat_academic">Academic Category</string>
-    <string name="cat_campus">Campus Organizations Category</string>
     <string name="cat_concerts">Concerts Category</string>
     <string name="cat_food">Food Category</string>
     <string name="cat_free">Free Category</string>
     <string name="cat_social">Social Category</string>
     <string name="cat_sports">Sports Category</string>
+    <string name="cat_student_orgs">Student Orgs Category</string>
     <string name="category">Categories</string>
     <string name="category_bundle"/>
     <string name="category_feed">Category Feed</string>
@@ -340,6 +340,7 @@
     <string name="fragment_change_password">Change Password Fragment</string>
     <string name="fragment_create_comment">Create Comment Fragment</string>
     <string name="fragment_create_event">Create Event Fragment</string>
+    <string name="fragment_edit_event">Edit Event Fragment</string>
     <string name="fragment_edit_profile">Edit Profile Fragment</string>
     <string name="fragment_find_people">FindPeopleFragment</string>
     <string name="fragment_home_feed">Home Feed Fragment</string>

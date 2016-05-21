@@ -1,11 +1,13 @@
 package com.spuds.eventapp.SignUp;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,10 +29,6 @@ public class SignUpActivity extends AppCompatActivity {
     EditText signupPassword1;
     EditText signupPassword2;
 
-    //Error TextViews
-    TextView signupPasswordMatchError;
-    TextView signupInvalidEmailError;
-
     //I don't know but it seems important
     ImageView signup_logo;
 
@@ -46,11 +44,21 @@ public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //Hide Action Bar and Status Bar
+        //View decorView = getWindow().getDecorView();
+        // Hide the status bar.
+        //int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        //decorView.setSystemUiVisibility(uiOptions);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         Firebase.setAndroidContext(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
         Typeface custom_font = Typeface.createFromAsset(getAssets(),  "name_font.ttf");
+        Typeface raleway_light = Typeface.createFromAsset(getAssets(),  "raleway-light.ttf");
+
         TextView header = (TextView)findViewById(R.id.signup_header);
         header.setTypeface(custom_font);
 
@@ -71,47 +79,38 @@ public class SignUpActivity extends AppCompatActivity {
         //Fetch User's entered confirm password, referred to as "signup_password_2"
         signupPassword2 = (EditText)findViewById(R.id.signup_password_2);
 
-        //Fetch invisible Password Warning Text
-        //signupPasswordMatchError = (TextView)findViewById(R.id.signupPasswordMatchError);
-
-        //Fetch invisible Invalid Email text
-        //signupInvalidEmailError = (TextView)findViewById(R.id.signupInvalidEmailError);
+        TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
+        errorMessage.setTypeface(raleway_light);
 
         //Upon User clicking "Sign Up", convert editable text fields to Strings
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (signupName.getText().toString().equals("") || signupEmail.getText().toString().equals("") ||
+                        signupPassword1.getText().toString().equals("") || signupPassword2.getText().toString().equals("")) {
+                    TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
+                    String message = "Missing fields. Please try again.";
+                    errorMessage.setText(message);
 
-                /*Make sure passwords are matching. If passwords are not equal, display popup
-                 that says "Passwords must match.
-                  */
-                if (!signupPassword1.getText().toString().equals(signupPassword2.getText().toString())) {
-                    //reveal Invalid Password Match text
-                    //signupPasswordMatchError.setVisibility(View.VISIBLE);
-
-                    //set error flag to FALSE since there is an error now
                     error = false;
                 }
-                else{
-                    //hide it
-                    //signupPasswordMatchError.setVisibility(View.INVISIBLE);
-
-                    //correct error flag to true, everything is good now
-                    error = true;
+                else if (!(signupPassword1.getText().toString()).equals(signupPassword2.getText().toString())) {
+                    //reveal Invalid Password Match text
+                    TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
+                    String message = "Passwords must match";
+                    errorMessage.setText(message);
+                    //set error flag to FALSE since there is an error now
+                    error = false;
                 }
                 //If email is not valid, user gets error popup
-                if (!isValidEmail(signupEmail.getText().toString())) {
-                    //reveal Invalid Email text
-                    //signupInvalidEmailError.setVisibility(View.VISIBLE);
-
+                else if (!signupEmail.getText().toString().endsWith("@ucsd.edu")) {
+                    TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
+                    String message = "Please use a ucsd.edu email to log in.";
+                    errorMessage.setText(message);
                     //set error flag to FALSE since there is an error now
                     error = false;
-
                 }
                 else{
-                    //hide it
-                    //signupInvalidEmailError.setVisibility(View.INVISIBLE);
-
                     //correct error flag to true, everything is good now
                     error = true;
                 }
