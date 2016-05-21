@@ -37,7 +37,7 @@ public class CommentsRVAdapter extends RecyclerView.Adapter<CommentsRVAdapter.Co
         TextView commentName;
         TextView commentDate;
         TextView commentText;
-        ImageView commentFollow;
+        Button commentFollow;
         Button commentReply;
         Button commentViewReplies;
         RecyclerView recyclerViewReplies;
@@ -56,7 +56,7 @@ public class CommentsRVAdapter extends RecyclerView.Adapter<CommentsRVAdapter.Co
             commentName = (TextView) itemView.findViewById(R.id.comment_name);
             commentText = (TextView) itemView.findViewById(R.id.comment_text);
             commentDate = (TextView) itemView.findViewById(R.id.comment_date);
-            commentFollow = (ImageView) itemView.findViewById(R.id.button_follow);
+            commentFollow = (Button) itemView.findViewById(R.id.button_follow);
             commentReply = (Button) itemView.findViewById(R.id.button_reply);
             commentViewReplies = (Button) itemView.findViewById(R.id.button_view_replies);
             recyclerViewReplies = (RecyclerView) itemView.findViewById(R.id.rv);
