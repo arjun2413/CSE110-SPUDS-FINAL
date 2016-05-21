@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spuds.eventapp.R;
@@ -22,16 +23,18 @@ public class InvitePeopleRVAdapter extends RecyclerView.Adapter<InvitePeopleRVAd
 
     public static class InviteViewHolder extends RecyclerView.ViewHolder {
 
-        SmoothCheckBox scb;
+        ImageView photo;
         TextView followerName;
+        ImageView inviteButton;
         CardView card;
 
         public InviteViewHolder(View view) {
             super(view);
 
             card = (CardView) view.findViewById(R.id.cv);
-            scb = (SmoothCheckBox) view.findViewById(R.id.scb);
-            followerName = (TextView) view.findViewById(R.id.follower_name);
+            photo = (ImageView) view.findViewById(R.id.user_image);
+            inviteButton = (ImageView) view.findViewById(R.id.user_follow);
+            followerName = (TextView) view.findViewById(R.id.user_name);
 
         }
     }
@@ -60,32 +63,28 @@ public class InvitePeopleRVAdapter extends RecyclerView.Adapter<InvitePeopleRVAd
         final int i = position;
         final InviteViewHolder inviteHolder = holder;
 
-        holder.scb.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
+        holder.inviteButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
-                if (isChecked)
+            public void onClick(View v) {
+                /*
+                // TODO: add isInvited boolean field, need to create "Invite" object for the button?
+                if (isInvited)
                     invited.add(followers.get(i));
                 else
                     invited.remove(followers.get(i));
+                */
             }
         });
 
         holder.followerName.setText(followers.get(position).name);
 
-        holder.card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (inviteHolder.scb.isChecked())
-                    inviteHolder.scb.setChecked(false, true);
-                else
-                    inviteHolder.scb.setChecked(true, true);
-            }
-        });
-
+        /*
+        //What is selectAll?
         if (selectAll)
             holder.scb.setChecked(true, true);
         else
             holder.scb.setChecked(false, true);
+        */
     }
 
     @Override

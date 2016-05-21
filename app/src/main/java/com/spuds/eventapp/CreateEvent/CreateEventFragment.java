@@ -113,6 +113,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         final View view = inflater.inflate(R.layout.fragment_create_event, container, false);
         RecyclerView rv=(RecyclerView) view.findViewById(R.id.rv_categories);
 
