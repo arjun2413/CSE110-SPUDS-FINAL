@@ -11,8 +11,10 @@ import com.firebase.client.Query;
 import com.spuds.eventapp.CreateEvent.CreateEventForm;
 import com.spuds.eventapp.Shared.Event;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,6 +57,8 @@ public class EventsFirebase {
     public void createEvent(CreateEventForm form) {
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
         Map<String, String> map = new HashMap<String, String>();
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy|HH:mm");
+        Date dateobj = new Date();
         map.put("user_id", ref.getAuth().getUid());
         map.put("event_name", form.getName());
         map.put("description", form.getDescription());
@@ -62,7 +66,7 @@ public class EventsFirebase {
         map.put("date", form.getDate());
         map.put("number_going", "1");
         map.put("picture_file_name", "event.jpg");
-        map.put("created_at", "8:00pm");
+        map.put("created_at", df.format(dateobj));
         ref.child("events").push().setValue(map);
     }
 

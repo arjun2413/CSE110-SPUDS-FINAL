@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 import com.spuds.eventapp.Firebase.AccountFirebase;
@@ -19,6 +20,10 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
     private EditText input;
     private Button send;
+    private TextView errorMessage;
+    private int error;
+    private String message;
+    private TextView[] fun;
 
 
     @Override
@@ -29,6 +34,11 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
         input = (EditText)findViewById(R.id.email);
         send = (Button) findViewById(R.id.send_password);
+        errorMessage = (TextView) findViewById(R.id.errorMessage);
+        fun = new TextView[1];
+        fun[0] = errorMessage;
+
+
         //TODO when errormessage is made
         //errorMessage = (TextView) findViewById(R.id.errorMessage);
 
@@ -36,6 +46,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                error = 0;
                 final AccountFirebase accountFirebase = new AccountFirebase();
                 //TODO: move error checking logic to model file.
                 //Logic:
@@ -43,13 +54,14 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 //      2. check if first is an email
                 //      3. check if first field exists in the database
                 //      5. show snackbar on success or error message accordingly, but ignore number 4
-                String message = "";
+
                 if(input.getText().length() > 0){
                     final int[] check = new int[1];
                     check[0] = 0;
 
                     final String email = input.getText().toString();
                     final String valid = "@ucsd.edu";
+
                     //TODO: ERROR MESSAGE IMPLEMENTATION
 
                     //TODO: here we are playing with threads!
@@ -70,8 +82,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
                             check[0] = accountFirebase.getThreadCheck();
                             //wait for query
                             while (check[0] == 0) {
-                                if (counter > 50) {
-                                    System.out.println("ERROR TIME OUT");
+                                if (counter > 100) {
+                                    error = 4;
                                     break;
                                 }
                                 try {
@@ -84,14 +96,17 @@ public class ResetPasswordActivity extends AppCompatActivity {
                                 }
 
                             }
-                            if (emailCheck.endsWith(isValid)){
+                            if (emailCheck.endsWith(isValid) && error == 0){
                                 if (check[0] == 1) {
+                                    System.out.println("Checking");
                                     af.resetPass(emailCheck);
                                     startActivity(new Intent(ResetPasswordActivity.this, LoginActivity.class));
                                 }
-                                else System.out.println("FAILED");
+                                else {
+                                    error = 3;
+                                }
                             }
-                            System.out.println("int check status is: " + check[0]);
+                            System.out.println("int error status is: " + error);
                             System.out.println("thread2 has finished");
                         }
                     }
@@ -101,15 +116,61 @@ public class ResetPasswordActivity extends AppCompatActivity {
                     Thread cool2 = new Thread(r2);
 
                     if (email.endsWith(valid)) {
-                        accountFirebase.checkEmail(email);
+                        accountFirebase.checkEmail(email, fun);
                         cool2.start();
                     }
                     else {
-                        //TODO error invalid email
-                        //"Enter a valid ucsd.edu email
+                        error = 2;
                     }
+
                 }
-            }
+                else {
+                    error = 1;
+                }
+
+                System.out.println("Error status is: " + error);
+                switch(error) {
+                    case 1:
+                        message = "Fill out the field bruh.";
+                        if(errorMessage != null) {
+                            errorMessage.setText(message);
+                        }
+                        break;
+                    case 2:
+                        message = "Please enter a ucsd.edu email.";
+                        if (errorMessage != null) {
+                            errorMessage.setText(message);
+                        }
+                        break;
+                    case 3:
+                        message = "That email is not signed up.";
+                        if (errorMessage != null) {
+                            errorMessage.setText(message);
+                        }
+                        break;
+                    case 4:
+                        message = "Something went wrong. Please try again.";
+                        if (errorMessage != null) {
+                            errorMessage.setText(message);
+                        }
+                        break;
+                    default:
+                        message = "Please Wait...";
+                        if (errorMessage != null) {
+                            errorMessage.setText(message);
+                        }
+                        break;
+
+                }
+
+
+
+            }//end of onClick
         });
     }
+    /*public void setMessage(TextView text, String message){
+        if (text != null) {
+            text.setText(message);
+        }
+    }*/
 }
