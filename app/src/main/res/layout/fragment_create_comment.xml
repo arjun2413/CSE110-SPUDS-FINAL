@@ -28,7 +28,7 @@
 
         <Button
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:text="COMMENT"
             android:id="@+id/comment_submit"
             android:layout_gravity="right"
@@ -36,6 +36,7 @@
             android:textAllCaps="false"
             android:background="@drawable/roundedbutton"
             android:textColor="#ffffff"
+            android:backgroundTint="#333333"
              />
     </LinearLayout>
 </RelativeLayout>

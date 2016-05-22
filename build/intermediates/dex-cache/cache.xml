@@ -5,15 +5,8 @@
         jar="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         revision="23.0.1"
-        sha1="8ed0021490b1905d5c8c81b5123acef73528bae2">
+        sha1="761bf274c038e9daa977336f85c15f1ea25e8bec">
         <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_aa88c6f629a4e2888f079370560e69b05e754a71/classes.dex" />
-    </item>
-    <item
-        jar="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="05a3d79f953c797251fd1e9efee0eba35f1ce5dd">
-        <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_9740c35ddc0be5091db17d5bc41a00ac7dde18a4/classes.dex" />
     </item>
     <item
         jar="/home/tina/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-jvm/2.5.2/91731b8f5868a3e8a8a773f29b8d06b5c358f5bb/firebase-client-jvm-2.5.2.jar"
@@ -21,20 +14,6 @@
         revision="23.0.1"
         sha1="91731b8f5868a3e8a8a773f29b8d06b5c358f5bb">
         <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/firebase-client-jvm-2.5.2_9dbb6dc8d1ecf1bd85bf4b8b674cc9cb33802470/classes.dex" />
-    </item>
-    <item
-        jar="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
-        <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.3.0_6893578e877b41c8e4a9029ef658bf000bc4c821/classes.dex" />
-    </item>
-    <item
-        jar="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
-        <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_ec5fdd965fa189b36f3e63f61d7289f963285159/classes.dex" />
     </item>
     <item
         jar="/home/tina/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
@@ -51,18 +30,67 @@
         <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-23.3.0_0000f2920f34586bc5ec4c9ded7f33f8603b7410/classes.dex" />
     </item>
     <item
-        jar="/home/tina/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-android/2.5.2/f19f10d6276aa0b380e2d05d2ab3272d693a5433/firebase-client-android-2.5.2.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="f19f10d6276aa0b380e2d05d2ab3272d693a5433">
-        <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/firebase-client-android-2.5.2_cc410c8bab035b5e4e6d607569596af601165f79/classes.dex" />
-    </item>
-    <item
         jar="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.1"
         sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
         <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_cfd81064d3c4aad1d6edec539993fddee5035ad2/classes.dex" />
+    </item>
+    <item
+        jar="/home/tina/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_ca45b1a2f4b83eed4ac86bd0593c79be1ac055ff/classes.dex" />
+    </item>
+    <item
+        jar="/home/tina/.gradle/caches/modules-2/files-2.1/com.firebase/tubesock/0.0.12/6ec0bbd3e161a73ed672284b587fd32309a86d7a/tubesock-0.0.12.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="6ec0bbd3e161a73ed672284b587fd32309a86d7a">
+        <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/tubesock-0.0.12_7760be56ec1e0c941f77701ae826feec114283ed/classes.dex" />
+    </item>
+    <item
+        jar="/home/tina/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.2.2/3c8f6018eaa72d43b261181e801e6f8676c16ef6/jackson-databind-2.2.2.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="3c8f6018eaa72d43b261181e801e6f8676c16ef6">
+        <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-databind-2.2.2_329b06a8aa9340a4aabeb50a101528b372e81aa7/classes.dex" />
+    </item>
+    <item
+        jar="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_adb124171406cf3b19d9b3ba0dc24a59699f7ba0/classes.dex" />
+    </item>
+    <item
+        jar="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="49490e199da4882f0e7f69cf4a302ede22602ea2">
+        <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_9740c35ddc0be5091db17d5bc41a00ac7dde18a4/classes.dex" />
+    </item>
+    <item
+        jar="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.3.0_6893578e877b41c8e4a9029ef658bf000bc4c821/classes.dex" />
+    </item>
+    <item
+        jar="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_ec5fdd965fa189b36f3e63f61d7289f963285159/classes.dex" />
+    </item>
+    <item
+        jar="/home/tina/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-android/2.5.2/f19f10d6276aa0b380e2d05d2ab3272d693a5433/firebase-client-android-2.5.2.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="f19f10d6276aa0b380e2d05d2ab3272d693a5433">
+        <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/firebase-client-android-2.5.2_cc410c8bab035b5e4e6d607569596af601165f79/classes.dex" />
     </item>
     <item
         jar="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
@@ -86,25 +114,11 @@
         <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-core-2.2.2_e2dc8b0653f980df47db4a4e4adb464846a2484b/classes.dex" />
     </item>
     <item
-        jar="/home/tina/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
-        <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_ca45b1a2f4b83eed4ac86bd0593c79be1ac055ff/classes.dex" />
-    </item>
-    <item
         jar="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.quinny898.library.persistentsearch/library/1.1.0-SNAPSHOT/jars/classes.jar"
         jumboMode="true"
         revision="23.0.1"
         sha1="4c7250baed60ef7694c1c55723750831f3dbee67">
         <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.quinny898.library.persistentsearch-library-1.1.0-SNAPSHOT_ece1bcd180ef9748d1686e1cdfa52890ab9115a2/classes.dex" />
-    </item>
-    <item
-        jar="/home/tina/.gradle/caches/modules-2/files-2.1/com.firebase/tubesock/0.0.12/6ec0bbd3e161a73ed672284b587fd32309a86d7a/tubesock-0.0.12.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="6ec0bbd3e161a73ed672284b587fd32309a86d7a">
-        <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/tubesock-0.0.12_7760be56ec1e0c941f77701ae826feec114283ed/classes.dex" />
     </item>
     <item
         jar="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
@@ -119,20 +133,6 @@
         revision="23.0.1"
         sha1="285cb9c666f0f0f3dd8a1be04e1f457eb7b15113">
         <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-annotations-2.2.2_2fa151023e545eeeb27fbad68ef3934402aa4739/classes.dex" />
-    </item>
-    <item
-        jar="/home/tina/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.2.2/3c8f6018eaa72d43b261181e801e6f8676c16ef6/jackson-databind-2.2.2.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="3c8f6018eaa72d43b261181e801e6f8676c16ef6">
-        <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-databind-2.2.2_329b06a8aa9340a4aabeb50a101528b372e81aa7/classes.dex" />
-    </item>
-    <item
-        jar="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
-        <dex dex="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_adb124171406cf3b19d9b3ba0dc24a59699f7ba0/classes.dex" />
     </item>
     <item
         jar="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.soundcloud.android/android-crop/1.0.1/jars/classes.jar"
