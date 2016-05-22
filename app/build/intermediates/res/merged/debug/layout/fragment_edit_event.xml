@@ -72,7 +72,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="Date (MM/DD/YYYY) *"
+                android:text="Date (MM/DD/YY) *"
                 android:id="@+id/date"
                 android:textColor="#ffffff" />
 
@@ -117,10 +117,11 @@
                     android:paddingLeft="10dp"/>
 
                 <Spinner
-                    android:layout_width="wrap_content"
-                    android:layout_height="47dp"
+                    android:layout_width="60dp"
+                    android:layout_height="25dp"
                     android:id="@+id/spinner"
-                    android:spinnerMode="dropdown" />
+                    android:spinnerMode="dropdown"
+                    android:background="@drawable/spinner" /> />
             </LinearLayout>
 
             <TextView
@@ -193,7 +194,7 @@
 
                 <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:text="Delete"
                     android:id="@+id/editEventDelete"
 
@@ -202,16 +203,21 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_weight="1"
-                    android:background="#660000" />
+                    android:background="@drawable/roundedbox"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="#660000" />
 
                 <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:text="Done"
                     android:id="@+id/editEventDone"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/roundedbox"
+                    android:backgroundTint="#bfbfbf" />
             </LinearLayout>
         </LinearLayout>
 
