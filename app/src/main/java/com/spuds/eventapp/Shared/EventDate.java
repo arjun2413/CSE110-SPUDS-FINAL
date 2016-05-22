@@ -82,7 +82,7 @@ public class EventDate {
     }
 
     public String getDate() {
-        int a = this.month - 1;
+        int a = this.month;
         return months[a] + " " + this.day + ", " + this.year;
     }
 
