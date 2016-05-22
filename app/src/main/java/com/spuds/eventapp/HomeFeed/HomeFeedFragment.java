@@ -1,6 +1,7 @@
 package com.spuds.eventapp.HomeFeed;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -85,13 +86,16 @@ public class HomeFeedFragment extends Fragment {
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
-                        EventsFirebase ef = new EventsFirebase(events, 0, tabType);
-                        ef.createEL();
+                        //EventsFirebase ef = new EventsFirebase(events, 0, tabType);
+                        //ef.createEL();
                     }
                 }
         );
-        
+
     }
+
+
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

@@ -111,13 +111,34 @@ public class EventDetailsFragment extends Fragment {
         eventName.setText(event.getEventName());
         eventLocation.setText(event.getLocation());
 
-        EventDate eD = new EventDate(event.getDate());
-        eventDate.setText(eD.getDate());
-        eventTime.setText(eD.get12Time());
+        String originalString = event.getDate();
+        char[] c = originalString.toCharArray();
+
+
+        char temp = c[0];
+        c[0] = c[6];
+        c[6] = temp;
+
+        char temp1 = c[1];
+        c[1] = c[7];
+        c[7] = temp1;
+
+        char temp2 = c[0];
+        c[0] = c[3];
+        c[3] = temp2;
+
+        char temp3 = c[1];
+        c[1] = c[4];
+        c[4] = temp3;
+        String swappedString = new String(c);
+        //EventDate eD = new EventDate(event.getDate());
+        eventDate.setText(swappedString);
+        //eventTime.setText(eD.get12Time());
+
+
         eventAttendees.setText(String.valueOf(event.getAttendees()));
         eventHost.setText(event.getHostName());
         eventDescription.setText(event.getDescription());
-
 
 
         // Categories
