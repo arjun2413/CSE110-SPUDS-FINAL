@@ -1,9 +1,13 @@
 package com.spuds.eventapp.EditProfile;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +53,13 @@ public class  EditProfileFragment extends Fragment {
         editProfilePictureButton = (ImageButton) view.findViewById(R.id.edit_profile_picture);
         editFullName = (EditText) view.findViewById(R.id.edit_full_name);
         editDescription = (EditText) view.findViewById(R.id.edit_description);
+
+
+        Bitmap src = BitmapFactory.decodeResource(this.getResources(), R.id.edit_profile_picture);
+        RoundedBitmapDrawable dr =
+                RoundedBitmapDrawableFactory.create(this.getResources(), src);
+        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
+        editProfilePictureButton.setImageDrawable(dr);
 
         //Set Custom Fonts
         Typeface custom_font = Typeface.createFromAsset(getActivity().getAssets(),  "raleway-light.ttf");
