@@ -60,11 +60,11 @@ public class EventsFirebase {
         SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd|HH:mm");
         Date dateobj = new Date();
 
-        String originalString = form.getDate(); 
+        String originalString = form.getDate();
         char[] c = originalString.toCharArray();
 
         char temp = c[0];
-        c[0] = c[6];
+        c[0] = c[6]; 
         c[6] = temp;
 
         char temp1 = c[1];
