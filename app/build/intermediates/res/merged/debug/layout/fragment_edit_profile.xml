@@ -56,7 +56,8 @@
             android:layout_marginTop="10dp"
             android:text="Description"
             android:id="@+id/description"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:gravity="top|left"/>
 
         <EditText
             android:layout_width="match_parent"
