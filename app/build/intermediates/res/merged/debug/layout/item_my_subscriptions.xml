@@ -37,7 +37,8 @@
                     android:textSize="20sp"
                     android:layout_centerVertical="true"
                     android:text="Arjun Srinivasan"
-                    android:layout_marginTop="25dp" />
+                    android:layout_marginTop="25dp"
+                    android:textColor="#1a1a1a"/>
 
 
                 <ImageView

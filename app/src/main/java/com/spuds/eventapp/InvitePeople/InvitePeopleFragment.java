@@ -43,12 +43,16 @@ public class InvitePeopleFragment extends Fragment {
         // TODO (M): remember when loading do not override the followers arraylist, add to it
 
         followers = new ArrayList<>();
-        // TODO (M)
+        // TODO (M): fetch real data
         // fake data for followers
         invited = new ArrayList<>();
         followers.add(new User("1", "Reggie Wu", "#wutangclan", true, 100,
                 1, "reggie.jpg", false));
         followers.add(new User("1", "Youngjin Yun", "#wutangclan", true, 100,
+                1, "reggie.jpg", false));
+        followers.add(new User("1", "Jon Purple", "#wutangclan", true, 100,
+                1, "reggie.jpg", false));
+        followers.add(new User("1", "Christine Wu", "#wutangclan", true, 100,
                 1, "reggie.jpg", false));
 
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv);

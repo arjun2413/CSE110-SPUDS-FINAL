@@ -2,6 +2,7 @@ package com.spuds.eventapp.ResetPassword;
 
 import android.accounts.Account;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,11 +38,20 @@ public class ResetPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
+        //import typefaces
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "name_font.ttf");
+        Typeface raleway_light = Typeface.createFromAsset(getAssets(),  "raleway-light.ttf");
+
+        TextView tx = (TextView)findViewById(R.id.app_name);
+        tx.setTypeface(custom_font);
+
         input = (EditText)findViewById(R.id.email);
         send = (Button) findViewById(R.id.send_password);
         //TODO when errormessage is made
         final TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
-
+        errorMessage.setTypeface(raleway_light);
+        input.setTypeface(raleway_light);
+        send.setTypeface(raleway_light);
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
