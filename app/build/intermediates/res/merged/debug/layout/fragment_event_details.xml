@@ -76,7 +76,7 @@
                 android:shadowDy="10"
                 android:shadowRadius="10"/>
 
-            <TextView
+           <!-- <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -102,7 +102,7 @@
                 android:shadowColor="#7F000000"
                 android:shadowDx="10"
                 android:shadowDy="10"
-                android:shadowRadius="10"/>
+                android:shadowRadius="10"/>-->
         </LinearLayout>
 
 
