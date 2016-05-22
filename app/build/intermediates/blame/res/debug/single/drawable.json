@@ -20,6 +20,10 @@
         "source": "/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/src/main/res/drawable/free.png"
     },
     {
+        "merged": "/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/edit.png",
+        "source": "/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/src/main/res/drawable/edit.png"
+    },
+    {
         "merged": "/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/profile.png",
         "source": "/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/src/main/res/drawable/profile.png"
     },
@@ -44,12 +48,12 @@
         "source": "/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable/abc_btn_radio_material.xml"
     },
     {
-        "merged": "/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/add.png",
-        "source": "/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/src/main/res/drawable/add.png"
-    },
-    {
         "merged": "/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/side_nav_bar.xml",
         "source": "/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/src/main/res/drawable/side_nav_bar.xml"
+    },
+    {
+        "merged": "/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/add.png",
+        "source": "/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/src/main/res/drawable/add.png"
     },
     {
         "merged": "/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/social.png",
@@ -142,6 +146,10 @@
     {
         "merged": "/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/crop__selectable_background.xml",
         "source": "/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.soundcloud.android/android-crop/1.0.1/res/drawable/crop__selectable_background.xml"
+    },
+    {
+        "merged": "/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/addcomment.png",
+        "source": "/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/src/main/res/drawable/addcomment.png"
     },
     {
         "merged": "/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/sports.png",

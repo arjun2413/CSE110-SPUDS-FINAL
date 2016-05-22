@@ -81,7 +81,6 @@ public class EventDate {
         }
     }
 
-
     public String getDate() {
         int a = this.month - 1;
         return months[a] + " " + this.day + ", " + this.year;
