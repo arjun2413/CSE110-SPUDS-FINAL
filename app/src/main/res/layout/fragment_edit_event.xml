@@ -164,7 +164,8 @@
                 android:id="@+id/eventDescription"
                 android:background="@drawable/roundedbox"
                 android:backgroundTint="#d1e0e0"
-                android:paddingLeft="10dp"/>
+                android:paddingLeft="10dp"
+                android:gravity="top|left"/>
 
             <TextView
                 android:layout_width="wrap_content"

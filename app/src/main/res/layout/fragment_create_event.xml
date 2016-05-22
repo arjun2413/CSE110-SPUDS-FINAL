@@ -241,7 +241,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:background="@drawable/roundedbox"
-                android:backgroundTint="#bfbfbf"/>
+                android:backgroundTint="#4d4d4d"
+                android:textColor="#ffffff"/>
 
             <LinearLayout
                 android:orientation="horizontal"
