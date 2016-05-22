@@ -1,6 +1,7 @@
 package com.spuds.eventapp.HomeFeed;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -26,12 +27,16 @@ public class HomeFeedFragment extends Fragment {
     public EventsFeedRVAdapter adapter;
     String tabType;
 
+    Typeface raleway_light;
+
     public HomeFeedFragment() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        raleway_light = Typeface.createFromAsset(getActivity().getAssets(),  "raleway-light.ttf");
 
         Bundle extras = getArguments();
         tabType = extras.getString(getString(R.string.tab_tag));
