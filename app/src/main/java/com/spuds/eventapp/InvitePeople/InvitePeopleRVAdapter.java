@@ -67,7 +67,7 @@ public class InvitePeopleRVAdapter extends RecyclerView.Adapter<InvitePeopleRVAd
         final int i = position;
         final InviteViewHolder inviteHolder = holder;
 
-        Bitmap src = BitmapFactory.decodeResource(fragment.getResources(), R.drawable.arjun);
+        Bitmap src = BitmapFactory.decodeResource(fragment.getResources(), R.drawable.christinecropped);
         RoundedBitmapDrawable dr =
                 RoundedBitmapDrawableFactory.create(fragment.getResources(), src);
         dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
