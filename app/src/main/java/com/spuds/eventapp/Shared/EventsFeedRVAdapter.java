@@ -131,8 +131,13 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
         // Categories
         String categories = "";
-        for (int index = 0; index < events.get(index).getCategories().size() - 1; ++index) {
-            categories += events.get(i).getCategories().get(index) + ", ";
+        int eventIndex = 0;
+        for (int categoryIndex = 0; categoryIndex < events.get(eventIndex).getCategories().size() - 1; categoryIndex++) {
+            if (categoryIndex == events.get(eventIndex).getCategories().size()){
+                categoryIndex = 0;
+                eventIndex++;
+            }
+            categories += events.get(i).getCategories().get(eventIndex) + ", ";
         }
         categories += events.get(i).getCategories().get(events.get(i).getCategories().size() - 1);
 
