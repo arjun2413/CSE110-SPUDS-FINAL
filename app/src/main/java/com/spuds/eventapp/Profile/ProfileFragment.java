@@ -76,10 +76,6 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        Typeface raleway_light = Typeface.createFromAsset(getActivity().getAssets(),  "raleway-light.ttf");
-
-        TextView numFollowing = (TextView) view.findViewById(R.id.user_number_following);
-        numFollowing.setTypeface(raleway_light);
 
         setUpProfileDetails(view);
 
