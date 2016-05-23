@@ -1,5 +1,7 @@
 package com.spuds.eventapp.Shared;
 
+import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -75,7 +77,11 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
     @Override
     public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        //Change the view of this font!!!
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_event_feed, viewGroup, false);
+        //Typeface raleway_light = Typeface.createFromAsset(v.getContext().getAssets(),  "raleway-light.ttf");
+        overrideFonts(v.getContext(),v);
+
         EventViewHolder evh = new EventViewHolder(v);
         return evh;
     }
@@ -238,4 +244,21 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
     public int getItemCount() {
         return events.size();
     }
+
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView ) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "raleway-regular.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
+    }
+
 }
