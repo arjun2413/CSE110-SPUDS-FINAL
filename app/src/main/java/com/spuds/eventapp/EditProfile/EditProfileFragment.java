@@ -1,32 +1,30 @@
 package com.spuds.eventapp.EditProfile;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
+import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.Shared.User;
 
 
 public class  EditProfileFragment extends Fragment {
 
     //interactable objects
+    ImageView pictureView;
     Button updateButton;
     ImageButton editProfilePictureButton;
     EditText editFullName;
-    //EditText editCollege;
-    //EditText editMajor;
     EditText editDescription;
     Fragment editProfileFragment;
 
@@ -53,13 +51,62 @@ public class  EditProfileFragment extends Fragment {
         editProfilePictureButton = (ImageButton) view.findViewById(R.id.edit_profile_picture);
         editFullName = (EditText) view.findViewById(R.id.edit_full_name);
         editDescription = (EditText) view.findViewById(R.id.edit_description);
+        pictureView = (ImageButton) view.findViewById(R.id.edit_profile_picture);
 
 
-        Bitmap src = BitmapFactory.decodeResource(this.getResources(), R.id.edit_profile_picture);
+        pictureView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                ((MainActivity) getActivity()).picture = null;
+
+                // For camera
+                //UploadPictureDialogFragment dialogFragment = new UploadPictureDialogFragment();
+
+                //dialogFragment.show(getFragmentManager(), "Add a Picture");
+
+
+                ((MainActivity) getActivity()).pickImage();
+
+                new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        while (((MainActivity) getActivity()).picture == null) {
+                            try {
+                                Thread.sleep(75);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                pictureView.setImageURI(null);
+                                pictureView.setImageURI(((MainActivity) getActivity()).picture);
+                                pictureView.invalidate();
+
+
+                            }
+                        });
+
+                    }
+                }).start();
+
+            }
+        });
+
+
+        /*Bitmap src = BitmapFactory.decodeResource(this.getResources(), R.id.edit_profile_picture);
         RoundedBitmapDrawable dr =
                 RoundedBitmapDrawableFactory.create(this.getResources(), src);
         dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
         editProfilePictureButton.setImageDrawable(dr);
+*/
 
         //Set Custom Fonts
         Typeface custom_font = Typeface.createFromAsset(getActivity().getAssets(),  "raleway-light.ttf");
@@ -68,8 +115,8 @@ public class  EditProfileFragment extends Fragment {
 
 
 
-        editFullName.setText(user.name);
-        editDescription.setText(user.description);
+        editFullName.setText(user.getName());
+        editDescription.setText(user.getDescription());
 
 
 
@@ -78,10 +125,17 @@ public class  EditProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // TODO (M): Push this data
-                editFullName.getText().toString();      //Full Name to update to db
+                ;      //Full Name to update to db
                 //editCollege.getText().toString();       //College text to update to db
                 //editMajor.getText().toString();         //Major text to update to db
-                editDescription.getText().toString();   //description to update to db
+                ;   //description to update to db
+
+                User user = new User(editFullName.getText().toString(),
+                        editDescription.getText().toString(),
+                        UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture));
+
+                UserFirebase.updateUser(user);
+
 
                 // TODO (C): Refresh after updating profile
                 // Pop this fragment from backstack

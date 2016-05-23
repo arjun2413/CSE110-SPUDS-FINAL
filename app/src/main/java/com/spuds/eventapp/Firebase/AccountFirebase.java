@@ -8,7 +8,6 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.firebase.client.AuthData;
-import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -38,9 +37,16 @@ public class AccountFirebase {
                         // Authentication just completed successfully smile emoticon
                         Map<String, String> map = new HashMap<String, String>();
                         map.put("provider", ref.getAuth().getProvider());
-                        map.put("Name", name);
-                        map.put("Email", email);
-                        ref.child("users").child(ref.getAuth().getUid()).setValue(map);
+                        map.put("name", name);
+                        map.put("email", email);
+                        map.put("description", "");
+                        map.put("notification_toggle", "true");
+                        map.put("number_following", "0");
+                        map.put("number_hosting", "0");
+                        map.put("picture", "");
+                        ref.child("users").child(String.valueOf(result.get("uid"))).setValue(map);
+
+                        UserFirebase.uId = String.valueOf(result.get("uid"));
                     }
 
                     @Override
@@ -55,14 +61,21 @@ public class AccountFirebase {
         );
     }
     public int status = 0;
-    public void logIn(String email, String password) {
+    public void logIn(final String email, String password) {
         status = 0;
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
 
         ref.authWithPassword(email, password, new Firebase.AuthResultHandler() {
             @Override
             public void onAuthenticated(AuthData authData) {
+
+                UserFirebase.uId = authData.getUid();
+
                 status = 1;
+
+
+
+
                 // Authentication just completed successfully smile emoticon
 
             }
