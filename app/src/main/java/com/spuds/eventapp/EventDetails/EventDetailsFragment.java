@@ -131,10 +131,33 @@ public class EventDetailsFragment extends Fragment {
         c[1] = c[4];
         c[4] = temp3;
         String swappedString = new String(c);
+
+        String tempString = swappedString.substring(11, swappedString.length());
+        String sub = tempString.substring(0, tempString.indexOf(':'));
+        String col = tempString.substring(tempString.indexOf(':'), tempString.length());
+        int numb = Integer.parseInt(sub);
+
+        //PM
+        if(Integer.parseInt(sub) >= 12 && Integer.parseInt(sub) < 24) {
+            if(numb != 12) {
+                numb -= 12;
+            }
+
+            sub = numb + col + "PM";
+        }
+
+        //AM
+        else{
+            if(numb == 0) {
+                numb += 12;
+            }
+            sub = numb + col + "AM";
+        }
+
+        swappedString = swappedString.substring(0, 11) + sub;
         //EventDate eD = new EventDate(event.getDate());
         eventDate.setText(swappedString);
         //eventTime.setText(eD.get12Time());
-
 
         eventAttendees.setText(String.valueOf(event.getAttendees()));
         eventHost.setText(event.getHostName());

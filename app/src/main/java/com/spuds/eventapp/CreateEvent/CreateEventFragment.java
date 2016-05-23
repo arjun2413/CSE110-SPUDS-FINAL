@@ -34,6 +34,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     private EditText eventName;
     private EditText eventDate;
     private EditText eventTime;
+    private Spinner spinner;
     private EditText eventLocation;
     private EditText eventDescription;
     private Button editEventDelete;
@@ -46,7 +47,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     public CreateEventRVAdapter adapter;
 
     private CreateEventForm makeForm(){
-        return new CreateEventForm(eventName,eventDate,eventTime,eventLocation,eventDescription);
+        return new CreateEventForm(eventName,eventDate,eventTime, spinner, eventLocation,eventDescription);
 
     }
 
@@ -59,7 +60,6 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         eventDescription = (EditText) view.findViewById(R.id.eventDescription);
         editEventDelete = (Button) view.findViewById(R.id.editEventDelete);
         editEventDone = (Button) view.findViewById(R.id.editEventDone);
-
         editEventFields = new ArrayList<String>();
 
     }
@@ -125,7 +125,6 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
 
         setupWindow();
 
-
         final SmoothCheckBox scb = (SmoothCheckBox) view.findViewById(R.id.category_scb);
 
         /*
@@ -137,7 +136,6 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
             }
         });
         */
-
 
         categories = new ArrayList<>();
 
@@ -167,7 +165,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
 
 
         // Spinner element
-        Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
+        spinner = (Spinner) view.findViewById(R.id.spinner);
 
         // Spinner click listener
         spinner.setOnItemSelectedListener(this);

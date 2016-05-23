@@ -141,8 +141,6 @@ public class LoginActivity extends AppCompatActivity {
                     //Pass through an id of the user [coding decision: should we pass image first and last name?]
                     else{
                         Object time = new Object();
-                        Log.v("sadasdasdasd", email);
-                        Log.v("asdasdasdasd", password);
                         obj.logIn(email.toString(), password.toString());
 
 
@@ -178,9 +176,6 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             }).start();
 
-                            Log.v("asdasdasdasd", String.valueOf(obj.status));
-
-                        Log.v("asdasdasdasd", String.valueOf(obj.status));
                         obj.status = 0;
                     }
                 }

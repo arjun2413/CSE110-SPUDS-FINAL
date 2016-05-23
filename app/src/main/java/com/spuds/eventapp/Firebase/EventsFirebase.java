@@ -45,7 +45,6 @@ public class EventsFirebase {
 
     }
 
-
     public EventsFirebase(ArrayList<Event> eventsList, int loading, String filter) {
         this.eventsList = eventsList;
         this.filter = filter;
@@ -57,7 +56,7 @@ public class EventsFirebase {
         Log.d("fuck", String.valueOf(categoryList));
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
 
-        SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd|HH:mm");
+        SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd | HH:mm");
         Date dateobj = new Date();
 
         String originalString = form.getDate();
@@ -79,6 +78,33 @@ public class EventsFirebase {
         c[4] = c[7];
         c[7] = temp3;
         String swappedString = new String(c);
+
+        //change to 24 time
+
+        String tempString = swappedString.substring(11, swappedString.length());
+        int numb = 0;
+
+        if(tempString.indexOf('A') == -1) {
+            String sub = tempString.substring(0, tempString.indexOf('P'));
+            numb = Integer.parseInt(sub);
+
+            if(numb != 12) {
+                numb += 12;
+            }
+
+        }
+        else{
+            String sub = tempString.substring(0, tempString.indexOf('A'));
+            numb = Integer.parseInt(sub);
+
+            if(numb == 12) {
+                numb = 0;
+            }
+        }
+
+        if(swappedString.indexOf(':') == -1) {
+            swappedString = swappedString.substring(0, 11) + numb + ":00";
+        }
 
         Map<String, String> map = new HashMap<String, String>();
         map.put("user_id", ref.getAuth().getUid());
@@ -143,7 +169,6 @@ public class EventsFirebase {
 
                 Event newEvent = new Event();
 
-
                 for (DataSnapshot child : snapshot.getChildren()) {
                     switch (child.getKey()) {
                         case "date":
@@ -169,7 +194,7 @@ public class EventsFirebase {
                             break;
                     }
 
-                    Log.d("asdf", String.valueOf(snapshot.getKey()));
+                    //Log.d("asdf", String.valueOf(snapshot.getKey()));
 
                 }
 
