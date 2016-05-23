@@ -1,6 +1,7 @@
 package com.spuds.eventapp.CategoriesList;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -29,6 +30,9 @@ public class CategoriesListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_categories_list, container, false);
         pickCategory(view);
+
+
+
 
         return view;
     }
