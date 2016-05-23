@@ -131,10 +131,93 @@ public class EventDetailsFragment extends Fragment {
         c[1] = c[4];
         c[4] = temp3;
         String swappedString = new String(c);
+
+        String tempString = swappedString.substring(11, swappedString.length());
+        String sub = tempString.substring(0, tempString.indexOf(':'));
+        String col = tempString.substring(tempString.indexOf(':'), tempString.length());
+        int numb = Integer.parseInt(sub);
+
+        //PM
+        if(Integer.parseInt(sub) >= 12 && Integer.parseInt(sub) < 24) {
+            if(numb != 12) {
+                numb -= 12;
+            }
+
+            sub = numb + col + "PM";
+        }
+
+        //AM
+        else{
+            if(numb == 0) {
+                numb += 12;
+            }
+            sub = numb + col + "AM";
+        }
+
+        swappedString = swappedString.substring(0, 11) + sub;
+        System.out.println("FINAL STRING IS: " + swappedString);
+        //format:
+        //     09/09/16 | 3:00PM
+
+        String tempMonth = "";
+        //change swappedString to Month, Day Year format
+        String tempTime = swappedString.substring(8);
+        switch (swappedString.substring(0,2)) {
+            case "01":
+                tempMonth = "January ";
+                break;
+            case "02":
+                tempMonth = "February ";
+                break;
+            case "03":
+                tempMonth = "March ";
+                break;
+            case "04":
+                tempMonth = "April ";
+                break;
+            case "05":
+                tempMonth = "May ";
+                break;
+            case "06":
+                tempMonth = "June ";
+                break;
+            case "07":
+                tempMonth = "July ";
+                break;
+            case "08":
+                tempMonth = "August ";
+                break;
+            case "09":
+                tempMonth = "September ";
+                break;
+            case "10":
+                tempMonth = "October ";
+                break;
+            case "11":
+                tempMonth = "November ";
+                break;
+            case "12":
+                tempMonth = "December ";
+                break;
+        }
+        String tempDay = "";
+        if (swappedString.substring(3,4).equals("0"))
+            tempDay = swappedString.substring(4,5); //if day is like 09, we only want 9
+        else tempDay = swappedString.substring(3,5); // if its like 12, we want both digits
+
+        //comma!
+        tempDay = tempDay + ", ";
+
+        String tempYear = "20" + swappedString.substring(6,8);
+        swappedString = tempMonth + tempDay + tempYear + tempTime;
+
+
+
+
+
         //EventDate eD = new EventDate(event.getDate());
         eventDate.setText(swappedString);
         //eventTime.setText(eD.get12Time());
-
 
         eventAttendees.setText(String.valueOf(event.getAttendees()));
         eventHost.setText(event.getHostName());

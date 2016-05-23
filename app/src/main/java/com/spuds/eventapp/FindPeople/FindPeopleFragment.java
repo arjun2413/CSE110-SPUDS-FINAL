@@ -31,22 +31,15 @@ public class FindPeopleFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
+        Bundle bundle = new Bundle();
+        people = (ArrayList<User>) bundle.getSerializable("Search People Array List");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        people = new ArrayList<>();
         View view = inflater.inflate(R.layout.recycler, container, false);
-
-        //fake data
-        people.add(new User("1", "Kevin Huang", "#meatballs", true, 100, 1, "christinecropped.jpg", false));
-        people.add(new User("1", "Arjun Huang", "#meatballs", true, 100, 1, "christinecropped.jpg", false));
-        people.add(new User("1", "Christine Wu", "#meatballs", true, 100, 1, "christinecropped.jpg", false));
-        people.add(new User("1", "Yung Jin", "#meatballs", true, 100, 1, "christinecropped.jpg", false));
-        people.add(new User("1", "Jon Putin", "#meatballs", true, 100, 1, "christinecropped.jpg", false));
-        people.add(new User("1", "Vladmir Purplenuts", "#meatballs", true, 100, 1, "christinecropped.jpg", false));
-        
 
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());

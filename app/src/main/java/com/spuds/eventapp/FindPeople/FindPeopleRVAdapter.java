@@ -85,7 +85,7 @@ public class FindPeopleRVAdapter extends RecyclerView.Adapter<FindPeopleRVAdapte
             }
         });
 
-        holder.inviteeName.setText(people.get(position).name);
+        holder.inviteeName.setText(people.get(position).getName());
     }
 
     @Override

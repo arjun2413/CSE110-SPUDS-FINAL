@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -13,6 +12,7 @@ import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 import com.spuds.eventapp.Firebase.AccountFirebase;
+import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.ResetPassword.ResetPasswordActivity;
 import com.spuds.eventapp.Shared.MainActivity;
@@ -141,46 +141,42 @@ public class LoginActivity extends AppCompatActivity {
                     //Pass through an id of the user [coding decision: should we pass image first and last name?]
                     else{
                         Object time = new Object();
-                        Log.v("sadasdasdasd", email);
-                        Log.v("asdasdasdasd", password);
                         obj.logIn(email.toString(), password.toString());
 
 
 
-                            new Thread(new Runnable() {
+                        new Thread(new Runnable() {
 
-                                @Override
-                                public void run() {
-                                    while (obj.status == 0) {
-                                        try {
-                                            Thread.sleep(500);
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-
-                                    }
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            if(obj.status == 2) {
-                                                TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
-                                                String message = "The email and password you entered don't match.";
-                                                errorMessage.setText(message);
-                                            }
-                                        }
-                                    });
-
-                                    if (obj.status == 1) {
-
-                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            @Override
+                            public void run() {
+                                while (obj.status == 0) {
+                                    try {
+                                        Thread.sleep(75);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
                                     }
 
                                 }
-                            }).start();
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if(obj.status == 2) {
+                                            TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
+                                            String message = "The email and password you entered don't match.";
+                                            errorMessage.setText(message);
+                                        }
+                                    }
+                                });
 
-                            Log.v("asdasdasdasd", String.valueOf(obj.status));
+                                if (obj.status == 1) {
 
-                        Log.v("asdasdasdasd", String.valueOf(obj.status));
+                                    getUserDetails();
+
+                                }
+
+                            }
+                        }).start();
+
                         obj.status = 0;
                     }
                 }
@@ -203,5 +199,34 @@ public class LoginActivity extends AppCompatActivity {
         return "";
     }
 
+    UserFirebase userFirebase = new UserFirebase();
 
+    void getUserDetails() {
+
+
+        userFirebase.getMyAccountDetails();
+
+        System.out.println("asdf" + "ingetuserdetailsloginactivity");
+
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (!userFirebase.threadCheck) {
+                    try {
+                        Thread.sleep(75);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
+            }
+        }).start();
+
+        obj.status = 0;
+    }
 }

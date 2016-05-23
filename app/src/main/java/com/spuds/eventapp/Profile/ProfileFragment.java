@@ -3,7 +3,6 @@ package com.spuds.eventapp.Profile;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -14,8 +13,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -76,11 +73,7 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-
         setUpProfileDetails(view);
-
-
-
 
         return view;
     }
@@ -98,18 +91,12 @@ public class ProfileFragment extends Fragment {
 
         // TODO (M): Picasso for userImage
 
-        userName.setText(user.name);
+        userName.setText(user.getName());
         Bitmap src = BitmapFactory.decodeResource(this.getResources(), R.drawable.arjun);
         RoundedBitmapDrawable dr =
                 RoundedBitmapDrawableFactory.create(this.getResources(), src);
         dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
         userImage.setImageDrawable(dr);
-
-
-        if (!user.verified) {
-            ((ViewManager) userVerified.getParent()).removeView(userVerified);
-        }
-
 
 
         // Set image for button for subscribe or edit profile
@@ -149,7 +136,7 @@ public class ProfileFragment extends Fragment {
                 public void onClick(View v) {
 
                     // TODO (M): Update subscribed boolean in database & error checking
-                    user.subscribed = !user.subscribed;
+                    user.setSubscribed(!user.isSubscribed());
                     /*if (user.subscribed)
                         buttonSubscribedOrEdit.setImageResource(R.drawable.button_subscribed);
                     else
@@ -160,8 +147,8 @@ public class ProfileFragment extends Fragment {
 
         }
 
-        numberFollowing.setText(String.valueOf(user.numberFollowing));
-        numberHosting.setText(String.valueOf(user.numberHosting));
+        numberFollowing.setText(String.valueOf(user.getNumberFollowing()));
+        numberHosting.setText(String.valueOf(user.getNumberHosting()));
 
         setUpRecyclerViewsGoingAndHosting();
 
@@ -186,7 +173,7 @@ public class ProfileFragment extends Fragment {
                 "foosh.jpg", categories, "Foosh Improv Comedy Club"));
         eventsHosting.add(null);
 
-        EventsFeedRVAdapter eventsFeedRVAdapterHosting = new EventsFeedRVAdapter(eventsHosting, this, getString(R.string.fragment_profile), getString(R.string.tab_hosting), user.userId);
+        EventsFeedRVAdapter eventsFeedRVAdapterHosting = new EventsFeedRVAdapter(eventsHosting, this, getString(R.string.fragment_profile), getString(R.string.tab_hosting), user.getUserId());
         eventsHostingRV.setAdapter(eventsFeedRVAdapterHosting);
 
 
@@ -207,7 +194,7 @@ public class ProfileFragment extends Fragment {
                 "foosh.jpg", categories, "Foosh Improv Comedy Club"));
         eventsGoing.add(null);
 
-        EventsFeedRVAdapter eventsFeedRVAdapterGoing = new EventsFeedRVAdapter(eventsGoing, this, getString(R.string.fragment_profile), getString(R.string.tab_going), user.userId);
+        EventsFeedRVAdapter eventsFeedRVAdapterGoing = new EventsFeedRVAdapter(eventsGoing, this, getString(R.string.fragment_profile), getString(R.string.tab_going), user.getUserId());
         eventsGoingRV.setAdapter(eventsFeedRVAdapterGoing);
     }
 

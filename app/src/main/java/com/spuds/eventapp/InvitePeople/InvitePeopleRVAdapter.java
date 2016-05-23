@@ -18,8 +18,6 @@ import com.spuds.eventapp.Shared.User;
 
 import java.util.ArrayList;
 
-import cn.refactor.library.SmoothCheckBox;
-
 /**
  * Created by tina on 5/16/16.
  */
@@ -88,7 +86,7 @@ public class InvitePeopleRVAdapter extends RecyclerView.Adapter<InvitePeopleRVAd
         });
 
 
-        holder.followerName.setText(followers.get(position).name);
+        holder.followerName.setText(followers.get(position).getName());
 
         /*
         //What is selectAll? How do you select all?
