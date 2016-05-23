@@ -5,6 +5,7 @@ package com.spuds.eventapp.Firebase;
  */
 
 import android.util.Log;
+import android.widget.TextView;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.ChildEventListener;
@@ -76,18 +77,21 @@ public class AccountFirebase {
     }
 
     public void changePass(ChangePasswordForm form) {
+        threadCheck = 0;
         Log.v("email", form.getEmail());
         Firebase ref = new Firebase("https://eventory.firebaseio.com");
         ref.changePassword(form.getEmail(), form.getCurrent(), form.getNext(), new Firebase.ResultHandler() {
             @Override
             public void onSuccess() {
                 // password changed
+                threadCheck = 1;
                 System.out.println("Password Changed");
             }
 
             @Override
             public void onError(FirebaseError firebaseError) {
                 // error encountered
+                threadCheck = 2;
                 Log.v("AccountFirebase:CP:", firebaseError.getMessage());
             }
         });
@@ -128,7 +132,7 @@ public class AccountFirebase {
         String data = (String) ref.getAuth().getProviderData().get("email");
         return data;
     }
-    public void checkEmail(final String email) {
+    public void checkEmail(final String email, final TextView[] tArray) {
         threadCheck = 0;
         Firebase ref = new Firebase("https://eventory.firebaseio.com/users");
         Query queryRef = ref.orderByChild("Email").startAt(email).endAt(email);
@@ -146,6 +150,9 @@ public class AccountFirebase {
                 }
                 else {
                     threadCheck = 2;
+                    if (tArray[0] != null) {
+                        tArray[0].setText("That email is not signed up");
+                    }
                     System.out.println("NOTFOUND");
                 }
             }

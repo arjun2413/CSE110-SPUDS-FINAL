@@ -47,6 +47,7 @@ public class ChangePasswordFragment extends Fragment {
 
     private void restartError(){
         error_string = "";
+        sys_message.setText("");
     }
 
     private String getError(){
@@ -103,19 +104,38 @@ public class ChangePasswordFragment extends Fragment {
                     Log.v("is_error 3:" , String.valueOf(is_error));
                 }
 
+                else if(!form.diffPw()){
+                    if(!is_error) {
+                        appendError("Error #: New Password Must Be Different");
+                        is_error = true;
+                    }
+                    Log.v("is_error 4:" , String.valueOf(is_error));
+                }
+
                 //pops up a snackbar with successful change message if no error was found
                 if(!is_error) {
                     Log.v("is_error 4:" , String.valueOf(is_error));
                     af.changePass(form);
+                    int check = af.getThreadCheck();
 
                     // Pop this fragment from backstack
-                    getActivity().getSupportFragmentManager().popBackStack();
+                    //getActivity().getSupportFragmentManager().popBackStack();
 
                     //TODO: need to test if snackbar works properly
-                    Snackbar snackbar = Snackbar.make
-                            (view,getString(R.string.password_change_success),
-                                    Snackbar.LENGTH_LONG);
-                    snackbar.show();
+
+                    if (check == 1) {
+                        getActivity().getSupportFragmentManager().popBackStack();
+                        Snackbar snackbar = Snackbar.make
+                                (view, getString(R.string.password_change_success),
+                                        Snackbar.LENGTH_LONG);
+                        snackbar.show();
+                    }
+                    else {
+                        is_error = true;
+                        Snackbar snackbar = Snackbar.make
+                                (view, "Password Incorrect", Snackbar.LENGTH_LONG);
+                        snackbar.show();
+                    }
                 }
                 else {
                     //show concatinated error messages
