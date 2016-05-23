@@ -54,7 +54,7 @@ public class UserFirebase {
             @Override
             public void onChildAdded(DataSnapshot snapshot, String previousChild) {
 
-                System.out.println("asdf" + "heyheyheyuserfirebaseaccountdetails");
+                System.out.println("asdf" + "keykeykey" + snapshot.toString());
 
                 thisUser = new User();
                 for (DataSnapshot child : snapshot.getChildren()) {
@@ -123,7 +123,9 @@ public class UserFirebase {
     }
 
 
+    public static void getAnotherUser(String userId) {
 
+    }
 
 
 

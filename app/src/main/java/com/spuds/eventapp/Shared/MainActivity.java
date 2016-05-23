@@ -1,5 +1,6 @@
 package com.spuds.eventapp.Shared;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -573,6 +574,14 @@ public class MainActivity extends AppCompatActivity
 
         }
 
+        // w/o crop
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+
+            Uri uri = result.getData();
+
+            picture = uri;
+        }
+
     }
 
     private void beginCrop(Uri source) {
@@ -591,4 +600,11 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void pickImageWithoutCrop() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
 }

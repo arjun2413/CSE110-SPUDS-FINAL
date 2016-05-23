@@ -19,8 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.spuds.eventapp.Firebase.EventsFirebase;
+import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.CategoryTextButton;
+import com.spuds.eventapp.Shared.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +49,8 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     public CreateEventRVAdapter adapter;
 
     private CreateEventForm makeForm(){
-        return new CreateEventForm(eventName,eventDate,eventTime, spinner, eventLocation,eventDescription);
+        String result = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
+        return new CreateEventForm(eventName,eventDate,eventTime, spinner, eventLocation,eventDescription, result);
 
     }
 
@@ -74,20 +77,10 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
 
                 boolean addImage = false;
 
-                /* TODO get the image of the event
-                Matrix uploadedEventImage = eventImage.getImageMatrix()
 
-                if (uploadedEventImage != null) {
-                    addImage = true;
-                }
-                */
 
 
                 if (form.allFilled()) {
-                    // TODO send to database the event details (in a method)
-                    if (addImage) {
-                        // TODO push to editEventFields array list
-                    }
                     eventsFirebase.createEvent(form, adapter);
                     getActivity().getSupportFragmentManager().popBackStack();
                 }
@@ -96,6 +89,52 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                 }
             }
         });
+
+
+        eventImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).picture = null;
+
+                // For camera
+                //UploadPictureDialogFragment dialogFragment = new UploadPictureDialogFragment();
+
+                //dialogFragment.show(getFragmentManager(), "Add a Picture");
+
+
+                ((MainActivity) getActivity()).pickImageWithoutCrop();
+
+                new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        while (((MainActivity) getActivity()).picture == null) {
+                            try {
+                                Thread.sleep(75);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                eventImage.setImageURI(null);
+                                eventImage.setImageURI(((MainActivity) getActivity()).picture);
+                                eventImage.invalidate();
+
+
+                            }
+                        });
+
+                    }
+                }).start();
+            }
+        });
+
+
     }
 
     public CreateEventFragment() {
