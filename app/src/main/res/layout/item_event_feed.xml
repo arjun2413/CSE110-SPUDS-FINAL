@@ -40,13 +40,13 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:id="@+id/transparent_overlay"
-                    android:background="#80000000" />
+                    android:background="#80000000"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/date_day"
-
                     android:text="30"
                     android:layout_centerHorizontal="true"
                     android:textSize="50sp"
@@ -84,13 +84,13 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="185dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="200dp"
+                        android:layout_height="23dp"
 
                         android:id="@+id/event_name"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:text="Sun God Festival "
+                        android:text="David Birthday Party"
                         android:textColor="#1a1a1a" />
 
                 </LinearLayout>
@@ -112,7 +112,8 @@
                         android:layout_height="wrap_content"
                         android:text="A.S. Concert and Events"
                         android:id="@+id/event_host"
-                        android:textColor="#1a1a1a" />
+                        android:textColor="#1a1a1a"
+                        android:textStyle="italic" />
                 </LinearLayout>
 
                 <TextView
@@ -163,6 +164,7 @@
             android:id="@+id/event_time"
             android:layout_gravity="center_vertical"
             android:layout_below="@+id/label_see_more"
+
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="65dp"
@@ -172,11 +174,13 @@
             android:layout_width="100dp"
             android:layout_height="20dp"
             android:id="@+id/event_going"
-            android:background="#bfbfbf"
+            android:background="@drawable/roundedbutton"
             android:layout_gravity="right"
+
             android:layout_alignParentTop="true"
             android:layout_alignLeft="@+id/event_time"
-            android:layout_alignStart="@+id/event_time" />
+            android:layout_alignStart="@+id/event_time"
+            android:backgroundTint="#5c8a8a" />
 
     </RelativeLayout>
 

@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
+        android:background="#e6e6e6"
         tools:context=".EventDetails.EventDetailsFragment">
 
 
@@ -76,7 +76,7 @@
                 android:shadowDy="10"
                 android:shadowRadius="10"/>
 
-            <TextView
+           <!-- <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -102,7 +102,7 @@
                 android:shadowColor="#7F000000"
                 android:shadowDx="10"
                 android:shadowDy="10"
-                android:shadowRadius="10"/>
+                android:shadowRadius="10"/>-->
         </LinearLayout>
 
 
@@ -180,8 +180,9 @@
             android:layout_height="25dp"
             android:id="@+id/button_going"
             android:layout_below="@+id/attendees_layout"
-            android:background="#ffffff"
-            android:layout_centerHorizontal="true"/>
+            android:background="@drawable/roundedbutton"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#5c8a8a" />
 
 
         <LinearLayout
@@ -282,7 +283,7 @@
                 />
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:text="Invite People"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -299,38 +300,55 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="COMMENTS"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/comments_text"
-                android:textIsSelectable="false"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:layout_below="@+id/invite_people"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:textColor="#1a1a1a" />
+                android:layout_marginBottom="10dp" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add Comment"
-                android:id="@+id/button_add_comment"
-                android:layout_alignBottom="@+id/comments_text"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_gravity="right" />
 
-                <android.support.v7.widget.RecyclerView
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:text="Add Comment"
+                    android:id="@+id/button_add_comment"
+                    android:drawableRight="@drawable/edit"
+                    android:layout_gravity="right"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:background="#00ffffff"
+
+                    android:textColor="#333333"
+                    android:textSize="12sp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="COMMENTS"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/comments_text"
+                    android:textIsSelectable="false"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="#1a1a1a" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:id="@+id/rv"
-                    android:layout_below="@+id/button_add_comment">
+                    android:layout_below="@+id/button_add_comment"
+                    android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp">
                 </android.support.v7.widget.RecyclerView>
         </LinearLayout>
 

@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,9 +17,11 @@ import android.view.ViewManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.spuds.eventapp.EditProfile.EditProfileFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
+import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.Shared.User;
 
 import java.util.ArrayList;
@@ -104,17 +107,19 @@ public class ProfileFragment extends Fragment {
 
 
         // Set image for button for subscribe or edit profile
-        /*if (profileType.equals(getString(R.string.profile_type_owner))) {
+        if (profileType.equals(getString(R.string.profile_type_owner))) {
 
             // TODO (V): Uncomment when edit_profile picture is inserted in drawable
-            buttonSubscribedOrEdit.setImageResource(R.drawable.edit_profile);
+            //buttonSubscribedOrEdit.setImageResource(R.drawable.edit_profile);
             buttonSubscribedOrEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // Add in
                     EditProfileFragment editProfileFragment = new EditProfileFragment();
 
-                    // TODO (C): Add user in a bundle to editProfileFragment
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(getString(R.string.user_details), user);
+                    editProfileFragment.setArguments(bundle);
 
                     ((MainActivity) getActivity()).removeSearchToolbar();
                     profileFragment.getFragmentManager().beginTransaction()
@@ -128,10 +133,10 @@ public class ProfileFragment extends Fragment {
         } else {
 
             // TODO (V): Uncomment once get drawables for subscribe buttons
-            if (user.subscribed)
+            /*if (user.subscribed)
                 buttonSubscribedOrEdit.setImageResource(R.drawable.button_subscribed);
             else
-                buttonSubscribedOrEdit.setImageResource(R.drawable.button_not_subscribed);
+                buttonSubscribedOrEdit.setImageResource(R.drawable.button_not_subscribed);*/
 
             buttonSubscribedOrEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -139,15 +144,15 @@ public class ProfileFragment extends Fragment {
 
                     // TODO (M): Update subscribed boolean in database & error checking
                     user.subscribed = !user.subscribed;
-                    if (user.subscribed)
+                    /*if (user.subscribed)
                         buttonSubscribedOrEdit.setImageResource(R.drawable.button_subscribed);
                     else
-                        buttonSubscribedOrEdit.setImageResource(R.drawable.button_not_subscribed);
+                        buttonSubscribedOrEdit.setImageResource(R.drawable.button_not_subscribed);*/
 
                 }
             });
 
-        }*/
+        }
 
         numberFollowing.setText(String.valueOf(user.numberFollowing));
         numberHosting.setText(String.valueOf(user.numberHosting));
@@ -167,11 +172,11 @@ public class ProfileFragment extends Fragment {
         categories.add("Social");
         categories.add("Concert");
         eventsHosting = new ArrayList<>();
-        eventsHosting.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04.29.16", 1054,
+        eventsHosting.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04/20/2016|16:20", 1054,
                 "yj.jpg", categories, "UCSD"));
-        eventsHosting.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04.28.16", 51,
+        eventsHosting.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04/20/2016|16:20", 51,
                 "foosh.jpg", categories, "Foosh Improv Comedy Club"));
-        eventsHosting.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04.28.16", 51,
+        eventsHosting.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04/20/2016|16:20", 51,
                 "foosh.jpg", categories, "Foosh Improv Comedy Club"));
         eventsHosting.add(null);
 
@@ -188,11 +193,11 @@ public class ProfileFragment extends Fragment {
         eventsGoing = new ArrayList<>();
 
 
-        eventsGoing.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04.29.16", 1054,
+        eventsGoing.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04/20/2016|16:20", 1054,
                 "yj.jpg", categories, "UCSD"));
-        eventsGoing.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04.28.16", 51,
+        eventsGoing.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04/20/2016|16:20", 51,
                 "foosh.jpg", categories, "Foosh Improv Comedy Club"));
-        eventsGoing.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04.28.16", 51,
+        eventsGoing.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04/20/2016|16:20", 51,
                 "foosh.jpg", categories, "Foosh Improv Comedy Club"));
         eventsGoing.add(null);
 

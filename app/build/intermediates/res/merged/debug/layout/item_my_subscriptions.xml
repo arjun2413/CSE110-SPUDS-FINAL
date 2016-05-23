@@ -15,8 +15,8 @@
 
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:id="@+id/sub_photo"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
@@ -25,28 +25,32 @@
                     android:layout_marginEnd="16dp"
                     android:layout_alignParentEnd="false"
                     android:layout_alignParentRight="false"
-                    android:background="#FFFFFF"/>
+                    android:background="#00ffffff"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="190dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/sub_name"
                     android:layout_toRightOf="@+id/sub_photo"
                     android:layout_toEndOf="@+id/sub_photo"
                     android:layout_alignParentTop="true"
-                    android:textSize="30sp"
-                    android:layout_centerVertical="true" />
+                    android:textSize="20sp"
+                    android:layout_centerVertical="true"
+                    android:text="Arjun Srinivasan"
+                    android:layout_marginTop="25dp"
+                    android:textColor="#1a1a1a"/>
 
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="20dp"
                     android:id="@+id/follow_toggle"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/sub_photo"
-                    android:layout_toEndOf="@+id/sub_photo"
-                    android:layout_marginLeft="134dp"
-                    android:layout_marginStart="134dp" />
+                    android:background="@drawable/roundedbutton"
+                    android:layout_alignBottom="@+id/sub_name"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="#5c8a8a"
+                    android:layout_alignTop="@+id/sub_name" />
 
         </RelativeLayout>
 

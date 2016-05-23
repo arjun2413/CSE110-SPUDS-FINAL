@@ -1,6 +1,5 @@
 package com.spuds.eventapp.Firebase;
 
-import android.text.format.Time;
 import android.util.Log;
 
 import com.firebase.client.ChildEventListener;
@@ -9,13 +8,12 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.spuds.eventapp.CreateEvent.CreateEventForm;
+import com.spuds.eventapp.CreateEvent.CreateEventRVAdapter;
 import com.spuds.eventapp.Shared.Event;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,19 +52,48 @@ public class EventsFirebase {
         this.loading = loading;
     }
 
-    public void createEvent(CreateEventForm form) {
+    public void createEvent(CreateEventForm form, CreateEventRVAdapter adapter) {
+        ArrayList<String> categoryList = adapter.getList();
+        Log.d("fuck", String.valueOf(categoryList));
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
-        Map<String, String> map = new HashMap<String, String>();
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy|HH:mm");
+
+        SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd|HH:mm");
         Date dateobj = new Date();
+
+        String originalString = form.getDate();
+        char[] c = originalString.toCharArray();
+
+        char temp = c[0];
+        c[0] = c[6]; 
+        c[6] = temp;
+
+        char temp1 = c[1];
+        c[1] = c[7];
+        c[7] = temp1;
+
+        char temp2 = c[3];
+        c[3] = c[6];
+        c[6] = temp2;
+
+        char temp3 = c[4];
+        c[4] = c[7];
+        c[7] = temp3;
+        String swappedString = new String(c);
+
+        Map<String, String> map = new HashMap<String, String>();
         map.put("user_id", ref.getAuth().getUid());
         map.put("event_name", form.getName());
         map.put("description", form.getDescription());
         map.put("location", form.getLocation());
-        map.put("date", form.getDate());
+        map.put("date", swappedString);
         map.put("number_going", "1");
         map.put("picture_file_name", "event.jpg");
-        map.put("created_at", df.format(dateobj));
+        map.put("created_at", df.format(dateobj) );
+
+        for(int i=0; i < categoryList.size(); i++) {
+            map.put("category" + String.valueOf(i+1), categoryList.get(i));
+        }
+
         ref.child("events").push().setValue(map);
     }
 
@@ -82,7 +109,7 @@ public class EventsFirebase {
 
         switch (filter) {
             case tabNew:
-                //queryRef = myFirebaseRef.orderByChild("create_at");
+                queryRef = myFirebaseRef.orderByChild("created_at");
                 break;
             case tabHot:
                 queryRef = myFirebaseRef.orderByChild("number_going");
@@ -113,7 +140,10 @@ public class EventsFirebase {
         queryRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot snapshot, String previousChild) {
+
                 Event newEvent = new Event();
+
+
                 for (DataSnapshot child : snapshot.getChildren()) {
                     switch (child.getKey()) {
                         case "date":
@@ -149,7 +179,7 @@ public class EventsFirebase {
 
                 newEvent.setCategories(categories);
 
-                if(filter.equals(tabHot)) {
+                if(filter.equals(tabHot) || filter.equals(tabNew)) {
                     eventsList.add(0, newEvent);
                 }
                 else {

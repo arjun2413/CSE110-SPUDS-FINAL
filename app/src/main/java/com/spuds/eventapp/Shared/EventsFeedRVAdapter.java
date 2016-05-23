@@ -123,16 +123,63 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         }
 
         /* Picasso for eventPic*/
-        eventViewHolder.
-                eventName.
-                setText(events.get(i).getEventName());
+        eventViewHolder.eventName.setText(events.get(i).getEventName());
         eventViewHolder.eventLocation.setText(events.get(i).getLocation());
         eventViewHolder.eventAttendees.setText(String.valueOf(events.get(i).getAttendees()));
 
+        String d = "";
+
+        switch (events.get(i).getDate().substring(3,5)) {
+            case "01":
+                d = "J A N";
+                break;
+            case "02":
+                d = "F E B";
+                break;
+            case "03":
+                d = "M A R";
+                break;
+            case "04":
+                d = "A P R";
+                break;
+            case "05":
+                d = "M A Y";
+                break;
+            case "06":
+                d = "J U N";
+                break;
+            case "07":
+                d = "J U L";
+                break;
+            case "08":
+                d = "A U G";
+                break;
+            case "09":
+                d = "S E P";
+                break;
+            case "10":
+                d = "O C T";
+                break;
+            case "11":
+                d = "N O V";
+                break;
+            case "12":
+                d = "D E C";
+                break;
+        }
+        eventViewHolder.monthDate.setText(d);
+
+        eventViewHolder.dayDate.setText(String.valueOf(events.get(i).getDate().substring(6,8)));
+
         // Categories
         String categories = "";
-        for (int index = 0; index < events.get(index).getCategories().size() - 1; ++index) {
-            categories += events.get(i).getCategories().get(index) + ", ";
+        int eventIndex = 0;
+        for (int categoryIndex = 0; categoryIndex < events.get(eventIndex).getCategories().size() - 1; categoryIndex++) {
+            if (categoryIndex == events.get(eventIndex).getCategories().size()){
+                categoryIndex = 0;
+                eventIndex++;
+            }
+            categories += events.get(i).getCategories().get(eventIndex) + ", ";
         }
         categories += events.get(i).getCategories().get(events.get(i).getCategories().size() - 1);
 
@@ -165,11 +212,11 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
                     tabFragmentTag = currentFragment.getString(R.string.category_feed);
                 }
 
-                if (!tabFragmentTag.equals("")) {
+                /*if (!tabFragmentTag.equals("")) {
                     //make if else statements for all fragments that have tags
                     currentFragment = currentFragment.getActivity().getSupportFragmentManager()
                             .findFragmentByTag(tabFragmentTag);
-                }
+                }*/
 
 
                 ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();

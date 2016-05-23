@@ -33,11 +33,11 @@ public class NotificationsFragment extends Fragment {
         // TODO (M): get notifications for the user
         //fake data
         notificationList.add(new Notification("Invite Notification", "1", "1", "eventorprofile.jpg",
-                "David Shan", "04/20/2016|1620", "420 Blaze It"));
+                "David Shan", "04/20/2016|16:20", "420 Blaze It"));
         notificationList.add(new Notification("Update Notification", "1", "1", "eventorprofile.jpg",
-                "A.S. Concert", "04/20/2016|1620", "Sun God"));
+                "A.S. Concert", "04/20/2016|16:20", "Sun God"));
         notificationList.add(new Notification("Reply Notification", "1", "1", "eventorprofile.jpg",
-                "Reggie Wu", "04/20/2016|1620", "Birthday Party", "Will there be food?"));
+                "Reggie Wu", "04/20/2016|16:20", "Birthday Party", "Will there be food?"));
 
         notificationsRVAdapter = new NotificationsRVAdapter(notificationList, this);
     }

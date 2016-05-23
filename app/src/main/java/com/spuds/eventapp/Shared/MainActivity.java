@@ -2,6 +2,8 @@ package com.spuds.eventapp.Shared;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -10,6 +12,8 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -20,6 +24,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -72,6 +77,8 @@ public class MainActivity extends AppCompatActivity
         setupProfileDrawer();
 
         searchType = getString(R.string.fragment_home_feed);
+
+
     }
 
     void setupProfileDrawer() {
@@ -84,6 +91,15 @@ public class MainActivity extends AppCompatActivity
         // TODO (M): Use picasso
         ImageView profilePic = (ImageView) headerView.findViewById(R.id.profile_pic);
         profilePic.setImageResource(R.drawable.arjun);
+
+        //rounded photo, crashes when you re-run for some reason
+        /*
+        Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.arjun);
+        RoundedBitmapDrawable dr =
+                RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
+        profilePic.setImageDrawable(dr);
+        */
 
     }
 
@@ -137,7 +153,7 @@ public class MainActivity extends AppCompatActivity
 
                 } else if (searchType.equals(R.string.cat_academic)) {
 
-                } else if (searchType.equals(R.string.cat_campus)) {
+                } else if (searchType.equals(R.string.cat_student_orgs)) {
 
                 } else if (searchType.equals(R.string.cat_concerts)) {
 

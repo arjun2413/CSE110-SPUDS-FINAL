@@ -2,10 +2,12 @@ package com.spuds.eventapp.ResetPassword;
 
 import android.accounts.Account;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -28,9 +30,24 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //Hide Action Bar and Status Bar
+        //View decorView = getWindow().getDecorView();
+        // Hide the status bar.
+        //int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        //decorView.setSystemUiVisibility(uiOptions);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         Firebase.setAndroidContext(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
+
+        //import typefaces
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "name_font.ttf");
+        Typeface raleway_light = Typeface.createFromAsset(getAssets(),  "raleway-light.ttf");
+
+        TextView tx = (TextView)findViewById(R.id.app_name);
+        tx.setTypeface(custom_font);
 
         input = (EditText)findViewById(R.id.email);
         send = (Button) findViewById(R.id.send_password);
@@ -40,8 +57,10 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
 
         //TODO when errormessage is made
-        //errorMessage = (TextView) findViewById(R.id.errorMessage);
-
+        //final TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
+        errorMessage.setTypeface(raleway_light);
+        input.setTypeface(raleway_light);
+        send.setTypeface(raleway_light);
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +73,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 //      2. check if first is an email
                 //      3. check if first field exists in the database
                 //      5. show snackbar on success or error message accordingly, but ignore number 4
-
+                String message = "";
                 if(input.getText().length() > 0){
                     final int[] check = new int[1];
                     check[0] = 0;

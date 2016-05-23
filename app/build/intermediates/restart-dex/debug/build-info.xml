@@ -4,44 +4,31 @@
     api-level="23"
     density="420dpi"
     format="7"
-    timestamp="147701128524298"
-    verifier="COMPATIBLE" >
+    timestamp="1463957033987797000" >
 
     <task
         name="javac"
-        duration="2798" />
+        duration="0" />
     <task
         name="instant-run-dex"
-        duration="498" />
+        duration="0" />
     <task
         name="instant-run-transform"
-        duration="42" />
+        duration="0" />
     <task
         name="verifier"
-        duration="8" />
+        duration="0" />
 
-    <artifact
-        location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\reload-dex\debug\classes.dex"
-        type="RELOAD_DEX" />
-
-    <build timestamp="147530965682645" >
+    <build timestamp="1463956432872010000" >
         <artifact
-            location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\outputs\apk\app-debug.apk"
+            location="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
             type="MAIN" />
     </build>
-    <build
-        timestamp="147665546606351"
-        verifier="COMPATIBLE" >
+    <build timestamp="1463956821815939000" >
         <artifact
-            location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\builds\debug\147665546606351\classes.dex"
-            type="RELOAD_DEX" />
+            location="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/resources-debug.ap_"
+            type="RESOURCES" />
     </build>
-    <build
-        timestamp="147701128524298"
-        verifier="COMPATIBLE" >
-        <artifact
-            location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\reload-dex\debug\classes.dex"
-            type="RELOAD_DEX" />
-    </build>
+    <build timestamp="1463957033987797000" />
 
 </instant-run>

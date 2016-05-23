@@ -41,9 +41,14 @@
             </intent-filter>
         </activity>
         <activity android:name="com.spuds.eventapp.ForgotPasswordActivity.ForgotPasswordActivity" />
-        <activity android:name="com.spuds.eventapp.SignUp.SignUpActivity" >
+        <activity
+            android:name="com.spuds.eventapp.SignUp.SignUpActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-        <activity android:name="com.spuds.eventapp.ResetPassword.ResetPasswordActivity" />
+        <activity
+            android:name="com.spuds.eventapp.ResetPassword.ResetPasswordActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
     </application>
 
