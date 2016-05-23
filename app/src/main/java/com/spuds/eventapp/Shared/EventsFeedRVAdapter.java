@@ -31,12 +31,13 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         ImageView eventPic;
         TextView eventName;
         TextView eventLocation;
-
         TextView eventAttendees;
         TextView eventCategories;
         TextView eventHost;
         TextView seeMore;
         TextView monthDate, dayDate;
+        TextView eventTime;
+
 
         EventViewHolder(View itemView) {
             super(itemView);
@@ -44,13 +45,13 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             eventPic = (ImageView) itemView.findViewById(R.id.event_pic);
             eventName = (TextView) itemView.findViewById(R.id.event_name);
             eventLocation = (TextView) itemView.findViewById(R.id.event_loc);
-
             eventAttendees = (TextView) itemView.findViewById(R.id.event_attendees);
             eventCategories = (TextView) itemView.findViewById(R.id.event_categories);
             eventHost = (TextView) itemView.findViewById(R.id.event_host);
             seeMore = (TextView) itemView.findViewById(R.id.label_see_more);
             monthDate = (TextView) itemView.findViewById(R.id.date_month);
             dayDate = (TextView) itemView.findViewById(R.id.date_day);
+            eventTime = (TextView) itemView.findViewById(R.id.event_time);
         }
 
     }
@@ -176,6 +177,30 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         eventViewHolder.monthDate.setText(d);
 
         eventViewHolder.dayDate.setText(String.valueOf(events.get(i).getDate().substring(6,8)));
+
+        String tempString = events.get(i).getDate().substring(11, events.get(i).getDate().length());
+        String sub = tempString.substring(0, tempString.indexOf(':'));
+        String col = tempString.substring(tempString.indexOf(':'), tempString.length());
+        int numb = Integer.parseInt(sub);
+
+        //PM
+        if(Integer.parseInt(sub) >= 12 && Integer.parseInt(sub) < 24) {
+            if(numb != 12) {
+                numb -= 12;
+            }
+
+            sub = numb + col + "PM";
+        }
+
+        //AM
+        else{
+            if(numb == 0) {
+                numb += 12;
+            }
+            sub = numb + col + "AM";
+        }
+
+        eventViewHolder.eventTime.setText(sub);
 
         // Categories
         String categories = "";
