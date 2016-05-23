@@ -4,45 +4,31 @@
     api-level="23"
     density="420dpi"
     format="7"
-    timestamp="152727739701826"
-    verifier="COMPATIBLE" >
+    timestamp="195694875489518" >
 
     <task
         name="javac"
-        duration="4652" />
+        duration="0" />
     <task
         name="instant-run-dex"
-        duration="1399" />
+        duration="0" />
     <task
         name="instant-run-transform"
-        duration="79" />
+        duration="0" />
     <task
         name="verifier"
-        duration="17" />
+        duration="0" />
 
-    <artifact
-        location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\reload-dex\debug\classes.dex"
-        type="RELOAD_DEX" />
-
-    <build timestamp="150563157286759" >
+    <build timestamp="194970990126585" >
         <artifact
-            location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\outputs\apk\app-debug.apk"
+            location="/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
             type="MAIN" />
     </build>
-    <build timestamp="152656743429780" >
+    <build timestamp="195504286763326" >
         <artifact
-            location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_4\classes.dex"
-            type="DEX" />
-        <artifact
-            location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_5\classes.dex"
+            location="/Users/Arjun/AndroidStudioProjects/CSE110-SPUDS-FINAL/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex"
             type="DEX" />
     </build>
-    <build
-        timestamp="152727739701826"
-        verifier="COMPATIBLE" >
-        <artifact
-            location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\reload-dex\debug\classes.dex"
-            type="RELOAD_DEX" />
-    </build>
+    <build timestamp="195694875489518" />
 
 </instant-run>
