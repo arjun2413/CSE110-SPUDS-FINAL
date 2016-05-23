@@ -104,6 +104,14 @@ public class ChangePasswordFragment extends Fragment {
                     Log.v("is_error 3:" , String.valueOf(is_error));
                 }
 
+                else if(!form.diffPw()){
+                    if(!is_error) {
+                        appendError("Error #: New Password Must Be Different");
+                        is_error = true;
+                    }
+                    Log.v("is_error 4:" , String.valueOf(is_error));
+                }
+
                 //pops up a snackbar with successful change message if no error was found
                 if(!is_error) {
                     Log.v("is_error 4:" , String.valueOf(is_error));

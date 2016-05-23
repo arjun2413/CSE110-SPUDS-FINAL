@@ -82,7 +82,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                             check[0] = accountFirebase.getThreadCheck();
                             //wait for query
                             while (check[0] == 0) {
-                                if (counter > 100) {
+                                if (counter > 200) {
                                     error = 4;
                                     break;
                                 }

@@ -4,33 +4,40 @@
     api-level="23"
     density="420dpi"
     format="7"
-    timestamp="2483551024005"
+    timestamp="147701128524298"
     verifier="COMPATIBLE" >
 
     <task
         name="javac"
-        duration="2234" />
+        duration="2798" />
     <task
         name="instant-run-dex"
-        duration="1163" />
+        duration="498" />
     <task
         name="instant-run-transform"
-        duration="109" />
+        duration="42" />
     <task
         name="verifier"
-        duration="12" />
+        duration="8" />
 
     <artifact
         location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\reload-dex\debug\classes.dex"
         type="RELOAD_DEX" />
 
-    <build timestamp="2314436014719" >
+    <build timestamp="147530965682645" >
         <artifact
             location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
     <build
-        timestamp="2483551024005"
+        timestamp="147665546606351"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\builds\debug\147665546606351\classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build
+        timestamp="147701128524298"
         verifier="COMPATIBLE" >
         <artifact
             location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\reload-dex\debug\classes.dex"

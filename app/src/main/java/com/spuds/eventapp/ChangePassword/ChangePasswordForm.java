@@ -36,6 +36,13 @@ public class ChangePasswordForm {
         return next.equals(confirm);
     }
 
+    public boolean diffPw(){
+        System.err.println("current: " + current);
+        System.err.println("next: " + next);
+        System.err.println(current.equals(next));
+        return !current.equals(next);
+    }
+
     public String getEmail(){ return email; }
 
     public String getCurrent(){
