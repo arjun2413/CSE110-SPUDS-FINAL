@@ -22,6 +22,10 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
     private EditText input;
     private Button send;
+    private TextView errorMessage;
+    private int error;
+    private String message;
+    private TextView[] fun;
 
 
     @Override
@@ -47,8 +51,13 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
         input = (EditText)findViewById(R.id.email);
         send = (Button) findViewById(R.id.send_password);
+        errorMessage = (TextView) findViewById(R.id.errorMessage);
+        fun = new TextView[1];
+        fun[0] = errorMessage;
+
+
         //TODO when errormessage is made
-        final TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
+        //final TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
         errorMessage.setTypeface(raleway_light);
         input.setTypeface(raleway_light);
         send.setTypeface(raleway_light);
@@ -56,6 +65,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                error = 0;
                 final AccountFirebase accountFirebase = new AccountFirebase();
                 //TODO: move error checking logic to model file.
                 //Logic:
@@ -70,6 +80,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
                     final String email = input.getText().toString();
                     final String valid = "@ucsd.edu";
+
                     //TODO: ERROR MESSAGE IMPLEMENTATION
 
                     //TODO: here we are playing with threads!
@@ -90,8 +101,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
                             check[0] = accountFirebase.getThreadCheck();
                             //wait for query
                             while (check[0] == 0) {
-                                if (counter > 50) {
-                                    System.out.println("ERROR TIME OUT");
+                                if (counter > 200) {
+                                    error = 4;
                                     break;
                                 }
                                 try {
@@ -104,14 +115,17 @@ public class ResetPasswordActivity extends AppCompatActivity {
                                 }
 
                             }
-                            if (emailCheck.endsWith(isValid)){
+                            if (emailCheck.endsWith(isValid) && error == 0){
                                 if (check[0] == 1) {
+                                    System.out.println("Checking");
                                     af.resetPass(emailCheck);
                                     startActivity(new Intent(ResetPasswordActivity.this, LoginActivity.class));
                                 }
-                                else System.out.println("FAILED");
+                                else {
+                                    error = 3;
+                                }
                             }
-                            System.out.println("int check status is: " + check[0]);
+                            System.out.println("int error status is: " + error);
                             System.out.println("thread2 has finished");
                         }
                     }
@@ -121,17 +135,61 @@ public class ResetPasswordActivity extends AppCompatActivity {
                     Thread cool2 = new Thread(r2);
 
                     if (email.endsWith(valid)) {
-                        accountFirebase.checkEmail(email);
+                        accountFirebase.checkEmail(email, fun);
                         cool2.start();
                     }
                     else {
-                        //TODO error invalid email
-                        //"Enter a valid ucsd.edu email
-                        errorMessage.setText("Must enter a valid ucsd.edu email.");
-
+                        error = 2;
                     }
+
                 }
-            }
+                else {
+                    error = 1;
+                }
+
+                System.out.println("Error status is: " + error);
+                switch(error) {
+                    case 1:
+                        message = "Fill out the field bruh.";
+                        if(errorMessage != null) {
+                            errorMessage.setText(message);
+                        }
+                        break;
+                    case 2:
+                        message = "Please enter a ucsd.edu email.";
+                        if (errorMessage != null) {
+                            errorMessage.setText(message);
+                        }
+                        break;
+                    case 3:
+                        message = "That email is not signed up.";
+                        if (errorMessage != null) {
+                            errorMessage.setText(message);
+                        }
+                        break;
+                    case 4:
+                        message = "Something went wrong. Please try again.";
+                        if (errorMessage != null) {
+                            errorMessage.setText(message);
+                        }
+                        break;
+                    default:
+                        message = "Please Wait...";
+                        if (errorMessage != null) {
+                            errorMessage.setText(message);
+                        }
+                        break;
+
+                }
+
+
+
+            }//end of onClick
         });
     }
+    /*public void setMessage(TextView text, String message){
+        if (text != null) {
+            text.setText(message);
+        }
+    }*/
 }
