@@ -2,51 +2,31 @@
 <instant-run
     abi="x86"
     api-level="23"
-    density="560dpi"
+    density="420dpi"
     format="7"
-    timestamp="7025460955638" >
+    timestamp="148946258660890" >
 
     <task
         name="javac"
-        duration="3645" />
+        duration="3806" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="333" />
+        duration="4020" />
     <task
         name="verifier"
-        duration="14" />
+        duration="726" />
 
     <artifact
-        location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex"
-        type="DEX" />
+        location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\outputs\apk\app-debug.apk"
+        type="MAIN" />
 
-    <build timestamp="3842276769080" >
+    <build timestamp="148946258660890" >
         <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
+            location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
-    </build>
-    <build timestamp="5342114942288" >
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/resources-debug.ap_"
-            type="RESOURCES" />
-    </build>
-    <build timestamp="6311307065549" >
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2/classes.dex"
-            type="DEX" />
-    </build>
-    <build timestamp="6562003553392" >
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5/classes.dex"
-            type="DEX" />
-    </build>
-    <build timestamp="7025460955638" >
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex"
-            type="DEX" />
     </build>
 
 </instant-run>
