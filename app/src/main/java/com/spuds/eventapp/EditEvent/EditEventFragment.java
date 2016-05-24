@@ -60,6 +60,8 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        ((MainActivity) getActivity()).picture = null;
+
         Bundle extras = getArguments();
         event = (Event) extras.get(getString(R.string.event_details));
     }

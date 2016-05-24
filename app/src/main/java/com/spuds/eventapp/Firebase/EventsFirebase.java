@@ -121,7 +121,8 @@ public class EventsFirebase {
         }
 
         Map<String, String> map = new HashMap<String, String>();
-        map.put("user_id", UserFirebase.uId);
+        map.put("host_id", UserFirebase.uId);
+        map.put("host_name", UserFirebase.thisUser.getName());
         map.put("event_name", form.getName());
         map.put("description", form.getDescription());
         map.put("location", form.getLocation());
@@ -155,6 +156,10 @@ public class EventsFirebase {
         }
 
         ref.child("events").push().setValue(map);
+
+        UserFirebase userFirebase = new UserFirebase();
+        userFirebase.updateNumberHosting();
+
     }
 
     public void editEvent() {
@@ -235,9 +240,11 @@ public class EventsFirebase {
                         case "picture_file_name":
                             newEvent.setPicFileName(String.valueOf(child.getValue()));
                             break;
-                        case "user_id":
+                        case "host_id":
                             newEvent.setHostId(String.valueOf(child.getValue()));
                             break;
+                        case "host_name":
+                            newEvent.setHostName(String.valueOf(child.getValue()));
                         case "catAcademic":
                             a.add("Academic");
                             break;
