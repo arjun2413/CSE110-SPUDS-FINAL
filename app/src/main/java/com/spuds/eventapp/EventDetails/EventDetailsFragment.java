@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -226,10 +227,13 @@ public class EventDetailsFragment extends Fragment {
 
         // Categories
         String categories = "";
-        for (int i = 0; i < event.getCategories().size() - 1; ++i) {
-            categories += event.getCategories().get(i) + ", ";
+        if(event.getCategories() != null) {
+            for (int i = 0; i < event.getCategories().size() - 1; ++i) {
+                Log.v("chris", event.getCategories().get(i));
+                categories += event.getCategories().get(i) + ", ";
+            }
+            categories += event.getCategories().get(event.getCategories().size() - 1);
         }
-        categories += event.getCategories().get(event.getCategories().size() - 1);
 
         eventCategories.setText(categories);
 
@@ -296,26 +300,26 @@ public class EventDetailsFragment extends Fragment {
 
                 //if (event.getHostId().equals(USER.GETUSERID())) {
 
-                    EditEventFragment editEventFragment = new EditEventFragment();
+                EditEventFragment editEventFragment = new EditEventFragment();
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(getString(R.string.event_details), event);
                 editEventFragment.setArguments(bundle);
 
-                    // TODO (C): Add user in a bundle to editProfileFragment
+                // TODO (C): Add user in a bundle to editProfileFragment
 
-                    ((MainActivity) getActivity()).removeSearchToolbar();
-                    getFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_frame_layout, editEventFragment)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                            .addToBackStack(getString(R.string.fragment_edit_event))
-                            .commit();
+                ((MainActivity) getActivity()).removeSearchToolbar();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_frame_layout, editEventFragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(getString(R.string.fragment_edit_event))
+                        .commit();
 
 
 
                 //} else {
-                    // TODO (M): PUSH Going/Not Going
-                    // TODO (V): going/not going buttons
+                // TODO (M): PUSH Going/Not Going
+                // TODO (V): going/not going buttons
                     /*if (going) {
                         buttonGoingOrEdit.setImageResource(R.drawable.button_not_going);
                         going = false;

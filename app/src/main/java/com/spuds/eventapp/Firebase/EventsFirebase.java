@@ -10,6 +10,7 @@ import com.firebase.client.Query;
 import com.spuds.eventapp.CreateEvent.CreateEventForm;
 import com.spuds.eventapp.CreateEvent.CreateEventRVAdapter;
 import com.spuds.eventapp.Shared.Event;
+import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,22 +39,37 @@ public class EventsFirebase {
 
 
     ArrayList<Event> eventsList;
-    String filter;
+    ArrayList<String> a = new ArrayList<>();
+    String tabFilter;
+    String catFilter;
     int loading;
+
+    EventsFeedRVAdapter adapter;
 
     public EventsFirebase() {
 
     }
 
-    public EventsFirebase(ArrayList<Event> eventsList, int loading, String filter) {
+    public EventsFirebase(ArrayList<Event> eventsList, int loading, String tabFilter) {
         this.eventsList = eventsList;
-        this.filter = filter;
+        this.tabFilter = tabFilter;
+        this.loading = loading;
+        this.adapter = adapter;
+    }
+
+    public EventsFirebase(ArrayList<Event> eventsList, int loading, String tabFilter, String catFilter, EventsFeedRVAdapter adapter) {
+        this.eventsList = eventsList;
+        this.tabFilter = tabFilter;
+        this.catFilter = catFilter;
         this.loading = loading;
     }
 
+    ArrayList<String> categoryList;
+
     public void createEvent(CreateEventForm form, CreateEventRVAdapter adapter) {
-        ArrayList<String> categoryList = adapter.getList();
+        categoryList = adapter.getList();
         Log.d("fuck", String.valueOf(categoryList));
+
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
 
         SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd | HH:mm");
@@ -63,7 +79,7 @@ public class EventsFirebase {
         char[] c = originalString.toCharArray();
 
         char temp = c[0];
-        c[0] = c[6]; 
+        c[0] = c[6];
         c[6] = temp;
 
         char temp1 = c[1];
@@ -84,25 +100,24 @@ public class EventsFirebase {
         String tempString = swappedString.substring(11, swappedString.length());
         int numb = 0;
 
-        if(tempString.indexOf('A') == -1) {
+        if (tempString.indexOf('A') == -1) {
             String sub = tempString.substring(0, tempString.indexOf('P'));
             numb = Integer.parseInt(sub);
 
-            if(numb != 12) {
+            if (numb != 12) {
                 numb += 12;
             }
 
-        }
-        else{
+        } else {
             String sub = tempString.substring(0, tempString.indexOf('A'));
             numb = Integer.parseInt(sub);
 
-            if(numb == 12) {
+            if (numb == 12) {
                 numb = 0;
             }
         }
 
-        if(swappedString.indexOf(':') == -1) {
+        if (swappedString.indexOf(':') == -1) {
             swappedString = swappedString.substring(0, 11) + numb + ":00";
         }
 
@@ -114,10 +129,30 @@ public class EventsFirebase {
         map.put("date", swappedString);
         map.put("number_going", "1");
         map.put("picture", form.getPicture());
-        map.put("created_at", df.format(dateobj) );
+        map.put("created_at", df.format(dateobj));
 
-        for(int i=0; i < categoryList.size(); i++) {
-            map.put("category" + String.valueOf(i+1), categoryList.get(i));
+        for (int i = 0; i < categoryList.size(); i++) {
+            if (categoryList.get(i) == "Academic") {
+                map.put("catAcademic", "true");
+            }
+            if (categoryList.get(i) == "Campus") {
+                map.put("catCampus", "true");
+            }
+            if (categoryList.get(i) == "Concerts") {
+                map.put("catConcerts", "true");
+            }
+            if (categoryList.get(i) == "Food") {
+                map.put("catFood", "true");
+            }
+            if (categoryList.get(i) == "Free") {
+                map.put("catFree", "true");
+            }
+            if (categoryList.get(i) == "Social") {
+                map.put("catSocial", "true");
+            }
+            if (categoryList.get(i) == "Sports") {
+                map.put("catSports", "true");
+            }
         }
 
         ref.child("events").push().setValue(map);
@@ -133,7 +168,7 @@ public class EventsFirebase {
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
         Query queryRef = myFirebaseRef.orderByKey();
 
-        switch (filter) {
+        switch (tabFilter) {
             case tabNew:
                 queryRef = myFirebaseRef.orderByChild("created_at");
                 break;
@@ -147,20 +182,32 @@ public class EventsFirebase {
                 break;
             case tabHosting:
                 break;
-            case catAcademic:
-                break;
-            case catCampus:
-                break;
-            case catConcerts:
-                break;
-            case catFood:
-                break;
-            case catFree:
-                break;
-            case catSocial:
-                break;
-            case catSports:
-                break;
+        }
+
+        if (catFilter != null) {
+            switch (catFilter) {
+                case catAcademic:
+                    queryRef = myFirebaseRef.orderByChild("catAcademic").equalTo("true");
+                    break;
+                case catCampus:
+                    queryRef = myFirebaseRef.orderByChild("catCampus").equalTo("true");
+                    break;
+                case catConcerts:
+                    queryRef = myFirebaseRef.orderByChild("catConcerts").equalTo("true");
+                    break;
+                case catFood:
+                    queryRef = myFirebaseRef.orderByChild("catFood").equalTo("true");
+                    break;
+                case catFree:
+                    queryRef = myFirebaseRef.orderByChild("catFree").equalTo("true");
+                    break;
+                case catSocial:
+                    queryRef = myFirebaseRef.orderByChild("catSocial").equalTo("true");
+                    break;
+                case catSports:
+                    queryRef = myFirebaseRef.orderByChild("catSports").equalTo("true");
+                    break;
+            }
         }
 
         queryRef.addChildEventListener(new ChildEventListener() {
@@ -192,23 +239,51 @@ public class EventsFirebase {
                         case "host_id":
                             newEvent.setHostId(String.valueOf(child.getValue()));
                             break;
+                        case "catAcademic":
+                            a.add("Academic");
+                            break;
+                        case "catCampus":
+                            a.add("Student Orgs");
+                            break;
+                        case "catConcerts":
+                            a.add("Concerts");
+                            break;
+                        case "catFood":
+                            a.add("Food");
+                            break;
+                        case "catFree":
+                            a.add("Free");
+                            break;
+                        case "catSocial":
+                            a.add("Social");
+                            break;
+                        case "catSports":
+                            a.add("Sports");
+                            break;
                     }
+
 
                     //Log.d("asdf", String.valueOf(snapshot.getKey()));
 
                 }
 
-                ArrayList<String> categories = new ArrayList<>();
-                categories.add("Social");
-                categories.add("Concert");
 
-                newEvent.setCategories(categories);
-
-                if(filter.equals(tabHot) || filter.equals(tabNew)) {
-                    eventsList.add(0, newEvent);
+                if (a != null) {
+                    for (int i = 0; i < a.size(); i++) {
+                        Log.v("chris", a.get(i));
+                    }
+                    newEvent.setCategories(a);
                 }
-                else {
+
+
+                if (tabFilter.equals(tabHot) || tabFilter.equals(tabNew)) {
+                    eventsList.add(0, newEvent);
+                } else {
                     eventsList.add(newEvent);
+                }
+
+                if (adapter != null) {
+                    adapter.notifyDataSetChanged();
                 }
             }
 
@@ -252,6 +327,7 @@ public class EventsFirebase {
                         newEvent.setAttendees(Integer.parseInt((String) child.getValue()));
                         newEvent.setPicFileName(String.valueOf(child.getValue()));
                         newEvent.setHostId(String.valueOf(child.getValue()));
+                        newEvent.setCategories(a);
                         item = newEvent;
                         break;
                     }
@@ -283,4 +359,5 @@ public class EventsFirebase {
         });
         return item;
     }
+
 }
