@@ -163,7 +163,7 @@ public class LoginActivity extends AppCompatActivity {
                                     public void run() {
                                         if(obj.status == 2) {
                                             TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
-                                            String message = "The email and password you entered don't match.";
+                                            String message = "Incorrect email or password.";
                                             errorMessage.setText(message);
                                         }
                                     }

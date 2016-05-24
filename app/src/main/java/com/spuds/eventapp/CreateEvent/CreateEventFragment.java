@@ -69,7 +69,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
 
 
     protected void setupWindow() {
-        final EventsFirebase eventsFirebase = new EventsFirebase(null, 0, null);
+        final EventsFirebase eventsFirebase = new EventsFirebase(null, 0, null, null, null);
         editEventDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

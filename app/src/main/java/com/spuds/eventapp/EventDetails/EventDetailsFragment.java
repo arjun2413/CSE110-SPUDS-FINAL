@@ -276,10 +276,12 @@ public class EventDetailsFragment extends Fragment {
 
         // Categories
         String categories = "";
-        for (int i = 0; i < event.getCategories().size() - 1; ++i) {
-            categories += event.getCategories().get(i) + ", ";
+        if(event.getCategories() != null) {
+            for (int i = 0; i < event.getCategories().size() - 1; ++i) {
+                categories += event.getCategories().get(i) + ", ";
+            }
+            categories += event.getCategories().get(event.getCategories().size() - 1);
         }
-        categories += event.getCategories().get(event.getCategories().size() - 1);
 
         eventCategories.setText(categories);
 
