@@ -3,6 +3,7 @@ package com.spuds.eventapp.EditEvent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -68,6 +69,38 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_event, container, false);
+        overrideFonts(view.getContext(),view);
+        Typeface raleway_medium = Typeface.createFromAsset(getActivity().getAssets(),  "Raleway-Medium.ttf");
+
+        //title font
+        TextView upload = (TextView) view.findViewById(R.id.upload);
+        upload.setTypeface(raleway_medium);
+
+        TextView name = (TextView) view.findViewById(R.id.name);
+        name.setTypeface(raleway_medium);
+
+        TextView date = (TextView) view.findViewById(R.id.date);
+        date.setTypeface(raleway_medium);
+
+        TextView time = (TextView) view.findViewById(R.id.time);
+        time.setTypeface(raleway_medium);
+
+        TextView location = (TextView) view.findViewById(R.id.location);
+        location.setTypeface(raleway_medium);
+
+        TextView description = (TextView) view.findViewById(R.id.description);
+        description.setTypeface(raleway_medium);
+
+        TextView cat = (TextView) view.findViewById(R.id.event_categories);
+        cat.setTypeface(raleway_medium);
+
+
+        Button done = (Button) view.findViewById(R.id.editEventDone);
+        done.setTypeface(raleway_medium);
+
+        Button delete = (Button) view.findViewById(R.id.editEventDelete);
+        delete.setTypeface(raleway_medium);
+
 
         eD = new EventDate(event.getDate());
         getPageElements(view);
@@ -295,6 +328,22 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView ) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "raleway-regular.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
     }
 
 }

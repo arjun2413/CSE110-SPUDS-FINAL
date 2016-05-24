@@ -1,6 +1,7 @@
 package com.spuds.eventapp.EventDetails;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -85,6 +86,28 @@ public class EventDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_event_details, container, false);
+        overrideFonts(view.getContext(),view);
+
+        Typeface raleway_medium = Typeface.createFromAsset(getActivity().getAssets(),  "Raleway-Medium.ttf");
+
+        //title font
+        TextView name = (TextView) view.findViewById(R.id.event_name);
+        name.setTypeface(raleway_medium);
+
+        TextView location = (TextView) view.findViewById(R.id.label_location);
+        location.setTypeface(raleway_medium);
+
+        TextView description = (TextView) view.findViewById(R.id.text_description);
+        description.setTypeface(raleway_medium);
+
+        TextView categories = (TextView) view.findViewById(R.id.text_categories);
+        categories.setTypeface(raleway_medium);
+
+        TextView comments = (TextView) view.findViewById(R.id.comments_text);
+        comments.setTypeface(raleway_medium);
+
+        Button invite = (Button) view.findViewById(R.id.button_invite_people);
+        invite.setTypeface(raleway_medium);
 
         setUpEventInformation(view);
 
@@ -358,6 +381,22 @@ public class EventDetailsFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView ) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "raleway-regular.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
     }
 
 }

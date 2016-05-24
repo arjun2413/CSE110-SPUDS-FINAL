@@ -74,6 +74,24 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         overrideFonts(view.getContext(),view);
 
+        Typeface raleway_medium = Typeface.createFromAsset(getActivity().getAssets(),  "Raleway-Medium.ttf");
+
+        //title font
+        TextView name = (TextView) view.findViewById(R.id.user_name);
+        name.setTypeface(raleway_medium);
+
+        TextView hosting = (TextView) view.findViewById(R.id.label_events_hosting);
+        hosting.setTypeface(raleway_medium);
+
+        TextView going = (TextView) view.findViewById(R.id.label_events_going);
+        going.setTypeface(raleway_medium);
+
+        TextView sub_num = (TextView) view.findViewById(R.id.user_number_following);
+        sub_num.setTypeface(raleway_medium);
+
+        TextView events_num = (TextView) view.findViewById(R.id.user_number_hosting);
+        events_num.setTypeface(raleway_medium);
+
         setUpProfileDetails(view);
 
         return view;
