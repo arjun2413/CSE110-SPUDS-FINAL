@@ -68,12 +68,11 @@ public class AccountFirebase {
         ref.authWithPassword(email, password, new Firebase.AuthResultHandler() {
             @Override
             public void onAuthenticated(AuthData authData) {
+                Log.v("AccountFirebase", "Successful Log In");
 
                 UserFirebase.uId = authData.getUid();
 
                 status = 1;
-
-
 
 
                 // Authentication just completed successfully smile emoticon
@@ -83,6 +82,7 @@ public class AccountFirebase {
             @Override
             public void onAuthenticationError(FirebaseError firebaseError) {
                 Log.v("AccountFirebase", "ERROR Logging In");
+                Log.v("accountfirebase", firebaseError.toString());
                 status = 2;
             }
 

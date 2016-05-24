@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,11 +16,12 @@ import android.widget.TextView;
 import com.spuds.eventapp.CreateComment.CreateCommentFragment;
 import com.spuds.eventapp.EditEvent.EditEventFragment;
 import com.spuds.eventapp.Firebase.EventsFirebase;
+import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.InvitePeople.InvitePeopleFragment;
+import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Comment;
 import com.spuds.eventapp.Shared.Event;
-import com.spuds.eventapp.Shared.EventDate;
 import com.spuds.eventapp.Shared.MainActivity;
 
 import java.util.ArrayList;
@@ -46,6 +46,8 @@ public class EventDetailsFragment extends Fragment {
     Button invitePeople;
     ImageView buttonGoingOrEdit;
     TextView eventTime;
+
+    UserFirebase userFirebase;
 
     // Reference to itself
     Fragment eventDetailsFragment;
@@ -221,6 +223,54 @@ public class EventDetailsFragment extends Fragment {
 
         eventAttendees.setText(String.valueOf(event.getAttendees()));
         eventHost.setText(event.getHostName());
+        eventHost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!event.getHostId().equals(UserFirebase.uId)) {
+                    userFirebase = new UserFirebase();
+                    userFirebase.getAnotherUser(event.getHostId());
+
+                    new Thread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            while (!userFirebase.threadCheckAnotherUser) {
+                                try {
+                                    Thread.sleep(77);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+
+                            startProfileFragment(userFirebase);
+
+                        }
+                    }).start();
+                } else {
+                    Fragment profileFragment = new ProfileFragment();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString(getString(R.string.profile_type),
+                            getString(R.string.profile_type_owner));
+
+
+                    bundle.putSerializable(getString(R.string.user_details), UserFirebase.thisUser);
+
+                    profileFragment.setArguments(bundle);
+
+                    ((MainActivity) getActivity()).removeSearchToolbar();
+                    // Add Event Details Fragment to fragment manager
+                    getFragmentManager().beginTransaction()
+                            .show(profileFragment)
+                            .replace(R.id.fragment_frame_layout, profileFragment)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .addToBackStack(getString(R.string.fragment_profile))
+                            .commit();
+                }
+            }
+        });
         eventDescription.setText(event.getDescription());
 
 
@@ -358,6 +408,30 @@ public class EventDetailsFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    private void startProfileFragment(UserFirebase userFirebase) {
+
+        Fragment profileFragment = new ProfileFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString(getString(R.string.profile_type),
+                getString(R.string.profile_type_other));
+
+
+        bundle.putSerializable(getString(R.string.user_details), userFirebase.anotherUser);
+
+        profileFragment.setArguments(bundle);
+
+        ((MainActivity) getActivity()).removeSearchToolbar();
+        // Add Event Details Fragment to fragment manager
+        getFragmentManager().beginTransaction()
+                .show(profileFragment)
+                .replace(R.id.fragment_frame_layout, profileFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(getString(R.string.fragment_profile))
+                .commit();
+
     }
 
 }

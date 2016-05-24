@@ -192,6 +192,8 @@ public class EventsFirebase {
                         case "host_id":
                             newEvent.setHostId(String.valueOf(child.getValue()));
                             break;
+                        case "host_name":
+                            newEvent.setHostName(String.valueOf(child.getValue()));
                     }
 
                     //Log.d("asdf", String.valueOf(snapshot.getKey()));
