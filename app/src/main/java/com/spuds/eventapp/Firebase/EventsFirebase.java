@@ -39,6 +39,7 @@ public class EventsFirebase {
 
 
     ArrayList<Event> eventsList;
+    ArrayList<String> a = new ArrayList<>();
     String tabFilter;
     String catFilter;
     int loading;
@@ -76,7 +77,7 @@ public class EventsFirebase {
         char[] c = originalString.toCharArray();
 
         char temp = c[0];
-        c[0] = c[6]; 
+        c[0] = c[6];
         c[6] = temp;
 
         char temp1 = c[1];
@@ -234,19 +235,45 @@ public class EventsFirebase {
                         case "picture_file_name":
                             newEvent.setPicFileName(String.valueOf(child.getValue()));
                             break;
-                        case "host_id":
+                        case "user_id":
                             newEvent.setHostId(String.valueOf(child.getValue()));
                             break;
-                        case "host_name":
-                            newEvent.setHostName(String.valueOf(child.getValue()));
+                        case "catAcademic":
+                            a.add("Academic");
+                            break;
+                        case "catCampus":
+                            a.add("Student Orgs");
+                            break;
+                        case "catConcerts":
+                            a.add("Concerts");
+                            break;
+                        case "catFood":
+                            a.add("Food");
+                            break;
+                        case "catFree":
+                            a.add("Free");
+                            break;
+                        case "catSocial":
+                            a.add("Social");
+                            break;
+                        case "catSports":
+                            a.add("Sports");
+                            break;
                     }
-                    newEvent.setCategories(categoryList);
+
 
                     //Log.d("asdf", String.valueOf(snapshot.getKey()));
 
                 }
 
-                //newEvent.setCategories(categoryList);
+
+                if(a != null){
+                    for(int i=0; i<a.size();i++){
+                        Log.v("chris", a.get(i));
+                    }
+                    newEvent.setCategories(a);
+                }
+
 
                 if(tabFilter.equals(tabHot) || tabFilter.equals(tabNew)) {
                     eventsList.add(0, newEvent);
@@ -300,7 +327,7 @@ public class EventsFirebase {
                         newEvent.setAttendees(Integer.parseInt((String) child.getValue()));
                         newEvent.setPicFileName(String.valueOf(child.getValue()));
                         newEvent.setHostId(String.valueOf(child.getValue()));
-                        newEvent.setCategories(categoryList);
+                        newEvent.setCategories(a);
                         item = newEvent;
                         break;
                     }
