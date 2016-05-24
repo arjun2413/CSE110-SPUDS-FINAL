@@ -63,7 +63,7 @@ public class CreateEventRVAdapter extends RecyclerView.Adapter<CreateEventRVAdap
     }
 
     @Override
-    public void onBindViewHolder(EventViewHolder eventViewHolder, int i) {
+    public void onBindViewHolder(final EventViewHolder eventViewHolder, int i) {
         final int j = i;
         final CategoryTextButton currentSub = categories.get(i);
         eventViewHolder.text.setText(categories.get(i).text);

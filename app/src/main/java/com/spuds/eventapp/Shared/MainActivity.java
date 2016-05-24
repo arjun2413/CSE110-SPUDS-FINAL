@@ -1,19 +1,19 @@
 package com.spuds.eventapp.Shared;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
-import android.speech.RecognizerIntent;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -24,7 +24,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -33,11 +32,13 @@ import android.widget.Toast;
 
 import com.quinny898.library.persistentsearch.SearchBox;
 import com.quinny898.library.persistentsearch.SearchResult;
+import com.soundcloud.android.crop.Crop;
 import com.spuds.eventapp.About.AboutFragment;
 import com.spuds.eventapp.CategoriesList.CategoriesListFragment;
 import com.spuds.eventapp.CreateEvent.CreateEventFragment;
 import com.spuds.eventapp.FindPeople.FindPeopleFragment;
 import com.spuds.eventapp.HomeFeed.HomeFeedTabsFragment;
+import com.spuds.eventapp.InvitePeople.InvitePeopleFragment;
 import com.spuds.eventapp.Login.LoginActivity;
 import com.spuds.eventapp.MyEvents.MyEventsTabsFragment;
 import com.spuds.eventapp.Notifications.NotificationsFragment;
@@ -47,7 +48,10 @@ import com.spuds.eventapp.Settings.SettingsFragment;
 import com.spuds.eventapp.SubscriptionFeed.SubscriptionFeedTabsFragment;
 import com.spuds.eventapp.SubscriptionsList.SubscriptionsListFragment;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -141,6 +145,8 @@ public class MainActivity extends AppCompatActivity
 
                 // TODO (M): Search
 
+                // TODO (C): Put ((MainActivity) getActivity()).searchtype = getString(R.id.[insert string name here]);
+                // and add other strings like search people and search events ask me if u have q
                 if (searchType.equals(R.string.fragment_home_feed)) {
 
                 } else if (searchType.equals(R.string.my_events)) {
@@ -177,6 +183,30 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onSearch(String searchTerm) {
                 Toast.makeText(MainActivity.this, searchTerm +" Searched", Toast.LENGTH_LONG).show();
+
+                // TODO (C): Change this to searachpeopleframgent
+                InvitePeopleFragment invitePeopleFragment = new InvitePeopleFragment();
+                Bundle bundle = new Bundle();
+
+                // TODO (M): people
+                //fake data
+                ArrayList<User> people = new ArrayList<User>();
+                people.add(new User("1", "Kevin Huang", "#meatballs", true, 100, 1, "christinecropped.jpg", false));
+                people.add(new User("1", "Arjun Huang", "#meatballs", true, 100, 1, "christinecropped.jpg", false));
+                people.add(new User("1", "Christine Wu", "#meatballs", true, 100, 1, "christinecropped.jpg", false));
+                people.add(new User("1", "Yung Jin", "#meatballs", true, 100, 1, "christinecropped.jpg", false));
+                people.add(new User("1", "Jon Putin", "#meatballs", true, 100, 1, "christinecropped.jpg", false));
+                people.add(new User("1", "Vladmir Purplenuts", "#meatballs", true, 100, 1, "christinecropped.jpg", false));
+
+                bundle.putSerializable("Search People Array List", people);
+
+                // Add Event Details Fragment to fragment manager
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_frame_layout, invitePeopleFragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack("Search People Fragment")
+                        .commit();
+
             }
 
             @Override
@@ -476,14 +506,105 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == SearchBox.VOICE_RECOGNITION_CODE && resultCode == RESULT_OK) {
-            ArrayList<String> matches = data
-                    .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            search.populateEditText(matches.get(0));
-        }
-        super.onActivityResult(requestCode, resultCode, data);
+    // for pictures
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+    Uri fileUri;
+
+    public boolean useCamera() {
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), "Eventory");
+
+
+        // Create a media file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File mediaFile;
+
+        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+                "IMG_"+ timeStamp + ".jpg");
+
+        fileUri = Uri.fromFile(mediaFile);
+
+
+        // start the image capture Intent
+        startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+
+        return true;
     }
 
+    private static final int REQUEST_CODE = 1;
+
+    public boolean pickImage() {
+
+        Crop.pickImage(this);
+
+
+        return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent result) {
+        if (requestCode == Crop.REQUEST_PICK && resultCode == RESULT_OK) {
+            beginCrop(result.getData());
+        } else if (requestCode == Crop.REQUEST_CROP) {
+            handleCrop(resultCode, result);
+        }
+
+
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+
+                //Log.v(TAG, "Image saved to:\n" + fileUri);
+
+                Uri uri = result.getData();
+
+                Crop.of(uri, picture).asSquare().start(this);
+
+
+            } else if (resultCode == RESULT_CANCELED) {
+                View view = findViewById(android.R.id.content);
+                Snackbar.make(view, "Image capture failed", Snackbar.LENGTH_LONG).show();
+            } else {
+                View view = findViewById(android.R.id.content);
+                Snackbar.make(view, "Image capture failed", Snackbar.LENGTH_LONG).show();
+            }
+
+
+        }
+
+        // w/o crop
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+
+            Uri uri = result.getData();
+
+            picture = uri;
+        }
+
+    }
+
+    private void beginCrop(Uri source) {
+        Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
+        Crop.of(source, destination).asSquare().start(this);
+    }
+
+    public Uri picture;
+    private void handleCrop(int resultCode, Intent result) {
+
+        if (resultCode == RESULT_OK) {
+            picture = Crop.getOutput(result);
+
+        } else if (resultCode == Crop.RESULT_ERROR) {
+            Toast.makeText(this, Crop.getError(result).getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void pickImageWithoutCrop() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
 }

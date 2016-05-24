@@ -120,13 +120,13 @@ public class EventsFirebase {
         }
 
         Map<String, String> map = new HashMap<String, String>();
-        map.put("user_id", ref.getAuth().getUid());
+        map.put("user_id", UserFirebase.uId);
         map.put("event_name", form.getName());
         map.put("description", form.getDescription());
         map.put("location", form.getLocation());
         map.put("date", swappedString);
         map.put("number_going", "1");
-        map.put("picture_file_name", "event.jpg");
+        map.put("picture", form.getPicture());
         map.put("created_at", df.format(dateobj) );
 
         for(int i=0; i < categoryList.size(); i++) {

@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +24,7 @@ import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.CategoryTextButton;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventDate;
+import com.spuds.eventapp.Shared.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -226,6 +226,49 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                         // TODO push to editEventFields array list
                     }
                 }
+            }
+        });
+
+        eventImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).picture = null;
+
+                // For camera
+                //UploadPictureDialogFragment dialogFragment = new UploadPictureDialogFragment();
+
+                //dialogFragment.show(getFragmentManager(), "Add a Picture");
+
+
+                ((MainActivity) getActivity()).pickImageWithoutCrop();
+
+                new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        while (((MainActivity) getActivity()).picture == null) {
+                            try {
+                                Thread.sleep(75);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                eventImage.setImageURI(null);
+                                eventImage.setImageURI(((MainActivity) getActivity()).picture);
+                                eventImage.invalidate();
+
+
+                            }
+                        });
+
+                    }
+                }).start();
             }
         });
     }
