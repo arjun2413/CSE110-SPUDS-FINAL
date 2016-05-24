@@ -13,10 +13,12 @@ import com.spuds.eventapp.R;
 public class CategoryFeedViewPagerAdapter extends FragmentStatePagerAdapter {
 
     Fragment categoryFeedTabsFragment;
+    String catType;
 
-    public CategoryFeedViewPagerAdapter(FragmentManager fm, Fragment categoryFeedTabsFragment) {
+    public CategoryFeedViewPagerAdapter(FragmentManager fm, Fragment categoryFeedTabsFragment, String catType) {
         super(fm);
         this.categoryFeedTabsFragment = categoryFeedTabsFragment;
+        this.catType = catType;
     }
 
     //TODO: Create different fragments passing in filter
@@ -43,6 +45,8 @@ public class CategoryFeedViewPagerAdapter extends FragmentStatePagerAdapter {
                         categoryFeedTabsFragment.getString(R.string.tab_now));
                 break;
         }
+
+        bundle.putString("Category Type", catType);
 
         categoryFeedFragment.setArguments(bundle);
 

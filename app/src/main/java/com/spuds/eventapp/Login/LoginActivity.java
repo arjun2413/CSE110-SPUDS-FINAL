@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -221,7 +222,11 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                 }
+                Log.v("userdetals", "test:" + userFirebase.uId);
 
+
+                Log.v("userdetals", "test:" + userFirebase.thisUser.getName());
+                userFirebase.threadCheck = false;
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
 
             }
