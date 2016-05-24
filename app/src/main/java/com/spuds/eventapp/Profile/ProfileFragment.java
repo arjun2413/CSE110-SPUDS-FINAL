@@ -3,6 +3,7 @@ package com.spuds.eventapp.Profile;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -37,7 +38,6 @@ public class ProfileFragment extends Fragment {
 
     ImageView userImage;
     TextView userName;
-    ImageView userVerified;
     ImageView buttonSubscribedOrEdit;
     TextView numberFollowing;
     TextView numberHosting;
@@ -72,6 +72,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        overrideFonts(view.getContext(),view);
 
         setUpProfileDetails(view);
 
@@ -82,7 +83,6 @@ public class ProfileFragment extends Fragment {
 
         userImage = (ImageView) view.findViewById(R.id.user_image);
         userName = (TextView) view.findViewById(R.id.user_name);
-        userVerified = (ImageView) view.findViewById(R.id.user_verified);
         buttonSubscribedOrEdit = (ImageView) view.findViewById(R.id.button_subscribe);
         numberFollowing = (TextView) view.findViewById(R.id.user_number_following);
         numberHosting = (TextView) view.findViewById(R.id.user_number_hosting);
@@ -206,5 +206,21 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView ) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "raleway-regular.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
     }
 }
