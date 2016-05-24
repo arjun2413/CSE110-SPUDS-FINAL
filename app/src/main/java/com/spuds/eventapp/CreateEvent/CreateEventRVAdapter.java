@@ -101,7 +101,6 @@ public class CreateEventRVAdapter extends RecyclerView.Adapter<CreateEventRVAdap
                         }
                         if (j == 6) {
                             categoryList.add("Free");
-
                         }
                     }
                 }

@@ -11,6 +11,7 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spuds.eventapp.EditProfile.EditProfileFragment;
+import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
@@ -38,6 +40,7 @@ public class ProfileFragment extends Fragment {
 
     ImageView userImage;
     TextView userName;
+    TextView userDescription;
     ImageView buttonSubscribedOrEdit;
     TextView numberFollowing;
     TextView numberHosting;
@@ -58,11 +61,14 @@ public class ProfileFragment extends Fragment {
         Bundle extras = getArguments();
         profileType = extras.getString(getString(R.string.profile_type));
 
-        userId = extras.getString(getString(R.string.user_id));
-        // TODO (M): GET request to get user details using userId
-        //fake data
-        user = new User("1", "Reggie Wu", "#wutangclan", true, 100,
-                1, "reggie.jpg", false);
+        if (profileType.equals(getString(R.string.profile_type_other))) {
+
+            user = (User) extras.getSerializable(getString(R.string.user_details));
+            Log.v("profilefragmnet", "user name " + user.getName());
+
+        } else {
+            user = UserFirebase.thisUser;
+        }
 
         profileFragment = this;
 
@@ -106,9 +112,11 @@ public class ProfileFragment extends Fragment {
         numberHosting = (TextView) view.findViewById(R.id.user_number_hosting);
         eventsHostingRV = (RecyclerView) view.findViewById(R.id.rv_events_hosting);
         eventsGoingRV = (RecyclerView) view.findViewById(R.id.rv_events_going);
+        userDescription = (TextView) view.findViewById(R.id.user_description);
 
-        // TODO (M): Picasso for userImage
+        // TODO (M): userImage
 
+        userDescription.setText(user.getDescription());
         userName.setText(user.getName());
         Bitmap src = BitmapFactory.decodeResource(this.getResources(), R.drawable.arjun);
         RoundedBitmapDrawable dr =
@@ -155,6 +163,10 @@ public class ProfileFragment extends Fragment {
 
                     // TODO (M): Update subscribed boolean in database & error checking
                     user.setSubscribed(!user.isSubscribed());
+                    Log.v("Profile Fragment", "subscribed = " + user.isSubscribed());
+
+                    UserFirebase userFirebase = new UserFirebase();
+                    userFirebase.subscribe(user.getUserId(), user.isSubscribed());
                     /*if (user.subscribed)
                         buttonSubscribedOrEdit.setImageResource(R.drawable.button_subscribed);
                     else

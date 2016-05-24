@@ -188,6 +188,19 @@ public class MainActivity extends AppCompatActivity
                 InvitePeopleFragment invitePeopleFragment = new InvitePeopleFragment();
                 Bundle bundle = new Bundle();
 
+                //Fake Data. TODO: make EventSearchFragment later on @Tina
+                ArrayList<Event> testEventsList = new ArrayList<Event>();
+                ArrayList<String> testCategoriesList = new ArrayList<String>();
+                testCategoriesList.add("Food");
+                testCategoriesList.add("Sports");
+                testEventsList.add(new Event("eventId 1","hostId 1","eventName 1","description 1","location 1","date 1",1,"picFileName 1",testCategoriesList,"hostName 1"));
+                testEventsList.add(new Event("eventId 2","hostId 2","eventName 2","description 2","location 2","date 2",2,"picFileName 2",testCategoriesList,"hostName 2"));
+                testEventsList.add(new Event("eventId 3","hostId 3","eventName 3","description 3","location 2","date 3",3,"picFileName 3",testCategoriesList,"hostName 3"));
+
+                Log.d("Create SQLite Table","Before DB called");
+                DatabaseTable databaseTable = new DatabaseTable(getApplicationContext(),testEventsList);
+                Log.d("Create SQLite Table","AFTER DB called");
+
                 // TODO (M): people
                 //fake data
                 ArrayList<User> people = new ArrayList<User>();
@@ -206,6 +219,8 @@ public class MainActivity extends AppCompatActivity
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack("Search People Fragment")
                         .commit();
+
+
 
             }
 
@@ -447,8 +462,6 @@ public class MainActivity extends AppCompatActivity
 
         Bundle bundle = new Bundle();
         bundle.putString(getString(R.string.profile_type), getString(R.string.profile_type_owner));
-        // TODO (M): app owner's id
-        bundle.putString(getString(R.string.user_id), "1adsf");
 
         profileFragment.setArguments(bundle);
 
