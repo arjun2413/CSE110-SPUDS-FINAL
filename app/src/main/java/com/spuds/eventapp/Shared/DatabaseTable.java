@@ -16,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -35,8 +36,9 @@ public class DatabaseTable {
 
     private final DatabaseOpenHelper mDatabaseOpenHelper;
 
-    public DatabaseTable(Context context) {
-        mDatabaseOpenHelper = new DatabaseOpenHelper(context);
+    public DatabaseTable(Context context,ArrayList<Event> events) {
+        mDatabaseOpenHelper = new DatabaseOpenHelper(context,events);
+        Log.d("Create SQLite Table","DatabaseTable ctor called");
     }
 
     /**/
@@ -45,6 +47,7 @@ public class DatabaseTable {
 
         private final Context mHelperContext;
         private SQLiteDatabase mDatabase;
+        private ArrayList<Event> mHelperEventsList;
 
         private static final String FTS_TABLE_CREATE =
                 "CREATE VIRTUAL TABLE " + FTS_VIRTUAL_TABLE +
@@ -52,15 +55,19 @@ public class DatabaseTable {
                         COL_EVENT_NAME + ", "+
                         COL_EVENT_ID+")";
 
-        DatabaseOpenHelper(Context context) {
+        DatabaseOpenHelper(Context context,ArrayList<Event> events) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
             mHelperContext = context;
+            mHelperEventsList = events;
+            Log.d("Create SQLite Table","DatabaseOpenHelper ctor called");
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
             mDatabase = db;
+            Log.d("Create SQLite Table","onCreate for SQLiteDatabase called");
             mDatabase.execSQL(FTS_TABLE_CREATE);
+            Log.d("Create SQLite Table","mDatabase initialized");
             loadDictionary();
         }
 
@@ -78,7 +85,8 @@ public class DatabaseTable {
         //the ArrayList passed in here should be ALL the events currently on database.
         //Should be run only onCreate, further shit is by update.
         private void loadDictionary() {
-            final ArrayList<Event> ev = null;
+            Log.d("Create SQLite Table","loadDictionary called");
+            final ArrayList<Event> ev = mHelperEventsList;
             //TODO: Populate using EventsFirebase.java iterator
             //loop to add shit to arraylist
 
@@ -112,6 +120,8 @@ public class DatabaseTable {
             ContentValues initialValues = new ContentValues();
             initialValues.put(COL_EVENT_NAME,T_col_event_name); //the one searchable query
             initialValues.put(COL_EVENT_ID,T_col_event_id);
+
+            Log.d("Create SQLite Table","Word Added");
 
             return mDatabase.insert(FTS_VIRTUAL_TABLE, null, initialValues);
         }

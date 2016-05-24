@@ -4,24 +4,20 @@
     api-level="23"
     density="420dpi"
     format="7"
-    timestamp="1464058092781871000" >
+    timestamp="1464069269604340000" >
 
     <task
         name="javac"
-        duration="2951" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="55" />
+        duration="0" />
     <task
         name="verifier"
-        duration="21" />
-
-    <artifact
-        location="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2/classes.dex"
-        type="DEX" />
+        duration="0" />
 
     <build timestamp="1464056191980160000" >
         <artifact
@@ -33,5 +29,11 @@
             location="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2/classes.dex"
             type="DEX" />
     </build>
+    <build timestamp="1464068785603141000" >
+        <artifact
+            location="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex"
+            type="DEX" />
+    </build>
+    <build timestamp="1464069269604340000" />
 
 </instant-run>
