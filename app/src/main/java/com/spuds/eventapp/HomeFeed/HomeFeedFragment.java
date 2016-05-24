@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.client.Firebase;
 import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Event;
@@ -32,6 +33,7 @@ public class HomeFeedFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        //Firebase.setAndroidContext();
         super.onCreate(savedInstanceState);
 
         Bundle extras = getArguments();

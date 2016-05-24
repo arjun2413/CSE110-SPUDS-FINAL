@@ -60,9 +60,7 @@ public class CategoriesListFragment extends Fragment {
         if (academicButton != null) {
             academicButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (type == null) {
-                        type = getString(R.string.cat_academic);
-                    }
+                    type = getString(R.string.cat_academic);
 
                     startFeed();
                 }
@@ -76,9 +74,7 @@ public class CategoriesListFragment extends Fragment {
         if (sportsButton != null) {
             sportsButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (type== null) {
-                        type = getString(R.string.cat_sports);
-                    }
+                    type = getString(R.string.cat_sports);
 
                     startFeed();
                 }
@@ -92,9 +88,8 @@ public class CategoriesListFragment extends Fragment {
         if (socialButton != null) {
             socialButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (type == null) {
-                        type = getString(R.string.cat_social);
-                    }
+                    type = getString(R.string.cat_social);
+
 
                     startFeed();
                 }
@@ -108,9 +103,7 @@ public class CategoriesListFragment extends Fragment {
         if (freeButton != null) {
             freeButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (type == null) {
-                        type = getString(R.string.cat_free);
-                    }
+                    type = getString(R.string.cat_free);
 
                     startFeed();
                 }
@@ -124,9 +117,7 @@ public class CategoriesListFragment extends Fragment {
         if (foodButton != null) {
             foodButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (type == null) {
-                        type = getString(R.string.cat_food);
-                    }
+                    type = getString(R.string.cat_food);
 
                     startFeed();
                 }
@@ -140,9 +131,7 @@ public class CategoriesListFragment extends Fragment {
         if (concertsButton != null) {
             concertsButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (type == null) {
-                        type = getString(R.string.cat_concerts);
-                    }
+                    type = getString(R.string.cat_concerts);
 
                     startFeed();
                 }
@@ -156,9 +145,7 @@ public class CategoriesListFragment extends Fragment {
         if (campusButton != null) {
             campusButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (type == null) {
-                        type = getString(R.string.cat_student_orgs);
-                    }
+                    type = getString(R.string.cat_student_orgs);
 
                     startFeed();
                 }
