@@ -1,6 +1,8 @@
 package com.spuds.eventapp.EventDetails;
 
+import android.content.Context;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
@@ -80,7 +82,18 @@ public class CommentsRVAdapter extends RecyclerView.Adapter<CommentsRVAdapter.Co
     public CommentViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
 
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_comment, viewGroup, false);
+
+        overrideFonts(v.getContext(),v);
+
+       /* Typeface raleway_medium = Typeface.createFromAsset(getActivity().getAssets(),  "Raleway-Medium.ttf");
+
+        //title font
+        TextView name = (TextView) v.findViewById(R.id.event_name);
+        name.setTypeface(raleway_medium);*/
+
         CommentViewHolder commentViewHolder = new CommentViewHolder(v);
+
+
 
         return commentViewHolder;
     }
@@ -193,4 +206,21 @@ public class CommentsRVAdapter extends RecyclerView.Adapter<CommentsRVAdapter.Co
     public int getItemCount() {
         return comments.size();
     }
+
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView ) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "raleway-regular.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
+    }
+
 }

@@ -1,5 +1,7 @@
 package com.spuds.eventapp.EditEvent;
 
+import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -52,6 +54,7 @@ public class EditEventRVAdapter extends RecyclerView.Adapter<EditEventRVAdapter.
     @Override
     public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_create_event_category, viewGroup, false);
+        overrideFonts(v.getContext(),v);
         EventViewHolder evh = new EventViewHolder(v);
         return evh;
     }
@@ -69,5 +72,20 @@ public class EditEventRVAdapter extends RecyclerView.Adapter<EditEventRVAdapter.
         super.onAttachedToRecyclerView(recyclerView);
     }
 
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView ) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "raleway-regular.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
+    }
 
 }
