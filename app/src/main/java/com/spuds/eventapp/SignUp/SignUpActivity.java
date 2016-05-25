@@ -164,7 +164,7 @@ public class SignUpActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                             }
-                            if (userCheck[0] == 1) {
+                            if (userCheck[0] == 2) {
                                 accountFirebase.createAccount(signupEmail.getText().toString(),
                                         signupPassword1.getText().toString(), signupName.getText().toString());
                                 //When done, leave this page and go to main screen.
@@ -178,7 +178,9 @@ public class SignUpActivity extends AppCompatActivity {
                         }
 
                     }
-
+                    Runnable r = new myThread();
+                    Thread t = new Thread(r);
+                    t.start();
                 }
             }
         });
