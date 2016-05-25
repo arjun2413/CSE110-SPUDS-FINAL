@@ -3,6 +3,7 @@ package com.spuds.eventapp.EditEvent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -60,6 +61,8 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        ((MainActivity) getActivity()).picture = null;
+
         Bundle extras = getArguments();
         event = (Event) extras.get(getString(R.string.event_details));
     }
@@ -68,6 +71,38 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_event, container, false);
+        overrideFonts(view.getContext(),view);
+        Typeface raleway_medium = Typeface.createFromAsset(getActivity().getAssets(),  "Raleway-Medium.ttf");
+
+        //title font
+        TextView upload = (TextView) view.findViewById(R.id.upload);
+        upload.setTypeface(raleway_medium);
+
+        TextView name = (TextView) view.findViewById(R.id.name);
+        name.setTypeface(raleway_medium);
+
+        TextView date = (TextView) view.findViewById(R.id.date);
+        date.setTypeface(raleway_medium);
+
+        TextView time = (TextView) view.findViewById(R.id.time);
+        time.setTypeface(raleway_medium);
+
+        TextView location = (TextView) view.findViewById(R.id.location);
+        location.setTypeface(raleway_medium);
+
+        TextView description = (TextView) view.findViewById(R.id.description);
+        description.setTypeface(raleway_medium);
+
+        TextView cat = (TextView) view.findViewById(R.id.event_categories);
+        cat.setTypeface(raleway_medium);
+
+
+        Button done = (Button) view.findViewById(R.id.editEventDone);
+        done.setTypeface(raleway_medium);
+
+        Button delete = (Button) view.findViewById(R.id.editEventDelete);
+        delete.setTypeface(raleway_medium);
+
 
         eD = new EventDate(event.getDate());
         getPageElements(view);
@@ -119,8 +154,45 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
         // TODO (M): Picasso for picture
         eventName.setText(event.getEventName());
-        eventDate.setText(eD.getDateLong());
-        eventTime.setText(eD.get12TimeMinusAMPM());
+
+        String originalString = event.getDate();
+        char[] c = originalString.toCharArray();
+        char temp = c[0];
+        c[0] = c[6];
+        c[6] = temp;
+        char temp1 = c[1];
+        c[1] = c[7];
+        c[7] = temp1;
+        char temp2 = c[0];
+        c[0] = c[3];
+        c[3] = temp2;
+        char temp3 = c[1];
+        c[1] = c[4];
+        c[4] = temp3;
+        String swappedString = new String(c);
+        String tempString = swappedString.substring(11, swappedString.length());
+        String sub = tempString.substring(0, tempString.indexOf(':'));
+        String col = tempString.substring(tempString.indexOf(':'), tempString.length());
+        int numb = Integer.parseInt(sub);
+        //PM
+        if(Integer.parseInt(sub) >= 12 && Integer.parseInt(sub) < 24) {
+            if(numb != 12) {
+                numb -= 12;
+            }
+            sub = numb + col;
+        }
+        //AM
+        else{
+            if(numb == 0) {
+                numb += 12;
+            }
+            sub = numb + col;
+        }
+        swappedString = swappedString.substring(0, 11) + sub;
+
+        eventDate.setText(swappedString.substring(0,8));
+        eventTime.setText(swappedString.substring(11, swappedString.length()));
+
         eventLocation.setText(event.getLocation());
         eventDescription.setText(event.getDescription());
 
@@ -295,6 +367,22 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView ) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "raleway-regular.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
     }
 
 }

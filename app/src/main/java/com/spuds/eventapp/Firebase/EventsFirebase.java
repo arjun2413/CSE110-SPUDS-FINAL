@@ -69,10 +69,15 @@ public class EventsFirebase {
     }
 
     ArrayList<String> categoryList;
-
     public void createEvent(CreateEventForm form, CreateEventRVAdapter adapter) {
+        if(a != null) {
+            for (int i = 0; i < a.size(); i++) {
+                Log.v("reg", a.get(i));
+            }
+        }
+
         categoryList = adapter.getList();
-        Log.d("fuck", String.valueOf(categoryList));
+        //Log.d("fuck", String.valueOf(categoryList));
 
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
 
@@ -80,6 +85,7 @@ public class EventsFirebase {
         Date dateobj = new Date();
 
         String originalString = form.getDate();
+
         char[] c = originalString.toCharArray();
 
         char temp = c[0];
@@ -103,43 +109,61 @@ public class EventsFirebase {
 
         String tempString = swappedString.substring(11, swappedString.length());
         int numb = 0;
+        String sub = "";
 
-        if (tempString.indexOf('A') == -1) {
-            String sub = tempString.substring(0, tempString.indexOf('P'));
+        if(tempString.indexOf('A') == -1) {
+            if(swappedString.indexOf(':') != -1) {
+                sub = tempString.substring(0, tempString.indexOf(':'));
+            }
+            else{
+                sub = tempString.substring(0, tempString.indexOf('P'));
+            }
+
             numb = Integer.parseInt(sub);
 
-            if (numb != 12) {
+            if(numb != 12) {
                 numb += 12;
             }
 
-        } else {
-            String sub = tempString.substring(0, tempString.indexOf('A'));
+        }
+        else{
+            if(swappedString.indexOf(':') != -1) {
+                sub = tempString.substring(0, tempString.indexOf(':'));
+            }
+            else{
+                sub = tempString.substring(0, tempString.indexOf('A'));
+            }
+
             numb = Integer.parseInt(sub);
 
-            if (numb == 12) {
+            if(numb == 12) {
                 numb = 0;
             }
         }
 
-        if (swappedString.indexOf(':') == -1) {
+        if(swappedString.indexOf(':') == -1) {
             swappedString = swappedString.substring(0, 11) + numb + ":00";
+        }
+        else {
+            swappedString = swappedString.substring(0, 11) + numb + tempString.substring(tempString.indexOf(':'), tempString.length()-2);
         }
 
         Map<String, String> map = new HashMap<String, String>();
-        map.put("user_id", UserFirebase.uId);
+        map.put("host_id", UserFirebase.uId);
+        map.put("host_name", UserFirebase.thisUser.getName());
         map.put("event_name", form.getName());
         map.put("description", form.getDescription());
         map.put("location", form.getLocation());
         map.put("date", swappedString);
         map.put("number_going", "1");
         map.put("picture", form.getPicture());
-        map.put("created_at", df.format(dateobj));
+        map.put("created_at", df.format(dateobj) );
 
-        for (int i = 0; i < categoryList.size(); i++) {
+        for(int i=0; i < categoryList.size(); i++) {
             if (categoryList.get(i) == "Academic") {
                 map.put("catAcademic", "true");
             }
-            if (categoryList.get(i) == "Campus") {
+            if (categoryList.get(i) == "Campus Organizations") {
                 map.put("catCampus", "true");
             }
             if (categoryList.get(i) == "Concerts") {
@@ -160,6 +184,10 @@ public class EventsFirebase {
         }
 
         ref.child("events").push().setValue(map);
+
+        UserFirebase userFirebase = new UserFirebase();
+        userFirebase.updateNumberHosting();
+
     }
 
     public void editEvent() {
@@ -188,7 +216,7 @@ public class EventsFirebase {
                 break;
         }
 
-        if (catFilter != null) {
+        if(catFilter != null) {
             switch (catFilter) {
                 case catAcademic:
                     queryRef = myFirebaseRef.orderByChild("catAcademic").equalTo("true");
@@ -218,9 +246,10 @@ public class EventsFirebase {
             @Override
             public void onChildAdded(DataSnapshot snapshot, String previousChild) {
 
-                Event newEvent = new Event();
+                Event newEvent  = new Event();
 
                 for (DataSnapshot child : snapshot.getChildren()) {
+                    Log.d("asdf", String.valueOf(child));
                     switch (child.getKey()) {
                         case "date":
                             newEvent.setDate(String.valueOf(child.getValue()));
@@ -242,6 +271,9 @@ public class EventsFirebase {
                             break;
                         case "host_id":
                             newEvent.setHostId(String.valueOf(child.getValue()));
+                            break;
+                        case "host_name":
+                            newEvent.setHostName(String.valueOf(child.getValue()));
                             break;
                         case "catAcademic":
                             a.add("Academic");
@@ -271,18 +303,21 @@ public class EventsFirebase {
                     newEvent.setEventId(snapshot.getKey());
                 }
 
-
-                if (a != null) {
+                if(a != null) {
                     for (int i = 0; i < a.size(); i++) {
-                        Log.v("chris", a.get(i));
+                        Log.v("reg", a.get(i));
                     }
-                    newEvent.setCategories(a);
                 }
+                newEvent.setCategories(a);
+                a = new ArrayList<String>();
+
+                newEvent.setCategories(categories);
 
 
-                if (tabFilter.equals(tabHot) || tabFilter.equals(tabNew)) {
+                if(tabFilter.equals(tabHot) || tabFilter.equals(tabNew)) {
                     eventsList.add(0, newEvent);
-                } else {
+                }
+                else {
                     eventsList.add(newEvent);
                 }
 

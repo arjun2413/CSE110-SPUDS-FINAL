@@ -1,7 +1,6 @@
 package com.spuds.eventapp.HomeFeed;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.client.Firebase;
 import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Event;
@@ -32,6 +32,7 @@ public class HomeFeedFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        //Firebase.setAndroidContext();
         super.onCreate(savedInstanceState);
 
         Bundle extras = getArguments();
@@ -44,22 +45,6 @@ public class HomeFeedFragment extends Fragment {
         EventsFirebase ef = new EventsFirebase(events, 0, tabType);
         ef.createEL();
 
-
-
-        /*events.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04.29.16", 1054,
-                "yj.jpg", categories, "UCSD"));
-        events.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04.28.16", 51,
-                "foosh.jpg", categories, "Foosh Improv Comedy Club"));*/
-        /*events.add(new Event("1", "yj.jpg", "Sun God Festival", "RIMAC Field", "April 30, 2016", 1054,
-                "Social", "Concert", "UCSD", "spr lame"));
-        events.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "May 5, 2016", 51,
-               "Social", null, "Foosh Improv Comedy Club", "spr funny"));
-        events.add(new Event("3", "foosh.jpg", "Circle K GBM #1", "Center 101", "July 4, 2016", 51,
-                "Social", null, "Foosh Improv Comedy Club", "spr funny"));
-        events.add(new Event("4", "foosh.jpg", "David's Birthday Party", "420 Strip Club", "May 17, 2016", 51,
-                "Social", "Food", "Foosh Improv Comedy Club", "spr funny"));
-        events.add(new Event("5", "foosh.jpg", "Reggie Wu Fan Club", "Reggie's Apartment", "June 7, 2016", 51,
-                "Social", null, "Foosh Improv Comedy Club", "spr funny"));*/
     }
 
     @Override
@@ -123,6 +108,9 @@ public class HomeFeedFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }
 
 

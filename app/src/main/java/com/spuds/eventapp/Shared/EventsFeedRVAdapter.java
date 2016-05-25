@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spuds.eventapp.EventDetails.EventDetailsFragment;
+import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.Profile.ProfileFeedFragment;
+import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
 
 import java.util.List;
@@ -90,6 +93,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
     @Override
     public void onBindViewHolder(EventViewHolder eventViewHolder, int i) {
 
+        final int index = i;
         // Add card See More... for profile fragment
         if (tagCurrentFragment.equals(currentFragment.getString(R.string.fragment_profile)) && i == 3) {
             eventViewHolder.seeMore.setVisibility(View.VISIBLE);
@@ -133,6 +137,40 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         eventViewHolder.eventName.setText(events.get(i).getEventName());
         eventViewHolder.eventLocation.setText(events.get(i).getLocation());
         eventViewHolder.eventAttendees.setText(String.valueOf(events.get(i).getAttendees()));
+        eventViewHolder.eventHost.setText(events.get(i).getHostName());
+        eventViewHolder.eventHost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.v("eventsfeedrvadapter", "eventhostclicked");
+
+                final UserFirebase userFirebase = new UserFirebase();
+                Log.v("eventsfeedrvadapter", "hostid" + events.get(index).getHostId());
+
+                userFirebase.getAnotherUser(events.get(index).getHostId());
+
+                new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        while (!userFirebase.threadCheckAnotherUser) {
+                            try {
+                                Thread.sleep(77);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                        Log.v("eventsfeedrvadapter", "returned from firebase");
+
+
+                        startProfileFragment(userFirebase);
+
+                    }
+                }).start();
+            }
+
+        });
 
         String d = "";
 
@@ -204,15 +242,12 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
         // Categories
         String categories = "";
-        int eventIndex = 0;
-        for (int categoryIndex = 0; categoryIndex < events.get(eventIndex).getCategories().size() - 1; categoryIndex++) {
-            if (categoryIndex == events.get(eventIndex).getCategories().size()){
-                categoryIndex = 0;
-                eventIndex++;
+        if(events.get(i).getCategories() != null || events.get(i).getCategories().size() != 0) {
+            for (int categoryIndex = 0; categoryIndex < events.get(i).getCategories().size() - 1; categoryIndex++) {
+                categories += events.get(i).getCategories().get(categoryIndex) + ", ";
             }
-            categories += events.get(i).getCategories().get(eventIndex) + ", ";
+            categories += events.get(i).getCategories().get(events.get(i).getCategories().size() - 1);
         }
-        categories += events.get(i).getCategories().get(events.get(i).getCategories().size() - 1);
 
         eventViewHolder.eventCategories.setText(categories);
 
@@ -285,5 +320,36 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         catch (Exception e) {
         }
     }
+
+    private void startProfileFragment(final UserFirebase userFirebase) {
+
+        Fragment profileFragment = new ProfileFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString(currentFragment.getString(R.string.profile_type),
+                currentFragment.getString(R.string.profile_type_other));
+
+
+        bundle.putSerializable(currentFragment.getString(R.string.user_details), userFirebase.anotherUser);
+
+        profileFragment.setArguments(bundle);
+
+        currentFragment.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ((MainActivity)currentFragment.getActivity()).removeSearchToolbar();
+            }
+        });
+        // Add Event Details Fragment to fragment manager
+        currentFragment.getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_frame_layout, profileFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(currentFragment.getString(R.string.fragment_profile))
+                .commit();
+
+
+
+    }
+
 
 }

@@ -1,6 +1,7 @@
 package com.spuds.eventapp.CategoriesList;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.spuds.eventapp.FilteredCategoryFeed.CategoryFeedTabsFragment;
 import com.spuds.eventapp.R;
@@ -28,7 +30,12 @@ public class CategoriesListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_categories_list, container, false);
+
+        overrideFonts(view.getContext(),view);
         pickCategory(view);
+
+
+
 
         return view;
     }
@@ -60,9 +67,7 @@ public class CategoriesListFragment extends Fragment {
         if (academicButton != null) {
             academicButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (type == null) {
-                        type = getString(R.string.cat_academic);
-                    }
+                    type = getString(R.string.cat_academic);
 
                     startFeed();
                 }
@@ -76,9 +81,7 @@ public class CategoriesListFragment extends Fragment {
         if (sportsButton != null) {
             sportsButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (type== null) {
-                        type = getString(R.string.cat_sports);
-                    }
+                    type = getString(R.string.cat_sports);
 
                     startFeed();
                 }
@@ -92,9 +95,8 @@ public class CategoriesListFragment extends Fragment {
         if (socialButton != null) {
             socialButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (type == null) {
-                        type = getString(R.string.cat_social);
-                    }
+                    type = getString(R.string.cat_social);
+
 
                     startFeed();
                 }
@@ -108,9 +110,7 @@ public class CategoriesListFragment extends Fragment {
         if (freeButton != null) {
             freeButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (type == null) {
-                        type = getString(R.string.cat_free);
-                    }
+                    type = getString(R.string.cat_free);
 
                     startFeed();
                 }
@@ -124,9 +124,7 @@ public class CategoriesListFragment extends Fragment {
         if (foodButton != null) {
             foodButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (type == null) {
-                        type = getString(R.string.cat_food);
-                    }
+                    type = getString(R.string.cat_food);
 
                     startFeed();
                 }
@@ -140,9 +138,7 @@ public class CategoriesListFragment extends Fragment {
         if (concertsButton != null) {
             concertsButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (type == null) {
-                        type = getString(R.string.cat_concerts);
-                    }
+                    type = getString(R.string.cat_concerts);
 
                     startFeed();
                 }
@@ -156,9 +152,7 @@ public class CategoriesListFragment extends Fragment {
         if (campusButton != null) {
             campusButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (type == null) {
-                        type = getString(R.string.cat_student_orgs);
-                    }
+                    type = getString(R.string.cat_student_orgs);
 
                     startFeed();
                 }
@@ -183,6 +177,21 @@ public class CategoriesListFragment extends Fragment {
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(getString(R.string.fragment_category_feed))
                 .commit();
+    }
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "Raleway-Medium.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
     }
 
 }

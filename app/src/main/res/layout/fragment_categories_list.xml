@@ -15,7 +15,7 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Food"
+            android:text="FOOD"
             android:id="@+id/food"
             android:textSize="30dp"
             android:textAllCaps="false"
@@ -30,7 +30,7 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Social"
+            android:text="SOCIAL"
             android:id="@+id/social"
             android:textSize="30dp"
             android:textAllCaps="false"
@@ -45,7 +45,7 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Concerts"
+            android:text="CONCERTS"
             android:id="@+id/concerts"
             android:textSize="30dp"
             android:textAllCaps="false"
@@ -60,7 +60,7 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Sports"
+            android:text="SPORTS"
             android:id="@+id/sports"
             android:textSize="30dp"
             android:textAllCaps="false"
@@ -75,7 +75,7 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Student Orgs"
+            android:text="STUDENT ORGS"
             android:id="@+id/campus_orgs"
             android:textSize="30dp"
             android:textAllCaps="false"
@@ -90,7 +90,7 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Academic"
+            android:text="ACADEMIC"
             android:id="@+id/academic"
             android:textSize="30dp"
             android:textAllCaps="false"
@@ -105,7 +105,7 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Free"
+            android:text="FREE"
             android:id="@+id/free"
             android:textSize="30dp"
             android:textAllCaps="false"

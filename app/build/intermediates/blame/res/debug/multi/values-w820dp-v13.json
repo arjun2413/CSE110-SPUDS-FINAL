@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\akalathil\\Documents\\testpls\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "outputFile": "C:\\Users\\Quoc Toan Luong\\Desktop\\CSE 110\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-w820dp-v13\\values-w820dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "C:\\Users\\akalathil\\Documents\\testpls\\CSE110-SPUDS-FINAL\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "file": "C:\\Users\\Quoc Toan Luong\\Desktop\\CSE 110\\CSE110-SPUDS-FINAL\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -24,7 +24,7 @@
         ]
     },
     {
-        "outputFile": "C:\\Volumes\\storedge128\\Files\\AndroidProjects\\CSE-SPUDS-1\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "outputFile": "C:\\Users\\Reggie\\StudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-w820dp-v13\\values-w820dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -35,13 +35,13 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "C:\\Volumes\\storedge128\\Files\\AndroidProjects\\CSE-SPUDS-1\\CSE110-SPUDS-FINAL\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "file": "C:\\Users\\Reggie\\StudioProjects\\CSE110-SPUDS-FINAL\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 291,
+                        "startOffset": 295,
                         "endColumn": 57,
-                        "endOffset": 344
+                        "endOffset": 348
                     }
                 }
             }

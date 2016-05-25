@@ -3,6 +3,7 @@ package com.spuds.eventapp.Shared;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -49,6 +50,7 @@ import com.spuds.eventapp.SubscriptionFeed.SubscriptionFeedTabsFragment;
 import com.spuds.eventapp.SubscriptionsList.SubscriptionsListFragment;
 
 import java.io.File;
+import java.io.InterruptedIOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -181,12 +183,58 @@ public class MainActivity extends AppCompatActivity
             }
 
             @Override
-            public void onSearch(String searchTerm) {
+            public void onSearch(final String searchTerm) {
                 Toast.makeText(MainActivity.this, searchTerm +" Searched", Toast.LENGTH_LONG).show();
 
                 // TODO (C): Change this to searachpeopleframgent
                 InvitePeopleFragment invitePeopleFragment = new InvitePeopleFragment();
                 Bundle bundle = new Bundle();
+
+                //Fake Data. TODO: make EventSearchFragment later on @Tina
+                ArrayList<Event> testEventsList = new ArrayList<Event>();
+                ArrayList<String> testCategoriesList = new ArrayList<String>();
+                testCategoriesList.add("Food");
+                testCategoriesList.add("Sports");
+                testEventsList.add(new Event("eventId 1","hostId 1","eventName 1","description 1","location 1","date 1",1,"picFileName 1",testCategoriesList,"hostName 1"));
+                testEventsList.add(new Event("eventId 2","hostId 2","eventName 2","description 2","location 2","date 2",2,"picFileName 2",testCategoriesList,"hostName 2"));
+                testEventsList.add(new Event("eventId 3","hostId 3","eventName 3","description 3","location 2","date 3",3,"picFileName 3",testCategoriesList,"hostName 3"));
+
+                Log.d("Create SQLite Table","Before DB called");
+                final DatabaseTable databaseTable = new DatabaseTable(getApplicationContext(),testEventsList);
+                Log.d("Create SQLite Table","AFTER DB called");
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        while(!DatabaseTable.threadDone){
+                            System.err.println(DatabaseTable.threadDone);
+                            try{
+                                Thread.sleep(750);
+                            } catch (InterruptedException e){
+                                e.printStackTrace();
+                            }
+                        }
+
+                        //TODO: ADD A NULL CHECK TO CURSOR
+                        System.err.println("trying to sesarch now");
+                        Cursor cursor = databaseTable.getEventNameMatches(searchTerm, null);
+                        System.err.println("GAJSL:GJAJ:AG "+cursor.toString());
+                        String retVal = "";
+                        if (cursor.moveToFirst() ){
+                            String[] columnNames = cursor.getColumnNames();
+                            do {
+                                for (String name: columnNames) {
+                                    retVal += String.format("%s: %s\n", name,
+                                            cursor.getString(cursor.getColumnIndex(name)));
+                                }
+                                retVal += "\n";
+
+                            } while (cursor.moveToNext());
+                        }
+                        System.err.println(retVal);
+                    }
+                }).start();
+
 
                 // TODO (M): people
                 //fake data
@@ -206,6 +254,8 @@ public class MainActivity extends AppCompatActivity
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack("Search People Fragment")
                         .commit();
+
+
 
             }
 
@@ -447,8 +497,6 @@ public class MainActivity extends AppCompatActivity
 
         Bundle bundle = new Bundle();
         bundle.putString(getString(R.string.profile_type), getString(R.string.profile_type_owner));
-        // TODO (M): app owner's id
-        bundle.putString(getString(R.string.user_id), "1adsf");
 
         profileFragment.setArguments(bundle);
 

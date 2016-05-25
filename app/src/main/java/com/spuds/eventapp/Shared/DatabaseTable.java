@@ -16,12 +16,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
  * Created by youngjinyun on 5/20/16.
  */
 public class DatabaseTable {
+
+    public static boolean threadDone = false;
 
     private static final String TAG = "DictionaryDatabase";
 
@@ -35,8 +38,9 @@ public class DatabaseTable {
 
     private final DatabaseOpenHelper mDatabaseOpenHelper;
 
-    public DatabaseTable(Context context) {
-        mDatabaseOpenHelper = new DatabaseOpenHelper(context);
+    public DatabaseTable(Context context,ArrayList<Event> events) {
+        mDatabaseOpenHelper = new DatabaseOpenHelper(context,events);
+        Log.d("Create SQLite Table","DatabaseTable ctor called");
     }
 
     /**/
@@ -45,6 +49,7 @@ public class DatabaseTable {
 
         private final Context mHelperContext;
         private SQLiteDatabase mDatabase;
+        private ArrayList<Event> mHelperEventsList;
 
         private static final String FTS_TABLE_CREATE =
                 "CREATE VIRTUAL TABLE " + FTS_VIRTUAL_TABLE +
@@ -52,20 +57,29 @@ public class DatabaseTable {
                         COL_EVENT_NAME + ", "+
                         COL_EVENT_ID+")";
 
-        DatabaseOpenHelper(Context context) {
+        DatabaseOpenHelper(Context context,ArrayList<Event> events) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
             mHelperContext = context;
+            mHelperEventsList = events;
+            mHelperContext.deleteDatabase(DATABASE_NAME);
+            mDatabase = getWritableDatabase();
+            Log.d("Create SQLite Table","DatabaseOpenHelper ctor called");
+            System.err.println("THIS CODE HAS BEEN COMPILED @@@@@@@@@@@@@@@@@@@@");
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
+            System.err.println("Running DbOH's onCreate");
             mDatabase = db;
+            Log.d("Create SQLite Table","onCreate for SQLiteDatabase called");
             mDatabase.execSQL(FTS_TABLE_CREATE);
+            Log.d("Create SQLite Table","mDatabase initialized");
             loadDictionary();
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            System.err.println("Running DbOH's onUpgrade");
             Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
                     + newVersion + ", which will destroy all old data");
             db.execSQL("DROP TABLE IF EXISTS " + FTS_VIRTUAL_TABLE);
@@ -78,7 +92,9 @@ public class DatabaseTable {
         //the ArrayList passed in here should be ALL the events currently on database.
         //Should be run only onCreate, further shit is by update.
         private void loadDictionary() {
-            final ArrayList<Event> ev = null;
+            System.err.println("Running DbOH's loadDictionary");
+            Log.d("Create SQLite Table","loadDictionary called");
+            final ArrayList<Event> ev = mHelperEventsList;
             //TODO: Populate using EventsFirebase.java iterator
             //loop to add shit to arraylist
 
@@ -87,11 +103,19 @@ public class DatabaseTable {
                 public void run() {
                     try {
                         loadWords(ev);
+
+                        String db = getTableAsString(mDatabase,FTS_VIRTUAL_TABLE);
+                        System.err.println(db);
+
+                        threadDone = true;
+                        System.err.println("THREADDONE= TRUE NOW AJAJSLAJJA:GJA:");
+
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                 }
             }).start();
+
         }
 
         private void loadWords(ArrayList<Event> ev) throws IOException {
@@ -113,9 +137,32 @@ public class DatabaseTable {
             initialValues.put(COL_EVENT_NAME,T_col_event_name); //the one searchable query
             initialValues.put(COL_EVENT_ID,T_col_event_id);
 
+            Log.d("Create SQLite Table","Word Added");
+
             return mDatabase.insert(FTS_VIRTUAL_TABLE, null, initialValues);
         }
+
+
         //end result, mDatabase should be fully formed virtual database
+
+        public String getTableAsString(SQLiteDatabase db, String tableName) {
+            Log.d(TAG, "getTableAsString called");
+            String tableString = String.format("Table %s:\n", tableName);
+            Cursor allRows  = db.rawQuery("SELECT * FROM " + tableName, null);
+            if (allRows.moveToFirst() ){
+                String[] columnNames = allRows.getColumnNames();
+                do {
+                    for (String name: columnNames) {
+                        tableString += String.format("%s: %s\n", name,
+                                allRows.getString(allRows.getColumnIndex(name)));
+                    }
+                    tableString += "\n";
+
+                } while (allRows.moveToNext());
+            }
+
+            return tableString;
+        }
     }
 
 
@@ -137,8 +184,10 @@ public class DatabaseTable {
                 columns, selection, selectionArgs, null, null, null);
 
         if (cursor == null) {
+            System.err.println("returning null 1");
             return null;
         } else if (!cursor.moveToFirst()) {
+            System.err.println("returning null 2");
             cursor.close();
             return null;
         }

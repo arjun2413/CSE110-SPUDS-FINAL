@@ -2,6 +2,7 @@ package com.spuds.eventapp.CreateEvent;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -49,7 +50,9 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     public CreateEventRVAdapter adapter;
 
     private CreateEventForm makeForm(){
-        String result = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
+        String result = "";
+        if (((MainActivity) getActivity()).picture != null)
+        result = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
         return new CreateEventForm(eventName,eventDate,eventTime, spinner, eventLocation,eventDescription, result);
 
     }
@@ -69,15 +72,13 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
 
 
     protected void setupWindow() {
-        final EventsFirebase eventsFirebase = new EventsFirebase(null, 0, null);
+        final EventsFirebase eventsFirebase = new EventsFirebase(null, 0, null, null, null);
         editEventDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CreateEventForm form = makeForm();
 
                 boolean addImage = false;
-
-
 
 
                 if (form.allFilled()) {
@@ -144,7 +145,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ((MainActivity) getActivity()).picture = null;
 
 
     }
@@ -223,6 +224,39 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
 
         // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
+
+        overrideFonts(view.getContext(),view);
+
+        Typeface raleway_medium = Typeface.createFromAsset(getActivity().getAssets(),  "Raleway-Medium.ttf");
+
+        //title font
+        TextView upload = (TextView) view.findViewById(R.id.upload);
+        upload.setTypeface(raleway_medium);
+
+        TextView name = (TextView) view.findViewById(R.id.name);
+        name.setTypeface(raleway_medium);
+
+        TextView date = (TextView) view.findViewById(R.id.date);
+        date.setTypeface(raleway_medium);
+
+        TextView time = (TextView) view.findViewById(R.id.time);
+        time.setTypeface(raleway_medium);
+
+        TextView location = (TextView) view.findViewById(R.id.location);
+        location.setTypeface(raleway_medium);
+
+        TextView description = (TextView) view.findViewById(R.id.description);
+        description.setTypeface(raleway_medium);
+
+        TextView cat = (TextView) view.findViewById(R.id.event_categories);
+        cat.setTypeface(raleway_medium);
+
+        Button invite = (Button) view.findViewById(R.id.event_invite);
+        invite.setTypeface(raleway_medium);
+
+        Button done = (Button) view.findViewById(R.id.editEventDone);
+        done.setTypeface(raleway_medium);
+
         return view;
     }
 
@@ -247,6 +281,22 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView ) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "raleway-regular.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
     }
 
 }
