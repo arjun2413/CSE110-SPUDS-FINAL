@@ -81,8 +81,6 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                 boolean addImage = false;
 
 
-
-
                 if (form.allFilled()) {
                     eventsFirebase.createEvent(form, adapter);
                     getActivity().getSupportFragmentManager().popBackStack();
