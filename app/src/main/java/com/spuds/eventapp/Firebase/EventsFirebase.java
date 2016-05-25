@@ -245,6 +245,7 @@ public class EventsFirebase {
                             break;
                         case "host_name":
                             newEvent.setHostName(String.valueOf(child.getValue()));
+                            break;
                         case "catAcademic":
                             a.add("Academic");
                             break;

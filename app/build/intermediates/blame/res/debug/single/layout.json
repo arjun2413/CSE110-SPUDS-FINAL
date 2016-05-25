@@ -156,12 +156,12 @@
         "source": "C:\\Users\\Reggie\\StudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_action_bar_title_item.xml"
     },
     {
-        "merged": "C:\\Users\\Reggie\\StudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_find_people.xml",
-        "source": "C:\\Users\\Reggie\\StudioProjects\\CSE110-SPUDS-FINAL\\app\\src\\main\\res\\layout\\fragment_find_people.xml"
-    },
-    {
         "merged": "C:\\Users\\Reggie\\StudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\layout\\search_option.xml",
         "source": "C:\\Users\\Reggie\\StudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\exploded-aar\\com.quinny898.library.persistentsearch\\library\\1.1.0-SNAPSHOT\\res\\layout\\search_option.xml"
+    },
+    {
+        "merged": "C:\\Users\\Reggie\\StudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_find_people.xml",
+        "source": "C:\\Users\\Reggie\\StudioProjects\\CSE110-SPUDS-FINAL\\app\\src\\main\\res\\layout\\fragment_find_people.xml"
     },
     {
         "merged": "C:\\Users\\Reggie\\StudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
