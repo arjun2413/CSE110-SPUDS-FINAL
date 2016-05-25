@@ -21,6 +21,8 @@ import com.spuds.eventapp.SignUp.SignUpActivity;
 
 public class LoginActivity extends AppCompatActivity {
     private AccountFirebase accountFirebase;
+    private TextView errorMessage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -50,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText enterPassword = (EditText)findViewById(R.id.password);
         enterPassword.setTypeface(raleway_light);
 
-        TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
+        errorMessage = (TextView) findViewById(R.id.errorMessage);
         errorMessage.setTypeface(raleway_light);
 
         Button signInButton = (Button) findViewById(R.id.signIn);
@@ -145,7 +147,7 @@ public class LoginActivity extends AppCompatActivity {
                     //Pass through an id of the user [coding decision: should we pass image first and last name?]
                     else{
                         Object time = new Object();
-
+                        errorMessage.setText("Please Wait...");
 
 
 
@@ -162,6 +164,7 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 accountFirebase.logIn(email.toString(), password.toString());
+
                                 while (accountFirebase.status == 0) {
                                     try {
                                         Thread.sleep(75);
@@ -174,7 +177,6 @@ public class LoginActivity extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         if(accountFirebase.status == 2) {
-                                            TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
                                             String message = "Incorrect email or password.";
                                             errorMessage.setText(message);
                                         }
