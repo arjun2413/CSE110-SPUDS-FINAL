@@ -135,7 +135,7 @@ public class DatabaseTable {
             return mDatabase.insert(FTS_VIRTUAL_TABLE, null, initialValues);
         }
 
-        
+
         //end result, mDatabase should be fully formed virtual database
     }
 
