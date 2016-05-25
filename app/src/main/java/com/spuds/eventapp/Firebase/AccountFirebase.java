@@ -62,6 +62,7 @@ public class AccountFirebase {
     }
     public int status = 0;
     public void logIn(final String email, String password) {
+
         status = 0;
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
 
@@ -83,7 +84,9 @@ public class AccountFirebase {
             public void onAuthenticationError(FirebaseError firebaseError) {
                 Log.v("AccountFirebase", "ERROR Logging In");
                 Log.v("accountfirebase", firebaseError.toString());
-                status = 2;
+                if (!firebaseError.toString().equals("FirebaseError: Due to another authentication attempt, this authentication attempt was aborted before it could complete.")) {
+                    status = 2;
+                }
             }
 
         });
@@ -182,6 +185,7 @@ public class AccountFirebase {
                     threadCheck = 2;
                     if (tArray[0] != null && !errorOnExist) {
                         tArray[0].setText(error);
+                        threadCheck = 1;
                     }
                     System.out.println("NOTFOUND");
                 }
