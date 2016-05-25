@@ -81,9 +81,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
                     final String email = input.getText().toString();
                     final String valid = "@ucsd.edu";
 
-                    //TODO: ERROR MESSAGE IMPLEMENTATION
 
-                    //TODO: here we are playing with threads!
+                    //here we are playing with threads!
                     class myThread2 implements Runnable{
                         public String emailCheck;
                         public String isValid;
@@ -135,7 +134,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                     Thread cool2 = new Thread(r2);
 
                     if (email.endsWith(valid)) {
-                        accountFirebase.checkEmail(email, fun);
+                        accountFirebase.checkEmail(email, fun, "That email is not signed up.", false);
                         cool2.start();
                     }
                     else {

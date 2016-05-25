@@ -59,11 +59,15 @@ public class DatabaseTable {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
             mHelperContext = context;
             mHelperEventsList = events;
+            mHelperContext.deleteDatabase(DATABASE_NAME);
+            mDatabase = getWritableDatabase();
             Log.d("Create SQLite Table","DatabaseOpenHelper ctor called");
+            System.err.println("THIS CODE HAS BEEN COMPILED @@@@@@@@@@@@@@@@@@@@");
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
+            System.err.println("Running DbOH's onCreate");
             mDatabase = db;
             Log.d("Create SQLite Table","onCreate for SQLiteDatabase called");
             mDatabase.execSQL(FTS_TABLE_CREATE);
@@ -73,6 +77,7 @@ public class DatabaseTable {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            System.err.println("Running DbOH's onUpgrade");
             Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
                     + newVersion + ", which will destroy all old data");
             db.execSQL("DROP TABLE IF EXISTS " + FTS_VIRTUAL_TABLE);
@@ -85,6 +90,7 @@ public class DatabaseTable {
         //the ArrayList passed in here should be ALL the events currently on database.
         //Should be run only onCreate, further shit is by update.
         private void loadDictionary() {
+            System.err.println("Running DbOH's loadDictionary");
             Log.d("Create SQLite Table","loadDictionary called");
             final ArrayList<Event> ev = mHelperEventsList;
             //TODO: Populate using EventsFirebase.java iterator
@@ -100,6 +106,9 @@ public class DatabaseTable {
                     }
                 }
             }).start();
+
+
+            System.err.println(mDatabase.toString());
         }
 
         private void loadWords(ArrayList<Event> ev) throws IOException {
@@ -125,6 +134,8 @@ public class DatabaseTable {
 
             return mDatabase.insert(FTS_VIRTUAL_TABLE, null, initialValues);
         }
+
+
         //end result, mDatabase should be fully formed virtual database
     }
 

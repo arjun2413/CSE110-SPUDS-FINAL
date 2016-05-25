@@ -62,6 +62,7 @@ public class AccountFirebase {
     }
     public int status = 0;
     public void logIn(final String email, String password) {
+
         status = 0;
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
 
@@ -83,7 +84,9 @@ public class AccountFirebase {
             public void onAuthenticationError(FirebaseError firebaseError) {
                 Log.v("AccountFirebase", "ERROR Logging In");
                 Log.v("accountfirebase", firebaseError.toString());
-                status = 2;
+                if (!firebaseError.toString().equals("FirebaseError: Due to another authentication attempt, this authentication attempt was aborted before it could complete.")) {
+                    status = 2;
+                }
             }
 
         });
@@ -145,10 +148,24 @@ public class AccountFirebase {
         String data = (String) ref.getAuth().getProviderData().get("email");
         return data;
     }
-    public void checkEmail(final String email, final TextView[] tArray) {
+
+
+    /*
+     * FUNCTION NAME: checkEmail
+     *
+     * PARAMETERS:
+     * String email - the email we are checking in the database
+     * TextView[] tArray - put your errorMessage textview into an array of size 1, and pass that in. If no error messages, just pass in null
+     * String error - the error message you want to print on failure
+     * boolean errorOnExist - pass true if the error is printed when email exists in database, false otherwise
+     *
+     * RESULT:
+     * threadCheck will set to 1 if found, and set to 2 if not found. call getThreadCheck() to check
+     */
+    public void checkEmail(final String email, final TextView[] tArray, final String error, final boolean errorOnExist) {
         threadCheck = 0;
         Firebase ref = new Firebase("https://eventory.firebaseio.com/users");
-        Query queryRef = ref.orderByChild("Email").startAt(email).endAt(email);
+        Query queryRef = ref.orderByChild("email").startAt(email).endAt(email);
         System.out.println(queryRef);
 //        Firebase ref = new Firebase("https://dinosaur-facts.firebaseio.com/dinosaurs");
 //        Query queryRef = ref.orderByKey();
@@ -159,12 +176,16 @@ public class AccountFirebase {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     threadCheck = 1;
+                    if (tArray[0] != null && errorOnExist) {
+                        tArray[0].setText(error);
+                    }
                     System.out.println("FOUND");
                 }
                 else {
                     threadCheck = 2;
-                    if (tArray[0] != null) {
-                        tArray[0].setText("That email is not signed up");
+                    if (tArray[0] != null && !errorOnExist) {
+                        tArray[0].setText(error);
+                        threadCheck = 1;
                     }
                     System.out.println("NOTFOUND");
                 }
