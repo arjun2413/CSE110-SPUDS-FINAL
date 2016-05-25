@@ -18,12 +18,14 @@ import android.widget.TextView;
 import com.spuds.eventapp.CreateComment.CreateCommentFragment;
 import com.spuds.eventapp.EditEvent.EditEventFragment;
 import com.spuds.eventapp.Firebase.EventsFirebase;
+import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.InvitePeople.InvitePeopleFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Comment;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventDate;
 import com.spuds.eventapp.Shared.MainActivity;
+import com.spuds.eventapp.Shared.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,9 +69,9 @@ public class EventDetailsFragment extends Fragment {
 
         Bundle extras = getArguments();
         event = (Event) extras.get(getString(R.string.event_details));
-        if (event == null) {
+       if (event == null) {
             eventId = extras.getString(getString(R.string.event_id));
-
+            Log.d("eventId", eventId);
             // TODO: Fetch event using eventId
             EventsFirebase ef = new EventsFirebase();
             ef.getEventDetails(eventId);
@@ -78,7 +80,10 @@ public class EventDetailsFragment extends Fragment {
             categories.add("Concert");
 
 
-        }
+        } else {
+           eventId = event.getEventId();
+           Log.v("eventdetailsjkl;", "" + event.getEventId());
+       }
         eventDetailsFragment = this;
     }
 
@@ -131,7 +136,7 @@ public class EventDetailsFragment extends Fragment {
         char temp3 = c[1];
         c[1] = c[4];
         c[4] = temp3;
-        String swappedString = new String(c);
+        String swappedString = new String (c);
 
         String tempString = swappedString.substring(11, swappedString.length());
         String sub = tempString.substring(0, tempString.indexOf(':'));
@@ -297,8 +302,9 @@ public class EventDetailsFragment extends Fragment {
         buttonGoingOrEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("Here1", "herepls");
 
-                //if (event.getHostId().equals(USER.GETUSERID())) {
+                if (event.getHostId().equals(UserFirebase.uId)) {
 
                 EditEventFragment editEventFragment = new EditEventFragment();
 
@@ -317,17 +323,44 @@ public class EventDetailsFragment extends Fragment {
 
 
 
-                //} else {
-                // TODO (M): PUSH Going/Not Going
+                } else {
+                 //TODO (M): PUSH Going/Not Going
+
+                    final EventsFirebase eventsFirebase = new EventsFirebase();
                 // TODO (V): going/not going buttons
-                    /*if (going) {
-                        buttonGoingOrEdit.setImageResource(R.drawable.button_not_going);
-                        going = false;
-                    } else {
-                        buttonGoingOrEdit.setImageResource(R.drawable.button_going);
-                        going = true;
-                    }
-                }*/
+                    eventsFirebase.isGoing(eventId);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            while (eventsFirebase.idIsGoing == 0) {
+                                try {
+                                    Thread.sleep(75);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                if (eventsFirebase.idIsGoing == 1)
+                                    going = false;
+                                else
+                                    going = true;
+                                if (going) {
+                                    //buttonGoingOrEdit.setImageResource(R.drawable.button_not_going);
+                                    eventsFirebase.notGoingToAnEvent(eventId);
+                                    eventsFirebase.deleteEventRegistration(eventId);
+                                    going = false;
+                                } else {
+                                    //buttonGoingOrEdit.setImageResource(R.drawable.button_going);
+                                    Bundle extras = getArguments();
+
+                                    eventsFirebase.goingToAnEvent(eventId);
+
+                                    Log.d("Reach", "true");
+                                    going = true;
+                                }
+                            }
+                        }
+                    });
+
+                }
             }
         });
     }

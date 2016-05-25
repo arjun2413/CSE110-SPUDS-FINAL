@@ -7,6 +7,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
+import com.firebase.client.ValueEventListener;
 import com.spuds.eventapp.CreateEvent.CreateEventForm;
 import com.spuds.eventapp.CreateEvent.CreateEventRVAdapter;
 import com.spuds.eventapp.Shared.Event;
@@ -42,7 +43,10 @@ public class EventsFirebase {
     ArrayList<String> a = new ArrayList<>();
     String tabFilter;
     String catFilter;
+    String id;
+    public int idIsGoing = 0;
     int loading;
+    boolean isGoing;
 
     EventsFeedRVAdapter adapter;
 
@@ -263,8 +267,8 @@ public class EventsFirebase {
                     }
 
 
-                    //Log.d("asdf", String.valueOf(snapshot.getKey()));
-
+                    Log.d("eventsfbasdf", String.valueOf(snapshot.getKey()));
+                    newEvent.setEventId(snapshot.getKey());
                 }
 
 
@@ -359,5 +363,202 @@ public class EventsFirebase {
         });
         return item;
     }
+
+    int attendees = 0;
+
+    /*Purpose: Increases the amount going by 1 */
+    public void goingToAnEvent(final String eventId) {
+        final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
+        final Firebase ref = new Firebase("https://eventory.firebaseio.com");
+        Query queryRef = myFirebaseRef.child(eventId);
+        Log.d("Here6", "here");
+        queryRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Log.d("Here9", "here");
+                //Checks if it is number_going that we are changing
+                if (dataSnapshot.getKey().equals("number_going")) {
+                    //gets the string and changes it to an int
+                    attendees = Integer.parseInt(String.valueOf(dataSnapshot.getValue()));
+                    attendees++;
+                    Log.d("Here", "here");
+                    Log.d("how many1", String.valueOf(attendees));
+                    myFirebaseRef.child(eventId).child("number_going").setValue(String.valueOf(attendees));
+                    Map<String, String> map = new HashMap<String, String>();
+                    map.put("user_id", UserFirebase.uId);
+                    map.put("event_id", eventId);
+                    ref.child("events_registrations").push().setValue(map);
+                }
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+        Log.d("how many", String.valueOf(attendees));
+    }
+
+    public void notGoingToAnEvent(final String eventId) {
+        final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
+        Query queryRef = myFirebaseRef.child(eventId);
+        Log.d("Here6", "here");
+        queryRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Log.d("Here9", "here");
+                if (dataSnapshot.getKey().equals("number_going")) {
+                    attendees = Integer.parseInt(String.valueOf(dataSnapshot.getValue()));
+                    attendees--;
+                    Log.d("Here", "here");
+                    Log.d("how many1", String.valueOf(attendees));
+                    myFirebaseRef.child(eventId).child("number_going").setValue(String.valueOf(attendees));
+
+                }
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+        Log.d("how many", String.valueOf(attendees));
+    }
+
+    public void isGoing(final String eventId) {
+        final Firebase ref = new Firebase("https://eventory.firebaseio.com/events_registrations");
+        ref.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                HashMap<String, Object> values = (HashMap<String, Object>) snapshot.getValue();
+                if (values != null) {
+                    for (Map.Entry<String, Object> entry : values.entrySet()) {
+                        Log.v("Userfirebase asdf", " key" + entry.getKey());
+
+                        boolean first = false;
+                        for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
+
+                            Log.v("Userfirebase asdf", " entry value key" + entry2.getKey());
+                            Log.v("Userfirebase asdf", " entry value value" + entry2.getValue());
+
+                            if (entry2.getKey().equals("following_id")) {
+                                if (entry2.getValue().equals(eventId)) {
+                                    first = true;
+                                }
+                            }
+
+
+                            if (entry2.getKey().equals("user_id") && first) {
+                                if (entry2.getValue().equals(UserFirebase.uId)) {
+                                    id = entry.getKey();
+                                }
+                            }
+
+
+                        }
+                    }
+
+                    Log.v("userfirebase test", "id: " + id);
+                    if (id == null) {
+                        idIsGoing = 1;
+                    } else {
+                        idIsGoing = 2;
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+
+        });
+
+
+    }
+    public void deleteEventRegistration(final String eventId){
+        final Firebase ref = new Firebase("https://eventory.firebaseio.com/events_registrations");
+        ref.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                HashMap<String, Object> values = (HashMap<String, Object>) snapshot.getValue();
+                if (values != null) {
+                    for (Map.Entry<String, Object> entry : values.entrySet()) {
+                        Log.v("Userfirebase asdf", " key" + entry.getKey());
+
+                        boolean first = false;
+                        for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
+
+                            Log.v("Userfirebase asdf", " entry value key" + entry2.getKey());
+                            Log.v("Userfirebase asdf", " entry value value" + entry2.getValue());
+
+                            if (entry2.getKey().equals("following_id")) {
+                                if (entry2.getValue().equals(eventId)) {
+                                    first = true;
+                                }
+                            }
+
+
+                            if (entry2.getKey().equals("user_id") && first) {
+                                if (entry2.getValue().equals(UserFirebase.uId)) {
+                                    id = entry.getKey();
+                                }
+                            }
+
+
+                        }
+                    }
+
+                    Log.v("userfirebase test", "id: " + id);
+
+                    ref.child(id).removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+
+        });
+
+    }
+
+
 
 }
