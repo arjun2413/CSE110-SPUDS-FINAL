@@ -24,6 +24,8 @@ import java.util.ArrayList;
  */
 public class DatabaseTable {
 
+    public static boolean threadDone = false;
+
     private static final String TAG = "DictionaryDatabase";
 
     //The columns we'll include in the dictionary table
@@ -101,14 +103,19 @@ public class DatabaseTable {
                 public void run() {
                     try {
                         loadWords(ev);
+
+                        String db = getTableAsString(mDatabase,FTS_VIRTUAL_TABLE);
+                        System.err.println(db);
+
+                        threadDone = true;
+                        System.err.println("THREADDONE= TRUE NOW AJAJSLAJJA:GJA:");
+
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                 }
             }).start();
 
-
-            System.err.println(mDatabase.toString());
         }
 
         private void loadWords(ArrayList<Event> ev) throws IOException {
@@ -137,6 +144,25 @@ public class DatabaseTable {
 
 
         //end result, mDatabase should be fully formed virtual database
+
+        public String getTableAsString(SQLiteDatabase db, String tableName) {
+            Log.d(TAG, "getTableAsString called");
+            String tableString = String.format("Table %s:\n", tableName);
+            Cursor allRows  = db.rawQuery("SELECT * FROM " + tableName, null);
+            if (allRows.moveToFirst() ){
+                String[] columnNames = allRows.getColumnNames();
+                do {
+                    for (String name: columnNames) {
+                        tableString += String.format("%s: %s\n", name,
+                                allRows.getString(allRows.getColumnIndex(name)));
+                    }
+                    tableString += "\n";
+
+                } while (allRows.moveToNext());
+            }
+
+            return tableString;
+        }
     }
 
 
@@ -158,8 +184,10 @@ public class DatabaseTable {
                 columns, selection, selectionArgs, null, null, null);
 
         if (cursor == null) {
+            System.err.println("returning null 1");
             return null;
         } else if (!cursor.moveToFirst()) {
+            System.err.println("returning null 2");
             cursor.close();
             return null;
         }

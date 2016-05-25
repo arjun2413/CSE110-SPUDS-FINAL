@@ -109,6 +109,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                                     Thread.sleep(100);
                                     counter++;
                                     check[0] = accountFirebase.getThreadCheck();
+
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }

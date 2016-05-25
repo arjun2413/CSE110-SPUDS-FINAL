@@ -185,7 +185,6 @@ public class AccountFirebase {
                     threadCheck = 2;
                     if (tArray[0] != null && !errorOnExist) {
                         tArray[0].setText(error);
-                        threadCheck = 1;
                     }
                     System.out.println("NOTFOUND");
                 }

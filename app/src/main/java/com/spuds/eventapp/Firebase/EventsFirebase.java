@@ -65,8 +65,14 @@ public class EventsFirebase {
 
     ArrayList<String> categoryList;
     public void createEvent(CreateEventForm form, CreateEventRVAdapter adapter) {
+        if(a != null) {
+            for (int i = 0; i < a.size(); i++) {
+                Log.v("reg", a.get(i));
+            }
+        }
+
         categoryList = adapter.getList();
-        Log.d("fuck", String.valueOf(categoryList));
+        //Log.d("fuck", String.valueOf(categoryList));
 
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
 
@@ -74,6 +80,7 @@ public class EventsFirebase {
         Date dateobj = new Date();
 
         String originalString = form.getDate();
+
         char[] c = originalString.toCharArray();
 
         char temp = c[0];
@@ -97,9 +104,16 @@ public class EventsFirebase {
 
         String tempString = swappedString.substring(11, swappedString.length());
         int numb = 0;
+        String sub = "";
 
         if(tempString.indexOf('A') == -1) {
-            String sub = tempString.substring(0, tempString.indexOf('P'));
+            if(swappedString.indexOf(':') != -1) {
+                sub = tempString.substring(0, tempString.indexOf(':'));
+            }
+            else{
+                sub = tempString.substring(0, tempString.indexOf('P'));
+            }
+
             numb = Integer.parseInt(sub);
 
             if(numb != 12) {
@@ -108,7 +122,13 @@ public class EventsFirebase {
 
         }
         else{
-            String sub = tempString.substring(0, tempString.indexOf('A'));
+            if(swappedString.indexOf(':') != -1) {
+                sub = tempString.substring(0, tempString.indexOf(':'));
+            }
+            else{
+                sub = tempString.substring(0, tempString.indexOf('A'));
+            }
+
             numb = Integer.parseInt(sub);
 
             if(numb == 12) {
@@ -118,6 +138,9 @@ public class EventsFirebase {
 
         if(swappedString.indexOf(':') == -1) {
             swappedString = swappedString.substring(0, 11) + numb + ":00";
+        }
+        else {
+            swappedString = swappedString.substring(0, 11) + numb + tempString.substring(tempString.indexOf(':'), tempString.length()-2);
         }
 
         Map<String, String> map = new HashMap<String, String>();
@@ -135,7 +158,7 @@ public class EventsFirebase {
             if (categoryList.get(i) == "Academic") {
                 map.put("catAcademic", "true");
             }
-            if (categoryList.get(i) == "Campus") {
+            if (categoryList.get(i) == "Campus Organizations") {
                 map.put("catCampus", "true");
             }
             if (categoryList.get(i) == "Concerts") {
@@ -218,9 +241,10 @@ public class EventsFirebase {
             @Override
             public void onChildAdded(DataSnapshot snapshot, String previousChild) {
 
-                Event newEvent = new Event();
+                Event newEvent  = new Event();
 
                 for (DataSnapshot child : snapshot.getChildren()) {
+                    Log.d("asdf", String.valueOf(child));
                     switch (child.getKey()) {
                         case "date":
                             newEvent.setDate(String.valueOf(child.getValue()));
@@ -245,6 +269,7 @@ public class EventsFirebase {
                             break;
                         case "host_name":
                             newEvent.setHostName(String.valueOf(child.getValue()));
+                            break;
                         case "catAcademic":
                             a.add("Academic");
                             break;
@@ -269,17 +294,22 @@ public class EventsFirebase {
                     }
 
 
-                    //Log.d("asdf", String.valueOf(snapshot.getKey()));
-
                 }
 
+                if(a != null) {
+                    for (int i = 0; i < a.size(); i++) {
+                        Log.v("reg", a.get(i));
+                    }
+                }
+                newEvent.setCategories(a);
+                a = new ArrayList<String>();
 
-                if(a != null){
+                /*if(a != null){
                     for(int i=0; i<a.size();i++){
-                        Log.v("chris", a.get(i));
+                        Log.v("reg", a.get(i));
                     }
                     newEvent.setCategories(a);
-                }
+                }*/
 
 
                 if(tabFilter.equals(tabHot) || tabFilter.equals(tabNew)) {

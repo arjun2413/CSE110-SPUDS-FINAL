@@ -61,9 +61,6 @@ public class EventDetailsFragment extends Fragment {
             // TODO: Fetch event using eventId
             EventsFirebase ef = new EventsFirebase();
             ef.getEventDetails(eventId);
-            ArrayList<String> categories = new ArrayList<>();
-            categories.add("Social");
-            categories.add("Concert");
         }
         eventDetailsFragment = this;
     }
@@ -144,6 +141,7 @@ public class EventDetailsFragment extends Fragment {
             }
         });
         eventLocation.setText(event.getLocation());
+
         String originalString = event.getDate();
         char[] c = originalString.toCharArray();
         char temp = c[0];
@@ -236,16 +234,18 @@ public class EventDetailsFragment extends Fragment {
         eventAttendees.setText(String.valueOf(event.getAttendees()));
         eventHost.setText(event.getHostName());
         eventDescription.setText(event.getDescription());
+
         // Categories
         String categories = "";
         if(event.getCategories() != null) {
             for (int i = 0; i < event.getCategories().size() - 1; ++i) {
-                Log.v("chris", event.getCategories().get(i));
+                //Log.v("chris", event.getCategories().get(i));
                 categories += event.getCategories().get(i) + ", ";
             }
             categories += event.getCategories().get(event.getCategories().size() - 1);
         }
         eventCategories.setText(categories);
+
         // Click listener for the Add Comment button
         addComment.setOnClickListener(new View.OnClickListener() {
             @Override
