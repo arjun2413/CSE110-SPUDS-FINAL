@@ -20,8 +20,7 @@ import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.SignUp.SignUpActivity;
 
 public class LoginActivity extends AppCompatActivity {
-
-
+    private AccountFirebase accountFirebase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -65,9 +64,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
         //a function to allow the user to sign in
+        accountFirebase = new AccountFirebase();
         signInFunc();
         signUpFunc();
         forgotPassFunc();
+
+
     }
 
 
@@ -103,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    AccountFirebase obj = new AccountFirebase();
+
     public void signInFunc() {
         //create a button for the sign in
         final Button signIn = (Button) findViewById(R.id.signIn);
@@ -113,6 +115,7 @@ public class LoginActivity extends AppCompatActivity {
             signIn.setOnClickListener(new View.OnClickListener() {
                 //what happens when the button is clicked
                 public void onClick(View v) {
+
                     //get the user input for email field
                     String email = getEmail();
                     //get user input for password field
@@ -142,15 +145,24 @@ public class LoginActivity extends AppCompatActivity {
                     //Pass through an id of the user [coding decision: should we pass image first and last name?]
                     else{
                         Object time = new Object();
-                        obj.logIn(email.toString(), password.toString());
 
 
 
-                        new Thread(new Runnable() {
 
+
+
+                        class myThread implements Runnable{
+                            public String email;
+                            public String password;
+
+                            public myThread (String one, String two){
+                                email = one;
+                                password = two;
+                            }
                             @Override
                             public void run() {
-                                while (obj.status == 0) {
+                                accountFirebase.logIn(email.toString(), password.toString());
+                                while (accountFirebase.status == 0) {
                                     try {
                                         Thread.sleep(75);
                                     } catch (InterruptedException e) {
@@ -161,7 +173,7 @@ public class LoginActivity extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        if(obj.status == 2) {
+                                        if(accountFirebase.status == 2) {
                                             TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
                                             String message = "Incorrect email or password.";
                                             errorMessage.setText(message);
@@ -169,16 +181,20 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                 });
 
-                                if (obj.status == 1) {
-
+                                if (accountFirebase.status == 1) {
+                                    System.out.println("Logging in now");
                                     getUserDetails();
 
                                 }
 
                             }
-                        }).start();
+                        }
 
-                        obj.status = 0;
+                        Runnable r = new myThread(email, password);
+                        Thread t = new Thread(r);
+                        t.start();
+
+                        accountFirebase.status = 0;
                     }
                 }
             });
@@ -232,6 +248,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         }).start();
 
-        obj.status = 0;
+        accountFirebase.status = 0;
     }
 }
