@@ -149,6 +149,7 @@ public class AccountFirebase {
         return data;
     }
 
+
     /*
      * FUNCTION NAME: checkEmail
      *
