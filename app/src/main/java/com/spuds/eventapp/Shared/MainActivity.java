@@ -3,6 +3,7 @@ package com.spuds.eventapp.Shared;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -49,6 +50,7 @@ import com.spuds.eventapp.SubscriptionFeed.SubscriptionFeedTabsFragment;
 import com.spuds.eventapp.SubscriptionsList.SubscriptionsListFragment;
 
 import java.io.File;
+import java.io.InterruptedIOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -181,7 +183,7 @@ public class MainActivity extends AppCompatActivity
             }
 
             @Override
-            public void onSearch(String searchTerm) {
+            public void onSearch(final String searchTerm) {
                 Toast.makeText(MainActivity.this, searchTerm +" Searched", Toast.LENGTH_LONG).show();
 
                 // TODO (C): Change this to searachpeopleframgent
@@ -198,8 +200,41 @@ public class MainActivity extends AppCompatActivity
                 testEventsList.add(new Event("eventId 3","hostId 3","eventName 3","description 3","location 2","date 3",3,"picFileName 3",testCategoriesList,"hostName 3"));
 
                 Log.d("Create SQLite Table","Before DB called");
-                DatabaseTable databaseTable = new DatabaseTable(getApplicationContext(),testEventsList);
+                final DatabaseTable databaseTable = new DatabaseTable(getApplicationContext(),testEventsList);
                 Log.d("Create SQLite Table","AFTER DB called");
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        while(!DatabaseTable.threadDone){
+                            System.err.println(DatabaseTable.threadDone);
+                            try{
+                                Thread.sleep(750);
+                            } catch (InterruptedException e){
+                                e.printStackTrace();
+                            }
+                        }
+
+                        //TODO: ADD A NULL CHECK TO CURSOR
+                        System.err.println("trying to sesarch now");
+                        Cursor cursor = databaseTable.getEventNameMatches(searchTerm, null);
+                        System.err.println("GAJSL:GJAJ:AG "+cursor.toString());
+                        String retVal = "";
+                        if (cursor.moveToFirst() ){
+                            String[] columnNames = cursor.getColumnNames();
+                            do {
+                                for (String name: columnNames) {
+                                    retVal += String.format("%s: %s\n", name,
+                                            cursor.getString(cursor.getColumnIndex(name)));
+                                }
+                                retVal += "\n";
+
+                            } while (cursor.moveToNext());
+                        }
+                        System.err.println(retVal);
+                    }
+                }).start();
+
 
                 // TODO (M): people
                 //fake data
