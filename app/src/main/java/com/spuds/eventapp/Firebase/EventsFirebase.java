@@ -193,6 +193,7 @@ public class EventsFirebase {
 
     public Event createEL() {
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
+        final Firebase myFirebaseRef2 = new Firebase("https://eventory.firebaseio.com/events_registrations");
         Query queryRef = myFirebaseRef.orderByKey();
 
         switch (tabFilter) {
@@ -206,8 +207,10 @@ public class EventsFirebase {
                 queryRef = myFirebaseRef.orderByChild("date");
                 break;
             case tabGoing:
+                queryRef = myFirebaseRef2.orderByChild(UserFirebase.uId);
                 break;
             case tabHosting:
+                queryRef = myFirebaseRef.orderByChild("host_id").equalTo(UserFirebase.uId);
                 break;
         }
 
@@ -243,10 +246,10 @@ public class EventsFirebase {
 
                 Event newEvent  = new Event();
 
-                Log.v("EventsFirebase jkl;", "" + snapshot.getKey());
+                //Log.v("EventsFirebase jkl;", "" + snapshot.getKey());
 
                 for (DataSnapshot child : snapshot.getChildren()) {
-                    Log.d("asdf", String.valueOf(child));
+                    //Log.d("asdf", String.valueOf(child));
                     switch (child.getKey()) {
                         case "date":
                             newEvent.setDate(String.valueOf(child.getValue()));
