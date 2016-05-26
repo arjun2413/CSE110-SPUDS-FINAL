@@ -8,20 +8,20 @@
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable/home.png"
     },
     {
-        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/lock_changepass.png",
-        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable/lock_changepass.png"
-    },
-    {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/social.png",
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable/social.png"
     },
     {
-        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background_dark.xml",
-        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable/abc_dialog_material_background_dark.xml"
+        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/lock_changepass.png",
+        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable/lock_changepass.png"
     },
     {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/abc_textfield_search_material.xml",
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable/abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background_dark.xml",
+        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable/abc_dialog_material_background_dark.xml"
     },
     {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/reply.png",
@@ -124,12 +124,12 @@
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable/arjun.jpg"
     },
     {
-        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/design_snackbar_background.xml",
-        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/drawable/design_snackbar_background.xml"
-    },
-    {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/gradient.xml",
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable/gradient.xml"
+    },
+    {
+        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/design_snackbar_background.xml",
+        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/drawable/design_snackbar_background.xml"
     },
     {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/add.png",

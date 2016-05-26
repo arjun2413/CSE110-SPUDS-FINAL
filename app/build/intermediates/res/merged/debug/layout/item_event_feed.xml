@@ -34,7 +34,8 @@
                 android:layout_height="100dp"
                 android:id="@+id/event_pic"
                 android:background="#bfbfbf"
-                android:src="@drawable/wineanddine" />
+                android:src="@drawable/wineanddine"
+                android:scaleType="centerCrop" />
 
                 <ImageView
                     android:layout_width="100dp"

@@ -313,7 +313,7 @@
                 android:id="@+id/button_invite_people"
                 android:background="@drawable/roundedcorner"
                 android:layout_below="@+id/event_categories"
-                android:backgroundTint="#333333"
+                android:backgroundTint="#4d4d4d"
                 android:textColor="#ffffff" />
             <View
                 android:layout_width="match_parent"
