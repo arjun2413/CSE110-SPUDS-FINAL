@@ -33,7 +33,11 @@ public class FindPeopleFragment extends Fragment {
         setHasOptionsMenu(true);
 
         Bundle bundle = new Bundle();
+
         people = (ArrayList<User>) bundle.getSerializable("Search People Array List");
+        if (people == null) {
+            people = new ArrayList<>();
+        }
     }
 
     @Override
