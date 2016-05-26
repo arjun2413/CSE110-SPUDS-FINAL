@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity
             public void onSearch(final String searchTerm) {
                 Toast.makeText(MainActivity.this, searchTerm +" Searched", Toast.LENGTH_LONG).show();
 
-                // TODO (C): Change this to searachpeopleframgent
+                // TODO (C): Change this to searchpeopleframgent
                 InvitePeopleFragment invitePeopleFragment = new InvitePeopleFragment();
                 Bundle bundle = new Bundle();
 
@@ -225,6 +225,7 @@ public class MainActivity extends AppCompatActivity
 
                 Log.d("Create SQLite Table","Before DB called");
                 final DatabaseTable databaseTable = new DatabaseTable(getApplicationContext(),testEventsList);
+                //final DatabaseTable databaseTable = new DatabaseTable(getApplicationContext(),);
                 Log.d("Create SQLite Table","AFTER DB called");
 
                 new Thread(new Runnable() {

@@ -108,7 +108,6 @@ public class DatabaseTable {
                         System.err.println(db);
 
                         threadDone = true;
-                        System.err.println("THREADDONE= TRUE NOW AJAJSLAJJA:GJA:");
 
                     } catch (IOException e) {
                         throw new RuntimeException(e);
