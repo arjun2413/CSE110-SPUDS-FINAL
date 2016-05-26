@@ -84,6 +84,7 @@ public class AccountFirebase {
             public void onAuthenticationError(FirebaseError firebaseError) {
                 Log.v("AccountFirebase", "ERROR Logging In");
                 Log.v("accountfirebase", firebaseError.toString());
+                System.out.println("Firebase Error Code: " + firebaseError.getCode());
                 if (!firebaseError.toString().equals("FirebaseError: Due to another authentication attempt, this authentication attempt was aborted before it could complete.")) {
                     status = 2;
                 }
