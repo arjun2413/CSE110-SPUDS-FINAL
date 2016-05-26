@@ -410,5 +410,96 @@ public class UserFirebase {
         });
 
     }
+
+
+
+
+
+    public static boolean isSubscribedThreadCheck = false;
+    public static int idIsSubscribed = 0;
+
+    public void isSubscribed(final String userId) {
+        final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
+        final ValueEventListener valueEventListener = new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                String id = "";
+                HashMap<String, Object> values = (HashMap<String, Object>) snapshot.getValue();
+                if (values != null) {
+                    boolean first = false;
+                    boolean second = false;
+
+                    for (Map.Entry<String, Object> entry : values.entrySet()) {
+                        Log.v("Userfirebase asdf", " key" + entry.getKey());
+
+
+                        for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
+
+                            Log.v("Userfirebase asdf", " entry value key" + entry2.getKey());
+                            Log.v("Userfirebase asdf", " entry value value" + entry2.getValue());
+
+
+                            if (entry2.getKey().equals("following_id")) {
+                                if (entry2.getValue().equals(userId)) {
+                                    first = true;
+                                }
+                            }
+
+                            if (entry2.getKey().equals("user_id") && first) {
+                                if (entry2.getValue().equals(UserFirebase.uId)) {
+                                    second = true;
+                                }
+                            }
+
+
+                        }
+
+                    }
+
+                    if (second) {
+                        idIsSubscribed = 2;
+                    } else {
+                        idIsSubscribed = 1;
+                    }
+
+                    isSubscribedThreadCheck = true;
+
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+
+        };
+
+        ref.addValueEventListener(valueEventListener);
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (!isSubscribedThreadCheck) {
+                    try {
+                        Thread.sleep(70);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                ref.removeEventListener(valueEventListener);
+                isSubscribedThreadCheck = false;
+
+            }
+        }).start();
+
+
+
+    }
+
+
+
 }
 

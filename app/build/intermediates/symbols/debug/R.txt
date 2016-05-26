@@ -730,6 +730,7 @@ int id btn_cancel 0x7f0d0087
 int id btn_done 0x7f0d0088
 int id buttonPanel 0x7f0d0045
 int id button_add_comment 0x7f0d00db
+int id button_done 0x7f0d00e4
 int id button_edit_event 0x7f0d00ca
 int id button_follow 0x7f0d00f9
 int id button_going 0x7f0d00d4
@@ -998,7 +999,6 @@ int id upload 0x7f0d00ae
 int id useLogo 0x7f0d0014
 int id user_description 0x7f0d00eb
 int id user_image 0x7f0d00e1
-int id user_invite 0x7f0d00e4
 int id user_name 0x7f0d00e2
 int id user_number_following 0x7f0d00e6
 int id user_number_hosting 0x7f0d00e8

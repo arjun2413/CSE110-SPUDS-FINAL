@@ -14,6 +14,7 @@ import com.spuds.eventapp.EditEvent.EditEventForm;
 import com.spuds.eventapp.EditEvent.EditEventRVAdapter;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
+import com.spuds.eventapp.Shared.User;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -986,6 +987,76 @@ public class EventsFirebase {
         UserFirebase userFirebase = new UserFirebase();
         userFirebase.updateNumberHosting();
 
+    }
+
+    public boolean followersThreadCheck;
+    public int numFollowers;
+    public void getFollowers(final ArrayList<User> followers) {
+        followersThreadCheck = false;
+        final Firebase ref = new Firebase("https://eventory.firebaseio.com");
+        Query queryRef = ref.child("user_following").orderByKey();
+        queryRef.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                HashMap<String, Object> values = (HashMap<String, Object>) snapshot.getValue();
+                if (values != null) {
+                    for (Map.Entry<String, Object> entry : values.entrySet()) {
+
+                        boolean first = false;
+                        for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
+
+
+                            if (entry2.getKey().equals("following_id") && entry2.getValue().equals(UserFirebase.uId)) {
+                                first = true;
+                            }
+
+
+                            if (entry2.getKey().equals("user_id") && first) {
+                                    Log.v("you", "gettinganotheruser: " + UserFirebase.uId);
+                                    Log.v("you", "followingid: " + entry2.getValue());
+                                    ++numFollowers;
+
+
+                                    final UserFirebase userFirebase = new UserFirebase();
+                                    userFirebase.getAnotherUser(String.valueOf(entry2.getValue()));
+
+                                    new Thread(new Runnable() {
+
+                                        @Override
+                                        public void run() {
+                                            while (!userFirebase.threadCheckAnotherUser) {
+                                                try {
+                                                    Thread.sleep(77);
+                                                } catch (InterruptedException e) {
+                                                    e.printStackTrace();
+                                                }
+
+                                            }
+
+                                            followers.add(userFirebase.anotherUser);
+
+                                        }
+                                    }).start();
+
+                                }
+
+
+
+                        }
+                    }
+
+
+                    followersThreadCheck = true;
+
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
     }
 
 }

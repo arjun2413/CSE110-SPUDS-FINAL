@@ -125,9 +125,7 @@ public class MainActivity extends AppCompatActivity
         circularBitmapDrawable.setAntiAlias(true);
         profilePic.setImageDrawable(circularBitmapDrawable);
 /*        Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.christinecropped);
-        RoundedBitmapDrawable dr =
-                RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
-        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
+
         profilePic.setImageDrawable(dr);
         */
 
