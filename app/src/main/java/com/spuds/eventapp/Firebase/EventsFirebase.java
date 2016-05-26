@@ -10,6 +10,8 @@ import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
 import com.spuds.eventapp.CreateEvent.CreateEventForm;
 import com.spuds.eventapp.CreateEvent.CreateEventRVAdapter;
+import com.spuds.eventapp.EditEvent.EditEventForm;
+import com.spuds.eventapp.EditEvent.EditEventRVAdapter;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
 
@@ -183,7 +185,7 @@ public class EventsFirebase {
             }
         }
 
-        ref.child("events").push().setValue(map);
+            ref.child("events").push().setValue(map);
 
         UserFirebase userFirebase = new UserFirebase();
         userFirebase.updateNumberHosting();
@@ -608,5 +610,125 @@ public class EventsFirebase {
     }
 
 
+    public void updateEvent(EditEventForm form, EditEventRVAdapter adapter) {
+        if(a != null) {
+            for (int i = 0; i < a.size(); i++) {
+                Log.v("reg", a.get(i));
+            }
+        }
+
+        categoryList = adapter.getList();
+        //Log.d("fuck", String.valueOf(categoryList));
+
+        final Firebase ref = new Firebase("https://eventory.firebaseio.com");
+
+        SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd | HH:mm");
+        Date dateobj = new Date();
+
+        String originalString = form.getDate();
+
+        char[] c = originalString.toCharArray();
+
+        char temp = c[0];
+        c[0] = c[6];
+        c[6] = temp;
+
+        char temp1 = c[1];
+        c[1] = c[7];
+        c[7] = temp1;
+
+        char temp2 = c[3];
+        c[3] = c[6];
+        c[6] = temp2;
+
+        char temp3 = c[4];
+        c[4] = c[7];
+        c[7] = temp3;
+        String swappedString = new String(c);
+
+        //change to 24 time
+
+        String tempString = swappedString.substring(11, swappedString.length());
+        int numb = 0;
+        String sub = "";
+
+        if(tempString.indexOf('A') == -1) {
+            if(swappedString.indexOf(':') != -1) {
+                sub = tempString.substring(0, tempString.indexOf(':'));
+            }
+            else{
+                sub = tempString.substring(0, tempString.indexOf('P'));
+            }
+
+            numb = Integer.parseInt(sub);
+
+            if(numb != 12) {
+                numb += 12;
+            }
+
+        }
+        else{
+            if(swappedString.indexOf(':') != -1) {
+                sub = tempString.substring(0, tempString.indexOf(':'));
+            }
+            else{
+                sub = tempString.substring(0, tempString.indexOf('A'));
+            }
+
+            numb = Integer.parseInt(sub);
+
+            if(numb == 12) {
+                numb = 0;
+            }
+        }
+
+        if(swappedString.indexOf(':') == -1) {
+            swappedString = swappedString.substring(0, 11) + numb + ":00";
+        }
+        else {
+            swappedString = swappedString.substring(0, 11) + numb + tempString.substring(tempString.indexOf(':'), tempString.length()-2);
+        }
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("host_id", UserFirebase.uId);
+        map.put("host_name", UserFirebase.thisUser.getName());
+        map.put("event_name", form.getName());
+        map.put("description", form.getDescription());
+        map.put("location", form.getLocation());
+        map.put("date", swappedString);
+        map.put("number_going", "1");
+        map.put("picture", form.getPicture());
+        map.put("created_at", df.format(dateobj) );
+
+        for(int i=0; i < categoryList.size(); i++) {
+            if (categoryList.get(i) == "Academic") {
+                map.put("catAcademic", "true");
+            }
+            if (categoryList.get(i) == "Campus Organizations") {
+                map.put("catCampus", "true");
+            }
+            if (categoryList.get(i) == "Concerts") {
+                map.put("catConcerts", "true");
+            }
+            if (categoryList.get(i) == "Food") {
+                map.put("catFood", "true");
+            }
+            if (categoryList.get(i) == "Free") {
+                map.put("catFree", "true");
+            }
+            if (categoryList.get(i) == "Social") {
+                map.put("catSocial", "true");
+            }
+            if (categoryList.get(i) == "Sports") {
+                map.put("catSports", "true");
+            }
+        }
+
+        ref.child("events").child(form.getEventId()).updateChildren(map);
+
+        UserFirebase userFirebase = new UserFirebase();
+        userFirebase.updateNumberHosting();
+
+    }
 
 }
