@@ -307,6 +307,7 @@ public class EventsFirebase {
                 /*if(a != null){
                     for(int i=0; i<a.size();i++){
                         Log.v("reg", a.get(i));
+
                     }
                     newEvent.setCategories(a);
                 }*/
