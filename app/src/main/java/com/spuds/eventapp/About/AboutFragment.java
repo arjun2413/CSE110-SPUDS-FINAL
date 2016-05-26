@@ -15,6 +15,7 @@ import com.spuds.eventapp.R;
 public class AboutFragment extends Fragment {
 
     public AboutFragment() {
+
     }
 
     @Override

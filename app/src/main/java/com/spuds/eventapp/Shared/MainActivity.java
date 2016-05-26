@@ -57,7 +57,6 @@ import com.spuds.eventapp.SubscriptionFeed.SubscriptionFeedTabsFragment;
 import com.spuds.eventapp.SubscriptionsList.SubscriptionsListFragment;
 
 import java.io.File;
-import java.io.InterruptedIOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

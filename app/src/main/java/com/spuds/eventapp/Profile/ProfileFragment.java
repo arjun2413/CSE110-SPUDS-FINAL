@@ -11,6 +11,7 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -122,11 +123,23 @@ public class ProfileFragment extends Fragment {
 
         userDescription.setText(user.getDescription());
         userName.setText(user.getName());
-        Bitmap src = BitmapFactory.decodeResource(this.getResources(), R.drawable.christinecropped);
+       /* Bitmap src = BitmapFactory.decodeResource(this.getResources(), R.drawable.christinecropped);
         RoundedBitmapDrawable dr =
                 RoundedBitmapDrawableFactory.create(this.getResources(), src);
-        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
-        userImage.setImageDrawable(dr);
+        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);*/
+
+
+        String imageFile = user.getPicture();
+
+
+        byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+        Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+
+        RoundedBitmapDrawable circularBitmapDrawable =
+                RoundedBitmapDrawableFactory.create(getResources(), src);
+        circularBitmapDrawable.setCircular(true);
+        circularBitmapDrawable.setAntiAlias(true);
+        userImage.setImageDrawable(circularBitmapDrawable);
 
 
         // Set image for button for subscribe or edit profile

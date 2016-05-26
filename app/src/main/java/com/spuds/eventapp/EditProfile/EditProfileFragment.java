@@ -1,9 +1,15 @@
 package com.spuds.eventapp.EditProfile;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +36,7 @@ public class  EditProfileFragment extends Fragment {
     Fragment editProfileFragment;
 
     User user;
+    String picturepush;
 
     public EditProfileFragment() {
         //this is to leave this fragment when done
@@ -102,9 +109,24 @@ public class  EditProfileFragment extends Fragment {
                             @Override
                             public void run() {
 
-                                pictureView.setImageURI(null);
+                                /*pictureView.setImageURI(null);
                                 pictureView.setImageURI(((MainActivity) getActivity()).picture);
-                                pictureView.invalidate();
+                                Log.v("EditProfileFragment", "here");
+                                Log.v("EditProfileFragment", ((MainActivity) getActivity()).picture.toString());
+                                pictureView.invalidate();*/
+
+                                String imageFile = UserFirebase.convert(getActivity(),((MainActivity) getActivity()).picture);
+                                picturepush = imageFile;
+                                byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                                Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+
+
+                                Log.v("EditProfileFragment", "imagefile" + imageFile);
+                                RoundedBitmapDrawable dr =
+                                        RoundedBitmapDrawableFactory.create(getActivity().getResources(), src);
+
+                                dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
+                                pictureView.setImageDrawable(dr);
 
 
                             }
@@ -115,6 +137,18 @@ public class  EditProfileFragment extends Fragment {
 
             }
         });
+
+        String imageFile = user.getPicture();
+
+
+        byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+        Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+
+        RoundedBitmapDrawable circularBitmapDrawable =
+                RoundedBitmapDrawableFactory.create(getResources(), src);
+        circularBitmapDrawable.setCircular(true);
+        circularBitmapDrawable.setAntiAlias(true);
+        pictureView.setImageDrawable(circularBitmapDrawable);
 
 
         /*Bitmap src = BitmapFactory.decodeResource(this.getResources(), R.id.edit_profile_picture);
@@ -146,9 +180,12 @@ public class  EditProfileFragment extends Fragment {
                 //editMajor.getText().toString();         //Major text to update to db
                 ;   //description to update to db
 
+
                 User user = new User(editFullName.getText().toString(),
                         editDescription.getText().toString(),
-                        UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture));
+                        picturepush);
+
+                Log.v("EditProfilementasdfasdf", "imagefile" + user.getPicture());
 
                 UserFirebase.updateUser(user);
 

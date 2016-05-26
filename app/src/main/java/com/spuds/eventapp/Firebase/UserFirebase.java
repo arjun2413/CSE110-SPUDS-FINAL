@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
@@ -17,7 +18,6 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
-import com.firebase.client.utilities.Base64;
 import com.spuds.eventapp.Shared.User;
 
 import java.io.ByteArrayOutputStream;
@@ -191,11 +191,9 @@ public class UserFirebase {
 
     }
 
-
-
-
-
     public static String convert(Context context, Uri uri) {
+        if (uri == null)
+            return "";
         Bitmap bitmap = null;
         int bitmapWidth, bitmapHeight;
 
@@ -217,8 +215,8 @@ public class UserFirebase {
 
         DisplayMetrics displaymetrics = new DisplayMetrics();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int height = displaymetrics.heightPixels;
-        int width = displaymetrics.widthPixels;
+        int height = displaymetrics.heightPixels/2;
+        int width = displaymetrics.widthPixels/2;
 
         // Get the correct orientation uploaded
         String[] orientationColumn = {MediaStore.Images.Media.ORIENTATION};
@@ -258,10 +256,16 @@ public class UserFirebase {
         // Correct bitmap to be uploaded
         bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
 
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+       /* ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 90, stream);
         byte[] byte_arr = stream.toByteArray();
-        return Base64.encodeBytes(byte_arr);
+        return Base64.encodeBytes(byte_arr);*/
+
+        ByteArrayOutputStream bYtE = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bYtE);
+        bitmap.recycle();
+        byte[] byteArray = bYtE.toByteArray();
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
 
         // TODO (M): Upload picture
     }
