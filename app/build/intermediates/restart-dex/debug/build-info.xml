@@ -1,42 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
     abi="x86"
-    api-level="22"
-    density="560dpi"
+    api-level="23"
+    density="420dpi"
     format="7"
-    timestamp="1464262564045797000" >
+    timestamp="1464267839363035000" >
 
     <task
         name="javac"
-        duration="940" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="262" />
+        duration="0" />
     <task
         name="verifier"
-        duration="104" />
+        duration="0" />
 
-    <artifact
-        location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5/classes.dex"
-        type="DEX" />
-
-    <build timestamp="1464260904908400000" >
+    <build timestamp="1464265032652275000" >
         <artifact
-            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
+            location="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
             type="MAIN" />
     </build>
-    <build timestamp="1464262039833912000" >
+    <build timestamp="1464267041550737000" >
         <artifact
-            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_8/classes.dex"
+            location="/Volumes/storedge128/Files/AndroidProjects/CSE-SPUDS-1/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex"
             type="DEX" />
     </build>
-    <build timestamp="1464262564045797000" >
-        <artifact
-            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5/classes.dex"
-            type="DEX" />
-    </build>
+    <build timestamp="1464267839363035000" />
 
 </instant-run>

@@ -95,6 +95,8 @@ public class MainActivity extends AppCompatActivity
         setupDrawer();
         setupProfileDrawer();
 
+        searchResult = new ArrayList<String>();
+
 
         testEventsList = new ArrayList<SubEvent>();
         EventsFirebase ef = new EventsFirebase();
@@ -271,9 +273,13 @@ public class MainActivity extends AppCompatActivity
                                     do {
                                         //Searched results have been found
                                         for (String name: columnNames) {
-                                            retVal += String.format("%s: %s\n", name, cursor.getString(cursor.getColumnIndex(name)));
+                                            //retVal += String.format("%s: %s\n", name, cursor.getString(cursor.getColumnIndex(name)));
                                             if(name.equals("EVENT_ID")){
                                                 //Return to outside world
+                                                if(cursor == null){
+                                                    Log.d("Search","Cursor is null");
+                                                }
+                                                Log.d("Search","Int is: "+cursor.getColumnIndex(name));
                                                 searchResult.add(cursor.getString(cursor.getColumnIndex(name)));
                                                 //thisisfineyou would just start the new fragment here HAHAHAAHAH
                                             }
@@ -301,9 +307,6 @@ public class MainActivity extends AppCompatActivity
                 //Log.d("CreateTable",testEventsList.get(0).getEventId());
 
 
-                for(String s:searchResult){
-                    Log.d("Search",s);
-                }
 
 
 
