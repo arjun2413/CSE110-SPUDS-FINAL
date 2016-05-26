@@ -11,6 +11,7 @@ import com.firebase.client.ValueEventListener;
 import com.spuds.eventapp.CreateEvent.CreateEventForm;
 import com.spuds.eventapp.CreateEvent.CreateEventRVAdapter;
 import com.spuds.eventapp.Shared.Event;
+import com.spuds.eventapp.Shared.EventDate;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
 
 import java.text.SimpleDateFormat;
@@ -266,7 +267,7 @@ public class EventsFirebase {
                             newEvent.setLocation(String.valueOf(child.getValue()));
                             break;
                         case "number_going":
-                            newEvent.setAttendees(Integer.parseInt((String) child.getValue()));
+                            newEvent.setAttendees(Integer.parseInt((String.valueOf(child.getValue()))));
                             break;
                         case "picture_file_name":
                             newEvent.setPicFileName(String.valueOf(child.getValue()));
@@ -314,11 +315,24 @@ public class EventsFirebase {
                 a = new ArrayList<String>();
 
 
+                // used to get the current time
+                String currentDate;
+                SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd | HH:mm");
+                Date dateobj = new Date();
+                currentDate = df.format(dateobj);
+
                 if(tabFilter.equals(tabHot) || tabFilter.equals(tabNew)) {
-                    eventsList.add(0, newEvent);
+                    if (currentDate.compareTo(newEvent.getDate()) < 0){
+                        eventsList.add(0, newEvent);
+                    }
                 }
                 else {
-                    eventsList.add(newEvent);
+
+                    //current date and time is "earlier" than the event. Aka the event has not happened yet.
+                    if (currentDate.compareTo(newEvent.getDate()) < 0){
+                        eventsList.add(newEvent);
+                    }
+
                 }
 
                 if (adapter != null) {
