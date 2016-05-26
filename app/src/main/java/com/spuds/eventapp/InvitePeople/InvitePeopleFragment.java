@@ -62,7 +62,7 @@ public class InvitePeopleFragment extends Fragment {
 
             @Override
             public void run() {
-                while (eventsFirebase.numFollowers > followers.size() || !eventsFirebase.followersThreadCheck) {
+                while (eventsFirebase.numFollowers > followers.size() && !eventsFirebase.followersThreadCheck) {
                     Log.v("inviteppl", "numfollowers" + eventsFirebase.numFollowers);
                     Log.v("inviteppl", "followers size" + followers.size());
                     try {

@@ -18,12 +18,14 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
+import com.spuds.eventapp.Shared.Subscription;
 import com.spuds.eventapp.Shared.User;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -543,7 +545,94 @@ public class UserFirebase {
 
     }
 
+    public static boolean getSubscriptionsThreadCheck;
+    public int numSubscriptions;
+    public void getSubscriptions(final ArrayList<Subscription> subscriptions) {
+        getSubscriptionsThreadCheck = false;
+        final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
 
+        final ValueEventListener valueEventListener = new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                String id = "";
+                HashMap<String, Object> values = (HashMap<String, Object>) snapshot.getValue();
+                if (values != null) {
+
+                    for (Map.Entry<String, Object> entry : values.entrySet()) {
+                        Log.v("Userfirebase asdf", " key" + entry.getKey());
+
+
+                        String followingId = "";
+                        boolean following = false;
+                        for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
+
+                            Log.v("Userfirebase asdf", " entry value key" + entry2.getKey());
+                            Log.v("Userfirebase asdf", " entry value value" + entry2.getValue());
+
+
+                            if (entry2.getKey().equals("following_id")) {
+                                followingId = String.valueOf(entry2.getValue());
+                            }
+
+                            if (entry2.getKey().equals("user_id")) {
+                                if (entry2.getValue().equals(UserFirebase.uId)) {
+                                    following = true;
+                                }
+                            }
+
+
+                        }
+
+                        //Not working b/c it's asynchronous
+                        if (following) {
+                            ++numSubscriptions;
+                            getAnotherUser(followingId);
+                            Log.v("userfirebasesubs", "folloiwngidadded " + followingId);
+
+                            new Thread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    while (!threadCheckAnotherUser) {
+                                        try {
+                                            Thread.sleep(77);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+
+
+                                    subscriptions.add(new Subscription(anotherUser.getUserId(),
+                                            anotherUser.getName(), anotherUser.getPicture(),
+                                            true));
+                                    Log.v("userfirebasesubs", anotherUser.getName() + " was added");
+
+                                }
+                            }).start();
+
+
+                        }
+
+
+                    }
+
+
+                    getSubscriptionsThreadCheck = true;
+
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+
+        };
+
+        ref.addValueEventListener(valueEventListener);
+    }
 
 }
 
