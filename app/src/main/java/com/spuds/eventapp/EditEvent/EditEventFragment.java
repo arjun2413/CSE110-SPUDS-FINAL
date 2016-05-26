@@ -64,7 +64,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         ((MainActivity) getActivity()).picture = null;
 
         Bundle extras = getArguments();
-        event = (Event) extras.get(getString(R.string.event_details));
+        event = (Event) extras.getSerializable(getString(R.string.event_details));
     }
 
     @Override

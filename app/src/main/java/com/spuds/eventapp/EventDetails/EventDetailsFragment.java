@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,8 +29,6 @@ import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Comment;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.MainActivity;
-
-import com.spuds.eventapp.Shared.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +49,7 @@ public class EventDetailsFragment extends Fragment {
     Button invitePeople;
     Button buttonGoingOrEdit;
     TextView eventTime;
+    ImageButton buttonEditEvent;
     // Reference to itself
     Fragment eventDetailsFragment;
     boolean going;
@@ -57,8 +57,11 @@ public class EventDetailsFragment extends Fragment {
     RecyclerView rv;
     CommentsRVAdapter adapter;
     List<Comment> comments;
+    boolean ownEvent;
+
     public EventDetailsFragment() {
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +75,9 @@ public class EventDetailsFragment extends Fragment {
         } else
             eventId = event.getEventId();
         eventDetailsFragment = this;
+
+        if (event.getHostId().equals(UserFirebase.uId))
+            ownEvent = true;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -104,9 +110,36 @@ public class EventDetailsFragment extends Fragment {
         invite.setTypeface(raleway_medium);
 
         setUpEventInformation(view);
+        setupEditEvent();
         setUpComments(view);
         return view;
     }
+
+    void setupEditEvent() {
+        if (ownEvent) {
+            buttonEditEvent.setVisibility(View.VISIBLE);
+
+            buttonEditEvent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EditEventFragment editEventFragment = new EditEventFragment();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(getString(R.string.event_details), event);
+                    editEventFragment.setArguments(bundle);
+
+                    ((MainActivity) getActivity()).removeSearchToolbar();
+                    // Add Event Details Fragment to fragment manager
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_frame_layout, editEventFragment)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .addToBackStack("Edit Event Fragment")
+                            .commit();
+                }
+            });
+        }
+    }
+
     void setUpEventInformation(View view) {
         eventPic = (ImageView) view.findViewById(R.id.event_pic);
         eventName = (TextView) view.findViewById(R.id.event_name);
@@ -120,6 +153,7 @@ public class EventDetailsFragment extends Fragment {
         addComment = (Button) view.findViewById(R.id.button_add_comment);
         invitePeople = (Button) view.findViewById(R.id.button_invite_people);
         buttonGoingOrEdit = (Button) view.findViewById(R.id.button_going);
+        buttonEditEvent = (ImageButton) view.findViewById(R.id.button_edit_event);
         //TODO: picasso for event pic
         eventName.setText(event.getEventName());
         eventHost.setOnClickListener(new View.OnClickListener() {
@@ -291,7 +325,7 @@ public class EventDetailsFragment extends Fragment {
         });
 
         // TODO (M): Get id of the user
-        /*if (event.getHostId().equals(USER.GETUSERID())) {
+        /*if (ownEvent) {
             buttonGoingOrEdit.setImageResource(R.drawable.button_edit_event);
         } else {
             // TODO (M): GET if the user is going to this event or not
@@ -304,7 +338,7 @@ public class EventDetailsFragment extends Fragment {
             public void onClick(View v) {
                 Log.d("Here1", "herepls");
 
-                if (event.getHostId().equals(UserFirebase.uId)) {
+                if (ownEvent) {
 
                 EditEventFragment editEventFragment = new EditEventFragment();
 
