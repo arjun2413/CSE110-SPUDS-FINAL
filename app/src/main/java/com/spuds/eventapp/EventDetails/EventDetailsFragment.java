@@ -1,11 +1,15 @@
 package com.spuds.eventapp.EventDetails;
+
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.spuds.eventapp.CreateComment.CreateCommentFragment;
 import com.spuds.eventapp.EditEvent.EditEventFragment;
 import com.spuds.eventapp.Firebase.EventsFirebase;
@@ -23,6 +28,7 @@ import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Comment;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.MainActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 public class EventDetailsFragment extends Fragment {
@@ -316,6 +322,20 @@ public class EventDetailsFragment extends Fragment {
                 }*/
             }
         });
+
+        String imageFile = event.getPicture();
+
+        Log.v("ag7", "imageFile = " + imageFile);
+
+        if (imageFile != null && imageFile != "") {
+
+            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+            Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+
+
+            eventPic.setImageBitmap(src);
+        }
+
     }
     void setUpComments(View view) {
         rv = (RecyclerView) view.findViewById(R.id.rv);

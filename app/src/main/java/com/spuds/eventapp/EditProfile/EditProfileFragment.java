@@ -90,7 +90,7 @@ public class  EditProfileFragment extends Fragment {
                 //dialogFragment.show(getFragmentManager(), "Add a Picture");
 
 
-                ((MainActivity) getActivity()).pickImage();
+                ((MainActivity) getActivity()).pickImage(true);
 
                 new Thread(new Runnable() {
 

@@ -312,7 +312,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                 //dialogFragment.show(getFragmentManager(), "Add a Picture");
 
 
-                ((MainActivity) getActivity()).pickImageWithoutCrop();
+                ((MainActivity) getActivity()).pickImage(false);
 
                 new Thread(new Runnable() {
 
