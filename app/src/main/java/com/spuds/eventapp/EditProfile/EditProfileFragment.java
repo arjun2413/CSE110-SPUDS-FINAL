@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
@@ -55,6 +56,19 @@ public class  EditProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
+
+        overrideFonts(view.getContext(),view);
+
+        Typeface raleway_medium = Typeface.createFromAsset(getActivity().getAssets(),  "Raleway-Medium.ttf");
+
+        TextView name = (TextView) view.findViewById(R.id.name);
+        name.setTypeface(raleway_medium);
+
+        TextView description = (TextView) view.findViewById(R.id.description);
+        description.setTypeface(raleway_medium);
+
+        TextView upload = (TextView) view.findViewById(R.id.update_button);
+        upload.setTypeface(raleway_medium);
 
         updateButton = (Button) view.findViewById(R.id.update_button);
         editProfilePictureButton = (ImageButton) view.findViewById(R.id.edit_profile_picture);
@@ -197,5 +211,20 @@ public class  EditProfileFragment extends Fragment {
         super.onDetach();
     }
 
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "raleway-regular.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
+    }
 
 }

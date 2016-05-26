@@ -40,7 +40,7 @@ public class EventDetailsFragment extends Fragment {
     TextView eventDescription;
     Button addComment;
     Button invitePeople;
-    ImageView buttonGoingOrEdit;
+    Button buttonGoingOrEdit;
     TextView eventTime;
     // Reference to itself
     Fragment eventDetailsFragment;
@@ -88,6 +88,9 @@ public class EventDetailsFragment extends Fragment {
         TextView comments = (TextView) view.findViewById(R.id.comments_text);
         comments.setTypeface(raleway_medium);
 
+        Button going = (Button) view.findViewById(R.id.button_going);
+        going.setTypeface(raleway_medium);
+
         Button invite = (Button) view.findViewById(R.id.button_invite_people);
         invite.setTypeface(raleway_medium);
 
@@ -107,7 +110,7 @@ public class EventDetailsFragment extends Fragment {
         eventDescription = (TextView) view.findViewById(R.id.event_description);
         addComment = (Button) view.findViewById(R.id.button_add_comment);
         invitePeople = (Button) view.findViewById(R.id.button_invite_people);
-        buttonGoingOrEdit = (ImageView) view.findViewById(R.id.button_going);
+        buttonGoingOrEdit = (Button) view.findViewById(R.id.button_going);
         //TODO: picasso for event pic
         eventName.setText(event.getEventName());
         eventHost.setOnClickListener(new View.OnClickListener() {

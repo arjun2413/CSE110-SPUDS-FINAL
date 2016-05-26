@@ -1,7 +1,9 @@
 package com.spuds.eventapp.Settings;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -61,6 +63,7 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<SettingsRVAdapter.Se
     @Override
     public SettingsViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_settings, viewGroup, false);
+        overrideFonts(v.getContext(),v);
         SettingsViewHolder svh = new SettingsViewHolder(v);
         return svh;
 
@@ -131,6 +134,22 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<SettingsRVAdapter.Se
                 break;
         }
 
+    }
+
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView ) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "Raleway-Medium.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
     }
 
 }
