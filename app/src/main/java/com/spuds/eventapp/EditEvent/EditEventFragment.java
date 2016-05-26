@@ -12,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -214,9 +215,13 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         categories.add(new CategoryTextButton("FREE", false));
 
         ArrayList<String> existingCateg = event.getCategories();
+        Log.v("size", "size: " + event.getCategories().size());
 
         for (int i = 0; i < existingCateg.size(); ++i) {
+            Log.v("category", "category: " + existingCateg.get(i));
+
             switch(existingCateg.get(i)) {
+
                 case "Food":
                     categories.get(0).setCheckedBoolean(true);
                     break;
