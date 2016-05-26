@@ -1,7 +1,6 @@
 package com.spuds.eventapp.HomeFeed;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -32,6 +31,7 @@ public class HomeFeedFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        //Firebase.setAndroidContext();
         super.onCreate(savedInstanceState);
 
         Bundle extras = getArguments();
@@ -44,29 +44,15 @@ public class HomeFeedFragment extends Fragment {
         EventsFirebase ef = new EventsFirebase(events, 0, tabType);
         ef.createEL();
 
-
-
-        /*events.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04.29.16", 1054,
-                "yj.jpg", categories, "UCSD"));
-        events.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04.28.16", 51,
-                "foosh.jpg", categories, "Foosh Improv Comedy Club"));*/
-        /*events.add(new Event("1", "yj.jpg", "Sun God Festival", "RIMAC Field", "April 30, 2016", 1054,
-                "Social", "Concert", "UCSD", "spr lame"));
-        events.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "May 5, 2016", 51,
-               "Social", null, "Foosh Improv Comedy Club", "spr funny"));
-        events.add(new Event("3", "foosh.jpg", "Circle K GBM #1", "Center 101", "July 4, 2016", 51,
-                "Social", null, "Foosh Improv Comedy Club", "spr funny"));
-        events.add(new Event("4", "foosh.jpg", "David's Birthday Party", "420 Strip Club", "May 17, 2016", 51,
-                "Social", "Food", "Foosh Improv Comedy Club", "spr funny"));
-        events.add(new Event("5", "foosh.jpg", "Reggie Wu Fan Club", "Reggie's Apartment", "June 7, 2016", 51,
-                "Social", null, "Foosh Improv Comedy Club", "spr funny"));*/
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recycler, container, false);
-        RecyclerView rv=(RecyclerView) view.findViewById(R.id.rv);
+
+
+        final RecyclerView rv=(RecyclerView) view.findViewById(R.id.rv);
 
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
@@ -74,6 +60,26 @@ public class HomeFeedFragment extends Fragment {
 
         adapter = new EventsFeedRVAdapter(events, this, getString(R.string.fragment_home_feed));
         rv.setAdapter(adapter);
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (events.size() == 0) {
+                    try {
+                        Thread.sleep(70);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        rv.setAdapter(adapter);
+                    }
+                });
+            }
+        }).start();
 
         //call refreshing function
         refreshing(view);
@@ -123,6 +129,9 @@ public class HomeFeedFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }
 
 

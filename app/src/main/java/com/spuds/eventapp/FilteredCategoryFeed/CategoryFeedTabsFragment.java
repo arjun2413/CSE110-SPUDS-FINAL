@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ public class CategoryFeedTabsFragment extends Fragment {
 
     CategoryFeedViewPagerAdapter categoryFeedViewPagerAdapter;
 
+    String catType;
     public CategoryFeedTabsFragment() {
         // Required empty public constructor
     }
@@ -22,6 +24,10 @@ public class CategoryFeedTabsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        catType = bundle.getString(getString(R.string.category_bundle));
+        //Log.v("jkl;", ""+catType);
+        categoryFeedViewPagerAdapter = new CategoryFeedViewPagerAdapter(getChildFragmentManager(), this, catType);
     }
 
     @Override
@@ -77,7 +83,6 @@ public class CategoryFeedTabsFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        categoryFeedViewPagerAdapter = new CategoryFeedViewPagerAdapter(getChildFragmentManager(), this);
     }
 
 

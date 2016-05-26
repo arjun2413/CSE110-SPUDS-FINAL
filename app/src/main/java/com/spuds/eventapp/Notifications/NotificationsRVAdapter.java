@@ -1,7 +1,9 @@
 package com.spuds.eventapp.Notifications;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -17,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spuds.eventapp.EventDetails.EventDetailsFragment;
+import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
@@ -79,6 +82,8 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
     @Override
     public NotificationViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_notifications_comment, viewGroup, false);
+        overrideFonts(v.getContext(),v);
+
         NotificationViewHolder nvh = new NotificationViewHolder(v);
         return nvh;
     }
@@ -92,22 +97,27 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
         holder.host.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment profileFragment = new ProfileFragment();
+                final UserFirebase userFirebase = new UserFirebase();
+                userFirebase.getAnotherUser(noti.userId);
 
-                Bundle bundle = new Bundle();
-                bundle.putString(currentFragment.getString(R.string.profile_type), currentFragment.getString(R.string.profile_type_owner));
-                bundle.putString(currentFragment.getString(R.string.user_id), noti.userId);
+                new Thread(new Runnable() {
 
-                profileFragment.setArguments(bundle);
+                    @Override
+                    public void run() {
+                        while (!userFirebase.threadCheckAnotherUser) {
+                            try {
+                                Thread.sleep(77);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
 
-                ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
-                // Add Event Details Fragment to fragment manager
-                currentFragment.getFragmentManager().beginTransaction()
-                        .show(profileFragment)
-                        .replace(R.id.fragment_frame_layout, profileFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(currentFragment.getString(R.string.fragment_profile))
-                        .commit();
+                        }
+
+
+                        startProfileFragment(userFirebase);
+
+                    }
+                }).start();
             }
         });
 
@@ -136,22 +146,27 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
             holder.picture.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Fragment profileFragment = new ProfileFragment();
 
-                    Bundle bundle = new Bundle();
-                    bundle.putString(currentFragment.getString(R.string.profile_type), currentFragment.getString(R.string.profile_type_owner));
-                    bundle.putString(currentFragment.getString(R.string.user_id), noti.userId);
+                    final UserFirebase userFirebase = new UserFirebase();
+                    userFirebase.getAnotherUser(noti.userId);
 
-                    profileFragment.setArguments(bundle);
+                    new Thread(new Runnable() {
 
-                    ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
-                    // Add Event Details Fragment to fragment manager
-                    currentFragment.getFragmentManager().beginTransaction()
-                            .show(profileFragment)
-                            .replace(R.id.fragment_frame_layout, profileFragment)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                            .addToBackStack(currentFragment.getString(R.string.fragment_profile))
-                            .commit();
+                        @Override
+                        public void run() {
+                            while (!userFirebase.threadCheckAnotherUser) {
+                                try {
+                                    Thread.sleep(77);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+
+                            startProfileFragment(userFirebase);
+
+                        }
+                    }).start();
                 }
             });
 
@@ -191,9 +206,56 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
 
     }
 
+    private void startProfileFragment(final UserFirebase userFirebase) {
+
+        Fragment profileFragment = new ProfileFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString(currentFragment.getString(R.string.profile_type),
+                currentFragment.getString(R.string.profile_type_other));
+
+
+        bundle.putSerializable(currentFragment.getString(R.string.user_details), userFirebase.anotherUser);
+
+        profileFragment.setArguments(bundle);
+
+        currentFragment.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ((MainActivity)currentFragment.getActivity()).removeSearchToolbar();
+            }
+        });
+        // Add Event Details Fragment to fragment manager
+        currentFragment.getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_frame_layout, profileFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(currentFragment.getString(R.string.fragment_profile))
+                .commit();
+
+
+
+    }
+
     @Override
     public int getItemCount() {
         return notificationsList.size();
     }
+
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "raleway-regular.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
+    }
+
 
 }

@@ -502,13 +502,16 @@
         <item name="colorPrimary">#1a1a1a</item>
         <item name="colorPrimaryDark">#090d11</item>
         <item name="colorAccent">#3a928d</item>
+        <item name="android:textAppearance">@style/CustomTextAppearance</item>
     </style>
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    </style>
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+</style>
     <style name="Base.AlertDialog.AppCompat" parent="android:Widget">
         <item name="android:layout">@layout/abc_alert_dialog_material</item>
         <item name="listLayout">@layout/abc_select_dialog_material</item>
@@ -1523,6 +1526,9 @@
         <item name="android:showDividers" ns2:ignore="NewApi">middle</item>
         <item name="android:dividerPadding" ns2:ignore="NewApi">12dp</item>
         <item name="android:background">@color/crop__button_bar</item>
+    </style>
+    <style name="CustomTextAppearance">
+        <item name="android:typeface">monospace</item>
     </style>
     <style name="Platform.AppCompat" parent="android:Theme">
         <item name="android:windowNoTitle">true</item>

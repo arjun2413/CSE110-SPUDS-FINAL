@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:background="#d1e0e0">
+        android:background="#ffffff">
 
         <cn.refactor.library.SmoothCheckBox
             android:id="@+id/category_scb"

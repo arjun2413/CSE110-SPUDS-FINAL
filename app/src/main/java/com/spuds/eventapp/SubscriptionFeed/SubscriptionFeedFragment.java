@@ -42,9 +42,9 @@ public class SubscriptionFeedFragment extends Fragment {
         categories.add("Concert");
 
         events.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04/20/2016|16:20", 1054,
-                "yj.jpg", categories, "UCSD"));
+                "", categories, "UCSD"));
         events.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04/20/2016|16:20", 51,
-                "foosh.jpg", categories, "Foosh Improv Comedy Club"));
+                "", categories, "Foosh Improv Comedy Club"));
     }
 
     @Override

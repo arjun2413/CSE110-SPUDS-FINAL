@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#0d1c28">
+    android:background="#262626">
 
     <LinearLayout
         android:orientation="vertical"
@@ -22,8 +22,9 @@
             android:layout_height="170dp"
             android:id="@+id/edit_profile_picture"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/profile"
-            android:scaleType="fitCenter"/>
+            android:src="@drawable/profilepicture"
+            android:scaleType="fitCenter"
+            android:background="#00ffffff" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -47,7 +48,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/edit_full_name"
             android:background="@drawable/roundedbox"
-            android:backgroundTint="#d1e0e0"/>
+            android:backgroundTint="#ffffff"
+            android:paddingLeft="5dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -64,7 +66,10 @@
             android:layout_height="150dp"
             android:id="@+id/edit_description"
             android:background="@drawable/roundedbox"
-            android:backgroundTint="#d1e0e0"
+            android:backgroundTint="#ffffff"
+            android:gravity="top|left"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             />
 
         <Button
@@ -79,7 +84,8 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/roundedbutton"
-            android:textColor="#FFFFFF"
+            android:backgroundTint="#3a928d"
+            android:textColor="#ffffff"
             android:layout_gravity="center_horizontal"
             android:textSize="20dp" />
 

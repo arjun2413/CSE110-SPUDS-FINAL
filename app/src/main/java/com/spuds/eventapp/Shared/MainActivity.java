@@ -1,9 +1,14 @@
 package com.spuds.eventapp.Shared;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -14,16 +19,20 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -38,6 +47,8 @@ import com.spuds.eventapp.About.AboutFragment;
 import com.spuds.eventapp.CategoriesList.CategoriesListFragment;
 import com.spuds.eventapp.CreateEvent.CreateEventFragment;
 import com.spuds.eventapp.FindPeople.FindPeopleFragment;
+import com.spuds.eventapp.Firebase.EventsFirebase;
+import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.HomeFeed.HomeFeedTabsFragment;
 import com.spuds.eventapp.InvitePeople.InvitePeopleFragment;
@@ -53,6 +64,7 @@ import com.spuds.eventapp.SubscriptionsList.SubscriptionsListFragment;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
@@ -76,6 +88,10 @@ public class MainActivity extends AppCompatActivity
     public GoogleCloudMessaging gcm;
 
     public String searchType;
+    public Uri picture;
+    ArrayList<SubEvent> testEventsList;
+    ArrayList <String> searchResult;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +104,13 @@ public class MainActivity extends AppCompatActivity
         setupSearchToolbar();
         setupDrawer();
         setupProfileDrawer();
+
+        searchResult = new ArrayList<String>();
+
+
+        testEventsList = new ArrayList<SubEvent>();
+        EventsFirebase ef = new EventsFirebase();
+        ef.getSubEventList(testEventsList);
 
         searchType = getString(R.string.fragment_home_feed);
 
@@ -127,22 +150,35 @@ public class MainActivity extends AppCompatActivity
     }
 
     void setupProfileDrawer() {
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        overrideFonts(navigationView.getContext(),navigationView);
         // TODO (M): app owner's id
         View headerView =  navigationView.inflateHeaderView(R.layout.nav_header_profile);
+        overrideFonts(headerView.getContext(),headerView);
         TextView name = (TextView) headerView.findViewById(R.id.user_name);
         String string = "Reggie Wu";
         name.setText(string);
         // TODO (M): Use picasso
         ImageView profilePic = (ImageView) headerView.findViewById(R.id.profile_pic);
-        profilePic.setImageResource(R.drawable.arjun);
+
+
+
 
         //rounded photo, crashes when you re-run for some reason
-        /*
-        Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.arjun);
-        RoundedBitmapDrawable dr =
-                RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
-        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
+
+        String imageFile = UserFirebase.thisUser.getPicture();
+
+
+        byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+        Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+        RoundedBitmapDrawable circularBitmapDrawable =
+                RoundedBitmapDrawableFactory.create(getResources(), src);
+        circularBitmapDrawable.setCircular(true);
+        circularBitmapDrawable.setAntiAlias(true);
+        profilePic.setImageDrawable(circularBitmapDrawable);
+/*        Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.christinecropped);
+
         profilePic.setImageDrawable(dr);
         */
 
@@ -152,11 +188,12 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        overrideTitle(toolbar.getContext(),toolbar);
     }
 
     void setupSearchToolbar() {
         search = (SearchBox) findViewById(R.id.searchbox);
+        overrideFonts(search.getContext(),search);
 
         search.setLogoText("Search for Events");
         search.setLogoTextColor(Color.parseColor("#bfbfbf"));
@@ -222,12 +259,96 @@ public class MainActivity extends AppCompatActivity
             }
 
             @Override
-            public void onSearch(String searchTerm) {
+            public void onSearch(final String searchTerm) {
                 Toast.makeText(MainActivity.this, searchTerm +" Searched", Toast.LENGTH_LONG).show();
 
-                // TODO (C): Change this to searachpeopleframgent
+                // TODO (C): Change this to searchpeopleframgent
                 InvitePeopleFragment invitePeopleFragment = new InvitePeopleFragment();
                 Bundle bundle = new Bundle();
+
+                //Fake Data. TODO: make EventSearchFragment later on @Tina
+
+
+                ArrayList<String> testCategoriesList = new ArrayList<String>();
+                String tabType;
+
+                new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        while (!EventsFirebase.threadCheckSubEvent) {
+                            try {
+                                Thread.sleep(70);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        for(SubEvent s : testEventsList){
+                            Log.d("CreateTable",s.getEventId());
+                            Log.d("CreateTable",s.getEventName());
+                        }
+
+
+                        final DatabaseTableSubEvent databaseTable = new DatabaseTableSubEvent(getApplicationContext(),testEventsList);
+                        Log.d("CreateTable","AFTER DB called");
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                while(!DatabaseTableSubEvent.threadDone){
+
+                                    try{
+                                        Log.d("ThreadDebug","try block");
+                                        Thread.sleep(750);
+                                    } catch (InterruptedException e){
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                Log.d("Search","Starting Search");
+                                Cursor cursor = databaseTable.getEventNameMatches(searchTerm, null);
+                                String retVal = "";
+                                if (cursor != null && cursor.moveToFirst() ){
+                                    String[] columnNames = cursor.getColumnNames();
+                                    do {
+                                        //Searched results have been found
+                                        for (String name: columnNames) {
+                                            //retVal += String.format("%s: %s\n", name, cursor.getString(cursor.getColumnIndex(name)));
+                                            if(name.equals("EVENT_ID")){
+                                                //Return to outside world
+                                                if(cursor == null){
+                                                    Log.d("Search","Cursor is null");
+                                                }
+                                                Log.d("Search","Int is: "+cursor.getColumnIndex(name));
+                                                searchResult.add(cursor.getString(cursor.getColumnIndex(name)));
+                                                //thisisfineyou would just start the new fragment here HAHAHAAHAH
+                                            }
+
+                                        }
+                                        retVal += "\n";
+                                        Log.d("Search","Result found in Loop");
+                                    } while (cursor.moveToNext());
+                                }
+                                else{
+                                    Log.d("Search","Nothing found.");
+                                }
+                                Log.d("Search","RESULTS: "+retVal);
+                                //System.err.println(retVal);
+                                //Log.d("Search","RESULT: "+cursor.getString(cursor.getColumnIndex(cursor.getColumnNames()[1])));
+                            }
+                        }).start();
+
+
+
+                    }
+                }).start();
+
+
+                //Log.d("CreateTable",testEventsList.get(0).getEventId());
+
+
+
+
 
                 // TODO (M): people
                 //fake data
@@ -247,6 +368,9 @@ public class MainActivity extends AppCompatActivity
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack("Search People Fragment")
                         .commit();
+
+
+
 
             }
 
@@ -293,21 +417,26 @@ public class MainActivity extends AppCompatActivity
             ((ViewManager) toolbar.getParent()).addView(search, params);
 
         search.setLogoText("Search for Events");
+        overrideFonts(toolbar.getContext(),toolbar);
 
     }
 
     void setupDrawer() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
+        overrideTitle(toolbar.getContext(),toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        overrideFonts(navigationView.getContext(),navigationView);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.home);
+
     }
 
     void setupFragments() {
@@ -391,6 +520,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator);
+        //overrideFonts(coordinatorLayout.getContext(),coordinatorLayout);
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();
@@ -480,6 +610,8 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
+        overrideFonts(drawer.getContext(),drawer);
+
         return true;
     }
 
@@ -488,8 +620,6 @@ public class MainActivity extends AppCompatActivity
 
         Bundle bundle = new Bundle();
         bundle.putString(getString(R.string.profile_type), getString(R.string.profile_type_owner));
-        // TODO (M): app owner's id
-        bundle.putString(getString(R.string.user_id), "1adsf");
 
         profileFragment.setArguments(bundle);
 
@@ -505,6 +635,8 @@ public class MainActivity extends AppCompatActivity
         // Close drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+        overrideFonts(drawer.getContext(),drawer);
+
 
     }
 
@@ -577,13 +709,16 @@ public class MainActivity extends AppCompatActivity
 
     private static final int REQUEST_CODE = 1;
 
-    public boolean pickImage() {
+    private boolean square;
+    public boolean pickImage(boolean square) {
 
+        this.square = square;
         Crop.pickImage(this);
 
 
         return true;
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
@@ -595,13 +730,18 @@ public class MainActivity extends AppCompatActivity
 
 
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+
             if (resultCode == RESULT_OK) {
 
                 //Log.v(TAG, "Image saved to:\n" + fileUri);
 
                 Uri uri = result.getData();
 
-                Crop.of(uri, picture).asSquare().start(this);
+                Log.v("square", String.valueOf(square));
+                if (square)
+                    Crop.of(uri, picture).asSquare().start(this);
+                else
+                    Crop.of(uri, picture).withAspect(2, 1).start(this);
 
 
             } else if (resultCode == RESULT_CANCELED) {
@@ -627,10 +767,13 @@ public class MainActivity extends AppCompatActivity
 
     private void beginCrop(Uri source) {
         Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
-        Crop.of(source, destination).asSquare().start(this);
+
+        if (square)
+            Crop.of(source, destination).asSquare().start(this);
+        else
+            Crop.of(source, destination).withAspect(2, 1).start(this);
     }
 
-    public Uri picture;
     private void handleCrop(int resultCode, Intent result) {
 
         if (resultCode == RESULT_OK) {
@@ -648,4 +791,36 @@ public class MainActivity extends AppCompatActivity
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         startActivityForResult(intent, REQUEST_CODE);
     }
+
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "Raleway-Medium.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
+    }
+
+    private void overrideTitle(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideTitle(context, child);
+                }
+            } else if (v instanceof TextView) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "name_font.ttf"));
+            }
+        } catch (Exception e) {
+        }
+    }
+
 }

@@ -1,21 +1,27 @@
 package com.spuds.eventapp.Shared;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spuds.eventapp.EventDetails.EventDetailsFragment;
+import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.Profile.ProfileFeedFragment;
+import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
 
 import java.util.List;
@@ -37,6 +43,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         TextView seeMore;
         TextView monthDate, dayDate;
         TextView eventTime;
+        Button buttonGoing;
 
 
         EventViewHolder(View itemView) {
@@ -52,6 +59,8 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             monthDate = (TextView) itemView.findViewById(R.id.date_month);
             dayDate = (TextView) itemView.findViewById(R.id.date_day);
             eventTime = (TextView) itemView.findViewById(R.id.event_time);
+            buttonGoing = (Button) itemView.findViewById(R.id.event_going);
+
         }
 
     }
@@ -83,6 +92,12 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         //Typeface raleway_light = Typeface.createFromAsset(v.getContext().getAssets(),  "raleway-light.ttf");
         overrideFonts(v.getContext(),v);
 
+      /*  Typeface raleway_medium = Typeface.createFromAsset(getAssets(),  "Raleway-Medium.ttf");
+
+        //title font
+        TextView upload = (TextView) v.findViewById(R.id.upload);
+        upload.setTypeface(raleway_medium);*/
+
         EventViewHolder evh = new EventViewHolder(v);
         return evh;
     }
@@ -90,6 +105,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
     @Override
     public void onBindViewHolder(EventViewHolder eventViewHolder, int i) {
 
+        final int index = i;
         // Add card See More... for profile fragment
         if (tagCurrentFragment.equals(currentFragment.getString(R.string.fragment_profile)) && i == 3) {
             eventViewHolder.seeMore.setVisibility(View.VISIBLE);
@@ -129,10 +145,30 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             return;
         }
 
-        /* Picasso for eventPic*/
+
+        // TODO (M): going
+        boolean going = false;
+        /*if (going)
+            eventViewHolder.buttonGoing.setBackgroundColor(Color.parseColor("#5c8a8a"));
+        else
+            eventViewHolder.buttonGoing.setBackgroundColor(Color.parseColor("#ffffff"));*/
+
+        if (events.get(i).getPicture() != null && events.get(i).getPicture() != "") {
+            String imageFile = events.get(i).getPicture();
+
+
+            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+            Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+
+
+            eventViewHolder.eventPic.setImageBitmap(src);
+        } else {
+            // TODO (V): default picture
+        }
         eventViewHolder.eventName.setText(events.get(i).getEventName());
         eventViewHolder.eventLocation.setText(events.get(i).getLocation());
         eventViewHolder.eventAttendees.setText(String.valueOf(events.get(i).getAttendees()));
+        eventViewHolder.eventHost.setText(events.get(i).getHostName());
 
         String d = "";
 
@@ -204,15 +240,12 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
         // Categories
         String categories = "";
-        int eventIndex = 0;
-        for (int categoryIndex = 0; categoryIndex < events.get(eventIndex).getCategories().size() - 1; categoryIndex++) {
-            if (categoryIndex == events.get(eventIndex).getCategories().size()){
-                categoryIndex = 0;
-                eventIndex++;
+        if(events.get(i).getCategories() != null && events.get(i).getCategories().size() != 0) {
+            for (int categoryIndex = 0; categoryIndex < events.get(i).getCategories().size() - 1; categoryIndex++) {
+                categories += events.get(i).getCategories().get(categoryIndex) + ", ";
             }
-            categories += events.get(i).getCategories().get(eventIndex) + ", ";
+            categories += events.get(i).getCategories().get(events.get(i).getCategories().size() - 1);
         }
-        categories += events.get(i).getCategories().get(events.get(i).getCategories().size() - 1);
 
         eventViewHolder.eventCategories.setText(categories);
 
@@ -285,5 +318,36 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         catch (Exception e) {
         }
     }
+
+    private void startProfileFragment(final UserFirebase userFirebase) {
+
+        Fragment profileFragment = new ProfileFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString(currentFragment.getString(R.string.profile_type),
+                currentFragment.getString(R.string.profile_type_other));
+
+
+        bundle.putSerializable(currentFragment.getString(R.string.user_details), userFirebase.anotherUser);
+
+        profileFragment.setArguments(bundle);
+
+        currentFragment.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ((MainActivity)currentFragment.getActivity()).removeSearchToolbar();
+            }
+        });
+        // Add Event Details Fragment to fragment manager
+        currentFragment.getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_frame_layout, profileFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(currentFragment.getString(R.string.fragment_profile))
+                .commit();
+
+
+
+    }
+
 
 }
