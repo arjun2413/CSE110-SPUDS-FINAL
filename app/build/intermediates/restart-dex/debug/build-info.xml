@@ -1,54 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="x86"
-    api-level="23"
-    density="420dpi"
+    abi="armeabi-v7a,armeabi"
+    api-level="21"
+    density="xxhdpi"
     format="7"
-    timestamp="1464290344875853000" >
+    timestamp="1464299626064639000" >
 
     <task
         name="javac"
-        duration="1258" />
+        duration="1109" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="68" />
+        duration="54" />
     <task
         name="verifier"
-        duration="14" />
+        duration="15" />
 
     <artifact
-        location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_8/classes.dex"
-        type="DEX" />
+        location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
+        type="MAIN" />
 
-    <build timestamp="1464284908155586000" >
+    <build timestamp="1464299626064639000" >
         <artifact
             location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
             type="MAIN" />
-    </build>
-    <build
-        timestamp="1464287747047827000"
-        verifier="FIELD_ADDED" >
-        <artifact
-            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/res/resources-debug.ap_"
-            type="RESOURCES" />
-    </build>
-    <build timestamp="1464288549349281000" >
-        <artifact
-            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_7/classes.dex"
-            type="DEX" />
-    </build>
-    <build timestamp="1464289586108549000" >
-        <artifact
-            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex"
-            type="DEX" />
-    </build>
-    <build timestamp="1464290344875853000" >
-        <artifact
-            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_8/classes.dex"
-            type="DEX" />
     </build>
 
 </instant-run>

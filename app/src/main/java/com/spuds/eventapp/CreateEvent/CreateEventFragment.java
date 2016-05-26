@@ -1,6 +1,8 @@
 package com.spuds.eventapp.CreateEvent;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -218,9 +221,16 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                             @Override
                             public void run() {
 
-                                eventImage.setImageURI(null);
+                                String result = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
+
+                                byte[] imageAsBytes = Base64.decode(result, Base64.DEFAULT);
+                                Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+
+
+                                eventImage.setImageBitmap(src);
+                                /*eventImage.setImageURI(null);
                                 eventImage.setImageURI(((MainActivity) getActivity()).picture);
-                                eventImage.invalidate();
+                                eventImage.invalidate();*/
 
 
                             }

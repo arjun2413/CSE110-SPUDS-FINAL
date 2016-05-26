@@ -192,20 +192,64 @@ public class UserFirebase {
 
     }
 
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) > reqHeight
+                    && (halfWidth / inSampleSize) > reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
+    }
+
+
+
+
+
     public static String convert(Context context, Uri uri) {
         if (uri == null)
             return "";
         Bitmap bitmap = null;
-        int bitmapWidth, bitmapHeight;
+        int bitmapWidth, bitmapHeight;//whatdoidowithmylife
 
         double scale;
 
         try {
 
+            Log.v("look!", "before decoding");
+
             InputStream stream = context.getContentResolver().openInputStream(uri);
             BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inPurgeable = true;
-            bitmap = BitmapFactory.decodeStream(stream);
+            options.inJustDecodeBounds = true;
+            bitmap = BitmapFactory.decodeStream(stream, null, options);
+
+
+            options.inSampleSize = calculateInSampleSize(options, 400, 400);
+
+            Log.v("look!", "sample size: " + options.inSampleSize);
+
+            // Decode bitmap with inSampleSize set
+            options.inJustDecodeBounds = false;
+            InputStream stream1 = context.getContentResolver().openInputStream(uri);
+            bitmap = BitmapFactory.decodeStream(stream1, null, options);
+
+            Log.v("look!", "after decoding");
+
+
+
             stream.close();
 
         } catch (FileNotFoundException e) {

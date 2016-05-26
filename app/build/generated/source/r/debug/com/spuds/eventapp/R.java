@@ -2282,6 +2282,8 @@ containing a value of this type.
         public static final int colorAccent=0x7f0c0018;
         public static final int colorPrimary=0x7f0c0019;
         public static final int colorPrimaryDark=0x7f0c001a;
+        public static final int color_selected=0x7f0c005c;
+        public static final int color_unselected=0x7f0c005d;
         public static final int crop__button_bar=0x7f0c001b;
         public static final int crop__button_text=0x7f0c001c;
         public static final int crop__selector_focused=0x7f0c001d;
@@ -2336,8 +2338,8 @@ containing a value of this type.
         public static final int secondary_text_disabled_material_light=0x7f0c004d;
         public static final int switch_thumb_disabled_material_dark=0x7f0c004e;
         public static final int switch_thumb_disabled_material_light=0x7f0c004f;
-        public static final int switch_thumb_material_dark=0x7f0c005c;
-        public static final int switch_thumb_material_light=0x7f0c005d;
+        public static final int switch_thumb_material_dark=0x7f0c005e;
+        public static final int switch_thumb_material_light=0x7f0c005f;
         public static final int switch_thumb_normal_material_dark=0x7f0c0050;
         public static final int switch_thumb_normal_material_light=0x7f0c0051;
     }
