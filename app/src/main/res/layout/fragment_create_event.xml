@@ -3,6 +3,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/scrollView"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
 
@@ -30,7 +31,7 @@
 
                 <ImageButton
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="200dp"
                     android:id="@+id/eventImage"
 
                     android:backgroundTint="#bfbfbf"
@@ -73,16 +74,34 @@
 
             </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="* Required"
-                android:id="@+id/required"
-                android:textColor="#ffffff" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="* Required"
+                    android:id="@+id/required"
+                    android:textColor="#ffffff" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Missing one or more fields."
+                    android:id="@+id/missingMessage"
+                    android:textColor="#990000"
+                    android:visibility="invisible"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp" />
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -105,16 +124,30 @@
                 android:paddingLeft="5dp"
                 android:backgroundTint="#ffffff" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="Date (MM/DD/YY) *"
-                android:id="@+id/date"
-                android:textColor="#ffffff" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Date (MM/DD/YY) *"
+                    android:id="@+id/date"
+                    android:textColor="#ffffff" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/dateErrorMessage"
+                    android:layout_marginTop="8dp"
+                    android:textColor="#990000"
+                    android:layout_marginLeft="10dp" />
+            </LinearLayout>
 
             <EditText
                 android:layout_width="match_parent"
@@ -128,16 +161,31 @@
                 android:backgroundTint="#ffffff"
                 android:paddingLeft="5dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="Time *"
-                android:id="@+id/time"
-                android:textColor="#ffffff" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Time *"
+                    android:id="@+id/time"
+                    android:textColor="#ffffff" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/timeErrorMessage"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#990000" />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:orientation="horizontal"
