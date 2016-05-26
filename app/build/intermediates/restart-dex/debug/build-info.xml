@@ -1,56 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
     abi="x86"
-    api-level="23"
+    api-level="22"
     density="560dpi"
     format="7"
-    timestamp="5861293703915" >
+    timestamp="1464248252840944000"
+    verifier="COMPATIBLE" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="1088" />
     <task
         name="instant-run-dex"
-        duration="0" />
+        duration="829" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="87" />
     <task
         name="verifier"
-        duration="0" />
+        duration="16" />
 
     <artifact
-        location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/resources-debug.ap_"
-        type="RESOURCES" />
+        location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/reload-dex/debug/classes.dex"
+        type="RELOAD_DEX" />
 
-    <build timestamp="1023601923467" >
+    <build timestamp="1464245488824792000" >
         <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
+            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
             type="MAIN" />
     </build>
-    <build timestamp="5447708105307" >
+    <build timestamp="1464245671614762000" >
         <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_7/classes.dex"
+            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_0/classes.dex"
             type="DEX" />
         <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2/classes.dex"
+            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_8/classes.dex"
             type="DEX" />
         <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_8/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex"
+            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5/classes.dex"
             type="DEX" />
     </build>
-    <build timestamp="5861293703915" >
+    <build
+        timestamp="1464246803121557000"
+        verifier="CLASS_ADDED" >
         <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/resources-debug.ap_"
-            type="RESOURCES" />
-    </build>
-    <build timestamp="16314016355542" >
-        <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex"
+            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_7/classes.dex"
             type="DEX" />
+        <artifact
+            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2/classes.dex"
+            type="DEX" />
+    </build>
+    <build timestamp="1464248181281816000" >
+        <artifact
+            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex"
+            type="DEX" />
+    </build>
+    <build
+        timestamp="1464248252840944000"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/reload-dex/debug/classes.dex"
+            type="RELOAD_DEX" />
     </build>
 
 </instant-run>

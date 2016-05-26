@@ -51,7 +51,7 @@ public class MyEventsFeedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recycler, container, false);
-        RecyclerView rv=(RecyclerView) view.findViewById(R.id.rv);
+        final RecyclerView rv=(RecyclerView) view.findViewById(R.id.rv);
 
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
@@ -60,6 +60,25 @@ public class MyEventsFeedFragment extends Fragment {
         adapter = new EventsFeedRVAdapter(events, this, getString(R.string.fragment_my_events));
         rv.setAdapter(adapter);
 
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (events.size() == 0) {
+                    try {
+                        Thread.sleep(70);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        rv.setAdapter(adapter);
+                    }
+                });
+            }
+        }).start();
         //call refreshing function
         refreshing(view);
         return view;

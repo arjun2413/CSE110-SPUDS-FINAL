@@ -3,6 +3,7 @@ package com.spuds.eventapp.Profile;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -147,6 +148,8 @@ public class ProfileFragment extends Fragment {
 
             Log.v("ProfileFragment", "own profile!");
 
+            buttonSubscribedOrEdit.setText("Edit Profile");
+
             // TODO (V): Uncomment when edit_profile picture is inserted in drawable
             //buttonSubscribedOrEdit.setImageResource(R.drawable.edit_profile);
             buttonSubscribedOrEdit.setOnClickListener(new View.OnClickListener() {
@@ -187,10 +190,10 @@ public class ProfileFragment extends Fragment {
 
                     UserFirebase userFirebase = new UserFirebase();
                     userFirebase.subscribe(user.getUserId(), user.isSubscribed());
-                    /*if (user.subscribed)
-                        buttonSubscribedOrEdit.setImageResource(R.drawable.button_subscribed);
+                    if (user.isSubscribed())
+                        buttonSubscribedOrEdit.setBackgroundColor(Color.parseColor("#5c8a8a"));
                     else
-                        buttonSubscribedOrEdit.setImageResource(R.drawable.button_not_subscribed);*/
+                        buttonSubscribedOrEdit.setBackgroundColor(Color.parseColor("#ffffff"));
 
                 }
             });
@@ -216,11 +219,11 @@ public class ProfileFragment extends Fragment {
         categories.add("Concert");
         eventsHosting = new ArrayList<>();
         eventsHosting.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04/20/2016|16:20", 1054,
-                "yj.jpg", categories, "UCSD"));
+                "", categories, "UCSD"));
         eventsHosting.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04/20/2016|16:20", 51,
-                "foosh.jpg", categories, "Foosh Improv Comedy Club"));
+                "", categories, "Foosh Improv Comedy Club"));
         eventsHosting.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04/20/2016|16:20", 51,
-                "foosh.jpg", categories, "Foosh Improv Comedy Club"));
+                "", categories, "Foosh Improv Comedy Club"));
         eventsHosting.add(null);
 
         EventsFeedRVAdapter eventsFeedRVAdapterHosting = new EventsFeedRVAdapter(eventsHosting, this, getString(R.string.fragment_profile), getString(R.string.tab_hosting), user.getUserId());
@@ -237,11 +240,11 @@ public class ProfileFragment extends Fragment {
 
 
         eventsGoing.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04/20/2016|16:20", 1054,
-                "yj.jpg", categories, "UCSD"));
+                "", categories, "UCSD"));
         eventsGoing.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04/20/2016|16:20", 51,
-                "foosh.jpg", categories, "Foosh Improv Comedy Club"));
+                "", categories, "Foosh Improv Comedy Club"));
         eventsGoing.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04/20/2016|16:20", 51,
-                "foosh.jpg", categories, "Foosh Improv Comedy Club"));
+                "", categories, "Foosh Improv Comedy Club"));
         eventsGoing.add(null);
 
         EventsFeedRVAdapter eventsFeedRVAdapterGoing = new EventsFeedRVAdapter(eventsGoing, this, getString(R.string.fragment_profile), getString(R.string.tab_going), user.getUserId());
