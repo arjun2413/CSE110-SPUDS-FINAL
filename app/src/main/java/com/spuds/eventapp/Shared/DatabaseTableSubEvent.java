@@ -2,27 +2,19 @@ package com.spuds.eventapp.Shared;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
-import android.text.TextUtils;
 import android.util.Log;
 
-import com.spuds.eventapp.R;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
  * Created by youngjinyun on 5/20/16.
  */
-public class DatabaseTable {
+public class DatabaseTableSubEvent {
 
     public static boolean threadDone = false;
 
@@ -38,7 +30,7 @@ public class DatabaseTable {
 
     private final DatabaseOpenHelper mDatabaseOpenHelper;
 
-    public DatabaseTable(Context context,ArrayList<Event> events) {
+    public DatabaseTableSubEvent(Context context, ArrayList<SubEvent> events) {
         mDatabaseOpenHelper = new DatabaseOpenHelper(context,events);
         Log.d("Create SQLite Table","DatabaseTable ctor called");
     }
@@ -49,7 +41,7 @@ public class DatabaseTable {
 
         private final Context mHelperContext;
         private SQLiteDatabase mDatabase;
-        private ArrayList<Event> mHelperEventsList;
+        private ArrayList<SubEvent> mHelperEventsList;
 
         private static final String FTS_TABLE_CREATE =
                 "CREATE VIRTUAL TABLE " + FTS_VIRTUAL_TABLE +
@@ -57,14 +49,13 @@ public class DatabaseTable {
                         COL_EVENT_NAME + ", "+
                         COL_EVENT_ID+")";
 
-        DatabaseOpenHelper(Context context,ArrayList<Event> events) {
+        DatabaseOpenHelper(Context context,ArrayList<SubEvent> events) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
             mHelperContext = context;
             mHelperEventsList = events;
             mHelperContext.deleteDatabase(DATABASE_NAME);
             mDatabase = getWritableDatabase();
             Log.d("Create SQLite Table","DatabaseOpenHelper ctor called");
-            System.err.println("THIS CODE HAS BEEN COMPILED @@@@@@@@@@@@@@@@@@@@");
         }
 
         @Override
@@ -94,7 +85,7 @@ public class DatabaseTable {
         private void loadDictionary() {
             System.err.println("Running DbOH's loadDictionary");
             Log.d("Create SQLite Table","loadDictionary called");
-            final ArrayList<Event> ev = mHelperEventsList;
+            //final ArrayList<SubEvent> ev = mHelperEventsList;
             //TODO: Populate using EventsFirebase.java iterator
             //loop to add shit to arraylist
 
@@ -102,7 +93,7 @@ public class DatabaseTable {
             new Thread(new Runnable() {
                 public void run() {
                     try {
-                        loadWords(ev);
+                        loadWords(mHelperEventsList);
 
                         String db = getTableAsString(mDatabase,FTS_VIRTUAL_TABLE);
                         System.err.println(db);
@@ -117,11 +108,11 @@ public class DatabaseTable {
 
         }
 
-        private void loadWords(ArrayList<Event> ev) throws IOException {
+        private void loadWords(ArrayList<SubEvent> ev) throws IOException {
             //final Resources resources = mHelperContext.getResources();
 
             //Here I will call addWord with correct shit. I need to take in an arraylist of events here.
-            for(Event e:ev){
+            for(SubEvent e:ev){
                 addWord(e.getEventName(),
                         e.getEventId());
             }
@@ -193,33 +184,3 @@ public class DatabaseTable {
         return cursor;
     }
 }
-
-
-/****
- Note 1: Option to read in using .txt file
-
- //Option to use Firebase's InputStream import
- //no need
- //InputStream inputStream = resources.openRawResource(R.raw.definitions);
- //no need
- //BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-
- //read user input line -> can convert to parsing event
- //String based parsing
- /*
- try {
-
-
- String line;
- while ((line = reader.readLine()) != null) {
- String[] strings = TextUtils.split(line, "-");
- if (strings.length < 2) continue;
- long id = addWord(strings[0].trim(), strings[1].trim());
- if (id < 0) {
- Log.e(TAG, "unable to add word: " + strings[0].trim());
- }
- }
- } finally {
- reader.close();
- }
- ***/
