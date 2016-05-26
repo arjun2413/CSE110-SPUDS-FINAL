@@ -63,7 +63,8 @@ public class EventDetailsFragment extends Fragment {
             // TODO: Fetch event using eventId
             EventsFirebase ef = new EventsFirebase();
             ef.getEventDetails(eventId);
-        }
+        } else
+            eventId = event.getEventId();
         eventDetailsFragment = this;
     }
     @Override
@@ -315,29 +316,37 @@ public class EventDetailsFragment extends Fragment {
 
                 } else {
                  //TODO (M): PUSH Going/Not Going
-
+                    Log.d("check", "Checkpls");
                     final EventsFirebase eventsFirebase = new EventsFirebase();
                 // TODO (V): going/not going buttons
                     eventsFirebase.isGoing(eventId);
+                    Log.d("where", "what");
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
+                            Log.d("idIsGoing2",String.valueOf(eventsFirebase.idIsGoing));
                             while (eventsFirebase.idIsGoing == 0) {
+                                Log.d("areHere", "areHere");
                                 try {
                                     Thread.sleep(75);
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
-                                if (eventsFirebase.idIsGoing == 1)
+                                Log.d("idIsGoing",String.valueOf(eventsFirebase.idIsGoing));
+                                if (eventsFirebase.idIsGoing == 1) {
                                     going = false;
+                                    Log.d("please", "pls");
+                                }
                                 else
-                                    going = true;
+                                     going = true;
                                 if (going) {
+                                    Log.d("word", "qwe");
                                     //buttonGoingOrEdit.setImageResource(R.drawable.button_not_going);
                                     eventsFirebase.notGoingToAnEvent(eventId);
                                     eventsFirebase.deleteEventRegistration(eventId);
                                     going = false;
                                 } else {
+                                    Log.d("poop", "poop");
                                     //buttonGoingOrEdit.setImageResource(R.drawable.button_going);
                                     Bundle extras = getArguments();
 
@@ -348,7 +357,7 @@ public class EventDetailsFragment extends Fragment {
                                 }
                             }
                         }
-                    });
+                    }).start();
 
                 }
             }

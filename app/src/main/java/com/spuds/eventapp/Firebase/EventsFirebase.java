@@ -311,8 +311,6 @@ public class EventsFirebase {
                 newEvent.setCategories(a);
                 a = new ArrayList<String>();
 
-                newEvent.setCategories(categories);
-
 
                 if(tabFilter.equals(tabHot) || tabFilter.equals(tabNew)) {
                     eventsList.add(0, newEvent);
@@ -509,7 +507,7 @@ public class EventsFirebase {
                             Log.v("Userfirebase asdf", " entry value key" + entry2.getKey());
                             Log.v("Userfirebase asdf", " entry value value" + entry2.getValue());
 
-                            if (entry2.getKey().equals("following_id")) {
+                            if (entry2.getKey().equals("event_id")) {
                                 if (entry2.getValue().equals(eventId)) {
                                     first = true;
                                 }
