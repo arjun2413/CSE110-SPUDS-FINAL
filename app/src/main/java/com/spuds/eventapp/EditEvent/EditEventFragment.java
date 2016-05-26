@@ -2,13 +2,18 @@ package com.spuds.eventapp.EditEvent;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +69,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         ((MainActivity) getActivity()).picture = null;
 
         Bundle extras = getArguments();
-        event = (Event) extras.get(getString(R.string.event_details));
+        event = (Event) extras.getSerializable(getString(R.string.event_details));
     }
 
     @Override
@@ -301,6 +306,20 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
             }
         });
 
+        if (event.getPicture() != null || event.getPicture() != "") {
+            String imageFile = event.getPicture();
+
+
+            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+            Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+
+            RoundedBitmapDrawable circularBitmapDrawable =
+                    RoundedBitmapDrawableFactory.create(getResources(), src);
+            circularBitmapDrawable.setCircular(true);
+            circularBitmapDrawable.setAntiAlias(true);
+            eventImage.setImageDrawable(circularBitmapDrawable);
+        }
+
         eventImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -312,7 +331,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                 //dialogFragment.show(getFragmentManager(), "Add a Picture");
 
 
-                ((MainActivity) getActivity()).pickImageWithoutCrop();
+                ((MainActivity) getActivity()).pickImage(false);
 
                 new Thread(new Runnable() {
 

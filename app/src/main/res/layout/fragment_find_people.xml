@@ -25,7 +25,8 @@
             android:layout_marginEnd="16dp"
             android:layout_alignParentEnd="false"
             android:layout_alignParentRight="false"
-            android:background="#bfbfbf"/>
+            android:background="#bfbfbf"
+            android:layout_marginLeft="10dp" />
 
         <TextView
             android:layout_width="190dp"
@@ -41,7 +42,7 @@
 
 
         <ImageView
-            android:layout_width="80dp"
+            android:layout_width="100dp"
             android:layout_height="20dp"
             android:id="@+id/user_subscribe"
             android:background="@drawable/roundedbutton"
@@ -49,7 +50,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:backgroundTint="#5c8a8a"
-            android:layout_alignTop="@+id/user_name" />
+            android:layout_alignTop="@+id/user_name"
+            android:layout_marginRight="10dp" />
 
     </RelativeLayout>
 

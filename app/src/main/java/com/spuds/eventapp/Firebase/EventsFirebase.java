@@ -265,7 +265,6 @@ public class EventsFirebase {
                             break;
                         case "event_name":
                             newEvent.setEventName(String.valueOf(child.getValue()));
-                            System.out.println(newEvent.getEventName());
                             break;
                         case "location":
                             newEvent.setLocation(String.valueOf(child.getValue()));
@@ -273,8 +272,8 @@ public class EventsFirebase {
                         case "number_going":
                             newEvent.setAttendees(Integer.parseInt(String.valueOf(child.getValue())));
                             break;
-                        case "picture_file_name":
-                            newEvent.setPicFileName(String.valueOf(child.getValue()));
+                        case "picture":
+                            newEvent.setPicture(String.valueOf(child.getValue()));
                             break;
                         case "host_id":
                             newEvent.setHostId(String.valueOf(child.getValue()));
@@ -305,12 +304,10 @@ public class EventsFirebase {
                             break;
                     }
 
-                    //Log.d("eventsfbasdf", String.valueOf(snapshot.getKey()));
+
+                    Log.d("eventsfbasdf", String.valueOf(snapshot.getKey()));
                     newEvent.setEventId(snapshot.getKey());
                 }
-                if (newEvent.getEventName() == null)
-                    System.out.println("ITS NULL");
-                //Log.v("da",newEvent.getEventName());
 
                 /*if(a != null) {
                     for (int i = 0; i < a.size(); i++) {
@@ -321,13 +318,25 @@ public class EventsFirebase {
                 a = new ArrayList<String>();
 
 
+                // used to get the current time
+                String currentDate;
+                SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd | HH:mm");
+                Date dateobj = new Date();
+                currentDate = df.format(dateobj);
 
 
                 if(tabFilter.equals(tabHot) || tabFilter.equals(tabNew)) {
-                    eventsList.add(0, newEvent);
+                    if (currentDate.compareTo(newEvent.getDate()) < 0){
+                        eventsList.add(0, newEvent);
+                    }
                 }
                 else {
-                    eventsList.add(newEvent);
+
+                    //current date and time is "earlier" than the event. Aka the event has not happened yet.
+                    if (currentDate.compareTo(newEvent.getDate()) < 0){
+                        eventsList.add(newEvent);
+                    }
+
                 }
 
                 if (adapter != null) {
@@ -373,7 +382,7 @@ public class EventsFirebase {
                         newEvent.setEventName(String.valueOf(child.getValue()));
                         newEvent.setLocation(String.valueOf(child.getValue()));
                         newEvent.setAttendees(Integer.parseInt((String) child.getValue()));
-                        newEvent.setPicFileName(String.valueOf(child.getValue()));
+                        newEvent.setPicture(String.valueOf(child.getValue()));
                         newEvent.setHostId(String.valueOf(child.getValue()));
                         newEvent.setCategories(a);
                         item = newEvent;

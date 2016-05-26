@@ -174,7 +174,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                         }
                         break;
                     default:
-                        message = "Please Wait...";
+                        message = "Loading...";
                         if (errorMessage != null) {
                             errorMessage.setText(message);
                         }

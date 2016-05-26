@@ -25,16 +25,12 @@ public class FindPeopleRVAdapter extends RecyclerView.Adapter<FindPeopleRVAdapte
 	ArrayList<User> people;
     Fragment fragment;
 
-
-
-
     public static class FindPeopleViewHolder extends RecyclerView.ViewHolder {
 		
 		CardView card;
         ImageView photo;
         TextView inviteeName;
         ImageView subscribeButton;
-        
 
         public FindPeopleViewHolder(View view) {
             super(view);

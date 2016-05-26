@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -144,39 +143,6 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         eventViewHolder.eventLocation.setText(events.get(i).getLocation());
         eventViewHolder.eventAttendees.setText(String.valueOf(events.get(i).getAttendees()));
         eventViewHolder.eventHost.setText(events.get(i).getHostName());
-        eventViewHolder.eventHost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Log.v("eventsfeedrvadapter", "eventhostclicked");
-
-                final UserFirebase userFirebase = new UserFirebase();
-                Log.v("eventsfeedrvadapter", "hostid" + events.get(index).getHostId());
-
-                userFirebase.getAnotherUser(events.get(index).getHostId());
-
-                new Thread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        while (!userFirebase.threadCheckAnotherUser) {
-                            try {
-                                Thread.sleep(77);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                        Log.v("eventsfeedrvadapter", "returned from firebase");
-
-
-                        startProfileFragment(userFirebase);
-
-                    }
-                }).start();
-            }
-
-        });
 
         String d = "";
 

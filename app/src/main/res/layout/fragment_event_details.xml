@@ -37,7 +37,7 @@
                 <ImageButton
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:id="@+id/imageButton"
+                    android:id="@+id/button_edit_event"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
@@ -45,6 +45,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="8dp"
                     android:backgroundTint="#bfbfbf"
+                    android:visibility="invisible"
                     android:src="@drawable/editevent" />
 
             </RelativeLayout>
@@ -179,7 +180,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text=" going"
+                android:text=" attendees"
                 android:textSize="15sp"
                 android:id="@+id/going_text"
                 android:layout_alignParentTop="true"

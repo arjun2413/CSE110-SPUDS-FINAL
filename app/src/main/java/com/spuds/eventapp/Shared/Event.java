@@ -14,14 +14,14 @@ public class Event implements Serializable {
     private String location;
     private String date;
     private int attendees;
-    private String picFileName;
+    private String picture;
     private ArrayList<String> categories;
     private String hostName;
 
     public Event() {}
 
      public Event(String eventId, String hostId, String eventName, String description,
-                  String location, String date, int attendees, String picFileName,
+                  String location, String date, int attendees, String picture,
                   ArrayList<String>  categories, String hostName) {
          this.setEventId(eventId);
          this.setHostId(hostId);
@@ -30,7 +30,7 @@ public class Event implements Serializable {
          this.setLocation(location);
          this.setDate(date);
          this.setAttendees(attendees);
-         this.setPicFileName(picFileName);
+         this.setPicture(picture);
          this.setCategories(categories);
          this.setHostName(hostName);
     }
@@ -91,12 +91,12 @@ public class Event implements Serializable {
         this.attendees = attendees;
     }
 
-    public String getPicFileName() {
-        return picFileName;
+    public String getPicture() {
+        return picture;
     }
 
-    public void setPicFileName(String picFileName) {
-        this.picFileName = picFileName;
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public ArrayList<String> getCategories() {

@@ -195,7 +195,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="Description"
+                android:text="Description *"
                 android:id="@+id/description"
                 android:textColor="#ffffff" />
 
