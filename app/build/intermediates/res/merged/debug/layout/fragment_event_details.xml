@@ -23,7 +23,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:id="@+id/event_pic"
-                    android:background="@drawable/rave" />
+                    android:background="@drawable/rave"
+                    android:scaleType="fitXY" />
 
                 <ImageView
                     android:layout_width="fill_parent"
@@ -33,6 +34,20 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
+
+                <ImageButton
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:id="@+id/button_edit_event"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/roundedbutton"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:backgroundTint="#bfbfbf"
+                    android:visibility="invisible"
+                    android:src="@drawable/editevent" />
 
             </RelativeLayout>
 
@@ -44,7 +59,7 @@
             android:id="@+id/event_name"
             android:layout_marginTop="50dp"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:text="SUN GOD FESTIVAL"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
@@ -70,6 +85,7 @@
                 android:text="May 1, 2016"
                 android:layout_below="@+id/event_name"
                 android:layout_centerHorizontal="true"
+                android:textSize="15sp"
                 android:textColor="#ffffff"
                 android:shadowColor="#7F000000"
                 android:shadowDx="10"
@@ -121,6 +137,7 @@
                 android:text="Hosted by "
                 android:layout_below="@+id/date_layout"
                 android:layout_centerHorizontal="true"
+                android:textSize="15sp"
                 android:textColor="#ffffff"
                 android:shadowColor="#7F000000"
                 android:shadowDx="10"
@@ -134,7 +151,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="A.S. Concert and Events"
                 android:id="@+id/event_host"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:textSize="15sp"/>
         </LinearLayout>
 
 
@@ -151,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/event_attendees"
                 android:text="1,049"
-
+                android:textSize="15sp"
                 android:layout_centerHorizontal="true"
                 android:textColor="#ffffff"
                 android:shadowColor="#7F000000"
@@ -163,7 +181,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text=" going"
+                android:text=" attendees"
+                android:textSize="15sp"
                 android:id="@+id/going_text"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
@@ -175,14 +194,17 @@
                 android:shadowRadius="10"/>
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="100dp"
+        <Button
+            android:layout_width="80dp"
             android:layout_height="25dp"
             android:id="@+id/button_going"
+            android:text="GOING"
+            android:textColor="#ffffff"
             android:layout_below="@+id/attendees_layout"
             android:background="@drawable/roundedbutton"
             android:layout_centerHorizontal="true"
-            android:backgroundTint="#5c8a8a" />
+            android:backgroundTint="#a6a6a6"
+            android:layout_marginTop="5dp"/>
 
 
         <LinearLayout
@@ -291,7 +313,7 @@
                 android:id="@+id/button_invite_people"
                 android:background="@drawable/roundedcorner"
                 android:layout_below="@+id/event_categories"
-                android:backgroundTint="#333333"
+                android:backgroundTint="#4d4d4d"
                 android:textColor="#ffffff" />
             <View
                 android:layout_width="match_parent"

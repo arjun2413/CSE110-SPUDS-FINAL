@@ -1,17 +1,20 @@
 package com.spuds.eventapp.Shared;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,6 +43,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         TextView seeMore;
         TextView monthDate, dayDate;
         TextView eventTime;
+        Button buttonGoing;
 
 
         EventViewHolder(View itemView) {
@@ -55,6 +59,8 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             monthDate = (TextView) itemView.findViewById(R.id.date_month);
             dayDate = (TextView) itemView.findViewById(R.id.date_day);
             eventTime = (TextView) itemView.findViewById(R.id.event_time);
+            buttonGoing = (Button) itemView.findViewById(R.id.event_going);
+
         }
 
     }
@@ -85,6 +91,12 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_event_feed, viewGroup, false);
         //Typeface raleway_light = Typeface.createFromAsset(v.getContext().getAssets(),  "raleway-light.ttf");
         overrideFonts(v.getContext(),v);
+
+      /*  Typeface raleway_medium = Typeface.createFromAsset(getAssets(),  "Raleway-Medium.ttf");
+
+        //title font
+        TextView upload = (TextView) v.findViewById(R.id.upload);
+        upload.setTypeface(raleway_medium);*/
 
         EventViewHolder evh = new EventViewHolder(v);
         return evh;
@@ -133,44 +145,30 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             return;
         }
 
-        /* Picasso for eventPic*/
+
+        // TODO (M): going
+        boolean going = false;
+        /*if (going)
+            eventViewHolder.buttonGoing.setBackgroundColor(Color.parseColor("#5c8a8a"));
+        else
+            eventViewHolder.buttonGoing.setBackgroundColor(Color.parseColor("#ffffff"));*/
+
+        if (events.get(i).getPicture() != null && events.get(i).getPicture() != "") {
+            String imageFile = events.get(i).getPicture();
+
+
+            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+            Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+
+
+            eventViewHolder.eventPic.setImageBitmap(src);
+        } else {
+            // TODO (V): default picture
+        }
         eventViewHolder.eventName.setText(events.get(i).getEventName());
         eventViewHolder.eventLocation.setText(events.get(i).getLocation());
         eventViewHolder.eventAttendees.setText(String.valueOf(events.get(i).getAttendees()));
         eventViewHolder.eventHost.setText(events.get(i).getHostName());
-        eventViewHolder.eventHost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Log.v("eventsfeedrvadapter", "eventhostclicked");
-
-                final UserFirebase userFirebase = new UserFirebase();
-                Log.v("eventsfeedrvadapter", "hostid" + events.get(index).getHostId());
-
-                userFirebase.getAnotherUser(events.get(index).getHostId());
-
-                new Thread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        while (!userFirebase.threadCheckAnotherUser) {
-                            try {
-                                Thread.sleep(77);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                        Log.v("eventsfeedrvadapter", "returned from firebase");
-
-
-                        startProfileFragment(userFirebase);
-
-                    }
-                }).start();
-            }
-
-        });
 
         String d = "";
 
@@ -242,7 +240,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
         // Categories
         String categories = "";
-        if(events.get(i).getCategories() != null || events.get(i).getCategories().size() != 0) {
+        if(events.get(i).getCategories() != null && events.get(i).getCategories().size() != 0) {
             for (int categoryIndex = 0; categoryIndex < events.get(i).getCategories().size() - 1; categoryIndex++) {
                 categories += events.get(i).getCategories().get(categoryIndex) + ", ";
             }

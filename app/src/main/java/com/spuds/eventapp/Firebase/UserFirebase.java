@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
@@ -17,7 +18,6 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
-import com.firebase.client.utilities.Base64;
 import com.spuds.eventapp.Shared.User;
 
 import java.io.ByteArrayOutputStream;
@@ -115,6 +115,7 @@ public class UserFirebase {
 
     public static void updateUser(User user) {
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/users/");
+
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("provider", ref.getAuth().getProvider());
         map.put("name", user.getName());
@@ -191,11 +192,9 @@ public class UserFirebase {
 
     }
 
-
-
-
-
     public static String convert(Context context, Uri uri) {
+        if (uri == null)
+            return "";
         Bitmap bitmap = null;
         int bitmapWidth, bitmapHeight;
 
@@ -217,8 +216,8 @@ public class UserFirebase {
 
         DisplayMetrics displaymetrics = new DisplayMetrics();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int height = displaymetrics.heightPixels;
-        int width = displaymetrics.widthPixels;
+        int height = displaymetrics.heightPixels/2;
+        int width = displaymetrics.widthPixels/2;
 
         // Get the correct orientation uploaded
         String[] orientationColumn = {MediaStore.Images.Media.ORIENTATION};
@@ -258,35 +257,45 @@ public class UserFirebase {
         // Correct bitmap to be uploaded
         bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
 
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+       /* ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 90, stream);
         byte[] byte_arr = stream.toByteArray();
-        return Base64.encodeBytes(byte_arr);
+        return Base64.encodeBytes(byte_arr);*/
+
+        ByteArrayOutputStream bYtE = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bYtE);
+        bitmap.recycle();
+        byte[] byteArray = bYtE.toByteArray();
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
 
         // TODO (M): Upload picture
     }
 
     String id = null;
+    public static boolean subscribeThreadCheck = false;
 
-    public void subscribe(final String otherUserid, boolean subscribe) {
+    public void subscribe(final String otherUserid, final boolean subscribe) {
         final String otherUid = otherUserid;
-        final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
 
         if (subscribe) {
+            final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
+
 
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("user_id", uId);
             map.put("following_id", otherUid);
 
             //Query queryRef = ref.orderByChild("email").equalTo(email);
-            ref.child(UserFirebase.uId).updateChildren(map);
+            ref.push().setValue(map);
 
             //update user table #subscribed
 
         } else {
+            final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
 
 
-            ref.addValueEventListener(new ValueEventListener() {
+
+            final ValueEventListener valueEventListener = new ValueEventListener() {
 
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
@@ -321,15 +330,39 @@ public class UserFirebase {
                         Log.v("userfirebase test", "id: " + id);
 
                         ref.child(id).removeValue();
+                        subscribeThreadCheck = true;
                     }
                 }
 
                 @Override
-                public void onCancelled(FirebaseError firebaseError) {
+                public void onCancelled (FirebaseError firebaseError){
 
                 }
 
-            });
+
+            };
+
+
+            ref.addValueEventListener(valueEventListener);
+
+
+            new Thread(new Runnable() {
+
+                @Override
+                public void run() {
+                    while (!subscribeThreadCheck) {
+                        try {
+                            Thread.sleep(70);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    ref.removeEventListener(valueEventListener);
+                    subscribeThreadCheck = false;
+
+                }
+            }).start();
 
 
         }
@@ -352,7 +385,6 @@ public class UserFirebase {
                     map.put("number_hosting", String.valueOf(Integer.parseInt((String) snapshot.getValue()) + 1));
                     refUser.updateChildren(map);
                 }
-
 
             }
 

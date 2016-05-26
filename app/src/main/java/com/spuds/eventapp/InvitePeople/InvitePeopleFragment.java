@@ -1,5 +1,7 @@
 package com.spuds.eventapp.InvitePeople;
 
+import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.User;
@@ -39,6 +42,8 @@ public class InvitePeopleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recycler, container, false);
+
+
 
         // TODO (M): remember when loading do not override the followers arraylist, add to it
 

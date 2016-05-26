@@ -1,6 +1,7 @@
 package com.spuds.eventapp.CreateComment;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.spuds.eventapp.R;
 
@@ -38,6 +40,15 @@ public class CreateCommentFragment extends Fragment {
 
         //initialize parts of the fragment
         final View view = inflater.inflate(R.layout.fragment_create_comment, container, false);
+
+        overrideFonts(view.getContext(),view);
+
+        Typeface raleway_medium = Typeface.createFromAsset(getActivity().getAssets(),  "Raleway-Medium.ttf");
+
+        //title font
+        Button submitbutton = (Button) view.findViewById(R.id.comment_submit);
+        submitbutton.setTypeface(raleway_medium);
+
         comment = (EditText) view.findViewById(R.id.comment_input);
         submit = (Button) view.findViewById(R.id.comment_submit);
 
@@ -84,5 +95,21 @@ public class CreateCommentFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "raleway-regular.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
     }
 }

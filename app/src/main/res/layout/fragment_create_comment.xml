@@ -23,7 +23,9 @@
             android:layout_height="200dp"
             android:id="@+id/comment_input"
             android:background="@drawable/roundedbox"
-
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:gravity="top|left"
             android:backgroundTint="#ffffff" />
 
         <Button
@@ -36,7 +38,7 @@
             android:textAllCaps="false"
             android:background="@drawable/roundedbutton"
             android:textColor="#ffffff"
-            android:backgroundTint="#333333"
+            android:backgroundTint="#3a928d"
              />
     </LinearLayout>
 </RelativeLayout>

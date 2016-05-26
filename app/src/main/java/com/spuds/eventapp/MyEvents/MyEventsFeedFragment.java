@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
@@ -22,7 +24,7 @@ import java.util.List;
 
 public class MyEventsFeedFragment extends Fragment {
 
-    private List<Event> events;
+    private ArrayList<Event> events;
     public EventsFeedRVAdapter adapter;
     String myEventsTab;
 
@@ -38,14 +40,11 @@ public class MyEventsFeedFragment extends Fragment {
 
         // TODO (M): Get arraylist of events based on my events filter [going or hosting]
         events = new ArrayList<>();
-        ArrayList<String> categories = new ArrayList<>();
-        categories.add("Social");
-        categories.add("Concert");
 
-        events.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04/20/2016|16:20", 1054,
-                "yj.jpg", categories, "UCSD"));
-        events.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04/20/2016|16:20", 51,
-                "foosh.jpg", categories, "Foosh Improv Comedy Club"));
+        // TODO (M): Get arraylist of events based on tab type [new, hot, now]
+        // Fake data
+        EventsFirebase ef = new EventsFirebase(events, 0, myEventsTab);
+        ef.createEL();
 
     }
 
@@ -53,7 +52,7 @@ public class MyEventsFeedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recycler, container, false);
-        RecyclerView rv=(RecyclerView) view.findViewById(R.id.rv);
+        final RecyclerView rv=(RecyclerView) view.findViewById(R.id.rv);
 
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
@@ -62,6 +61,25 @@ public class MyEventsFeedFragment extends Fragment {
         adapter = new EventsFeedRVAdapter(events, this, getString(R.string.fragment_my_events));
         rv.setAdapter(adapter);
 
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (events.size() == 0) {
+                    try {
+                        Thread.sleep(70);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        rv.setAdapter(adapter);
+                    }
+                });
+            }
+        }).start();
         //call refreshing function
         refreshing(view);
         return view;

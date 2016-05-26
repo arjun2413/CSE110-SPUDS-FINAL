@@ -29,12 +29,12 @@ public class MyEventsViewPagerAdapter extends FragmentStatePagerAdapter {
             // Going
             case 0:
                 bundle.putString(myEventsFeedTabsFragment.getString(R.string.tab_tag),
-                        myEventsFeedTabsFragment.getString(R.string.tab_new));
+                        myEventsFeedTabsFragment.getString(R.string.tab_going));
                 break;
             // Hot
             case 1:
                 bundle.putString(myEventsFeedTabsFragment.getString(R.string.tab_tag),
-                        myEventsFeedTabsFragment.getString(R.string.tab_hot));
+                        myEventsFeedTabsFragment.getString(R.string.tab_hosting));
                 break;
         }
 

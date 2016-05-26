@@ -23,9 +23,16 @@ import cn.refactor.library.SmoothCheckBox;
  * Created by David on 5/17/16.
  */
 public class EditEventRVAdapter extends RecyclerView.Adapter<EditEventRVAdapter.EventViewHolder> {
+    public ArrayList<String> categoryList = new ArrayList<String>(3);
 
     public Fragment currentFragment;
     List<CategoryTextButton> categories;
+    int counter = 0;
+
+    public EditEventRVAdapter() {
+
+    }
+
     ArrayList<String> existingCateg;
     int counter = existingCateg.size();
     public static class EventViewHolder extends RecyclerView.ViewHolder {
@@ -34,7 +41,6 @@ public class EditEventRVAdapter extends RecyclerView.Adapter<EditEventRVAdapter.
         SmoothCheckBox scb;
 
         EventViewHolder(View itemView) {
-
             super(itemView);
             card = (CardView)itemView.findViewById(R.id.cv);
             text = (TextView)itemView.findViewById(R.id.category_text);
@@ -58,13 +64,14 @@ public class EditEventRVAdapter extends RecyclerView.Adapter<EditEventRVAdapter.
     @Override
     public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_create_event_category, viewGroup, false);
+
         overrideFonts(v.getContext(),v);
         final EventViewHolder evh = new EventViewHolder(v);
         return evh;
     }
 
     @Override
-    public void onBindViewHolder(final EventViewHolder eventViewHolder, int i) {
+    public void onBindViewHolder(EventViewHolder eventViewHolder, int i) {
         final CategoryTextButton currentSub = categories.get(i);
         eventViewHolder.text.setText(currentSub.text);
         final int j = i;
@@ -154,6 +161,11 @@ public class EditEventRVAdapter extends RecyclerView.Adapter<EditEventRVAdapter.
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
+    }
+
+    public ArrayList<String> getList(){
+        Log.d("SmoothCheckBox3", String.valueOf(categoryList));
+        return categoryList;
     }
 
     private void overrideFonts(final Context context, final View v) {
