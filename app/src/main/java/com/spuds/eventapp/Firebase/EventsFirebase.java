@@ -1,6 +1,5 @@
 package com.spuds.eventapp.Firebase;
 
-import android.app.DownloadManager;
 import android.util.Log;
 
 import com.firebase.client.ChildEventListener;
@@ -563,7 +562,9 @@ public class EventsFirebase {
                     attendees++;
                     Log.d("Here", "here");
                     Log.d("how many1", String.valueOf(attendees));
-                    myFirebaseRef.child(eventId).child("number_going").setValue(String.valueOf(attendees));
+                    myFirebaseRef.child(eventId).child("number_going").setValue(attendees);
+
+
                     Map<String, String> map = new HashMap<String, String>();
                     map.put("user_id", UserFirebase.uId);
                     map.put("event_id", eventId);
@@ -610,7 +611,7 @@ public class EventsFirebase {
                     attendees--;
                     Log.d("Here", "here");
                     Log.d("how many1", String.valueOf(attendees));
-                    myFirebaseRef.child(eventId).child("number_going").setValue(String.valueOf(attendees));
+                    myFirebaseRef.child(eventId).child("number_going").setValue(attendees);
 
                 }
 

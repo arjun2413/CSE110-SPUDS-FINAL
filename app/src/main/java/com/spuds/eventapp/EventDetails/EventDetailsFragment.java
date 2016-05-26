@@ -58,6 +58,7 @@ public class EventDetailsFragment extends Fragment {
     CommentsRVAdapter adapter;
     List<Comment> comments;
     boolean ownEvent;
+    EventsFirebase eventsFirebase;
 
 
     public EventDetailsFragment() {
@@ -66,6 +67,7 @@ public class EventDetailsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Bundle extras = getArguments();
         event = (Event) extras.get(getString(R.string.event_details));
         if (event == null) {
@@ -75,6 +77,11 @@ public class EventDetailsFragment extends Fragment {
             ef.getEventDetails(eventId);
         } else
             eventId = event.getEventId();
+
+         eventsFirebase = new EventsFirebase();
+        //eventsFirebase.goingToAnEvent(eventId);
+        eventsFirebase.isGoing(eventId);
+
         eventDetailsFragment = this;
 
         if (event.getHostId().equals(UserFirebase.uId))
@@ -333,9 +340,7 @@ public class EventDetailsFragment extends Fragment {
             buttonGoingOrEdit.setBackgroundColor(Color.parseColor("#ffffff"));*/
 
         Log.d("check", "Checkpls");
-        final EventsFirebase eventsFirebase = new EventsFirebase();
 
-        eventsFirebase.isGoing(eventId);
 
         new Thread(new Runnable() {
             @Override
@@ -350,42 +355,42 @@ public class EventDetailsFragment extends Fragment {
                     }
                     Log.d("idIsGoing", String.valueOf(eventsFirebase.idIsGoing));
 
-
-                    if (eventsFirebase.idIsGoing == 1) {
-                        going = false;
-                        Log.d("please", "pls");
-                    } else
-                        going = true;
-
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            buttonGoingOrEdit.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Log.d("Here1", "herepls");
-
-
-                                    if (going) {
-                                        Log.d("edgoing", " true");
-                                        //buttonGoingOrEdit.setImageResource(R.drawable.button_not_going);
-                                        eventsFirebase.notGoingToAnEvent(eventId);
-                                        eventsFirebase.deleteEventRegistration(eventId);
-
-                                        going = false;
-                                    } else {
-                                        Log.d("edgoing", " false");
-                                        //buttonGoingOrEdit.setImageResource(R.drawable.button_going);
-
-                                        eventsFirebase.goingToAnEvent(eventId);
-                                        going = true;
-                                    }
-
-                                }
-                            });
-                        }
-                    });
                 }
+
+                if (eventsFirebase.idIsGoing == 1) {
+                    going = false;
+                    Log.d("please", "pls");
+                } else
+                    going = true;
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        buttonGoingOrEdit.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Log.d("Here1", "herepls");
+
+
+                                if (going) {
+                                    Log.d("edgoing", " true");
+                                    //buttonGoingOrEdit.setImageResource(R.drawable.button_not_going);
+                                    eventsFirebase.notGoingToAnEvent(eventId);
+                                    eventsFirebase.deleteEventRegistration(eventId);
+
+                                    going = false;
+                                } else {
+                                    Log.d("edgoing", " false");
+                                    //buttonGoingOrEdit.setImageResource(R.drawable.button_going);
+
+                                    eventsFirebase.goingToAnEvent(eventId);
+                                    going = true;
+                                }
+
+                            }
+                        });
+                    }
+                });
             }
         }).start();
 
