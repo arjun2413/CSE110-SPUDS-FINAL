@@ -115,6 +115,7 @@ public class UserFirebase {
 
     public static void updateUser(User user) {
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/users/");
+
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("provider", ref.getAuth().getProvider());
         map.put("name", user.getName());

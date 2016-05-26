@@ -81,12 +81,17 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                 boolean addImage = false;
 
 
-                if (form.allFilled()) {
-                    eventsFirebase.createEvent(form, adapter);
-                    getActivity().getSupportFragmentManager().popBackStack();
+                if (!form.allFilled()) {
+                    //TODO: form not all filled error
+                    System.out.println("Fill out all the forms");
+                }
+                else if (!form.correctDate()) {
+                    //TODO: date incorrect format error
+                    System.out.println("Date format is wrong");
                 }
                 else {
-                    // TODO return error
+                    eventsFirebase.createEvent(form, adapter);
+                    getActivity().getSupportFragmentManager().popBackStack();
                 }
             }
         });
@@ -103,7 +108,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                 //dialogFragment.show(getFragmentManager(), "Add a Picture");
 
 
-                ((MainActivity) getActivity()).pickImageWithoutCrop();
+                ((MainActivity) getActivity()).pickImage(false);
 
                 new Thread(new Runnable() {
 

@@ -31,7 +31,7 @@ public class UploadPictureDialogFragment extends DialogFragment {
                                 ((MainActivity)getActivity()).useCamera();
                                 return;
                             case 1:
-                                ((MainActivity)getActivity()).pickImage();
+                                ((MainActivity)getActivity()).pickImage(true);
                                 return;
                         }
                     }
