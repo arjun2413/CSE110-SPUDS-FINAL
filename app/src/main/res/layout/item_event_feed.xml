@@ -159,7 +159,7 @@
         </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="55dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="12:00 PM"
@@ -182,7 +182,6 @@
             android:textColor="#ffffff"
             android:layout_alignParentTop="true"
             android:layout_alignLeft="@+id/event_time"
-            android:layout_alignStart="@+id/event_time"
             android:backgroundTint="#a6a6a6" />
 
     </RelativeLayout>
