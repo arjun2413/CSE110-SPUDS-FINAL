@@ -14,6 +14,7 @@ import com.spuds.eventapp.EditEvent.EditEventForm;
 import com.spuds.eventapp.EditEvent.EditEventRVAdapter;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
+import com.spuds.eventapp.Shared.SubEvent;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -733,6 +734,63 @@ public class EventsFirebase {
 
         UserFirebase userFirebase = new UserFirebase();
         userFirebase.updateNumberHosting();
+
+    }
+
+    public static boolean threadCheckSubEvent;
+
+    public void getSubEventList(final ArrayList<SubEvent> subEvents) {
+        threadCheckSubEvent = false;
+        final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
+        Query queryRef = myFirebaseRef.orderByKey();
+
+        queryRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot snapshot, String previousChild) {
+
+                SubEvent newSubEvent  = new SubEvent();
+                Log.v("asdfjkl;", snapshot.getKey());
+
+                newSubEvent.setEventId(snapshot.getKey());
+
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    //Log.d("lmao", String.valueOf(child));
+                    switch (child.getKey()) {
+                        case "event_name":
+                            newSubEvent.setEventName(String.valueOf(child.getValue()));
+                            break;
+                    }
+
+                }
+                subEvents.add(newSubEvent);
+
+                threadCheckSubEvent = true;
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+
+
 
     }
 

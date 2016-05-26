@@ -228,7 +228,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
         // Categories
         String categories = "";
-        if(events.get(i).getCategories() != null || events.get(i).getCategories().size() != 0) {
+        if(events.get(i).getCategories() != null && events.get(i).getCategories().size() != 0) {
             for (int categoryIndex = 0; categoryIndex < events.get(i).getCategories().size() - 1; categoryIndex++) {
                 categories += events.get(i).getCategories().get(categoryIndex) + ", ";
             }

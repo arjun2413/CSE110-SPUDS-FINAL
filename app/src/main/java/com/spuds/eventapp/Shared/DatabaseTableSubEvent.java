@@ -56,7 +56,6 @@ public class DatabaseTableSubEvent {
             mHelperContext.deleteDatabase(DATABASE_NAME);
             mDatabase = getWritableDatabase();
             Log.d("Create SQLite Table","DatabaseOpenHelper ctor called");
-            System.err.println("THIS CODE HAS BEEN COMPILED @@@@@@@@@@@@@@@@@@@@");
         }
 
         @Override
@@ -86,7 +85,7 @@ public class DatabaseTableSubEvent {
         private void loadDictionary() {
             System.err.println("Running DbOH's loadDictionary");
             Log.d("Create SQLite Table","loadDictionary called");
-            final ArrayList<SubEvent> ev = mHelperEventsList;
+            //final ArrayList<SubEvent> ev = mHelperEventsList;
             //TODO: Populate using EventsFirebase.java iterator
             //loop to add shit to arraylist
 
@@ -94,7 +93,7 @@ public class DatabaseTableSubEvent {
             new Thread(new Runnable() {
                 public void run() {
                     try {
-                        loadWords(ev);
+                        loadWords(mHelperEventsList);
 
                         String db = getTableAsString(mDatabase,FTS_VIRTUAL_TABLE);
                         System.err.println(db);
