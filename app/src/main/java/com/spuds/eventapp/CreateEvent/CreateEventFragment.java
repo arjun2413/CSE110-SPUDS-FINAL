@@ -5,8 +5,10 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.spuds.eventapp.EventDetails.EventDetailsFragment;
 import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
@@ -145,8 +148,41 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                 }
                 else {
                     System.out.println("Check is: " + check);
-                    eventsFirebase.createEvent(form, adapter);
-                    getActivity().getSupportFragmentManager().popBackStack();
+                    final String eventId = eventsFirebase.createEvent(form, adapter);
+                    EventsFirebase ef = new EventsFirebase();
+                    ef.getEventDetails(eventId);
+
+
+                    new Thread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            while (!EventsFirebase.detailsThreadCheck) {
+                                try {
+                                    Log.v("sleepingthread","fam");
+
+                                    Thread.sleep(70);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            EventDetailsFragment eventDetailsFragment = new EventDetailsFragment();
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable(getString(R.string.event_details), EventsFirebase.eventDetailsEvent);
+                            eventDetailsFragment.setArguments(bundle);
+
+                            getActivity().getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.fragment_frame_layout, eventDetailsFragment)
+                                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                    .addToBackStack(getString(R.string.event_details_fragment))
+                                    .commit();
+
+                        }
+                    }).start();
+
+
+
                 }
             }
         });

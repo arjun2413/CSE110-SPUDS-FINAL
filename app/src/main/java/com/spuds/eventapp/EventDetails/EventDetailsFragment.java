@@ -74,11 +74,11 @@ public class EventDetailsFragment extends Fragment {
             eventId = extras.getString(getString(R.string.event_id));
             // TODO: Fetch event using eventId
             EventsFirebase ef = new EventsFirebase();
-            ef.getEventDetails(eventId);
+            event = ef.getEventDetails(eventId);
         } else
             eventId = event.getEventId();
 
-         eventsFirebase = new EventsFirebase();
+        eventsFirebase = new EventsFirebase();
         //eventsFirebase.goingToAnEvent(eventId);
         eventsFirebase.isGoing(eventId);
 
@@ -291,13 +291,13 @@ public class EventDetailsFragment extends Fragment {
 
         // Categories
         String categories = "";
-        if(event.getCategories() != null) {
+        if(event.getCategories() != null && event.getCategories().size() != 0) {
             for (int i = 0; i < event.getCategories().size() - 1; ++i) {
                 //Log.v("chris", event.getCategories().get(i));
                 categories += event.getCategories().get(i) + ", ";
             }
+            categories += event.getCategories().get(event.getCategories().size() - 1);
         }
-        categories += event.getCategories().get(event.getCategories().size() - 1);
 
         eventCategories.setText(categories);
 

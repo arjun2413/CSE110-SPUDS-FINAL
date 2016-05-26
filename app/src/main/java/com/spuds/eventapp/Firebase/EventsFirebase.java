@@ -49,6 +49,7 @@ public class EventsFirebase {
     public int idIsGoing = 0;
     int loading;
     boolean isGoing;
+    public static Event eventDetailsEvent;
 
 
     public EventsFirebase() {
@@ -69,11 +70,13 @@ public class EventsFirebase {
     }
 
     ArrayList<String> categoryList;
-    public void createEvent(CreateEventForm form, CreateEventRVAdapter adapter) {
+
+    public String createEvent(CreateEventForm form, CreateEventRVAdapter adapter) {
 
         categoryList = adapter.getList();
 
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
+        final Firebase ref2 = new Firebase("https://eventory.firebaseio.com");
 
         SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd | HH:mm");
         Date dateobj = new Date();
@@ -177,10 +180,22 @@ public class EventsFirebase {
             }
         }
 
-            ref.child("events").push().setValue(map);
+        Firebase pushRef = ref.child("events").push();
+        pushRef.setValue(map);
+
+
+        Map<String, String> map2 = new HashMap<String, String>();
+        map2.put("user_id", UserFirebase.uId);
+        map2.put("event_id", pushRef.getKey());
+        ref2.child("events_registrations").push().setValue(map2);
 
         UserFirebase userFirebase = new UserFirebase();
         userFirebase.updateNumberHosting();
+
+
+
+
+        return pushRef.getKey();
 
     }
 
@@ -493,7 +508,10 @@ public class EventsFirebase {
         return item;
     }
 
+    public static boolean detailsThreadCheck;
     public Event getEventDetails(final String eventID) {
+        detailsThreadCheck = false;
+        Log.v("asdfjkl", "getting: " + eventID);
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
         Query queryRef = myFirebaseRef.orderByKey();
         queryRef.addChildEventListener(new ChildEventListener() {
@@ -502,20 +520,72 @@ public class EventsFirebase {
             @Override
             public void onChildAdded(DataSnapshot snapshot, String previousChild) {
                 for (DataSnapshot child : snapshot.getChildren()) {
-                    if (child.getValue() == eventID) {
-                        newEvent.setDate(String.valueOf(child.getValue()));
-                        newEvent.setDescription(String.valueOf(child.getValue()));
-                        newEvent.setEventName(String.valueOf(child.getValue()));
-                        newEvent.setLocation(String.valueOf(child.getValue()));
-                        newEvent.setAttendees(Integer.parseInt((String) child.getValue()));
-                        newEvent.setPicture(String.valueOf(child.getValue()));
-                        newEvent.setHostId(String.valueOf(child.getValue()));
-                        newEvent.setCategories(a);
-                        item = newEvent;
-                        break;
+                    //Log.d("lmao", String.valueOf(child));
+                    switch (child.getKey()) {
+                        case "date":
+                            newEvent.setDate(String.valueOf(child.getValue()));
+                            break;
+                        case "description":
+                            newEvent.setDescription(String.valueOf(child.getValue()));
+                            break;
+                        case "event_name":
+                            newEvent.setEventName(String.valueOf(child.getValue()));
+                            break;
+                        case "location":
+                            newEvent.setLocation(String.valueOf(child.getValue()));
+                            break;
+                        case "number_going":
+                            newEvent.setAttendees(Integer.parseInt(String.valueOf(child.getValue())));
+                            break;
+                        case "picture":
+                            newEvent.setPicture(String.valueOf(child.getValue()));
+                            break;
+                        case "host_id":
+                            newEvent.setHostId(String.valueOf(child.getValue()));
+                            break;
+                        case "host_name":
+                            newEvent.setHostName(String.valueOf(child.getValue()));
+                            break;
+                        case "catAcademic":
+                            a.add("Academic");
+                            break;
+                        case "catCampus":
+                            a.add("Student Orgs");
+                            break;
+                        case "catConcerts":
+                            a.add("Concerts");
+                            break;
+                        case "catFood":
+                            a.add("Food");
+                            break;
+                        case "catFree":
+                            a.add("Free");
+                            break;
+                        case "catSocial":
+                            a.add("Social");
+                            break;
+                        case "catSports":
+                            a.add("Sports");
+                            break;
                     }
 
+                    //Log.d("eventsfbasdf", String.valueOf(snapshot.getKey()));
+                    newEvent.setEventId(snapshot.getKey());
                 }
+
+                newEvent.setCategories(a);
+                a = new ArrayList<String>();
+
+
+                // used to get the current time
+                String currentDate;
+                SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd | HH:mm");
+                Date dateobj = new Date();
+                currentDate = df.format(dateobj);
+
+
+                eventDetailsEvent = newEvent;
+                detailsThreadCheck = true;
 
             }
 
