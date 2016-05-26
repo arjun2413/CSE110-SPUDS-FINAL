@@ -114,7 +114,7 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:text="Subscribe"
+                    android:text="EDIT YOUR PROFILE"
                     android:textSize="15sp"
                     android:id="@+id/button_subscribe"
                     android:layout_marginTop="10dp"

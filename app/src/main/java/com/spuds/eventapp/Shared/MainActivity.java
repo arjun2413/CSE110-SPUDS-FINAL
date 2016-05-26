@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         setupFragments();
         setupMainToolbar();
         setupSearchToolbar();
@@ -100,15 +99,18 @@ public class MainActivity extends AppCompatActivity
     void setupProfileDrawer() {
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        overrideFonts(navigationView.getContext(),navigationView);
         // TODO (M): app owner's id
         View headerView =  navigationView.inflateHeaderView(R.layout.nav_header_profile);
+        overrideFonts(headerView.getContext(),headerView);
         TextView name = (TextView) headerView.findViewById(R.id.user_name);
         String string = "Reggie Wu";
         name.setText(string);
         // TODO (M): Use picasso
         ImageView profilePic = (ImageView) headerView.findViewById(R.id.profile_pic);
 
-        overrideFonts(headerView.getContext(),headerView);
+
+
 
         //rounded photo, crashes when you re-run for some reason
 
@@ -135,11 +137,12 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        overrideTitle(toolbar.getContext(),toolbar);
     }
 
     void setupSearchToolbar() {
         search = (SearchBox) findViewById(R.id.searchbox);
+        overrideFonts(search.getContext(),search);
 
         search.setLogoText("Search for Events");
         search.setLogoTextColor(Color.parseColor("#bfbfbf"));
@@ -324,13 +327,16 @@ public class MainActivity extends AppCompatActivity
             ((ViewManager) toolbar.getParent()).addView(search, params);
 
         search.setLogoText("Search for Events");
+        overrideFonts(toolbar.getContext(),toolbar);
 
     }
 
     void setupDrawer() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
+        overrideTitle(toolbar.getContext(),toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -340,7 +346,7 @@ public class MainActivity extends AppCompatActivity
         overrideFonts(navigationView.getContext(),navigationView);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.home);
-        //overrideFonts(navigationView.getContext(),navigationView);
+
     }
 
     void setupFragments() {
@@ -424,6 +430,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator);
+        overrideFonts(coordinatorLayout.getContext(),coordinatorLayout);
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();
@@ -513,6 +520,8 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
+        overrideFonts(drawer.getContext(),drawer);
+
         return true;
     }
 
@@ -536,6 +545,8 @@ public class MainActivity extends AppCompatActivity
         // Close drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+        overrideFonts(drawer.getContext(),drawer);
+
 
     }
 
@@ -704,6 +715,21 @@ public class MainActivity extends AppCompatActivity
             }
         }
         catch (Exception e) {
+        }
+    }
+
+    private void overrideTitle(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideTitle(context, child);
+                }
+            } else if (v instanceof TextView) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "name_font.ttf"));
+            }
+        } catch (Exception e) {
         }
     }
 

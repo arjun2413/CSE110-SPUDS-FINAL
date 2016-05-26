@@ -11,6 +11,7 @@ import com.firebase.client.ValueEventListener;
 import com.spuds.eventapp.CreateEvent.CreateEventForm;
 import com.spuds.eventapp.CreateEvent.CreateEventRVAdapter;
 import com.spuds.eventapp.Shared.Event;
+import com.spuds.eventapp.Shared.EventDate;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
 
 import java.text.SimpleDateFormat;
@@ -198,7 +199,6 @@ public class EventsFirebase {
 
     public Event createEL() {
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
-        final Firebase myFirebaseRef2 = new Firebase("https://eventory.firebaseio.com/events_registrations");
         Query queryRef = myFirebaseRef.orderByKey();
 
         switch (tabFilter) {
@@ -212,10 +212,8 @@ public class EventsFirebase {
                 queryRef = myFirebaseRef.orderByChild("date");
                 break;
             case tabGoing:
-                queryRef = myFirebaseRef2.orderByChild(UserFirebase.uId);
                 break;
             case tabHosting:
-                queryRef = myFirebaseRef.orderByChild("host_id").equalTo(UserFirebase.uId);
                 break;
         }
 
@@ -251,10 +249,10 @@ public class EventsFirebase {
 
                 Event newEvent  = new Event();
 
-                //Log.v("EventsFirebase jkl;", "" + snapshot.getKey());
+                Log.v("EventsFirebase jkl;", "" + snapshot.getKey());
 
                 for (DataSnapshot child : snapshot.getChildren()) {
-                    //Log.d("asdf", String.valueOf(child));
+                    Log.d("asdf", String.valueOf(child));
                     switch (child.getKey()) {
                         case "date":
                             newEvent.setDate(String.valueOf(child.getValue()));
@@ -269,10 +267,10 @@ public class EventsFirebase {
                             newEvent.setLocation(String.valueOf(child.getValue()));
                             break;
                         case "number_going":
-                            newEvent.setAttendees(Integer.parseInt(String.valueOf(child.getValue())));
+                            newEvent.setAttendees(Integer.parseInt((String.valueOf(child.getValue()))));
                             break;
-                        case "picture":
-                            newEvent.setPicture(String.valueOf(child.getValue()));
+                        case "picture_file_name":
+                            newEvent.setPicFileName(String.valueOf(child.getValue()));
                             break;
                         case "host_id":
                             newEvent.setHostId(String.valueOf(child.getValue()));
@@ -317,11 +315,24 @@ public class EventsFirebase {
                 a = new ArrayList<String>();
 
 
+                // used to get the current time
+                String currentDate;
+                SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd | HH:mm");
+                Date dateobj = new Date();
+                currentDate = df.format(dateobj);
+
                 if(tabFilter.equals(tabHot) || tabFilter.equals(tabNew)) {
-                    eventsList.add(0, newEvent);
+                    if (currentDate.compareTo(newEvent.getDate()) < 0){
+                        eventsList.add(0, newEvent);
+                    }
                 }
                 else {
-                    eventsList.add(newEvent);
+
+                    //current date and time is "earlier" than the event. Aka the event has not happened yet.
+                    if (currentDate.compareTo(newEvent.getDate()) < 0){
+                        eventsList.add(newEvent);
+                    }
+
                 }
 
                 if (adapter != null) {
@@ -367,7 +378,7 @@ public class EventsFirebase {
                         newEvent.setEventName(String.valueOf(child.getValue()));
                         newEvent.setLocation(String.valueOf(child.getValue()));
                         newEvent.setAttendees(Integer.parseInt((String) child.getValue()));
-                        newEvent.setPicture(String.valueOf(child.getValue()));
+                        newEvent.setPicFileName(String.valueOf(child.getValue()));
                         newEvent.setHostId(String.valueOf(child.getValue()));
                         newEvent.setCategories(a);
                         item = newEvent;

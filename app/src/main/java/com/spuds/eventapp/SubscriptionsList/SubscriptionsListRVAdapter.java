@@ -79,7 +79,7 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
         subViewHolder.subPhoto.setImageResource(subscriptions.get(i).photoId);
 
 
-        Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.arjun);
+        Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.christinecropped);
         RoundedBitmapDrawable dr =
                 RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
         dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);

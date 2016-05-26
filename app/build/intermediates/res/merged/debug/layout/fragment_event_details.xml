@@ -180,7 +180,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text=" going"
+                android:text=" attendees"
                 android:textSize="15sp"
                 android:id="@+id/going_text"
                 android:layout_alignParentTop="true"
