@@ -27,7 +27,7 @@
             android:background="#00ffffff"/>
 
         <TextView
-            android:layout_width="165dp"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:id="@+id/invite_user_name"
             android:layout_toRightOf="@+id/invite_user_image"
@@ -51,7 +51,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:backgroundTint="#a6a6a6"
-            android:layout_alignTop="@+id/invite_user_name" />
+            android:layout_alignTop="@+id/invite_user_name"
+            android:layout_marginRight="10dp" />
 
     </RelativeLayout>
 

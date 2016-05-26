@@ -18,27 +18,24 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:id="@+id/sub_photo"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
+                    android:background="#00ffffff"
                     android:layout_alignParentTop="true"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_alignParentEnd="false"
-                    android:layout_alignParentRight="false"
-                    android:background="#00ffffff"/>
+                    android:layout_marginLeft="10dp"
+                 />
 
                 <TextView
-                    android:layout_width="190dp"
+                    android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/sub_name"
-                    android:layout_toRightOf="@+id/sub_photo"
                     android:layout_toEndOf="@+id/sub_photo"
                     android:layout_alignParentTop="true"
                     android:textSize="20sp"
                     android:layout_centerVertical="true"
                     android:text="Arjun Srinivasan"
                     android:layout_marginTop="25dp"
-                    android:textColor="#1a1a1a"/>
+                    android:textColor="#1a1a1a"
+                    android:layout_toRightOf="@+id/sub_photo"
+                    android:layout_marginLeft="10dp" />
 
 
                 <Button
@@ -46,6 +43,7 @@
                     android:layout_height="30dp"
                     android:id="@+id/follow_toggle"
                     android:text="SUBSCRIBE"
+                    android:layout_marginRight="10dp"
                     android:textColor="#ffffff"
                     android:background="@drawable/roundedbutton"
                     android:layout_alignBottom="@+id/sub_name"
