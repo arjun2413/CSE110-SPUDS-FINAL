@@ -248,7 +248,6 @@ public class EventDetailsFragment extends Fragment {
                 //Log.v("chris", event.getCategories().get(i));
                 categories += event.getCategories().get(i) + ", ";
             }
-            categories += event.getCategories().get(event.getCategories().size() - 1);
         }
         categories += event.getCategories().get(event.getCategories().size() - 1);
 

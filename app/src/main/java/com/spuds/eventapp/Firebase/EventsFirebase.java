@@ -148,14 +148,14 @@ public class EventsFirebase {
             swappedString = swappedString.substring(0, 11) + numb + tempString.substring(tempString.indexOf(':'), tempString.length()-2);
         }
 
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("host_id", UserFirebase.uId);
         map.put("host_name", UserFirebase.thisUser.getName());
         map.put("event_name", form.getName());
         map.put("description", form.getDescription());
         map.put("location", form.getLocation());
         map.put("date", swappedString);
-        map.put("number_going", "1");
+        map.put("number_going", 1);
         map.put("picture", form.getPicture());
         map.put("created_at", df.format(dateobj) );
 
@@ -212,10 +212,11 @@ public class EventsFirebase {
                 queryRef = myFirebaseRef.orderByChild("date");
                 break;
             case tabGoing:
-                queryRef = myFirebaseRef2.orderByChild(UserFirebase.uId);
+                queryRef = myFirebaseRef.orderByChild(UserFirebase.uId);
                 break;
             case tabHosting:
                 queryRef = myFirebaseRef.orderByChild("host_id").equalTo(UserFirebase.uId);
+                Log.v("uid", UserFirebase.uId);
                 break;
         }
 
@@ -254,7 +255,7 @@ public class EventsFirebase {
                 //Log.v("EventsFirebase jkl;", "" + snapshot.getKey());
 
                 for (DataSnapshot child : snapshot.getChildren()) {
-                    //Log.d("asdf", String.valueOf(child));
+                    Log.d("lmao", String.valueOf(child));
                     switch (child.getKey()) {
                         case "date":
                             newEvent.setDate(String.valueOf(child.getValue()));
@@ -264,12 +265,13 @@ public class EventsFirebase {
                             break;
                         case "event_name":
                             newEvent.setEventName(String.valueOf(child.getValue()));
+                            System.out.println(newEvent.getEventName());
                             break;
                         case "location":
                             newEvent.setLocation(String.valueOf(child.getValue()));
                             break;
                         case "number_going":
-                            newEvent.setAttendees(Integer.parseInt((String) child.getValue()));
+                            newEvent.setAttendees(Integer.parseInt(String.valueOf(child.getValue())));
                             break;
                         case "picture_file_name":
                             newEvent.setPicFileName(String.valueOf(child.getValue()));
@@ -303,18 +305,22 @@ public class EventsFirebase {
                             break;
                     }
 
-
-                    Log.d("eventsfbasdf", String.valueOf(snapshot.getKey()));
+                    //Log.d("eventsfbasdf", String.valueOf(snapshot.getKey()));
                     newEvent.setEventId(snapshot.getKey());
                 }
+                if (newEvent.getEventName() == null)
+                    System.out.println("ITS NULL");
+                //Log.v("da",newEvent.getEventName());
 
-                if(a != null) {
+                /*if(a != null) {
                     for (int i = 0; i < a.size(); i++) {
                         Log.v("reg", a.get(i));
                     }
-                }
+                }*/
                 newEvent.setCategories(a);
                 a = new ArrayList<String>();
+
+
 
 
                 if(tabFilter.equals(tabHot) || tabFilter.equals(tabNew)) {
