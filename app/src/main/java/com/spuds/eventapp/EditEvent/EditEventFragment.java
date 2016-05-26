@@ -2,13 +2,18 @@ package com.spuds.eventapp.EditEvent;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -300,6 +305,20 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                 }
             }
         });
+
+        if (event.getPicture() != null || event.getPicture() != "") {
+            String imageFile = event.getPicture();
+
+
+            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+            Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+
+            RoundedBitmapDrawable circularBitmapDrawable =
+                    RoundedBitmapDrawableFactory.create(getResources(), src);
+            circularBitmapDrawable.setCircular(true);
+            circularBitmapDrawable.setAntiAlias(true);
+            eventImage.setImageDrawable(circularBitmapDrawable);
+        }
 
         eventImage.setOnClickListener(new View.OnClickListener() {
             @Override
