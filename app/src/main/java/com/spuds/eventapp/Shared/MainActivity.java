@@ -1,9 +1,13 @@
 package com.spuds.eventapp.Shared;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -14,6 +18,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -24,6 +30,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -96,14 +103,16 @@ public class MainActivity extends AppCompatActivity
         ImageView profilePic = (ImageView) headerView.findViewById(R.id.profile_pic);
         profilePic.setImageResource(R.drawable.arjun);
 
+        overrideFonts(headerView.getContext(),headerView);
+
         //rounded photo, crashes when you re-run for some reason
-        /*
-        Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.arjun);
+
+/*        Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.christinecropped);
         RoundedBitmapDrawable dr =
                 RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
         dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
         profilePic.setImageDrawable(dr);
-        */
+*/
 
     }
 
@@ -280,8 +289,10 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        overrideFonts(navigationView.getContext(),navigationView);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.home);
+        //overrideFonts(navigationView.getContext(),navigationView);
     }
 
     void setupFragments() {
@@ -620,4 +631,21 @@ public class MainActivity extends AppCompatActivity
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         startActivityForResult(intent, REQUEST_CODE);
     }
+
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "Raleway-Medium.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
+    }
+
 }

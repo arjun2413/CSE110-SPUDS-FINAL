@@ -1,7 +1,9 @@
 package com.spuds.eventapp.Notifications;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -80,6 +82,8 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
     @Override
     public NotificationViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_notifications_comment, viewGroup, false);
+        overrideFonts(v.getContext(),v);
+
         NotificationViewHolder nvh = new NotificationViewHolder(v);
         return nvh;
     }
@@ -236,5 +240,22 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<NotificationsRV
     public int getItemCount() {
         return notificationsList.size();
     }
+
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "raleway-regular.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
+    }
+
 
 }

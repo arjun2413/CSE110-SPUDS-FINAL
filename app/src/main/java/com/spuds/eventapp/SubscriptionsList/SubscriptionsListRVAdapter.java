@@ -1,7 +1,9 @@
 package com.spuds.eventapp.SubscriptionsList;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -12,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,14 +39,14 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
         CardView card;
         TextView subName;
         ImageView subPhoto;
-        ImageView toggleFollow;
+        Button toggleFollow;
 
         SubViewHolder(View itemView) {
             super(itemView);
             card = (CardView)itemView.findViewById(R.id.cv);
             subName = (TextView)itemView.findViewById(R.id.sub_name);
             subPhoto = (ImageView)itemView.findViewById(R.id.sub_photo);
-            toggleFollow = (ImageView)itemView.findViewById(R.id.follow_toggle);
+            toggleFollow = (Button)itemView.findViewById(R.id.follow_toggle);
         }
     }
 
@@ -63,6 +66,7 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
     @Override
     public SubViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_my_subscriptions, viewGroup, false);
+        overrideFonts(v.getContext(),v);
         SubViewHolder svh = new SubViewHolder(v);
         return svh;
     }
@@ -168,6 +172,20 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
         super.onAttachedToRecyclerView(recyclerView);
     }
 
-
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView ) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "Raleway-Medium.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
+    }
 
 }
