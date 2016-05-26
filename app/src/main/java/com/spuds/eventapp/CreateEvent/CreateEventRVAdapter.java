@@ -114,10 +114,10 @@ public class CreateEventRVAdapter extends RecyclerView.Adapter<CreateEventRVAdap
                     }
                 }
                 else{
-                    if(counter >= 3){
+                    if(counter > 3){
                         counter--;
                     }
-                    else if (counter > 0 && counter <3) {
+                    else if (counter > 0 && counter <=3) {
                         counter--;
                         if (j == 0) {
                             categoryList.remove("Food");

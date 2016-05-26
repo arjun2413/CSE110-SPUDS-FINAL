@@ -1,2 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="C:\Users\Reggie\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-databind\2.2.2\3c8f6018eaa72d43b261181e801e6f8676c16ef6\jackson-databind-2.2.2.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="3c8f6018eaa72d43b261181e801e6f8676c16ef6">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-databind-2.2.2_b0689e6835285ff83aae2e743b1160274a8a3da5\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\.gradle\caches\modules-2\files-2.1\com.firebase\firebase-client-android\2.5.2\f19f10d6276aa0b380e2d05d2ab3272d693a5433\firebase-client-android-2.5.2.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="f19f10d6276aa0b380e2d05d2ab3272d693a5433">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\firebase-client-android-2.5.2_8b12d2171607eb28b6c05f4d9bfb78d76fda8667\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.3.0_6ffe664240249108e2839e1c99dd24c10f2863df\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="5479db98e38d4ded1ec69f5629114b800bcec9e8">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_b5d5f048f91235f82bd8e3510e11c0ad8e43219e\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\.gradle\caches\modules-2\files-2.1\com.firebase\firebase-client-jvm\2.5.2\91731b8f5868a3e8a8a773f29b8d06b5c358f5bb\firebase-client-jvm-2.5.2.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="91731b8f5868a3e8a8a773f29b8d06b5c358f5bb">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\firebase-client-jvm-2.5.2_790ea9ac260b5f776bb1a20f86174f3749cf58b5\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\library-2.4.0_a47474e16a18e55203a38543c7217978f48c5a8b\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.3.0_724264ff6d8f2a838f78800abdb0a0aa67ecc19e\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="82ce13fd19cdfde0e392f03c27edeba8d4333648">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-23.3.0_f27ebf7ecfad0e37ad9103d11647bd400847bcd1\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.3.0\support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.3.0_5e78f5a9fba75de1e5f112b26c0c65619a9818ca\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.soundcloud.android\android-crop\1.0.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="11a65cf2b30c192b38a881d626fa771a78a2293d">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.soundcloud.android-android-crop-1.0.1_752d25a317488fa10022d33478c73943474955ab\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\libs\internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.3.0_ed33f6e8086f40ad3bd3e002a0a425b9311e985b\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.2.2\285cb9c666f0f0f3dd8a1be04e1f457eb7b15113\jackson-annotations-2.2.2.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="285cb9c666f0f0f3dd8a1be04e1f457eb7b15113">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-annotations-2.2.2_daa4653a8b03ca90802d93fed31bd3399090e3e7\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\design\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.3.0_0e2e56c74b74e5fce6032b01aaa1cc127d0c1efd\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.2.2\d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b\jackson-core-2.2.2.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-core-2.2.2_d86baf95d1c1f2e58a63a54c8cf3761635cb8e29\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.3.0_0f1b26cee3fb6db37748bb7c487ccdb6616cc552\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\.gradle\caches\modules-2\files-2.1\com.firebase\tubesock\0.0.12\6ec0bbd3e161a73ed672284b587fd32309a86d7a\tubesock-0.0.12.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="6ec0bbd3e161a73ed672284b587fd32309a86d7a">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\tubesock-0.0.12_123b98597cda1abab8f3b585325dc8f2363ed0cc\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.3.0_18ec174b26fda827039b388237955cce690cc7e9\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="9afcdc0d42826638bcb6401f7a58789ce82d86a4">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_38b36d8159bb1dfa9f067bf2e4978bfbdbace96c\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.3.0_8f90fba4ab9b1697beab5626e5c9cdbfa6d65f15\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.quinny898.library.persistentsearch\library\1.1.0-SNAPSHOT\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="4c7250baed60ef7694c1c55723750831f3dbee67">
+        <dex dex="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.quinny898.library.persistentsearch-library-1.1.0-SNAPSHOT_d002032d3d5f3072460aae5dd806b02d2b68c84f\classes.dex" />
+    </item>
+
+</items>

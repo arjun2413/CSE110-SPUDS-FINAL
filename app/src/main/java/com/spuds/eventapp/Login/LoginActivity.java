@@ -147,7 +147,8 @@ public class LoginActivity extends AppCompatActivity {
                     //Pass through an id of the user [coding decision: should we pass image first and last name?]
                     else{
                         Object time = new Object();
-                        errorMessage.setText("Please Wait...");
+                        String message = "Loading...";
+                        errorMessage.setText(message);
 
 
 
