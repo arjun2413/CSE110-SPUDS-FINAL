@@ -4,6 +4,7 @@ package com.spuds.eventapp.Firebase;
  * Created by Arjun on 5/5/16.
  */
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.spuds.eventapp.ChangePassword.ChangePasswordForm;
 
 import java.util.HashMap;
@@ -24,8 +26,11 @@ import java.util.Map;
 public class AccountFirebase {
     private int threadCheck = 0;
     //private Query queryRef;
-    public void createAccount(final String email, String password, final String name) {
+    String token;
 
+    public AccountFirebase() {}
+
+    public void createAccount(final String email, String password, final String name) {
 
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
         ref.createUser(email, password, new Firebase.ValueResultHandler<Map<String, Object>>()
@@ -44,6 +49,9 @@ public class AccountFirebase {
                         map.put("number_following", "0");
                         map.put("number_hosting", "0");
                         map.put("picture", "");
+                        map.put("registration_id", token);
+
+
                         ref.child("users").child(String.valueOf(result.get("uid"))).setValue(map);
 
                         UserFirebase.uId = String.valueOf(result.get("uid"));
@@ -72,8 +80,6 @@ public class AccountFirebase {
                 UserFirebase.uId = authData.getUid();
 
                 status = 1;
-
-
 
 
                 // Authentication just completed successfully smile emoticon
@@ -185,6 +191,18 @@ public class AccountFirebase {
     }
     public int getThreadCheck() {
         return threadCheck;
+    }
+
+    public void pushRegistrationId(String token) {
+        final Firebase ref = new Firebase("https://eventory.firebaseio.com/users");
+
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("registration_id", token);
+
+        //Query queryRef = ref.orderByChild("email").equalTo(email);
+        ref.child(UserFirebase.uId).updateChildren(map);
+
     }
 
 }

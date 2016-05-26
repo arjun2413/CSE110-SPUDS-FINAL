@@ -1,6 +1,7 @@
 package com.spuds.eventapp.SignUp;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -14,9 +15,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
+import com.spuds.eventapp.Shared.RegistrationService;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -45,6 +48,9 @@ public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+        Log.d("Create signup", "Creating right now");
 
         //Hide Action Bar and Status Bar
         //View decorView = getWindow().getDecorView();
@@ -125,16 +131,18 @@ public class SignUpActivity extends AppCompatActivity {
                 if(error) {
                     //TODO Check if email is taken already with database
 
-                    //TODO If email isn't taken already, go through with account creation
-                    //Make these console logs instead route to database.
-                    Log.v("signup_name", signupName.getText().toString());
-                    Log.v("signup_email", signupEmail.getText().toString());
-                    Log.v("signupPassword", signupPassword1.getText().toString());
-                    AccountFirebase accountFirebase = new AccountFirebase();
-                    accountFirebase.createAccount(signupEmail.getText().toString(),
-                            signupPassword1.getText().toString(), signupName.getText().toString());
-                    //When done, leave this page and go to main screen.
-                    startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+                            //TODO If email isn't taken already, go through with account creation
+                            //Make these console logs instead route to database.
+                            Log.v("signup_name", signupName.getText().toString());
+                            Log.v("signup_email", signupEmail.getText().toString());
+                            Log.v("signupPassword", signupPassword1.getText().toString());
+                            AccountFirebase accountFirebase = new AccountFirebase();
+                            accountFirebase.createAccount(signupEmail.getText().toString(),
+                                    signupPassword1.getText().toString(), signupName.getText().toString());
+                            //When done, leave this page and go to main screen.
+                            startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+
+
                 }
             }
         });
