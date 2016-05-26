@@ -467,7 +467,9 @@ public class EventsFirebase {
 
             }
         });
+
         Log.d("how many", String.valueOf(attendees));
+
     }
 
     public void notGoingToAnEvent(final String eventId) {
@@ -512,9 +514,11 @@ public class EventsFirebase {
         Log.d("how many", String.valueOf(attendees));
     }
 
+    static boolean isGoingThreadCheck = false;
+
     public void isGoing(final String eventId) {
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/events_registrations");
-        ref.addValueEventListener(new ValueEventListener() {
+                final ValueEventListener valueEventListener = new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -553,6 +557,8 @@ public class EventsFirebase {
                         idIsGoing = 2;
                     }
 
+                    isGoingThreadCheck = true;
+
                 }
             }
 
@@ -561,13 +567,39 @@ public class EventsFirebase {
 
             }
 
-        });
+        };
+
+        ref.addValueEventListener(valueEventListener);
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (!isGoingThreadCheck) {
+                    try {
+                        Thread.sleep(70);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                ref.removeEventListener(valueEventListener);
+                isGoingThreadCheck = false;
+
+            }
+        }).start();
+
 
 
     }
+
+    static boolean deleteThreadCheck = false;
+
     public void deleteEventRegistration(final String eventId){
+        Log.v("Userfirebase entries", "eventId " + eventId);
+
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/events_registrations");
-        ref.addValueEventListener(new ValueEventListener() {
+        final ValueEventListener valueEventListener = new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -582,9 +614,10 @@ public class EventsFirebase {
                             Log.v("Userfirebase asdf", " entry value key" + entry2.getKey());
                             Log.v("Userfirebase asdf", " entry value value" + entry2.getValue());
 
-                            if (entry2.getKey().equals("following_id")) {
+                            if (entry2.getKey().equals("event_id")) {
                                 if (entry2.getValue().equals(eventId)) {
                                     first = true;
+                                    Log.v("Userfirebase entries", "first is true");
                                 }
                             }
 
@@ -601,7 +634,10 @@ public class EventsFirebase {
 
                     Log.v("userfirebase test", "id: " + id);
 
-                    ref.child(id).removeValue();
+                    if (id != null && id != "")
+                        ref.child(id).removeValue();
+
+                    deleteThreadCheck = true;
                 }
             }
 
@@ -610,7 +646,27 @@ public class EventsFirebase {
 
             }
 
-        });
+        };
+
+        ref.addValueEventListener(valueEventListener);
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (!deleteThreadCheck) {
+                    try {
+                        Thread.sleep(70);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                ref.removeEventListener(valueEventListener);
+                deleteThreadCheck = false;
+
+            }
+        }).start();
 
     }
 

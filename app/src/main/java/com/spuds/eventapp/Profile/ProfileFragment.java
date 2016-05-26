@@ -173,6 +173,8 @@ public class ProfileFragment extends Fragment {
 
         } else {
 
+            buttonSubscribedOrEdit.setText("Subscribe");
+
             Log.v("ProfileFragment", "other not own profile!");
 
             // TODO (V): Uncomment once get drawables for subscribe buttons
@@ -190,6 +192,7 @@ public class ProfileFragment extends Fragment {
 
                     UserFirebase userFirebase = new UserFirebase();
                     userFirebase.subscribe(user.getUserId(), user.isSubscribed());
+                    // TODO (V): coloorzz
                     if (user.isSubscribed())
                         buttonSubscribedOrEdit.setBackgroundColor(Color.parseColor("#5c8a8a"));
                     else

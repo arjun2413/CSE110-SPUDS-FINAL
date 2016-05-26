@@ -272,26 +272,30 @@ public class UserFirebase {
     }
 
     String id = null;
+    public static boolean subscribeThreadCheck = false;
 
-    public void subscribe(final String otherUserid, boolean subscribe) {
+    public void subscribe(final String otherUserid, final boolean subscribe) {
         final String otherUid = otherUserid;
-        final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
 
         if (subscribe) {
+            final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
+
 
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("user_id", uId);
             map.put("following_id", otherUid);
 
             //Query queryRef = ref.orderByChild("email").equalTo(email);
-            ref.child(UserFirebase.uId).updateChildren(map);
+            ref.push().setValue(map);
 
             //update user table #subscribed
 
         } else {
+            final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
 
 
-            ref.addValueEventListener(new ValueEventListener() {
+
+            final ValueEventListener valueEventListener = new ValueEventListener() {
 
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
@@ -326,15 +330,39 @@ public class UserFirebase {
                         Log.v("userfirebase test", "id: " + id);
 
                         ref.child(id).removeValue();
+                        subscribeThreadCheck = true;
                     }
                 }
 
                 @Override
-                public void onCancelled(FirebaseError firebaseError) {
+                public void onCancelled (FirebaseError firebaseError){
 
                 }
 
-            });
+
+            };
+
+
+            ref.addValueEventListener(valueEventListener);
+
+
+            new Thread(new Runnable() {
+
+                @Override
+                public void run() {
+                    while (!subscribeThreadCheck) {
+                        try {
+                            Thread.sleep(70);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    ref.removeEventListener(valueEventListener);
+                    subscribeThreadCheck = false;
+
+                }
+            }).start();
 
 
         }
@@ -357,7 +385,6 @@ public class UserFirebase {
                     map.put("number_hosting", String.valueOf(Integer.parseInt((String) snapshot.getValue()) + 1));
                     refUser.updateChildren(map);
                 }
-
 
             }
 
