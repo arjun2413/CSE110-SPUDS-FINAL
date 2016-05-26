@@ -42,7 +42,7 @@ public class CreateEventForm {
     }
 
     public boolean allFilled(){
-        if(name.length()>0 && date.length()>0 && location.length()>0 && description.length()>0){
+        if(name.length()>0 && date.length()>0 && location.length()>0){
             return true;
         }
         else{
