@@ -153,7 +153,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         else
             eventViewHolder.buttonGoing.setBackgroundColor(Color.parseColor("#ffffff"));*/
 
-        if (events.get(i).getPicture() != null || events.get(i).getPicture() != "") {
+        if (events.get(i).getPicture() != null && events.get(i).getPicture() != "") {
             String imageFile = events.get(i).getPicture();
 
 
