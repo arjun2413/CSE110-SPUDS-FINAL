@@ -40,15 +40,17 @@
             android:textColor="#1a1a1a"/>
 
 
-        <ImageView
+        <Button
             android:layout_width="80dp"
-            android:layout_height="20dp"
+            android:layout_height="40dp"
             android:id="@+id/invite_toggle"
+            android:text="INVITE"
+            android:textColor="#ffffff"
             android:background="@drawable/roundedbutton"
             android:layout_alignBottom="@+id/invite_user_name"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:backgroundTint="#5c8a8a"
+            android:backgroundTint="#a6a6a6"
             android:layout_alignTop="@+id/invite_user_name" />
 
     </RelativeLayout>

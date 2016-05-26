@@ -1,6 +1,7 @@
 package com.spuds.eventapp.ChangePassword;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -60,6 +61,15 @@ public class ChangePasswordFragment extends Fragment {
 
         //initializing parts of the fragment
         final View view = inflater.inflate(R.layout.fragment_change_password, container, false);
+
+        overrideFonts(view.getContext(),view);
+
+        Typeface raleway_medium = Typeface.createFromAsset(getActivity().getAssets(),  "Raleway-Medium.ttf");
+
+        //title font
+        Button change = (Button) view.findViewById(R.id.change_button);
+        change.setTypeface(raleway_medium);
+
 
         current_pw = (EditText) view.findViewById(R.id.current_password);
         new_pw = (EditText) view.findViewById(R.id.new_password);
@@ -158,5 +168,22 @@ public class ChangePasswordFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
+
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView ) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "raleway-regular.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
+    }
+
 
 }

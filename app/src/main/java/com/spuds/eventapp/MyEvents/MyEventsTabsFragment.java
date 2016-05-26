@@ -1,6 +1,7 @@
 package com.spuds.eventapp.MyEvents;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.spuds.eventapp.R;
 
@@ -29,6 +31,7 @@ public class MyEventsTabsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_feed_tabs, container, false);
         tabs(view);
+        overrideFonts(view.getContext(),view);
         return view;
     }
 
@@ -80,6 +83,22 @@ public class MyEventsTabsFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "Raleway-Medium.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
     }
 
 }

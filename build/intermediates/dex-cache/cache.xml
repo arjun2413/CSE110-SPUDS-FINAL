@@ -1,3 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\akalathil\.gradle\caches\modules-2\files-2.1\com.firebase\tubesock\0.0.12\6ec0bbd3e161a73ed672284b587fd32309a86d7a\tubesock-0.0.12.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6ec0bbd3e161a73ed672284b587fd32309a86d7a">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\tubesock-0.0.12_25bd9be16a36ebc1f880b23de33966e069caea14.jar" />
+    </item>
+    <item
+        jar="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\libs\internal_impl-23.3.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\internal_impl-23.3.0_39256000326e334463e27324914c6ea664d0b323.jar" />
+    </item>
+    <item
+        jar="C:\Users\akalathil\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.2.2\285cb9c666f0f0f3dd8a1be04e1f457eb7b15113\jackson-annotations-2.2.2.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="285cb9c666f0f0f3dd8a1be04e1f457eb7b15113">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\jackson-annotations-2.2.2_024eccf7bc60594b093dd4ff1a60c56c4cb170a0.jar" />
+    </item>
+    <item
+        jar="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.soundcloud.android\android-crop\1.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="11a65cf2b30c192b38a881d626fa771a78a2293d">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\com.soundcloud.android-android-crop-1.0.1_2663b54c5d981358a5cfb4af0d2dc20cbd41f71c.jar" />
+    </item>
+    <item
+        jar="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.quinny898.library.persistentsearch\library\1.1.0-SNAPSHOT\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="4c7250baed60ef7694c1c55723750831f3dbee67">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\com.quinny898.library.persistentsearch-library-1.1.0-SNAPSHOT_e043219ab8cbd9e66bd0a1bfd33466f45f58a704.jar" />
+    </item>
+    <item
+        jar="C:\Users\akalathil\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-databind\2.2.2\3c8f6018eaa72d43b261181e801e6f8676c16ef6\jackson-databind-2.2.2.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3c8f6018eaa72d43b261181e801e6f8676c16ef6">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\jackson-databind-2.2.2_98e7b6bb3b8e468ab3d0147b06aae337136d8ffe.jar" />
+    </item>
+    <item
+        jar="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="82ce13fd19cdfde0e392f03c27edeba8d4333648">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-23.3.0_3b0f3d23f65b4362c817397cd1c7913d72d43056.jar" />
+    </item>
+    <item
+        jar="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\design\23.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.3.0_cbd0fddfdea2b4bcfb797bd7195a16a4295abe56.jar" />
+    </item>
+    <item
+        jar="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.3.0_83398c5e2daf791af9c4639d730a8602782eb974.jar" />
+    </item>
+    <item
+        jar="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.3.0_6fd14c23c367c84813e5f78a74f45b868b46205f.jar" />
+    </item>
+    <item
+        jar="C:\Users\akalathil\.gradle\caches\modules-2\files-2.1\com.firebase\firebase-client-jvm\2.5.2\91731b8f5868a3e8a8a773f29b8d06b5c358f5bb\firebase-client-jvm-2.5.2.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="91731b8f5868a3e8a8a773f29b8d06b5c358f5bb">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\firebase-client-jvm-2.5.2_0d29066af652326771872e371b4c2ea540e61fe8.jar" />
+    </item>
+    <item
+        jar="C:\Users\akalathil\.gradle\caches\modules-2\files-2.1\com.firebase\firebase-client-android\2.5.2\f19f10d6276aa0b380e2d05d2ab3272d693a5433\firebase-client-android-2.5.2.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="f19f10d6276aa0b380e2d05d2ab3272d693a5433">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\firebase-client-android-2.5.2_a7a1fd28f0d48c09268b0602df2ab6a4aaafa2c3.jar" />
+    </item>
+    <item
+        jar="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\CSE110-SPUDS-FINAL.libs\SmoothCheckBoxLibrary\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="237789037c89e718f377c91c63f399500e71f560">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\CSE110-SPUDS-FINAL.libs-SmoothCheckBoxLibrary-unspecified_87b597bc548cae2a6175e7511bfe920a71a4bc6e.jar" />
+    </item>
+    <item
+        jar="C:\Users\akalathil\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.3.0\support-annotations-23.3.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\support-annotations-23.3.0_5f8dab3c79bd41a83271820fedc2ca6faf49bd6d.jar" />
+    </item>
+    <item
+        jar="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.3.0_4fd57d690906d6fb7596886da5c11fa243031e45.jar" />
+    </item>
+    <item
+        jar="C:\Users\akalathil\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.2.2\d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b\jackson-core-2.2.2.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\jackson-core-2.2.2_42710aa0474c0eacdb507801bdf33c4321764363.jar" />
+    </item>
+    <item
+        jar="C:\Users\akalathil\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\library-2.4.0_5b0791824624afd58a6b5b312fc7c66d4d8df209.jar" />
+    </item>
+    <item
+        jar="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.3.0_5940ddb32a0670d7ef117a73cd19ff8e3580db35.jar" />
+    </item>
+    <item
+        jar="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="C:\Users\akalathil\Documents\testpls\CSE110-SPUDS-FINAL\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.3.0_8720d05eb3ae3f3c3b0014baec88b9c70d916ab5.jar" />
+    </item>
+
+</items>

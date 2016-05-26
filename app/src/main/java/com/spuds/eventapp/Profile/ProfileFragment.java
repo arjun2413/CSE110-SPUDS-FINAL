@@ -11,10 +11,12 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,7 +43,7 @@ public class ProfileFragment extends Fragment {
     ImageView userImage;
     TextView userName;
     TextView userDescription;
-    ImageView buttonSubscribedOrEdit;
+    Button buttonSubscribedOrEdit;
     TextView numberFollowing;
     TextView numberHosting;
     RecyclerView eventsHostingRV;
@@ -98,6 +100,9 @@ public class ProfileFragment extends Fragment {
         TextView events_num = (TextView) view.findViewById(R.id.user_number_hosting);
         events_num.setTypeface(raleway_medium);
 
+        Button subscribe = (Button) view.findViewById(R.id.button_subscribe);
+        subscribe.setTypeface(raleway_medium);
+
         setUpProfileDetails(view);
 
         return view;
@@ -107,7 +112,7 @@ public class ProfileFragment extends Fragment {
 
         userImage = (ImageView) view.findViewById(R.id.user_image);
         userName = (TextView) view.findViewById(R.id.user_name);
-        buttonSubscribedOrEdit = (ImageView) view.findViewById(R.id.button_subscribe);
+        buttonSubscribedOrEdit = (Button) view.findViewById(R.id.button_subscribe);
         numberFollowing = (TextView) view.findViewById(R.id.user_number_following);
         numberHosting = (TextView) view.findViewById(R.id.user_number_hosting);
         eventsHostingRV = (RecyclerView) view.findViewById(R.id.rv_events_hosting);
@@ -118,11 +123,23 @@ public class ProfileFragment extends Fragment {
 
         userDescription.setText(user.getDescription());
         userName.setText(user.getName());
-        Bitmap src = BitmapFactory.decodeResource(this.getResources(), R.drawable.arjun);
+       /* Bitmap src = BitmapFactory.decodeResource(this.getResources(), R.drawable.christinecropped);
         RoundedBitmapDrawable dr =
                 RoundedBitmapDrawableFactory.create(this.getResources(), src);
-        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
-        userImage.setImageDrawable(dr);
+        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);*/
+
+
+        String imageFile = user.getPicture();
+
+
+        byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+        Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+
+        RoundedBitmapDrawable circularBitmapDrawable =
+                RoundedBitmapDrawableFactory.create(getResources(), src);
+        circularBitmapDrawable.setCircular(true);
+        circularBitmapDrawable.setAntiAlias(true);
+        userImage.setImageDrawable(circularBitmapDrawable);
 
 
         // Set image for button for subscribe or edit profile

@@ -233,6 +233,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void run() {
+
                 while (!userFirebase.threadCheck) {
                     try {
                         Thread.sleep(75);
@@ -241,6 +242,9 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                 }
+
+
+
                 Log.v("userdetals", "test:" + userFirebase.uId);
 
 
