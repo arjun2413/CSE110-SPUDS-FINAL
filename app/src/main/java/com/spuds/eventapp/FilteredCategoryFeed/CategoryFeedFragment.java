@@ -55,17 +55,6 @@ public class CategoryFeedFragment extends Fragment {
         EventsFirebase ef = new EventsFirebase(events, 0, tabType, catType, adapter);
         ef.createEL();
 
-
-        /*events.add(new Event("1", "yj.jpg", "Sun God Festival", "RIMAC Field", "April 30, 2016", 1054,
-                "Social", "Concert", "UCSD", "spr lame"));
-        events.add(new Event("2", "foosh.jpg", "Foosh Show", "Muir", "May 5, 2016", 51,
-               "Social", null, "Foosh Improv Comedy Club", "spr funny"));
-        events.add(new Event("3", "foosh.jpg", "Circle K GBM #1", "Center 101", "July 4, 2016", 51,
-                "Social", null, "Foosh Improv Comedy Club", "spr funny"));
-        events.add(new Event("4", "foosh.jpg", "David's Birthday Party", "420 Strip Club", "May 17, 2016", 51,
-                "Social", "Food", "Foosh Improv Comedy Club", "spr funny"));
-        events.add(new Event("5", "foosh.jpg", "Reggie Wu Fan Club", "Reggie's Apartment", "June 7, 2016", 51,
-                "Social", null, "Foosh Improv Comedy Club", "spr funny"));*/
     }
 
     @Override

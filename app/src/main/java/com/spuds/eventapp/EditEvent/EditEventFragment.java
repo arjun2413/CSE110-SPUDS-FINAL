@@ -8,12 +8,11 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +25,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.spuds.eventapp.Firebase.EventsFirebase;
+import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.CategoryTextButton;
 import com.spuds.eventapp.Shared.Event;
@@ -41,6 +42,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
     private ImageView eventImage;
     private EditText eventName;
     private EditText eventDate;
+    private Spinner spinner;
     private EditText eventTime;
     private EditText eventLocation;
     private EditText eventDescription;
@@ -120,7 +122,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
     void setupEditTime(View view) {
         // Spinner element
-        Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
+         spinner = (Spinner) view.findViewById(R.id.spinner);
 
         // Spinner click listener
         spinner.setOnItemSelectedListener(this);
@@ -213,9 +215,13 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         categories.add(new CategoryTextButton("FREE", false));
 
         ArrayList<String> existingCateg = event.getCategories();
+        Log.v("size", "size: " + event.getCategories().size());
 
         for (int i = 0; i < existingCateg.size(); ++i) {
+            Log.v("category", "category: " + existingCateg.get(i));
+
             switch(existingCateg.get(i)) {
+
                 case "Food":
                     categories.get(0).setCheckedBoolean(true);
                     break;
@@ -299,9 +305,28 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                 }
                 else {
                     // TODO send to database the event details (in a method)
-                    if (addImage) {
-                        // TODO push to editEventFields array list
+
+
+                    EventsFirebase eventsFirebase = new EventsFirebase();
+                    String result = "";
+                    if (((MainActivity) getActivity()).picture != null)
+                        result = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
+
+                    EditEventForm form = new EditEventForm(eventName,eventDate,eventTime, spinner, eventLocation,eventDescription, result, event.getEventId());
+
+                    if (!form.allFilled()) {
+                        //TODO: form not all filled error
+                        System.out.println("Fill out all the forms");
                     }
+                    else if (!form.correctDate()) {
+                        //TODO: date incorrect format error
+                        System.out.println("Date format is wrong");
+                    }
+                    else {
+                        eventsFirebase.updateEvent(form, adapter);
+                        getActivity().getSupportFragmentManager().popBackStack();
+                    }
+
                 }
             }
         });
@@ -313,11 +338,8 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
             byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
             Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
 
-            RoundedBitmapDrawable circularBitmapDrawable =
-                    RoundedBitmapDrawableFactory.create(getResources(), src);
-            circularBitmapDrawable.setCircular(true);
-            circularBitmapDrawable.setAntiAlias(true);
-            eventImage.setImageDrawable(circularBitmapDrawable);
+
+            eventImage.setImageBitmap(src);
         }
 
         eventImage.setOnClickListener(new View.OnClickListener() {
