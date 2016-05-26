@@ -11,7 +11,6 @@ import com.firebase.client.ValueEventListener;
 import com.spuds.eventapp.CreateEvent.CreateEventForm;
 import com.spuds.eventapp.CreateEvent.CreateEventRVAdapter;
 import com.spuds.eventapp.Shared.Event;
-import com.spuds.eventapp.Shared.EventDate;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
 
 import java.text.SimpleDateFormat;
@@ -269,8 +268,8 @@ public class EventsFirebase {
                         case "number_going":
                             newEvent.setAttendees(Integer.parseInt((String.valueOf(child.getValue()))));
                             break;
-                        case "picture_file_name":
-                            newEvent.setPicFileName(String.valueOf(child.getValue()));
+                        case "picture":
+                            newEvent.setPicture(String.valueOf(child.getValue()));
                             break;
                         case "host_id":
                             newEvent.setHostId(String.valueOf(child.getValue()));
@@ -378,7 +377,7 @@ public class EventsFirebase {
                         newEvent.setEventName(String.valueOf(child.getValue()));
                         newEvent.setLocation(String.valueOf(child.getValue()));
                         newEvent.setAttendees(Integer.parseInt((String) child.getValue()));
-                        newEvent.setPicFileName(String.valueOf(child.getValue()));
+                        newEvent.setPicture(String.valueOf(child.getValue()));
                         newEvent.setHostId(String.valueOf(child.getValue()));
                         newEvent.setCategories(a);
                         item = newEvent;
