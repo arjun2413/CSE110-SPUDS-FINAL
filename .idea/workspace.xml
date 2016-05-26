@@ -24,100 +24,12 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/About/AboutFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/About/AboutFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/CategoriesList/CategoriesListFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/CategoriesList/CategoriesListFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/ChangePassword/ChangePasswordFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/ChangePassword/ChangePasswordFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/ChangePassword/ChangePasswordFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/ChangePassword/ChangePasswordFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/CreateComment/CreateCommentFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/CreateComment/CreateCommentFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/EditEvent/EditEventFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/EditEvent/EditEventFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/EditEvent/EditEventFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/EditEvent/EditEventFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/EditProfile/EditProfileFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/EditProfile/EditProfileFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/EventDetails/EventDetailsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/EventDetails/EventDetailsFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/FilteredCategoryFeed/CategoryFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/FilteredCategoryFeed/CategoryFeedFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/FindPeople/FindPeopleFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/FindPeople/FindPeopleFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/HomeFeed/HomeFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/HomeFeed/HomeFeedFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/HomeFeed/HomeFeedViewPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/HomeFeed/HomeFeedViewPagerAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Login/LoginActivity$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Login/LoginActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/MyEvents/MyEventsFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/MyEvents/MyEventsFeedFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/MyEvents/MyEventsTabsFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/MyEvents/MyEventsTabsFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/MyEvents/MyEventsTabsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/MyEvents/MyEventsTabsFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Notifications/NotificationsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Notifications/NotificationsFragment.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Profile/ProfileFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Profile/ProfileFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Shared/EventsFeedRVAdapter$EventViewHolder.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Shared/EventsFeedRVAdapter$EventViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Shared/EventsFeedRVAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Shared/EventsFeedRVAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedTabsFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedTabsFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedTabsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedTabsFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedViewPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedViewPagerAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter$SubViewHolder.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter$SubViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/About/AboutFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/About/AboutFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/CategoriesList/CategoriesListFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/CategoriesList/CategoriesListFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/ChangePassword/ChangePasswordFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/ChangePassword/ChangePasswordFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/ChangePassword/ChangePasswordFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/ChangePassword/ChangePasswordFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/CreateComment/CreateCommentFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/CreateComment/CreateCommentFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/EditEvent/EditEventFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/EditEvent/EditEventFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/EditEvent/EditEventFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/EditEvent/EditEventFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/EditProfile/EditProfileFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/EditProfile/EditProfileFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/EventDetails/EventDetailsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/EventDetails/EventDetailsFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/FilteredCategoryFeed/CategoryFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/FilteredCategoryFeed/CategoryFeedFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/FindPeople/FindPeopleFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/FindPeople/FindPeopleFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/HomeFeed/HomeFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/HomeFeed/HomeFeedFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/HomeFeed/HomeFeedViewPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/HomeFeed/HomeFeedViewPagerAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Login/LoginActivity$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Login/LoginActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/MyEvents/MyEventsFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/MyEvents/MyEventsFeedFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/MyEvents/MyEventsTabsFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/MyEvents/MyEventsTabsFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/MyEvents/MyEventsTabsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/MyEvents/MyEventsTabsFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Notifications/NotificationsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Notifications/NotificationsFragment.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Profile/ProfileFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Profile/ProfileFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Shared/EventsFeedRVAdapter$EventViewHolder.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Shared/EventsFeedRVAdapter$EventViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Shared/EventsFeedRVAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/Shared/EventsFeedRVAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedTabsFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedTabsFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedTabsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedTabsFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedViewPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedViewPagerAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter$SubViewHolder.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter$SubViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/About/AboutFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/About/AboutFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/CategoriesList/CategoriesListFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/CategoriesList/CategoriesListFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/ChangePassword/ChangePasswordFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/ChangePassword/ChangePasswordFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/ChangePassword/ChangePasswordFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/ChangePassword/ChangePasswordFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/CreateComment/CreateCommentFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/CreateComment/CreateCommentFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/EditEvent/EditEventFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/EditEvent/EditEventFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/EditEvent/EditEventFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/EditEvent/EditEventFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/EditProfile/EditProfileFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/EditProfile/EditProfileFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/EventDetails/EventDetailsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/EventDetails/EventDetailsFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/FilteredCategoryFeed/CategoryFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/FilteredCategoryFeed/CategoryFeedFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/FindPeople/FindPeopleFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/FindPeople/FindPeopleFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/HomeFeed/HomeFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/HomeFeed/HomeFeedFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/HomeFeed/HomeFeedViewPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/HomeFeed/HomeFeedViewPagerAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Login/LoginActivity$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Login/LoginActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/MyEvents/MyEventsFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/MyEvents/MyEventsFeedFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/MyEvents/MyEventsTabsFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/MyEvents/MyEventsTabsFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/MyEvents/MyEventsTabsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/MyEvents/MyEventsTabsFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Notifications/NotificationsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Notifications/NotificationsFragment.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Profile/ProfileFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Profile/ProfileFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Shared/EventsFeedRVAdapter$EventViewHolder.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Shared/EventsFeedRVAdapter$EventViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Shared/EventsFeedRVAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/Shared/EventsFeedRVAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedTabsFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedTabsFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedTabsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedTabsFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedViewPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedViewPagerAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionsList/SubscriptionsListFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionsList/SubscriptionsListFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter$SubViewHolder.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter$SubViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/com/spuds/eventapp/Notifications/NotificationsFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/com/spuds/eventapp/Notifications/NotificationsFragment.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/instant-run-support/debug/coldswap.marker" afterPath="$PROJECT_DIR$/app/build/intermediates/instant-run-support/debug/coldswap.marker" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/restart-dex/debug/build-info.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/restart-dex/debug/build-info.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditEvent/EditEventFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditEvent/EditEventFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/HomeFeed/HomeFeedFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/HomeFeed/HomeFeedFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/EventsFeedRVAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/EventsFeedRVAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Profile/ProfileFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Profile/ProfileFragment.java" />
     </list>
     <ignored path="CSE110-SPUDS-FINAL.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -161,10 +73,25 @@
       <file leaf-file-name="EventsFeedRVAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/EventsFeedRVAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.851851">
-              <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
+            <state vertical-scroll-proportion="-2.7407408">
+              <caret line="145" column="0" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#4877#6001#0" expanded="true" />
+                <element signature="e#6000#6001#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventsFirebase.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Firebase/EventsFirebase.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="576" column="36" selection-start-line="576" selection-start-column="36" selection-end-line="576" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#23776#23792#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -196,10 +123,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditEventFragment.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EditEventFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditEvent/EditEventFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45681062">
+            <state vertical-scroll-proportion="-10.185185">
               <caret line="342" column="9" selection-start-line="333" selection-start-column="8" selection-end-line="342" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -207,6 +134,41 @@
                 <element signature="e#4377#4385#0" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProfileFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Profile/ProfileFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6637168">
+              <caret line="221" column="27" selection-start-line="221" selection-start-column="27" selection-end-line="221" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#6904#7600#0" expanded="true" />
+                <element signature="e#7599#7600#0" expanded="true" />
+                <element signature="e#8931#8967#0" expanded="true" />
+                <element signature="e#8969#9000#0" expanded="true" />
+                <element signature="e#9989#10025#0" expanded="true" />
+                <element signature="e#10027#10056#0" expanded="true" />
+                <element signature="e#10200#10201#0" expanded="true" />
+                <element signature="e#10239#10240#0" expanded="true" />
+                <element signature="e#10283#10284#0" expanded="true" />
+                <element signature="e#10315#10316#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_profile.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.1">
+              <caret line="120" column="46" selection-start-line="120" selection-start-column="39" selection-end-line="120" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
           </provider>
         </entry>
       </file>
@@ -3580,7 +3542,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Login/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Firebase/AccountFirebase.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SignUp/SignUpActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Profile/ProfileFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/CreateEvent/CreateEventForm.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_event_details.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EventDetails/EventDetailsFragment.java" />
@@ -3592,6 +3553,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/HomeFeed/HomeFeedFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/EventsFeedRVAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_event_feed.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Profile/ProfileFragment.java" />
       </list>
     </option>
   </component>
@@ -3764,6 +3726,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Shared" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSE110-SPUDS-FINAL" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eventapp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Profile" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -4569,7 +4553,13 @@
       <option name="project" value="LOCAL" />
       <updated>1464245620669</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Setup picture for item_event_feed">
+      <created>1464247273842</created>
+      <option name="number" value="00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1464247273842</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -4579,11 +4569,11 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32147938" sideWeight="0.4978425" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32115677" sideWeight="0.4978425" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32783884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4414003" sideWeight="0.48626816" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4414003" sideWeight="0.48626816" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4459665" sideWeight="0.51373184" order="8" side_tool="true" content_ui="tabs" />
@@ -4686,16 +4676,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_edit_event.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6454545">
-          <caret line="288" column="35" selection-start-line="288" selection-start-column="35" selection-end-line="288" selection-end-column="35" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_create_event.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.0136364">
@@ -5029,16 +5009,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Profile/ProfileFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41812402">
-          <caret line="145" column="56" selection-start-line="145" selection-start-column="56" selection-end-line="145" selection-end-column="56" />
-          <folding>
-            <element signature="e#5779#5811#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditEvent/EditEventRVAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33222592">
@@ -5046,17 +5016,6 @@
           <folding>
             <element signature="e#2272#5095#0" expanded="true" />
             <element signature="e#5094#5095#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Firebase/EventsFirebase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17774086">
-          <caret line="711" column="23" selection-start-line="711" selection-start-column="16" selection-end-line="711" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#23776#23792#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -5093,16 +5052,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/EventsFeedRVAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.851851">
-          <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_event_details.xml">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.75">
@@ -5127,12 +5076,66 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditEvent/EditEventFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45681062">
+        <state vertical-scroll-proportion="-10.185185">
           <caret line="342" column="9" selection-start-line="333" selection-start-column="8" selection-end-line="342" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4204#4212#0" expanded="true" />
             <element signature="e#4377#4385#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Firebase/EventsFirebase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="576" column="36" selection-start-line="576" selection-start-column="36" selection-end-line="576" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#23776#23792#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.1">
+          <caret line="120" column="46" selection-start-line="120" selection-start-column="39" selection-end-line="120" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/EventsFeedRVAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.7407408">
+          <caret line="145" column="0" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4877#6001#0" expanded="true" />
+            <element signature="e#6000#6001#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Profile/ProfileFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6637168">
+          <caret line="221" column="27" selection-start-line="221" selection-start-column="27" selection-end-line="221" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6904#7600#0" expanded="true" />
+            <element signature="e#7599#7600#0" expanded="true" />
+            <element signature="e#8931#8967#0" expanded="true" />
+            <element signature="e#8969#9000#0" expanded="true" />
+            <element signature="e#9989#10025#0" expanded="true" />
+            <element signature="e#10027#10056#0" expanded="true" />
+            <element signature="e#10200#10201#0" expanded="true" />
+            <element signature="e#10239#10240#0" expanded="true" />
+            <element signature="e#10283#10284#0" expanded="true" />
+            <element signature="e#10315#10316#0" expanded="true" />
           </folding>
         </state>
       </provider>
