@@ -130,7 +130,8 @@ public class SignUpActivity extends AppCompatActivity {
                 }
                 else{
                     //correct error flag to true, everything is good now
-                    errorMessage.setText("Please Wait...");
+                    String message = "Loading...";
+                    errorMessage.setText(message);
                     accountFirebase.checkEmail(signupEmail.getText().toString(), arrayMsg, "That email is already signed up.", true);
                     error = true;
                 }

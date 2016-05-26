@@ -2645,6 +2645,7 @@ containing a value of this type.
         public static final int btn_done=0x7f0d0088;
         public static final int buttonPanel=0x7f0d0045;
         public static final int button_add_comment=0x7f0d00d8;
+        public static final int button_edit_event=0x7f0d00c7;
         public static final int button_follow=0x7f0d00f6;
         public static final int button_going=0x7f0d00d1;
         public static final int button_invite_people=0x7f0d00d7;
@@ -2760,7 +2761,6 @@ containing a value of this type.
         public static final int icon=0x7f0d0043;
         public static final int ifRoom=0x7f0d0037;
         public static final int image=0x7f0d0040;
-        public static final int imageButton=0x7f0d00c7;
         public static final int imageView=0x7f0d006a;
         public static final int in_text=0x7f0d010d;
         public static final int info=0x7f0d011a;

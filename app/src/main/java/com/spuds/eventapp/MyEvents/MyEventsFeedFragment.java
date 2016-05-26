@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
@@ -22,7 +23,7 @@ import java.util.List;
 
 public class MyEventsFeedFragment extends Fragment {
 
-    private List<Event> events;
+    private ArrayList<Event> events;
     public EventsFeedRVAdapter adapter;
     String myEventsTab;
 
@@ -38,14 +39,11 @@ public class MyEventsFeedFragment extends Fragment {
 
         // TODO (M): Get arraylist of events based on my events filter [going or hosting]
         events = new ArrayList<>();
-        ArrayList<String> categories = new ArrayList<>();
-        categories.add("Social");
-        categories.add("Concert");
 
-        events.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04/20/2016|16:20", 1054,
-                "yj.jpg", categories, "UCSD"));
-        events.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04/20/2016|16:20", 51,
-                "foosh.jpg", categories, "Foosh Improv Comedy Club"));
+        // TODO (M): Get arraylist of events based on tab type [new, hot, now]
+        // Fake data
+        EventsFirebase ef = new EventsFirebase(events, 0, myEventsTab);
+        ef.createEL();
 
     }
 
