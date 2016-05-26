@@ -2,33 +2,46 @@
 <instant-run
     abi="x86"
     api-level="23"
-    density="560dpi"
+    density="420dpi"
     format="7"
-    timestamp="886605314003" >
+    timestamp="21146529563016"
+    verifier="COMPATIBLE" >
 
     <task
         name="javac"
-        duration="5980" />
+        duration="3572" />
     <task
         name="instant-run-dex"
-        duration="0" />
+        duration="763" />
     <task
         name="instant-run-transform"
-        duration="902" />
+        duration="174" />
     <task
         name="verifier"
-        duration="138" />
+        duration="30" />
 
     <artifact
-        location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
-        type="MAIN" />
+        location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\reload-dex\debug\classes.dex"
+        type="RELOAD_DEX" />
 
-    <build
-        timestamp="15155601935582"
-        verifier="METHOD_DELETED" >
+    <build timestamp="19494767877574" >
         <artifact
-            location="/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_7/classes.dex"
+            location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\outputs\apk\app-debug.apk"
+            type="MAIN" />
+    </build>
+    <build
+        timestamp="20824304758160"
+        verifier="FIELD_ADDED" >
+        <artifact
+            location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_6\classes.dex"
             type="DEX" />
+    </build>
+    <build
+        timestamp="21146529563016"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="C:\Users\Reggie\StudioProjects\CSE110-SPUDS-FINAL\app\build\intermediates\reload-dex\debug\classes.dex"
+            type="RELOAD_DEX" />
     </build>
 
 </instant-run>

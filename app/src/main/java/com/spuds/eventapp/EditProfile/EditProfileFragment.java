@@ -41,6 +41,8 @@ public class  EditProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Bundle extras = getArguments();
         user = (User) extras.get(getString(R.string.user_details));
+
+        ((MainActivity) getActivity()).picture = null;
     }
 
     @Override

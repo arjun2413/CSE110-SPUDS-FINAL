@@ -130,7 +130,9 @@ public class ProfileFragment extends Fragment {
 
 
         // Set image for button for subscribe or edit profile
-        if (profileType.equals(getString(R.string.profile_type_owner))) {
+        if (user.getUserId().equals(UserFirebase.uId)) {
+
+            Log.v("ProfileFragment", "own profile!");
 
             // TODO (V): Uncomment when edit_profile picture is inserted in drawable
             //buttonSubscribedOrEdit.setImageResource(R.drawable.edit_profile);
@@ -155,6 +157,8 @@ public class ProfileFragment extends Fragment {
 
         } else {
 
+            Log.v("ProfileFragment", "other not own profile!");
+
             // TODO (V): Uncomment once get drawables for subscribe buttons
             /*if (user.subscribed)
                 buttonSubscribedOrEdit.setImageResource(R.drawable.button_subscribed);
@@ -165,7 +169,6 @@ public class ProfileFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    // TODO (M): Update subscribed boolean in database & error checking
                     user.setSubscribed(!user.isSubscribed());
                     Log.v("Profile Fragment", "subscribed = " + user.isSubscribed());
 

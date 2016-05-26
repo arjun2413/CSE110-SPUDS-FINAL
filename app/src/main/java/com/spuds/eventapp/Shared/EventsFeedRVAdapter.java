@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -147,7 +148,11 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             @Override
             public void onClick(View v) {
 
+                Log.v("eventsfeedrvadapter", "eventhostclicked");
+
                 final UserFirebase userFirebase = new UserFirebase();
+                Log.v("eventsfeedrvadapter", "hostid" + events.get(index).getHostId());
+
                 userFirebase.getAnotherUser(events.get(index).getHostId());
 
                 new Thread(new Runnable() {
@@ -162,6 +167,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
                             }
 
                         }
+                        Log.v("eventsfeedrvadapter", "returned from firebase");
 
 
                         startProfileFragment(userFirebase);
@@ -242,18 +248,12 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
         // Categories
         String categories = "";
-        int eventIndex = 0;
-        if(events.get(eventIndex).getCategories() != null) {
-            for (int categoryIndex = 0; categoryIndex < events.get(eventIndex).getCategories().size() - 1; categoryIndex++) {
-                if (categoryIndex == events.get(eventIndex).getCategories().size()) {
-                    categoryIndex = 0;
-                    eventIndex++;
-                }
-                categories += events.get(i).getCategories().get(eventIndex) + ", ";
+        if(events.get(i).getCategories() != null || events.get(i).getCategories().size() != 0) {
+            for (int categoryIndex = 0; categoryIndex < events.get(i).getCategories().size() - 1; categoryIndex++) {
+                categories += events.get(i).getCategories().get(categoryIndex) + ", ";
             }
             categories += events.get(i).getCategories().get(events.get(i).getCategories().size() - 1);
         }
-
 
         eventViewHolder.eventCategories.setText(categories);
 

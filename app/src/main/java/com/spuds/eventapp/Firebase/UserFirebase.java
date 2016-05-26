@@ -337,5 +337,46 @@ public class UserFirebase {
 
     }
 
+    public void updateNumberHosting() {
+        final Firebase ref = new Firebase("https://eventory.firebaseio.com/users");
 
+        Query queryRef = ref.child(uId);
+
+        queryRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot snapshot, String previousChild) {
+
+                if (snapshot.getKey().equals("number_hosting")) {
+                    Firebase refUser = ref.child(uId);
+                    Map<String, Object> map = new HashMap<String, Object>();
+                    map.put("number_hosting", String.valueOf(Integer.parseInt((String) snapshot.getValue()) + 1));
+                    refUser.updateChildren(map);
+                }
+
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+    }
 }
+

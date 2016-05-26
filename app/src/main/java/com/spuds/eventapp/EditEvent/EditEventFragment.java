@@ -61,6 +61,8 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        ((MainActivity) getActivity()).picture = null;
+
         Bundle extras = getArguments();
         event = (Event) extras.get(getString(R.string.event_details));
     }
@@ -152,8 +154,45 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
         // TODO (M): Picasso for picture
         eventName.setText(event.getEventName());
-        eventDate.setText(eD.getDateLong());
-        eventTime.setText(eD.get12TimeMinusAMPM());
+
+        String originalString = event.getDate();
+        char[] c = originalString.toCharArray();
+        char temp = c[0];
+        c[0] = c[6];
+        c[6] = temp;
+        char temp1 = c[1];
+        c[1] = c[7];
+        c[7] = temp1;
+        char temp2 = c[0];
+        c[0] = c[3];
+        c[3] = temp2;
+        char temp3 = c[1];
+        c[1] = c[4];
+        c[4] = temp3;
+        String swappedString = new String(c);
+        String tempString = swappedString.substring(11, swappedString.length());
+        String sub = tempString.substring(0, tempString.indexOf(':'));
+        String col = tempString.substring(tempString.indexOf(':'), tempString.length());
+        int numb = Integer.parseInt(sub);
+        //PM
+        if(Integer.parseInt(sub) >= 12 && Integer.parseInt(sub) < 24) {
+            if(numb != 12) {
+                numb -= 12;
+            }
+            sub = numb + col;
+        }
+        //AM
+        else{
+            if(numb == 0) {
+                numb += 12;
+            }
+            sub = numb + col;
+        }
+        swappedString = swappedString.substring(0, 11) + sub;
+
+        eventDate.setText(swappedString.substring(0,8));
+        eventTime.setText(swappedString.substring(11, swappedString.length()));
+
         eventLocation.setText(event.getLocation());
         eventDescription.setText(event.getDescription());
 

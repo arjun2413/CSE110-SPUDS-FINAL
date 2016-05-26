@@ -4,7 +4,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,11 +16,12 @@ import android.widget.TextView;
 import com.spuds.eventapp.CreateComment.CreateCommentFragment;
 import com.spuds.eventapp.EditEvent.EditEventFragment;
 import com.spuds.eventapp.Firebase.EventsFirebase;
+import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.InvitePeople.InvitePeopleFragment;
+import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Comment;
 import com.spuds.eventapp.Shared.Event;
-import com.spuds.eventapp.Shared.EventDate;
 import com.spuds.eventapp.Shared.MainActivity;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,9 +61,6 @@ public class EventDetailsFragment extends Fragment {
             // TODO: Fetch event using eventId
             EventsFirebase ef = new EventsFirebase();
             ef.getEventDetails(eventId);
-            ArrayList<String> categories = new ArrayList<>();
-            categories.add("Social");
-            categories.add("Concert");
         }
         eventDetailsFragment = this;
     }
@@ -116,7 +113,38 @@ public class EventDetailsFragment extends Fragment {
         buttonGoingOrEdit = (Button) view.findViewById(R.id.button_going);
         //TODO: picasso for event pic
         eventName.setText(event.getEventName());
+        eventHost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("eventsfeedrvadapter", "eventhostclicked");
+
+                final UserFirebase userFirebase = new UserFirebase();
+
+                userFirebase.getAnotherUser(event.getHostId());
+
+                new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        while (!userFirebase.threadCheckAnotherUser) {
+                            try {
+                                Thread.sleep(77);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                        Log.v("eventsfeedrvadapter", "returned from firebase");
+
+
+                        startProfileFragment(userFirebase);
+
+                    }
+                }).start();
+            }
+        });
         eventLocation.setText(event.getLocation());
+
         String originalString = event.getDate();
         char[] c = originalString.toCharArray();
         char temp = c[0];
@@ -209,16 +237,18 @@ public class EventDetailsFragment extends Fragment {
         eventAttendees.setText(String.valueOf(event.getAttendees()));
         eventHost.setText(event.getHostName());
         eventDescription.setText(event.getDescription());
+
         // Categories
         String categories = "";
         if(event.getCategories() != null) {
             for (int i = 0; i < event.getCategories().size() - 1; ++i) {
-                Log.v("chris", event.getCategories().get(i));
+                //Log.v("chris", event.getCategories().get(i));
                 categories += event.getCategories().get(i) + ", ";
             }
             categories += event.getCategories().get(event.getCategories().size() - 1);
         }
         eventCategories.setText(categories);
+
         // Click listener for the Add Comment button
         addComment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -248,6 +278,7 @@ public class EventDetailsFragment extends Fragment {
                         .commit();
             }
         });
+
         // TODO (M): Get id of the user
         /*if (event.getHostId().equals(USER.GETUSERID())) {
             buttonGoingOrEdit.setImageResource(R.drawable.button_edit_event);
@@ -311,6 +342,36 @@ public class EventDetailsFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    private void startProfileFragment(final UserFirebase userFirebase) {
+
+        Fragment profileFragment = new ProfileFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString(getString(R.string.profile_type),
+                getString(R.string.profile_type_other));
+
+
+        bundle.putSerializable(getString(R.string.user_details), userFirebase.anotherUser);
+
+        profileFragment.setArguments(bundle);
+
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ((MainActivity)getActivity()).removeSearchToolbar();
+            }
+        });
+        // Add Event Details Fragment to fragment manager
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_frame_layout, profileFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(getString(R.string.fragment_profile))
+                .commit();
+
+
+
     }
 
     private void overrideFonts(final Context context, final View v) {

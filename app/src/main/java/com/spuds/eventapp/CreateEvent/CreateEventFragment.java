@@ -50,7 +50,9 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     public CreateEventRVAdapter adapter;
 
     private CreateEventForm makeForm(){
-        String result = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
+        String result = "";
+        if (((MainActivity) getActivity()).picture != null)
+        result = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
         return new CreateEventForm(eventName,eventDate,eventTime, spinner, eventLocation,eventDescription, result);
 
     }
@@ -77,8 +79,6 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                 CreateEventForm form = makeForm();
 
                 boolean addImage = false;
-
-
 
 
                 if (form.allFilled()) {
@@ -145,7 +145,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ((MainActivity) getActivity()).picture = null;
 
 
     }
