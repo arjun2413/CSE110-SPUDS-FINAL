@@ -23,7 +23,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:id="@+id/event_pic"
-                    android:background="@drawable/rave" />
+                    android:background="@drawable/rave"
+                    android:scaleType="fitXY" />
 
                 <ImageView
                     android:layout_width="fill_parent"
