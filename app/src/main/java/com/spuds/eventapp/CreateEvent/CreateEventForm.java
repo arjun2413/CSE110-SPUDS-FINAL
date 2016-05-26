@@ -49,12 +49,16 @@ public class CreateEventForm {
             return false;
         }
     }
-    public boolean correctDate() {
+    public int correctDate() {
         int month, day;
 
         System.out.println("date is: " + date);
         if (date.length() < 14) { //magic number : 'MM/DD/YY | 7AM' is 14 chars (not counting quotes)
-            return false;
+            return 1;
+        }
+
+        if (date.indexOf('|') != 9) {
+            return 1;
         }
 
         //get the MM/DD/YY form
@@ -63,37 +67,37 @@ public class CreateEventForm {
 
         //check for integers and mm/dd/yy format
         if (tempDate.length() != 8) { //length of mm/dd/yy
-            return false;
+            return 1;
         }
         else if (tempDate.charAt(2) != '/' || tempDate.charAt(5) != '/') { //check if there are '/'
-            return false;
+            return 1;
         }
         else if (!isInteger(tempDate.substring(0,2)) || !isInteger(tempDate.substring(3,5)) || !isInteger(tempDate.substring(7)) ){
             //check if mm, dd, yy are all ints
-            return false;
+            return 2;
         }
         else {
             month = Integer.parseInt(tempDate.substring(0,2));
             day = Integer.parseInt(tempDate.substring(3,5));
             //check ranges
             if (month < 1 || month > 12 || day == 0) { //month btwn 1,12 and day is not 0
-                return false;
+                return 3;
             }
 
             if (month == 2 && day > 28) {   //february check
                 //if we wanna check leap years we do that here
-                return false;
+                return 3;
             }
             else if (has31(month) && day > 31) {    //31day month checks
-                return false;
+                return 3;
             }
             else if (has30(month) && day > 30) {    //30day month checks
-                return false;
+                return 3;
             }
         }
 
         //check time
-        return correctTime();
+        return 0;
 
 
         //return true;
@@ -103,18 +107,25 @@ public class CreateEventForm {
      * 1. 1 through 12 (no colon)
      * 2. 8:00 (with colon)
      *      with hour 1-12, minute 00-59
+     *
+     * Returns a int based on error;
      */
-    public boolean correctTime() {
+    public int correctTime() {
         if (date.length() < 14) {   //see correctDate for magic number
-            return false;
+            return 1;
         }
+        int index = date.indexOf('|');
         int timeEnd = date.length();
         int colon, intHour, intMin;
-        String hour = "";
-        String minute = "";
+        String hour;
+        String minute;
+        String time;
 
         //gets time without the AM or PM
-        String time = date.substring(11,timeEnd-2);
+        if (index != -1) {
+            time = date.substring(index+2, timeEnd - 2);
+        }
+        else return 1;
         System.out.println("time is: " + time);
 
         //index of :
@@ -124,31 +135,34 @@ public class CreateEventForm {
             hour = time.substring(0, colon);    //hour part
             minute = time.substring(colon+1);     //minute part
             if (minute.length() != 2){  //minute must be in MM format
-                return false;
+                return 4;
             }
 
             System.out.println("hour/minute is: " + hour + " / " + minute);
             if (!isInteger(hour) || !isInteger(minute)) {   //check if int
-                return false;
+                return 5;
             }
             else {
                 intHour = Integer.parseInt(hour);
                 intMin = Integer.parseInt(minute);
                 if (intHour > 12 || intMin > 59 || intHour == 0) {  //range checks
-                    return false;
+                    return 6;
                 }
             }
         }
         else if (colon == -1){  //if theres no :
-            intHour = Integer.parseInt(time);
+            if (isInteger(time)) {
+                intHour = Integer.parseInt(time);
+            }
+            else return 5;
             if (intHour < 1 || intHour > 12) {
-                return false;
+                return 6;
             }
         }
-        else return false;
+        else return 4;
 
 
-        return true;
+        return 0;
     }
 
     //months with 31 days

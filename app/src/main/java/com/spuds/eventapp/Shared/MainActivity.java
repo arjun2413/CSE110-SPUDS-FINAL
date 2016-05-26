@@ -477,7 +477,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator);
-
+        //overrideFonts(coordinatorLayout.getContext(),coordinatorLayout);
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();

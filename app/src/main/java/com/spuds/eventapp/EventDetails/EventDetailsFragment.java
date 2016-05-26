@@ -58,6 +58,8 @@ public class EventDetailsFragment extends Fragment {
     CommentsRVAdapter adapter;
     List<Comment> comments;
     boolean ownEvent;
+    EventsFirebase eventsFirebase;
+
 
     public EventDetailsFragment() {
     }
@@ -65,15 +67,21 @@ public class EventDetailsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Bundle extras = getArguments();
         event = (Event) extras.get(getString(R.string.event_details));
-       if (event == null) {
+        if (event == null) {
             eventId = extras.getString(getString(R.string.event_id));
             // TODO: Fetch event using eventId
             EventsFirebase ef = new EventsFirebase();
             ef.getEventDetails(eventId);
         } else
             eventId = event.getEventId();
+
+         eventsFirebase = new EventsFirebase();
+        //eventsFirebase.goingToAnEvent(eventId);
+        eventsFirebase.isGoing(eventId);
+
         eventDetailsFragment = this;
 
         if (event.getHostId().equals(UserFirebase.uId))
@@ -323,87 +331,70 @@ public class EventDetailsFragment extends Fragment {
             }
         });
 
-        // TODO (M): Get id of the user
-        /*if (ownEvent) {
-            buttonGoingOrEdit.setImageResource(R.drawable.button_edit_event);
-        } else {
-            // TODO (M): GET if the user is going to this event or not
-            going = true/false;
-            buttonGoingOrEdit.setImageResource(R.drawable.button_going);
-            buttonGoingOrEdit.setImageResource(R.drawable.button_not_going);
-        }*/
-        buttonGoingOrEdit.setOnClickListener(new View.OnClickListener() {
+
+        // TODO (M): Firebase call to get if you're GOING to an event
+
+        /*if (going)
+            buttonGoingOrEdit.setBackgroundColor(Color.parseColor("#5c8a8a"));
+        else
+            buttonGoingOrEdit.setBackgroundColor(Color.parseColor("#ffffff"));*/
+
+        Log.d("check", "Checkpls");
+
+
+        new Thread(new Runnable() {
             @Override
-            public void onClick(View v) {
-                Log.d("Here1", "herepls");
+            public void run() {
+                Log.d("idIsGoing2",String.valueOf(eventsFirebase.idIsGoing));
+                while (eventsFirebase.idIsGoing == 0) {
+                    Log.d("areHere", "areHere");
+                    try {
+                        Thread.sleep(75);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Log.d("idIsGoing", String.valueOf(eventsFirebase.idIsGoing));
 
-                if (ownEvent) {
+                }
 
-                EditEventFragment editEventFragment = new EditEventFragment();
+                if (eventsFirebase.idIsGoing == 1) {
+                    going = false;
+                    Log.d("please", "pls");
+                } else
+                    going = true;
 
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(getString(R.string.event_details), event);
-                editEventFragment.setArguments(bundle);
-
-                // TODO (C): Add user in a bundle to editProfileFragment
-
-                ((MainActivity) getActivity()).removeSearchToolbar();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_frame_layout, editEventFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(getString(R.string.fragment_edit_event))
-                        .commit();
-
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        buttonGoingOrEdit.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Log.d("Here1", "herepls");
 
 
-                } else {
-                 //TODO (M): PUSH Going/Not Going
-                    Log.d("check", "Checkpls");
-                    final EventsFirebase eventsFirebase = new EventsFirebase();
-                // TODO (V): going/not going buttons
-                    eventsFirebase.isGoing(eventId);
-                    Log.d("where", "what");
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Log.d("idIsGoing2",String.valueOf(eventsFirebase.idIsGoing));
-                            while (eventsFirebase.idIsGoing == 0) {
-                                Log.d("areHere", "areHere");
-                                try {
-                                    Thread.sleep(75);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                                Log.d("idIsGoing",String.valueOf(eventsFirebase.idIsGoing));
-                                if (eventsFirebase.idIsGoing == 1) {
-                                    going = false;
-                                    Log.d("please", "pls");
-                                }
-                                else
-                                     going = true;
                                 if (going) {
-                                    Log.d("word", "qwe");
+                                    Log.d("edgoing", " true");
                                     //buttonGoingOrEdit.setImageResource(R.drawable.button_not_going);
                                     eventsFirebase.notGoingToAnEvent(eventId);
                                     eventsFirebase.deleteEventRegistration(eventId);
+
                                     going = false;
                                 } else {
-                                    Log.d("poop", "poop");
+                                    Log.d("edgoing", " false");
                                     //buttonGoingOrEdit.setImageResource(R.drawable.button_going);
-                                    Bundle extras = getArguments();
 
                                     eventsFirebase.goingToAnEvent(eventId);
-
-                                    Log.d("Reach", "true");
                                     going = true;
                                 }
-                            }
-                        }
-                    }).start();
 
-                }
+                            }
+                        });
+                    }
+                });
             }
-        });
+        }).start();
+
+
 
         String imageFile = event.getPicture();
 

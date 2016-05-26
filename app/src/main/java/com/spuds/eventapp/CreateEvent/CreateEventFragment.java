@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ import cn.refactor.library.SmoothCheckBox;
 
 public class CreateEventFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
+    public static final int FILLED = 213;
     private ImageView eventImage;
     private EditText eventName;
     private EditText eventDate;
@@ -42,6 +44,10 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     private EditText eventDescription;
     private Button editEventDelete;
     private Button editEventDone;
+    private TextView fieldMessage;
+    private TextView dateMessage;
+    private TextView timeMessage;
+    private ScrollView scrollView;
 
     private ArrayList editEventFields;
 
@@ -66,6 +72,11 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         eventDescription = (EditText) view.findViewById(R.id.eventDescription);
         editEventDelete = (Button) view.findViewById(R.id.editEventDelete);
         editEventDone = (Button) view.findViewById(R.id.editEventDone);
+        fieldMessage = (TextView) view.findViewById(R.id.missingMessage);
+        fieldMessage.setVisibility(View.INVISIBLE);
+        dateMessage = (TextView) view.findViewById(R.id.dateErrorMessage);
+        timeMessage = (TextView) view.findViewById(R.id.timeErrorMessage);
+        scrollView = (ScrollView) view.findViewById(R.id.scrollView);
         editEventFields = new ArrayList<String>();
 
     }
@@ -77,19 +88,63 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
             @Override
             public void onClick(View v) {
                 CreateEventForm form = makeForm();
-
+                fieldMessage.setVisibility(View.INVISIBLE);
                 boolean addImage = false;
+                int check = 0;
+                int timeCheck = 0;
+                int dateCheck = 0;
+                String message = "";
+                String date = "";
+                String time = "";
 
+                if (!form.allFilled() || eventTime.getText().toString().equals("") || eventDate.getText().toString().equals("")) {
+                    fieldMessage.setVisibility(View.VISIBLE);
+                    check = FILLED;
 
-                if (!form.allFilled()) {
-                    //TODO: form not all filled error
                     System.out.println("Fill out all the forms");
                 }
-                else if (!form.correctDate()) {
-                    //TODO: date incorrect format error
+                if (check != FILLED) {
+                    dateCheck = form.correctDate();
+                    timeCheck = form.correctTime();
+                }
+
+
+                if (check != 0 || dateCheck != 0 || timeCheck!= 0) {
                     System.out.println("Date format is wrong");
+                    switch (dateCheck) {
+                        case 0:
+                            date = "";
+                            break;
+                        case 1:
+                            date = "Incorrect Format.";
+                            break;
+                        case 2:
+                            date = "Use numbers please.";
+                            break;
+                        case 3:
+                            date = "That's not a proper date.";
+                            break;
+                    }
+                    switch (timeCheck){
+                        case 0:
+                            time = "";
+                            break;
+                        case 4:
+                            time = "Incorrect format.";
+                            break;
+                        case 5:
+                            time = "Use numbers please";
+                            break;
+                        case 6:
+                            time = "That's not a proper time.";
+                            break;
+                    }
+                    dateMessage.setText(date);
+                    timeMessage.setText(time);
+                    scrollView.fullScroll(ScrollView.FOCUS_UP);
                 }
                 else {
+                    System.out.println("Check is: " + check);
                     eventsFirebase.createEvent(form, adapter);
                     getActivity().getSupportFragmentManager().popBackStack();
                 }

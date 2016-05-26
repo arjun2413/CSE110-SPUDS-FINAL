@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,6 +43,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         TextView seeMore;
         TextView monthDate, dayDate;
         TextView eventTime;
+        Button buttonGoing;
 
 
         EventViewHolder(View itemView) {
@@ -57,6 +59,8 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             monthDate = (TextView) itemView.findViewById(R.id.date_month);
             dayDate = (TextView) itemView.findViewById(R.id.date_day);
             eventTime = (TextView) itemView.findViewById(R.id.event_time);
+            buttonGoing = (Button) itemView.findViewById(R.id.event_going);
+
         }
 
     }
@@ -140,6 +144,14 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
             return;
         }
+
+
+        // TODO (M): going
+        boolean going = false;
+        /*if (going)
+            eventViewHolder.buttonGoing.setBackgroundColor(Color.parseColor("#5c8a8a"));
+        else
+            eventViewHolder.buttonGoing.setBackgroundColor(Color.parseColor("#ffffff"));*/
 
         if (events.get(i).getPicture() != null || events.get(i).getPicture() != "") {
             String imageFile = events.get(i).getPicture();
