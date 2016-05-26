@@ -86,6 +86,12 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         //Typeface raleway_light = Typeface.createFromAsset(v.getContext().getAssets(),  "raleway-light.ttf");
         overrideFonts(v.getContext(),v);
 
+      /*  Typeface raleway_medium = Typeface.createFromAsset(getAssets(),  "Raleway-Medium.ttf");
+
+        //title font
+        TextView upload = (TextView) v.findViewById(R.id.upload);
+        upload.setTypeface(raleway_medium);*/
+
         EventViewHolder evh = new EventViewHolder(v);
         return evh;
     }

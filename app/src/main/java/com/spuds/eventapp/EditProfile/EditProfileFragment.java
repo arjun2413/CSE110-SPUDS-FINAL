@@ -1,9 +1,15 @@
 package com.spuds.eventapp.EditProfile;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
@@ -29,6 +36,7 @@ public class  EditProfileFragment extends Fragment {
     Fragment editProfileFragment;
 
     User user;
+    String picturepush;
 
     public EditProfileFragment() {
         //this is to leave this fragment when done
@@ -48,6 +56,19 @@ public class  EditProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
+
+        overrideFonts(view.getContext(),view);
+
+        Typeface raleway_medium = Typeface.createFromAsset(getActivity().getAssets(),  "Raleway-Medium.ttf");
+
+        TextView name = (TextView) view.findViewById(R.id.name);
+        name.setTypeface(raleway_medium);
+
+        TextView description = (TextView) view.findViewById(R.id.description);
+        description.setTypeface(raleway_medium);
+
+        TextView upload = (TextView) view.findViewById(R.id.update_button);
+        upload.setTypeface(raleway_medium);
 
         updateButton = (Button) view.findViewById(R.id.update_button);
         editProfilePictureButton = (ImageButton) view.findViewById(R.id.edit_profile_picture);
@@ -88,9 +109,24 @@ public class  EditProfileFragment extends Fragment {
                             @Override
                             public void run() {
 
-                                pictureView.setImageURI(null);
+                                /*pictureView.setImageURI(null);
                                 pictureView.setImageURI(((MainActivity) getActivity()).picture);
-                                pictureView.invalidate();
+                                Log.v("EditProfileFragment", "here");
+                                Log.v("EditProfileFragment", ((MainActivity) getActivity()).picture.toString());
+                                pictureView.invalidate();*/
+
+                                String imageFile = UserFirebase.convert(getActivity(),((MainActivity) getActivity()).picture);
+                                picturepush = imageFile;
+                                byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                                Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+
+
+                                Log.v("EditProfileFragment", "imagefile" + imageFile);
+                                RoundedBitmapDrawable dr =
+                                        RoundedBitmapDrawableFactory.create(getActivity().getResources(), src);
+
+                                dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
+                                pictureView.setImageDrawable(dr);
 
 
                             }
@@ -101,6 +137,18 @@ public class  EditProfileFragment extends Fragment {
 
             }
         });
+
+        String imageFile = user.getPicture();
+
+
+        byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+        Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+
+        RoundedBitmapDrawable circularBitmapDrawable =
+                RoundedBitmapDrawableFactory.create(getResources(), src);
+        circularBitmapDrawable.setCircular(true);
+        circularBitmapDrawable.setAntiAlias(true);
+        pictureView.setImageDrawable(circularBitmapDrawable);
 
 
         /*Bitmap src = BitmapFactory.decodeResource(this.getResources(), R.id.edit_profile_picture);
@@ -132,9 +180,12 @@ public class  EditProfileFragment extends Fragment {
                 //editMajor.getText().toString();         //Major text to update to db
                 ;   //description to update to db
 
+
                 User user = new User(editFullName.getText().toString(),
                         editDescription.getText().toString(),
-                        UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture));
+                        picturepush);
+
+                Log.v("EditProfilementasdfasdf", "imagefile" + user.getPicture());
 
                 UserFirebase.updateUser(user);
 
@@ -160,5 +211,20 @@ public class  EditProfileFragment extends Fragment {
         super.onDetach();
     }
 
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "raleway-regular.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
+    }
 
 }

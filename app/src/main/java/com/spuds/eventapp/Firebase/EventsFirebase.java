@@ -248,6 +248,8 @@ public class EventsFirebase {
 
                 Event newEvent  = new Event();
 
+                Log.v("EventsFirebase jkl;", "" + snapshot.getKey());
+
                 for (DataSnapshot child : snapshot.getChildren()) {
                     Log.d("asdf", String.valueOf(child));
                     switch (child.getKey()) {

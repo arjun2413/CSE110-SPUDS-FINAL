@@ -2,12 +2,147 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".About.AboutFragment">
+    tools:context=".About.AboutFragment"
+    android:background="#3a928d">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Developers of Eventory:" />
+        android:layout_gravity="left|top">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Meet the Developers:"
+            android:textSize="30sp"
+            android:textColor="#ffffff"
+            android:id="@+id/meet"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Youngjin Yun"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/young"
+            android:textColor="#ffffff"
+            android:layout_marginTop="45dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Arvind Kalathil"
+            android:id="@+id/arvind"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/young"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Arjun Srinivasan"
+            android:id="@+id/arjun"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/arvind"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Reggie Wu"
+            android:id="@+id/reggie"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/arjun"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="David Shan"
+            android:id="@+id/david"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/reggie"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Christine Wu"
+            android:id="@+id/christine"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/david"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Karen Ma"
+            android:id="@+id/karen"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/christine"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Tina Nguyen"
+            android:id="@+id/tina"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/karen"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Jonathan Perepalanunt"
+            android:id="@+id/jon"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/tina"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Quoc-Toan Luong"
+            android:id="@+id/quoc"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/jon"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"/>
+    </RelativeLayout>
 
 </FrameLayout>

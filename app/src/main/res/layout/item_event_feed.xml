@@ -102,23 +102,25 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="18dp"
                         android:text="Hosted by "
                         android:id="@+id/hosted_text"
-                        android:textColor="#1a1a1a" />
+                        android:textColor="#1a1a1a"
+                       />
 
                     <TextView
-                        android:layout_width="185dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="190dp"
+                        android:layout_height="18dp"
                         android:text="A.S. Concert and Events"
                         android:id="@+id/event_host"
                         android:textColor="#1a1a1a"
-                        android:textStyle="italic" />
+                        android:textStyle="italic"
+                        />
                 </LinearLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="260dp"
+                    android:layout_height="18dp"
                     android:layout_below="@id/event_name"
                     android:id="@+id/event_loc"
                     android:text="RIMAC Field"
@@ -131,7 +133,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="18dp"
                         android:layout_below="@id/event_date"
                         android:id="@+id/event_attendees"
                         android:text="1,049"
@@ -139,15 +141,15 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="18dp"
                         android:text=" going"
                         android:id="@+id/going_text"
                         android:textColor="#1a1a1a" />
                 </LinearLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="200dp"
+                    android:layout_height="18dp"
                     android:layout_below="@id/event_attendees"
                     android:id="@+id/event_categories"
                     android:text="Social, Concerts" />
@@ -164,23 +166,24 @@
             android:id="@+id/event_time"
             android:layout_gravity="center_vertical"
             android:layout_below="@+id/label_see_more"
-
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="70dp"
             android:textColor="#1a1a1a" />
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="20dp"
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="23dp"
             android:id="@+id/event_going"
             android:background="@drawable/roundedbutton"
             android:layout_gravity="right"
-
+            android:text="GOING"
+            android:textSize="13sp"
+            android:textColor="#ffffff"
             android:layout_alignParentTop="true"
             android:layout_alignLeft="@+id/event_time"
             android:layout_alignStart="@+id/event_time"
-            android:backgroundTint="#5c8a8a" />
+            android:backgroundTint="#a6a6a6" />
 
     </RelativeLayout>
 
