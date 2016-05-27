@@ -1,20 +1,18 @@
 package com.spuds.eventapp.InvitePeople;
 
-import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.User;
 
@@ -28,6 +26,8 @@ public class InvitePeopleFragment extends Fragment {
 
     InvitePeopleRVAdapter adapter;
 
+    EventsFirebase eventsFirebase;
+
     public InvitePeopleFragment() {
         // Required empty public constructor
     }
@@ -36,6 +36,12 @@ public class InvitePeopleFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
+        // TODO (M): remember when loading do not override the followers arraylist, add to it
+        followers = new ArrayList<>();
+        invited = new ArrayList<>();
+        eventsFirebase = new EventsFirebase();
+        eventsFirebase.getFollowers(followers);
     }
 
     @Override
@@ -44,23 +50,7 @@ public class InvitePeopleFragment extends Fragment {
         View view = inflater.inflate(R.layout.recycler, container, false);
 
 
-
-        // TODO (M): remember when loading do not override the followers arraylist, add to it
-
-        followers = new ArrayList<>();
-        // TODO (M): fetch real data
-        // fake data for followers
-        invited = new ArrayList<>();
-        followers.add(new User("1", "Reggie Wu", "#wutangclan", true, 100,
-                1, "reggie.jpg", false));
-        followers.add(new User("1", "Youngjin Yun", "#wutangclan", true, 100,
-                1, "reggie.jpg", false));
-        followers.add(new User("1", "Jon Purple", "#wutangclan", true, 100,
-                1, "reggie.jpg", false));
-        followers.add(new User("1", "Christine Wu", "#wutangclan", true, 100,
-                1, "reggie.jpg", false));
-
-        RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv);
+        final RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
@@ -68,25 +58,36 @@ public class InvitePeopleFragment extends Fragment {
         adapter = new InvitePeopleRVAdapter(followers, invited, this);
         rv.setAdapter(adapter);
 
-        //calling refresh function
-        refreshing(view);
-        return view;
-    }
-    //TODO: Needs database to finish
-    public void refreshing(View view) {
-        SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
-        mySwipeRefreshLayout.setOnRefreshListener(
-                new SwipeRefreshLayout.OnRefreshListener() {
-                    @Override
-                    public void onRefresh() {
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (eventsFirebase.numFollowers > followers.size() && !eventsFirebase.followersThreadCheck) {
+                    Log.v("inviteppl", "numfollowers" + eventsFirebase.numFollowers);
+                    Log.v("inviteppl", "followers size" + followers.size());
+                    try {
+                        Thread.sleep(70);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }
-        );
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.v("inviteppl",""+ followers.size());
+                        rv.setAdapter(adapter);
+                    }
+                });
+            }
+        }).start();
+
+        //calling refresh function
+        return view;
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.removeItem(R.id.action_create_event);
-        //ginflater.inflate(R.menu.invite_people, menu);
+        inflater.inflate(R.menu.invite_people, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -94,7 +95,7 @@ public class InvitePeopleFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
-            /*
+
             case R.id.select_all:
                 if (!adapter.selectAll) {
 
@@ -126,7 +127,7 @@ public class InvitePeopleFragment extends Fragment {
                 }
                 getActivity().getSupportFragmentManager().popBackStack();
                 return true;
-            */
+
             default:
                 return true;
 

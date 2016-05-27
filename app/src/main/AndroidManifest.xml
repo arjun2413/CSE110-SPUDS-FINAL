@@ -3,6 +3,7 @@
     package="com.spuds.eventapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -45,6 +46,47 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+
+        <!-- permissions to prevent others apps from registering/receiving messages !-->
+        <permission
+            android:name="com.spuds.eventapp.permission.C2D_MESSAGE"
+            android:protectionLevel="signature"/>
+        <uses-permission android:name="com.spuds.eventapp.permission.C2D_MESSAGE"/>
+
+        <!-- handles receiving messages !-->
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com.spuds.eventapp" />
+            </intent-filter>
+        </receiver>
+
+        <!-- responds to instance ID or something, handles tokens!-->
+        <service
+            android:name=".Shared.TokenRefreshListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
+            </intent-filter>
+        </service>
+
+        <!-- receives pushes !-->
+        <service android:name=".Shared.RegistrationService"
+            android:exported="false" />
+
+        <!-- reviving messages !-->
+        <!-- handles different aspects of messages, such as auto displaying notifications !-->
+        <service
+            android:name=".Shared.NotificationsListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

@@ -76,7 +76,7 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
         final Subscription currentSub = subscriptions.get(i);
         subViewHolder.subName.setText(subscriptions.get(i).name);
 
-        subViewHolder.subPhoto.setImageResource(subscriptions.get(i).photoId);
+        //subViewHolder.subPhoto.setImageResource(subscriptions.get(i).photoId);
 
 
         Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.christinecropped);

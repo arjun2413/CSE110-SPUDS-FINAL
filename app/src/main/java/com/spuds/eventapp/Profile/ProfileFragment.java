@@ -53,6 +53,7 @@ public class ProfileFragment extends Fragment {
 
     List<Event> eventsHosting;
     List<Event> eventsGoing;
+    UserFirebase userFirebase;
 
     public ProfileFragment() {
     }
@@ -60,6 +61,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         Bundle extras = getArguments();
         profileType = extras.getString(getString(R.string.profile_type));
@@ -72,6 +74,9 @@ public class ProfileFragment extends Fragment {
         } else {
             user = UserFirebase.thisUser;
         }
+
+        userFirebase = new UserFirebase();
+        userFirebase.isSubscribed(user.getUserId());
 
         profileFragment = this;
 
@@ -150,8 +155,6 @@ public class ProfileFragment extends Fragment {
 
             buttonSubscribedOrEdit.setText("Edit Profile");
 
-            // TODO (V): Uncomment when edit_profile picture is inserted in drawable
-            //buttonSubscribedOrEdit.setImageResource(R.drawable.edit_profile);
             buttonSubscribedOrEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -177,29 +180,54 @@ public class ProfileFragment extends Fragment {
 
             Log.v("ProfileFragment", "other not own profile!");
 
-            // TODO (V): Uncomment once get drawables for subscribe buttons
-            /*if (user.subscribed)
-                buttonSubscribedOrEdit.setImageResource(R.drawable.button_subscribed);
-            else
-                buttonSubscribedOrEdit.setImageResource(R.drawable.button_not_subscribed);*/
 
-            buttonSubscribedOrEdit.setOnClickListener(new View.OnClickListener() {
+
+            new Thread(new Runnable() {
                 @Override
-                public void onClick(View v) {
+                public void run() {
+                    Log.d("idIsGoing2",String.valueOf(userFirebase.idIsSubscribed));
+                    while (userFirebase.idIsSubscribed == 0) {
+                        Log.d("profilehere", "profilehere");
+                        try {
+                            Thread.sleep(75);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
 
-                    user.setSubscribed(!user.isSubscribed());
-                    Log.v("Profile Fragment", "subscribed = " + user.isSubscribed());
+                    }
+                    Log.d("idsubProfileFragment", String.valueOf(userFirebase.idIsSubscribed));
 
-                    UserFirebase userFirebase = new UserFirebase();
-                    userFirebase.subscribe(user.getUserId(), user.isSubscribed());
-                    // TODO (V): coloorzz
-                    if (user.isSubscribed())
-                        buttonSubscribedOrEdit.setBackgroundColor(Color.parseColor("#5c8a8a"));
-                    else
-                        buttonSubscribedOrEdit.setBackgroundColor(Color.parseColor("#ffffff"));
 
+                    if (userFirebase.idIsSubscribed == 1) {
+                        user.setSubscribed(false);
+                    } else
+                        user.setSubscribed(true);
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            buttonSubscribedOrEdit.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    user.setSubscribed(!user.isSubscribed());
+                                    Log.v("Profile Fragment", "subscribed = " + user.isSubscribed());
+
+                                    UserFirebase userFirebase = new UserFirebase();
+                                    userFirebase.subscribe(user.getUserId(), user.isSubscribed());
+                                    // TODO (V): coloorzz
+                                    if (user.isSubscribed())
+                                        buttonSubscribedOrEdit.setBackgroundColor(Color.parseColor("#5c8a8a"));
+                                    else
+                                        buttonSubscribedOrEdit.setBackgroundColor(Color.parseColor("#ffffff"));
+
+                                }
+                            });
+                        }
+                    });
                 }
-            });
+            }).start();
+
 
         }
 

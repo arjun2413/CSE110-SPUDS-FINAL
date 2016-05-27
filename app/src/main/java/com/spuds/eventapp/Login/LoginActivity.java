@@ -1,5 +1,6 @@
 package com.spuds.eventapp.Login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -23,8 +24,12 @@ public class LoginActivity extends AppCompatActivity {
     private AccountFirebase accountFirebase;
     private TextView errorMessage;
 
+    String token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
 
         //Hide Action Bar and Status Bar
         //View decorView = getWindow().getDecorView();
@@ -34,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         Firebase.setAndroidContext(this);
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         //Typefaces for two different fonts

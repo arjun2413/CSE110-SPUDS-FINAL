@@ -1,48 +1,22 @@
-
-
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.spuds.eventapp.InvitePeople.InvitePeopleFragment">
+    android:orientation="vertical"
+    android:id="@+id/relativelayout">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <LinearLayout
-        android:orientation="horizontal"
+    <android.support.v7.widget.RecyclerView
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:layout_gravity="left|top">
+        android:id="@+id/rv"
+        android:background="#262626" >
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:id="@+id/user_image"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/christinecropped" />
+    </android.support.v7.widget.RecyclerView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:id="@+id/button_done"
+        android:layout_alignParentBottom="true"/>
 
-        <TextView
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Reggie Wu"
-            android:id="@+id/user_name"
-            android:layout_marginLeft="10dp"
 
-            android:layout_marginTop="35dp"
-            android:textSize="20sp" />
-
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:id="@+id/user_invite"
-        android:background="@drawable/roundedbutton"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="35dp"
-        android:layout_gravity="right|top"
-        android:backgroundTint="#5c8a8a" />
-
-</FrameLayout>
+</RelativeLayout>

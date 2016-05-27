@@ -39,6 +39,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.quinny898.library.persistentsearch.SearchBox;
 import com.quinny898.library.persistentsearch.SearchResult;
 import com.soundcloud.android.crop.Crop;
@@ -48,6 +49,7 @@ import com.spuds.eventapp.CreateEvent.CreateEventFragment;
 import com.spuds.eventapp.FindPeople.FindPeopleFragment;
 import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.Firebase.UserFirebase;
+import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.HomeFeed.HomeFeedTabsFragment;
 import com.spuds.eventapp.InvitePeople.InvitePeopleFragment;
 import com.spuds.eventapp.Login.LoginActivity;
@@ -80,6 +82,11 @@ public class MainActivity extends AppCompatActivity
     SettingsFragment settingsFragment;
 
     SearchBox search;
+
+    // notification stuff
+    public String token;
+    public GoogleCloudMessaging gcm;
+
     public String searchType;
     public Uri picture;
     ArrayList<SubEvent> testEventsList;
@@ -89,6 +96,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setupNotifications(); // set up GCM values
+
         setupFragments();
         setupMainToolbar();
         setupSearchToolbar();
@@ -105,6 +115,38 @@ public class MainActivity extends AppCompatActivity
         searchType = getString(R.string.fragment_home_feed);
 
 
+    }
+
+    // sets up GCM for the phone to use
+    void setupNotifications() {
+        if (gcm == null) {
+            gcm = GoogleCloudMessaging.getInstance(getApplicationContext());
+            Log.d("GCM", gcm.toString());
+        }
+
+        Intent i = new Intent(this, RegistrationService.class);
+        startService(i);
+        Log.d("intent", i.toString());
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (RegistrationService.token == null) {
+                    try {
+                        Thread.sleep(75);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                token = RegistrationService.token;
+                Log.d("Token = ", token);
+
+                AccountFirebase accountFirebase = new AccountFirebase();
+                accountFirebase.pushRegistrationId(token);
+
+            }
+        }).start();
     }
 
     void setupProfileDrawer() {
@@ -136,9 +178,7 @@ public class MainActivity extends AppCompatActivity
         circularBitmapDrawable.setAntiAlias(true);
         profilePic.setImageDrawable(circularBitmapDrawable);
 /*        Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.christinecropped);
-        RoundedBitmapDrawable dr =
-                RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
-        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
+
         profilePic.setImageDrawable(dr);
         */
 
