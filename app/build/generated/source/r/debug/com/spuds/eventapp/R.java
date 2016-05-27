@@ -3003,7 +3003,7 @@ containing a value of this type.
         public static final int item_invite_people=0x7f04003f;
         public static final int item_my_subscriptions=0x7f040040;
         public static final int item_notifications_comment=0x7f040041;
-        public static final int item_notifications_update_invite=0x7f040042;
+        public static final int item_notifications_invite=0x7f040042;
         public static final int nav_header_profile=0x7f040043;
         public static final int notification_media_action=0x7f040044;
         public static final int notification_media_cancel_action=0x7f040045;

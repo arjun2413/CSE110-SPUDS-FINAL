@@ -34,6 +34,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -104,8 +105,8 @@ public class MainActivity extends AppCompatActivity
         View headerView =  navigationView.inflateHeaderView(R.layout.nav_header_profile);
         overrideFonts(headerView.getContext(),headerView);
         TextView name = (TextView) headerView.findViewById(R.id.user_name);
-        String string = "Reggie Wu";
-        name.setText(string);
+
+        name.setText(UserFirebase.thisUser.getName());
         // TODO (M): Use picasso
         ImageView profilePic = (ImageView) headerView.findViewById(R.id.profile_pic);
 
