@@ -546,6 +546,7 @@ public class UserFirebase {
     public int numSubscriptions;
     public void getSubscriptions(final ArrayList<Subscription> subscriptions) {
         getSubscriptionsThreadCheck = false;
+        numSubscriptions = 0;
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
 
         final ValueEventListener valueEventListener = new ValueEventListener() {
