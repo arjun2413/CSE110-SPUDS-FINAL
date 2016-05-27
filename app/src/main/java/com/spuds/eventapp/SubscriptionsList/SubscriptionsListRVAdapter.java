@@ -13,6 +13,7 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,12 +83,22 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
         //subViewHolder.subPhoto.setImageResource(subscriptions.get(i).photoId);
 
 
-        Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.christinecropped);
-        RoundedBitmapDrawable dr =
-                RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
-        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
-        subViewHolder.subPhoto.setImageDrawable(dr);
+        Bitmap src = null;
+        try {
+            byte[] imageAsBytes = Base64.decode(currentSub.picture, Base64.DEFAULT);
+            src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+        } catch(OutOfMemoryError e) {
+            System.err.println(e.toString());
+        }
 
+        if (src != null) {
+
+            RoundedBitmapDrawable dr =
+                    RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+            dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
+            subViewHolder.subPhoto.setImageDrawable(dr);
+
+        }
         subViewHolder.toggleFollow.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
 
         subViewHolder.toggleFollow.setOnClickListener(new View.OnClickListener() {
