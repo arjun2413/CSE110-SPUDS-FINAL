@@ -220,7 +220,9 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         Log.v("size", "size: " + event.getCategories().size());
 
         for (int i = 0; i < existingCateg.size(); ++i) {
+
             Log.v("category", "category: " + existingCateg.get(i));
+
 
             switch(existingCateg.get(i)) {
 

@@ -27,14 +27,13 @@ public class EditEventRVAdapter extends RecyclerView.Adapter<EditEventRVAdapter.
 
     public Fragment currentFragment;
     List<CategoryTextButton> categories;
-    int counter = 0;
 
     public EditEventRVAdapter() {
 
     }
 
     ArrayList<String> existingCateg;
-    int counter = existingCateg.size();
+    int counter;
     public static class EventViewHolder extends RecyclerView.ViewHolder {
         CardView card;
         TextView text;
@@ -54,6 +53,7 @@ public class EditEventRVAdapter extends RecyclerView.Adapter<EditEventRVAdapter.
         this.categories = categories;
         this.currentFragment = currentFragment;
         this.existingCateg = existingCateg;
+        this.counter = existingCateg.size();
     }
 
     @Override
@@ -66,92 +66,104 @@ public class EditEventRVAdapter extends RecyclerView.Adapter<EditEventRVAdapter.
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_create_event_category, viewGroup, false);
 
         overrideFonts(v.getContext(),v);
-        final EventViewHolder evh = new EventViewHolder(v);
+        EventViewHolder evh = new EventViewHolder(v);
+
         return evh;
     }
 
+    static boolean first = false;
     @Override
-    public void onBindViewHolder(EventViewHolder eventViewHolder, int i) {
+    public void onBindViewHolder(final EventViewHolder eventViewHolder, int i) {
         final CategoryTextButton currentSub = categories.get(i);
         eventViewHolder.text.setText(currentSub.text);
         final int j = i;
+        System.out.println("yee");
+
+        first = false;
+
+        if(categories.get(i).checked) {
+            first = true;
+                System.out.println(categories.get(i).text);
+                eventViewHolder.scb.setChecked(true,true);
+        }
+
         eventViewHolder.scb.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
                 Log.d("SmoothCheckBox", String.valueOf(isChecked));
+                if (!first) {
+                    System.out.println("count" + counter);
+                    if (isChecked) {
+                        if (counter < 3) {
+                            counter++;
 
-                System.out.println("count"+ counter);
-                if (isChecked) {
-                    if (counter < 3) {
-                        counter++;
-
-                        if (j == 0) {
-                            existingCateg.add("Food");
-                        }
-                        if (j == 1) {
-                            existingCateg.add("Social");
-                        }
-                        if (j == 2) {
-                            existingCateg.add("Concerts");
-                        }
-                        if (j == 3) {
-                            existingCateg.add("Sports");
-                        }
-                        if (j == 4) {
-                            existingCateg.add("Campus Organizations");
-                        }
-                        if (j == 5) {
-                            existingCateg.add("Academic");
-                        }
-                        if (j == 6) {
-                            existingCateg.add("Free");
-                        }
-                        currentSub.setCheckedBoolean(true);
+                            if (j == 0) {
+                                existingCateg.add("Food");
+                            }
+                            if (j == 1) {
+                                existingCateg.add("Social");
+                            }
+                            if (j == 2) {
+                                existingCateg.add("Concerts");
+                            }
+                            if (j == 3) {
+                                existingCateg.add("Sports");
+                            }
+                            if (j == 4) {
+                                existingCateg.add("Student Orgs");
+                            }
+                            if (j == 5) {
+                                existingCateg.add("Academic");
+                            }
+                            if (j == 6) {
+                                existingCateg.add("Free");
+                            }
+                            currentSub.setCheckedBoolean(true);
 
 
+                        } else if (counter >= 3) {
+                            counter++;
+                            eventViewHolder.scb.setChecked(false, false);
+                        }
+                    } else {
+                        if (counter > 3) {
+                            counter--;
+                        } else if (counter > 0 && counter <= 3) {
+                            counter--;
+                            if (j == 0) {
+                                existingCateg.remove("Food");
+                            }
+                            if (j == 1) {
+                                existingCateg.remove("Social");
+                            }
+                            if (j == 2) {
+                                existingCateg.remove("Concerts");
+                            }
+                            if (j == 3) {
+                                existingCateg.remove("Sports");
+                            }
+                            if (j == 4) {
+                                existingCateg.remove("Student Orgs");
+                            }
+                            if (j == 5) {
+                                existingCateg.remove("Academic");
+                            }
+                            if (j == 6) {
+                                existingCateg.remove("Free");
+                            }
+                            currentSub.setCheckedBoolean(false);
+
+                        }
                     }
-                    else if( counter >=3){
-                        counter++;
-                        eventViewHolder.scb.setChecked(false,false);
-                    }
+                    Log.d("SmoothCheckBox2", String.valueOf(existingCateg));
+                    getList();
                 }
-                else{
-                    if(counter > 3){
-                        counter--;
-                    }
-                    else if (counter > 0 && counter <=3) {
-                        counter--;
-                        if (j == 0) {
-                            existingCateg.remove("Food");
-                        }
-                        if (j == 1) {
-                            existingCateg.remove("Social");
-                        }
-                        if (j == 2) {
-                            existingCateg.remove("Concerts");
-                        }
-                        if (j == 3) {
-                            existingCateg.remove("Sports");
-                        }
-                        if (j == 4) {
-                            existingCateg.remove("Campus Organizations");
-                        }
-                        if (j == 5) {
-                            existingCateg.remove("Academic");
-                        }
-                        if (j == 6) {
-                            existingCateg.remove("Free");
-                        }
-                        currentSub.setCheckedBoolean(false);
-
-                    }
-                }
-                Log.d("SmoothCheckBox2", String.valueOf(existingCateg));
-                getList();
+                first = false;
             }
 
         });
+
     }
     public ArrayList<String> getList(){
         Log.d("SmoothCheckBox3", String.valueOf(existingCateg));
@@ -163,10 +175,6 @@ public class EditEventRVAdapter extends RecyclerView.Adapter<EditEventRVAdapter.
         super.onAttachedToRecyclerView(recyclerView);
     }
 
-    public ArrayList<String> getList(){
-        Log.d("SmoothCheckBox3", String.valueOf(categoryList));
-        return categoryList;
-    }
 
     private void overrideFonts(final Context context, final View v) {
         try {

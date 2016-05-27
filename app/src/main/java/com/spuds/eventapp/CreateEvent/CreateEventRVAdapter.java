@@ -64,6 +64,7 @@ public class CreateEventRVAdapter extends RecyclerView.Adapter<CreateEventRVAdap
 
         overrideFonts(v.getContext(),v);
         EventViewHolder evh = new EventViewHolder(v);
+
         return evh;
     }
 
@@ -96,7 +97,7 @@ public class CreateEventRVAdapter extends RecyclerView.Adapter<CreateEventRVAdap
                             categoryList.add("Sports");
                         }
                         if (j == 4) {
-                            categoryList.add("Campus Organizations");
+                            categoryList.add("Student Orgs");
                         }
                         if (j == 5) {
                             categoryList.add("Academic");
@@ -132,7 +133,7 @@ public class CreateEventRVAdapter extends RecyclerView.Adapter<CreateEventRVAdap
                             categoryList.remove("Sports");
                         }
                         if (j == 4) {
-                            categoryList.remove("Campus Organizations");
+                            categoryList.remove("Student Orgs");
                         }
                         if (j == 5) {
                             categoryList.remove("Academic");
