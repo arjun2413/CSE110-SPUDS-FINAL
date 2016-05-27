@@ -18,12 +18,14 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
+import com.spuds.eventapp.Shared.Subscription;
 import com.spuds.eventapp.Shared.User;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -128,6 +130,7 @@ public class UserFirebase {
 
 
     public void getAnotherUser(String userId) {
+
         final String finalUserId = userId;
         threadCheckAnotherUser = false;
 
@@ -138,8 +141,6 @@ public class UserFirebase {
             @Override
             public void onChildAdded(DataSnapshot snapshot, String previousChild) {
 
-
-                Log.v("asdf","keykeykey" + snapshot.toString());
 
                 switch (snapshot.getKey()) {
                     case "name":
@@ -192,20 +193,64 @@ public class UserFirebase {
 
     }
 
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) > reqHeight
+                    && (halfWidth / inSampleSize) > reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
+    }
+
+
+
+
+
     public static String convert(Context context, Uri uri) {
         if (uri == null)
             return "";
         Bitmap bitmap = null;
-        int bitmapWidth, bitmapHeight;
+        int bitmapWidth, bitmapHeight;//whatdoidowithmylife
 
         double scale;
 
         try {
 
+            Log.v("look!", "before decoding");
+
             InputStream stream = context.getContentResolver().openInputStream(uri);
             BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inPurgeable = true;
-            bitmap = BitmapFactory.decodeStream(stream);
+            options.inJustDecodeBounds = true;
+            bitmap = BitmapFactory.decodeStream(stream, null, options);
+
+
+            options.inSampleSize = calculateInSampleSize(options, 400, 400);
+
+            Log.v("look!", "sample size: " + options.inSampleSize);
+
+            // Decode bitmap with inSampleSize set
+            options.inJustDecodeBounds = false;
+            InputStream stream1 = context.getContentResolver().openInputStream(uri);
+            bitmap = BitmapFactory.decodeStream(stream1, null, options);
+
+            Log.v("look!", "after decoding");
+
+
+
             stream.close();
 
         } catch (FileNotFoundException e) {
@@ -272,26 +317,30 @@ public class UserFirebase {
     }
 
     String id = null;
+    public static boolean subscribeThreadCheck = false;
 
-    public void subscribe(final String otherUserid, boolean subscribe) {
+    public void subscribe(final String otherUserid, final boolean subscribe) {
         final String otherUid = otherUserid;
-        final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
 
         if (subscribe) {
+            final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
+
 
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("user_id", uId);
             map.put("following_id", otherUid);
 
             //Query queryRef = ref.orderByChild("email").equalTo(email);
-            ref.child(UserFirebase.uId).updateChildren(map);
+            ref.push().setValue(map);
 
             //update user table #subscribed
 
         } else {
+            final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
 
 
-            ref.addValueEventListener(new ValueEventListener() {
+
+            final ValueEventListener valueEventListener = new ValueEventListener() {
 
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
@@ -326,15 +375,39 @@ public class UserFirebase {
                         Log.v("userfirebase test", "id: " + id);
 
                         ref.child(id).removeValue();
+                        subscribeThreadCheck = true;
                     }
                 }
 
                 @Override
-                public void onCancelled(FirebaseError firebaseError) {
+                public void onCancelled (FirebaseError firebaseError){
 
                 }
 
-            });
+
+            };
+
+
+            ref.addValueEventListener(valueEventListener);
+
+
+            new Thread(new Runnable() {
+
+                @Override
+                public void run() {
+                    while (!subscribeThreadCheck) {
+                        try {
+                            Thread.sleep(70);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    ref.removeEventListener(valueEventListener);
+                    //subscribeThreadCheck = false;
+
+                }
+            }).start();
 
 
         }
@@ -357,7 +430,6 @@ public class UserFirebase {
                     map.put("number_hosting", String.valueOf(Integer.parseInt((String) snapshot.getValue()) + 1));
                     refUser.updateChildren(map);
                 }
-
 
             }
 
@@ -383,5 +455,280 @@ public class UserFirebase {
         });
 
     }
+
+
+
+
+
+    public static boolean isSubscribedThreadCheck = false;
+    public static int idIsSubscribed = 0;
+
+    public void isSubscribed(final String userId) {
+        final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
+        final ValueEventListener valueEventListener = new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                String id = "";
+                HashMap<String, Object> values = (HashMap<String, Object>) snapshot.getValue();
+                if (values != null) {
+                    boolean first = false;
+                    boolean second = false;
+
+                    for (Map.Entry<String, Object> entry : values.entrySet()) {
+                        Log.v("Userfirebase asdf", " key" + entry.getKey());
+
+
+                        for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
+
+                            Log.v("Userfirebase asdf", " entry value key" + entry2.getKey());
+                            Log.v("Userfirebase asdf", " entry value value" + entry2.getValue());
+
+
+                            if (entry2.getKey().equals("following_id")) {
+                                if (entry2.getValue().equals(userId)) {
+                                    first = true;
+                                }
+                            }
+
+                            if (entry2.getKey().equals("user_id") && first) {
+                                if (entry2.getValue().equals(UserFirebase.uId)) {
+                                    second = true;
+                                }
+                            }
+
+
+                        }
+
+                    }
+
+                    if (second) {
+                        idIsSubscribed = 2;
+                    } else {
+                        idIsSubscribed = 1;
+                    }
+
+                    isSubscribedThreadCheck = true;
+
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+
+        };
+
+        ref.addValueEventListener(valueEventListener);
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (!isSubscribedThreadCheck) {
+                    try {
+                        Thread.sleep(70);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                ref.removeEventListener(valueEventListener);
+                isSubscribedThreadCheck = false;
+
+            }
+        }).start();
+
+    }
+
+    public static boolean getSubscriptionsThreadCheck;
+    public int numSubscriptions;
+    public void getSubscriptions(final ArrayList<Subscription> subscriptions) {
+        getSubscriptionsThreadCheck = false;
+        numSubscriptions = 0;
+        final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
+
+        final ValueEventListener valueEventListener = new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                String id = "";
+                HashMap<String, Object> values = (HashMap<String, Object>) snapshot.getValue();
+                if (values != null) {
+
+                    ArrayList<String> users = new ArrayList<>();
+                    for (Map.Entry<String, Object> entry : values.entrySet()) {
+                        Log.v("Userfirebase asdf", " key" + entry.getKey());
+
+
+                        String followingId = "";
+                        boolean following = false;
+                        for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
+
+                            Log.v("Userfirebase asdf", " entry value key" + entry2.getKey());
+                            Log.v("Userfirebase asdf", " entry value value" + entry2.getValue());
+
+
+                            if (entry2.getKey().equals("following_id")) {
+                                followingId = String.valueOf(entry2.getValue());
+                            }
+
+                            if (entry2.getKey().equals("user_id")) {
+                                if (entry2.getValue().equals(UserFirebase.uId)) {
+                                    following = true;
+                                }
+                            }
+
+
+                        }
+
+                        if (following) {
+
+                            ++numSubscriptions;
+                            users.add(followingId);
+
+
+
+                        }
+
+
+                    }
+
+                    recTest(users, subscriptions);
+                    /*for (String userId: users) {
+                        getAnotherUser(userId);
+                        Log.v("userfirebasesubs", "numsubs " + numSubscriptions);
+                        Log.v("userfirebasesubs", "followingId " + followingId);
+
+
+                        //asynchronous
+                        new Thread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                while (!threadCheckAnotherUser) {
+                                    try {
+                                        Thread.sleep(77);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+
+
+                                subscriptions.add(new Subscription(anotherUser.getUserId(),
+                                        anotherUser.getName(), anotherUser.getPicture(),
+                                        true));
+                                Log.v("userfirebasesubs", anotherUser.getName() + " was added");
+
+                            }
+                        }).start();
+                    }*/
+
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+
+        };
+
+        ref.addValueEventListener(valueEventListener);
+    }
+
+    void recTest(final ArrayList<String> users, final ArrayList<Subscription> subscriptions) {
+        if (users.size() == 0) {
+            getSubscriptionsThreadCheck = true;
+            return;
+        }
+
+        getAnotherUser(users.get(0));
+
+        //asynchronous
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (!threadCheckAnotherUser) {
+                    try {
+                        Thread.sleep(77);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+
+                subscriptions.add(new Subscription(anotherUser.getUserId(),
+                        anotherUser.getName(), anotherUser.getPicture(),
+                        true));
+                Log.v("userfirebasesubs", anotherUser.getName() + " was added");
+
+                users.remove(0);
+
+                recTest(users, subscriptions);
+
+
+            }
+        }).start();
+
+    }
+
+    /*public static boolean threadCheckSubUser;
+    public void getSubUserList(final ArrayList<SubUser> subUsers) {
+        threadCheckSubUser = false;
+        final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/users");
+        Query queryRef = myFirebaseRef.orderByKey();
+
+        queryRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot snapshot, String previousChild) {
+
+                SubUser subUser  = new SubUser();
+                Log.v("asdfjkl;", snapshot.getKey());
+
+                subUser.setUserId(snapshot.getKey());
+
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    //Log.d("lmao", String.valueOf(child));
+                    switch (child.getKey()) {
+                        case "name":
+                            subUser.setUserName(String.valueOf(child.getValue()));
+                            break;
+                    }
+
+                }
+                subUsers.add(subUser);
+
+                threadCheckSubUser = true;
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+    }*/
+
+
 }
 

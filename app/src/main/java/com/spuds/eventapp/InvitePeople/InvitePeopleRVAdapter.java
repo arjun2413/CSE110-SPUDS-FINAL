@@ -1,14 +1,17 @@
 package com.spuds.eventapp.InvitePeople;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +48,6 @@ public class InvitePeopleRVAdapter extends RecyclerView.Adapter<InvitePeopleRVAd
     }
 
     ArrayList<User> followers;
-    // TODO (C): Doesn't work // FIXME: 5/16/16
     ArrayList<User> invited;
     Fragment fragment;
     boolean selectAll;
@@ -64,34 +66,50 @@ public class InvitePeopleRVAdapter extends RecyclerView.Adapter<InvitePeopleRVAd
         return ivh;
     }
 
+    boolean b;
     @Override
-    public void onBindViewHolder(InviteViewHolder holder, int position) {
+    public void onBindViewHolder(final InviteViewHolder holder, int position) {
         final int i = position;
-        final InviteViewHolder inviteHolder = holder;
 
-        Bitmap src = BitmapFactory.decodeResource(fragment.getResources(), R.drawable.christinecropped);
-        RoundedBitmapDrawable dr =
-                RoundedBitmapDrawableFactory.create(fragment.getResources(), src);
-        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
-        holder.photo.setImageDrawable(dr);
-
-
+        String imageFile = followers.get(i).getPicture();
+        Bitmap src = null;
+        try {
+            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+            src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+        } catch(OutOfMemoryError e) {
+            System.err.println(e.toString());
+        }
+       if (src != null) {
+           RoundedBitmapDrawable circularBitmapDrawable =
+                   RoundedBitmapDrawableFactory.create(fragment.getResources(), src);
+           circularBitmapDrawable.setCircular(true);
+           circularBitmapDrawable.setAntiAlias(true);
+           holder.photo.setImageDrawable(circularBitmapDrawable);
+       }
         holder.inviteButton.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
-                /*
-                // TODO: add isInvited boolean field, need to create "Invite" object for the button?
-                if (isInvited)
+                // TODO: colors
+                if (!invited.contains(followers.get(i))) {
+
+                    holder.inviteButton.setBackgroundTintList(fragment.getResources().getColorStateList(R.color.color_selected));
                     invited.add(followers.get(i));
-                else
+
+                } else {
+
+                    holder.inviteButton.setBackgroundTintList(fragment.getResources().getColorStateList(R.color.color_unselected));
                     invited.remove(followers.get(i));
-                */
+
+                }
+
             }
         });
 
 
         holder.followerName.setText(followers.get(position).getName());
 
+        // TODO: colors
         /*
         //What is selectAll? How do you select all?
         if (selectAll)

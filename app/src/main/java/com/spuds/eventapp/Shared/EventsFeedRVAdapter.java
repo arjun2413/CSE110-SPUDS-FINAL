@@ -10,19 +10,23 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spuds.eventapp.EventDetails.EventDetailsFragment;
+import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.Profile.ProfileFeedFragment;
 import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,6 +46,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         TextView seeMore;
         TextView monthDate, dayDate;
         TextView eventTime;
+        Button buttonGoing;
 
 
         EventViewHolder(View itemView) {
@@ -57,6 +62,8 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             monthDate = (TextView) itemView.findViewById(R.id.date_month);
             dayDate = (TextView) itemView.findViewById(R.id.date_day);
             eventTime = (TextView) itemView.findViewById(R.id.event_time);
+            buttonGoing = (Button) itemView.findViewById(R.id.event_going);
+
         }
 
     }
@@ -98,8 +105,11 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         return evh;
     }
 
+    EventsFirebase eventsFirebase = new EventsFirebase();
+    boolean going = false;
+
     @Override
-    public void onBindViewHolder(EventViewHolder eventViewHolder, int i) {
+    public void onBindViewHolder(final EventViewHolder eventViewHolder, final int i) {
 
         final int index = i;
         // Add card See More... for profile fragment
@@ -141,15 +151,19 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             return;
         }
 
-        if (events.get(i).getPicture() != null || events.get(i).getPicture() != "") {
+
+        if (events.get(i).getPicture() != null && events.get(i).getPicture() != "") {
             String imageFile = events.get(i).getPicture();
+            Bitmap src = null;
+            try {
+                byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                 src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+            } catch(OutOfMemoryError e) {
+                System.err.println(e.toString());
+            }
 
-
-            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-            Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-
-
-            eventViewHolder.eventPic.setImageBitmap(src);
+            if (src != null)
+                eventViewHolder.eventPic.setImageBitmap(src);
         } else {
             // TODO (V): default picture
         }
@@ -228,7 +242,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
         // Categories
         String categories = "";
-        if(events.get(i).getCategories() != null || events.get(i).getCategories().size() != 0) {
+        if(events.get(i).getCategories() != null && events.get(i).getCategories().size() != 0) {
             for (int categoryIndex = 0; categoryIndex < events.get(i).getCategories().size() - 1; categoryIndex++) {
                 categories += events.get(i).getCategories().get(categoryIndex) + ", ";
             }
@@ -282,7 +296,109 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             }
         });
 
+        Log.d("rvadapter", "b4 thread");
+
+        eventViewHolder.buttonGoing.setVisibility(View.INVISIBLE);
+        /*eventViewHolder.buttonGoing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Here1", "herepls");
+
+
+                if (going) {
+
+                    Log.d("edgoing", " true");
+
+                    /currentFragment.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            eventViewHolder.buttonGoing.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_unselected));
+                        }
+                    });
+                    eventsFirebase.notGoingToAnEvent(events.get(i).getEventId());
+                    eventsFirebase.deleteEventRegistration(events.get(i).getEventId());
+
+                    going = false;
+
+                } else {
+
+                    Log.d("edgoing", " false");
+                    currentFragment.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            eventViewHolder.buttonGoing.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
+                        }
+                    });
+
+                    eventsFirebase.notGoingToAnEvent(events.get(i).getEventId());
+
+                    eventsFirebase.goingToAnEvent(events.get(i).getEventId());
+                    going = true;
+
+                }
+
+            }
+        });*/
+        /*if (i == events.size() - 1) {
+            recTest();
+        }
+
+        buttons.add(eventViewHolder.buttonGoing);*/
+
+
     }
+
+    ArrayList<Button> buttons = new ArrayList<>();
+
+    /*void recTest() {
+
+        if (buttons.size() == 0) return;
+
+        eventsFirebase.isGoing(events.get(events.size() - buttons.size()).getEventId());
+
+        new Thread(new Runnable() {
+            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void run() {
+                Log.d("rvadapterisisgoing", String.valueOf(eventsFirebase.idIsGoing));
+                while (eventsFirebase.idIsGoing == 0) {
+                    Log.d("rvadapter", "areHere");
+                    try {
+                        Thread.sleep(75);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (eventsFirebase.idIsGoing == 1) {
+                    going = false;
+                    currentFragment.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (buttons.size() == 0) return;
+                            buttons.get(0).setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_unselected));
+                            buttons.remove(0);
+
+                        }
+                    });
+                } else {
+                    going = true;
+                    currentFragment.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (buttons.size() == 0) return;
+                            buttons.get(0).setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
+                            buttons.remove(0);
+
+                        }
+                    });
+
+                }
+
+                recTest();
+            }
+        }).start();
+    }*/
 
 
 

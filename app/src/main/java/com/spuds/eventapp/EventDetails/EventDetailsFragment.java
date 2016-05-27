@@ -1,9 +1,11 @@
 package com.spuds.eventapp.EventDetails;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -58,6 +60,8 @@ public class EventDetailsFragment extends Fragment {
     CommentsRVAdapter adapter;
     List<Comment> comments;
     boolean ownEvent;
+    EventsFirebase eventsFirebase;
+
 
     public EventDetailsFragment() {
     }
@@ -65,16 +69,24 @@ public class EventDetailsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Bundle extras = getArguments();
-        event = (Event) extras.get(getString(R.string.event_details));
-       if (event == null) {
+        event = (Event) extras.getSerializable(getString(R.string.event_details));
+        if (event == null) {
             eventId = extras.getString(getString(R.string.event_id));
             // TODO: Fetch event using eventId
             EventsFirebase ef = new EventsFirebase();
-            ef.getEventDetails(eventId);
+            event = ef.getEventDetails(eventId);
+
         } else
             eventId = event.getEventId();
+
+        eventsFirebase = new EventsFirebase();
+        //eventsFirebase.goingToAnEvent(eventId);
+        eventsFirebase.isGoing(eventId);
+
         eventDetailsFragment = this;
+
 
         if (event.getHostId().equals(UserFirebase.uId))
             ownEvent = true;
@@ -140,6 +152,7 @@ public class EventDetailsFragment extends Fragment {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     void setUpEventInformation(View view) {
         eventPic = (ImageView) view.findViewById(R.id.event_pic);
         eventName = (TextView) view.findViewById(R.id.event_name);
@@ -154,7 +167,6 @@ public class EventDetailsFragment extends Fragment {
         invitePeople = (Button) view.findViewById(R.id.button_invite_people);
         buttonGoingOrEdit = (Button) view.findViewById(R.id.button_going);
         buttonEditEvent = (ImageButton) view.findViewById(R.id.button_edit_event);
-        //TODO: picasso for event pic
         eventName.setText(event.getEventName());
         eventHost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -283,13 +295,13 @@ public class EventDetailsFragment extends Fragment {
 
         // Categories
         String categories = "";
-        if(event.getCategories() != null) {
+        if(event.getCategories() != null && event.getCategories().size() != 0) {
             for (int i = 0; i < event.getCategories().size() - 1; ++i) {
                 //Log.v("chris", event.getCategories().get(i));
                 categories += event.getCategories().get(i) + ", ";
             }
+            categories += event.getCategories().get(event.getCategories().size() - 1);
         }
-        categories += event.getCategories().get(event.getCategories().size() - 1);
 
         eventCategories.setText(categories);
 
@@ -323,87 +335,75 @@ public class EventDetailsFragment extends Fragment {
             }
         });
 
-        // TODO (M): Get id of the user
-        /*if (ownEvent) {
-            buttonGoingOrEdit.setImageResource(R.drawable.button_edit_event);
-        } else {
-            // TODO (M): GET if the user is going to this event or not
-            going = true/false;
-            buttonGoingOrEdit.setImageResource(R.drawable.button_going);
-            buttonGoingOrEdit.setImageResource(R.drawable.button_not_going);
-        }*/
-        buttonGoingOrEdit.setOnClickListener(new View.OnClickListener() {
+
+        // TODO (M): Firebase call to get if you're GOING to an event
+
+        if (going)
+            buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
+        else
+            buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
+
+        Log.d("check", "Checkpls");
+
+
+        new Thread(new Runnable() {
             @Override
-            public void onClick(View v) {
-                Log.d("Here1", "herepls");
-
-                if (ownEvent) {
-
-                EditEventFragment editEventFragment = new EditEventFragment();
-
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(getString(R.string.event_details), event);
-                editEventFragment.setArguments(bundle);
-
-                // TODO (C): Add user in a bundle to editProfileFragment
-
-                ((MainActivity) getActivity()).removeSearchToolbar();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_frame_layout, editEventFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(getString(R.string.fragment_edit_event))
-                        .commit();
-
-
-
-                } else {
-                 //TODO (M): PUSH Going/Not Going
-                    Log.d("check", "Checkpls");
-                    final EventsFirebase eventsFirebase = new EventsFirebase();
-                // TODO (V): going/not going buttons
-                    eventsFirebase.isGoing(eventId);
-                    Log.d("where", "what");
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Log.d("idIsGoing2",String.valueOf(eventsFirebase.idIsGoing));
-                            while (eventsFirebase.idIsGoing == 0) {
-                                Log.d("areHere", "areHere");
-                                try {
-                                    Thread.sleep(75);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                                Log.d("idIsGoing",String.valueOf(eventsFirebase.idIsGoing));
-                                if (eventsFirebase.idIsGoing == 1) {
-                                    going = false;
-                                    Log.d("please", "pls");
-                                }
-                                else
-                                     going = true;
-                                if (going) {
-                                    Log.d("word", "qwe");
-                                    //buttonGoingOrEdit.setImageResource(R.drawable.button_not_going);
-                                    eventsFirebase.notGoingToAnEvent(eventId);
-                                    eventsFirebase.deleteEventRegistration(eventId);
-                                    going = false;
-                                } else {
-                                    Log.d("poop", "poop");
-                                    //buttonGoingOrEdit.setImageResource(R.drawable.button_going);
-                                    Bundle extras = getArguments();
-
-                                    eventsFirebase.goingToAnEvent(eventId);
-
-                                    Log.d("Reach", "true");
-                                    going = true;
-                                }
-                            }
-                        }
-                    }).start();
+            public void run() {
+                Log.d("idIsGoing2",String.valueOf(eventsFirebase.idIsGoing));
+                while (eventsFirebase.idIsGoing == 0) {
+                    Log.d("areHere", "areHere");
+                    try {
+                        Thread.sleep(75);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Log.d("idIsGoing", String.valueOf(eventsFirebase.idIsGoing));
 
                 }
+
+                if (eventsFirebase.idIsGoing == 1) {
+                    going = false;
+                    Log.d("please", "pls");
+                } else
+                    going = true;
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        buttonGoingOrEdit.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Log.d("Here1", "herepls");
+
+
+                                if (going) {
+
+                                    Log.d("edgoing", " true");
+                                    buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
+                                    eventsFirebase.notGoingToAnEvent(eventId);
+                                    eventsFirebase.deleteEventRegistration(eventId);
+
+                                    going = false;
+
+                                } else {
+
+                                    Log.d("edgoing", " false");
+                                    buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
+                                    eventsFirebase.notGoingToAnEvent(eventId);
+
+                                    eventsFirebase.goingToAnEvent(eventId);
+                                    going = true;
+
+                                }
+
+                            }
+                        });
+                    }
+                });
             }
-        });
+        }).start();
+
+
 
         String imageFile = event.getPicture();
 
@@ -411,11 +411,16 @@ public class EventDetailsFragment extends Fragment {
 
         if (imageFile != null && imageFile != "") {
 
-            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-            Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+            Bitmap src = null;
+            try {
+                byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+            } catch(OutOfMemoryError e) {
+                System.err.println(e.toString());
+            }
 
-
-            eventPic.setImageBitmap(src);
+            if (src != null)
+                eventPic.setImageBitmap(src);
         }
 
     }

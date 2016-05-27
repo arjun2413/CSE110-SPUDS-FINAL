@@ -1,6 +1,7 @@
 package com.spuds.eventapp.SignUp;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -14,9 +15,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
+import com.spuds.eventapp.Shared.RegistrationService;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -51,6 +54,9 @@ public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+        Log.d("Create signup", "Creating right now");
 
         //Hide Action Bar and Status Bar
         //View decorView = getWindow().getDecorView();

@@ -26,7 +26,7 @@ public class CategoryFeedTabsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
         catType = bundle.getString(getString(R.string.category_bundle));
-        Log.v("jkl;", ""+catType);
+        //Log.v("jkl;", ""+catType);
         categoryFeedViewPagerAdapter = new CategoryFeedViewPagerAdapter(getChildFragmentManager(), this, catType);
     }
 

@@ -1,10 +1,11 @@
 package com.spuds.eventapp.Profile;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -20,7 +21,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.spuds.eventapp.EditProfile.EditProfileFragment;
 import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
@@ -53,6 +53,7 @@ public class ProfileFragment extends Fragment {
 
     List<Event> eventsHosting;
     List<Event> eventsGoing;
+    UserFirebase userFirebase;
 
     public ProfileFragment() {
     }
@@ -60,6 +61,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         Bundle extras = getArguments();
         profileType = extras.getString(getString(R.string.profile_type));
@@ -72,6 +74,9 @@ public class ProfileFragment extends Fragment {
         } else {
             user = UserFirebase.thisUser;
         }
+
+        userFirebase = new UserFirebase();
+        userFirebase.isSubscribed(user.getUserId());
 
         profileFragment = this;
 
@@ -109,6 +114,7 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void setUpProfileDetails(View view) {
 
         userImage = (ImageView) view.findViewById(R.id.user_image);
@@ -132,16 +138,21 @@ public class ProfileFragment extends Fragment {
 
         String imageFile = user.getPicture();
 
+        Bitmap src = null;
+        try {
+            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+            src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+        } catch(OutOfMemoryError e) {
+            System.err.println(e.toString());
+        }
 
-        byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-        Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-
-        RoundedBitmapDrawable circularBitmapDrawable =
-                RoundedBitmapDrawableFactory.create(getResources(), src);
-        circularBitmapDrawable.setCircular(true);
-        circularBitmapDrawable.setAntiAlias(true);
-        userImage.setImageDrawable(circularBitmapDrawable);
-
+        if (src != null) {
+            RoundedBitmapDrawable circularBitmapDrawable =
+                    RoundedBitmapDrawableFactory.create(getResources(), src);
+            circularBitmapDrawable.setCircular(true);
+            circularBitmapDrawable.setAntiAlias(true);
+            userImage.setImageDrawable(circularBitmapDrawable);
+        }
 
         // Set image for button for subscribe or edit profile
         if (user.getUserId().equals(UserFirebase.uId)) {
@@ -150,8 +161,6 @@ public class ProfileFragment extends Fragment {
 
             buttonSubscribedOrEdit.setText("Edit Profile");
 
-            // TODO (V): Uncomment when edit_profile picture is inserted in drawable
-            //buttonSubscribedOrEdit.setImageResource(R.drawable.edit_profile);
             buttonSubscribedOrEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -173,30 +182,70 @@ public class ProfileFragment extends Fragment {
 
         } else {
 
+            buttonSubscribedOrEdit.setText("Subscribe");
+
             Log.v("ProfileFragment", "other not own profile!");
 
-            // TODO (V): Uncomment once get drawables for subscribe buttons
-            /*if (user.subscribed)
-                buttonSubscribedOrEdit.setImageResource(R.drawable.button_subscribed);
-            else
-                buttonSubscribedOrEdit.setImageResource(R.drawable.button_not_subscribed);*/
+            buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
 
-            buttonSubscribedOrEdit.setOnClickListener(new View.OnClickListener() {
+
+            new Thread(new Runnable() {
+                @TargetApi(Build.VERSION_CODES.LOLLIPOP)
                 @Override
-                public void onClick(View v) {
+                public void run() {
+                    Log.d("idIsGoing2",String.valueOf(userFirebase.idIsSubscribed));
+                    while (userFirebase.idIsSubscribed == 0) {
+                        Log.d("profilehere", "profilehere");
+                        try {
+                            Thread.sleep(75);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
 
-                    user.setSubscribed(!user.isSubscribed());
-                    Log.v("Profile Fragment", "subscribed = " + user.isSubscribed());
+                    }
 
-                    UserFirebase userFirebase = new UserFirebase();
-                    userFirebase.subscribe(user.getUserId(), user.isSubscribed());
-                    if (user.isSubscribed())
-                        buttonSubscribedOrEdit.setBackgroundColor(Color.parseColor("#5c8a8a"));
-                    else
-                        buttonSubscribedOrEdit.setBackgroundColor(Color.parseColor("#ffffff"));
+                    Log.d("idsubProfileFragment", String.valueOf(userFirebase.idIsSubscribed));
 
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            if (userFirebase.idIsSubscribed == 1) {
+                                user.setSubscribed(false);
+                            } else {
+                                user.setSubscribed(true);
+                            }
+
+                            if (user.isSubscribed()) {
+                                buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
+                            } else {
+                                buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
+                            }
+
+                            buttonSubscribedOrEdit.setOnClickListener(new View.OnClickListener() {
+                                @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+                                @Override
+                                public void onClick(View v) {
+
+                                    user.setSubscribed(!user.isSubscribed());
+                                    Log.v("Profile Fragment", "subscribed = " + user.isSubscribed());
+
+                                    UserFirebase userFirebase = new UserFirebase();
+                                    userFirebase.subscribe(user.getUserId(), user.isSubscribed());
+                                    // TODO (V): coloorzz
+                                    if (user.isSubscribed())
+                                        buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
+                                    else
+                                        buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
+
+                                }
+                            });
+                        }
+                    });
                 }
-            });
+            }).start();
+
 
         }
 

@@ -40,6 +40,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.quinny898.library.persistentsearch.SearchBox;
 import com.quinny898.library.persistentsearch.SearchResult;
 import com.soundcloud.android.crop.Crop;
@@ -47,6 +48,8 @@ import com.spuds.eventapp.About.AboutFragment;
 import com.spuds.eventapp.CategoriesList.CategoriesListFragment;
 import com.spuds.eventapp.CreateEvent.CreateEventFragment;
 import com.spuds.eventapp.FindPeople.FindPeopleFragment;
+import com.spuds.eventapp.Firebase.AccountFirebase;
+import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.HomeFeed.HomeFeedTabsFragment;
 import com.spuds.eventapp.InvitePeople.InvitePeopleFragment;
@@ -79,22 +82,71 @@ public class MainActivity extends AppCompatActivity
     SettingsFragment settingsFragment;
 
     SearchBox search;
+
+    // notification stuff
+    public String token;
+    public GoogleCloudMessaging gcm;
+
     public String searchType;
     public Uri picture;
+    ArrayList<SubEvent> testEventsList;
+    ArrayList <String> searchResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setupNotifications(); // set up GCM values
+
         setupFragments();
         setupMainToolbar();
         setupSearchToolbar();
         setupDrawer();
         setupProfileDrawer();
 
+        searchResult = new ArrayList<String>();
+
+
+        testEventsList = new ArrayList<SubEvent>();
+        EventsFirebase ef = new EventsFirebase();
+        ef.getSubEventList(testEventsList);
+
         searchType = getString(R.string.fragment_home_feed);
 
 
+    }
+
+    // sets up GCM for the phone to use
+    void setupNotifications() {
+        if (gcm == null) {
+            gcm = GoogleCloudMessaging.getInstance(getApplicationContext());
+            Log.d("GCM", gcm.toString());
+        }
+
+        Intent i = new Intent(this, RegistrationService.class);
+        startService(i);
+        Log.d("intent", i.toString());
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (RegistrationService.token == null) {
+                    try {
+                        Thread.sleep(75);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                token = RegistrationService.token;
+                Log.d("Token = ", token);
+
+                AccountFirebase accountFirebase = new AccountFirebase();
+                accountFirebase.pushRegistrationId(token);
+
+            }
+        }).start();
     }
 
     void setupProfileDrawer() {
@@ -118,17 +170,22 @@ public class MainActivity extends AppCompatActivity
         String imageFile = UserFirebase.thisUser.getPicture();
 
 
-        byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-        Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-        RoundedBitmapDrawable circularBitmapDrawable =
-                RoundedBitmapDrawableFactory.create(getResources(), src);
-        circularBitmapDrawable.setCircular(true);
-        circularBitmapDrawable.setAntiAlias(true);
-        profilePic.setImageDrawable(circularBitmapDrawable);
+        Bitmap src = null;
+        try {
+            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+            src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+        } catch(OutOfMemoryError e) {
+            System.err.println(e.toString());
+        }
+        if (src!= null) {
+            RoundedBitmapDrawable circularBitmapDrawable =
+                    RoundedBitmapDrawableFactory.create(getResources(), src);
+            circularBitmapDrawable.setCircular(true);
+            circularBitmapDrawable.setAntiAlias(true);
+            profilePic.setImageDrawable(circularBitmapDrawable);
+        }
 /*        Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.christinecropped);
-        RoundedBitmapDrawable dr =
-                RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
-        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
+
         profilePic.setImageDrawable(dr);
         */
 
@@ -212,54 +269,92 @@ public class MainActivity extends AppCompatActivity
             public void onSearch(final String searchTerm) {
                 Toast.makeText(MainActivity.this, searchTerm +" Searched", Toast.LENGTH_LONG).show();
 
-                // TODO (C): Change this to searachpeopleframgent
+                // TODO (C): Change this to searchpeopleframgent
                 InvitePeopleFragment invitePeopleFragment = new InvitePeopleFragment();
                 Bundle bundle = new Bundle();
 
                 //Fake Data. TODO: make EventSearchFragment later on @Tina
-                ArrayList<Event> testEventsList = new ArrayList<Event>();
-                ArrayList<String> testCategoriesList = new ArrayList<String>();
-                testCategoriesList.add("Food");
-                testCategoriesList.add("Sports");
-                testEventsList.add(new Event("eventId 1","hostId 1","eventName 1","description 1","location 1","date 1",1,"picFileName 1",testCategoriesList,"hostName 1"));
-                testEventsList.add(new Event("eventId 2","hostId 2","eventName 2","description 2","location 2","date 2",2,"picFileName 2",testCategoriesList,"hostName 2"));
-                testEventsList.add(new Event("eventId 3","hostId 3","eventName 3","description 3","location 2","date 3",3,"picFileName 3",testCategoriesList,"hostName 3"));
 
-                Log.d("Create SQLite Table","Before DB called");
-                final DatabaseTable databaseTable = new DatabaseTable(getApplicationContext(),testEventsList);
-                Log.d("Create SQLite Table","AFTER DB called");
+
+                ArrayList<String> testCategoriesList = new ArrayList<String>();
+                String tabType;
 
                 new Thread(new Runnable() {
+
                     @Override
                     public void run() {
-                        while(!DatabaseTable.threadDone){
-                            System.err.println(DatabaseTable.threadDone);
-                            try{
-                                Thread.sleep(750);
-                            } catch (InterruptedException e){
+                        while (!EventsFirebase.threadCheckSubEvent) {
+                            try {
+                                Thread.sleep(70);
+                            } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                         }
-
-                        //TODO: ADD A NULL CHECK TO CURSOR
-                        System.err.println("trying to sesarch now");
-                        Cursor cursor = databaseTable.getEventNameMatches(searchTerm, null);
-                        System.err.println("GAJSL:GJAJ:AG "+cursor.toString());
-                        String retVal = "";
-                        if (cursor.moveToFirst() ){
-                            String[] columnNames = cursor.getColumnNames();
-                            do {
-                                for (String name: columnNames) {
-                                    retVal += String.format("%s: %s\n", name,
-                                            cursor.getString(cursor.getColumnIndex(name)));
-                                }
-                                retVal += "\n";
-
-                            } while (cursor.moveToNext());
+                        for(SubEvent s : testEventsList){
+                            Log.d("CreateTable",s.getEventId());
+                            Log.d("CreateTable",s.getEventName());
                         }
-                        System.err.println(retVal);
+
+
+                        final DatabaseTableSubEvent databaseTable = new DatabaseTableSubEvent(getApplicationContext(),testEventsList);
+                        Log.d("CreateTable","AFTER DB called");
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                while(!DatabaseTableSubEvent.threadDone){
+
+                                    try{
+                                        Log.d("ThreadDebug","try block");
+                                        Thread.sleep(750);
+                                    } catch (InterruptedException e){
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                Log.d("Search","Starting Search");
+                                Cursor cursor = databaseTable.getEventNameMatches(searchTerm, null);
+                                String retVal = "";
+                                if (cursor != null && cursor.moveToFirst() ){
+                                    String[] columnNames = cursor.getColumnNames();
+                                    do {
+                                        //Searched results have been found
+                                        for (String name: columnNames) {
+                                            //retVal += String.format("%s: %s\n", name, cursor.getString(cursor.getColumnIndex(name)));
+                                            if(name.equals("EVENT_ID")){
+                                                //Return to outside world
+                                                if(cursor == null){
+                                                    Log.d("Search","Cursor is null");
+                                                }
+                                                Log.d("Search","Int is: "+cursor.getColumnIndex(name));
+                                                searchResult.add(cursor.getString(cursor.getColumnIndex(name)));
+                                                //thisisfineyou would just start the new fragment here HAHAHAAHAH
+                                            }
+
+                                        }
+                                        retVal += "\n";
+                                        Log.d("Search","Result found in Loop");
+                                    } while (cursor.moveToNext());
+                                }
+                                else{
+                                    Log.d("Search","Nothing found.");
+                                }
+                                Log.d("Search","RESULTS: "+retVal);
+                                //System.err.println(retVal);
+                                //Log.d("Search","RESULT: "+cursor.getString(cursor.getColumnIndex(cursor.getColumnNames()[1])));
+                            }
+                        }).start();
+
+
+
                     }
                 }).start();
+
+
+                //Log.d("CreateTable",testEventsList.get(0).getEventId());
+
+
+
 
 
                 // TODO (M): people
@@ -280,6 +375,7 @@ public class MainActivity extends AppCompatActivity
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack("Search People Fragment")
                         .commit();
+
 
 
 
@@ -431,7 +527,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator);
-
+        //overrideFonts(coordinatorLayout.getContext(),coordinatorLayout);
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();
