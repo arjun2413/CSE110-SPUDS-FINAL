@@ -138,16 +138,21 @@ public class ProfileFragment extends Fragment {
 
         String imageFile = user.getPicture();
 
+        Bitmap src = null;
+        try {
+            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+            src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+        } catch(OutOfMemoryError e) {
+            System.err.println(e.toString());
+        }
 
-        byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-        Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-
-        RoundedBitmapDrawable circularBitmapDrawable =
-                RoundedBitmapDrawableFactory.create(getResources(), src);
-        circularBitmapDrawable.setCircular(true);
-        circularBitmapDrawable.setAntiAlias(true);
-        userImage.setImageDrawable(circularBitmapDrawable);
-
+        if (src != null) {
+            RoundedBitmapDrawable circularBitmapDrawable =
+                    RoundedBitmapDrawableFactory.create(getResources(), src);
+            circularBitmapDrawable.setCircular(true);
+            circularBitmapDrawable.setAntiAlias(true);
+            userImage.setImageDrawable(circularBitmapDrawable);
+        }
 
         // Set image for button for subscribe or edit profile
         if (user.getUserId().equals(UserFirebase.uId)) {

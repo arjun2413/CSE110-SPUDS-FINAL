@@ -72,14 +72,20 @@ public class InvitePeopleRVAdapter extends RecyclerView.Adapter<InvitePeopleRVAd
         final int i = position;
 
         String imageFile = followers.get(i).getPicture();
-        byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-        Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-        RoundedBitmapDrawable circularBitmapDrawable =
-                RoundedBitmapDrawableFactory.create(fragment.getResources(), src);
-        circularBitmapDrawable.setCircular(true);
-        circularBitmapDrawable.setAntiAlias(true);
-        holder.photo.setImageDrawable(circularBitmapDrawable);
-
+        Bitmap src = null;
+        try {
+            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+            src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+        } catch(OutOfMemoryError e) {
+            System.err.println(e.toString());
+        }
+       if (src != null) {
+           RoundedBitmapDrawable circularBitmapDrawable =
+                   RoundedBitmapDrawableFactory.create(fragment.getResources(), src);
+           circularBitmapDrawable.setCircular(true);
+           circularBitmapDrawable.setAntiAlias(true);
+           holder.photo.setImageDrawable(circularBitmapDrawable);
+       }
         holder.inviteButton.setOnClickListener(new View.OnClickListener() {
             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override

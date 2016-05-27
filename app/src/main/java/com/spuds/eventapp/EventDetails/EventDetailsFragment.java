@@ -411,11 +411,16 @@ public class EventDetailsFragment extends Fragment {
 
         if (imageFile != null && imageFile != "") {
 
-            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-            Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+            Bitmap src = null;
+            try {
+                byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+            } catch(OutOfMemoryError e) {
+                System.err.println(e.toString());
+            }
 
-
-            eventPic.setImageBitmap(src);
+            if (src != null)
+                eventPic.setImageBitmap(src);
         }
 
     }

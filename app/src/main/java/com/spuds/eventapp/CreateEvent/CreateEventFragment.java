@@ -237,17 +237,23 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                             @Override
                             public void run() {
 
-                                String result = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
+                                String imageFile = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
 
-                                byte[] imageAsBytes = Base64.decode(result, Base64.DEFAULT);
-                                Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+                                Bitmap src = null;
+                                try {
+                                    byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                                    src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+                                } catch(OutOfMemoryError e) {
+                                    System.err.println(e.toString());
+                                }
 
+                                if (src != null) {
 
-                                eventImage.setImageBitmap(src);
+                                    eventImage.setImageBitmap(src);
                                 /*eventImage.setImageURI(null);
                                 eventImage.setImageURI(((MainActivity) getActivity()).picture);
                                 eventImage.invalidate();*/
-
+                                }
 
                             }
                         });

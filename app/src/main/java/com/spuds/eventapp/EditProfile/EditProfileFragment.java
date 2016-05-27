@@ -117,17 +117,23 @@ public class  EditProfileFragment extends Fragment {
 
                                 String imageFile = UserFirebase.convert(getActivity(),((MainActivity) getActivity()).picture);
                                 picturepush = imageFile;
-                                byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-                                Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+                                Bitmap src = null;
+                                try {
+                                    byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                                    src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+                                } catch(OutOfMemoryError e) {
+                                    System.err.println(e.toString());
+                                }
 
+                                if (src != null) {
 
-                                Log.v("EditProfileFragment", "imagefile" + imageFile);
-                                RoundedBitmapDrawable dr =
-                                        RoundedBitmapDrawableFactory.create(getActivity().getResources(), src);
+                                    Log.v("EditProfileFragment", "imagefile" + imageFile);
+                                    RoundedBitmapDrawable dr =
+                                            RoundedBitmapDrawableFactory.create(getActivity().getResources(), src);
 
-                                dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
-                                pictureView.setImageDrawable(dr);
-
+                                    dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
+                                    pictureView.setImageDrawable(dr);
+                                }
 
                             }
                         });
@@ -140,17 +146,21 @@ public class  EditProfileFragment extends Fragment {
 
         String imageFile = user.getPicture();
 
+        Bitmap src = null;
+        try {
+            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+            src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+        } catch(OutOfMemoryError e) {
+            System.err.println(e.toString());
+        }
 
-        byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-        Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-
-        RoundedBitmapDrawable circularBitmapDrawable =
-                RoundedBitmapDrawableFactory.create(getResources(), src);
-        circularBitmapDrawable.setCircular(true);
-        circularBitmapDrawable.setAntiAlias(true);
-        pictureView.setImageDrawable(circularBitmapDrawable);
-
-
+        if (src != null) {
+            RoundedBitmapDrawable circularBitmapDrawable =
+                    RoundedBitmapDrawableFactory.create(getResources(), src);
+            circularBitmapDrawable.setCircular(true);
+            circularBitmapDrawable.setAntiAlias(true);
+            pictureView.setImageDrawable(circularBitmapDrawable);
+        }
         /*Bitmap src = BitmapFactory.decodeResource(this.getResources(), R.id.edit_profile_picture);
         RoundedBitmapDrawable dr =
                 RoundedBitmapDrawableFactory.create(this.getResources(), src);

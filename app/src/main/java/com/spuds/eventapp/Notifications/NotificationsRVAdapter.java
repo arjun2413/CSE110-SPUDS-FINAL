@@ -261,13 +261,20 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         holder.dayDate.setText(noti.day);
 
         if (noti.picture != null && noti.picture != "") {
-            byte[] imageAsBytes = Base64.decode(noti.picture, Base64.DEFAULT);
-            Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-            RoundedBitmapDrawable circularBitmapDrawable =
-                    RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
-            circularBitmapDrawable.setCircular(true);
-            circularBitmapDrawable.setAntiAlias(true);
-            holder.hostPicture.setImageDrawable(circularBitmapDrawable);
+            Bitmap src = null;
+            try {
+                byte[] imageAsBytes = Base64.decode(noti.picture, Base64.DEFAULT);
+                src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+            } catch(OutOfMemoryError e) {
+                System.err.println(e.toString());
+            }
+            if (src != null) {
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+                circularBitmapDrawable.setCircular(true);
+                circularBitmapDrawable.setAntiAlias(true);
+                holder.hostPicture.setImageDrawable(circularBitmapDrawable);
+            }
         }
 
         // Make card clickable
@@ -324,13 +331,20 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         holder.dayDate.setText(noti.day);
 
         if (noti.picture != null && noti.picture != "") {
-            byte[] imageAsBytes = Base64.decode(noti.picture, Base64.DEFAULT);
-            Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-            RoundedBitmapDrawable circularBitmapDrawable =
-                    RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
-            circularBitmapDrawable.setCircular(true);
-            circularBitmapDrawable.setAntiAlias(true);
-            holder.replierPicture.setImageDrawable(circularBitmapDrawable);
+            Bitmap src = null;
+            try {
+                byte[] imageAsBytes = Base64.decode(noti.picture, Base64.DEFAULT);
+                src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+            } catch(OutOfMemoryError e) {
+                System.err.println(e.toString());
+            }
+            if (src != null) {
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+                circularBitmapDrawable.setCircular(true);
+                circularBitmapDrawable.setAntiAlias(true);
+                holder.replierPicture.setImageDrawable(circularBitmapDrawable);
+            }
         }
 
         holder.commentDescription.setText(noti.commentDescription);

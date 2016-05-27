@@ -47,9 +47,9 @@ import com.spuds.eventapp.About.AboutFragment;
 import com.spuds.eventapp.CategoriesList.CategoriesListFragment;
 import com.spuds.eventapp.CreateEvent.CreateEventFragment;
 import com.spuds.eventapp.FindPeople.FindPeopleFragment;
+import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.Firebase.UserFirebase;
-import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.HomeFeed.HomeFeedTabsFragment;
 import com.spuds.eventapp.InvitePeople.InvitePeopleFragment;
 import com.spuds.eventapp.Login.LoginActivity;
@@ -64,7 +64,6 @@ import com.spuds.eventapp.SubscriptionsList.SubscriptionsListFragment;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
@@ -170,13 +169,20 @@ public class MainActivity extends AppCompatActivity
         String imageFile = UserFirebase.thisUser.getPicture();
 
 
-        byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-        Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-        RoundedBitmapDrawable circularBitmapDrawable =
-                RoundedBitmapDrawableFactory.create(getResources(), src);
-        circularBitmapDrawable.setCircular(true);
-        circularBitmapDrawable.setAntiAlias(true);
-        profilePic.setImageDrawable(circularBitmapDrawable);
+        Bitmap src = null;
+        try {
+            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+            src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+        } catch(OutOfMemoryError e) {
+            System.err.println(e.toString());
+        }
+        if (src!= null) {
+            RoundedBitmapDrawable circularBitmapDrawable =
+                    RoundedBitmapDrawableFactory.create(getResources(), src);
+            circularBitmapDrawable.setCircular(true);
+            circularBitmapDrawable.setAntiAlias(true);
+            profilePic.setImageDrawable(circularBitmapDrawable);
+        }
 /*        Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.christinecropped);
 
         profilePic.setImageDrawable(dr);
