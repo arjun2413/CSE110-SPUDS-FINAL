@@ -22,6 +22,7 @@ public class SubscriptionsListFragment extends Fragment {
     private ArrayList<Subscription> subscriptions;
     public SubscriptionsListRVAdapter adapter;
     UserFirebase userFirebase;
+    public boolean done;
 
     public SubscriptionsListFragment() {
         // Required empty public constructor
@@ -33,7 +34,6 @@ public class SubscriptionsListFragment extends Fragment {
         userFirebase = new UserFirebase();
         subscriptions = new ArrayList<>();
         userFirebase.getSubscriptions(subscriptions);
-
 
     }
 
@@ -51,28 +51,34 @@ public class SubscriptionsListFragment extends Fragment {
         adapter = new SubscriptionsListRVAdapter(subscriptions, this);
         rv.setAdapter(adapter);
 
-        new Thread(new Runnable() {
+        if (!done) {
+            new Thread(new Runnable() {
 
-            @Override
-            public void run() {
-                while (userFirebase.numSubscriptions > subscriptions.size() && !userFirebase.getSubscriptionsThreadCheck) {
-                    Log.v("sublist", "numsubs" + userFirebase.numSubscriptions);
-                    Log.v("sublist", "subscriptions size" + subscriptions.size());
-                    try {
-                        Thread.sleep(70);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                @Override
+                public void run() {
+                    while (userFirebase.numSubscriptions > subscriptions.size() || !userFirebase.getSubscriptionsThreadCheck) {
+                        Log.v("sublist", "numsubs" + userFirebase.numSubscriptions);
+                        Log.v("sublist", "subscriptions size" + subscriptions.size());
+                        try {
+                            Thread.sleep(70);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.v("inviteppl", "" + subscriptions.size());
+                            Log.v("inviteppl", "" + subscriptions.get(0).name);
+                            Log.v("inviteppl", "" + subscriptions.get(1).name);
+
+                            rv.setAdapter(adapter);
+                            done = true;
+                        }
+                    });
                 }
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.v("inviteppl",""+ subscriptions.size());
-                        rv.setAdapter(adapter);
-                    }
-                });
-            }
-        }).start();
+            }).start();
+        }
 
 
 

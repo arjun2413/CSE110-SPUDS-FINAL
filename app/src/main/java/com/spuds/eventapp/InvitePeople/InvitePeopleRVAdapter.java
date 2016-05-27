@@ -1,9 +1,11 @@
 package com.spuds.eventapp.InvitePeople;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -66,7 +68,7 @@ public class InvitePeopleRVAdapter extends RecyclerView.Adapter<InvitePeopleRVAd
 
     boolean b;
     @Override
-    public void onBindViewHolder(InviteViewHolder holder, int position) {
+    public void onBindViewHolder(final InviteViewHolder holder, int position) {
         final int i = position;
 
         String imageFile = followers.get(i).getPicture();
@@ -79,13 +81,21 @@ public class InvitePeopleRVAdapter extends RecyclerView.Adapter<InvitePeopleRVAd
         holder.photo.setImageDrawable(circularBitmapDrawable);
 
         holder.inviteButton.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
                 // TODO: colors
-                if (!invited.contains(followers.get(i)))
+                if (!invited.contains(followers.get(i))) {
+
+                    holder.inviteButton.setBackgroundTintList(fragment.getResources().getColorStateList(R.color.color_selected));
                     invited.add(followers.get(i));
-                else
+
+                } else {
+
+                    holder.inviteButton.setBackgroundTintList(fragment.getResources().getColorStateList(R.color.color_unselected));
                     invited.remove(followers.get(i));
+
+                }
 
             }
         });

@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +20,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spuds.eventapp.EventDetails.EventDetailsFragment;
+import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.Profile.ProfileFeedFragment;
 import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -102,8 +105,11 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         return evh;
     }
 
+    EventsFirebase eventsFirebase = new EventsFirebase();
+    boolean going = false;
+
     @Override
-    public void onBindViewHolder(EventViewHolder eventViewHolder, int i) {
+    public void onBindViewHolder(final EventViewHolder eventViewHolder, final int i) {
 
         final int index = i;
         // Add card See More... for profile fragment
@@ -145,13 +151,6 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             return;
         }
 
-
-        // TODO (M): going
-        boolean going = false;
-        /*if (going)
-            eventViewHolder.buttonGoing.setBackgroundColor(Color.parseColor("#5c8a8a"));
-        else
-            eventViewHolder.buttonGoing.setBackgroundColor(Color.parseColor("#ffffff"));*/
 
         if (events.get(i).getPicture() != null && events.get(i).getPicture() != "") {
             String imageFile = events.get(i).getPicture();
@@ -294,7 +293,109 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             }
         });
 
+        Log.d("rvadapter", "b4 thread");
+
+        eventViewHolder.buttonGoing.setVisibility(View.INVISIBLE);
+        /*eventViewHolder.buttonGoing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Here1", "herepls");
+
+
+                if (going) {
+
+                    Log.d("edgoing", " true");
+
+                    /currentFragment.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            eventViewHolder.buttonGoing.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_unselected));
+                        }
+                    });
+                    eventsFirebase.notGoingToAnEvent(events.get(i).getEventId());
+                    eventsFirebase.deleteEventRegistration(events.get(i).getEventId());
+
+                    going = false;
+
+                } else {
+
+                    Log.d("edgoing", " false");
+                    currentFragment.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            eventViewHolder.buttonGoing.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
+                        }
+                    });
+
+                    eventsFirebase.notGoingToAnEvent(events.get(i).getEventId());
+
+                    eventsFirebase.goingToAnEvent(events.get(i).getEventId());
+                    going = true;
+
+                }
+
+            }
+        });*/
+        /*if (i == events.size() - 1) {
+            recTest();
+        }
+
+        buttons.add(eventViewHolder.buttonGoing);*/
+
+
     }
+
+    ArrayList<Button> buttons = new ArrayList<>();
+
+    /*void recTest() {
+
+        if (buttons.size() == 0) return;
+
+        eventsFirebase.isGoing(events.get(events.size() - buttons.size()).getEventId());
+
+        new Thread(new Runnable() {
+            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void run() {
+                Log.d("rvadapterisisgoing", String.valueOf(eventsFirebase.idIsGoing));
+                while (eventsFirebase.idIsGoing == 0) {
+                    Log.d("rvadapter", "areHere");
+                    try {
+                        Thread.sleep(75);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (eventsFirebase.idIsGoing == 1) {
+                    going = false;
+                    currentFragment.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (buttons.size() == 0) return;
+                            buttons.get(0).setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_unselected));
+                            buttons.remove(0);
+
+                        }
+                    });
+                } else {
+                    going = true;
+                    currentFragment.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (buttons.size() == 0) return;
+                            buttons.get(0).setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
+                            buttons.remove(0);
+
+                        }
+                    });
+
+                }
+
+                recTest();
+            }
+        }).start();
+    }*/
 
 
 

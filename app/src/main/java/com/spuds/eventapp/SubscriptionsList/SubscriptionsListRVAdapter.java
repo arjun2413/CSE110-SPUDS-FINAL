@@ -1,9 +1,11 @@
 package com.spuds.eventapp.SubscriptionsList;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -71,8 +73,9 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
         return svh;
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void onBindViewHolder(SubViewHolder subViewHolder, int i) {
+    public void onBindViewHolder(final SubViewHolder subViewHolder, final int i) {
         final Subscription currentSub = subscriptions.get(i);
         subViewHolder.subName.setText(subscriptions.get(i).name);
 
@@ -85,22 +88,23 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
         dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
         subViewHolder.subPhoto.setImageDrawable(dr);
 
+        subViewHolder.toggleFollow.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
 
         subViewHolder.toggleFollow.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
+                UserFirebase userFirebase = new UserFirebase();
                 // already following this user
                 if (currentSub.follow){
                     currentSub.follow = false;
-                    // TODO (V): Add image for "Follow" button
-                    //currentSubViewHolder.toggleFollow.setImageResource(R.drawable.button_not_subscribed);
-                    // TODO (M): Update database for follow boolean
+                    subViewHolder.toggleFollow.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_unselected));
+                    userFirebase.subscribe(subscriptions.get(i).userId, false);
                 }
                 else{
                     currentSub.follow = true;
-                    // TODO (V): Add image for "Unfollow" button
-                    //currentSubViewHolder.toggleFollow.setImageResource(R.drawable.button_subscribed);
-                    // TODO (M): Update database for follow boolean
+                    subViewHolder.toggleFollow.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
+                    userFirebase.subscribe(subscriptions.get(i).userId, true);
 
                 }
             }

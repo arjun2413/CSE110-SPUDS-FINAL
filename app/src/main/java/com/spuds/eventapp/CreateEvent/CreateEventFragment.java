@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.spuds.eventapp.EventDetails.EventDetailsFragment;
 import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.Firebase.UserFirebase;
+import com.spuds.eventapp.InvitePeople.InvitePeopleFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.CategoryTextButton;
 import com.spuds.eventapp.Shared.MainActivity;
@@ -54,6 +55,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     private TextView dateMessage;
     private TextView timeMessage;
     private ScrollView scrollView;
+    private Button buttonInvite;
 
     private ArrayList editEventFields;
 
@@ -84,11 +86,25 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         timeMessage = (TextView) view.findViewById(R.id.timeErrorMessage);
         scrollView = (ScrollView) view.findViewById(R.id.scrollView);
         editEventFields = new ArrayList<String>();
-
+        buttonInvite = (Button) view.findViewById(R.id.event_invite);
     }
 
 
     protected void setupWindow() {
+        buttonInvite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).addSearchToolbar();
+                InvitePeopleFragment invitePeopleFragment = new InvitePeopleFragment();
+                // Add Event Details Fragment to fragment manager
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_frame_layout, invitePeopleFragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack("fragment_invite_people")
+                        .commit();
+            }
+        });
+
         final EventsFirebase eventsFirebase = new EventsFirebase(null, 0, null, null, null);
         editEventDone.setOnClickListener(new View.OnClickListener() {
             @Override

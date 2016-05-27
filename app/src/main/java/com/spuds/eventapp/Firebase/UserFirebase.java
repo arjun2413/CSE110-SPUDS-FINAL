@@ -130,6 +130,7 @@ public class UserFirebase {
 
 
     public void getAnotherUser(String userId) {
+
         final String finalUserId = userId;
         threadCheckAnotherUser = false;
 
@@ -140,8 +141,6 @@ public class UserFirebase {
             @Override
             public void onChildAdded(DataSnapshot snapshot, String previousChild) {
 
-
-                Log.v("asdf","keykeykey" + snapshot.toString());
 
                 switch (snapshot.getKey()) {
                     case "name":
@@ -405,7 +404,7 @@ public class UserFirebase {
                     }
 
                     ref.removeEventListener(valueEventListener);
-                    subscribeThreadCheck = false;
+                    //subscribeThreadCheck = false;
 
                 }
             }).start();
@@ -541,8 +540,6 @@ public class UserFirebase {
             }
         }).start();
 
-
-
     }
 
     public static boolean getSubscriptionsThreadCheck;
@@ -559,6 +556,7 @@ public class UserFirebase {
                 HashMap<String, Object> values = (HashMap<String, Object>) snapshot.getValue();
                 if (values != null) {
 
+                    ArrayList<String> users = new ArrayList<>();
                     for (Map.Entry<String, Object> entry : values.entrySet()) {
                         Log.v("Userfirebase asdf", " key" + entry.getKey());
 
@@ -584,33 +582,11 @@ public class UserFirebase {
 
                         }
 
-                        //Not working b/c it's asynchronous
                         if (following) {
+
                             ++numSubscriptions;
-                            getAnotherUser(followingId);
-                            Log.v("userfirebasesubs", "folloiwngidadded " + followingId);
+                            users.add(followingId);
 
-                            new Thread(new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    while (!threadCheckAnotherUser) {
-                                        try {
-                                            Thread.sleep(77);
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-
-                                    }
-
-
-                                    subscriptions.add(new Subscription(anotherUser.getUserId(),
-                                            anotherUser.getName(), anotherUser.getPicture(),
-                                            true));
-                                    Log.v("userfirebasesubs", anotherUser.getName() + " was added");
-
-                                }
-                            }).start();
 
 
                         }
@@ -618,8 +594,36 @@ public class UserFirebase {
 
                     }
 
+                    recTest(users, subscriptions);
+                    /*for (String userId: users) {
+                        getAnotherUser(userId);
+                        Log.v("userfirebasesubs", "numsubs " + numSubscriptions);
+                        Log.v("userfirebasesubs", "followingId " + followingId);
 
-                    getSubscriptionsThreadCheck = true;
+
+                        //asynchronous
+                        new Thread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                while (!threadCheckAnotherUser) {
+                                    try {
+                                        Thread.sleep(77);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+
+
+                                subscriptions.add(new Subscription(anotherUser.getUserId(),
+                                        anotherUser.getName(), anotherUser.getPicture(),
+                                        true));
+                                Log.v("userfirebasesubs", anotherUser.getName() + " was added");
+
+                            }
+                        }).start();
+                    }*/
 
                 }
             }
@@ -633,6 +637,97 @@ public class UserFirebase {
 
         ref.addValueEventListener(valueEventListener);
     }
+
+    void recTest(final ArrayList<String> users, final ArrayList<Subscription> subscriptions) {
+        if (users.size() == 0) {
+            getSubscriptionsThreadCheck = true;
+            return;
+        }
+
+        getAnotherUser(users.get(0));
+
+        //asynchronous
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (!threadCheckAnotherUser) {
+                    try {
+                        Thread.sleep(77);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+
+                subscriptions.add(new Subscription(anotherUser.getUserId(),
+                        anotherUser.getName(), anotherUser.getPicture(),
+                        true));
+                Log.v("userfirebasesubs", anotherUser.getName() + " was added");
+
+                users.remove(0);
+
+                recTest(users, subscriptions);
+
+
+            }
+        }).start();
+
+    }
+
+    /*public static boolean threadCheckSubUser;
+    public void getSubUserList(final ArrayList<SubUser> subUsers) {
+        threadCheckSubUser = false;
+        final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/users");
+        Query queryRef = myFirebaseRef.orderByKey();
+
+        queryRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot snapshot, String previousChild) {
+
+                SubUser subUser  = new SubUser();
+                Log.v("asdfjkl;", snapshot.getKey());
+
+                subUser.setUserId(snapshot.getKey());
+
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    //Log.d("lmao", String.valueOf(child));
+                    switch (child.getKey()) {
+                        case "name":
+                            subUser.setUserName(String.valueOf(child.getValue()));
+                            break;
+                    }
+
+                }
+                subUsers.add(subUser);
+
+                threadCheckSubUser = true;
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+    }*/
+
 
 }
 

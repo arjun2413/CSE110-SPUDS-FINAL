@@ -1,19 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
-
-    <item
-        jar="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="915a75403dd22913c979f17c0840aaf578e9154c">
-        <dex dex="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_f7c4412f22e56d40f1b2a0a88963d8de4abfa057/classes.dex" />
-    </item>
-    <item
-        jar="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="dbbf0316ba41a8ada6c4b091fb9e9f825d7ce51d">
-        <dex dex="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_13b9c3ef27f7838c791dae364e7e8eaae7a6f90d/classes.dex" />
-    </item>
-
-</items>
+<items version="2" />

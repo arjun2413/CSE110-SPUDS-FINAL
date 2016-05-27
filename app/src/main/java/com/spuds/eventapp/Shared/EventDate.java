@@ -1,5 +1,7 @@
 package com.spuds.eventapp.Shared;
 
+import android.util.Log;
+
 import java.util.GregorianCalendar;
 
 /**
@@ -21,15 +23,17 @@ public class EventDate {
     //ctor
     public EventDate(String date) {
 
+        Log.e("EventDate" , "date: " + date);
+
         //Check for proper date form
         if(validateString(date)) {
 
             //Use substring to parse each snippet of string.
-            this.year = Integer.parseInt(date.substring(6,10));
-            this.month = Integer.parseInt(date.substring(0,2));
-            this.day = Integer.parseInt(date.substring(3,5));
+            this.year = Integer.parseInt(date.substring(0,2));
+            this.month = Integer.parseInt(date.substring(3,5));
+            this.day = Integer.parseInt(date.substring(6,8));
             this.hour = Integer.parseInt(date.substring(11,13));
-            this.minute = date.substring(14,15);
+            this.minute = date.substring(14,16);
 
             //Check that dates are in reasonable range
             if(     this.year >= 2016 &&
@@ -107,7 +111,7 @@ public class EventDate {
 
     private boolean validateString(String s){
         //use RegEx to ensure correct format. If it is in correct form, return true.
-        if(s.matches("\\d{2}/\\d{2}/\\d{4}\\|\\d{2}:\\d{2}")){
+        if(s.matches("\\d{2}/\\d{2}/\\d{2} \\| \\d{2}:\\d{2}")){
             return true;
         }
         //if bad form return false;
