@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         Firebase.setAndroidContext(this);
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         //Typefaces for two different fonts
