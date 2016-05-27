@@ -203,6 +203,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         eventLocation.setText(event.getLocation());
         eventDescription.setText(event.getDescription());
 
+        //an arraylist of category text buttons
         categories = new ArrayList<>();
 
 
@@ -214,11 +215,14 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         categories.add(new CategoryTextButton("ACADEMIC", false));
         categories.add(new CategoryTextButton("FREE", false));
 
+        //existing categories on this event is good.
         ArrayList<String> existingCateg = event.getCategories();
         Log.v("size", "size: " + event.getCategories().size());
 
         for (int i = 0; i < existingCateg.size(); ++i) {
+
             Log.v("category", "category: " + existingCateg.get(i));
+
 
             switch(existingCateg.get(i)) {
 
@@ -249,7 +253,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
 
-        adapter = new EditEventRVAdapter(categories, this);
+        adapter = new EditEventRVAdapter(categories, this, existingCateg);
         rv.setAdapter(adapter);
 
 
