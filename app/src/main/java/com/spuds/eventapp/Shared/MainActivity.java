@@ -169,21 +169,24 @@ public class MainActivity extends AppCompatActivity
 
         String imageFile = UserFirebase.thisUser.getPicture();
 
-
+    if (imageFile != null && imageFile != "") {
         Bitmap src = null;
         try {
             byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
             src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-        } catch(OutOfMemoryError e) {
+        } catch (OutOfMemoryError e) {
             System.err.println(e.toString());
         }
-        if (src!= null) {
+        if (src != null) {
             RoundedBitmapDrawable circularBitmapDrawable =
                     RoundedBitmapDrawableFactory.create(getResources(), src);
             circularBitmapDrawable.setCircular(true);
             circularBitmapDrawable.setAntiAlias(true);
             profilePic.setImageDrawable(circularBitmapDrawable);
         }
+    } else {
+        profilePic.setImageResource(R.drawable.profilepicture);
+    }
 /*        Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.christinecropped);
 
         profilePic.setImageDrawable(dr);

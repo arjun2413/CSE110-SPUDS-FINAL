@@ -49,162 +49,181 @@
                     android:visibility="invisible"
                     android:src="@drawable/editevent" />
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical"
+                    android:layout_centerVertical="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/event_name"
+                        android:textStyle="bold"
+                        android:textSize="25sp"
+                        android:text="SUN GOD FESTIVAL IS SO FUN YAY COME THROUGH"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="#ffffff"
+                        android:shadowColor="#7F000000"
+                        android:shadowDx="10"
+                        android:shadowDy="10"
+                        android:shadowRadius="10"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:gravity="center"
+                        android:minLines="1"
+                        android:maxLines="3"
+
+                        android:ellipsize="end"/>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/date_layout"
+                        android:layout_below="@+id/event_name"
+                        android:layout_centerHorizontal="true"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/event_date"
+                            android:text="May 1, 2016"
+                            android:layout_below="@+id/event_name"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="15sp"
+                            android:textColor="#ffffff"
+                            android:shadowColor="#7F000000"
+                            android:shadowDx="10"
+                            android:shadowDy="10"
+                            android:shadowRadius="10"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"/>
+
+                       <!-- <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text=" | "
+                            android:id="@+id/separator"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:textColor="#ffffff"
+                            android:shadowColor="#7F000000"
+                            android:shadowDx="10"
+                            android:shadowDy="10"
+                            android:shadowRadius="10"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="12:00 PM"
+                            android:id="@+id/event_time"
+                            android:textColor="#ffffff"
+                            android:shadowColor="#7F000000"
+                            android:shadowDx="10"
+                            android:shadowDy="10"
+                            android:shadowRadius="10"/>-->
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/hosted_layout"
+                        android:layout_below="@+id/date_layout"
+                        android:layout_centerHorizontal="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/hosted_text"
+                            android:text="Hosted by "
+                            android:layout_below="@+id/date_layout"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="15sp"
+                            android:textColor="#ffffff"
+                            android:shadowColor="#7F000000"
+                            android:shadowDx="10"
+                            android:shadowDy="10"
+                            android:shadowRadius="10"
+                            android:gravity="center_horizontal"
+                            android:layout_marginLeft="10dp"
+                           />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="A.S. Concert and Events"
+                            android:id="@+id/event_host"
+                            android:textColor="#ffffff"
+                            android:textSize="15sp"
+                            android:layout_marginRight="10dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/hosted_layout"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/attendees_layout">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/event_attendees"
+                            android:text="1,049"
+                            android:textSize="15sp"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="#ffffff"
+                            android:shadowColor="#7F000000"
+                            android:shadowDx="10"
+                            android:shadowDy="10"
+                            android:shadowRadius="10"
+                            android:layout_marginLeft="10dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text=" attendees"
+                            android:textSize="15sp"
+                            android:id="@+id/going_text"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:textColor="#ffffff"
+                            android:shadowColor="#7F000000"
+                            android:shadowDx="10"
+                            android:shadowDy="10"
+                            android:shadowRadius="10"
+                            android:layout_marginRight="10dp"/>
+                    </LinearLayout>
+
+                    <Button
+                        android:layout_width="80dp"
+                        android:layout_height="25dp"
+                        android:id="@+id/button_going"
+                        android:text="GOING"
+                        android:textColor="#ffffff"
+                        android:layout_below="@+id/attendees_layout"
+                        android:background="@drawable/roundedbutton"
+                        android:layout_centerHorizontal="true"
+                        android:backgroundTint="#a6a6a6"
+                        android:layout_marginTop="5dp"/>
+                </RelativeLayout>
+
             </RelativeLayout>
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/event_name"
-            android:layout_marginTop="50dp"
-            android:textStyle="bold"
-            android:textSize="25sp"
-            android:text="SUN GOD FESTIVAL"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:textColor="#ffffff"
-            android:shadowColor="#7F000000"
-            android:shadowDx="10"
-            android:shadowDy="10"
-            android:shadowRadius="10"/>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/date_layout"
-            android:layout_below="@+id/event_name"
-            android:layout_centerHorizontal="true"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/event_date"
-                android:text="May 1, 2016"
-                android:layout_below="@+id/event_name"
-                android:layout_centerHorizontal="true"
-                android:textSize="15sp"
-                android:textColor="#ffffff"
-                android:shadowColor="#7F000000"
-                android:shadowDx="10"
-                android:shadowDy="10"
-                android:shadowRadius="10"/>
-
-           <!-- <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text=" | "
-                android:id="@+id/separator"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:textColor="#ffffff"
-                android:shadowColor="#7F000000"
-                android:shadowDx="10"
-                android:shadowDy="10"
-                android:shadowRadius="10"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="12:00 PM"
-                android:id="@+id/event_time"
-                android:textColor="#ffffff"
-                android:shadowColor="#7F000000"
-                android:shadowDx="10"
-                android:shadowDy="10"
-                android:shadowRadius="10"/>-->
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/hosted_layout"
-            android:layout_below="@+id/date_layout"
-            android:layout_centerHorizontal="true">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/hosted_text"
-                android:text="Hosted by "
-                android:layout_below="@+id/date_layout"
-                android:layout_centerHorizontal="true"
-                android:textSize="15sp"
-                android:textColor="#ffffff"
-                android:shadowColor="#7F000000"
-                android:shadowDx="10"
-                android:shadowDy="10"
-                android:shadowRadius="10"
-                android:gravity="center_horizontal" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="A.S. Concert and Events"
-                android:id="@+id/event_host"
-                android:textColor="#ffffff"
-                android:textSize="15sp"/>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/hosted_layout"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/attendees_layout">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/event_attendees"
-                android:text="1,049"
-                android:textSize="15sp"
-                android:layout_centerHorizontal="true"
-                android:textColor="#ffffff"
-                android:shadowColor="#7F000000"
-                android:shadowDx="10"
-                android:shadowDy="10"
-                android:shadowRadius="10"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text=" attendees"
-                android:textSize="15sp"
-                android:id="@+id/going_text"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:textColor="#ffffff"
-                android:shadowColor="#7F000000"
-                android:shadowDx="10"
-                android:shadowDy="10"
-                android:shadowRadius="10"/>
-        </LinearLayout>
-
-        <Button
-            android:layout_width="80dp"
-            android:layout_height="25dp"
-            android:id="@+id/button_going"
-            android:text="GOING"
-            android:textColor="#ffffff"
-            android:layout_below="@+id/attendees_layout"
-            android:background="@drawable/roundedbutton"
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#a6a6a6"
-            android:layout_marginTop="5dp"/>
 
 
         <LinearLayout

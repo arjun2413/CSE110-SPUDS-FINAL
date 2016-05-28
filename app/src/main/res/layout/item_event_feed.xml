@@ -86,13 +86,17 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="230dp"
+                        android:layout_width="fill_parent"
                         android:layout_height="23dp"
                         android:id="@+id/event_name"
                         android:textStyle="bold"
                         android:textSize="18sp"
                         android:text="David Birthday Party"
-                        android:textColor="#1a1a1a" />
+                        android:textColor="#1a1a1a"
+                        android:layout_marginRight="5dp"
+                        android:minLines="1"
+                        android:maxLines="1"
+                        android:ellipsize="end"/>
 
                 </LinearLayout>
 
@@ -110,22 +114,24 @@
                        />
 
                     <TextView
-                        android:layout_width="190dp"
+                        android:layout_width="fill_parent"
                         android:layout_height="18dp"
                         android:text="A.S. Concert and Events"
                         android:id="@+id/event_host"
                         android:textColor="#1a1a1a"
                         android:textStyle="italic"
+                        android:layout_marginRight="5dp"
                         />
                 </LinearLayout>
 
                 <TextView
-                    android:layout_width="260dp"
+                    android:layout_width="fill_parent"
                     android:layout_height="18dp"
                     android:layout_below="@id/event_name"
                     android:id="@+id/event_loc"
                     android:text="RIMAC Field"
-                    android:textColor="#1a1a1a" />
+                    android:textColor="#1a1a1a"
+                    android:layout_marginRight="5dp"/>
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -149,11 +155,12 @@
                 </LinearLayout>
 
                 <TextView
-                    android:layout_width="200dp"
+                    android:layout_width="fill_parent"
                     android:layout_height="18dp"
                     android:layout_below="@id/event_attendees"
                     android:id="@+id/event_categories"
-                    android:text="Social, Concerts" />
+                    android:text="Social, Concerts"
+                    android:layout_marginRight="5dp"/>
 
             </LinearLayout>
 
@@ -173,19 +180,6 @@
             android:layout_marginRight="5dp"
             android:textColor="#1a1a1a" />
 
-        <Button
-            android:layout_width="60dp"
-            android:layout_height="23dp"
-            android:id="@+id/event_going"
-            android:background="@drawable/roundedbutton"
-            android:layout_gravity="right"
-            android:text="GOING"
-            android:textSize="13sp"
-            android:textColor="#ffffff"
-            android:layout_alignParentTop="true"
-            android:backgroundTint="#a6a6a6"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"/>
 
     </RelativeLayout>
 
