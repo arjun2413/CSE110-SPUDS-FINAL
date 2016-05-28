@@ -189,19 +189,17 @@ public class  EditProfileFragment extends Fragment {
             circularBitmapDrawable.setAntiAlias(true);
             pictureView.setImageDrawable(circularBitmapDrawable);
         }
+
         /*Bitmap src = BitmapFactory.decodeResource(this.getResources(), R.id.edit_profile_picture);
         RoundedBitmapDrawable dr =
                 RoundedBitmapDrawableFactory.create(this.getResources(), src);
         dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
-        editProfilePictureButton.setImageDrawable(dr);
-*/
+        editProfilePictureButton.setImageDrawable(dr);*/
 
         //Set Custom Fonts
         Typeface custom_font = Typeface.createFromAsset(getActivity().getAssets(),  "raleway-light.ttf");
         editFullName.setTypeface(custom_font);
         editDescription.setTypeface(custom_font);
-
-
 
         editFullName.setText(user.getName());
         editDescription.setText(user.getDescription());
@@ -226,11 +224,36 @@ public class  EditProfileFragment extends Fragment {
                 Log.v("EditProfilementasdfasdf", "imagefile" + user.getPicture());
 
                 UserFirebase.updateUser(user);
+                final UserFirebase userFirebase = new UserFirebase();
+
+                userFirebase.getMyAccountDetails();
+
+                System.out.println("asdf" + "ingetuserdetailsloginactivity");
 
 
-                // TODO (C): Refresh after updating profile
-                // Pop this fragment from backstack
-                getActivity().getSupportFragmentManager().popBackStack();
+                new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+
+                        while (!userFirebase.threadCheck) {
+                            try {
+                                Thread.sleep(75);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ((MainActivity) getActivity()).setupProfileDrawer();
+                                getActivity().getSupportFragmentManager().popBackStack();
+                            }
+                        });
+                    }
+                }).start();
 
             }
         });

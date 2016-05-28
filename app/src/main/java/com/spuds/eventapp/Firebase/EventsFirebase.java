@@ -670,7 +670,9 @@ public class EventsFirebase {
 
     }
 
+    public boolean notGoingThreadCheck;
     public void notGoingToAnEvent(final String eventId) {
+        notGoingThreadCheck = false;
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
         Query queryRef = myFirebaseRef.child(eventId);
         Log.d("Here6", "here");
@@ -686,6 +688,8 @@ public class EventsFirebase {
                     myFirebaseRef.child(eventId).child("number_going").setValue(attendees);
 
                 }
+
+                notGoingThreadCheck = true;
 
             }
 
@@ -791,7 +795,7 @@ public class EventsFirebase {
 
     }
 
-    static boolean deleteThreadCheck = false;
+    public static boolean deleteThreadCheck = false;
 
     public void deleteEventRegistration(final String eventId){
         Log.v("Userfirebase entries", "eventId " + eventId);

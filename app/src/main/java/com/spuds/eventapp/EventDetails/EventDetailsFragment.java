@@ -97,6 +97,7 @@ public class EventDetailsFragment extends Fragment {
         if (event.getHostId().equals(UserFirebase.uId))
             ownEvent = true;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -439,19 +440,67 @@ public class EventDetailsFragment extends Fragment {
                                 if (going) {
 
                                     Log.d("edgoing", " true");
-                                    buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
+                                    //buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
                                     eventsFirebase.notGoingToAnEvent(eventId);
                                     eventsFirebase.deleteEventRegistration(eventId);
+
+                                    new Thread(new Runnable() {
+
+                                        @Override
+                                        public void run() {
+                                            while (!eventsFirebase.notGoingThreadCheck || !eventsFirebase.deleteThreadCheck) {
+                                                try {
+                                                    Thread.sleep(77);
+                                                } catch (InterruptedException e) {
+                                                    e.printStackTrace();
+                                                }
+
+                                            }
+
+                                            mySwipeRefreshLayout.post(new Runnable() {
+                                                @Override public void run() {
+                                                    mySwipeRefreshLayout.setRefreshing(true);
+                                                    // directly call onRefresh() method
+                                                    refreshListener.onRefresh();
+                                                }
+                                            });
+
+                                        }
+                                    }).start();
+
 
                                     going = false;
 
                                 } else {
 
                                     Log.d("edgoing", " false");
-                                    buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
                                     eventsFirebase.notGoingToAnEvent(eventId);
-
                                     eventsFirebase.goingToAnEvent(eventId);
+
+                                    new Thread(new Runnable() {
+
+                                        @Override
+                                        public void run() {
+                                            while (!eventsFirebase.notGoingThreadCheck || !eventsFirebase.notGoingThreadCheck) {
+                                                try {
+                                                    Thread.sleep(77);
+                                                } catch (InterruptedException e) {
+                                                    e.printStackTrace();
+                                                }
+
+                                            }
+                                            //buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
+                                            mySwipeRefreshLayout.post(new Runnable() {
+                                                @Override public void run() {
+                                                    mySwipeRefreshLayout.setRefreshing(true);
+                                                    // directly call onRefresh() method
+                                                    refreshListener.onRefresh();
+                                                }
+                                            });
+
+                                        }
+                                    }).start();
+
                                     going = true;
 
                                 }

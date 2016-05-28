@@ -116,13 +116,15 @@ public class UserFirebase {
     }
 
     public static void updateUser(User user) {
+
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/users/");
 
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("provider", ref.getAuth().getProvider());
         map.put("name", user.getName());
         map.put("description", user.getDescription());
-        map.put("picture", user.getPicture());
+        if (user.getPicture() != null && user.getPicture() != "")
+            map.put("picture", user.getPicture());
 
         //Query queryRef = ref.orderByChild("email").equalTo(email);
         ref.child(UserFirebase.uId).updateChildren(map);
