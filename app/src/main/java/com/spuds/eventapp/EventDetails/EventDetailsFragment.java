@@ -53,6 +53,9 @@ public class EventDetailsFragment extends Fragment {
     Button buttonGoingOrEdit;
     TextView eventTime;
     ImageButton buttonEditEvent;
+    SwipeRefreshLayout mySwipeRefreshLayout;
+    SwipeRefreshLayout.OnRefreshListener refreshListener;
+
     // Reference to itself
     Fragment eventDetailsFragment;
     boolean going;
@@ -61,6 +64,7 @@ public class EventDetailsFragment extends Fragment {
     CommentsRVAdapter adapter;
     List<Comment> comments;
     boolean ownEvent;
+    boolean first = true;
     EventsFirebase eventsFirebase;
 
 
@@ -75,6 +79,7 @@ public class EventDetailsFragment extends Fragment {
         event = (Event) extras.getSerializable(getString(R.string.event_details));
         if (event == null) {
             eventId = extras.getString(getString(R.string.event_id));
+            Log.v("eventsfirebasepushref", "eventisnullid is" + eventId);
             // TODO: Fetch event using eventId
             EventsFirebase ef = new EventsFirebase();
             event = ef.getEventDetails(eventId);
@@ -140,20 +145,20 @@ public class EventDetailsFragment extends Fragment {
         setUpEventInformation(view);
         setupEditEvent();
         setUpComments(view);
-        //setupRefresh(view);
+        setupRefresh(view);
         return view;
     }
-
     public void setupRefresh(final View view) {
-        final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
-        mySwipeRefreshLayout.setOnRefreshListener(
-                new SwipeRefreshLayout.OnRefreshListener() {
+        mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+        refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
 
 
                         Log.v("refresh", "here");
                         EventsFirebase ef = new EventsFirebase();
+                        EventsFirebase.detailsThreadCheck = false;
+                        Log.v("eventsfirebasepushref22", eventId);
                         ef.getEventDetails(eventId);
 
 
@@ -171,17 +176,27 @@ public class EventDetailsFragment extends Fragment {
                                     }
                                 }
 
-                                event = EventsFirebase.eventDetailsEvent;
-                                setUpEventInformation(view);
-                                setupEditEvent();
-                                setUpComments(view);
-
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        event = EventsFirebase.eventDetailsEvent;
+                                        Log.v("wtf", event.getEventId());
+                                        Log.v("wtf", event.getDescription());
+                                        Log.v("wtf", event.getEventId());
+                                        setUpEventInformation(view);
+                                        setupEditEvent();
+                                        setUpComments(view);
+                                        mySwipeRefreshLayout.setRefreshing(false);
+                                    }
+                                });
 
                             }
                         }).start();
                     }
-                }
-        );
+                };
+
+
+        mySwipeRefreshLayout.setOnRefreshListener(refreshListener);
 
     }
 
@@ -487,10 +502,25 @@ public class EventDetailsFragment extends Fragment {
         // Attach adapter to RecyclerView
         rv.setAdapter(adapter);
     }
+
+
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void onResume(){
+        super.onResume();
+        Log.v("WAOW", "ONRESUME");
+        if (!first) {
+            mySwipeRefreshLayout.post(new Runnable() {
+                @Override public void run() {
+                    mySwipeRefreshLayout.setRefreshing(true);
+                    // directly call onRefresh() method
+                    refreshListener.onRefresh();
+                }
+            });
+        } else
+            first = false;
+
     }
+
     @Override
     public void onDetach() {
         super.onDetach();

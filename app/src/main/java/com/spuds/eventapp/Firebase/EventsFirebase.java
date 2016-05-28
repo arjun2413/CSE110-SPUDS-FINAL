@@ -194,6 +194,8 @@ public class EventsFirebase {
         UserFirebase userFirebase = new UserFirebase();
         userFirebase.updateNumberHosting();
 
+        Log.v("eventsfirebasepushref", pushRef.getKey());
+
         return pushRef.getKey();
     }
 
@@ -510,42 +512,41 @@ public class EventsFirebase {
     }
 
     public static boolean detailsThreadCheck;
-    public Event getEventDetails(final String eventID) {
+    public Event getEventDetails(final String eventId) {
         detailsThreadCheck = false;
-        Log.v("asdfjkl", "getting: " + eventID);
+        Log.v("asdfjkl", "getting: " + eventId);
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
-        Query queryRef = myFirebaseRef.orderByKey();
+        Query queryRef = myFirebaseRef.child(eventId);
         queryRef.addChildEventListener(new ChildEventListener() {
             Event newEvent = new Event();
 
             @Override
             public void onChildAdded(DataSnapshot snapshot, String previousChild) {
-                for (DataSnapshot child : snapshot.getChildren()) {
                     //Log.d("lmao", String.valueOf(child));
-                    switch (child.getKey()) {
+                    switch (snapshot.getKey()) {
                         case "date":
-                            newEvent.setDate(String.valueOf(child.getValue()));
+                            newEvent.setDate(String.valueOf(snapshot.getValue()));
                             break;
                         case "description":
-                            newEvent.setDescription(String.valueOf(child.getValue()));
+                            newEvent.setDescription(String.valueOf(snapshot.getValue()));
                             break;
                         case "event_name":
-                            newEvent.setEventName(String.valueOf(child.getValue()));
+                            newEvent.setEventName(String.valueOf(snapshot.getValue()));
                             break;
                         case "location":
-                            newEvent.setLocation(String.valueOf(child.getValue()));
+                            newEvent.setLocation(String.valueOf(snapshot.getValue()));
                             break;
                         case "number_going":
-                            newEvent.setAttendees(Integer.parseInt(String.valueOf(child.getValue())));
+                            newEvent.setAttendees(Integer.parseInt(String.valueOf(snapshot.getValue())));
                             break;
                         case "picture":
-                            newEvent.setPicture(String.valueOf(child.getValue()));
+                            newEvent.setPicture(String.valueOf(snapshot.getValue()));
                             break;
                         case "host_id":
-                            newEvent.setHostId(String.valueOf(child.getValue()));
+                            newEvent.setHostId(String.valueOf(snapshot.getValue()));
                             break;
                         case "host_name":
-                            newEvent.setHostName(String.valueOf(child.getValue()));
+                            newEvent.setHostName(String.valueOf(snapshot.getValue()));
                             break;
                         case "catAcademic":
                             a.add("Academic");
@@ -568,11 +569,11 @@ public class EventsFirebase {
                         case "catSports":
                             a.add("Sports");
                             break;
-                    }
+
 
                     //Log.d("eventsfbasdf", String.valueOf(snapshot.getKey()));
-                    newEvent.setEventId(snapshot.getKey());
                 }
+                newEvent.setEventId(snapshot.getKey());
 
                 newEvent.setCategories(a);
                 a = new ArrayList<String>();
