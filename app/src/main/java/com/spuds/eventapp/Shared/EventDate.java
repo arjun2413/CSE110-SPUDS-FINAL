@@ -1,5 +1,7 @@
 package com.spuds.eventapp.Shared;
 
+import android.util.Log;
+
 import java.util.GregorianCalendar;
 
 /**
@@ -9,7 +11,7 @@ public class EventDate {
 
     GregorianCalendar gregorianCalendar;
     boolean valid = false;
-    int year,month,day,hour;
+    public int year,month,day,hour;
     String minute;
     private String[] months = {"January","February","March","April","May","June","July","August",
                                "September","October","November","December"};
@@ -22,6 +24,7 @@ public class EventDate {
     public EventDate(String date) {
 
         //Check for proper date form
+        // TODO validate string not working
         if(validateString(date)) {
 
             //Use substring to parse each snippet of string.
@@ -44,6 +47,9 @@ public class EventDate {
             if (String.valueOf(this.minute).length() == 1)
                 this.minute += "0";
 
+        }
+        else {
+            Log.d("Improper", "string value for date");
         }
     }
 
@@ -72,7 +78,10 @@ public class EventDate {
             return a + ":" + this.minute;
         }
     }
+
+    // TODO probably wrong
     public String getAMPM() {
+        Log.d("AMPM", String.valueOf(this.hour));
         if(this.hour < 12 ){
             return "AM";
         }
@@ -106,8 +115,9 @@ public class EventDate {
     }
 
     private boolean validateString(String s){
+        Log.d("YEEZY", s);
         //use RegEx to ensure correct format. If it is in correct form, return true.
-        if(s.matches("\\d{2}/\\d{2}/\\d{4}\\|\\d{2}:\\d{2}")){
+        if(s.matches("\\d{2}/\\d{2}/\\d{2} \\| \\d{2}:\\d{2}")){
             return true;
         }
         //if bad form return false;
