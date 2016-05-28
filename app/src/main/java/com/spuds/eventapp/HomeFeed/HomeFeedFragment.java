@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,6 +26,9 @@ public class HomeFeedFragment extends Fragment {
     private ArrayList<Event> events;
     public EventsFeedRVAdapter adapter;
     String tabType;
+    RecyclerView rv;
+
+    EventsFirebase eventsFirebase;
 
     public HomeFeedFragment() {
     }
@@ -41,8 +45,8 @@ public class HomeFeedFragment extends Fragment {
 
         // TODO (M): Get arraylist of events based on tab type [new, hot, now]
         // Fake data
-        EventsFirebase ef = new EventsFirebase(events, 0, tabType);
-        ef.createEL();
+        eventsFirebase = new EventsFirebase(events, 0, tabType);
+        eventsFirebase.createEL();
 
     }
 
@@ -52,7 +56,7 @@ public class HomeFeedFragment extends Fragment {
         View view = inflater.inflate(R.layout.recycler, container, false);
 
 
-        final RecyclerView rv=(RecyclerView) view.findViewById(R.id.rv);
+        rv = (RecyclerView) view.findViewById(R.id.rv);
 
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
@@ -82,18 +86,50 @@ public class HomeFeedFragment extends Fragment {
         }).start();
 
         //call refreshing function
-        refreshing(view);
+        setupRefresh(view);
         return view;
     }
     //TODO: Needs database to finish
-    public void refreshing(View view) {
-        SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+    public void setupRefresh(View view) {
+        final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         mySwipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
-                        //EventsFirebase ef = new EventsFirebase(events, 0, tabType);
-                        //ef.createEL();
+                        events.clear();
+
+                        eventsFirebase.createEL();
+
+                        Log.v("refresh", "here");
+                        new Thread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                Log.v("refresh", "hereherehere");
+
+                                while (events.size() == 0) {
+                                    //Log.v("refresh", "size: " + events.size());
+                                    try {
+                                        Thread.sleep(70);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                Log.v("refresh", "here2");
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run()
+                                    {
+                                        Log.v("refresh", "here3");
+
+                                        adapter.notifyDataSetChanged();
+                                        mySwipeRefreshLayout.setRefreshing(false);
+
+                                    }
+                                });
+                            }
+                        }).start();
                     }
                 }
         );
