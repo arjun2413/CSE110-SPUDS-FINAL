@@ -194,11 +194,7 @@ public class EventsFirebase {
         UserFirebase userFirebase = new UserFirebase();
         userFirebase.updateNumberHosting();
 
-
-
-
         return pushRef.getKey();
-
     }
 
     public void editEvent() {
@@ -216,23 +212,25 @@ public class EventsFirebase {
         Query queryRef2 = myFirebaseRef.orderByKey();
         queries[0] = queryRef;
 
-        switch (tabFilter) {
-            case tabNew:
-                queryRef = myFirebaseRef.child("events").orderByChild("created_at");
-                break;
-            case tabHot:
-                queryRef = myFirebaseRef.child("events").orderByChild("number_going");
-                break;
-            case tabNow:
-                queryRef = myFirebaseRef.child("events").orderByChild("date");
-                break;
-            case tabGoing:
-                queryRef2 = myFirebaseRef.child("events_registrations").orderByChild("user_id").equalTo(UserFirebase.uId);
-                break;
-            case tabHosting:
-                queryRef = myFirebaseRef.child("events").orderByChild("host_id").equalTo(UserFirebase.uId);
-                //Log.v("uid", UserFirebase.uId);
-                break;
+        if (tabFilter != null) {
+            switch (tabFilter) {
+                case tabNew:
+                    queryRef = myFirebaseRef.child("events").orderByChild("created_at");
+                    break;
+                case tabHot:
+                    queryRef = myFirebaseRef.child("events").orderByChild("number_going");
+                    break;
+                case tabNow:
+                    queryRef = myFirebaseRef.child("events").orderByChild("date");
+                    break;
+                case tabGoing:
+                    queryRef2 = myFirebaseRef.child("events_registrations").orderByChild("user_id").equalTo(UserFirebase.uId);
+                    break;
+                case tabHosting:
+                    queryRef = myFirebaseRef.child("events").orderByChild("host_id").equalTo(UserFirebase.uId);
+                    //Log.v("uid", UserFirebase.uId);
+                    break;
+            }
         }
 
         if(catFilter != null) {
@@ -262,7 +260,7 @@ public class EventsFirebase {
         }
 
         //System.out.println("metro " + tabFilter + " | " + tabGoing + " | " + tabFilter.equals(tabGoing));
-        if(tabFilter.equals(tabGoing)){
+        if(tabFilter != null && tabFilter.equals(tabGoing)){
             queryRef2.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot snapshot, String previousChild) {
@@ -337,7 +335,7 @@ public class EventsFirebase {
                                     currentDate = df.format(dateobj);
 
 
-                                    if(tabFilter.equals(tabHot) || tabFilter.equals(tabNew)) {
+                                    if(tabFilter != null && (tabFilter.equals(tabHot) || tabFilter.equals(tabNew))) {
                                         if (currentDate.compareTo(newEvent.getDate()) < 0){
                                             eventsList.add(0, newEvent);
                                         }
@@ -473,7 +471,7 @@ public class EventsFirebase {
                     currentDate = df.format(dateobj);
 
 
-                    if (tabFilter.equals(tabHot) || tabFilter.equals(tabNew)) {
+                    if (tabFilter != null && (tabFilter.equals(tabHot) || tabFilter.equals(tabNew))) {
                         if (currentDate.compareTo(newEvent.getDate()) < 0) {
                             eventsList.add(0, newEvent);
                         }

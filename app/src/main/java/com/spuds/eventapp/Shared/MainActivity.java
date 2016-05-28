@@ -157,7 +157,9 @@ public class MainActivity extends AppCompatActivity
         overrideFonts(headerView.getContext(),headerView);
         TextView name = (TextView) headerView.findViewById(R.id.user_name);
         String string = "Reggie Wu";
-        name.setText(string);
+        if (name != null) {
+            name.setText(string);
+        }
         // TODO (M): Use picasso
         ImageView profilePic = (ImageView) headerView.findViewById(R.id.profile_pic);
 
@@ -168,15 +170,33 @@ public class MainActivity extends AppCompatActivity
 
         String imageFile = UserFirebase.thisUser.getPicture();
 
+        if (imageFile != null) {
 
-        Bitmap src = null;
-        try {
-            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-            src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-        } catch(OutOfMemoryError e) {
-            System.err.println(e.toString());
-        }
-        if (src!= null) {
+            Bitmap src = null;
+            try {
+                byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+            } catch (OutOfMemoryError e) {
+                System.err.println(e.toString());
+            }
+            if (src != null) {
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(getResources(), src);
+                circularBitmapDrawable.setCircular(true);
+                circularBitmapDrawable.setAntiAlias(true);
+                profilePic.setImageDrawable(circularBitmapDrawable);
+            } else {
+                src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
+
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(getResources(), src);
+                circularBitmapDrawable.setCircular(true);
+                circularBitmapDrawable.setAntiAlias(true);
+                profilePic.setImageDrawable(circularBitmapDrawable);
+            }
+        } else {
+            Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
+
             RoundedBitmapDrawable circularBitmapDrawable =
                     RoundedBitmapDrawableFactory.create(getResources(), src);
             circularBitmapDrawable.setCircular(true);
