@@ -164,8 +164,10 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
             if (src != null)
                 eventViewHolder.eventPic.setImageBitmap(src);
+            else
+                eventViewHolder.eventPic.setImageResource(R.drawable.wineanddine);
         } else {
-            // TODO (V): default picture
+            eventViewHolder.eventPic.setImageResource(R.drawable.wineanddine);
         }
         eventViewHolder.eventName.setText(events.get(i).getEventName());
         eventViewHolder.eventLocation.setText(events.get(i).getLocation());
