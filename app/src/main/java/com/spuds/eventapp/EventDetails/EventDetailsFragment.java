@@ -381,13 +381,6 @@ public class EventDetailsFragment extends Fragment {
         });
 
 
-        // TODO (M): Firebase call to get if you're GOING to an event
-
-        if (going)
-            buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
-        else
-            buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
-
         Log.d("check", "Checkpls");
 
 
@@ -412,9 +405,16 @@ public class EventDetailsFragment extends Fragment {
                 } else
                     going = true;
 
+
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+
+                        if (going)
+                            buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
+                        else
+                            buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
+
                         buttonGoingOrEdit.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
