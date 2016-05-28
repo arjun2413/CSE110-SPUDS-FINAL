@@ -210,7 +210,7 @@ public class EventsFirebase {
     public Event createEL() {
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com");
 
-        Log.v("refresh", "createEl");
+        //Log.v("refresh", "createEl");
         final Query[] queries = new Query[1];
         Query queryRef = myFirebaseRef.orderByKey();
         Query queryRef2 = myFirebaseRef.orderByKey();
@@ -406,7 +406,7 @@ public class EventsFirebase {
 
                     Event newEvent = new Event();
 
-                    Log.v("refresh", "" + eventsList.size());
+                    //Log.v("refresh", "" + eventsList.size());
 
                     for (DataSnapshot child : snapshot.getChildren()) {
                         //Log.d("lmao", String.valueOf(child));
