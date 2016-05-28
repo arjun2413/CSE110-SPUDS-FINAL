@@ -136,15 +136,15 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                     switch (dateCheck) {
                         case 0:
                             date = "";
-                            break;
+                                break;
                         case 1:
-                            date = "Incorrect Format.";
+                            date = getString(R.string.errorDateFormat);
                             break;
                         case 2:
-                            date = "Use numbers please.";
+                            date = getString(R.string.errorIntegerInput);
                             break;
                         case 3:
-                            date = "That's not a proper date.";
+                            date = getString(R.string.errorInvalidDate);
                             break;
                     }
                     switch (timeCheck){
@@ -152,13 +152,14 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                             time = "";
                             break;
                         case 4:
-                            time = "Incorrect format.";
+                            //TODO: Reggie, specify event time format in strings.xml file
+                            time = getString(R.string.errorTimeFormat);;
                             break;
                         case 5:
-                            time = "Use numbers please";
+                            time = getString(R.string.errorIntegerInput);
                             break;
                         case 6:
-                            time = "That's not a proper time.";
+                            time = getString(R.string.errorInvalidTime);;
                             break;
                     }
                     dateMessage.setText(date);

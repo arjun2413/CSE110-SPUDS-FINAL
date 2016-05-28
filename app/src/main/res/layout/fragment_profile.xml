@@ -3,6 +3,12 @@
     android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:fillViewport="true">
+
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -21,9 +27,10 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="123dp"
-                android:weightSum="1"
+                android:weightSum="3"
                 android:background="#e6e6e6"
-                android:backgroundTint="#e6e6e6">
+                android:backgroundTint="#e6e6e6"
+                >
 
                 <ImageView
                     android:layout_width="115dp"
@@ -31,13 +38,16 @@
                     android:id="@+id/user_image"
                     android:background="#00ffffff"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp" />
+                    android:layout_marginLeft="10dp"
+
+                    />
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:weightSum="1"
+
+
                     android:background="#e6e6e6"
                     android:backgroundTint="#e6e6e6">
 
@@ -47,14 +57,16 @@
                         android:background="#e6e6e6"
                         android:layout_marginTop="10dp"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp">
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="2">
 
 
                         <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:gravity="left">
+                            android:gravity="left"
+                            android:layout_weight="1">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -86,7 +98,8 @@
                             android:layout_height="match_parent"
                             android:layout_alignParentTop="true"
                             android:layout_alignParentRight="true"
-                            android:layout_alignParentEnd="true">
+                            android:layout_alignParentEnd="true"
+                            android:layout_weight="1">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -207,4 +220,5 @@
         </LinearLayout>
 
     </FrameLayout>
+</ScrollView>
 </android.support.v4.widget.SwipeRefreshLayout>

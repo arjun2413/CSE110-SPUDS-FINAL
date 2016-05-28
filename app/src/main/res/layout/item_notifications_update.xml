@@ -18,13 +18,13 @@
             android:id="@+id/relativeLayout">
 
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:id="@+id/picture"
                 android:background="#cccccc" />
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:id="@+id/transparent_overlay"
                 android:background="#80000000" />
             <TextView
@@ -33,7 +33,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="10"
                 android:id="@+id/date_day"
-                android:textSize="50sp"
+                android:textSize="40sp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:textColor="#ffffff"
@@ -49,7 +49,7 @@
                 android:id="@+id/date_month"
                 android:layout_below="@id/date_day"
                 android:layout_centerHorizontal="true"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="#ffffff"
                 android:shadowColor="#7F000000"
                 android:shadowDx="10"
@@ -60,7 +60,7 @@
         </RelativeLayout>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="just updated:"
@@ -69,21 +69,27 @@
             android:layout_toRightOf="@+id/host"
             android:layout_toEndOf="@+id/host"
             android:textColor="#1a1a1a"
-            android:layout_marginLeft="5dp" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textSize="16sp"/>
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Arjun Shan"
+            android:text="Arjun Shan Huang Wu Nguyen Yun"
             android:id="@+id/host"
             android:textStyle="bold"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/relativeLayout"
             android:layout_toEndOf="@+id/relativeLayout"
-            android:layout_marginLeft="10dp"
-            android:textColor="#1a1a1a" />
+            android:layout_marginLeft="5dp"
+            android:textColor="#1a1a1a"
+            android:textSize="16sp"
+
+            android:maxLines="1"
+            android:ellipsize="end"/>
 
 
         <TextView
@@ -95,29 +101,36 @@
             android:layout_gravity="center_vertical"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="80dp"
-
+            android:layout_marginTop="65dp"
+            android:layout_marginRight="5dp"
             />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="110dp"
 
+            android:layout_toRightOf="@+id/relativeLayout"
+            android:layout_toEndOf="@+id/relativeLayout"
             android:layout_below="@+id/action_text">
 
             <TextView
-                android:layout_width="260dp"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Birthday Party"
+                android:text="Reggie Apppreciation Day wow so cool"
                 android:id="@+id/event_name"
                 android:textStyle="bold"
-
-
+                android:layout_toRightOf="@+id/relativeLayout"
+                android:layout_toEndOf="@+id/relativeLayout"
+                android:layout_marginLeft="15dp"
                 android:textColor="#1a1a1a"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:minLines="1"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="20sp"/>
 
         </LinearLayout>
 
