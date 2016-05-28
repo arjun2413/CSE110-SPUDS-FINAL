@@ -1328,7 +1328,7 @@ int layout notification_template_media 0x7f04004d
 int layout notification_template_part_chronometer 0x7f04004e
 int layout notification_template_part_time 0x7f04004f
 int layout recycler 0x7f040050
-int layout recylerv_no_refresh 0x7f040051
+int layout recyler_no_refresh 0x7f040051
 int layout search_option 0x7f040052
 int layout searchbox 0x7f040053
 int layout select_dialog_item_material 0x7f040054

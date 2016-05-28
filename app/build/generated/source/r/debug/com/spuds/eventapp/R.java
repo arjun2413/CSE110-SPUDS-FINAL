@@ -3627,7 +3627,7 @@ containing a value of this type.
         public static final int notification_template_part_chronometer=0x7f04004e;
         public static final int notification_template_part_time=0x7f04004f;
         public static final int recycler=0x7f040050;
-        public static final int recyler_no_refresh =0x7f040051;
+        public static final int recyler_no_refresh=0x7f040051;
         public static final int search_option=0x7f040052;
         public static final int searchbox=0x7f040053;
         public static final int select_dialog_item_material=0x7f040054;
