@@ -131,15 +131,13 @@ public class LoginActivity extends AppCompatActivity {
                     if (email.equals("") || password.equals("")) {
                         TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
                         if(errorMessage != null) {
-                            String error = "Missing fields. Please try again.";
-                            errorMessage.setText(error);
+                            errorMessage.setText(getString(R.string.errorEmptyFields));
                         }
                     }
                     else if (!email.endsWith("@ucsd.edu")) {
                         TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
-                        String message = "Please use a ucsd.edu email to log in.";
                         if(errorMessage != null) {
-                            errorMessage.setText(message);
+                            errorMessage.setText(getString(R.string.errorInvalidEmail));
                         }
                     }
                     //check if email is in database
@@ -183,7 +181,7 @@ public class LoginActivity extends AppCompatActivity {
                                     public void run() {
                                         if(accountFirebase.status == 2) {
                                             String message = "Incorrect email or password.";
-                                            errorMessage.setText(message);
+                                            errorMessage.setText(getString(R.string.errorLoginPass));
                                         }
                                     }
                                 });

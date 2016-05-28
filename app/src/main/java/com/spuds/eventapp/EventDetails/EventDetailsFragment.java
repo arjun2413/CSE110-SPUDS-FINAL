@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
@@ -52,6 +53,9 @@ public class EventDetailsFragment extends Fragment {
     Button buttonGoingOrEdit;
     TextView eventTime;
     ImageButton buttonEditEvent;
+    SwipeRefreshLayout mySwipeRefreshLayout;
+    SwipeRefreshLayout.OnRefreshListener refreshListener;
+
     // Reference to itself
     Fragment eventDetailsFragment;
     boolean going;
@@ -60,6 +64,7 @@ public class EventDetailsFragment extends Fragment {
     CommentsRVAdapter adapter;
     List<Comment> comments;
     boolean ownEvent;
+    boolean first = true;
     EventsFirebase eventsFirebase;
 
 
@@ -74,6 +79,7 @@ public class EventDetailsFragment extends Fragment {
         event = (Event) extras.getSerializable(getString(R.string.event_details));
         if (event == null) {
             eventId = extras.getString(getString(R.string.event_id));
+            Log.v("eventsfirebasepushref", "eventisnullid is" + eventId);
             // TODO: Fetch event using eventId
             EventsFirebase ef = new EventsFirebase();
             event = ef.getEventDetails(eventId);
@@ -91,6 +97,7 @@ public class EventDetailsFragment extends Fragment {
         if (event.getHostId().equals(UserFirebase.uId))
             ownEvent = true;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -119,12 +126,79 @@ public class EventDetailsFragment extends Fragment {
         going.setTypeface(raleway_medium);
 
         Button invite = (Button) view.findViewById(R.id.button_invite_people);
+
+        eventPic = (ImageView) view.findViewById(R.id.event_pic);
+        eventName = (TextView) view.findViewById(R.id.event_name);
+        eventLocation = (TextView) view.findViewById(R.id.event_loc);
+        eventDate = (TextView) view.findViewById(R.id.event_date);
+        eventTime = (TextView) view.findViewById(R.id.event_time);
+        eventAttendees = (TextView) view.findViewById(R.id.event_attendees);
+        eventCategories = (TextView) view.findViewById(R.id.event_categories);
+        eventHost = (TextView) view.findViewById(R.id.event_host);
+        eventDescription = (TextView) view.findViewById(R.id.event_description);
+        addComment = (Button) view.findViewById(R.id.button_add_comment);
+        invitePeople = (Button) view.findViewById(R.id.button_invite_people);
+        buttonGoingOrEdit = (Button) view.findViewById(R.id.button_going);
+        buttonEditEvent = (ImageButton) view.findViewById(R.id.button_edit_event);
+
         invite.setTypeface(raleway_medium);
 
         setUpEventInformation(view);
         setupEditEvent();
         setUpComments(view);
+        setupRefresh(view);
         return view;
+    }
+    public void setupRefresh(final View view) {
+        mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+        refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+
+
+                        Log.v("refresh", "here");
+                        EventsFirebase ef = new EventsFirebase();
+                        EventsFirebase.detailsThreadCheck = false;
+                        Log.v("eventsfirebasepushref22", eventId);
+                        ef.getEventDetails(eventId);
+
+
+                        new Thread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                while (!EventsFirebase.detailsThreadCheck) {
+                                    try {
+                                        Log.v("sleepingthread","fam");
+
+                                        Thread.sleep(70);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        event = EventsFirebase.eventDetailsEvent;
+                                        Log.v("wtf", event.getEventId());
+                                        Log.v("wtf", event.getDescription());
+                                        Log.v("wtf", event.getEventId());
+                                        setUpEventInformation(view);
+                                        setupEditEvent();
+                                        setUpComments(view);
+                                        mySwipeRefreshLayout.setRefreshing(false);
+                                    }
+                                });
+
+                            }
+                        }).start();
+                    }
+                };
+
+
+        mySwipeRefreshLayout.setOnRefreshListener(refreshListener);
+
     }
 
     void setupEditEvent() {
@@ -154,19 +228,6 @@ public class EventDetailsFragment extends Fragment {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     void setUpEventInformation(View view) {
-        eventPic = (ImageView) view.findViewById(R.id.event_pic);
-        eventName = (TextView) view.findViewById(R.id.event_name);
-        eventLocation = (TextView) view.findViewById(R.id.event_loc);
-        eventDate = (TextView) view.findViewById(R.id.event_date);
-        eventTime = (TextView) view.findViewById(R.id.event_time);
-        eventAttendees = (TextView) view.findViewById(R.id.event_attendees);
-        eventCategories = (TextView) view.findViewById(R.id.event_categories);
-        eventHost = (TextView) view.findViewById(R.id.event_host);
-        eventDescription = (TextView) view.findViewById(R.id.event_description);
-        addComment = (Button) view.findViewById(R.id.button_add_comment);
-        invitePeople = (Button) view.findViewById(R.id.button_invite_people);
-        buttonGoingOrEdit = (Button) view.findViewById(R.id.button_going);
-        buttonEditEvent = (ImageButton) view.findViewById(R.id.button_edit_event);
         eventName.setText(event.getEventName());
         eventHost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -295,6 +356,7 @@ public class EventDetailsFragment extends Fragment {
 
         // Categories
         String categories = "";
+
         if(event.getCategories() != null && event.getCategories().size() != 0) {
             for (int i = 0; i < event.getCategories().size() - 1; ++i) {
                 //Log.v("chris", event.getCategories().get(i));
@@ -336,13 +398,6 @@ public class EventDetailsFragment extends Fragment {
         });
 
 
-        // TODO (M): Firebase call to get if you're GOING to an event
-
-        if (going)
-            buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
-        else
-            buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
-
         Log.d("check", "Checkpls");
 
 
@@ -367,9 +422,16 @@ public class EventDetailsFragment extends Fragment {
                 } else
                     going = true;
 
+
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+
+                        if (going)
+                            buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
+                        else
+                            buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
+
                         buttonGoingOrEdit.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -379,19 +441,67 @@ public class EventDetailsFragment extends Fragment {
                                 if (going) {
 
                                     Log.d("edgoing", " true");
-                                    buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
+                                    //buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
                                     eventsFirebase.notGoingToAnEvent(eventId);
                                     eventsFirebase.deleteEventRegistration(eventId);
+
+                                    new Thread(new Runnable() {
+
+                                        @Override
+                                        public void run() {
+                                            while (!eventsFirebase.notGoingThreadCheck || !eventsFirebase.deleteThreadCheck) {
+                                                try {
+                                                    Thread.sleep(77);
+                                                } catch (InterruptedException e) {
+                                                    e.printStackTrace();
+                                                }
+
+                                            }
+
+                                            mySwipeRefreshLayout.post(new Runnable() {
+                                                @Override public void run() {
+                                                    mySwipeRefreshLayout.setRefreshing(true);
+                                                    // directly call onRefresh() method
+                                                    refreshListener.onRefresh();
+                                                }
+                                            });
+
+                                        }
+                                    }).start();
+
 
                                     going = false;
 
                                 } else {
 
                                     Log.d("edgoing", " false");
-                                    buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
                                     eventsFirebase.notGoingToAnEvent(eventId);
-
                                     eventsFirebase.goingToAnEvent(eventId);
+
+                                    new Thread(new Runnable() {
+
+                                        @Override
+                                        public void run() {
+                                            while (!eventsFirebase.notGoingThreadCheck || !eventsFirebase.notGoingThreadCheck) {
+                                                try {
+                                                    Thread.sleep(77);
+                                                } catch (InterruptedException e) {
+                                                    e.printStackTrace();
+                                                }
+
+                                            }
+                                            //buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
+                                            mySwipeRefreshLayout.post(new Runnable() {
+                                                @Override public void run() {
+                                                    mySwipeRefreshLayout.setRefreshing(true);
+                                                    // directly call onRefresh() method
+                                                    refreshListener.onRefresh();
+                                                }
+                                            });
+
+                                        }
+                                    }).start();
+
                                     going = true;
 
                                 }
@@ -442,10 +552,25 @@ public class EventDetailsFragment extends Fragment {
         // Attach adapter to RecyclerView
         rv.setAdapter(adapter);
     }
+
+
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void onResume(){
+        super.onResume();
+        Log.v("WAOW", "ONRESUME");
+        if (!first) {
+            mySwipeRefreshLayout.post(new Runnable() {
+                @Override public void run() {
+                    mySwipeRefreshLayout.setRefreshing(true);
+                    // directly call onRefresh() method
+                    refreshListener.onRefresh();
+                }
+            });
+        } else
+            first = false;
+
     }
+
     @Override
     public void onDetach() {
         super.onDetach();

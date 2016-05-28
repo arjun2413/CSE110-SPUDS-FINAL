@@ -117,22 +117,40 @@ public class  EditProfileFragment extends Fragment {
 
                                 String imageFile = UserFirebase.convert(getActivity(),((MainActivity) getActivity()).picture);
                                 picturepush = imageFile;
-                                Bitmap src = null;
-                                try {
-                                    byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-                                    src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-                                } catch(OutOfMemoryError e) {
-                                    System.err.println(e.toString());
-                                }
+                                if (imageFile != null) {
+                                    Bitmap src = null;
+                                    try {
+                                        byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                                        src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+                                    } catch (OutOfMemoryError e) {
+                                        System.err.println(e.toString());
+                                    }
 
-                                if (src != null) {
+                                    if (src != null) {
 
-                                    Log.v("EditProfileFragment", "imagefile" + imageFile);
-                                    RoundedBitmapDrawable dr =
-                                            RoundedBitmapDrawableFactory.create(getActivity().getResources(), src);
+                                        Log.v("EditProfileFragment", "imagefile" + imageFile);
+                                        RoundedBitmapDrawable dr =
+                                                RoundedBitmapDrawableFactory.create(getActivity().getResources(), src);
 
-                                    dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
-                                    pictureView.setImageDrawable(dr);
+                                        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
+                                        pictureView.setImageDrawable(dr);
+                                    } else {
+                                        src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
+
+                                        RoundedBitmapDrawable circularBitmapDrawable =
+                                                RoundedBitmapDrawableFactory.create(getResources(), src);
+                                        circularBitmapDrawable.setCircular(true);
+                                        circularBitmapDrawable.setAntiAlias(true);
+                                        editProfilePictureButton.setImageDrawable(circularBitmapDrawable);
+                                    }
+                                } else {
+                                    Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
+
+                                    RoundedBitmapDrawable circularBitmapDrawable =
+                                            RoundedBitmapDrawableFactory.create(getResources(), src);
+                                    circularBitmapDrawable.setCircular(true);
+                                    circularBitmapDrawable.setAntiAlias(true);
+                                    editProfilePictureButton.setImageDrawable(circularBitmapDrawable);
                                 }
 
                             }
@@ -146,34 +164,42 @@ public class  EditProfileFragment extends Fragment {
 
         String imageFile = user.getPicture();
 
-        Bitmap src = null;
-        try {
-            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-            src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-        } catch(OutOfMemoryError e) {
-            System.err.println(e.toString());
-        }
+        if (imageFile != null) {
+            Bitmap src = null;
+            try {
+                byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+            } catch (OutOfMemoryError e) {
+                System.err.println(e.toString());
+            }
 
-        if (src != null) {
+            if (src != null) {
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(getResources(), src);
+                circularBitmapDrawable.setCircular(true);
+                circularBitmapDrawable.setAntiAlias(true);
+                pictureView.setImageDrawable(circularBitmapDrawable);
+            }
+        } else {
+            Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
+
             RoundedBitmapDrawable circularBitmapDrawable =
                     RoundedBitmapDrawableFactory.create(getResources(), src);
             circularBitmapDrawable.setCircular(true);
             circularBitmapDrawable.setAntiAlias(true);
             pictureView.setImageDrawable(circularBitmapDrawable);
         }
+
         /*Bitmap src = BitmapFactory.decodeResource(this.getResources(), R.id.edit_profile_picture);
         RoundedBitmapDrawable dr =
                 RoundedBitmapDrawableFactory.create(this.getResources(), src);
         dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
-        editProfilePictureButton.setImageDrawable(dr);
-*/
+        editProfilePictureButton.setImageDrawable(dr);*/
 
         //Set Custom Fonts
         Typeface custom_font = Typeface.createFromAsset(getActivity().getAssets(),  "raleway-light.ttf");
         editFullName.setTypeface(custom_font);
         editDescription.setTypeface(custom_font);
-
-
 
         editFullName.setText(user.getName());
         editDescription.setText(user.getDescription());
@@ -198,11 +224,36 @@ public class  EditProfileFragment extends Fragment {
                 Log.v("EditProfilementasdfasdf", "imagefile" + user.getPicture());
 
                 UserFirebase.updateUser(user);
+                final UserFirebase userFirebase = new UserFirebase();
+
+                userFirebase.getMyAccountDetails();
+
+                System.out.println("asdf" + "ingetuserdetailsloginactivity");
 
 
-                // TODO (C): Refresh after updating profile
-                // Pop this fragment from backstack
-                getActivity().getSupportFragmentManager().popBackStack();
+                new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+
+                        while (!userFirebase.threadCheck) {
+                            try {
+                                Thread.sleep(75);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ((MainActivity) getActivity()).setupProfileDrawer();
+                                getActivity().getSupportFragmentManager().popBackStack();
+                            }
+                        });
+                    }
+                }).start();
 
             }
         });

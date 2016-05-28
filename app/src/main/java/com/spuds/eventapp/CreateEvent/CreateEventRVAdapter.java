@@ -59,7 +59,7 @@ public class CreateEventRVAdapter extends RecyclerView.Adapter<CreateEventRVAdap
     }
 
     @Override
-    public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_create_event_category, viewGroup, false);
 
         overrideFonts(v.getContext(),v);

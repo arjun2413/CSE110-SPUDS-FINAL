@@ -27,6 +27,15 @@ public class ChangePasswordFragment extends Fragment {
     private TextView sys_message;
 
     private String error_string;
+    private Boolean thread_running = false;
+
+    private Boolean getThread_running(){
+        return thread_running;
+    }
+
+    private void setThread_running(Boolean bool){
+        thread_running = bool;
+    }
 
     public ChangePasswordFragment() {
         // Required empty public constructor
@@ -115,10 +124,11 @@ public class ChangePasswordFragment extends Fragment {
                 }
 
                 else if(!form.diffPw()){
-                    if(!is_error) {
-                        appendError("Error #: New Password Must Be Different");
-                        is_error = true;
+                    if(is_error){
+                        appendError("\n");
                     }
+                    appendError("Error #: New Password Must Be Different");
+                    is_error = true;
                     Log.v("is_error 4:" , String.valueOf(is_error));
                 }
 
@@ -126,29 +136,56 @@ public class ChangePasswordFragment extends Fragment {
                 if(!is_error) {
                     Log.v("is_error 4:" , String.valueOf(is_error));
                     af.changePass(form);
-                    int check = af.getThreadCheck();
 
                     // Pop this fragment from backstack
                     //getActivity().getSupportFragmentManager().popBackStack();
 
-                    //TODO: need to test if snackbar works properly
 
-                    if (check == 1) {
-                        getActivity().getSupportFragmentManager().popBackStack();
-                        Snackbar snackbar = Snackbar.make
-                                (view, getString(R.string.password_change_success),
-                                        Snackbar.LENGTH_LONG);
-                        snackbar.show();
+                    //TODO: need to test if snackbar works properly
+                    new Thread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            setThread_running(true);
+                            while (af.getThreadCheck() == 0) {
+                                try {
+                                    Thread.sleep(75);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+
+                            if (af.getThreadCheck() == 1) {
+                                Log.v("password: ", "matches top");
+                                getActivity().getSupportFragmentManager().popBackStack();
+                                Snackbar snackbar = Snackbar.make
+                                        (view, getString(R.string.password_change_success),
+                                                Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                                Log.v("password: ", "matches bottom");
+                            }
+                            else{
+                                Log.v("password: ", "does not match top");
+                                Snackbar snackbar = Snackbar.make
+                                        (view, "Password Incorrect", Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                                Log.v("password: ", "does not match bottom");
+                            }
+                            setThread_running(false);
+                        }
+                    }).start();
+                    while(getThread_running()){
+                        //stalls until thread above ends so user can't click
                     }
-                    else {
-                        is_error = true;
-                        Snackbar snackbar = Snackbar.make
-                                (view, "Password Incorrect", Snackbar.LENGTH_LONG);
-                        snackbar.show();
-                    }
+
+                    Log.v("finished: ", "both threads");
+
+
                 }
                 else {
                     //show concatinated error messages
+
                     sys_message.setText(getError());
                 }
 

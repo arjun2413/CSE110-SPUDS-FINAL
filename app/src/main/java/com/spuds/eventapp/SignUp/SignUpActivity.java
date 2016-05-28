@@ -115,22 +115,19 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if (signupName.getText().toString().equals("") || signupEmail.getText().toString().equals("") ||
                         signupPassword1.getText().toString().equals("") || signupPassword2.getText().toString().equals("")) {
-                    String message = "Missing fields. Please try again.";
-                    errorMessage.setText(message);
+                    errorMessage.setText(getString(R.string.errorEmptyFields));
 
                     error = false;
                 }
                 else if (!(signupPassword1.getText().toString()).equals(signupPassword2.getText().toString())) {
                     //reveal Invalid Password Match text
-                    String message = "Passwords must match";
-                    errorMessage.setText(message);
+                    errorMessage.setText(getString(R.string.errorPassMismatch));
                     //set error flag to FALSE since there is an error now
                     error = false;
                 }
                 //If email is not valid, user gets error popup
                 else if (!signupEmail.getText().toString().endsWith("@ucsd.edu")) {
-                    String message = "Please use a ucsd.edu email to log in.";
-                    errorMessage.setText(message);
+                    errorMessage.setText(getString(R.string.errorInvalidEmail));
                     //set error flag to FALSE since there is an error now
                     error = false;
                 }

@@ -206,6 +206,22 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         holder.timeDate.setText(noti.time);
         holder.monthDate.setText(noti.month);
         holder.dayDate.setText(noti.day);
+        String imageFile = noti.picture;
+
+        if (imageFile != null && imageFile != "") {
+            Bitmap src = null;
+            try {
+                byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+            } catch (OutOfMemoryError e) {
+                System.err.println(e.toString());
+            }
+            if (src != null) {
+                holder.eventPicture.setImageResource(R.drawable.wineanddine);
+            }
+        } else {
+            holder.eventPicture.setImageResource(R.drawable.wineanddine);
+        }
 
         // Make card clickable
         holder.card.setOnClickListener(new View.OnClickListener() {
@@ -274,6 +290,31 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 circularBitmapDrawable.setCircular(true);
                 circularBitmapDrawable.setAntiAlias(true);
                 holder.hostPicture.setImageDrawable(circularBitmapDrawable);
+            } else {
+                try {
+                    src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
+
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+                    circularBitmapDrawable.setCircular(true);
+                    circularBitmapDrawable.setAntiAlias(true);
+                    holder.hostPicture.setImageDrawable(circularBitmapDrawable);
+                } catch (OutOfMemoryError e) {
+                    System.err.println(e.toString());
+                }
+            }
+        } else {
+
+            try {
+                Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
+
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+                circularBitmapDrawable.setCircular(true);
+                circularBitmapDrawable.setAntiAlias(true);
+                holder.hostPicture.setImageDrawable(circularBitmapDrawable);
+            } catch (OutOfMemoryError e) {
+                System.err.println(e.toString());
             }
         }
 
@@ -344,6 +385,30 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 circularBitmapDrawable.setCircular(true);
                 circularBitmapDrawable.setAntiAlias(true);
                 holder.replierPicture.setImageDrawable(circularBitmapDrawable);
+            } else {
+                try {
+                     src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
+
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+                    circularBitmapDrawable.setCircular(true);
+                    circularBitmapDrawable.setAntiAlias(true);
+                    holder.replierPicture.setImageDrawable(circularBitmapDrawable);
+                } catch (OutOfMemoryError e) {
+                    System.err.println(e.toString());
+                }
+            }
+        } else {
+            try {
+                Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
+
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+                circularBitmapDrawable.setCircular(true);
+                circularBitmapDrawable.setAntiAlias(true);
+                holder.replierPicture.setImageDrawable(circularBitmapDrawable);
+            } catch (OutOfMemoryError e) {
+                System.err.println(e.toString());
             }
         }
 

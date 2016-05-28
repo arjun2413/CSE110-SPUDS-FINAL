@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
@@ -21,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.spuds.eventapp.EditProfile.EditProfileFragment;
 import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
@@ -54,6 +56,9 @@ public class ProfileFragment extends Fragment {
     List<Event> eventsHosting;
     List<Event> eventsGoing;
     UserFirebase userFirebase;
+    SwipeRefreshLayout mySwipeRefreshLayout;
+    SwipeRefreshLayout.OnRefreshListener refreshListener;
+    boolean first = true;
 
     public ProfileFragment() {
     }
@@ -74,6 +79,8 @@ public class ProfileFragment extends Fragment {
         } else {
             user = UserFirebase.thisUser;
         }
+
+        userId = user.getUserId();
 
         userFirebase = new UserFirebase();
         userFirebase.isSubscribed(user.getUserId());
@@ -109,14 +116,6 @@ public class ProfileFragment extends Fragment {
         Button subscribe = (Button) view.findViewById(R.id.button_subscribe);
         subscribe.setTypeface(raleway_medium);
 
-        setUpProfileDetails(view);
-
-        return view;
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void setUpProfileDetails(View view) {
-
         userImage = (ImageView) view.findViewById(R.id.user_image);
         userName = (TextView) view.findViewById(R.id.user_name);
         buttonSubscribedOrEdit = (Button) view.findViewById(R.id.button_subscribe);
@@ -126,7 +125,62 @@ public class ProfileFragment extends Fragment {
         eventsGoingRV = (RecyclerView) view.findViewById(R.id.rv_events_going);
         userDescription = (TextView) view.findViewById(R.id.user_description);
 
-        // TODO (M): userImage
+
+        setUpProfileDetails(view);
+        setupRefresh(view);
+
+        return view;
+    }
+
+    public void setupRefresh(final View view) {
+        mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+        refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+
+                Log.v("refresh", "here");
+                final UserFirebase userFirebase = new UserFirebase();
+                userFirebase.threadCheckAnotherUser = false;
+                userFirebase.getAnotherUser(userId);
+
+                new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        while (!userFirebase.threadCheckAnotherUser) {
+                            try {
+                                Log.v("sleepingthread","fam");
+
+                                Thread.sleep(70);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                user = userFirebase.anotherUser;
+                                setUpProfileDetails(view);
+                                setupRefresh(view);
+                                mySwipeRefreshLayout.setRefreshing(false);
+                            }
+                        });
+
+                    }
+                }).start();
+            }
+        };
+
+
+        mySwipeRefreshLayout.setOnRefreshListener(refreshListener);
+
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void setUpProfileDetails(View view) {
+
 
         userDescription.setText(user.getDescription());
         userName.setText(user.getName());
@@ -138,15 +192,33 @@ public class ProfileFragment extends Fragment {
 
         String imageFile = user.getPicture();
 
-        Bitmap src = null;
-        try {
-            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-            src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-        } catch(OutOfMemoryError e) {
-            System.err.println(e.toString());
-        }
+        if (imageFile != null) {
+            Bitmap src = null;
+            try {
+                byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+            } catch (OutOfMemoryError e) {
+                System.err.println(e.toString());
+            }
 
-        if (src != null) {
+            if (src != null) {
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(getResources(), src);
+                circularBitmapDrawable.setCircular(true);
+                circularBitmapDrawable.setAntiAlias(true);
+                userImage.setImageDrawable(circularBitmapDrawable);
+            } else {
+                src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
+
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(getResources(), src);
+                circularBitmapDrawable.setCircular(true);
+                circularBitmapDrawable.setAntiAlias(true);
+                userImage.setImageDrawable(circularBitmapDrawable);
+            }
+        } else {
+            Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
+
             RoundedBitmapDrawable circularBitmapDrawable =
                     RoundedBitmapDrawableFactory.create(getResources(), src);
             circularBitmapDrawable.setCircular(true);
@@ -301,8 +373,20 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void onResume(){
+        super.onResume();
+        Log.v("WAOW", "ONRESUME");
+        if (!first) {
+            mySwipeRefreshLayout.post(new Runnable() {
+                @Override public void run() {
+                    mySwipeRefreshLayout.setRefreshing(true);
+                    // directly call onRefresh() method
+                    refreshListener.onRefresh();
+                }
+            });
+        } else
+            first = false;
+
     }
 
     @Override

@@ -20,13 +20,13 @@ import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MyEventsFeedFragment extends Fragment {
 
     private ArrayList<Event> events;
     public EventsFeedRVAdapter adapter;
     String myEventsTab;
+    EventsFirebase eventsFirebase;
 
     public MyEventsFeedFragment() {
     }
@@ -43,8 +43,8 @@ public class MyEventsFeedFragment extends Fragment {
 
         // TODO (M): Get arraylist of events based on tab type [new, hot, now]
         // Fake data
-        EventsFirebase ef = new EventsFirebase(events, 0, myEventsTab);
-        ef.createEL();
+        eventsFirebase = new EventsFirebase(events, 0, myEventsTab);
+        eventsFirebase.createEL();
 
     }
 
@@ -84,17 +84,53 @@ public class MyEventsFeedFragment extends Fragment {
         refreshing(view);
         return view;
     }
+
     //TODO: Needs database to finish
     public void refreshing(View view) {
-        SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+        final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         mySwipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
+                        events.clear();
+
+                        eventsFirebase.createEL();
+
+                        Log.v("refresh", "here");
+                        new Thread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                Log.v("refresh", "hereherehere");
+
+                                while (events.size() == 0) {
+                                    //Log.v("refresh", "size: " + events.size());
+                                    try {
+                                        Thread.sleep(70);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                Log.v("refresh", "here2");
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run()
+                                    {
+                                        Log.v("refresh", "here3");
+
+                                        adapter.notifyDataSetChanged();
+                                        mySwipeRefreshLayout.setRefreshing(false);
+
+                                    }
+                                });
+                            }
+                        }).start();
                     }
                 }
         );
     }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
