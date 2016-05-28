@@ -94,6 +94,13 @@
             android:layout_gravity="center_horizontal"
             android:textSize="20dp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="106dp"
+            android:id="@+id/error_message"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#cd0404" />
+
     </LinearLayout>
 
 

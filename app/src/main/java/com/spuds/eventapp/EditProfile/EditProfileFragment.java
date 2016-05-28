@@ -33,6 +33,7 @@ public class  EditProfileFragment extends Fragment {
     ImageButton editProfilePictureButton;
     EditText editFullName;
     EditText editDescription;
+    TextView errorMessage;
     Fragment editProfileFragment;
 
     User user;
@@ -75,7 +76,7 @@ public class  EditProfileFragment extends Fragment {
         editFullName = (EditText) view.findViewById(R.id.edit_full_name);
         editDescription = (EditText) view.findViewById(R.id.edit_description);
         pictureView = (ImageButton) view.findViewById(R.id.edit_profile_picture);
-
+        errorMessage = (TextView) view.findViewById(R.id.error_message);
 
         pictureView.setOnClickListener(new View.OnClickListener() {
 
@@ -223,15 +224,19 @@ public class  EditProfileFragment extends Fragment {
                         editDescription.getText().toString(),
                         picturepush);
 
-                Log.v("EditProfilementasdfasdf", "imagefile" + user.getPicture());
+                if (user.getName().length() == 0) {
+                    errorMessage.setText(getString(R.string.errorEmptyName));
+                }
+                else {
+                    Log.v("EditProfilementasdfasdf", "imagefile" + user.getPicture());
 
-                UserFirebase.updateUser(user);
+                    UserFirebase.updateUser(user);
 
 
-                // TODO (C): Refresh after updating profile
-                // Pop this fragment from backstack
-                getActivity().getSupportFragmentManager().popBackStack();
-
+                    // TODO (C): Refresh after updating profile
+                    // Pop this fragment from backstack
+                    getActivity().getSupportFragmentManager().popBackStack();
+                }
             }
         });
 

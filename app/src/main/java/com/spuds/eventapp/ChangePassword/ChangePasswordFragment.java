@@ -108,7 +108,7 @@ public class ChangePasswordFragment extends Fragment {
 
                 Log.v("is_error 1:" , String.valueOf(is_error));
                 if(!form.allFilled()) {
-                    appendError(getString(R.string.missing_fields_error));
+                    appendError(getString(R.string.errorEmptyFields));
                     is_error = true;
                     Log.v("is_error 2:" , String.valueOf(is_error));
                 }
@@ -118,7 +118,7 @@ public class ChangePasswordFragment extends Fragment {
                     if(is_error) {
                         appendError("\n");
                     }
-                    appendError(getString(R.string.mismatched_fields_error));
+                    appendError(getString(R.string.errorPassMismatch));
                     is_error = true;
                     Log.v("is_error 3:" , String.valueOf(is_error));
                 }
@@ -127,7 +127,7 @@ public class ChangePasswordFragment extends Fragment {
                     if(is_error){
                         appendError("\n");
                     }
-                    appendError("Error #: New Password Must Be Different");
+                    appendError(getString(R.string.errorSamePass));
                     is_error = true;
                     Log.v("is_error 4:" , String.valueOf(is_error));
                 }
@@ -168,7 +168,7 @@ public class ChangePasswordFragment extends Fragment {
                             else{
                                 Log.v("password: ", "does not match top");
                                 Snackbar snackbar = Snackbar.make
-                                        (view, "Password Incorrect", Snackbar.LENGTH_LONG);
+                                        (view, getString(R.string.errorWrongPass), Snackbar.LENGTH_LONG);
                                 snackbar.show();
                                 Log.v("password: ", "does not match bottom");
                             }
