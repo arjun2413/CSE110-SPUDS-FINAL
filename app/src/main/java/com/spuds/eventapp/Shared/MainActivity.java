@@ -79,8 +79,10 @@ public class MainActivity extends AppCompatActivity
     SubscriptionFeedTabsFragment subscriptionFeedTabsFragment;
     AboutFragment aboutFragment;
     SettingsFragment settingsFragment;
+    ImageView profilePic;
 
     SearchBox search;
+    boolean first = true;
 
     // notification stuff
     public String token;
@@ -90,6 +92,9 @@ public class MainActivity extends AppCompatActivity
     public Uri picture;
     ArrayList<SubEvent> testEventsList;
     ArrayList <String> searchResult;
+    NavigationView navigationView;
+    View headerView;
+    TextView name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,23 +153,21 @@ public class MainActivity extends AppCompatActivity
         }).start();
     }
 
-    void setupProfileDrawer() {
+    public void setupProfileDrawer() {
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        overrideFonts(navigationView.getContext(),navigationView);
-        // TODO (M): app owner's id
-        View headerView =  navigationView.inflateHeaderView(R.layout.nav_header_profile);
-        overrideFonts(headerView.getContext(),headerView);
-        TextView name = (TextView) headerView.findViewById(R.id.user_name);
+        if (first) {
+            navigationView = (NavigationView) findViewById(R.id.nav_view);
+            overrideFonts(navigationView.getContext(), navigationView);
+            headerView = navigationView.inflateHeaderView(R.layout.nav_header_profile);
+            overrideFonts(headerView.getContext(), headerView);
+            name = (TextView) headerView.findViewById(R.id.user_name);
+            profilePic = (ImageView) headerView.findViewById(R.id.profile_pic);
+            first = false;
+        }
 
         if (name != null) {
             name.setText(UserFirebase.thisUser.getName());
         }
-        // TODO (M): Use picasso
-        ImageView profilePic = (ImageView) headerView.findViewById(R.id.profile_pic);
-
-
-
 
         //rounded photo, crashes when you re-run for some reason
 
@@ -203,11 +206,6 @@ public class MainActivity extends AppCompatActivity
             circularBitmapDrawable.setAntiAlias(true);
             profilePic.setImageDrawable(circularBitmapDrawable);
         }
-/*        Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.christinecropped);
-
-        profilePic.setImageDrawable(dr);
-        */
-
     }
 
     void setupMainToolbar() {

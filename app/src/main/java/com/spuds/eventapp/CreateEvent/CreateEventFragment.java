@@ -167,8 +167,9 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                     scrollView.fullScroll(ScrollView.FOCUS_UP);
                 }
                 else {
-                    System.out.println("Check is: " + check);
                     final String eventId = eventsFirebase.createEvent(form, adapter);
+                    Log.v("createevent:", "eventid: " + eventId);
+
                     EventsFirebase ef = new EventsFirebase();
                     ef.getEventDetails(eventId);
 
@@ -186,6 +187,8 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                                     e.printStackTrace();
                                 }
                             }
+
+                            EventsFirebase.eventDetailsEvent.setEventId(eventId);
 
                             EventDetailsFragment eventDetailsFragment = new EventDetailsFragment();
                             Bundle bundle = new Bundle();

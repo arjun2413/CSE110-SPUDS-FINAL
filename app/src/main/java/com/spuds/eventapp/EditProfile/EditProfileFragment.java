@@ -33,7 +33,6 @@ public class  EditProfileFragment extends Fragment {
     ImageButton editProfilePictureButton;
     EditText editFullName;
     EditText editDescription;
-    TextView errorMessage;
     Fragment editProfileFragment;
 
     User user;
@@ -76,7 +75,7 @@ public class  EditProfileFragment extends Fragment {
         editFullName = (EditText) view.findViewById(R.id.edit_full_name);
         editDescription = (EditText) view.findViewById(R.id.edit_description);
         pictureView = (ImageButton) view.findViewById(R.id.edit_profile_picture);
-        errorMessage = (TextView) view.findViewById(R.id.error_message);
+
 
         pictureView.setOnClickListener(new View.OnClickListener() {
 
@@ -190,19 +189,17 @@ public class  EditProfileFragment extends Fragment {
             circularBitmapDrawable.setAntiAlias(true);
             pictureView.setImageDrawable(circularBitmapDrawable);
         }
+
         /*Bitmap src = BitmapFactory.decodeResource(this.getResources(), R.id.edit_profile_picture);
         RoundedBitmapDrawable dr =
                 RoundedBitmapDrawableFactory.create(this.getResources(), src);
         dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
-        editProfilePictureButton.setImageDrawable(dr);
-*/
+        editProfilePictureButton.setImageDrawable(dr);*/
 
         //Set Custom Fonts
         Typeface custom_font = Typeface.createFromAsset(getActivity().getAssets(),  "raleway-light.ttf");
         editFullName.setTypeface(custom_font);
         editDescription.setTypeface(custom_font);
-
-
 
         editFullName.setText(user.getName());
         editDescription.setText(user.getDescription());
@@ -224,19 +221,40 @@ public class  EditProfileFragment extends Fragment {
                         editDescription.getText().toString(),
                         picturepush);
 
-                if (user.getName().length() == 0) {
-                    errorMessage.setText(getString(R.string.errorEmptyName));
-                }
-                else {
-                    Log.v("EditProfilementasdfasdf", "imagefile" + user.getPicture());
+                Log.v("EditProfilementasdfasdf", "imagefile" + user.getPicture());
 
-                    UserFirebase.updateUser(user);
+                UserFirebase.updateUser(user);
+                final UserFirebase userFirebase = new UserFirebase();
+
+                userFirebase.getMyAccountDetails();
+
+                System.out.println("asdf" + "ingetuserdetailsloginactivity");
 
 
-                    // TODO (C): Refresh after updating profile
-                    // Pop this fragment from backstack
-                    getActivity().getSupportFragmentManager().popBackStack();
-                }
+                new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+
+                        while (!userFirebase.threadCheck) {
+                            try {
+                                Thread.sleep(75);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ((MainActivity) getActivity()).setupProfileDrawer();
+                                getActivity().getSupportFragmentManager().popBackStack();
+                            }
+                        });
+                    }
+                }).start();
+
             }
         });
 
