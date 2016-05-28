@@ -28,7 +28,9 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.spuds.eventapp.Shared.MainActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="EVENTORY"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -43,6 +45,8 @@
         </activity>
         <activity
             android:name="com.spuds.eventapp.Login.LoginActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,16 +54,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.spuds.eventapp.ForgotPasswordActivity.ForgotPasswordActivity" />
+        <activity
+            android:name="com.spuds.eventapp.ForgotPasswordActivity.ForgotPasswordActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" >
+        </activity>
         <activity
             android:name="com.spuds.eventapp.SignUp.SignUpActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
             android:name="com.spuds.eventapp.ResetPassword.ResetPasswordActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-        <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+        <activity
+            android:name="com.soundcloud.android.crop.CropImageActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" >
+        </activity>
 
         <!-- permissions to prevent others apps from registering/receiving messages ! -->
         <permission

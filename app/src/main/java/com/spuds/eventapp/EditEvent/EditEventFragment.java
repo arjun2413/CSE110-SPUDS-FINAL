@@ -336,15 +336,19 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
                     if (!form.allFilled()) {
                         //TODO: form not all filled error
-                        System.out.println("Fill out all the forms");
+                        Log.v("ERROR", getString(R.string.errorEmptyFields));
+                        errorMissingMessage.setVisibility(View.VISIBLE);
                     }
                     else if (!form.correctDate()) {
                         //TODO: date incorrect format error
-                        System.out.println("Date format is wrong");
+                        Log.v("ERROR", getString(R.string.errorInvalidTime));
+                        errorTimeMessage.setVisibility(View.VISIBLE);
                     }
                     else {
                         eventsFirebase.updateEvent(form, adapter);
                         getActivity().getSupportFragmentManager().popBackStack();
+                        errorMissingMessage.setVisibility(View.INVISIBLE);
+                        errorTimeMessage.setVisibility(View.INVISIBLE);
                     }
 
                 }

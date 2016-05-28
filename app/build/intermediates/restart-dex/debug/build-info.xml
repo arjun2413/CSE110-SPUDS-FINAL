@@ -1,57 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
     abi="x86"
-    api-level="22"
-    density="560dpi"
+    api-level="23"
+    density="420dpi"
     format="7"
-    timestamp="1464425096438257000"
-    verifier="COMPATIBLE" >
+    timestamp="1464422841818140000" >
 
     <task
         name="javac"
-        duration="1559" />
+        duration="2545" />
     <task
         name="instant-run-dex"
-        duration="1571" />
+        duration="0" />
     <task
         name="instant-run-transform"
-        duration="236" />
+        duration="47" />
     <task
         name="verifier"
-        duration="44" />
+        duration="14" />
 
     <artifact
-        location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/reload-dex/debug/classes.dex"
-        type="RELOAD_DEX" />
+        location="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
+        type="MAIN" />
 
-    <build timestamp="1464422864082111000" >
+    <build timestamp="1464422841818140000" >
         <artifact
-            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
+            location="/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
             type="MAIN" />
-    </build>
-    <build timestamp="1464424603724505000" >
-        <artifact
-            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_8/classes.dex"
-            type="DEX" />
-    </build>
-    <build
-        timestamp="1464424849143104000"
-        verifier="CLASS_ADDED" >
-        <artifact
-            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex"
-            type="DEX" />
-    </build>
-    <build timestamp="1464424933354540000" >
-        <artifact
-            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5/classes.dex"
-            type="DEX" />
-    </build>
-    <build
-        timestamp="1464425096438257000"
-        verifier="COMPATIBLE" >
-        <artifact
-            location="/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/reload-dex/debug/classes.dex"
-            type="RELOAD_DEX" />
     </build>
 
 </instant-run>

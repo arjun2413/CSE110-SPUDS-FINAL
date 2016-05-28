@@ -84,7 +84,18 @@
     <string name="cat_concerts">Concerts Category</string>
     <string name="cat_student_orgs">Student Orgs Category</string>
 
-
+    <string name="errorEmptyFields">ERROR: Not all fields are filled</string>
+    <string name="errorPassMismatch">ERROR: Password mismatch</string>
+    <string name="errorInvalidEmail">ERROR: A ucsd.edu email is required</string>
+    <string name="errorEmailUsedBefore">ERROR: Email has already been used before</string>
+    <string name="errorNoEmail">ERROR: Email not found</string>
+    <string name="errorWrongPass">ERROR: Incorrect password</string>
+    <string name="errorSamePass">ERROR: New password must be different from old password</string>
+    <string name="errorEmptyComment">ERROR: No comment made</string>
+    <string name="errorInvalidTime">ERROR: Invalid time</string>
+    <string name="errorCategories">ERROR: More than 3 categories have been selected</string>
+    <string name="errorLoginPass">ERROR: Invalid login details</string>
+    <string name="errorFatal">ERROR: Something went wrong!</string>
 
 
 </resources>
