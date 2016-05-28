@@ -95,6 +95,7 @@
                 <category android:name="com.spuds.eventapp" />
             </intent-filter>
         </receiver>
+2
 
         <!-- responds to instance ID or something, handles tokens! -->
         <service
