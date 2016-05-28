@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.spuds.eventapp.ChangePassword.ChangePasswordFragment;
@@ -26,10 +27,10 @@ import java.util.List;
 /**
  * Created by David on 5/12/16.
  */
-public class SettingsRVAdapter extends RecyclerView.Adapter<SettingsRVAdapter.SettingsViewHolder>{
+public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     // notifications are on by default
-    boolean isNotification = true;
+    boolean isNotificationOn = true;
     List<Setting> settings;
     Fragment currentFragment;
 
@@ -37,19 +38,31 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<SettingsRVAdapter.Se
         CardView card;
         ImageView settingPhoto;
         TextView settingName;
-        ImageView toggleNotifications;
 
         public SettingsViewHolder(View itemView) {
             super(itemView);
             card = (CardView)itemView.findViewById(R.id.cv);
             settingPhoto = (ImageView)itemView.findViewById(R.id.settings_photo);
             settingName = (TextView)itemView.findViewById(R.id.settings_name);
-            toggleNotifications = (ImageView)itemView.findViewById(R.id.settings_toggle);
 
         }
+
     }
 
+    public static class NotifSettingsViewHolder extends RecyclerView.ViewHolder{
+        CardView card;
+        ImageView settingPhoto;
+        TextView settingName;
+        Switch toggleNotifications;
 
+        public NotifSettingsViewHolder(View itemView) {
+            super(itemView);
+            card = (CardView)itemView.findViewById(R.id.cv);
+            settingPhoto = (ImageView)itemView.findViewById(R.id.settings_photo);
+            settingName = (TextView)itemView.findViewById(R.id.settings_name);
+            toggleNotifications = (Switch)itemView.findViewById(R.id.settings_toggle);
+        }
+    }
     public SettingsRVAdapter(List<Setting> settings, Fragment currentFragment){
         this.settings = settings;
         this.currentFragment = currentFragment;
@@ -61,40 +74,71 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<SettingsRVAdapter.Se
     }
 
     @Override
-    public SettingsViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_settings, viewGroup, false);
-        overrideFonts(v.getContext(),v);
-        SettingsViewHolder svh = new SettingsViewHolder(v);
-        return svh;
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        View v;
+        switch(viewType){
+            case 1:
+                v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_settings_notif, viewGroup, false);
+                overrideFonts(v.getContext(),v);
+                return new NotifSettingsViewHolder(v);
 
+            default:
+                v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_settings, viewGroup, false);
+                overrideFonts(v.getContext(),v);
+                return new SettingsViewHolder(v);
+        }
 
     }
 
 
+    @Override
+    public int getItemViewType(int position) {
+
+        switch (position) {
+
+            case 0:
+                return 0;
+            case 1:
+                return 1;
+            case 2:
+                return 2;
+            default:
+                return 0;
+
+        }
+
+    }
 
     @Override
-    public void onBindViewHolder(SettingsViewHolder settingsViewHolder, int i) {
-        settingsViewHolder.settingName.setText(settings.get(i).name);
-        settingsViewHolder.settingPhoto.setImageResource(settings.get(i).photoId);
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        if (i == 1){
+            ((NotifSettingsViewHolder) viewHolder).settingName.setText(settings.get(i).name);
+            ((NotifSettingsViewHolder) viewHolder).settingPhoto.setImageResource(settings.get(i).photoId);
+            ((NotifSettingsViewHolder) viewHolder).toggleNotifications.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // notifications are on, toggle off
+                    if (isNotificationOn) {
+                        isNotificationOn = false;
+                    } else {
+                        // notifications are off, toggle on
+                        isNotificationOn = true;
 
-        settingsViewHolder.toggleNotifications.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // notifications are on, toggle off
-                if (isNotification){
-                    isNotification = false;
+                    }
                 }
-                else{
-                    // notifications are off, toggle on
-                    isNotification = true;
+            });
+        }
 
-                }
-            }
-        });
+        else{
+            ((SettingsViewHolder) viewHolder).settingName.setText(settings.get(i).name);
+            ((SettingsViewHolder) viewHolder).settingPhoto.setImageResource(settings.get(i).photoId);
+
+        }
+
 
         switch (i) {
             case 0:
-                settingsViewHolder.card.setOnClickListener(new View.OnClickListener() {
+                ((SettingsViewHolder) viewHolder).card.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         ChangePasswordFragment changePasswordFragment = new ChangePasswordFragment();
@@ -111,7 +155,7 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<SettingsRVAdapter.Se
                 });
                 break;
             case 2:
-                settingsViewHolder.card.setOnClickListener(new View.OnClickListener() {
+                ((SettingsViewHolder) viewHolder).card.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         new AlertDialog.Builder(currentFragment.getActivity())
