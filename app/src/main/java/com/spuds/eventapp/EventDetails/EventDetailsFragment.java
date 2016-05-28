@@ -152,49 +152,49 @@ public class EventDetailsFragment extends Fragment {
     public void setupRefresh(final View view) {
         mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+
+                Log.v("refresh", "here");
+                EventsFirebase ef = new EventsFirebase();
+                EventsFirebase.detailsThreadCheck = false;
+                Log.v("eventsfirebasepushref22", eventId);
+                ef.getEventDetails(eventId);
+
+
+                new Thread(new Runnable() {
+
                     @Override
-                    public void onRefresh() {
+                    public void run() {
+                        while (!EventsFirebase.detailsThreadCheck) {
+                            try {
+                                Log.v("EDF","getting new evnet details with eventid" + eventId);
 
+                                Thread.sleep(70);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
 
-                        Log.v("refresh", "here");
-                        EventsFirebase ef = new EventsFirebase();
-                        EventsFirebase.detailsThreadCheck = false;
-                        Log.v("eventsfirebasepushref22", eventId);
-                        ef.getEventDetails(eventId);
-
-
-                        new Thread(new Runnable() {
-
+                        getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                while (!EventsFirebase.detailsThreadCheck) {
-                                    try {
-                                        Log.v("sleepingthread","fam");
-
-                                        Thread.sleep(70);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-
-                                getActivity().runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        event = EventsFirebase.eventDetailsEvent;
-                                        Log.v("wtf", event.getEventId());
-                                        Log.v("wtf", event.getDescription());
-                                        Log.v("wtf", event.getEventId());
-                                        setUpEventInformation(view);
-                                        setupEditEvent();
-                                        setUpComments(view);
-                                        mySwipeRefreshLayout.setRefreshing(false);
-                                    }
-                                });
-
+                                event = EventsFirebase.eventDetailsEvent;
+                                Log.v("wtf", event.getEventId());
+                                Log.v("wtf", event.getDescription());
+                                Log.v("wtf", event.getEventId());
+                                setUpEventInformation(view);
+                                setupEditEvent();
+                                setUpComments(view);
+                                mySwipeRefreshLayout.setRefreshing(false);
                             }
-                        }).start();
+                        });
+
                     }
-                };
+                }).start();
+            }
+        };
 
 
         mySwipeRefreshLayout.setOnRefreshListener(refreshListener);
@@ -228,6 +228,7 @@ public class EventDetailsFragment extends Fragment {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     void setUpEventInformation(View view) {
+        Log.d("EDF", "setupeventinformation was called");
         eventName.setText(event.getEventName());
         eventHost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -398,15 +399,16 @@ public class EventDetailsFragment extends Fragment {
         });
 
 
-        Log.d("check", "Checkpls");
 
+        eventsFirebase.isGoing(eventId);
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.d("idIsGoing2",String.valueOf(eventsFirebase.idIsGoing));
+
+
                 while (eventsFirebase.idIsGoing == 0) {
-                    Log.d("areHere", "areHere");
+                    Log.d("EDF", "finding idisgoing");
                     try {
                         Thread.sleep(75);
                     } catch (InterruptedException e) {
@@ -418,9 +420,12 @@ public class EventDetailsFragment extends Fragment {
 
                 if (eventsFirebase.idIsGoing == 1) {
                     going = false;
-                    Log.d("please", "pls");
-                } else
+                    Log.d("EDF", "idisgoing = 1");
+                } else {
                     going = true;
+                    Log.d("EDF", "idisgoing = 2");
+                }
+
 
 
                 getActivity().runOnUiThread(new Runnable() {
@@ -435,13 +440,15 @@ public class EventDetailsFragment extends Fragment {
                         buttonGoingOrEdit.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Log.d("Here1", "herepls");
+                                Log.d("EDF", "clicking~");
 
 
                                 if (going) {
 
-                                    Log.d("edgoing", " true");
+                                    Log.d("EDF", " going true");
                                     //buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
+                                    eventsFirebase.notGoingThreadCheck = false;
+                                    eventsFirebase.deleteThreadCheck = false;
                                     eventsFirebase.notGoingToAnEvent(eventId);
                                     eventsFirebase.deleteEventRegistration(eventId);
 
@@ -450,6 +457,7 @@ public class EventDetailsFragment extends Fragment {
                                         @Override
                                         public void run() {
                                             while (!eventsFirebase.notGoingThreadCheck || !eventsFirebase.deleteThreadCheck) {
+                                                Log.v("EDF", "going while loops");
                                                 try {
                                                     Thread.sleep(77);
                                                 } catch (InterruptedException e) {
@@ -458,23 +466,24 @@ public class EventDetailsFragment extends Fragment {
 
                                             }
 
+                                            going = false;
+
                                             mySwipeRefreshLayout.post(new Runnable() {
                                                 @Override public void run() {
-                                                    mySwipeRefreshLayout.setRefreshing(true);
+                                                    Log.v("EDF", "swiperefresh1");
                                                     // directly call onRefresh() method
                                                     refreshListener.onRefresh();
                                                 }
+
                                             });
 
                                         }
                                     }).start();
 
-
-                                    going = false;
-
                                 } else {
-
-                                    Log.d("edgoing", " false");
+                                    Log.v("EDF", "not going");
+                                    eventsFirebase.notGoingThreadCheck = false;
+                                    eventsFirebase.goingToEventThreadCheck = false;
                                     eventsFirebase.notGoingToAnEvent(eventId);
                                     eventsFirebase.goingToAnEvent(eventId);
 
@@ -482,7 +491,9 @@ public class EventDetailsFragment extends Fragment {
 
                                         @Override
                                         public void run() {
-                                            while (!eventsFirebase.notGoingThreadCheck || !eventsFirebase.notGoingThreadCheck) {
+
+                                            while (!eventsFirebase.notGoingThreadCheck || !eventsFirebase.goingToEventThreadCheck) {
+                                                Log.v("EDF", "not going while loop");
                                                 try {
                                                     Thread.sleep(77);
                                                 } catch (InterruptedException e) {
@@ -490,10 +501,12 @@ public class EventDetailsFragment extends Fragment {
                                                 }
 
                                             }
+                                            going = true;
+
                                             //buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
                                             mySwipeRefreshLayout.post(new Runnable() {
                                                 @Override public void run() {
-                                                    mySwipeRefreshLayout.setRefreshing(true);
+                                                    Log.v("EDF", "swiperefresh2");
                                                     // directly call onRefresh() method
                                                     refreshListener.onRefresh();
                                                 }
@@ -501,8 +514,6 @@ public class EventDetailsFragment extends Fragment {
 
                                         }
                                     }).start();
-
-                                    going = true;
 
                                 }
 
@@ -534,6 +545,7 @@ public class EventDetailsFragment extends Fragment {
         }
 
     }
+
     void setUpComments(View view) {
         rv = (RecyclerView) view.findViewById(R.id.rv);
         //Set type of layout manager
@@ -561,7 +573,6 @@ public class EventDetailsFragment extends Fragment {
         if (!first) {
             mySwipeRefreshLayout.post(new Runnable() {
                 @Override public void run() {
-                    mySwipeRefreshLayout.setRefreshing(true);
                     // directly call onRefresh() method
                     refreshListener.onRefresh();
                 }

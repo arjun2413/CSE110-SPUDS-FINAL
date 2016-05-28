@@ -182,6 +182,7 @@ public class MainActivity extends AppCompatActivity
             } catch (OutOfMemoryError e) {
                 System.err.println(e.toString());
             }
+
             if (src != null) {
                 RoundedBitmapDrawable circularBitmapDrawable =
                         RoundedBitmapDrawableFactory.create(getResources(), src);
