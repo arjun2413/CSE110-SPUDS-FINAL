@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "39404161192",
+    "project_id": "pushtest-9c30a"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39404161192:android:4d973ce8611ae520",
+        "android_client_info": {
+          "package_name": "com.spuds.eventapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7DOaXTU6m_z1jYOdGt0zqQrEKR2oBiuI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
