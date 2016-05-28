@@ -30,16 +30,18 @@ public class NotificationsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         notificationList = new ArrayList<Notification>();
-        // TODO (M): get notifications for the user
+        // TODO (M): get real notifications for the user, commented out because causes crashes with date
         //fake data
-        notificationList.add(new Notification("Invite Notification", "1", "1", "",
-                "David Shan", "16/04/20 | 16:20", "420 Blaze It"));
-        notificationList.add(new Notification("Update Notification", "1", "1", "",
-                "A.S. Concert", "16/04/20 | 16:20", "Sun God"));
-        notificationList.add(new Notification("Reply Notification", "1", "1", "",
-                "Reggie Wu", "16/04/20 | 16:20", "Birthday Party", "Will there be food?"));
+        /*
+        notificationList.add(new Notification("Invite Notification", "1", "1", "eventorprofile.jpg",
+                "David Shan", "04/05/25 | 16:20", "420 Blaze It"));
+        notificationList.add(new Notification("Update Notification", "1", "1", "eventorprofile.jpg",
+                "A.S. Concert", "16/05/25 | 16:20", "Sun God"));
+        notificationList.add(new Notification("Reply Notification", "1", "1", "eventorprofile.jpg",
+                "Reggie Wu", "16/05/25 | 16:20", "Birthday Party", "Will there be food?"));
 
         notificationsRVAdapter = new NotificationsRVAdapter(notificationList, this);
+        */
     }
 
     @Override

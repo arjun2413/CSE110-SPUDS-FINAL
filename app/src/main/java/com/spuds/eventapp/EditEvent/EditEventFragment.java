@@ -53,6 +53,9 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
     private RecyclerView rv;
     private EventDate eD;
     private Event event;
+    private TextView errorMissingMessage;
+    private TextView errorDateMessage;
+    private TextView errorTimeMessage;
 
 
 
@@ -112,6 +115,11 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
 
         eD = new EventDate(event.getDate());
+        Log.d("edvalue", String.valueOf(eD.hour));
+        Log.d("edvalue", String.valueOf(eD.year));
+        Log.d("edvalue", String.valueOf(eD.month));
+        Log.d("edvalue", String.valueOf(eD.day));
+
         getPageElements(view);
         setupWindow();
 
@@ -158,6 +166,14 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         rv =(RecyclerView) view.findViewById(R.id.rv_categories);
         scb = (SmoothCheckBox) view.findViewById(R.id.category_scb);
         editEventFields = new ArrayList<String>();
+
+        errorMissingMessage = (TextView) view.findViewById(R.id.missingMessage);
+        errorDateMessage = (TextView) view.findViewById(R.id.dateErrorMessage);
+        errorTimeMessage = (TextView) view.findViewById(R.id.timeErrorMessage);
+
+        errorMissingMessage.setVisibility(View.INVISIBLE);
+        errorDateMessage.setVisibility(View.INVISIBLE);
+        errorTimeMessage.setVisibility(View.INVISIBLE);
 
         // TODO (M): Picasso for picture
         eventName.setText(event.getEventName());
