@@ -108,6 +108,10 @@
         "source": "/Users/Jonathan/Desktop/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/abc_action_bar_title_item.xml"
     },
     {
+        "merged": "/Users/Jonathan/Desktop/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/recyler_no_refresh.xml",
+        "source": "/Users/Jonathan/Desktop/CSE110-SPUDS-FINAL/app/src/main/res/layout/recyler_no_refresh.xml"
+    },
+    {
         "merged": "/Users/Jonathan/Desktop/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
         "source": "/Users/Jonathan/Desktop/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/abc_action_menu_item_layout.xml"
     },
