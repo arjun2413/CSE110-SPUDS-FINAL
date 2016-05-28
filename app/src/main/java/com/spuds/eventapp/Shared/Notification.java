@@ -1,5 +1,7 @@
 package com.spuds.eventapp.Shared;
 
+import android.util.Log;
+
 /**
  * Created by tina on 5/13/16.
  */
@@ -19,7 +21,7 @@ public class Notification {
     public String time;
     public String eventName;
 
-    public String picFileName;
+    public String picture;
 
     public String commentDescription = "";
 
@@ -29,13 +31,13 @@ public class Notification {
     public String day = "";
 
     // Event update & Invitation Notification
-    public Notification(String notificationType, String eventId, String userId, String picFileName,
+    public Notification(String notificationType, String eventId, String userId, String picture,
                         String host, String date, String eventName) {
 
         this.notificationType = notificationType;
         this.eventId = eventId;
         this.userId = userId;
-        this.picFileName = picFileName;
+        this.picture = picture;
         this.host = host;
         this.date = date;
         this.eventName = eventName;
@@ -46,13 +48,13 @@ public class Notification {
     }
 
     // Comment
-    public Notification(String notificationType, String eventId, String userId, String picFileName,
+    public Notification(String notificationType, String eventId, String userId, String picture,
                         String host, String date, String eventName, String commentDescription) {
 
         this.notificationType = notificationType;
         this.eventId = eventId;
         this.userId = userId;
-        this.picFileName = picFileName;
+        this.picture = picture;
         this.host = host;
         this.date = date;
         this.eventName  = eventName;
@@ -80,6 +82,7 @@ public class Notification {
     void updateDateValues() {
 
         EventDate eventDateObject = new EventDate(date);
+        Log.e("EventDate" , "date: " + date);
 
         time = eventDateObject.get12Time();
 

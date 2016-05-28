@@ -23,16 +23,18 @@ public class EventDate {
     //ctor
     public EventDate(String date) {
 
+        Log.e("EventDate" , "date: " + date);
+
         //Check for proper date form
         // TODO validate string not working
         if(validateString(date)) {
 
             //Use substring to parse each snippet of string.
-            this.year = Integer.parseInt(date.substring(6,10));
-            this.month = Integer.parseInt(date.substring(0,2));
-            this.day = Integer.parseInt(date.substring(3,5));
+            this.year = Integer.parseInt(date.substring(0,2));
+            this.month = Integer.parseInt(date.substring(3,5));
+            this.day = Integer.parseInt(date.substring(6,8));
             this.hour = Integer.parseInt(date.substring(11,13));
-            this.minute = date.substring(14,15);
+            this.minute = date.substring(14,16);
 
             //Check that dates are in reasonable range
             if(     this.year >= 2016 &&

@@ -31,9 +31,6 @@ public class SubscriptionsListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         userFirebase = new UserFirebase();
-        subscriptions = new ArrayList<>();
-        userFirebase.getSubscriptions(subscriptions);
-
 
     }
 
@@ -43,6 +40,9 @@ public class SubscriptionsListFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.recycler, container, false);
         final RecyclerView rv=(RecyclerView) v.findViewById(R.id.rv);
+
+        subscriptions = new ArrayList<>();
+        userFirebase.getSubscriptions(subscriptions);
 
         LinearLayoutManager llm = new LinearLayoutManager(v.getContext());
         rv.setLayoutManager(llm);
@@ -55,7 +55,7 @@ public class SubscriptionsListFragment extends Fragment {
 
             @Override
             public void run() {
-                while (userFirebase.numSubscriptions > subscriptions.size() && !userFirebase.getSubscriptionsThreadCheck) {
+                while (userFirebase.numSubscriptions > subscriptions.size() || !userFirebase.getSubscriptionsThreadCheck) {
                     Log.v("sublist", "numsubs" + userFirebase.numSubscriptions);
                     Log.v("sublist", "subscriptions size" + subscriptions.size());
                     try {
@@ -67,12 +67,13 @@ public class SubscriptionsListFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.v("inviteppl",""+ subscriptions.size());
+
                         rv.setAdapter(adapter);
                     }
                 });
             }
         }).start();
+
 
 
 

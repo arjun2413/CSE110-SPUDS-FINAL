@@ -354,12 +354,16 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         if (event.getPicture() != null || event.getPicture() != "") {
             String imageFile = event.getPicture();
 
+            Bitmap src = null;
+            try {
+                byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+            } catch(OutOfMemoryError e) {
+                System.err.println(e.toString());
+            }
 
-            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-            Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-
-
-            eventImage.setImageBitmap(src);
+            if (src != null)
+                eventImage.setImageBitmap(src);
         }
 
         eventImage.setOnClickListener(new View.OnClickListener() {

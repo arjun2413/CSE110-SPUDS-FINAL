@@ -14,8 +14,8 @@ import com.spuds.eventapp.EditEvent.EditEventForm;
 import com.spuds.eventapp.EditEvent.EditEventRVAdapter;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
-import com.spuds.eventapp.Shared.User;
 import com.spuds.eventapp.Shared.SubEvent;
+import com.spuds.eventapp.Shared.User;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -210,6 +210,7 @@ public class EventsFirebase {
     public Event createEL() {
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com");
 
+        Log.v("refresh", "createEl");
         final Query[] queries = new Query[1];
         Query queryRef = myFirebaseRef.orderByKey();
         Query queryRef2 = myFirebaseRef.orderByKey();
@@ -405,7 +406,7 @@ public class EventsFirebase {
 
                     Event newEvent = new Event();
 
-                    //Log.v("EventsFirebase jkl;", "" + snapshot.getKey());
+                    Log.v("refresh", "" + eventsList.size());
 
                     for (DataSnapshot child : snapshot.getChildren()) {
                         //Log.d("lmao", String.valueOf(child));
@@ -1047,6 +1048,7 @@ public class EventsFirebase {
 
     }
 
+
     public boolean followersThreadCheck;
     public int numFollowers;
     public void getFollowers(final ArrayList<User> followers) {
@@ -1059,11 +1061,13 @@ public class EventsFirebase {
             public void onDataChange(DataSnapshot snapshot) {
                 HashMap<String, Object> values = (HashMap<String, Object>) snapshot.getValue();
                 if (values != null) {
+                    Log.v("getfollowers", "iscalled: " + String.valueOf(values));
                     for (Map.Entry<String, Object> entry : values.entrySet()) {
 
                         boolean first = false;
                         for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
-
+                            Log.v("youeventsf", "key: " + entry2.getKey());
+                            Log.v("youeventsf", "value: " + entry2.getValue());
 
                             if (entry2.getKey().equals("following_id") && entry2.getValue().equals(UserFirebase.uId)) {
                                 first = true;

@@ -40,8 +40,11 @@ public class InvitePeopleFragment extends Fragment {
         // TODO (M): remember when loading do not override the followers arraylist, add to it
         followers = new ArrayList<>();
         invited = new ArrayList<>();
+        Log.v("firebasecall", "ipf");
         eventsFirebase = new EventsFirebase();
         eventsFirebase.getFollowers(followers);
+        Log.v("firebasecallafter", "ipf");
+
     }
 
     @Override
@@ -62,7 +65,7 @@ public class InvitePeopleFragment extends Fragment {
 
             @Override
             public void run() {
-                while (eventsFirebase.numFollowers > followers.size() && !eventsFirebase.followersThreadCheck) {
+                while (eventsFirebase.numFollowers > followers.size() || !eventsFirebase.followersThreadCheck) {
                     Log.v("inviteppl", "numfollowers" + eventsFirebase.numFollowers);
                     Log.v("inviteppl", "followers size" + followers.size());
                     try {
@@ -75,6 +78,7 @@ public class InvitePeopleFragment extends Fragment {
                     @Override
                     public void run() {
                         Log.v("inviteppl",""+ followers.size());
+                        adapter.notifyDataSetChanged();
                         rv.setAdapter(adapter);
                     }
                 });
@@ -96,7 +100,7 @@ public class InvitePeopleFragment extends Fragment {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
 
-            case R.id.select_all:
+           /*case R.id.select_all:
                 if (!adapter.selectAll) {
 
                     for (int i = 0; i < followers.size(); ++i) {
@@ -118,7 +122,7 @@ public class InvitePeopleFragment extends Fragment {
                     adapter.notifyDataSetChanged();
 
                 }
-                return true;
+                return true;*/
 
             case R.id.done:
                 if (invited.size() != 0) {

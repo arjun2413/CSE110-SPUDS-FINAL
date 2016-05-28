@@ -1,10 +1,11 @@
 package com.spuds.eventapp.Profile;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -20,7 +21,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.spuds.eventapp.EditProfile.EditProfileFragment;
 import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
@@ -114,6 +114,7 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void setUpProfileDetails(View view) {
 
         userImage = (ImageView) view.findViewById(R.id.user_image);
@@ -137,16 +138,21 @@ public class ProfileFragment extends Fragment {
 
         String imageFile = user.getPicture();
 
+        Bitmap src = null;
+        try {
+            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+            src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+        } catch(OutOfMemoryError e) {
+            System.err.println(e.toString());
+        }
 
-        byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-        Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-
-        RoundedBitmapDrawable circularBitmapDrawable =
-                RoundedBitmapDrawableFactory.create(getResources(), src);
-        circularBitmapDrawable.setCircular(true);
-        circularBitmapDrawable.setAntiAlias(true);
-        userImage.setImageDrawable(circularBitmapDrawable);
-
+        if (src != null) {
+            RoundedBitmapDrawable circularBitmapDrawable =
+                    RoundedBitmapDrawableFactory.create(getResources(), src);
+            circularBitmapDrawable.setCircular(true);
+            circularBitmapDrawable.setAntiAlias(true);
+            userImage.setImageDrawable(circularBitmapDrawable);
+        }
 
         // Set image for button for subscribe or edit profile
         if (user.getUserId().equals(UserFirebase.uId)) {
@@ -180,9 +186,11 @@ public class ProfileFragment extends Fragment {
 
             Log.v("ProfileFragment", "other not own profile!");
 
+            buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
 
 
             new Thread(new Runnable() {
+                @TargetApi(Build.VERSION_CODES.LOLLIPOP)
                 @Override
                 public void run() {
                     Log.d("idIsGoing2",String.valueOf(userFirebase.idIsSubscribed));
@@ -195,18 +203,28 @@ public class ProfileFragment extends Fragment {
                         }
 
                     }
+
                     Log.d("idsubProfileFragment", String.valueOf(userFirebase.idIsSubscribed));
 
-
-                    if (userFirebase.idIsSubscribed == 1) {
-                        user.setSubscribed(false);
-                    } else
-                        user.setSubscribed(true);
 
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+
+                            if (userFirebase.idIsSubscribed == 1) {
+                                user.setSubscribed(false);
+                            } else {
+                                user.setSubscribed(true);
+                            }
+
+                            if (user.isSubscribed()) {
+                                buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
+                            } else {
+                                buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
+                            }
+
                             buttonSubscribedOrEdit.setOnClickListener(new View.OnClickListener() {
+                                @TargetApi(Build.VERSION_CODES.LOLLIPOP)
                                 @Override
                                 public void onClick(View v) {
 
@@ -217,9 +235,9 @@ public class ProfileFragment extends Fragment {
                                     userFirebase.subscribe(user.getUserId(), user.isSubscribed());
                                     // TODO (V): coloorzz
                                     if (user.isSubscribed())
-                                        buttonSubscribedOrEdit.setBackgroundColor(Color.parseColor("#5c8a8a"));
+                                        buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
                                     else
-                                        buttonSubscribedOrEdit.setBackgroundColor(Color.parseColor("#ffffff"));
+                                        buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
 
                                 }
                             });

@@ -1,9 +1,11 @@
 package com.spuds.eventapp.EventDetails;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -69,12 +71,13 @@ public class EventDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         Bundle extras = getArguments();
-        event = (Event) extras.get(getString(R.string.event_details));
+        event = (Event) extras.getSerializable(getString(R.string.event_details));
         if (event == null) {
             eventId = extras.getString(getString(R.string.event_id));
             // TODO: Fetch event using eventId
             EventsFirebase ef = new EventsFirebase();
             event = ef.getEventDetails(eventId);
+
         } else
             eventId = event.getEventId();
 
@@ -83,6 +86,7 @@ public class EventDetailsFragment extends Fragment {
         eventsFirebase.isGoing(eventId);
 
         eventDetailsFragment = this;
+
 
         if (event.getHostId().equals(UserFirebase.uId))
             ownEvent = true;
@@ -148,6 +152,7 @@ public class EventDetailsFragment extends Fragment {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     void setUpEventInformation(View view) {
         eventPic = (ImageView) view.findViewById(R.id.event_pic);
         eventName = (TextView) view.findViewById(R.id.event_name);
@@ -162,7 +167,6 @@ public class EventDetailsFragment extends Fragment {
         invitePeople = (Button) view.findViewById(R.id.button_invite_people);
         buttonGoingOrEdit = (Button) view.findViewById(R.id.button_going);
         buttonEditEvent = (ImageButton) view.findViewById(R.id.button_edit_event);
-        //TODO: picasso for event pic
         eventName.setText(event.getEventName());
         eventHost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -334,10 +338,10 @@ public class EventDetailsFragment extends Fragment {
 
         // TODO (M): Firebase call to get if you're GOING to an event
 
-        /*if (going)
-            buttonGoingOrEdit.setBackgroundColor(Color.parseColor("#5c8a8a"));
+        if (going)
+            buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
         else
-            buttonGoingOrEdit.setBackgroundColor(Color.parseColor("#ffffff"));*/
+            buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
 
         Log.d("check", "Checkpls");
 
@@ -373,18 +377,23 @@ public class EventDetailsFragment extends Fragment {
 
 
                                 if (going) {
+
                                     Log.d("edgoing", " true");
-                                    //buttonGoingOrEdit.setImageResource(R.drawable.button_not_going);
+                                    buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
                                     eventsFirebase.notGoingToAnEvent(eventId);
                                     eventsFirebase.deleteEventRegistration(eventId);
 
                                     going = false;
+
                                 } else {
+
                                     Log.d("edgoing", " false");
-                                    //buttonGoingOrEdit.setImageResource(R.drawable.button_going);
+                                    buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
+                                    eventsFirebase.notGoingToAnEvent(eventId);
 
                                     eventsFirebase.goingToAnEvent(eventId);
                                     going = true;
+
                                 }
 
                             }
@@ -402,11 +411,16 @@ public class EventDetailsFragment extends Fragment {
 
         if (imageFile != null && imageFile != "") {
 
-            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-            Bitmap src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+            Bitmap src = null;
+            try {
+                byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+            } catch(OutOfMemoryError e) {
+                System.err.println(e.toString());
+            }
 
-
-            eventPic.setImageBitmap(src);
+            if (src != null)
+                eventPic.setImageBitmap(src);
         }
 
     }
