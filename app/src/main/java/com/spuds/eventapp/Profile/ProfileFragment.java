@@ -138,15 +138,33 @@ public class ProfileFragment extends Fragment {
 
         String imageFile = user.getPicture();
 
-        Bitmap src = null;
-        try {
-            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-            src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-        } catch(OutOfMemoryError e) {
-            System.err.println(e.toString());
-        }
+        if (imageFile != null) {
+            Bitmap src = null;
+            try {
+                byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+            } catch (OutOfMemoryError e) {
+                System.err.println(e.toString());
+            }
 
-        if (src != null) {
+            if (src != null) {
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(getResources(), src);
+                circularBitmapDrawable.setCircular(true);
+                circularBitmapDrawable.setAntiAlias(true);
+                userImage.setImageDrawable(circularBitmapDrawable);
+            } else {
+                src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
+
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(getResources(), src);
+                circularBitmapDrawable.setCircular(true);
+                circularBitmapDrawable.setAntiAlias(true);
+                userImage.setImageDrawable(circularBitmapDrawable);
+            }
+        } else {
+            Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
+
             RoundedBitmapDrawable circularBitmapDrawable =
                     RoundedBitmapDrawableFactory.create(getResources(), src);
             circularBitmapDrawable.setCircular(true);

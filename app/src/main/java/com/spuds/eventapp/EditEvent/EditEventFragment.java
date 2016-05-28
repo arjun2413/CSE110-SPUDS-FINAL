@@ -53,6 +53,9 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
     private RecyclerView rv;
     private EventDate eD;
     private Event event;
+    private TextView errorMissingMessage;
+    private TextView errorDateMessage;
+    private TextView errorTimeMessage;
 
 
 
@@ -112,6 +115,11 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
 
         eD = new EventDate(event.getDate());
+        Log.d("edvalue", String.valueOf(eD.hour));
+        Log.d("edvalue", String.valueOf(eD.year));
+        Log.d("edvalue", String.valueOf(eD.month));
+        Log.d("edvalue", String.valueOf(eD.day));
+
         getPageElements(view);
         setupWindow();
 
@@ -158,6 +166,14 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         rv =(RecyclerView) view.findViewById(R.id.rv_categories);
         scb = (SmoothCheckBox) view.findViewById(R.id.category_scb);
         editEventFields = new ArrayList<String>();
+
+        errorMissingMessage = (TextView) view.findViewById(R.id.missingMessage);
+        errorDateMessage = (TextView) view.findViewById(R.id.dateErrorMessage);
+        errorTimeMessage = (TextView) view.findViewById(R.id.timeErrorMessage);
+
+        errorMissingMessage.setVisibility(View.INVISIBLE);
+        errorDateMessage.setVisibility(View.INVISIBLE);
+        errorTimeMessage.setVisibility(View.INVISIBLE);
 
         // TODO (M): Picasso for picture
         eventName.setText(event.getEventName());
@@ -320,15 +336,19 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
                     if (!form.allFilled()) {
                         //TODO: form not all filled error
-                        System.out.println("Fill out all the forms");
+                        Log.v("ERROR", getString(R.string.errorEmptyFields));
+                        errorMissingMessage.setVisibility(View.VISIBLE);
                     }
                     else if (!form.correctDate()) {
                         //TODO: date incorrect format error
-                        System.out.println("Date format is wrong");
+                        Log.v("ERROR", getString(R.string.errorInvalidTime));
+                        errorTimeMessage.setVisibility(View.VISIBLE);
                     }
                     else {
                         eventsFirebase.updateEvent(form, adapter);
                         getActivity().getSupportFragmentManager().popBackStack();
+                        errorMissingMessage.setVisibility(View.INVISIBLE);
+                        errorTimeMessage.setVisibility(View.INVISIBLE);
                     }
 
                 }

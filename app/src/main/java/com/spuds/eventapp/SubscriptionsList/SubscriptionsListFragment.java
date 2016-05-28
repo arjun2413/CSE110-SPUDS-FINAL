@@ -84,11 +84,45 @@ public class SubscriptionsListFragment extends Fragment {
     }
     //TODO: Needs database to finish
     public void refreshing(View view) {
-        SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+        final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         mySwipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
+                        subscriptions.clear();
+
+                        userFirebase.getSubscriptions(subscriptions);
+
+                        Log.v("refresh", "here");
+                        new Thread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                Log.v("refresh", "hereherehere");
+
+                                while (userFirebase.numSubscriptions > subscriptions.size() || !userFirebase.getSubscriptionsThreadCheck) {
+                                    //Log.v("refresh", "size: " + events.size());
+                                    try {
+                                        Thread.sleep(70);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                Log.v("refresh", "here2");
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run()
+                                    {
+                                        Log.v("refresh", "here3");
+
+                                        adapter.notifyDataSetChanged();
+                                        mySwipeRefreshLayout.setRefreshing(false);
+
+                                    }
+                                });
+                            }
+                        }).start();
                     }
                 }
         );

@@ -1,52 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
     abi="x86"
-    api-level="23"
-    density="420dpi"
+    api-level="21"
+    density="xxxhdpi"
     format="7"
-    timestamp="6359318221025"
-    verifier="COMPATIBLE" >
+    timestamp="183318281536353" >
 
     <task
         name="javac"
-        duration="1103" />
+        duration="2303" />
     <task
         name="instant-run-dex"
-        duration="385" />
+        duration="0" />
     <task
         name="instant-run-transform"
-        duration="64" />
+        duration="1817" />
     <task
         name="verifier"
-        duration="6" />
+        duration="719" />
 
     <artifact
-        location="C:\Users\Quoc Toan Luong\Desktop\CSE 110\CSE110-SPUDS-FINAL\app\build\intermediates\reload-dex\debug\classes.dex"
-        type="RELOAD_DEX" />
+        location="/Users/Jonathan/Desktop/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
+        type="MAIN" />
 
-    <build timestamp="5713790686532" >
+    <build timestamp="183318281536353" >
         <artifact
-            location="C:\Users\Quoc Toan Luong\Desktop\CSE 110\CSE110-SPUDS-FINAL\app\build\outputs\apk\app-debug.apk"
+            location="/Users/Jonathan/Desktop/CSE110-SPUDS-FINAL/app/build/outputs/apk/app-debug.apk"
             type="MAIN" />
-    </build>
-    <build timestamp="6015154487115" >
-        <artifact
-            location="C:\Users\Quoc Toan Luong\Desktop\CSE 110\CSE110-SPUDS-FINAL\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_0\classes.dex"
-            type="DEX" />
-    </build>
-    <build
-        timestamp="6142656960467"
-        verifier="COMPATIBLE" >
-        <artifact
-            location="C:\Users\Quoc Toan Luong\Desktop\CSE 110\CSE110-SPUDS-FINAL\app\build\intermediates\builds\debug\6142656960467\classes.dex"
-            type="RELOAD_DEX" />
-    </build>
-    <build
-        timestamp="6359318221025"
-        verifier="COMPATIBLE" >
-        <artifact
-            location="C:\Users\Quoc Toan Luong\Desktop\CSE 110\CSE110-SPUDS-FINAL\app\build\intermediates\reload-dex\debug\classes.dex"
-            type="RELOAD_DEX" />
     </build>
 
 </instant-run>

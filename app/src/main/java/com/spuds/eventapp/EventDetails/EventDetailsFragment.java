@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
@@ -119,12 +120,69 @@ public class EventDetailsFragment extends Fragment {
         going.setTypeface(raleway_medium);
 
         Button invite = (Button) view.findViewById(R.id.button_invite_people);
+
+        eventPic = (ImageView) view.findViewById(R.id.event_pic);
+        eventName = (TextView) view.findViewById(R.id.event_name);
+        eventLocation = (TextView) view.findViewById(R.id.event_loc);
+        eventDate = (TextView) view.findViewById(R.id.event_date);
+        eventTime = (TextView) view.findViewById(R.id.event_time);
+        eventAttendees = (TextView) view.findViewById(R.id.event_attendees);
+        eventCategories = (TextView) view.findViewById(R.id.event_categories);
+        eventHost = (TextView) view.findViewById(R.id.event_host);
+        eventDescription = (TextView) view.findViewById(R.id.event_description);
+        addComment = (Button) view.findViewById(R.id.button_add_comment);
+        invitePeople = (Button) view.findViewById(R.id.button_invite_people);
+        buttonGoingOrEdit = (Button) view.findViewById(R.id.button_going);
+        buttonEditEvent = (ImageButton) view.findViewById(R.id.button_edit_event);
+
         invite.setTypeface(raleway_medium);
 
         setUpEventInformation(view);
         setupEditEvent();
         setUpComments(view);
+        //setupRefresh(view);
         return view;
+    }
+
+    public void setupRefresh(final View view) {
+        final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+        mySwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+
+
+                        Log.v("refresh", "here");
+                        EventsFirebase ef = new EventsFirebase();
+                        ef.getEventDetails(eventId);
+
+
+                        new Thread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                while (!EventsFirebase.detailsThreadCheck) {
+                                    try {
+                                        Log.v("sleepingthread","fam");
+
+                                        Thread.sleep(70);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                event = EventsFirebase.eventDetailsEvent;
+                                setUpEventInformation(view);
+                                setupEditEvent();
+                                setUpComments(view);
+
+
+                            }
+                        }).start();
+                    }
+                }
+        );
+
     }
 
     void setupEditEvent() {
@@ -154,19 +212,6 @@ public class EventDetailsFragment extends Fragment {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     void setUpEventInformation(View view) {
-        eventPic = (ImageView) view.findViewById(R.id.event_pic);
-        eventName = (TextView) view.findViewById(R.id.event_name);
-        eventLocation = (TextView) view.findViewById(R.id.event_loc);
-        eventDate = (TextView) view.findViewById(R.id.event_date);
-        eventTime = (TextView) view.findViewById(R.id.event_time);
-        eventAttendees = (TextView) view.findViewById(R.id.event_attendees);
-        eventCategories = (TextView) view.findViewById(R.id.event_categories);
-        eventHost = (TextView) view.findViewById(R.id.event_host);
-        eventDescription = (TextView) view.findViewById(R.id.event_description);
-        addComment = (Button) view.findViewById(R.id.button_add_comment);
-        invitePeople = (Button) view.findViewById(R.id.button_invite_people);
-        buttonGoingOrEdit = (Button) view.findViewById(R.id.button_going);
-        buttonEditEvent = (ImageButton) view.findViewById(R.id.button_edit_event);
         eventName.setText(event.getEventName());
         eventHost.setOnClickListener(new View.OnClickListener() {
             @Override

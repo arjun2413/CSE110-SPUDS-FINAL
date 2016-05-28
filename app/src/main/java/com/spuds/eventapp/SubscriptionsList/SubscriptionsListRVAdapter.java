@@ -83,22 +83,41 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
         //subViewHolder.subPhoto.setImageResource(subscriptions.get(i).photoId);
 
 
-        Bitmap src = null;
-        try {
-            byte[] imageAsBytes = Base64.decode(currentSub.picture, Base64.DEFAULT);
-            src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-        } catch(OutOfMemoryError e) {
-            System.err.println(e.toString());
-        }
+        if (currentSub.picture != null && currentSub.picture != "") {
+            Bitmap src = null;
+            try {
+                byte[] imageAsBytes = Base64.decode(currentSub.picture, Base64.DEFAULT);
+                src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+            } catch(OutOfMemoryError e) {
+                System.err.println(e.toString());
+            }
 
-        if (src != null) {
+            if (src != null) {
 
-            RoundedBitmapDrawable dr =
+                RoundedBitmapDrawable dr =
+                        RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+                dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
+                subViewHolder.subPhoto.setImageDrawable(dr);
+
+            } else {
+                src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
+
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+                circularBitmapDrawable.setCircular(true);
+                circularBitmapDrawable.setAntiAlias(true);
+                subViewHolder.subPhoto.setImageDrawable(circularBitmapDrawable);
+            }
+        } else {
+            Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
+
+            RoundedBitmapDrawable circularBitmapDrawable =
                     RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
-            dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
-            subViewHolder.subPhoto.setImageDrawable(dr);
-
+            circularBitmapDrawable.setCircular(true);
+            circularBitmapDrawable.setAntiAlias(true);
+            subViewHolder.subPhoto.setImageDrawable(circularBitmapDrawable);
         }
+
         subViewHolder.toggleFollow.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
 
         subViewHolder.toggleFollow.setOnClickListener(new View.OnClickListener() {
