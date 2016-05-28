@@ -77,7 +77,7 @@ public class CreateCommentFragment extends Fragment {
                 else {
 
                     Snackbar snackbar = Snackbar.make
-                            (view,getString(R.string.missing_fields_error),
+                            (view,getString(R.string.errorEmptyFields),
                                     Snackbar.LENGTH_LONG);
                     snackbar.show();
 

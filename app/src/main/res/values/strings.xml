@@ -94,7 +94,8 @@
     <string name="errorEmptyComment">ERROR: No comment made</string>
     <string name="errorInvalidTime">ERROR: Invalid time</string>
     <string name="errorCategories">ERROR: More than 3 categories have been selected</string>
-
+    <string name="errorLoginPass">ERROR: Invalid login details</string>
+    <string name="errorFatal">ERROR: Something went wrong!</string>
 
 
 </resources>

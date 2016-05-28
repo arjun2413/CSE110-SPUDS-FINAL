@@ -99,7 +99,7 @@ public class ChangePasswordFragment extends Fragment {
 
                 Log.v("is_error 1:" , String.valueOf(is_error));
                 if(!form.allFilled()) {
-                    appendError(getString(R.string.missing_fields_error));
+                    appendError(getString(R.string.errorEmptyFields));
                     is_error = true;
                     Log.v("is_error 2:" , String.valueOf(is_error));
                 }
@@ -109,14 +109,14 @@ public class ChangePasswordFragment extends Fragment {
                     if(is_error) {
                         appendError("\n");
                     }
-                    appendError(getString(R.string.mismatched_fields_error));
+                    appendError(getString(R.string.errorPassMismatch));
                     is_error = true;
                     Log.v("is_error 3:" , String.valueOf(is_error));
                 }
 
                 else if(!form.diffPw()){
                     if(!is_error) {
-                        appendError("Error #: New Password Must Be Different");
+                        appendError(getString(R.string.errorSamePass));
                         is_error = true;
                     }
                     Log.v("is_error 4:" , String.valueOf(is_error));

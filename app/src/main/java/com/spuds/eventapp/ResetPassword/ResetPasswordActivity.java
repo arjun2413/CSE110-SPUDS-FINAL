@@ -150,27 +150,23 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 System.out.println("Error status is: " + error);
                 switch(error) {
                     case 1:
-                        message = "Fill out the field bruh.";
                         if(errorMessage != null) {
-                            errorMessage.setText(message);
+                            errorMessage.setText(getString(R.string.errorEmptyFields));
                         }
                         break;
                     case 2:
-                        message = "Please enter a ucsd.edu email.";
                         if (errorMessage != null) {
-                            errorMessage.setText(message);
+                            errorMessage.setText(getString(R.string.errorInvalidEmail));
                         }
                         break;
                     case 3:
-                        message = "That email is not signed up.";
                         if (errorMessage != null) {
-                            errorMessage.setText(message);
+                            errorMessage.setText(getString(R.string.errorNoEmail));
                         }
                         break;
                     case 4:
-                        message = "Something went wrong. Please try again.";
                         if (errorMessage != null) {
-                            errorMessage.setText(message);
+                            errorMessage.setText(getString(R.string.errorFatal));
                         }
                         break;
                     default:
