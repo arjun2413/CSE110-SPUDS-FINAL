@@ -31,12 +31,16 @@
                     android:layout_alignParentTop="true"
                     android:textSize="20sp"
                     android:layout_centerVertical="true"
-                    android:text="Arjun Srinivasan"
+                    android:text="Arjun Srinivasan Wu"
                     android:layout_marginTop="25dp"
                     android:textColor="#1a1a1a"
                     android:layout_toRightOf="@+id/sub_photo"
                     android:layout_marginLeft="10dp"
                     android:layout_toStartOf="@+id/follow_toggle"
+                    android:minLines="1"
+                    android:maxLines="1"
+
+                    android:ellipsize="end"
                     />
 
 

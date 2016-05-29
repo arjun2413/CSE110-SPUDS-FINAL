@@ -33,8 +33,8 @@
                 >
 
                 <ImageView
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:id="@+id/user_image"
                     android:background="#00ffffff"
                     android:layout_marginTop="10dp"
@@ -53,18 +53,19 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="66dp"
+                        android:layout_height="60dp"
                         android:background="#e6e6e6"
                         android:layout_marginTop="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="2">
+
+                        android:id="@+id/info">
 
 
                         <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="60dp"
                             android:gravity="left"
                             android:layout_weight="1">
 
@@ -75,10 +76,10 @@
                                 android:text="100"
                                 android:id="@+id/user_number_following"
                                 android:textStyle="bold"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="5dp"
                                 android:layout_marginLeft="10dp"
                                 android:textColor="#000000"
-                                android:textSize="25sp"/>
+                                android:textSize="23sp"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -88,6 +89,7 @@
                                 android:layout_below="@id/user_number_following"
                                 android:id="@+id/label_user_number_following"
                                 android:textColor="#000000"
+                                android:textSize="15sp"
                                 android:layout_marginLeft="10dp"/>
                         </LinearLayout>
 
@@ -95,7 +97,7 @@
                         <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="60dp"
                             android:layout_alignParentTop="true"
                             android:layout_alignParentRight="true"
                             android:layout_alignParentEnd="true"
@@ -109,10 +111,10 @@
                                 android:layout_alignParentRight="true"
                                 android:id="@+id/user_number_hosting"
                                 android:textStyle="bold"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="5dp"
                                 android:layout_marginRight="10dp"
                                 android:textColor="#000000"
-                                android:textSize="25sp"/>
+                                android:textSize="23sp"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -124,7 +126,8 @@
                                 android:layout_alignParentRight="true"
                                 android:layout_alignParentEnd="true"
                                 android:textColor="#000000"
-                                android:layout_marginRight="10dp"/>
+                                android:layout_marginRight="10dp"
+                                android:textSize="15dp"/>
                         </LinearLayout>
 
                     </RelativeLayout>
@@ -135,7 +138,8 @@
                         android:text="EDIT YOUR PROFILE"
                         android:textSize="15sp"
                         android:id="@+id/button_subscribe"
-                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/info"
+
                         android:textColor="#ffffff"
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/roundedbox"
@@ -157,7 +161,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_marginTop="10dp"
+
                     android:text="Christine Wu"
                     android:id="@+id/user_name"
                     android:textColor="#000000"
@@ -176,8 +180,18 @@
                     android:id="@+id/user_description"
                     android:textColor="#000000"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"/>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cccccc"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -186,7 +200,7 @@
                 android:text="EVENTS HOSTING"
                 android:id="@+id/label_events_hosting"
                 android:textStyle="bold"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:textColor="#000000"
                 android:layout_marginLeft="10dp" />
 

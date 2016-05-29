@@ -142,14 +142,44 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             case 0:
                 v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_notifications_update, viewGroup, false);
                 overrideFonts(v.getContext(),v);
+
+                Typeface raleway_medium = Typeface.createFromAsset(viewGroup.getContext().getAssets(),  "Raleway-Medium.ttf");
+
+                //title font
+                TextView name = (TextView) v.findViewById(R.id.host);
+                name.setTypeface(raleway_medium);
+
+                TextView event = (TextView) v.findViewById(R.id.event_name);
+                event.setTypeface(raleway_medium);
+
                 return new UpdateViewHolder(v);
             case 1:
                 v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_notifications_invite, viewGroup, false);
                 overrideFonts(v.getContext(),v);
+
+                Typeface medium = Typeface.createFromAsset(viewGroup.getContext().getAssets(),  "Raleway-Medium.ttf");
+
+                //title font
+                TextView host_name = (TextView) v.findViewById(R.id.host);
+                host_name.setTypeface(medium);
+
+                TextView host_event = (TextView) v.findViewById(R.id.event_name);
+                host_event.setTypeface(medium);
+
                 return new InviteViewHolder(v);
             case 2:
                 v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_notifications_comment, viewGroup, false);
                 overrideFonts(v.getContext(),v);
+
+                Typeface med = Typeface.createFromAsset(viewGroup.getContext().getAssets(),  "Raleway-Medium.ttf");
+
+                //title font
+                TextView host = (TextView) v.findViewById(R.id.host);
+                host.setTypeface(med);
+
+                TextView thing = (TextView) v.findViewById(R.id.event_name);
+                thing.setTypeface(med);
+
                 return new ReplyViewHolder(v);
             default:
                 return null;

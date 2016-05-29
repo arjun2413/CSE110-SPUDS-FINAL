@@ -107,11 +107,6 @@ public class ProfileFragment extends Fragment {
         TextView going = (TextView) view.findViewById(R.id.label_events_going);
         going.setTypeface(raleway_medium);
 
-        TextView sub_num = (TextView) view.findViewById(R.id.user_number_following);
-        sub_num.setTypeface(raleway_medium);
-
-        TextView events_num = (TextView) view.findViewById(R.id.user_number_hosting);
-        events_num.setTypeface(raleway_medium);
 
         Button subscribe = (Button) view.findViewById(R.id.button_subscribe);
         subscribe.setTypeface(raleway_medium);

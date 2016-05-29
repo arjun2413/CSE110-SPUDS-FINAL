@@ -20,12 +20,12 @@
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable-v21/abc_btn_colored_material.xml"
     },
     {
-        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable-v21/abc_edit_text_material.xml",
-        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable-v21/abc_edit_text_material.xml"
-    },
-    {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable-v21/ic_menu_slideshow.xml",
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable-v21/ic_menu_slideshow.xml"
+    },
+    {
+        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable-v21/abc_edit_text_material.xml",
+        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable-v21/abc_edit_text_material.xml"
     },
     {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable-v21/ic_menu_share.xml",

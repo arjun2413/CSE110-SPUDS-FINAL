@@ -52,20 +52,20 @@
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable/abc_btn_check_material.xml"
     },
     {
-        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/mr_ic_play_dark.xml",
-        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/res/drawable/mr_ic_play_dark.xml"
-    },
-    {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/lock.png",
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable/lock.png"
     },
     {
-        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/search.png",
-        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable/search.png"
+        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/mr_ic_play_dark.xml",
+        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/res/drawable/mr_ic_play_dark.xml"
     },
     {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/ic_launcher.png",
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable/ic_launcher.png"
+    },
+    {
+        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/search.png",
+        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable/search.png"
     },
     {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/common_google_signin_btn_text_dark.xml",
@@ -184,12 +184,12 @@
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/src/main/res/drawable/profile_pic_icon.png"
     },
     {
-        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/mr_ic_pause_dark.xml",
-        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/res/drawable/mr_ic_pause_dark.xml"
-    },
-    {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/abc_seekbar_thumb_material.xml",
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable/abc_seekbar_thumb_material.xml"
+    },
+    {
+        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/mr_ic_pause_dark.xml",
+        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/res/drawable/mr_ic_pause_dark.xml"
     },
     {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/mr_ic_media_route_connecting_mono_dark.xml",

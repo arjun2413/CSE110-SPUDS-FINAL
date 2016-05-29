@@ -18,8 +18,8 @@
             android:id="@+id/relativeLayout">
 
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:id="@+id/picture"
                 android:background="#00ffffff" />
 
@@ -66,7 +66,8 @@
             android:layout_toEndOf="@+id/host"
             android:textColor="#1a1a1a"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_marginRight="5dp"
+            android:textSize="16sp"/>
 
 
         <TextView
@@ -80,7 +81,8 @@
             android:layout_toRightOf="@+id/relativeLayout"
             android:layout_toEndOf="@+id/relativeLayout"
             android:layout_marginLeft="10dp"
-            android:textColor="#1a1a1a" />
+            android:textColor="#1a1a1a"
+            android:textSize="16sp"/>
 
 
         <TextView
@@ -92,7 +94,7 @@
             android:layout_gravity="center_vertical"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="65dp"
             android:layout_marginRight="5dp"
             />
 
@@ -100,7 +102,8 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="110dp"
+            android:layout_toRightOf="@+id/relativeLayout"
+            android:layout_toEndOf="@+id/relativeLayout"
 
             android:layout_below="@+id/action_text">
 
@@ -112,11 +115,10 @@
                 android:id="@+id/event_name"
                 android:textStyle="bold"
                 android:layout_marginRight="5dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 android:minLines="1"
                 android:maxLines="1"
-                android:layout_toRightOf="@+id/relativeLayout"
-                android:layout_toEndOf="@+id/relativeLayout"
+               android:textSize="18sp"
                 android:ellipsize="end"
                 android:textColor="#1a1a1a"
                 android:layout_marginTop="10dp" />

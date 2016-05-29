@@ -78,13 +78,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Arjun Shan Huang Wu Nguyen Yun"
+            android:text="Arjun Shan "
             android:id="@+id/host"
             android:textStyle="bold"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/relativeLayout"
             android:layout_toEndOf="@+id/relativeLayout"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:textColor="#1a1a1a"
             android:textSize="16sp"
 
@@ -123,14 +123,14 @@
                 android:textStyle="bold"
                 android:layout_toRightOf="@+id/relativeLayout"
                 android:layout_toEndOf="@+id/relativeLayout"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="20dp"
                 android:textColor="#1a1a1a"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="5dp"
                 android:minLines="1"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:textSize="20sp"/>
+                android:textSize="18sp"/>
 
         </LinearLayout>
 

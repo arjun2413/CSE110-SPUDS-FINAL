@@ -428,12 +428,12 @@
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable-xhdpi-v4/abc_ic_star_black_36dp.png"
     },
     {
-        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4/common_plus_signin_btn_icon_dark_pressed.9.png",
-        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.3.0/res/drawable-xhdpi/common_plus_signin_btn_icon_dark_pressed.9.png"
-    },
-    {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4/crop__ic_cancel.png",
         "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.soundcloud.android/android-crop/1.0.1/res/drawable-xhdpi/crop__ic_cancel.png"
+    },
+    {
+        "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4/common_plus_signin_btn_icon_dark_pressed.9.png",
+        "source": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.3.0/res/drawable-xhdpi/common_plus_signin_btn_icon_dark_pressed.9.png"
     },
     {
         "merged": "/home/tina/Desktop/android-studio/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4/ic_setting_light.png",

@@ -18,8 +18,8 @@
             android:id="@+id/relativeLayout">
 
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:id="@+id/picture"
                 android:background="#00ffffff" />
 
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/relativeLayout"
             android:layout_toEndOf="@+id/relativeLayout"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:id="@+id/first_line"
             >
 
@@ -69,11 +69,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Arjun Shan Srinivasan"
+                android:text="Arjun Shan "
                 android:id="@+id/host"
                 android:textStyle="bold"
                 android:layout_alignParentTop="true"
-
+                android:textSize="16sp"
                 android:layout_toStartOf="@+id/action_text"
                 android:minLines="1"
                 android:maxLines="1"
@@ -91,6 +91,7 @@
                 android:layout_toRightOf="@+id/host"
                 android:layout_toEndOf="@+id/host"
                 android:textColor="#1a1a1a"
+                android:textSize="16sp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 />
@@ -105,8 +106,8 @@
             android:layout_below="@+id/first_line"
             android:layout_marginLeft="20dp"
             android:textColor="#1a1a1a"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+
             android:layout_marginRight="5dp"
             android:layout_toRightOf="@+id/relativeLayout"
             android:layout_toEndOf="@+id/relativeLayout"
@@ -123,7 +124,7 @@
             android:layout_gravity="center_vertical"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="65dp"
             android:layout_marginRight="5dp"
             />
 
@@ -131,8 +132,10 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="110dp"
-
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/relativeLayout"
+            android:layout_toEndOf="@+id/relativeLayout"
             android:layout_below="@id/comment_description">
 
             <TextView
@@ -144,6 +147,7 @@
                 android:layout_alignBottom="@+id/event_name"
                 android:layout_alignLeft="@+id/comment_description"
                 android:layout_alignStart="@+id/comment_description"
+                android:textSize="16sp"
                 android:textColor="#1a1a1a" />
 
             <TextView
@@ -151,10 +155,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Reggie Wu is so cool GOD DAYUUM"
+                android:text="Reggie Wu is so cool OH DAYUUM"
                 android:id="@+id/event_name"
                 android:textStyle="bold"
-
+android:textSize="16sp"
                 android:minLines="1"
                 android:maxLines="1"
 
