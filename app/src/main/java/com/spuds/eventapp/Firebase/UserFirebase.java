@@ -240,7 +240,7 @@ public class UserFirebase {
             bitmap = BitmapFactory.decodeStream(stream, null, options);
 
 
-            options.inSampleSize = calculateInSampleSize(options, 400, 400);
+            options.inSampleSize = calculateInSampleSize(options, 200, 200);
 
             Log.v("look!", "sample size: " + options.inSampleSize);
 
@@ -561,15 +561,15 @@ public class UserFirebase {
 
                     ArrayList<String> users = new ArrayList<>();
                     for (Map.Entry<String, Object> entry : values.entrySet()) {
-                        Log.v("Userfirebase asdf", " key" + entry.getKey());
+                        Log.v("subsfirebase", " key" + entry.getKey());
 
 
                         String followingId = "";
                         boolean following = false;
                         for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
 
-                            Log.v("Userfirebase asdf", " entry value key" + entry2.getKey());
-                            Log.v("Userfirebase asdf", " entry value value" + entry2.getValue());
+                            Log.v("subsfirebase", " entry value key" + entry2.getKey());
+                            Log.v("subsfirebase", " entry value value" + entry2.getValue());
 
 
                             if (entry2.getKey().equals("following_id")) {
@@ -589,8 +589,6 @@ public class UserFirebase {
 
                             ++numSubscriptions;
                             users.add(followingId);
-
-
 
                         }
 

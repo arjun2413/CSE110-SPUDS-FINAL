@@ -50,9 +50,7 @@ public class EventsFirebase {
     String id;
     public int idIsGoing = 0;
     int loading;
-    boolean isGoing;
     public static Event eventDetailsEvent;
-
 
     public EventsFirebase() {
 
@@ -617,8 +615,10 @@ public class EventsFirebase {
 
     int attendees = 0;
 
+    public static boolean goingToEventThreadCheck;
     /*Purpose: Increases the amount going by 1 */
     public void goingToAnEvent(final String eventId) {
+        goingToEventThreadCheck = false;
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
         Query queryRef = myFirebaseRef.child(eventId);
@@ -642,6 +642,8 @@ public class EventsFirebase {
                     map.put("event_id", eventId);
                     ref.child("events_registrations").push().setValue(map);
                 }
+
+                goingToEventThreadCheck = true;
 
             }
 
@@ -719,6 +721,9 @@ public class EventsFirebase {
     static boolean isGoingThreadCheck = false;
 
     public void isGoing(final String eventId) {
+        isGoingThreadCheck = false;
+        idIsGoing = 0;
+        id = null;
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/events_registrations");
                 final ValueEventListener valueEventListener = new ValueEventListener() {
 
@@ -800,6 +805,7 @@ public class EventsFirebase {
     public void deleteEventRegistration(final String eventId){
         Log.v("Userfirebase entries", "eventId " + eventId);
 
+        deleteThreadCheck = false;
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/events_registrations");
         final ValueEventListener valueEventListener = new ValueEventListener() {
 
@@ -865,8 +871,6 @@ public class EventsFirebase {
                 }
 
                 ref.removeEventListener(valueEventListener);
-                deleteThreadCheck = false;
-
             }
         }).start();
 

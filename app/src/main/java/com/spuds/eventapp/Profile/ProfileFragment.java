@@ -197,19 +197,27 @@ public class ProfileFragment extends Fragment {
             }
 
             if (src != null) {
-                RoundedBitmapDrawable circularBitmapDrawable =
-                        RoundedBitmapDrawableFactory.create(getResources(), src);
-                circularBitmapDrawable.setCircular(true);
-                circularBitmapDrawable.setAntiAlias(true);
-                userImage.setImageDrawable(circularBitmapDrawable);
+                try {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(getResources(), src);
+                    circularBitmapDrawable.setCircular(true);
+                    circularBitmapDrawable.setAntiAlias(true);
+                    userImage.setImageDrawable(circularBitmapDrawable);
+                } catch (OutOfMemoryError e) {
+                    System.err.println(e.toString());
+                }
             } else {
-                src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
+                try {
+                    src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
 
-                RoundedBitmapDrawable circularBitmapDrawable =
-                        RoundedBitmapDrawableFactory.create(getResources(), src);
-                circularBitmapDrawable.setCircular(true);
-                circularBitmapDrawable.setAntiAlias(true);
-                userImage.setImageDrawable(circularBitmapDrawable);
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(getResources(), src);
+                    circularBitmapDrawable.setCircular(true);
+                    circularBitmapDrawable.setAntiAlias(true);
+                    userImage.setImageDrawable(circularBitmapDrawable);
+                } catch (OutOfMemoryError e) {
+                    System.err.println(e.toString());
+                }
             }
         } else {
             Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
@@ -374,7 +382,6 @@ public class ProfileFragment extends Fragment {
         if (!first) {
             mySwipeRefreshLayout.post(new Runnable() {
                 @Override public void run() {
-                    mySwipeRefreshLayout.setRefreshing(true);
                     // directly call onRefresh() method
                     refreshListener.onRefresh();
                 }
