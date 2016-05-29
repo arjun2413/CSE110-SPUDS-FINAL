@@ -155,12 +155,14 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         if (events.get(i).getPicture() != null && events.get(i).getPicture() != "") {
             String imageFile = events.get(i).getPicture();
             Bitmap src = null;
-            try {
-                byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-                 src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-            } catch(OutOfMemoryError e) {
-                System.err.println(e.toString());
-            }
+            /*if (imageFile != null && imageFile != "") {
+                try {
+                    byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                    src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+                } catch (OutOfMemoryError e) {
+                    System.err.println(e.toString());
+                }
+            }*/
 
             if (src != null)
                 eventViewHolder.eventPic.setImageBitmap(src);

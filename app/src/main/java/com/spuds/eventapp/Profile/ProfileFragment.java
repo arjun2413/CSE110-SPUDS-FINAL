@@ -7,10 +7,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
@@ -55,6 +57,8 @@ public class ProfileFragment extends Fragment {
     List<Event> eventsGoing;
     UserFirebase userFirebase;
 
+    ProfileViewPagerAdapter profileViewPagerAdapter;
+
     public ProfileFragment() {
     }
 
@@ -94,11 +98,11 @@ public class ProfileFragment extends Fragment {
         TextView name = (TextView) view.findViewById(R.id.user_name);
         name.setTypeface(raleway_medium);
 
-        TextView hosting = (TextView) view.findViewById(R.id.label_events_hosting);
+        /*TextView hosting = (TextView) view.findViewById(R.id.label_events_hosting);
         hosting.setTypeface(raleway_medium);
 
         TextView going = (TextView) view.findViewById(R.id.label_events_going);
-        going.setTypeface(raleway_medium);
+        going.setTypeface(raleway_medium);*/
 
         TextView sub_num = (TextView) view.findViewById(R.id.user_number_following);
         sub_num.setTypeface(raleway_medium);
@@ -110,6 +114,8 @@ public class ProfileFragment extends Fragment {
         subscribe.setTypeface(raleway_medium);
 
         setUpProfileDetails(view);
+        tabs(view);
+        overrideFonts(view.getContext(),view);
 
         return view;
     }
@@ -122,8 +128,8 @@ public class ProfileFragment extends Fragment {
         buttonSubscribedOrEdit = (Button) view.findViewById(R.id.button_subscribe);
         numberFollowing = (TextView) view.findViewById(R.id.user_number_following);
         numberHosting = (TextView) view.findViewById(R.id.user_number_hosting);
-        eventsHostingRV = (RecyclerView) view.findViewById(R.id.rv_events_hosting);
-        eventsGoingRV = (RecyclerView) view.findViewById(R.id.rv_events_going);
+        /*eventsHostingRV = (RecyclerView) view.findViewById(R.id.rv_events_hosting);
+        eventsGoingRV = (RecyclerView) view.findViewById(R.id.rv_events_going);*/
         userDescription = (TextView) view.findViewById(R.id.user_description);
 
         // TODO (M): userImage
@@ -270,7 +276,7 @@ public class ProfileFragment extends Fragment {
         numberFollowing.setText(String.valueOf(user.getNumberFollowing()));
         numberHosting.setText(String.valueOf(user.getNumberHosting()));
 
-        setUpRecyclerViewsGoingAndHosting();
+        //setUpRecyclerViewsGoingAndHosting();
 
     }
 
@@ -318,9 +324,49 @@ public class ProfileFragment extends Fragment {
         eventsGoingRV.setAdapter(eventsFeedRVAdapterGoing);
     }
 
+    private void tabs(View view) {
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.profile_tabs);
+        final ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
+
+        viewPager.setAdapter(profileViewPagerAdapter);
+        viewPager.setOffscreenPageLimit(2);
+
+        final TabLayout.Tab going = tabLayout.newTab();
+        final TabLayout.Tab hosting = tabLayout.newTab();
+
+        going.setText("Going");
+        hosting.setText("Hosting");
+
+        tabLayout.addTab(going, 0);
+        tabLayout.addTab(hosting, 1);
+
+
+        //tabLayout.setTabTextColors(ContextCompat.getColorStateList(this, R.color.tab_selector));
+        //tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.indicator));
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        profileViewPagerAdapter = new ProfileViewPagerAdapter(getChildFragmentManager(), this);
     }
 
     @Override
