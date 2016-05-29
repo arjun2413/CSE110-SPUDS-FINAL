@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -99,6 +100,7 @@ public class ProfileFragment extends Fragment {
         } else {
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(UserFirebase.thisUser.getName());
         }
+
 
 
         overrideFonts(view.getContext(),view);
