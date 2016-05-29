@@ -9,11 +9,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6f44674-b6a9-4986-8af6-959b586998d8" name="Default" comment="Merge">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Search/SearchEventsFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Search/SearchEventsRVAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Search/SearchUsersFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Search/SearchUsersRVAdapter.java" />
+    <list default="true" id="d6f44674-b6a9-4986-8af6-959b586998d8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CSE110-SPUDS-FINAL.iws" />
@@ -4380,7 +4376,13 @@
       <option name="project" value="LOCAL" />
       <updated>1464503698922</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Search users and search events pages added">
+      <created>1464508419387</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1464508419387</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -4468,7 +4470,8 @@
     <MESSAGE value="Made changepassword work in total" />
     <MESSAGE value="tested and standardized some error messages" />
     <MESSAGE value="Merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge" />
+    <MESSAGE value="Search users and search events pages added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Search users and search events pages added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
