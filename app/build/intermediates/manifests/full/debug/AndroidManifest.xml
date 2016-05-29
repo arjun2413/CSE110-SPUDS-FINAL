@@ -22,7 +22,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
@@ -95,6 +95,7 @@
                 <category android:name="com.spuds.eventapp" />
             </intent-filter>
         </receiver>
+2
 
         <!-- responds to instance ID or something, handles tokens! -->
         <service

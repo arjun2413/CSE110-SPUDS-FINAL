@@ -291,22 +291,31 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 circularBitmapDrawable.setAntiAlias(true);
                 holder.hostPicture.setImageDrawable(circularBitmapDrawable);
             } else {
-                src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
+                try {
+                    src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
+
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+                    circularBitmapDrawable.setCircular(true);
+                    circularBitmapDrawable.setAntiAlias(true);
+                    holder.hostPicture.setImageDrawable(circularBitmapDrawable);
+                } catch (OutOfMemoryError e) {
+                    System.err.println(e.toString());
+                }
+            }
+        } else {
+
+            try {
+                Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
 
                 RoundedBitmapDrawable circularBitmapDrawable =
                         RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
                 circularBitmapDrawable.setCircular(true);
                 circularBitmapDrawable.setAntiAlias(true);
                 holder.hostPicture.setImageDrawable(circularBitmapDrawable);
+            } catch (OutOfMemoryError e) {
+                System.err.println(e.toString());
             }
-        } else {
-            Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
-
-            RoundedBitmapDrawable circularBitmapDrawable =
-                    RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
-            circularBitmapDrawable.setCircular(true);
-            circularBitmapDrawable.setAntiAlias(true);
-            holder.hostPicture.setImageDrawable(circularBitmapDrawable);
         }
 
         // Make card clickable
@@ -377,22 +386,30 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 circularBitmapDrawable.setAntiAlias(true);
                 holder.replierPicture.setImageDrawable(circularBitmapDrawable);
             } else {
-                src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
+                try {
+                     src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
+
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+                    circularBitmapDrawable.setCircular(true);
+                    circularBitmapDrawable.setAntiAlias(true);
+                    holder.replierPicture.setImageDrawable(circularBitmapDrawable);
+                } catch (OutOfMemoryError e) {
+                    System.err.println(e.toString());
+                }
+            }
+        } else {
+            try {
+                Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
 
                 RoundedBitmapDrawable circularBitmapDrawable =
                         RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
                 circularBitmapDrawable.setCircular(true);
                 circularBitmapDrawable.setAntiAlias(true);
                 holder.replierPicture.setImageDrawable(circularBitmapDrawable);
+            } catch (OutOfMemoryError e) {
+                System.err.println(e.toString());
             }
-        } else {
-            Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
-
-            RoundedBitmapDrawable circularBitmapDrawable =
-                    RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
-            circularBitmapDrawable.setCircular(true);
-            circularBitmapDrawable.setAntiAlias(true);
-            holder.replierPicture.setImageDrawable(circularBitmapDrawable);
         }
 
         holder.commentDescription.setText(noti.commentDescription);

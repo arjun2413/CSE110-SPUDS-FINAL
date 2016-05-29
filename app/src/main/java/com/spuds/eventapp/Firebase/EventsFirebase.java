@@ -50,9 +50,7 @@ public class EventsFirebase {
     String id;
     public int idIsGoing = 0;
     int loading;
-    boolean isGoing;
     public static Event eventDetailsEvent;
-
 
     public EventsFirebase() {
 
@@ -193,6 +191,8 @@ public class EventsFirebase {
 
         UserFirebase userFirebase = new UserFirebase();
         userFirebase.updateNumberHosting();
+
+        Log.v("eventsfirebasepushref", pushRef.getKey());
 
         return pushRef.getKey();
     }
@@ -510,42 +510,41 @@ public class EventsFirebase {
     }
 
     public static boolean detailsThreadCheck;
-    public Event getEventDetails(final String eventID) {
+    public Event getEventDetails(final String eventId) {
         detailsThreadCheck = false;
-        Log.v("asdfjkl", "getting: " + eventID);
+        Log.v("asdfjkl", "getting: " + eventId);
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
-        Query queryRef = myFirebaseRef.orderByKey();
+        Query queryRef = myFirebaseRef.child(eventId);
         queryRef.addChildEventListener(new ChildEventListener() {
             Event newEvent = new Event();
 
             @Override
             public void onChildAdded(DataSnapshot snapshot, String previousChild) {
-                for (DataSnapshot child : snapshot.getChildren()) {
                     //Log.d("lmao", String.valueOf(child));
-                    switch (child.getKey()) {
+                    switch (snapshot.getKey()) {
                         case "date":
-                            newEvent.setDate(String.valueOf(child.getValue()));
+                            newEvent.setDate(String.valueOf(snapshot.getValue()));
                             break;
                         case "description":
-                            newEvent.setDescription(String.valueOf(child.getValue()));
+                            newEvent.setDescription(String.valueOf(snapshot.getValue()));
                             break;
                         case "event_name":
-                            newEvent.setEventName(String.valueOf(child.getValue()));
+                            newEvent.setEventName(String.valueOf(snapshot.getValue()));
                             break;
                         case "location":
-                            newEvent.setLocation(String.valueOf(child.getValue()));
+                            newEvent.setLocation(String.valueOf(snapshot.getValue()));
                             break;
                         case "number_going":
-                            newEvent.setAttendees(Integer.parseInt(String.valueOf(child.getValue())));
+                            newEvent.setAttendees(Integer.parseInt(String.valueOf(snapshot.getValue())));
                             break;
                         case "picture":
-                            newEvent.setPicture(String.valueOf(child.getValue()));
+                            newEvent.setPicture(String.valueOf(snapshot.getValue()));
                             break;
                         case "host_id":
-                            newEvent.setHostId(String.valueOf(child.getValue()));
+                            newEvent.setHostId(String.valueOf(snapshot.getValue()));
                             break;
                         case "host_name":
-                            newEvent.setHostName(String.valueOf(child.getValue()));
+                            newEvent.setHostName(String.valueOf(snapshot.getValue()));
                             break;
                         case "catAcademic":
                             a.add("Academic");
@@ -568,11 +567,11 @@ public class EventsFirebase {
                         case "catSports":
                             a.add("Sports");
                             break;
-                    }
+
 
                     //Log.d("eventsfbasdf", String.valueOf(snapshot.getKey()));
-                    newEvent.setEventId(snapshot.getKey());
                 }
+                newEvent.setEventId(snapshot.getKey());
 
                 newEvent.setCategories(a);
                 a = new ArrayList<String>();
@@ -616,8 +615,10 @@ public class EventsFirebase {
 
     int attendees = 0;
 
+    public static boolean goingToEventThreadCheck;
     /*Purpose: Increases the amount going by 1 */
     public void goingToAnEvent(final String eventId) {
+        goingToEventThreadCheck = false;
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
         Query queryRef = myFirebaseRef.child(eventId);
@@ -641,6 +642,8 @@ public class EventsFirebase {
                     map.put("event_id", eventId);
                     ref.child("events_registrations").push().setValue(map);
                 }
+
+                goingToEventThreadCheck = true;
 
             }
 
@@ -669,7 +672,9 @@ public class EventsFirebase {
 
     }
 
+    public boolean notGoingThreadCheck;
     public void notGoingToAnEvent(final String eventId) {
+        notGoingThreadCheck = false;
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
         Query queryRef = myFirebaseRef.child(eventId);
         Log.d("Here6", "here");
@@ -685,6 +690,8 @@ public class EventsFirebase {
                     myFirebaseRef.child(eventId).child("number_going").setValue(attendees);
 
                 }
+
+                notGoingThreadCheck = true;
 
             }
 
@@ -714,6 +721,9 @@ public class EventsFirebase {
     static boolean isGoingThreadCheck = false;
 
     public void isGoing(final String eventId) {
+        isGoingThreadCheck = false;
+        idIsGoing = 0;
+        id = null;
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/events_registrations");
                 final ValueEventListener valueEventListener = new ValueEventListener() {
 
@@ -790,11 +800,12 @@ public class EventsFirebase {
 
     }
 
-    static boolean deleteThreadCheck = false;
+    public static boolean deleteThreadCheck = false;
 
     public void deleteEventRegistration(final String eventId){
         Log.v("Userfirebase entries", "eventId " + eventId);
 
+        deleteThreadCheck = false;
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/events_registrations");
         final ValueEventListener valueEventListener = new ValueEventListener() {
 
@@ -860,8 +871,6 @@ public class EventsFirebase {
                 }
 
                 ref.removeEventListener(valueEventListener);
-                deleteThreadCheck = false;
-
             }
         }).start();
 

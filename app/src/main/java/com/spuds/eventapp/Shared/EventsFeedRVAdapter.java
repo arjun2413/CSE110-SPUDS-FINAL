@@ -46,7 +46,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         TextView seeMore;
         TextView monthDate, dayDate;
         TextView eventTime;
-        Button buttonGoing;
+
 
 
         EventViewHolder(View itemView) {
@@ -62,7 +62,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             monthDate = (TextView) itemView.findViewById(R.id.date_month);
             dayDate = (TextView) itemView.findViewById(R.id.date_day);
             eventTime = (TextView) itemView.findViewById(R.id.event_time);
-            buttonGoing = (Button) itemView.findViewById(R.id.event_going);
+
 
         }
 
@@ -95,11 +95,11 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         //Typeface raleway_light = Typeface.createFromAsset(v.getContext().getAssets(),  "raleway-light.ttf");
         overrideFonts(v.getContext(),v);
 
-      /*  Typeface raleway_medium = Typeface.createFromAsset(getAssets(),  "Raleway-Medium.ttf");
+        Typeface raleway_medium = Typeface.createFromAsset(viewGroup.getContext().getAssets(),  "Raleway-Medium.ttf");
 
         //title font
-        TextView upload = (TextView) v.findViewById(R.id.upload);
-        upload.setTypeface(raleway_medium);*/
+        TextView name = (TextView) v.findViewById(R.id.event_name);
+        name.setTypeface(raleway_medium);
 
         EventViewHolder evh = new EventViewHolder(v);
         return evh;
@@ -302,7 +302,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
         Log.d("rvadapter", "b4 thread");
 
-        eventViewHolder.buttonGoing.setVisibility(View.INVISIBLE);
+
         /*eventViewHolder.buttonGoing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

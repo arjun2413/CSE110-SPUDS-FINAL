@@ -100,22 +100,30 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
                 subViewHolder.subPhoto.setImageDrawable(dr);
 
             } else {
-                src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
+                try {
+                    src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
+
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+                    circularBitmapDrawable.setCircular(true);
+                    circularBitmapDrawable.setAntiAlias(true);
+                    subViewHolder.subPhoto.setImageDrawable(circularBitmapDrawable);
+                } catch (OutOfMemoryError e) {
+                    System.err.println(e.toString());
+                }
+            }
+        } else {
+            try {
+                Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
 
                 RoundedBitmapDrawable circularBitmapDrawable =
                         RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
                 circularBitmapDrawable.setCircular(true);
                 circularBitmapDrawable.setAntiAlias(true);
                 subViewHolder.subPhoto.setImageDrawable(circularBitmapDrawable);
+            } catch (OutOfMemoryError e) {
+                System.err.println(e.toString());
             }
-        } else {
-            Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
-
-            RoundedBitmapDrawable circularBitmapDrawable =
-                    RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
-            circularBitmapDrawable.setCircular(true);
-            circularBitmapDrawable.setAntiAlias(true);
-            subViewHolder.subPhoto.setImageDrawable(circularBitmapDrawable);
         }
 
         subViewHolder.toggleFollow.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));

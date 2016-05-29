@@ -21,12 +21,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:id="@+id/picture"
-                android:background="#cccccc" />
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:id="@+id/transparent_overlay"
-                android:background="#80000000" />
+                android:background="#00ffffff" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -59,43 +55,64 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="commented on:"
-            android:id="@+id/action_text"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/host"
-            android:layout_toEndOf="@+id/host"
-            android:textColor="#1a1a1a"
-            android:layout_marginLeft="5dp" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Arjun Shan"
-            android:id="@+id/host"
-            android:textStyle="bold"
-            android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/relativeLayout"
             android:layout_toEndOf="@+id/relativeLayout"
-            android:layout_marginLeft="10dp"
-            android:textColor="#1a1a1a" />
+            android:layout_marginLeft="5dp"
+            android:id="@+id/first_line"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Arjun Shan Srinivasan"
+                android:id="@+id/host"
+                android:textStyle="bold"
+                android:layout_alignParentTop="true"
+
+                android:layout_toStartOf="@+id/action_text"
+                android:minLines="1"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="#1a1a1a"
+               />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="commented on:"
+                android:id="@+id/action_text"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/host"
+                android:layout_toEndOf="@+id/host"
+                android:textColor="#1a1a1a"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                />
+        </LinearLayout>
 
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Will there be food?"
+            android:text="omg how is reggie so cool? why can't i be just like him"
             android:id="@+id/comment_description"
-            android:layout_below="@+id/action_text"
-            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/first_line"
+            android:layout_marginLeft="20dp"
             android:textColor="#1a1a1a"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@+id/relativeLayout"
+            android:layout_toEndOf="@+id/relativeLayout"
+            android:minLines="1"
+            android:maxLines="1"
+            android:ellipsize="end"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -107,7 +124,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="80dp"
-
+            android:layout_marginRight="5dp"
             />
 
         <LinearLayout
@@ -130,14 +147,18 @@
                 android:textColor="#1a1a1a" />
 
             <TextView
-                android:layout_width="260dp"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Birthday Party"
+                android:text="Reggie Wu is so cool GOD DAYUUM"
                 android:id="@+id/event_name"
                 android:textStyle="bold"
 
+                android:minLines="1"
+                android:maxLines="1"
 
+                android:ellipsize="end"
                 android:textColor="#1a1a1a" />
 
         </LinearLayout>

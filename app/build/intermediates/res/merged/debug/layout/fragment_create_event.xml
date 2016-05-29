@@ -122,7 +122,8 @@
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/roundedbox"
                 android:paddingLeft="5dp"
-                android:backgroundTint="#ffffff" />
+                android:backgroundTint="#ffffff"
+                android:singleLine="true"/>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -159,7 +160,8 @@
                 android:id="@+id/eventDate"
                 android:background="@drawable/roundedbox"
                 android:backgroundTint="#ffffff"
-                android:paddingLeft="5dp"/>
+                android:paddingLeft="5dp"
+                android:singleLine="true"/>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -202,7 +204,8 @@
                     android:id="@+id/eventTime"
                     android:background="@drawable/roundedbox"
                     android:backgroundTint="#ffffff"
-                    android:paddingLeft="5dp"/>
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"/>
 
                 <Spinner
                     android:layout_width="60dp"
@@ -232,7 +235,8 @@
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/roundedbox"
                 android:backgroundTint="#ffffff"
-                android:paddingLeft="5dp"/>
+                android:paddingLeft="5dp"
+                android:singleLine="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -241,7 +245,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="Description *"
+                android:text="Description"
                 android:id="@+id/description"
                 android:textColor="#ffffff" />
 
