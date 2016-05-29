@@ -104,6 +104,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Firebase.setAndroidContext(this);
 
+      /*  TextView title = (TextView) findViewById(R.id.tv_toolbar);
+        title.setText("EVENTORY");*/
 
         setupNotifications(); // set up GCM values
 
@@ -216,8 +218,12 @@ public class MainActivity extends AppCompatActivity
     void setupMainToolbar() {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       /* TextView title = (TextView) toolbar.findViewById(R.id.tv_toolbar);
+        title.setText("EVENTORY");*/
         setSupportActionBar(toolbar);
-        overrideTitle(toolbar.getContext(),toolbar);
+       // getSupportActionBar().setDisplayShowTitleEnabled(false);
+        overrideFonts(toolbar.getContext(),toolbar);
+
     }
 
     void setupSearchToolbar() {
@@ -452,7 +458,7 @@ public class MainActivity extends AppCompatActivity
 
     void setupDrawer() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        overrideTitle(toolbar.getContext(),toolbar);
+        overrideFonts(toolbar.getContext(),toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
 
@@ -837,19 +843,14 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void overrideTitle(final Context context, final View v) {
-        try {
-            if (v instanceof ViewGroup) {
-                ViewGroup vg = (ViewGroup) v;
-                for (int i = 0; i < vg.getChildCount(); i++) {
-                    View child = vg.getChildAt(i);
-                    overrideTitle(context, child);
-                }
-            } else if (v instanceof TextView) {
-                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "name_font.ttf"));
-            }
-        } catch (Exception e) {
-        }
-    }
+
+  /*  public void setActionBarTitle(String title){
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       /* setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(title);
+        toolbar.setTitle(title);
+        //getActionBar().setTitle(title);
+    }*/
 
 }

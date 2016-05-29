@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,8 @@ public class CreateCommentFragment extends Fragment {
 
         //initialize parts of the fragment
         final View view = inflater.inflate(R.layout.fragment_create_comment, container, false);
+
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Comment");
 
         overrideFonts(view.getContext(),view);
 

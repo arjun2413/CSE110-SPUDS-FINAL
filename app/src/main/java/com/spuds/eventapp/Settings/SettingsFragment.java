@@ -3,6 +3,7 @@ package com.spuds.eventapp.Settings;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -33,6 +34,7 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.recycler, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Settings");
         RecyclerView rv=(RecyclerView) v.findViewById(R.id.rv);
 
         LinearLayoutManager llm = new LinearLayoutManager(v.getContext());

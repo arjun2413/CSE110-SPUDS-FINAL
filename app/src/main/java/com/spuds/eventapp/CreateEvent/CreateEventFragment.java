@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
@@ -287,6 +288,8 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                              Bundle savedInstanceState) {
 
         final View view = inflater.inflate(R.layout.fragment_create_event, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Create Event");
+
         RecyclerView rv=(RecyclerView) view.findViewById(R.id.rv_categories);
 
 

@@ -15,10 +15,10 @@
 
     <ImageView
         android:id="@+id/profile_pic"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:onClick="goToProfile"
         android:layout_centerHorizontal="true"
         android:background="#00ffffff"

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -39,6 +40,7 @@ public class SubscriptionsListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.recycler, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Subscriptions");
         final RecyclerView rv=(RecyclerView) v.findViewById(R.id.rv);
 
         subscriptions = new ArrayList<>();

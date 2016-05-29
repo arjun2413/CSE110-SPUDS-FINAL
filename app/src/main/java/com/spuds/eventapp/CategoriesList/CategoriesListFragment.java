@@ -5,11 +5,14 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.spuds.eventapp.FilteredCategoryFeed.CategoryFeedTabsFragment;
 import com.spuds.eventapp.R;
@@ -18,21 +21,29 @@ import com.spuds.eventapp.Shared.MainActivity;
 
 public class CategoriesListFragment extends Fragment {
     public String type;
+    Toolbar mActionBarToolbar;
 
     public CategoriesListFragment() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+       // ((MainActivity) getActivity()).setActionBarTitle("Categories");
+       /* android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) getActivity().findViewById(R.id.toolbar);
+        TextView title = (TextView) toolbar.findViewById(R.id.tv_toolbar);
+        title.setText("Categories");*/
         super.onCreate(savedInstanceState);
+
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_categories_list, container, false);
-
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Categories");
         overrideFonts(view.getContext(),view);
         pickCategory(view);
+
+       // android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) view.findViewById(R.id.toolbar);
 
 
 

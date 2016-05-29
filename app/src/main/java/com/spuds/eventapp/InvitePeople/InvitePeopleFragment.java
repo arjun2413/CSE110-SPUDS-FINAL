@@ -2,6 +2,7 @@ package com.spuds.eventapp.InvitePeople;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -52,7 +53,7 @@ public class InvitePeopleFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recyler_no_refresh, container, false);
 
-
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Invite People");
         final RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);

@@ -4,11 +4,14 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Notification;
@@ -27,6 +30,9 @@ public class NotificationsFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        /*Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        TextView title = (TextView) toolbar.findViewById(R.id.tv_toolbar);
+        title.setText("Notifications");*/
         super.onCreate(savedInstanceState);
 
         notificationList = new ArrayList<Notification>();
@@ -34,9 +40,9 @@ public class NotificationsFragment extends Fragment {
         //fake data
 
         notificationList.add(new Notification("Invite Notification", "1", "1", "",
-                "David Shan", "04/05/25 | 16:20", "420 Blaze It"));
+                "David ShanSrinivsan Ma Nguyen", "04/05/25 | 16:20", "420 Blaze It"));
         notificationList.add(new Notification("Update Notification", "1", "1", "",
-                "A.S. Concert", "16/05/25 | 16:20", "Sun God"));
+                "A.S. Concertcatsreggie", "16/05/25 | 16:20", "Sun God"));
         notificationList.add(new Notification("Reply Notification", "1", "1", "",
                 "Reggie Wu", "16/05/25 | 16:20", "Birthday Party", "Will there be food?"));
 
@@ -50,6 +56,7 @@ public class NotificationsFragment extends Fragment {
         View view = inflater.inflate(R.layout.recycler, container, false);
 
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Notifications");
 
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);

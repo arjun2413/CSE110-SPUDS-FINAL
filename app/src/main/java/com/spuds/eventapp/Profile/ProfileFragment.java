@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
@@ -93,6 +94,16 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        if (profileType.equals(getString(R.string.profile_type_other))) {
+
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(user.getName());
+
+        } else {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(UserFirebase.thisUser.getName());
+        }
+
+
         overrideFonts(view.getContext(),view);
 
         Typeface raleway_medium = Typeface.createFromAsset(getActivity().getAssets(),  "Raleway-Medium.ttf");

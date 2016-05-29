@@ -63,6 +63,7 @@
             android:configChanges="orientation|keyboardHidden">
             </activity>
 
+
         <!-- permissions to prevent others apps from registering/receiving messages !-->
         <permission
             android:name="com.spuds.eventapp.permission.C2D_MESSAGE"

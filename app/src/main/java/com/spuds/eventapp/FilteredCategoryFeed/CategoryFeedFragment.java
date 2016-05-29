@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -42,11 +43,14 @@ public class CategoryFeedFragment extends Fragment {
         catType = extras.getString("Category Type");
 
         events = new ArrayList<>();
+        Log.v("cattypecattype", "cattye" + catType);
+        System.err.println("cattype" + catType);
 
         // TODO (M): Get arraylist of events based on tab type [new, hot, now]
         // Fake data
         eventsFirebase = new EventsFirebase(events, 0, tabType, catType, adapter);
         eventsFirebase.createEL();
+
 
     }
 
@@ -54,6 +58,33 @@ public class CategoryFeedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recycler, container, false);
+
+        Log.v("cattypecattype", "cattye" + catType);
+        if( catType.equals(getString(R.string.cat_food))) {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Food");
+        }
+        else if( catType.equals(getString(R.string.cat_social))) {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Social");
+        }
+        else if( catType.equals(getString(R.string.cat_concerts))) {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Concerts");
+        }
+        else if( catType.equals(getString(R.string.cat_sports))) {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Sports");
+        }
+        else if( catType.equals(getString(R.string.cat_student_orgs))) {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Student Orgs");
+        }
+        else if( catType.equals(getString(R.string.cat_academic))) {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Academic");
+        }
+        else if(catType.equals(getString(R.string.cat_free))){
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Free");
+        }
+        else {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Poop");
+        }
+
         final RecyclerView rv=(RecyclerView) view.findViewById(R.id.rv);
 
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());

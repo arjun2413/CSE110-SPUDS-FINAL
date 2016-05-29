@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,7 +71,7 @@ public class ChangePasswordFragment extends Fragment {
 
         //initializing parts of the fragment
         final View view = inflater.inflate(R.layout.fragment_change_password, container, false);
-
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Change Password");
         overrideFonts(view.getContext(),view);
 
         Typeface raleway_medium = Typeface.createFromAsset(getActivity().getAssets(),  "Raleway-Medium.ttf");
