@@ -36,7 +36,7 @@ public class MyEventsTabsFragment extends Fragment {
     }
 
     private void tabs(View view) {
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.profile_tabs);
         final ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
 
         viewPager.setAdapter(myEventsViewPagerAdapter);

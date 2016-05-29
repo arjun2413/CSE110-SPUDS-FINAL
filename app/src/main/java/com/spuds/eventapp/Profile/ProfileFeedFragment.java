@@ -39,7 +39,7 @@ public class ProfileFeedFragment extends Fragment {
 
         Bundle extras = getArguments();
 
-        userId = extras.getString(getString(R.string.user_id));
+        //userId = extras.getString(getString(R.string.user_id));
         tabType = extras.getString(getString(R.string.tab_tag));
 
         // TODO (M): Get arraylist of events based on userId & tabType [user going or hosting]

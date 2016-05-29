@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity
     public String searchType;
     public Uri picture;
     ArrayList<SubEvent> testEventsList;
+    ArrayList<SubUser> testUsersList;
     ArrayList <String> searchResult;
     NavigationView navigationView;
     View headerView;
@@ -117,6 +118,9 @@ public class MainActivity extends AppCompatActivity
 
         searchResult = new ArrayList<String>();
 
+        testUsersList = new ArrayList<SubUser>();
+        UserFirebase uf = new UserFirebase();
+        uf.getSubUserList(testUsersList);
 
         testEventsList = new ArrayList<SubEvent>();
         EventsFirebase ef = new EventsFirebase();
@@ -306,7 +310,11 @@ public class MainActivity extends AppCompatActivity
 
                 ArrayList<String> testCategoriesList = new ArrayList<String>();
                 String tabType;
+                //@david please change to whatever tab switch case works. We need to know when to search users and when to search events
+                tabType = "a";
 
+                //Finding Events
+                if(tabType == "b"){
                 new Thread(new Runnable() {
 
                     @Override
@@ -318,6 +326,7 @@ public class MainActivity extends AppCompatActivity
                                 e.printStackTrace();
                             }
                         }
+                        //check what events are there
                         for(SubEvent s : testEventsList){
                             Log.d("CreateTable",s.getEventId());
                             Log.d("CreateTable",s.getEventName());
@@ -376,7 +385,82 @@ public class MainActivity extends AppCompatActivity
 
 
                     }
-                }).start();
+                }).start(); }
+
+
+                //Finding Users
+                if(tabType == "a"){
+                    new Thread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            while (!UserFirebase.threadCheckSubUser) {
+                                try {
+                                    Thread.sleep(70);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            //check what users are there
+                            for(SubUser s : testUsersList){
+                                Log.d("CreateTable",s.getUserId());
+                                Log.d("CreateTable",s.getName());
+                            }
+
+
+                            final DatabaseTableSubUser databaseTable = new DatabaseTableSubUser(getApplicationContext(),testUsersList);
+                            Log.d("CreateTable","AFTER DB called");
+
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    while(!DatabaseTableSubUser.threadDone){
+
+                                        try{
+                                            Log.d("ThreadDebug","try block");
+                                            Thread.sleep(750);
+                                        } catch (InterruptedException e){
+                                            e.printStackTrace();
+                                        }
+                                    }
+
+                                    Log.d("Search","Starting Search");
+                                    Cursor cursor = databaseTable.getUserNameMatches(searchTerm, null);
+                                    String retVal = "";
+                                    if (cursor != null && cursor.moveToFirst() ){
+                                        String[] columnNames = cursor.getColumnNames();
+                                        do {
+                                            //Searched results have been found
+                                            for (String name: columnNames) {
+                                                //retVal += String.format("%s: %s\n", name, cursor.getString(cursor.getColumnIndex(name)));
+                                                if(name.equals("USER_ID")){
+                                                    //Return to outside world
+                                                    if(cursor == null){
+                                                        Log.d("Search","Cursor is null");
+                                                    }
+                                                    Log.d("Search","Int is: "+cursor.getColumnIndex(name));
+                                                    searchResult.add(cursor.getString(cursor.getColumnIndex(name)));
+                                                    //thisisfineyou would just start the new fragment here HAHAHAAHAH
+                                                }
+
+                                            }
+                                            retVal += "\n";
+                                            Log.d("Search","Result found in Loop");
+                                        } while (cursor.moveToNext());
+                                    }
+                                    else{
+                                        Log.d("Search","Nothing found.");
+                                    }
+                                    Log.d("Search","RESULTS: "+retVal);
+                                    //System.err.println(retVal);
+                                    //Log.d("Search","RESULT: "+cursor.getString(cursor.getColumnIndex(cursor.getColumnNames()[1])));
+                                }
+                            }).start();
+
+
+
+                        }
+                    }).start(); }
 
 
                 //Log.d("CreateTable",testEventsList.get(0).getEventId());

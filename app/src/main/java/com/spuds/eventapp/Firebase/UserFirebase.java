@@ -18,6 +18,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
+import com.spuds.eventapp.Shared.SubUser;
 import com.spuds.eventapp.Shared.Subscription;
 import com.spuds.eventapp.Shared.User;
 
@@ -677,7 +678,7 @@ public class UserFirebase {
 
     }
 
-    /*public static boolean threadCheckSubUser;
+    public static boolean threadCheckSubUser;
     public void getSubUserList(final ArrayList<SubUser> subUsers) {
         threadCheckSubUser = false;
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/users");
@@ -696,7 +697,7 @@ public class UserFirebase {
                     //Log.d("lmao", String.valueOf(child));
                     switch (child.getKey()) {
                         case "name":
-                            subUser.setUserName(String.valueOf(child.getValue()));
+                            subUser.setName(String.valueOf(child.getValue()));
                             break;
                     }
 
@@ -727,7 +728,7 @@ public class UserFirebase {
 
             }
         });
-    }*/
+    }
 
 
 }

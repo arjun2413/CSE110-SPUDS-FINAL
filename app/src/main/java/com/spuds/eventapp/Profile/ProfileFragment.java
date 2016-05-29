@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
@@ -23,7 +24,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.spuds.eventapp.EditProfile.EditProfileFragment;
 import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
@@ -57,9 +57,8 @@ public class ProfileFragment extends Fragment {
     List<Event> eventsHosting;
     List<Event> eventsGoing;
     UserFirebase userFirebase;
-    SwipeRefreshLayout mySwipeRefreshLayout;
-    SwipeRefreshLayout.OnRefreshListener refreshListener;
-    boolean first = true;
+
+    ProfileViewPagerAdapter profileViewPagerAdapter;
 
     public ProfileFragment() {
     }
@@ -80,8 +79,6 @@ public class ProfileFragment extends Fragment {
         } else {
             user = UserFirebase.thisUser;
         }
-
-        userId = user.getUserId();
 
         userFirebase = new UserFirebase();
         userFirebase.isSubscribed(user.getUserId());
@@ -122,71 +119,26 @@ public class ProfileFragment extends Fragment {
         Button subscribe = (Button) view.findViewById(R.id.button_subscribe);
         subscribe.setTypeface(raleway_medium);
 
-        userImage = (ImageView) view.findViewById(R.id.user_image);
-        userName = (TextView) view.findViewById(R.id.user_name);
-        buttonSubscribedOrEdit = (Button) view.findViewById(R.id.button_subscribe);
-        numberFollowing = (TextView) view.findViewById(R.id.user_number_following);
-        numberHosting = (TextView) view.findViewById(R.id.user_number_hosting);
-        eventsHostingRV = (RecyclerView) view.findViewById(R.id.rv_events_hosting);
-        eventsGoingRV = (RecyclerView) view.findViewById(R.id.rv_events_going);
-        userDescription = (TextView) view.findViewById(R.id.user_description);
-
-
         setUpProfileDetails(view);
-        setupRefresh(view);
+        tabs(view);
+        overrideFonts(view.getContext(),view);
 
         return view;
-    }
-
-    public void setupRefresh(final View view) {
-        mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
-        refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-
-
-                Log.v("refresh", "here");
-                final UserFirebase userFirebase = new UserFirebase();
-                userFirebase.threadCheckAnotherUser = false;
-                userFirebase.getAnotherUser(userId);
-
-                new Thread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        while (!userFirebase.threadCheckAnotherUser) {
-                            try {
-                                Log.v("sleepingthread","fam");
-
-                                Thread.sleep(70);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                user = userFirebase.anotherUser;
-                                setUpProfileDetails(view);
-                                setupRefresh(view);
-                                mySwipeRefreshLayout.setRefreshing(false);
-                            }
-                        });
-
-                    }
-                }).start();
-            }
-        };
-
-
-        mySwipeRefreshLayout.setOnRefreshListener(refreshListener);
-
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void setUpProfileDetails(View view) {
 
+        userImage = (ImageView) view.findViewById(R.id.user_image);
+        userName = (TextView) view.findViewById(R.id.user_name);
+        buttonSubscribedOrEdit = (Button) view.findViewById(R.id.button_subscribe);
+        numberFollowing = (TextView) view.findViewById(R.id.user_number_following);
+        numberHosting = (TextView) view.findViewById(R.id.user_number_hosting);
+        /*eventsHostingRV = (RecyclerView) view.findViewById(R.id.rv_events_hosting);
+        eventsGoingRV = (RecyclerView) view.findViewById(R.id.rv_events_going);*/
+        userDescription = (TextView) view.findViewById(R.id.user_description);
+
+        // TODO (M): userImage
 
         userDescription.setText(user.getDescription());
         userName.setText(user.getName());
@@ -208,27 +160,19 @@ public class ProfileFragment extends Fragment {
             }
 
             if (src != null) {
-                try {
-                    RoundedBitmapDrawable circularBitmapDrawable =
-                            RoundedBitmapDrawableFactory.create(getResources(), src);
-                    circularBitmapDrawable.setCircular(true);
-                    circularBitmapDrawable.setAntiAlias(true);
-                    userImage.setImageDrawable(circularBitmapDrawable);
-                } catch (OutOfMemoryError e) {
-                    System.err.println(e.toString());
-                }
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(getResources(), src);
+                circularBitmapDrawable.setCircular(true);
+                circularBitmapDrawable.setAntiAlias(true);
+                userImage.setImageDrawable(circularBitmapDrawable);
             } else {
-                try {
-                    src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
+                src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
 
-                    RoundedBitmapDrawable circularBitmapDrawable =
-                            RoundedBitmapDrawableFactory.create(getResources(), src);
-                    circularBitmapDrawable.setCircular(true);
-                    circularBitmapDrawable.setAntiAlias(true);
-                    userImage.setImageDrawable(circularBitmapDrawable);
-                } catch (OutOfMemoryError e) {
-                    System.err.println(e.toString());
-                }
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(getResources(), src);
+                circularBitmapDrawable.setCircular(true);
+                circularBitmapDrawable.setAntiAlias(true);
+                userImage.setImageDrawable(circularBitmapDrawable);
             }
         } else {
             Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
@@ -338,7 +282,7 @@ public class ProfileFragment extends Fragment {
         numberFollowing.setText(String.valueOf(user.getNumberFollowing()));
         numberHosting.setText(String.valueOf(user.getNumberHosting()));
 
-        setUpRecyclerViewsGoingAndHosting();
+        //setUpRecyclerViewsGoingAndHosting();
 
     }
 
@@ -386,20 +330,49 @@ public class ProfileFragment extends Fragment {
         eventsGoingRV.setAdapter(eventsFeedRVAdapterGoing);
     }
 
-    @Override
-    public void onResume(){
-        super.onResume();
-        Log.v("WAOW", "ONRESUME");
-        if (!first) {
-            mySwipeRefreshLayout.post(new Runnable() {
-                @Override public void run() {
-                    // directly call onRefresh() method
-                    refreshListener.onRefresh();
-                }
-            });
-        } else
-            first = false;
+    private void tabs(View view) {
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.profile_tabs);
+        final ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
 
+        viewPager.setAdapter(profileViewPagerAdapter);
+        viewPager.setOffscreenPageLimit(2);
+
+        final TabLayout.Tab going = tabLayout.newTab();
+        final TabLayout.Tab hosting = tabLayout.newTab();
+
+        going.setText("Going");
+        hosting.setText("Hosting");
+
+        tabLayout.addTab(going, 0);
+        tabLayout.addTab(hosting, 1);
+
+
+        //tabLayout.setTabTextColors(ContextCompat.getColorStateList(this, R.color.tab_selector));
+        //tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.indicator));
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        profileViewPagerAdapter = new ProfileViewPagerAdapter(getChildFragmentManager(), this);
     }
 
     @Override
