@@ -160,7 +160,7 @@ public class EventsFirebase {
             if (categoryList.get(i) == "Academic") {
                 map.put("catAcademic", "true");
             }
-            if (categoryList.get(i) == "Campus Organizations") {
+            if (categoryList.get(i) == "Student Orgs") {
                 map.put("catCampus", "true");
             }
             if (categoryList.get(i) == "Concerts") {
@@ -879,177 +879,124 @@ public class EventsFirebase {
 
     public static int going = 0;
 
-    public void updateEvent(final EditEventForm form, EditEventRVAdapter adapter) {
-        if (a != null) {
+    public void updateEvent(EditEventForm form, EditEventRVAdapter adapter) {
+        if(a != null) {
             for (int i = 0; i < a.size(); i++) {
                 //("reg", a.get(i));
             }
         }
+
         categoryList = adapter.getList();
-        Log.d("what are the categories", String.valueOf(categoryList));
         //Log.d("fuck", String.valueOf(categoryList));
 
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
-        final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
-        EventsFirebase eventsFirebase = new EventsFirebase();
-        eventsFirebase.getNum_going(form.getEventId());
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(going == 0) {
-                    try {
-                        Thread.sleep(75);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd | HH:mm");
-                Date dateobj = new Date();
 
-                String originalString = form.getDate();
+        SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd | HH:mm");
+        Date dateobj = new Date();
 
-                char[] c = originalString.toCharArray();
+        String originalString = form.getDate();
 
-                char temp = c[0];
-                c[0] = c[6];
-                c[6] = temp;
+        char[] c = originalString.toCharArray();
 
-                char temp1 = c[1];
-                c[1] = c[7];
-                c[7] = temp1;
+        char temp = c[0];
+        c[0] = c[6];
+        c[6] = temp;
 
-                char temp2 = c[3];
-                c[3] = c[6];
-                c[6] = temp2;
+        char temp1 = c[1];
+        c[1] = c[7];
+        c[7] = temp1;
 
-                char temp3 = c[4];
-                c[4] = c[7];
-                c[7] = temp3;
-                String swappedString = new String(c);
+        char temp2 = c[3];
+        c[3] = c[6];
+        c[6] = temp2;
 
-                //change to 24 time
+        char temp3 = c[4];
+        c[4] = c[7];
+        c[7] = temp3;
+        String swappedString = new String(c);
 
-                String tempString = swappedString.substring(11, swappedString.length());
-                int numb = 0;
-                String sub = "";
+        //change to 24 time
 
-                if (tempString.indexOf('A') == -1) {
-                    if (swappedString.indexOf(':') != -1) {
-                        sub = tempString.substring(0, tempString.indexOf(':'));
-                    } else {
-                        sub = tempString.substring(0, tempString.indexOf('P'));
-                    }
+        String tempString = swappedString.substring(11, swappedString.length());
+        int numb = 0;
+        String sub = "";
 
-                    numb = Integer.parseInt(sub);
-
-                    if (numb != 12) {
-                        numb += 12;
-                    }
-
-                } else {
-                    if (swappedString.indexOf(':') != -1) {
-                        sub = tempString.substring(0, tempString.indexOf(':'));
-                    } else {
-                        sub = tempString.substring(0, tempString.indexOf('A'));
-                    }
-
-                    numb = Integer.parseInt(sub);
-
-                    if (numb == 12) {
-                        numb = 0;
-                    }
-                }
-
-                if (swappedString.indexOf(':') == -1) {
-                    swappedString = swappedString.substring(0, 11) + numb + ":00";
-                } else {
-                    swappedString = swappedString.substring(0, 11) + numb + tempString.substring(tempString.indexOf(':'), tempString.length() - 2);
-                }
-                Map<String, Object> map = new HashMap<String, Object>();
-                Log.d("gong2", String.valueOf(going));
-                map.put("host_id", UserFirebase.uId);
-                map.put("host_name", UserFirebase.thisUser.getName());
-                map.put("event_name", form.getName());
-                map.put("description", form.getDescription());
-                map.put("location", form.getLocation());
-                map.put("date", swappedString);
-                map.put("number_going", String.valueOf(going));
-                map.put("picture", form.getPicture());
-                map.put("created_at", df.format(dateobj));
-
-
-
-                for (int i = 0; i < categoryList.size(); i++) {
-                    if (categoryList.get(i) == "Academic") {
-                        map.put("catAcademic", "true");
-                    }
-                    if (categoryList.get(i) == "Campus Organizations") {
-                        map.put("catCampus", "true");
-                    }
-                    if (categoryList.get(i) == "Concerts") {
-                        map.put("catConcerts", "true");
-                    }
-                    if (categoryList.get(i) == "Food") {
-                        map.put("catFood", "true");
-                    }
-                    if (categoryList.get(i) == "Free") {
-                        map.put("catFree", "true");
-                    }
-                    if (categoryList.get(i) == "Social") {
-                        map.put("catSocial", "true");
-                    }
-                    if (categoryList.get(i) == "Sports") {
-                        map.put("catSports", "true");
-                    }
-                }
-
-                ref.child("events").child(form.getEventId()).setValue(map);
+        if(tempString.indexOf('A') == -1) {
+            if(swappedString.indexOf(':') != -1) {
+                sub = tempString.substring(0, tempString.indexOf(':'));
             }
-        }).start();
-
-    }
-
-    public void getNum_going(final String eventId){
-        final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
-        final Firebase ref = new Firebase("https://eventory.firebaseio.com");
-        Query queryRef = myFirebaseRef.child(eventId);
-        Log.d("Here6", "here");
-        queryRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Log.d("Here9", "here");
-                //Checks if it is number_going that we are changing
-                if (dataSnapshot.getKey().equals("number_going")) {
-                    //gets the string and changes it to an int
-                    going = Integer.parseInt(String.valueOf(dataSnapshot.getValue()));
-                    Log.d("gong1", String.valueOf(going));
-                }
-
+            else{
+                sub = tempString.substring(0, tempString.indexOf('P'));
             }
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            numb = Integer.parseInt(sub);
 
-
+            if(numb != 12) {
+                numb += 12;
             }
 
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+        }
+        else{
+            if(swappedString.indexOf(':') != -1) {
+                sub = tempString.substring(0, tempString.indexOf(':'));
+            }
+            else{
+                sub = tempString.substring(0, tempString.indexOf('A'));
             }
 
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            numb = Integer.parseInt(sub);
 
+            if(numb == 12) {
+                numb = 0;
             }
+        }
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
+        if(swappedString.indexOf(':') == -1) {
+            swappedString = swappedString.substring(0, 11) + numb + ":00";
+        }
+        else {
+            swappedString = swappedString.substring(0, 11) + numb + tempString.substring(tempString.indexOf(':'), tempString.length()-2);
+        }
 
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("host_id", UserFirebase.uId);
+        map.put("host_name", UserFirebase.thisUser.getName());
+        map.put("event_name", form.getName());
+        map.put("description", form.getDescription());
+        map.put("location", form.getLocation());
+        map.put("date", swappedString);
+        map.put("number_going", "1");
+        map.put("picture", form.getPicture());
+        map.put("created_at", df.format(dateobj) );
+
+        for(int i=0; i < categoryList.size(); i++) {
+            if (categoryList.get(i) == "Academic") {
+                map.put("catAcademic", "true");
             }
-        });
+            if (categoryList.get(i) == "Campus Organizations") {
+                map.put("catCampus", "true");
+            }
+            if (categoryList.get(i) == "Concerts") {
+                map.put("catConcerts", "true");
+            }
+            if (categoryList.get(i) == "Food") {
+                map.put("catFood", "true");
+            }
+            if (categoryList.get(i) == "Free") {
+                map.put("catFree", "true");
+            }
+            if (categoryList.get(i) == "Social") {
+                map.put("catSocial", "true");
+            }
+            if (categoryList.get(i) == "Sports") {
+                map.put("catSports", "true");
+            }
+        }
 
+        ref.child("events").child(form.getEventId()).updateChildren(map);
 
+        UserFirebase userFirebase = new UserFirebase();
+        userFirebase.updateNumberHosting();
 
     }
 

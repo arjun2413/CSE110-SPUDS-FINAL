@@ -360,10 +360,10 @@ public class EventDetailsFragment extends Fragment {
 
         // Categories
         String categories = "";
-
+        System.out.println("size" + event.getCategories().size());
         if(event.getCategories() != null && event.getCategories().size() != 0) {
             for (int i = 0; i < event.getCategories().size() - 1; ++i) {
-                ////("chris", event.getCategories().get(i));
+
                 categories += event.getCategories().get(i) + ", ";
             }
             categories += event.getCategories().get(event.getCategories().size() - 1);
