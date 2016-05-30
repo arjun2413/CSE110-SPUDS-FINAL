@@ -67,6 +67,7 @@ public class EventDetailsFragment extends Fragment {
     boolean ownEvent;
     boolean first = true;
     EventsFirebase eventsFirebase;
+    boolean canClickGoing = true;
 
 
     public EventDetailsFragment() {
@@ -445,81 +446,88 @@ public class EventDetailsFragment extends Fragment {
                             public void onClick(View v) {
                                 Log.d("EDF", "clicking~");
 
+                                if (canClickGoing) {
+                                    canClickGoing = false;
 
-                                if (going) {
+                                    if (going) {
 
-                                    Log.d("EDF", " going true");
-                                    //buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
-                                    eventsFirebase.notGoingThreadCheck = false;
-                                    eventsFirebase.deleteThreadCheck = false;
-                                    eventsFirebase.notGoingToAnEvent(eventId);
-                                    eventsFirebase.deleteEventRegistration(eventId);
+                                        Log.d("EDF", " going true");
+                                        //buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
+                                        eventsFirebase.notGoingThreadCheck = false;
+                                        eventsFirebase.deleteThreadCheck = false;
+                                        eventsFirebase.notGoingToAnEvent(eventId);
+                                        eventsFirebase.deleteEventRegistration(eventId);
 
-                                    new Thread(new Runnable() {
+                                        new Thread(new Runnable() {
 
-                                        @Override
-                                        public void run() {
-                                            while (!eventsFirebase.notGoingThreadCheck || !eventsFirebase.deleteThreadCheck) {
-                                                Log.v("EDF", "going while loops");
-                                                try {
-                                                    Thread.sleep(77);
-                                                } catch (InterruptedException e) {
-                                                    e.printStackTrace();
+                                            @Override
+                                            public void run() {
+                                                while (!eventsFirebase.notGoingThreadCheck || !eventsFirebase.deleteThreadCheck) {
+                                                    Log.v("EDF", "going while loops");
+                                                    try {
+                                                        Thread.sleep(77);
+                                                    } catch (InterruptedException e) {
+                                                        e.printStackTrace();
+                                                    }
+
                                                 }
+
+                                                canClickGoing = true;
+                                                going = false;
+
+                                                mySwipeRefreshLayout.post(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Log.v("EDF", "swiperefresh1");
+                                                        // directly call onRefresh() method
+                                                        refreshListener.onRefresh();
+                                                    }
+
+                                                });
 
                                             }
+                                        }).start();
 
-                                            going = false;
+                                    } else {
+                                        Log.v("EDF", "not going");
+                                        eventsFirebase.notGoingThreadCheck = false;
+                                        eventsFirebase.goingToEventThreadCheck = false;
+                                        eventsFirebase.notGoingToAnEvent(eventId);
+                                        eventsFirebase.goingToAnEvent(eventId);
 
-                                            mySwipeRefreshLayout.post(new Runnable() {
-                                                @Override public void run() {
-                                                    Log.v("EDF", "swiperefresh1");
-                                                    // directly call onRefresh() method
-                                                    refreshListener.onRefresh();
+                                        new Thread(new Runnable() {
+
+                                            @Override
+                                            public void run() {
+
+                                                while (!eventsFirebase.notGoingThreadCheck || !eventsFirebase.goingToEventThreadCheck) {
+                                                    Log.v("EDF", "not going while loop");
+                                                    try {
+                                                        Thread.sleep(77);
+                                                    } catch (InterruptedException e) {
+                                                        e.printStackTrace();
+                                                    }
+
                                                 }
 
-                                            });
+                                                canClickGoing = true;
+                                                going = true;
 
-                                        }
-                                    }).start();
-
-                                } else {
-                                    Log.v("EDF", "not going");
-                                    eventsFirebase.notGoingThreadCheck = false;
-                                    eventsFirebase.goingToEventThreadCheck = false;
-                                    eventsFirebase.notGoingToAnEvent(eventId);
-                                    eventsFirebase.goingToAnEvent(eventId);
-
-                                    new Thread(new Runnable() {
-
-                                        @Override
-                                        public void run() {
-
-                                            while (!eventsFirebase.notGoingThreadCheck || !eventsFirebase.goingToEventThreadCheck) {
-                                                Log.v("EDF", "not going while loop");
-                                                try {
-                                                    Thread.sleep(77);
-                                                } catch (InterruptedException e) {
-                                                    e.printStackTrace();
-                                                }
+                                                //buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
+                                                mySwipeRefreshLayout.post(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Log.v("EDF", "swiperefresh2");
+                                                        // directly call onRefresh() method
+                                                        refreshListener.onRefresh();
+                                                    }
+                                                });
 
                                             }
-                                            going = true;
+                                        }).start();
 
-                                            //buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
-                                            mySwipeRefreshLayout.post(new Runnable() {
-                                                @Override public void run() {
-                                                    Log.v("EDF", "swiperefresh2");
-                                                    // directly call onRefresh() method
-                                                    refreshListener.onRefresh();
-                                                }
-                                            });
-
-                                        }
-                                    }).start();
-
+                                    }
                                 }
-
                             }
                         });
                     }
