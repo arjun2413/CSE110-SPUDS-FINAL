@@ -75,7 +75,7 @@ public class ProfileFragment extends Fragment {
         if (profileType.equals(getString(R.string.profile_type_other))) {
 
             user = (User) extras.getSerializable(getString(R.string.user_details));
-            //("profilefragmnet", "user name " + user.getName());
+            Log.v("profilefragmnet", "user name " + user.getName());
 
         } else {
             user = UserFirebase.thisUser;
@@ -110,12 +110,12 @@ public class ProfileFragment extends Fragment {
         TextView name = (TextView) view.findViewById(R.id.user_name);
         name.setTypeface(raleway_medium);
 
-        //TextView hosting = (TextView) view.findViewById(R.id.label_events_hosting);
-        //hosting.setTypeface(raleway_medium);
+        /*TextView hosting = (TextView) view.findViewById(R.id.label_events_hosting);
+        hosting.setTypeface(raleway_medium);
 
-        //TextView going = (TextView) view.findViewById(R.id.label_events_going);
-        //going.setTypeface(raleway_medium);
-
+        TextView going = (TextView) view.findViewById(R.id.label_events_going);
+        going.setTypeface(raleway_medium);
+        */
 
         Button subscribe = (Button) view.findViewById(R.id.button_subscribe);
         subscribe.setTypeface(raleway_medium);
@@ -188,7 +188,7 @@ public class ProfileFragment extends Fragment {
         // Set image for button for subscribe or edit profile
         if (user.getUserId().equals(UserFirebase.uId)) {
 
-            //("ProfileFragment", "own profile!");
+            Log.v("ProfileFragment", "own profile!");
 
             buttonSubscribedOrEdit.setText("Edit Profile");
 
@@ -215,7 +215,7 @@ public class ProfileFragment extends Fragment {
 
             buttonSubscribedOrEdit.setText("Subscribe");
 
-            //("ProfileFragment", "other not own profile!");
+            Log.v("ProfileFragment", "other not own profile!");
 
             buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
 
@@ -260,7 +260,7 @@ public class ProfileFragment extends Fragment {
                                 public void onClick(View v) {
 
                                     user.setSubscribed(!user.isSubscribed());
-                                    //("Profile Fragment", "subscribed = " + user.isSubscribed());
+                                    Log.v("Profile Fragment", "subscribed = " + user.isSubscribed());
 
                                     UserFirebase userFirebase = new UserFirebase();
                                     userFirebase.subscribe(user.getUserId(), user.isSubscribed());

@@ -1,5 +1,6 @@
 package com.spuds.eventapp.EditEvent;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
@@ -17,6 +18,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -352,10 +355,14 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                         getActivity().getSupportFragmentManager().popBackStack();
                         errorMissingMessage.setVisibility(View.INVISIBLE);
                         errorTimeMessage.setVisibility(View.INVISIBLE);
-                    }
 
+                    }
                 }
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
             }
+
+
         });
 
         if (event.getPicture() != null || event.getPicture() != "") {

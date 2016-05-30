@@ -1,5 +1,6 @@
 package com.spuds.eventapp.ChangePassword;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -107,11 +109,11 @@ public class ChangePasswordFragment extends Fragment {
                 //checks if an error has been found
                 boolean is_error = false;
 
-                //("is_error 1:" , String.valueOf(is_error));
+                Log.v("is_error 1:" , String.valueOf(is_error));
                 if(!form.allFilled()) {
                     appendError(getString(R.string.errorEmptyFields));
                     is_error = true;
-                    //("is_error 2:" , String.valueOf(is_error));
+                    Log.v("is_error 2:" , String.valueOf(is_error));
                 }
 
                 //checks if second and third fields are the same
@@ -121,7 +123,7 @@ public class ChangePasswordFragment extends Fragment {
                     }
                     appendError(getString(R.string.errorPassMismatch));
                     is_error = true;
-                    //("is_error 3:" , String.valueOf(is_error));
+                    Log.v("is_error 3:" , String.valueOf(is_error));
                 }
 
                 else if(!form.diffPw()){
@@ -130,12 +132,12 @@ public class ChangePasswordFragment extends Fragment {
                     }
                     appendError(getString(R.string.errorSamePass));
                     is_error = true;
-                    //("is_error 4:" , String.valueOf(is_error));
+                    Log.v("is_error 4:" , String.valueOf(is_error));
                 }
 
                 //pops up a snackbar with successful change message if no error was found
                 if(!is_error) {
-                    //("is_error 4:" , String.valueOf(is_error));
+                    Log.v("is_error 4:" , String.valueOf(is_error));
                     af.changePass(form);
 
                     // Pop this fragment from backstack
@@ -158,20 +160,20 @@ public class ChangePasswordFragment extends Fragment {
 
 
                             if (af.getThreadCheck() == 1) {
-                                //("password: ", "matches top");
-                                getActivity().getSupportFragmentManager().popBackStack();
+                                Log.v("password: ", "matches top");
                                 Snackbar snackbar = Snackbar.make
                                         (view, getString(R.string.password_change_success),
                                                 Snackbar.LENGTH_LONG);
                                 snackbar.show();
-                                //("password: ", "matches bottom");
+                                getActivity().getSupportFragmentManager().popBackStack();
+                                Log.v("password: ", "matches bottom");
                             }
                             else{
-                                //("password: ", "does not match top");
+                                Log.v("password: ", "does not match top");
                                 Snackbar snackbar = Snackbar.make
                                         (view, getString(R.string.errorWrongPass), Snackbar.LENGTH_LONG);
                                 snackbar.show();
-                                //("password: ", "does not match bottom");
+                                Log.v("password: ", "does not match bottom");
                             }
                             setThread_running(false);
                         }
@@ -180,7 +182,7 @@ public class ChangePasswordFragment extends Fragment {
                         //stalls until thread above ends so user can't click
                     }
 
-                    //("finished: ", "both threads");
+                    Log.v("finished: ", "both threads");
 
 
                 }
@@ -189,6 +191,9 @@ public class ChangePasswordFragment extends Fragment {
 
                     sys_message.setText(getError());
                 }
+
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
             }
         });
