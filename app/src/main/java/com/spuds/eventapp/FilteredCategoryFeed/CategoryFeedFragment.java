@@ -59,7 +59,7 @@ public class CategoryFeedFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recycler, container, false);
 
-        //("cattypecattype", "cattye" + catType);
+        Log.v("cattypecattype", "cattye" + catType);
         if( catType.equals(getString(R.string.cat_food))) {
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Food");
         }

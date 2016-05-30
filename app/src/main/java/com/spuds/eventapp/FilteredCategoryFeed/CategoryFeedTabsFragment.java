@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -53,6 +54,33 @@ public class CategoryFeedTabsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Log.v("cattypecattype", "cattye" + catType);
+        if( catType.equals(getString(R.string.cat_food))) {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Food");
+        }
+        else if( catType.equals(getString(R.string.cat_social))) {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Social");
+        }
+        else if( catType.equals(getString(R.string.cat_concerts))) {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Concerts");
+        }
+        else if( catType.equals(getString(R.string.cat_sports))) {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Sports");
+        }
+        else if( catType.equals(getString(R.string.cat_student_orgs))) {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Student Orgs");
+        }
+        else if( catType.equals(getString(R.string.cat_academic))) {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Academic");
+        }
+        else if(catType.equals(getString(R.string.cat_free))){
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Free");
+        }
+        else {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Poop");
+        }
+        
         //View view = inflater.inflate(R.layout.fragment_feed_tabs, container, false);
         //tabs(view);
 
