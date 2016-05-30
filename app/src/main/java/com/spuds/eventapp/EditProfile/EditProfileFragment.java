@@ -1,5 +1,6 @@
 package com.spuds.eventapp.EditProfile;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -257,6 +259,8 @@ public class  EditProfileFragment extends Fragment {
                         });
                     }
                 }).start();
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
             }
         });

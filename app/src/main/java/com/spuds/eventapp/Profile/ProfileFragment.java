@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -109,12 +110,12 @@ public class ProfileFragment extends Fragment {
         TextView name = (TextView) view.findViewById(R.id.user_name);
         name.setTypeface(raleway_medium);
 
-        TextView hosting = (TextView) view.findViewById(R.id.label_events_hosting);
+        /*TextView hosting = (TextView) view.findViewById(R.id.label_events_hosting);
         hosting.setTypeface(raleway_medium);
 
         TextView going = (TextView) view.findViewById(R.id.label_events_going);
         going.setTypeface(raleway_medium);
-
+        */
 
         Button subscribe = (Button) view.findViewById(R.id.button_subscribe);
         subscribe.setTypeface(raleway_medium);

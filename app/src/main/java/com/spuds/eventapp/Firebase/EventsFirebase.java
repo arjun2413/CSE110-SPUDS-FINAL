@@ -471,7 +471,7 @@ public class EventsFirebase {
                     currentDate = df.format(dateobj);
 
 
-                    if (tabFilter != null && (tabFilter.equals(tabHot) || tabFilter.equals(tabNew))) {
+                    /*if (tabFilter != null && (tabFilter.equals(tabHot) || tabFilter.equals(tabNew))) {
                         if (currentDate.compareTo(newEvent.getDate()) < 0) {
                             eventsList.add(0, newEvent);
                         }
@@ -482,7 +482,8 @@ public class EventsFirebase {
                             eventsList.add(newEvent);
                         }
 
-                    }
+                    }*/
+                    eventsList.add(0, newEvent);
                 }
 
                 @Override

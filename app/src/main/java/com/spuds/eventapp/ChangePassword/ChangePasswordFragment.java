@@ -159,11 +159,11 @@ public class ChangePasswordFragment extends Fragment {
 
                             if (af.getThreadCheck() == 1) {
                                 Log.v("password: ", "matches top");
-                                getActivity().getSupportFragmentManager().popBackStack();
                                 Snackbar snackbar = Snackbar.make
                                         (view, getString(R.string.password_change_success),
                                                 Snackbar.LENGTH_LONG);
                                 snackbar.show();
+                                getActivity().getSupportFragmentManager().popBackStack();
                                 Log.v("password: ", "matches bottom");
                             }
                             else{
