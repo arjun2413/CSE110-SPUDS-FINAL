@@ -12,10 +12,12 @@ import com.spuds.eventapp.R;
  */
 public class ProfileViewPagerAdapter extends FragmentStatePagerAdapter {
     Fragment profileTabsFragment;
+    String userId;
 
-    public ProfileViewPagerAdapter(FragmentManager fm, Fragment profileTabsFragment) {
+    public ProfileViewPagerAdapter(FragmentManager fm, Fragment profileTabsFragment, String userId) {
         super(fm);
         this.profileTabsFragment = profileTabsFragment;
+        this.userId = userId;
     }
 
     @Override
@@ -36,6 +38,8 @@ public class ProfileViewPagerAdapter extends FragmentStatePagerAdapter {
                         profileTabsFragment.getString(R.string.tab_hosting));
                 break;
         }
+
+        bundle.putString(profileTabsFragment.getString(R.string.user_id), userId);
 
 
         profileFeedFragment.setArguments(bundle);

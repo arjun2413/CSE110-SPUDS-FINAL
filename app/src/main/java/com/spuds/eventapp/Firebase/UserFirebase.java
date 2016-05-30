@@ -826,7 +826,6 @@ public class UserFirebase {
         });
 
         Log.d("how many", String.valueOf(numFollowing));
-
     }
 
     public static boolean decNumFollowingThreadCheck;
@@ -873,6 +872,8 @@ public class UserFirebase {
         });
         Log.d("how many", String.valueOf(numFollowing));
     }
+
+
 
 }
 

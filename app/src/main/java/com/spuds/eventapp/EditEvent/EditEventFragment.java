@@ -18,7 +18,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -291,8 +290,11 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                                 // TODO (C): Big issue, must refresh all feeds or else will get null
                                 // TODO      pointer exceptions when clicking the event again when it doesn't
                                 // TODO      even exist
+
+                                EventsFirebase eventsFirebase = new EventsFirebase();
+                                eventsFirebase.deleteEvent(event.getEventId());
+
                                 // Pop this fragment from backstack
-                                getActivity().getSupportFragmentManager().popBackStack();
                                 getActivity().getSupportFragmentManager().popBackStack();
                             }
                         })

@@ -14,7 +14,6 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
@@ -29,7 +28,6 @@ import com.spuds.eventapp.EditProfile.EditProfileFragment;
 import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Event;
-import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
 import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.Shared.User;
 
@@ -60,6 +58,8 @@ public class ProfileFragment extends Fragment {
     UserFirebase userFirebase;
     boolean canClickSubscribe = true;
 
+    ArrayList<Event> going;
+
 
     ProfileViewPagerAdapter profileViewPagerAdapter;
 
@@ -83,7 +83,10 @@ public class ProfileFragment extends Fragment {
             user = UserFirebase.thisUser;
         }
 
+        going = new ArrayList<>();
+
         userFirebase = new UserFirebase();
+
         profileFragment = this;
 
     }
@@ -135,19 +138,12 @@ public class ProfileFragment extends Fragment {
         buttonSubscribedOrEdit = (Button) view.findViewById(R.id.button_subscribe);
         numberFollowing = (TextView) view.findViewById(R.id.user_number_following);
         numberHosting = (TextView) view.findViewById(R.id.user_number_hosting);
-        /*eventsHostingRV = (RecyclerView) view.findViewById(R.id.rv_events_hosting);
-        eventsGoingRV = (RecyclerView) view.findViewById(R.id.rv_events_going);*/
         userDescription = (TextView) view.findViewById(R.id.user_description);
 
         // TODO (M): userImage
 
         userDescription.setText(user.getDescription());
         userName.setText(user.getName());
-       /* Bitmap src = BitmapFactory.decodeResource(this.getResources(), R.drawable.christinecropped);
-        RoundedBitmapDrawable dr =
-                RoundedBitmapDrawableFactory.create(this.getResources(), src);
-        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);*/
-
 
         String imageFile = user.getPicture();
 
@@ -313,50 +309,6 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    void setUpRecyclerViewsGoingAndHosting() {
-        // List for events hosting
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        eventsHostingRV.setLayoutManager(llm);
-        eventsHostingRV.setHasFixedSize(true);
-
-        // TODO (M): Get first three events for events hosting
-        ArrayList<String> categories = new ArrayList<>();
-        categories.add("Social");
-        categories.add("Concert");
-        eventsHosting = new ArrayList<>();
-        eventsHosting.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04/20/2016|16:20", 1054,
-                "", categories, "UCSD"));
-        eventsHosting.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04/20/2016|16:20", 51,
-                "", categories, "Foosh Improv Comedy Club"));
-        eventsHosting.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04/20/2016|16:20", 51,
-                "", categories, "Foosh Improv Comedy Club"));
-        eventsHosting.add(null);
-
-        EventsFeedRVAdapter eventsFeedRVAdapterHosting = new EventsFeedRVAdapter(eventsHosting, this, getString(R.string.fragment_profile), getString(R.string.tab_hosting), user.getUserId());
-        eventsHostingRV.setAdapter(eventsFeedRVAdapterHosting);
-
-
-        // List for events hosting
-        llm = new LinearLayoutManager(getContext());
-        eventsGoingRV.setLayoutManager(llm);
-        eventsGoingRV.setHasFixedSize(true);
-
-        // TODO (M): Get first three events for events going
-        eventsGoing = new ArrayList<>();
-
-
-        eventsGoing.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04/20/2016|16:20", 1054,
-                "", categories, "UCSD"));
-        eventsGoing.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04/20/2016|16:20", 51,
-                "", categories, "Foosh Improv Comedy Club"));
-        eventsGoing.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04/20/2016|16:20", 51,
-                "", categories, "Foosh Improv Comedy Club"));
-        eventsGoing.add(null);
-
-        EventsFeedRVAdapter eventsFeedRVAdapterGoing = new EventsFeedRVAdapter(eventsGoing, this, getString(R.string.fragment_profile), getString(R.string.tab_going), user.getUserId());
-        eventsGoingRV.setAdapter(eventsFeedRVAdapterGoing);
-    }
-
     private void tabs(View view) {
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.profile_tabs);
         final ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
@@ -372,7 +324,6 @@ public class ProfileFragment extends Fragment {
 
         tabLayout.addTab(going, 0);
         tabLayout.addTab(hosting, 1);
-
 
         //tabLayout.setTabTextColors(ContextCompat.getColorStateList(this, R.color.tab_selector));
         //tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.indicator));
@@ -399,7 +350,22 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        profileViewPagerAdapter = new ProfileViewPagerAdapter(getChildFragmentManager(), this);
+        final Fragment fragment = this;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(user == null){
+                    try {
+                        Thread.sleep(75);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                profileViewPagerAdapter = new ProfileViewPagerAdapter(getChildFragmentManager(), fragment, user.getUserId());
+
+            }
+        }).start();
     }
 
     @Override

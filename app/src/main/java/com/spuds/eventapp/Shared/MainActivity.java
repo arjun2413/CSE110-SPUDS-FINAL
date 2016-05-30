@@ -59,7 +59,7 @@ import com.spuds.eventapp.Notifications.NotificationsFragment;
 import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Settings.SettingsFragment;
-import com.spuds.eventapp.SubscriptionFeed.SubscriptionFeedTabsFragment;
+import com.spuds.eventapp.SubscriptionFeed.SubscriptionFeedFragment;
 import com.spuds.eventapp.SubscriptionsList.SubscriptionsListFragment;
 
 import java.io.File;
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity
     MyEventsTabsFragment myEventsTabsFragment;
     SubscriptionsListFragment subscriptionsListFragment;
     FindPeopleFragment findPeopleFragment;
-    SubscriptionFeedTabsFragment subscriptionFeedTabsFragment;
+    SubscriptionFeedFragment subscriptionFeedFragment;
     AboutFragment aboutFragment;
     SettingsFragment settingsFragment;
     ImageView profilePic;
@@ -581,7 +581,7 @@ public class MainActivity extends AppCompatActivity
             myEventsTabsFragment = new MyEventsTabsFragment();
             subscriptionsListFragment = new SubscriptionsListFragment();
             findPeopleFragment = new FindPeopleFragment();
-            subscriptionFeedTabsFragment = new SubscriptionFeedTabsFragment();
+            subscriptionFeedFragment = new SubscriptionFeedFragment();
             aboutFragment = new AboutFragment();
             settingsFragment = new SettingsFragment();
 
@@ -590,8 +590,8 @@ public class MainActivity extends AppCompatActivity
                     .hide(settingsFragment)
                     .add(R.id.fragment_frame_layout, aboutFragment, getString(R.string.about))
                     .hide(aboutFragment)
-                    .add(R.id.fragment_frame_layout, subscriptionFeedTabsFragment, getString(R.string.subscriptionFeed))
-                    .hide(subscriptionFeedTabsFragment)
+                    .add(R.id.fragment_frame_layout, subscriptionFeedFragment, getString(R.string.subscriptionFeed))
+                    .hide(subscriptionFeedFragment)
                     .add(R.id.fragment_frame_layout, findPeopleFragment, getString(R.string.findPeople))
                     .hide(findPeopleFragment)
                     .add(R.id.fragment_frame_layout, subscriptionsListFragment, getString(R.string.subscriptions))
@@ -618,7 +618,7 @@ public class MainActivity extends AppCompatActivity
                     findFragmentByTag(getString(R.string.subscriptions));
             findPeopleFragment = (FindPeopleFragment) getSupportFragmentManager().
                     findFragmentByTag(getString(R.string.findPeople));
-            subscriptionFeedTabsFragment = (SubscriptionFeedTabsFragment) getSupportFragmentManager().
+            subscriptionFeedFragment = (SubscriptionFeedFragment) getSupportFragmentManager().
                     findFragmentByTag(getString(R.string.subscriptionFeed));
             aboutFragment = (AboutFragment) getSupportFragmentManager().
                     findFragmentByTag(getString(R.string.about));
@@ -632,7 +632,7 @@ public class MainActivity extends AppCompatActivity
                     .hide(myEventsTabsFragment)
                     .hide(subscriptionsListFragment)
                     .hide(findPeopleFragment)
-                    .hide(subscriptionFeedTabsFragment)
+                    .hide(subscriptionFeedFragment)
                     .hide(aboutFragment)
                     .hide(settingsFragment)
                     .commit();
@@ -689,7 +689,7 @@ public class MainActivity extends AppCompatActivity
 
             addSearchToolbar();
             searchType = getString(R.string.fragment_my_sub_feed);
-            newFragment = subscriptionFeedTabsFragment;
+            newFragment = subscriptionFeedFragment;
 
         } else if (id == R.id.about) {
 

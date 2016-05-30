@@ -80,7 +80,7 @@ public class CategoryFeedTabsFragment extends Fragment {
         else {
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Poop");
         }
-        
+
         //View view = inflater.inflate(R.layout.fragment_feed_tabs, container, false);
         //tabs(view);
 

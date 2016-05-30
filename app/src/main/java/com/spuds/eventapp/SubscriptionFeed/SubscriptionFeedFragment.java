@@ -1,14 +1,17 @@
 package com.spuds.eventapp.SubscriptionFeed;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.R;
@@ -16,8 +19,6 @@ import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
-
 
 public class SubscriptionFeedFragment extends Fragment {
 
@@ -25,22 +26,16 @@ public class SubscriptionFeedFragment extends Fragment {
     public EventsFeedRVAdapter adapter;
     EventsFirebase eventsFirebase;
 
-    String tabType;
-
     public SubscriptionFeedFragment() {
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Bundle extras = getArguments();
-        tabType = extras.getString(getString(R.string.tab_tag));
-
-        // TODO (M): Get arraylist of events based on tab type [new, hot, now]
-        // Fake data
         events = new ArrayList<>();
-        eventsFirebase = new EventsFirebase(events, 0, tabType);
+        eventsFirebase = new EventsFirebase(events, 0, null);
         eventsFirebase.createSubFeed();
     }
 
@@ -78,19 +73,64 @@ public class SubscriptionFeedFragment extends Fragment {
             }
         }).start();
         //call refreshing function
-        //refreshing(view);
+        setupRefresh(view);
 
         return view;
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void setupRefresh(View view) {
+        final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+        mySwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        events.clear();
+
+                        eventsFirebase.createSubFeed();
+
+                        new Thread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                while (events.size() == 0) {
+                                    try {
+                                        Thread.sleep(70);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        adapter.notifyDataSetChanged();
+                                        mySwipeRefreshLayout.setRefreshing(false);
+
+                                    }
+                                });
+                            }
+                        }).start();
+                    }
+                }
+        );
 
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "Raleway-Medium.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
     }
 }
+
+

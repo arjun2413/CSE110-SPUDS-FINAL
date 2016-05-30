@@ -2,19 +2,16 @@ package com.spuds.eventapp.Shared;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,7 +19,6 @@ import android.widget.TextView;
 import com.spuds.eventapp.EventDetails.EventDetailsFragment;
 import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.Firebase.UserFirebase;
-import com.spuds.eventapp.Profile.ProfileFeedFragment;
 import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
 
@@ -110,47 +106,6 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
     @Override
     public void onBindViewHolder(final EventViewHolder eventViewHolder, final int i) {
-
-        final int index = i;
-        // Add card See More... for profile fragment
-        if (tagCurrentFragment.equals(currentFragment.getString(R.string.fragment_profile)) && i == 3) {
-            eventViewHolder.seeMore.setVisibility(View.VISIBLE);
-
-
-            ((ViewManager)eventViewHolder.eventPic.getParent()).removeView(eventViewHolder.eventPic);
-            ((ViewManager)eventViewHolder.eventName.getParent()).removeView(eventViewHolder.eventName);
-            ((ViewManager)eventViewHolder.eventLocation.getParent()).removeView(eventViewHolder.eventLocation);
-            ((ViewManager)eventViewHolder.eventAttendees.getParent()).removeView(eventViewHolder.eventAttendees);
-            ((ViewManager)eventViewHolder.eventCategories.getParent()).removeView(eventViewHolder.eventCategories);
-            ((ViewManager)eventViewHolder.monthDate.getParent()).removeView(eventViewHolder.monthDate);
-            ((ViewManager)eventViewHolder.dayDate.getParent()).removeView(eventViewHolder.dayDate);
-
-
-            eventViewHolder.card.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ProfileFeedFragment profileFeedFragment = new ProfileFeedFragment();
-
-                    Bundle bundle = new Bundle();
-                    bundle.putString(currentFragment.getString(R.string.tab_tag), tabType);
-                    bundle.putString(currentFragment.getString(R.string.user_id), userId);
-
-                    profileFeedFragment.setArguments(bundle);
-
-                    ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
-                    // Add Event Details Fragment to fragment manager
-                    currentFragment.getFragmentManager().beginTransaction()
-                            .show(profileFeedFragment)
-                            .replace(R.id.fragment_frame_layout, profileFeedFragment)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                            .addToBackStack(currentFragment.getString(R.string.fragment_profile_feed))
-                            .commit();
-                }
-            });
-
-            return;
-        }
-
 
         if (events.get(i).getPicture() != null && events.get(i).getPicture() != "") {
             String imageFile = events.get(i).getPicture();
