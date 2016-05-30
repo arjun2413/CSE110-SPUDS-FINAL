@@ -34,7 +34,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewManager;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -200,13 +199,17 @@ public class MainActivity extends AppCompatActivity
                 circularBitmapDrawable.setAntiAlias(true);
                 profilePic.setImageDrawable(circularBitmapDrawable);
             } else {
-                src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
+                try {
+                    src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
 
-                RoundedBitmapDrawable circularBitmapDrawable =
-                        RoundedBitmapDrawableFactory.create(getResources(), src);
-                circularBitmapDrawable.setCircular(true);
-                circularBitmapDrawable.setAntiAlias(true);
-                profilePic.setImageDrawable(circularBitmapDrawable);
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(getResources(), src);
+                    circularBitmapDrawable.setCircular(true);
+                    circularBitmapDrawable.setAntiAlias(true);
+                    profilePic.setImageDrawable(circularBitmapDrawable);
+                } catch(OutOfMemoryError e) {
+                    System.err.println(e.toString());
+                }
             }
         } else {
             Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
@@ -719,7 +722,7 @@ public class MainActivity extends AppCompatActivity
             //("MainActivity", "newFragment != null switching to " + title);
             getSupportFragmentManager().beginTransaction()
                     .show(newFragment)
-                    .replace(R.id.fragment_frame_layout, newFragment)
+                    //.replace(R.id.fragment_frame_layout, newFragment)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .addToBackStack(title)
                     .commit();

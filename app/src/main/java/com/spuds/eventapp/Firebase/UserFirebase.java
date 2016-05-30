@@ -324,6 +324,7 @@ public class UserFirebase {
 
     public void subscribe(final String otherUserid, final boolean subscribe) {
         final String otherUid = otherUserid;
+        subscribeThreadCheck = false;
 
         if (subscribe) {
             final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
@@ -337,6 +338,7 @@ public class UserFirebase {
             ref.push().setValue(map);
 
             //update user table #subscribed
+            subscribeThreadCheck = true;
 
         } else {
             final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
