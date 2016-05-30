@@ -245,7 +245,7 @@ public class MainActivity extends AppCompatActivity
 
         search.setSearchables(list);
 
-        search.setSearchListener(new SearchBox.SearchListener(){
+        search.setSearchListener(new SearchBox.SearchListener() {
 
             @Override
             public void onSearchTermChanged(String s) {
@@ -722,7 +722,7 @@ public class MainActivity extends AppCompatActivity
             //("MainActivity", "newFragment != null switching to " + title);
             getSupportFragmentManager().beginTransaction()
                     .show(newFragment)
-                    //.replace(R.id.fragment_frame_layout, newFragment)
+                    .replace(R.id.fragment_frame_layout, newFragment)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .addToBackStack(title)
                     .commit();

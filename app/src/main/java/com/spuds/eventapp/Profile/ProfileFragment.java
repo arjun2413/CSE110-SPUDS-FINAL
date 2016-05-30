@@ -84,8 +84,6 @@ public class ProfileFragment extends Fragment {
         }
 
         userFirebase = new UserFirebase();
-        userFirebase.isSubscribed(user.getUserId());
-
         profileFragment = this;
 
     }
@@ -215,11 +213,15 @@ public class ProfileFragment extends Fragment {
 
         } else {
 
+            Log.v("profilefragmnetsub", "" +user.getUserId());
+            userFirebase.isSubscribed(user.getUserId());
+
             buttonSubscribedOrEdit.setText("Subscribe");
 
             Log.v("ProfileFragment", "other not own profile!");
 
-            buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
+            buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
+
 
 
             new Thread(new Runnable() {

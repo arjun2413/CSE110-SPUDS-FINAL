@@ -379,7 +379,8 @@ public class UserFirebase {
 
                         //("userfirebase test", "id: " + id);
 
-                        ref.child(id).removeValue();
+                        if (id != null)
+                            ref.child(id).removeValue();
                         subscribeThreadCheck = true;
                     }
                 }
@@ -469,6 +470,7 @@ public class UserFirebase {
     public static int idIsSubscribed = 0;
 
     public void isSubscribed(final String userId) {
+        idIsSubscribed = 0;
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
         final ValueEventListener valueEventListener = new ValueEventListener() {
 
@@ -477,8 +479,7 @@ public class UserFirebase {
                 String id = "";
                 HashMap<String, Object> values = (HashMap<String, Object>) snapshot.getValue();
                 if (values != null) {
-                    boolean first = false;
-                    boolean second = false;
+
 
                     for (Map.Entry<String, Object> entry : values.entrySet()) {
                         //("Userfirebase asdf", " key" + entry.getKey());
@@ -486,8 +487,11 @@ public class UserFirebase {
 
                         for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
 
-                            //("Userfirebase asdf", " entry value key" + entry2.getKey());
-                            //("Userfirebase asdf", " entry value value" + entry2.getValue());
+                            boolean first = false;
+                            boolean second = false;
+
+                            Log.v("Userfirebase asdf", " entry value key" + entry2.getKey());
+                            Log.v("Userfirebase asdf", " entry value value" + entry2.getValue());
 
 
                             if (entry2.getKey().equals("following_id")) {
@@ -502,16 +506,17 @@ public class UserFirebase {
                                 }
                             }
 
+                            if (second) {
+                                idIsSubscribed = 2;
+                            }
 
                         }
 
                     }
 
-                    if (second) {
-                        idIsSubscribed = 2;
-                    } else {
+                    if (idIsSubscribed != 2)
                         idIsSubscribed = 1;
-                    }
+
 
                     isSubscribedThreadCheck = true;
 
