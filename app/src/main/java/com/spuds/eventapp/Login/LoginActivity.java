@@ -247,10 +247,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-                Log.v("userdetals", "test:" + userFirebase.uId);
+                //("userdetals", "test:" + userFirebase.uId);
 
 
-                Log.v("userdetals", "test:" + userFirebase.thisUser.getName());
+                //("userdetals", "test:" + userFirebase.thisUser.getName());
                 userFirebase.threadCheck = false;
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
 

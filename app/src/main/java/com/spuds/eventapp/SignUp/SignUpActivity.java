@@ -173,9 +173,9 @@ public class SignUpActivity extends AppCompatActivity {
                                         signupPassword1.getText().toString(), signupName.getText().toString());
                                 //When done, leave this page and go to main screen.
                                 //Make these console logs instead route to database.
-                                Log.v("signup_name", signupName.getText().toString());
-                                Log.v("signup_email", signupEmail.getText().toString());
-                                Log.v("signupPassword", signupPassword1.getText().toString());
+                                //("signup_name", signupName.getText().toString());
+                                //("signup_email", signupEmail.getText().toString());
+                                //("signupPassword", signupPassword1.getText().toString());
                                 //accountFirebase = new AccountFirebase();
                                 startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                             }

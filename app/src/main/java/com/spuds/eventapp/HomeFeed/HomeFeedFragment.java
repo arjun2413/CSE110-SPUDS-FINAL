@@ -101,15 +101,15 @@ public class HomeFeedFragment extends Fragment {
 
                         eventsFirebase.createEL();
 
-                        Log.v("refresh", "here");
+                        //("refresh", "here");
                         new Thread(new Runnable() {
 
                             @Override
                             public void run() {
-                                Log.v("refresh", "hereherehere");
+                                //("refresh", "hereherehere");
 
                                 while (events.size() == 0) {
-                                    //Log.v("refresh", "size: " + events.size());
+                                    ////("refresh", "size: " + events.size());
                                     try {
                                         Thread.sleep(70);
                                     } catch (InterruptedException e) {
@@ -117,12 +117,12 @@ public class HomeFeedFragment extends Fragment {
                                     }
                                 }
 
-                                Log.v("refresh", "here2");
+                                //("refresh", "here2");
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run()
                                     {
-                                        Log.v("refresh", "here3");
+                                        //("refresh", "here3");
 
                                         adapter.notifyDataSetChanged();
                                         mySwipeRefreshLayout.setRefreshing(false);

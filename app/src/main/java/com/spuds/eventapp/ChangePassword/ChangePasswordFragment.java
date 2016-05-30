@@ -107,11 +107,11 @@ public class ChangePasswordFragment extends Fragment {
                 //checks if an error has been found
                 boolean is_error = false;
 
-                Log.v("is_error 1:" , String.valueOf(is_error));
+                //("is_error 1:" , String.valueOf(is_error));
                 if(!form.allFilled()) {
                     appendError(getString(R.string.errorEmptyFields));
                     is_error = true;
-                    Log.v("is_error 2:" , String.valueOf(is_error));
+                    //("is_error 2:" , String.valueOf(is_error));
                 }
 
                 //checks if second and third fields are the same
@@ -121,7 +121,7 @@ public class ChangePasswordFragment extends Fragment {
                     }
                     appendError(getString(R.string.errorPassMismatch));
                     is_error = true;
-                    Log.v("is_error 3:" , String.valueOf(is_error));
+                    //("is_error 3:" , String.valueOf(is_error));
                 }
 
                 else if(!form.diffPw()){
@@ -130,12 +130,12 @@ public class ChangePasswordFragment extends Fragment {
                     }
                     appendError(getString(R.string.errorSamePass));
                     is_error = true;
-                    Log.v("is_error 4:" , String.valueOf(is_error));
+                    //("is_error 4:" , String.valueOf(is_error));
                 }
 
                 //pops up a snackbar with successful change message if no error was found
                 if(!is_error) {
-                    Log.v("is_error 4:" , String.valueOf(is_error));
+                    //("is_error 4:" , String.valueOf(is_error));
                     af.changePass(form);
 
                     // Pop this fragment from backstack
@@ -158,20 +158,20 @@ public class ChangePasswordFragment extends Fragment {
 
 
                             if (af.getThreadCheck() == 1) {
-                                Log.v("password: ", "matches top");
+                                //("password: ", "matches top");
                                 getActivity().getSupportFragmentManager().popBackStack();
                                 Snackbar snackbar = Snackbar.make
                                         (view, getString(R.string.password_change_success),
                                                 Snackbar.LENGTH_LONG);
                                 snackbar.show();
-                                Log.v("password: ", "matches bottom");
+                                //("password: ", "matches bottom");
                             }
                             else{
-                                Log.v("password: ", "does not match top");
+                                //("password: ", "does not match top");
                                 Snackbar snackbar = Snackbar.make
                                         (view, getString(R.string.errorWrongPass), Snackbar.LENGTH_LONG);
                                 snackbar.show();
-                                Log.v("password: ", "does not match bottom");
+                                //("password: ", "does not match bottom");
                             }
                             setThread_running(false);
                         }
@@ -180,7 +180,7 @@ public class ChangePasswordFragment extends Fragment {
                         //stalls until thread above ends so user can't click
                     }
 
-                    Log.v("finished: ", "both threads");
+                    //("finished: ", "both threads");
 
 
                 }

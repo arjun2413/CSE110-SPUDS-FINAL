@@ -43,7 +43,7 @@ public class CategoryFeedFragment extends Fragment {
         catType = extras.getString("Category Type");
 
         events = new ArrayList<>();
-        Log.v("cattypecattype", "cattye" + catType);
+        //("cattypecattype", "cattye" + catType);
         System.err.println("cattype" + catType);
 
         // TODO (M): Get arraylist of events based on tab type [new, hot, now]
@@ -59,7 +59,7 @@ public class CategoryFeedFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recycler, container, false);
 
-        Log.v("cattypecattype", "cattye" + catType);
+        //("cattypecattype", "cattye" + catType);
         if( catType.equals(getString(R.string.cat_food))) {
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Food");
         }
@@ -129,15 +129,15 @@ public class CategoryFeedFragment extends Fragment {
 
                         eventsFirebase.createEL();
 
-                        Log.v("refresh", "here");
+                        //("refresh", "here");
                         new Thread(new Runnable() {
 
                             @Override
                             public void run() {
-                                Log.v("refresh", "hereherehere");
+                                //("refresh", "hereherehere");
 
                                 while (events.size() == 0) {
-                                    //Log.v("refresh", "size: " + events.size());
+                                    ////("refresh", "size: " + events.size());
                                     try {
                                         Thread.sleep(70);
                                     } catch (InterruptedException e) {
@@ -145,12 +145,12 @@ public class CategoryFeedFragment extends Fragment {
                                     }
                                 }
 
-                                Log.v("refresh", "here2");
+                                //("refresh", "here2");
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run()
                                     {
-                                        Log.v("refresh", "here3");
+                                        //("refresh", "here3");
 
                                         adapter.notifyDataSetChanged();
                                         mySwipeRefreshLayout.setRefreshing(false);
