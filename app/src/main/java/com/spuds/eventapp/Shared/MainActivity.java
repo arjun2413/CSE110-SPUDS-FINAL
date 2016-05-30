@@ -34,7 +34,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewManager;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -200,13 +199,17 @@ public class MainActivity extends AppCompatActivity
                 circularBitmapDrawable.setAntiAlias(true);
                 profilePic.setImageDrawable(circularBitmapDrawable);
             } else {
-                src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
+                try {
+                    src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
 
-                RoundedBitmapDrawable circularBitmapDrawable =
-                        RoundedBitmapDrawableFactory.create(getResources(), src);
-                circularBitmapDrawable.setCircular(true);
-                circularBitmapDrawable.setAntiAlias(true);
-                profilePic.setImageDrawable(circularBitmapDrawable);
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(getResources(), src);
+                    circularBitmapDrawable.setCircular(true);
+                    circularBitmapDrawable.setAntiAlias(true);
+                    profilePic.setImageDrawable(circularBitmapDrawable);
+                } catch(OutOfMemoryError e) {
+                    System.err.println(e.toString());
+                }
             }
         } else {
             Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
@@ -242,13 +245,13 @@ public class MainActivity extends AppCompatActivity
 
         search.setSearchables(list);
 
-        search.setSearchListener(new SearchBox.SearchListener(){
+        search.setSearchListener(new SearchBox.SearchListener() {
 
             @Override
             public void onSearchTermChanged(String s) {
                 //React to the search term changing
                 //Called after it has updated results
-                Log.v("onSearchTermChanged", s);
+                //("onSearchTermChanged", s);
 
                 SearchResult option = new SearchResult(s);
                 list.add(option);
@@ -289,7 +292,7 @@ public class MainActivity extends AppCompatActivity
                 } else if (searchType.equals(R.string.cat_sports)) {
 
                 } else {
-                    Log.v("search: ", "something went wrong");
+                    //("search: ", "something went wrong");
                 }
 
                 search.setSearchables(list);
@@ -716,7 +719,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (newFragment != null) {
-            Log.v("MainActivity", "newFragment != null switching to " + title);
+            //("MainActivity", "newFragment != null switching to " + title);
             getSupportFragmentManager().beginTransaction()
                     .show(newFragment)
                     .replace(R.id.fragment_frame_layout, newFragment)
@@ -852,11 +855,11 @@ public class MainActivity extends AppCompatActivity
 
             if (resultCode == RESULT_OK) {
 
-                //Log.v(TAG, "Image saved to:\n" + fileUri);
+                ////(TAG, "Image saved to:\n" + fileUri);
 
                 Uri uri = result.getData();
 
-                Log.v("square", String.valueOf(square));
+                //("square", String.valueOf(square));
                 if (square)
                     Crop.of(uri, picture).asSquare().start(this);
                 else

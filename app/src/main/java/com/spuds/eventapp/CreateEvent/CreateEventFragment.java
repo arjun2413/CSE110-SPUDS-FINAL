@@ -1,5 +1,6 @@
 package com.spuds.eventapp.CreateEvent;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -169,7 +171,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                 }
                 else {
                     final String eventId = eventsFirebase.createEvent(form, adapter);
-                    Log.v("createevent:", "eventid: " + eventId);
+                    //("createevent:", "eventid: " + eventId);
 
                     EventsFirebase ef = new EventsFirebase();
                     ef.getEventDetails(eventId);
@@ -181,7 +183,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                         public void run() {
                             while (!EventsFirebase.detailsThreadCheck) {
                                 try {
-                                    Log.v("sleepingthread","fam");
+                                    //("sleepingthread","fam");
 
                                     Thread.sleep(70);
                                 } catch (InterruptedException e) {
@@ -208,6 +210,8 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
 
 
                 }
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
             }
         });
 

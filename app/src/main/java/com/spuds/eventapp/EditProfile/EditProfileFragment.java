@@ -1,5 +1,6 @@
 package com.spuds.eventapp.EditProfile;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -114,8 +116,8 @@ public class  EditProfileFragment extends Fragment {
 
                                 /*pictureView.setImageURI(null);
                                 pictureView.setImageURI(((MainActivity) getActivity()).picture);
-                                Log.v("EditProfileFragment", "here");
-                                Log.v("EditProfileFragment", ((MainActivity) getActivity()).picture.toString());
+                                //("EditProfileFragment", "here");
+                                //("EditProfileFragment", ((MainActivity) getActivity()).picture.toString());
                                 pictureView.invalidate();*/
 
                                 String imageFile = UserFirebase.convert(getActivity(),((MainActivity) getActivity()).picture);
@@ -131,7 +133,7 @@ public class  EditProfileFragment extends Fragment {
 
                                     if (src != null) {
 
-                                        Log.v("EditProfileFragment", "imagefile" + imageFile);
+                                        //("EditProfileFragment", "imagefile" + imageFile);
                                         RoundedBitmapDrawable dr =
                                                 RoundedBitmapDrawableFactory.create(getActivity().getResources(), src);
 
@@ -224,7 +226,7 @@ public class  EditProfileFragment extends Fragment {
                         editDescription.getText().toString(),
                         picturepush);
 
-                Log.v("EditProfilementasdfasdf", "imagefile" + user.getPicture());
+                //("EditProfilementasdfasdf", "imagefile" + user.getPicture());
 
                 UserFirebase.updateUser(user);
                 final UserFirebase userFirebase = new UserFirebase();
@@ -257,6 +259,8 @@ public class  EditProfileFragment extends Fragment {
                         });
                     }
                 }).start();
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
             }
         });

@@ -12,7 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.spuds.eventapp.EditProfile.EditProfileFragment;
 import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
@@ -57,6 +58,8 @@ public class ProfileFragment extends Fragment {
     List<Event> eventsHosting;
     List<Event> eventsGoing;
     UserFirebase userFirebase;
+    boolean canClickSubscribe = true;
+
 
     ProfileViewPagerAdapter profileViewPagerAdapter;
 
@@ -81,8 +84,6 @@ public class ProfileFragment extends Fragment {
         }
 
         userFirebase = new UserFirebase();
-        userFirebase.isSubscribed(user.getUserId());
-
         profileFragment = this;
 
     }
@@ -109,12 +110,12 @@ public class ProfileFragment extends Fragment {
         TextView name = (TextView) view.findViewById(R.id.user_name);
         name.setTypeface(raleway_medium);
 
-        TextView hosting = (TextView) view.findViewById(R.id.label_events_hosting);
+        /*TextView hosting = (TextView) view.findViewById(R.id.label_events_hosting);
         hosting.setTypeface(raleway_medium);
 
         TextView going = (TextView) view.findViewById(R.id.label_events_going);
         going.setTypeface(raleway_medium);
-
+        */
 
         Button subscribe = (Button) view.findViewById(R.id.button_subscribe);
         subscribe.setTypeface(raleway_medium);
@@ -212,11 +213,15 @@ public class ProfileFragment extends Fragment {
 
         } else {
 
+            Log.v("profilefragmnetsub", "" +user.getUserId());
+            userFirebase.isSubscribed(user.getUserId());
+
             buttonSubscribedOrEdit.setText("Subscribe");
 
             Log.v("ProfileFragment", "other not own profile!");
 
-            buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
+            buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
+
 
 
             new Thread(new Runnable() {
@@ -258,17 +263,39 @@ public class ProfileFragment extends Fragment {
                                 @Override
                                 public void onClick(View v) {
 
-                                    user.setSubscribed(!user.isSubscribed());
-                                    Log.v("Profile Fragment", "subscribed = " + user.isSubscribed());
+                                    if (canClickSubscribe) {
+                                        user.setSubscribed(!user.isSubscribed());
+                                        Log.v("Profile Fragment", "subscribed = " + user.isSubscribed());
 
-                                    UserFirebase userFirebase = new UserFirebase();
-                                    userFirebase.subscribe(user.getUserId(), user.isSubscribed());
-                                    // TODO (V): coloorzz
-                                    if (user.isSubscribed())
-                                        buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
-                                    else
-                                        buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
+                                        canClickSubscribe = false;
+                                        userFirebase = new UserFirebase();
+                                        userFirebase.subscribe(user.getUserId(), user.isSubscribed());
+                                        // TODO (V): coloorzz
+                                        if (user.isSubscribed())
+                                            buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
+                                        else
+                                            buttonSubscribedOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
 
+
+                                        new Thread(new Runnable() {
+
+                                            @Override
+                                            public void run() {
+                                                while (!userFirebase.subscribeThreadCheck) {
+                                                    try {
+                                                        Thread.sleep(70);
+                                                    } catch (InterruptedException e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                }
+
+                                                canClickSubscribe = true;
+
+                                                //subscribeThreadCheck = false;
+
+                                            }
+                                        }).start();
+                                    }
                                 }
                             });
                         }

@@ -1,5 +1,6 @@
 package com.spuds.eventapp.ChangePassword;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -159,11 +161,11 @@ public class ChangePasswordFragment extends Fragment {
 
                             if (af.getThreadCheck() == 1) {
                                 Log.v("password: ", "matches top");
-                                getActivity().getSupportFragmentManager().popBackStack();
                                 Snackbar snackbar = Snackbar.make
                                         (view, getString(R.string.password_change_success),
                                                 Snackbar.LENGTH_LONG);
                                 snackbar.show();
+                                getActivity().getSupportFragmentManager().popBackStack();
                                 Log.v("password: ", "matches bottom");
                             }
                             else{
@@ -189,6 +191,9 @@ public class ChangePasswordFragment extends Fragment {
 
                     sys_message.setText(getError());
                 }
+
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
             }
         });
