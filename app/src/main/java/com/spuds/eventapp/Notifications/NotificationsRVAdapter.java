@@ -265,7 +265,7 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     public void run() {
                         while (!EventsFirebase.detailsThreadCheck) {
                             try {
-                                Log.v("sleepingthread","fam");
+                                //("sleepingthread","fam");
 
                                 Thread.sleep(70);
                             } catch (InterruptedException e) {
@@ -360,7 +360,7 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     public void run() {
                         while (!EventsFirebase.detailsThreadCheck) {
                             try {
-                                Log.v("sleepingthread","fam");
+                                //("sleepingthread","fam");
 
                                 Thread.sleep(70);
                             } catch (InterruptedException e) {
@@ -456,7 +456,7 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     public void run() {
                         while (!EventsFirebase.detailsThreadCheck) {
                             try {
-                                Log.v("sleepingthread","fam");
+                                //("sleepingthread","fam");
 
                                 Thread.sleep(70);
                             } catch (InterruptedException e) {

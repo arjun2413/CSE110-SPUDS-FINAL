@@ -61,8 +61,8 @@ public class SearchEventsFragment extends Fragment {
             @Override
             public void run() {
                 while (userFirebase.numSubscriptions > events.size() || !userFirebase.getSubscriptionsThreadCheck) {
-                    Log.v("sublist", "numsubs" + userFirebase.numSubscriptions);
-                    Log.v("sublist", "subscriptions size" + events.size());
+                    //("sublist", "numsubs" + userFirebase.numSubscriptions);
+                    //("sublist", "subscriptions size" + events.size());
                     try {
                         Thread.sleep(70);
                     } catch (InterruptedException e) {
@@ -98,17 +98,17 @@ public class SearchEventsFragment extends Fragment {
 
                         //TODO: Get events from firebase
 
-                        Log.v("refresh", "here");
+                        //("refresh", "here");
                         new Thread(new Runnable() {
 
                             @Override
                             public void run() {
-                                Log.v("refresh", "hereherehere");
+                                //("refresh", "hereherehere");
 
                                 //TODO: Change firebase calls to events instead of subscriptions
                                 /*
                                 while (userFirebase.numSubscriptions > events.size() || !userFirebase.getSubscriptionsThreadCheck) {
-                                    //Log.v("refresh", "size: " + events.size());
+                                    ////("refresh", "size: " + events.size());
                                     try {
                                         Thread.sleep(70);
                                     } catch (InterruptedException e) {
@@ -117,12 +117,12 @@ public class SearchEventsFragment extends Fragment {
                                 }
                                 */
 
-                                Log.v("refresh", "here2");
+                                //("refresh", "here2");
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run()
                                     {
-                                        Log.v("refresh", "here3");
+                                        //("refresh", "here3");
 
                                         adapter.notifyDataSetChanged();
                                         mySwipeRefreshLayout.setRefreshing(false);

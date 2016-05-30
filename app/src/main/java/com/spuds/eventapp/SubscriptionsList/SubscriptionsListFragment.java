@@ -58,8 +58,8 @@ public class SubscriptionsListFragment extends Fragment {
             @Override
             public void run() {
                 while (userFirebase.numSubscriptions > subscriptions.size() || !userFirebase.getSubscriptionsThreadCheck) {
-                    Log.v("sublist", "numsubs" + userFirebase.numSubscriptions);
-                    Log.v("sublist", "subscriptions size" + subscriptions.size());
+                    //("sublist", "numsubs" + userFirebase.numSubscriptions);
+                    //("sublist", "subscriptions size" + subscriptions.size());
                     try {
                         Thread.sleep(70);
                     } catch (InterruptedException e) {
@@ -95,15 +95,15 @@ public class SubscriptionsListFragment extends Fragment {
 
                         userFirebase.getSubscriptions(subscriptions);
 
-                        Log.v("refresh", "here");
+                        //("refresh", "here");
                         new Thread(new Runnable() {
 
                             @Override
                             public void run() {
-                                Log.v("refresh", "hereherehere");
+                                //("refresh", "hereherehere");
 
                                 while (userFirebase.numSubscriptions > subscriptions.size() || !userFirebase.getSubscriptionsThreadCheck) {
-                                    //Log.v("refresh", "size: " + events.size());
+                                    ////("refresh", "size: " + events.size());
                                     try {
                                         Thread.sleep(70);
                                     } catch (InterruptedException e) {
@@ -111,12 +111,12 @@ public class SubscriptionsListFragment extends Fragment {
                                     }
                                 }
 
-                                Log.v("refresh", "here2");
+                                //("refresh", "here2");
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run()
                                     {
-                                        Log.v("refresh", "here3");
+                                        //("refresh", "here3");
 
                                         adapter.notifyDataSetChanged();
                                         mySwipeRefreshLayout.setRefreshing(false);

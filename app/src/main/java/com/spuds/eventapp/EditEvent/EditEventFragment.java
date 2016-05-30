@@ -239,11 +239,11 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
         //existing categories on this event is good.
         ArrayList<String> existingCateg = event.getCategories();
-        Log.v("size", "size: " + event.getCategories().size());
+        //("size", "size: " + event.getCategories().size());
 
         for (int i = 0; i < existingCateg.size(); ++i) {
 
-            Log.v("category", "category: " + existingCateg.get(i));
+            //("category", "category: " + existingCateg.get(i));
 
 
             switch(existingCateg.get(i)) {
@@ -342,12 +342,12 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
                     if (!form.allFilled()) {
                         //TODO: form not all filled error
-                        Log.v("ERROR", getString(R.string.errorEmptyFields));
+                        //("ERROR", getString(R.string.errorEmptyFields));
                         errorMissingMessage.setVisibility(View.VISIBLE);
                     }
                     else if (!form.correctDate()) {
                         //TODO: date incorrect format error
-                        Log.v("ERROR", getString(R.string.errorInvalidTime));
+                        //("ERROR", getString(R.string.errorInvalidTime));
                         errorTimeMessage.setVisibility(View.VISIBLE);
                     }
                     else {

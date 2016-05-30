@@ -171,7 +171,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                 }
                 else {
                     final String eventId = eventsFirebase.createEvent(form, adapter);
-                    Log.v("createevent:", "eventid: " + eventId);
+                    //("createevent:", "eventid: " + eventId);
 
                     EventsFirebase ef = new EventsFirebase();
                     ef.getEventDetails(eventId);
@@ -183,7 +183,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                         public void run() {
                             while (!EventsFirebase.detailsThreadCheck) {
                                 try {
-                                    Log.v("sleepingthread","fam");
+                                    //("sleepingthread","fam");
 
                                     Thread.sleep(70);
                                 } catch (InterruptedException e) {

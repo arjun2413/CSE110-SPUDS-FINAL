@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
@@ -20,8 +21,9 @@ import java.util.List;
 
 public class SubscriptionFeedFragment extends Fragment {
 
-    private List<Event> events;
+    private ArrayList<Event> events;
     public EventsFeedRVAdapter adapter;
+    EventsFirebase eventsFirebase;
 
     String tabType;
 
@@ -38,14 +40,8 @@ public class SubscriptionFeedFragment extends Fragment {
         // TODO (M): Get arraylist of events based on tab type [new, hot, now]
         // Fake data
         events = new ArrayList<>();
-        ArrayList<String> categories = new ArrayList<>();
-        categories.add("Social");
-        categories.add("Concert");
-
-        events.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04/20/2016|16:20", 1054,
-                "", categories, "UCSD"));
-        events.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04/20/2016|16:20", 51,
-                "", categories, "Foosh Improv Comedy Club"));
+        eventsFirebase = new EventsFirebase(events, 0, tabType);
+        eventsFirebase.createSubFeed();
     }
 
     @Override
@@ -53,7 +49,7 @@ public class SubscriptionFeedFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recycler, container, false);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Subscription Feed");
-        RecyclerView rv=(RecyclerView) view.findViewById(R.id.rv);
+        final RecyclerView rv=(RecyclerView) view.findViewById(R.id.rv);
 
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
@@ -61,6 +57,28 @@ public class SubscriptionFeedFragment extends Fragment {
 
         adapter = new EventsFeedRVAdapter(events, this, getString(R.string.fragment_my_sub_feed));
         rv.setAdapter(adapter);
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (events.size() == 0) {
+                    try {
+                        Thread.sleep(70);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        rv.setAdapter(adapter);
+                    }
+                });
+            }
+        }).start();
+        //call refreshing function
+        //refreshing(view);
 
         return view;
     }

@@ -81,7 +81,7 @@ public class EventDetailsFragment extends Fragment {
         event = (Event) extras.getSerializable(getString(R.string.event_details));
         if (event == null) {
             eventId = extras.getString(getString(R.string.event_id));
-            Log.v("eventsfirebasepushref", "eventisnullid is" + eventId);
+            //("eventsfirebasepushref", "eventisnullid is" + eventId);
             // TODO: Fetch event using eventId
             EventsFirebase ef = new EventsFirebase();
             event = ef.getEventDetails(eventId);
@@ -160,10 +160,10 @@ public class EventDetailsFragment extends Fragment {
             public void onRefresh() {
 
 
-                Log.v("refresh", "here");
+                //("refresh", "here");
                 EventsFirebase ef = new EventsFirebase();
                 EventsFirebase.detailsThreadCheck = false;
-                Log.v("eventsfirebasepushref22", eventId);
+                //("eventsfirebasepushref22", eventId);
                 ef.getEventDetails(eventId);
 
 
@@ -173,7 +173,7 @@ public class EventDetailsFragment extends Fragment {
                     public void run() {
                         while (!EventsFirebase.detailsThreadCheck) {
                             try {
-                                Log.v("EDF","getting new evnet details with eventid" + eventId);
+                                //("EDF","getting new evnet details with eventid" + eventId);
 
                                 Thread.sleep(70);
                             } catch (InterruptedException e) {
@@ -185,9 +185,9 @@ public class EventDetailsFragment extends Fragment {
                             @Override
                             public void run() {
                                 event = EventsFirebase.eventDetailsEvent;
-                                Log.v("wtf", event.getEventId());
-                                Log.v("wtf", event.getDescription());
-                                Log.v("wtf", event.getEventId());
+                                //("wtf", event.getEventId());
+                                //("wtf", event.getDescription());
+                                //("wtf", event.getEventId());
                                 setUpEventInformation(view);
                                 setupEditEvent();
                                 setUpComments(view);
@@ -237,7 +237,7 @@ public class EventDetailsFragment extends Fragment {
         eventHost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.v("eventsfeedrvadapter", "eventhostclicked");
+                //("eventsfeedrvadapter", "eventhostclicked");
 
                 final UserFirebase userFirebase = new UserFirebase();
 
@@ -255,7 +255,7 @@ public class EventDetailsFragment extends Fragment {
                             }
 
                         }
-                        Log.v("eventsfeedrvadapter", "returned from firebase");
+                        //("eventsfeedrvadapter", "returned from firebase");
 
 
                         startProfileFragment(userFirebase);
@@ -364,7 +364,7 @@ public class EventDetailsFragment extends Fragment {
 
         if(event.getCategories() != null && event.getCategories().size() != 0) {
             for (int i = 0; i < event.getCategories().size() - 1; ++i) {
-                //Log.v("chris", event.getCategories().get(i));
+                ////("chris", event.getCategories().get(i));
                 categories += event.getCategories().get(i) + ", ";
             }
             categories += event.getCategories().get(event.getCategories().size() - 1);
@@ -539,7 +539,7 @@ public class EventDetailsFragment extends Fragment {
 
         String imageFile = event.getPicture();
 
-        Log.v("ag7", "imageFile = " + imageFile);
+        //("ag7", "imageFile = " + imageFile);
 
         if (imageFile != null && imageFile != "") {
 
@@ -580,7 +580,7 @@ public class EventDetailsFragment extends Fragment {
     @Override
     public void onResume(){
         super.onResume();
-        Log.v("WAOW", "ONRESUME");
+        //("WAOW", "ONRESUME");
         if (!first) {
             mySwipeRefreshLayout.post(new Runnable() {
                 @Override public void run() {
