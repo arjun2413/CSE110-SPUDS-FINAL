@@ -113,7 +113,7 @@ public class HomeFeedFragment extends Fragment {
                                 while (events.size() == 0) {
                                     ////("refresh", "size: " + events.size());
                                     try {
-                                        Thread.sleep(70);
+                                        Thread.sleep(Integer.parseInt(getString(R.string.sleepTime)));
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     }

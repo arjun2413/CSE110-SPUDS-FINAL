@@ -12,6 +12,7 @@ import com.spuds.eventapp.CreateEvent.CreateEventForm;
 import com.spuds.eventapp.CreateEvent.CreateEventRVAdapter;
 import com.spuds.eventapp.EditEvent.EditEventForm;
 import com.spuds.eventapp.EditEvent.EditEventRVAdapter;
+import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
 import com.spuds.eventapp.Shared.SubEvent;
@@ -1306,7 +1307,7 @@ public class EventsFirebase {
                                     public void run() {
                                         while (!userFirebase.threadCheckAnotherUser) {
                                             try {
-                                                Thread.sleep(77);
+                                                Thread.sleep(300);
                                             } catch (InterruptedException e) {
                                                 e.printStackTrace();
                                             }

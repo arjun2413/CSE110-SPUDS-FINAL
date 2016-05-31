@@ -153,7 +153,7 @@ public class ChangePasswordFragment extends Fragment {
                             setThread_running(true);
                             while (af.getThreadCheck() == 0) {
                                 try {
-                                    Thread.sleep(75);
+                                    Thread.sleep(Integer.parseInt(getString(R.string.sleepTime)));
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
