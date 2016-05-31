@@ -4,12 +4,12 @@
         "source": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/res/drawable/blue.jpg"
     },
     {
-        "merged": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/home.png",
-        "source": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/res/drawable/home.png"
-    },
-    {
         "merged": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/abc_btn_borderless_material.xml",
         "source": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable/abc_btn_borderless_material.xml"
+    },
+    {
+        "merged": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/home.png",
+        "source": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/src/main/res/drawable/home.png"
     },
     {
         "merged": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/drawable/roundedbutton.xml",

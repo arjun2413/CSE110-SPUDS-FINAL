@@ -68,8 +68,7 @@ public class EventDetailsFragment extends Fragment {
     boolean canClickGoing = true;
 
 
-    public EventDetailsFragment() {
-    }
+    public EventDetailsFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

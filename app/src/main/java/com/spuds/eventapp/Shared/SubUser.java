@@ -13,8 +13,7 @@ public class SubUser implements Serializable {
     public SubUser(String name, String description, String picture) {
         this.setName(name);
     }
-    public SubUser(String userId, String name, String description, boolean notificationToggle, int numberFollowing,
-                int numberHosting, String picture, boolean subscribed) {
+    public SubUser(String userId, String name) {
 
         this.setUserId(userId);
         this.setName(name);

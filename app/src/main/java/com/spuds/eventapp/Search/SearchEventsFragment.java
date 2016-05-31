@@ -35,7 +35,8 @@ public class SearchEventsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         eventsFirebase = new EventsFirebase();
         Bundle bundle = getArguments();
-        eventId = bundle.getString(getString(R.string.event_id));
+        if (bundle != null)
+            eventId = bundle.getString(getString(R.string.event_id));
 
     }
 
@@ -56,36 +57,38 @@ public class SearchEventsFragment extends Fragment {
         adapter = new SearchEventsRVAdapter(events, this, "Search Events Fragment");
         rv.setAdapter(adapter);
 
-        eventsFirebase.getEventDetails(eventId);
+        if (eventId != null) {
+            eventsFirebase.getEventDetails(eventId);
 
 
-        new Thread(new Runnable() {
+            new Thread(new Runnable() {
 
-            @Override
-            public void run() {
-                while (!EventsFirebase.detailsThreadCheck) {
-                    try {
-                        //("sleepingthread","fam");
+                @Override
+                public void run() {
+                    while (!EventsFirebase.detailsThreadCheck) {
+                        try {
+                            //("sleepingthread","fam");
 
-                        Thread.sleep(70);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                            Thread.sleep(70);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
+
+                    EventsFirebase.eventDetailsEvent.setEventId(eventId);
+
+                    events.add(EventsFirebase.eventDetailsEvent);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            adapter.notifyItemInserted(0);
+                        }
+                    });
+
                 }
+            }).start();
 
-                EventsFirebase.eventDetailsEvent.setEventId(eventId);
-
-                events.add(EventsFirebase.eventDetailsEvent);
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        adapter.notifyItemInserted(0);
-                    }
-                });
-
-            }
-        }).start();
-
+        }
         //calls the function to refresh the page.
         //refreshing(v);
 
