@@ -51,7 +51,7 @@ public class EventDate {
 
         }
         else {
-            Log.d("Improper", "string value for date");
+            //("Improper", "string value for date");
         }
     }
 
@@ -83,7 +83,7 @@ public class EventDate {
 
     // TODO probably wrong
     public String getAMPM() {
-        Log.d("AMPM", String.valueOf(this.hour));
+        //("AMPM", String.valueOf(this.hour));
         if(this.hour < 12 ){
             return "AM";
         }
@@ -117,7 +117,7 @@ public class EventDate {
     }
 
     private boolean validateString(String s){
-        Log.d("YEEZY", s);
+        //("YEEZY", s);
         //use RegEx to ensure correct format. If it is in correct form, return true.
         if(s.matches("\\d{2}/\\d{2}/\\d{2} \\| \\d{2}:\\d{2}")){
             return true;

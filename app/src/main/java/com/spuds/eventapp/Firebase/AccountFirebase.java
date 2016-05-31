@@ -4,6 +4,9 @@ package com.spuds.eventapp.Firebase;
  * Created by Arjun on 5/5/16.
  */
 
+import android.app.FragmentManager;
+import android.content.Context;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.firebase.client.AuthData;
@@ -32,10 +35,11 @@ public class AccountFirebase {
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
         ref.createUser(email, password, new Firebase.ValueResultHandler<Map<String, Object>>()
 
+
                 {
                     @Override
                     public void onSuccess (Map < String, Object > result){
-                        System.out.println("Successfully created user account with uid: " + result.get("uid"));
+                        System.out.println("Successfully created user account with uid: " + result.get("uid") + " | " + result.get("provider"));
                         // Authentication just completed successfully smile emoticon
                         Map<String, String> map = new HashMap<String, String>();
                         map.put("provider", ref.getAuth().getProvider());
@@ -80,7 +84,7 @@ public class AccountFirebase {
                 UserFirebase.uId = authData.getUid();
 
                 status = 1;
-
+                System.out.println("onAuthenticated_Success");
 
                 // Authentication just completed successfully smile emoticon
 
@@ -92,12 +96,24 @@ public class AccountFirebase {
                 //("AccountFirebase", "ERROR Logging In");
                 //("accountfirebase", firebaseError.toString());
                 System.out.println("FirebaseError Code: " + firebaseError.getCode());
-                if (!firebaseError.toString().equals("FirebaseError: Due to another authentication attempt, this authentication attempt was aborted before it could complete.")) {
+                if (firebaseError.getCode() == -24) {
+                    status = 3;
+                }
+                else if (!firebaseError.toString().equals("FirebaseError: Due to another authentication attempt, this authentication attempt was aborted before it could complete.")) {
                     status = 2;
                 }
+
             }
 
         });
+    }
+
+    public void logout() {
+        final Firebase ref = new Firebase("https://eventory.firebaseio.com");
+        System.out.println(ref.getAuth());
+        ref.unauth();
+        System.out.println(ref.getAuth());
+        //("Logout", "LOGGEDOUT");
     }
 
     public void changePass(ChangePasswordForm form) {
@@ -157,6 +173,22 @@ public class AccountFirebase {
         return data;
     }
 
+    public void authCheck() {
+        Firebase ref = new Firebase("https://eventory.firebaseio.com");
+        ref.addAuthStateListener(new Firebase.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(AuthData authData) {
+                if (authData != null) {
+                    // user is logged in
+                    System.out.println("LOGGED_IN_AUTHCHEKC");
+                } else {
+                    // user is not logged in
+                    System.out.println("LOGGED_OUT_AUTHCHECK");
+
+                }
+            }
+        });
+    }
 
     /*
      * FUNCTION NAME: checkEmail
@@ -200,7 +232,7 @@ public class AccountFirebase {
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
-
+                //("CheckEmailError:", firebaseError.getMessage());
             }
 
 

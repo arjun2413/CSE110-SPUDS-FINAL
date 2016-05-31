@@ -255,18 +255,18 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             }
         });
 
-        Log.d("rvadapter", "b4 thread");
+        //("rvadapter", "b4 thread");
 
 
         /*eventViewHolder.buttonGoing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Here1", "herepls");
+                //("Here1", "herepls");
 
 
                 if (going) {
 
-                    Log.d("edgoing", " true");
+                    //("edgoing", " true");
 
                     /currentFragment.getActivity().runOnUiThread(new Runnable() {
                         @Override
@@ -281,7 +281,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
                 } else {
 
-                    Log.d("edgoing", " false");
+                    //("edgoing", " false");
                     currentFragment.getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -319,9 +319,9 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void run() {
-                Log.d("rvadapterisisgoing", String.valueOf(eventsFirebase.idIsGoing));
+                //("rvadapterisisgoing", String.valueOf(eventsFirebase.idIsGoing));
                 while (eventsFirebase.idIsGoing == 0) {
-                    Log.d("rvadapter", "areHere");
+                    //("rvadapter", "areHere");
                     try {
                         Thread.sleep(75);
                     } catch (InterruptedException e) {

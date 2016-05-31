@@ -40,13 +40,29 @@
             android:layout_gravity="center_horizontal"
             android:textColor="#ffffff"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Full Name *"
-            android:id="@+id/name"
-            android:textColor="#ffffff" />
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Full Name *"
+                android:id="@+id/name"
+                android:textColor="#ffffff"
+                android:layout_weight="0.11" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_error_message"
+                android:textColor="#cd0404"
+                android:layout_weight="1" />
+
+        </LinearLayout>
 
         <EditText
             android:layout_width="match_parent"
@@ -94,13 +110,6 @@
             android:textColor="#ffffff"
             android:layout_gravity="center_horizontal"
             android:textSize="20dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="106dp"
-            android:id="@+id/error_message"
-            android:layout_gravity="center_horizontal"
-            android:textColor="#cd0404" />
 
     </LinearLayout>
 

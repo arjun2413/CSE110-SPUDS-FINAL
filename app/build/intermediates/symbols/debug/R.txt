@@ -993,8 +993,9 @@ int id drawer_layout 0x7f0e009b
 int id drawer_logo 0x7f0e015e
 int id editEventDelete 0x7f0e00e9
 int id editEventDone 0x7f0e00e8
-int id edit_description 0x7f0e00ec
-int id edit_full_name 0x7f0e00eb
+int id edit_description 0x7f0e00ed
+int id edit_error_message 0x7f0e00eb
+int id edit_full_name 0x7f0e00ec
 int id edit_profile_picture 0x7f0e00ea
 int id edit_query 0x7f0e0084
 int id email 0x7f0e0093
@@ -1003,7 +1004,6 @@ int id end_padder 0x7f0e0152
 int id enterAlways 0x7f0e0016
 int id enterAlwaysCollapsed 0x7f0e0017
 int id errorMessage 0x7f0e0094
-int id error_message 0x7f0e00ee
 int id eventDate 0x7f0e00dc
 int id eventDescription 0x7f0e00e4
 int id eventImage 0x7f0e00d4
@@ -1221,7 +1221,7 @@ int id topPanel 0x7f0e006f
 int id touch_outside 0x7f0e00b0
 int id transparent_overlay 0x7f0e00f2
 int id up 0x7f0e000a
-int id update_button 0x7f0e00ed
+int id update_button 0x7f0e00ee
 int id upload 0x7f0e00d5
 int id useLogo 0x7f0e0015
 int id user_description 0x7f0e0114

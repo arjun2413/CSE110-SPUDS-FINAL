@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.firebase.client.Firebase;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.spuds.eventapp.Firebase.AccountFirebase;
+import com.spuds.eventapp.Login.LoginActivity;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.Shared.RegistrationService;
@@ -56,7 +57,7 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
 
-        Log.d("Create signup", "Creating right now");
+        //("Create signup", "Creating right now");
 
         //Hide Action Bar and Status Bar
         //View decorView = getWindow().getDecorView();
@@ -177,7 +178,8 @@ public class SignUpActivity extends AppCompatActivity {
                                 //("signup_email", signupEmail.getText().toString());
                                 //("signupPassword", signupPassword1.getText().toString());
                                 //accountFirebase = new AccountFirebase();
-                                startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+                                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                                //(AppCompatActivity)getActivity().getSupportFragmentManager().popBackStack();
                             }
                         }
 
