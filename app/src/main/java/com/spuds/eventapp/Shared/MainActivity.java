@@ -433,7 +433,7 @@ public class MainActivity extends AppCompatActivity
                 }
 
                 testEventsList = EventsFirebase.subEvents;
-                
+
 
                 //check what events are there
                 for(SubEvent s : testEventsList){
