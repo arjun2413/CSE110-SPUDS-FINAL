@@ -3803,21 +3803,22 @@ containing a value of this type.
         public static final int profile_type_other=0x7f08009b;
         public static final int profile_type_owner=0x7f08009c;
         public static final int settings=0x7f08009d;
-        public static final int speak_now=0x7f08009e;
+        public static final int sleepTime=0x7f08009e;
+        public static final int speak_now=0x7f08009f;
         public static final int status_bar_notification_info_overflow=0x7f080039;
-        public static final int store_picture_message=0x7f08009f;
-        public static final int store_picture_title=0x7f0800a0;
-        public static final int subscriptionFeed=0x7f0800a1;
-        public static final int subscriptions=0x7f0800a2;
-        public static final int tab_going=0x7f0800a3;
-        public static final int tab_hosting=0x7f0800a4;
-        public static final int tab_hot=0x7f0800a5;
-        public static final int tab_new=0x7f0800a6;
-        public static final int tab_now=0x7f0800a7;
-        public static final int tab_tag=0x7f0800a8;
-        public static final int title_activity_search=0x7f0800a9;
-        public static final int user_details=0x7f0800aa;
-        public static final int user_id=0x7f0800ab;
+        public static final int store_picture_message=0x7f0800a0;
+        public static final int store_picture_title=0x7f0800a1;
+        public static final int subscriptionFeed=0x7f0800a2;
+        public static final int subscriptions=0x7f0800a3;
+        public static final int tab_going=0x7f0800a4;
+        public static final int tab_hosting=0x7f0800a5;
+        public static final int tab_hot=0x7f0800a6;
+        public static final int tab_new=0x7f0800a7;
+        public static final int tab_now=0x7f0800a8;
+        public static final int tab_tag=0x7f0800a9;
+        public static final int title_activity_search=0x7f0800aa;
+        public static final int user_details=0x7f0800ab;
+        public static final int user_id=0x7f0800ac;
         public static final int wallet_buy_button_place_holder=0x7f08003a;
     }
     public static final class style {
