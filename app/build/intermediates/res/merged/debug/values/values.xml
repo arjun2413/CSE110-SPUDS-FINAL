@@ -421,7 +421,7 @@
     <string name="errorDateFormat">ERROR: Date must be in mm/dd/yy</string>
     <string name="errorEmailUsedBefore">ERROR: Email has already been used before</string>
     <string name="errorEmptyComment">ERROR: No comment made</string>
-    <string name="errorEmptyFields">ERROR: Not all fields are filled</string>
+    <string name="errorEmptyFields">ERROR: Not all required fields are filled</string>
     <string name="errorEmptyName">ERROR: Name is required</string>
     <string name="errorFatal">ERROR: Something went wrong!</string>
     <string name="errorIntegerInput">ERROR: Input must be integers</string>
