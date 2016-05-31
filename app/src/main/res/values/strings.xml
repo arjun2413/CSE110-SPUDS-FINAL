@@ -86,7 +86,7 @@
     <string name="cat_concerts">Concerts Category</string>
     <string name="cat_student_orgs">Student Orgs Category</string>
 
-    <string name="errorEmptyFields">ERROR: Not all fields are filled</string>
+    <string name="errorEmptyFields">ERROR: Not all required fields are filled</string>
     <string name="errorEmptyName">ERROR: Name is required</string>
     <string name="errorPassMismatch">ERROR: Password mismatch</string>
     <string name="errorInvalidEmail">ERROR: A ucsd.edu email is required</string>
@@ -106,4 +106,5 @@
 
 
     <string name="loading">Loading...</string>
+    <string name="sleepTime">300</string>
 </resources>

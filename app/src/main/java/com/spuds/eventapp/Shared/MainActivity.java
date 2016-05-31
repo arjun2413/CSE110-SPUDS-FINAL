@@ -100,12 +100,18 @@ public class MainActivity extends AppCompatActivity
     NavigationView navigationView;
     View headerView;
     TextView name;
+    AccountFirebase af;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         Firebase.setAndroidContext(this);
+        af = new AccountFirebase();
+        //af.authCheck();
+
+        //getFragmentManager().popBackStack(null, android.app.FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
         setupNotifications(); // set up GCM values
 
@@ -125,12 +131,12 @@ public class MainActivity extends AppCompatActivity
     void setupNotifications() {
         if (gcm == null) {
             gcm = GoogleCloudMessaging.getInstance(getApplicationContext());
-            Log.d("GCM", gcm.toString());
+            //("GCM", gcm.toString());
         }
 
         Intent i = new Intent(this, RegistrationService.class);
         startService(i);
-        Log.d("intent", i.toString());
+        //("intent", i.toString());
 
         new Thread(new Runnable() {
 
@@ -144,10 +150,10 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
                 token = RegistrationService.token;
-                Log.d("Token = ", token);
+                //("Token = ", token);
 
-                AccountFirebase accountFirebase = new AccountFirebase();
-                accountFirebase.pushRegistrationId(token);
+
+                af.pushRegistrationId(token);
 
             }
         }).start();
@@ -458,6 +464,24 @@ public class MainActivity extends AppCompatActivity
                                 searchResult.clear();
                                 searchResult.add(cursor.getString(cursor.getColumnIndex(name)));
                                 Log.v("searcherseultevent", "" + searchResult);
+                        Log.d("Search","Starting Search");
+                        Cursor cursor = databaseTable.getUserNameMatches(searchTerm, null);
+                        String retVal = "";
+                        if (cursor != null && cursor.moveToFirst() ){
+                            String[] columnNames = cursor.getColumnNames();
+                            do {
+                                //Searched results have been found
+                                for (String name: columnNames) {
+                                    //retVal += String.format("%s: %s\n", name, cursor.getString(cursor.getColumnIndex(name)));
+                                    if(name.equals("USER_ID")){
+                                        //Return to outside world
+                                        if(cursor == null){
+                                            Log.d("Search","Cursor is null");
+                                        }
+                                        Log.d("Search","Int is: "+cursor.getColumnIndex(name));
+                                        searchResult.clear();
+                                        searchResult.add(cursor.getString(cursor.getColumnIndex(name)));
+                                        Log.v("searcherseultevent", "" + searchResult);
 
                                 char[] userIdCharArray = searchResult.toString().toCharArray();
 
@@ -628,7 +652,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void addSearchToolbar() {
-        Log.v("test", "heretest" + "inaddsearchtoolbar");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (findViewById(R.id.search) == null)
@@ -807,7 +830,13 @@ public class MainActivity extends AppCompatActivity
                     .setMessage("Are you sure you want to log out?")
                     .setPositiveButton("Log Out", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                            af.logout();
+                            Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                            // set the new task and clear flags
+                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(i);
+                            //startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                            //getFragmentManager().popBackStack(null, android.app.FragmentManager.POP_BACK_STACK_INCLUSIVE);
                         }
                     })
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

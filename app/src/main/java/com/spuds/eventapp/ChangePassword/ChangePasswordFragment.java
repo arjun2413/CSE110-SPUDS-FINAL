@@ -153,7 +153,7 @@ public class ChangePasswordFragment extends Fragment {
                             setThread_running(true);
                             while (af.getThreadCheck() == 0) {
                                 try {
-                                    Thread.sleep(75);
+                                    Thread.sleep(Integer.parseInt(getString(R.string.sleepTime)));
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
@@ -162,6 +162,7 @@ public class ChangePasswordFragment extends Fragment {
 
                             if (af.getThreadCheck() == 1) {
                                 Log.v("password: ", "matches top");
+
                                 Snackbar snackbar = Snackbar.make
                                         (view, getString(R.string.password_change_success),
                                                 Snackbar.LENGTH_LONG);
@@ -171,9 +172,14 @@ public class ChangePasswordFragment extends Fragment {
                             }
                             else{
                                 Log.v("password: ", "does not match top");
-                                Snackbar snackbar = Snackbar.make
-                                        (view, getString(R.string.errorWrongPass), Snackbar.LENGTH_LONG);
-                                snackbar.show();
+                                appendError("Incorrect Password");
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        sys_message.setText(error_string);
+                                    }
+                                });
+
                                 Log.v("password: ", "does not match bottom");
                             }
                             setThread_running(false);
@@ -182,13 +188,12 @@ public class ChangePasswordFragment extends Fragment {
                     while(getThread_running()){
                         //stalls until thread above ends so user can't click
                     }
-
                     Log.v("finished: ", "both threads");
 
 
                 }
                 else {
-                    //show concatinated error messages
+                    //show concatenated error messages
 
                     sys_message.setText(getError());
                 }

@@ -155,13 +155,13 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                             break;
                         case 4:
                             //TODO: Reggie, specify event time format in strings.xml file
-                            time = getString(R.string.errorTimeFormat);;
+                            time = getString(R.string.errorTimeFormat);
                             break;
                         case 5:
                             time = getString(R.string.errorIntegerInput);
                             break;
                         case 6:
-                            time = getString(R.string.errorInvalidTime);;
+                            time = getString(R.string.errorInvalidTime);
                             break;
                     }
                     dateMessage.setText(date);
@@ -184,7 +184,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                                 try {
                                     //("sleepingthread","fam");
 
-                                    Thread.sleep(70);
+                                    Thread.sleep(Integer.parseInt(getString(R.string.sleepTime)));
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
@@ -234,7 +234,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                     public void run() {
                         while (((MainActivity) getActivity()).picture == null) {
                             try {
-                                Thread.sleep(75);
+                                Thread.sleep(Integer.parseInt(getString(R.string.sleepTime)));
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -310,7 +310,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         scb.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
-                Log.d("SmoothCheckBox", String.valueOf(isChecked));
+                //("SmoothCheckBox", String.valueOf(isChecked));
             }
         });
         */

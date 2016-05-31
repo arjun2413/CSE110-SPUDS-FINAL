@@ -25,7 +25,7 @@ public class RegistrationService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         InstanceID myID = InstanceID.getInstance(this);
-        Log.d("Tryna", "handle intent");
+        //("Tryna", "handle intent");
         try {
             String registrationToken = myID.getToken(
                     String.valueOf(Integer.parseInt("2131165253")),
@@ -33,7 +33,7 @@ public class RegistrationService extends IntentService {
                     null
             );
 
-            Log.d("Registration Token", registrationToken);
+            //("Registration Token", registrationToken);
             token = registrationToken;
 
             GcmPubSub subscription = GcmPubSub.getInstance(this);

@@ -69,10 +69,10 @@ public class PushBuilder extends AppCompatActivity{
     public void sendNotification() {
         Log.d("Send Notification", "trying to send");
         Log.d("Bundle values", this.message.toString());
-        this.contactGCM(this.message, this.gcm);
+       // this.contactGCM(this.message, this.gcm);
     }
 
-
+/*
     private void contactGCM(final Bundle data, final GoogleCloudMessaging gcm) {
         new AsyncTask<Void, Void, String>() {
             @Override
@@ -101,5 +101,5 @@ public class PushBuilder extends AppCompatActivity{
                 return result;
             }
         }.execute();
-    }
+    } */
 }

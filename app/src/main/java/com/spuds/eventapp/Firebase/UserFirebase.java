@@ -18,6 +18,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
+import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.SubUser;
 import com.spuds.eventapp.Shared.Subscription;
 import com.spuds.eventapp.Shared.User;
@@ -711,7 +712,7 @@ public class UserFirebase {
             public void run() {
                 while (!threadCheckAnotherUser) {
                     try {
-                        Thread.sleep(77);
+                        Thread.sleep(300);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
