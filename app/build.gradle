@@ -17,6 +17,7 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -44,5 +45,6 @@ dependencies {
     compile project(':libs:SmoothCheckBoxLibrary')
     compile 'com.quinny898.library.persistentsearch:library:1.1.0-SNAPSHOT'
     compile "com.google.android.gms:play-services:8.3.0"
+    compile 'com.android.support:multidex:1.0.0'
 
 }
