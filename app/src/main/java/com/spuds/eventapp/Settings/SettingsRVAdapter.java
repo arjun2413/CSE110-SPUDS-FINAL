@@ -12,11 +12,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import com.spuds.eventapp.ChangePassword.ChangePasswordFragment;
+import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.Login.LoginActivity;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
@@ -30,7 +32,7 @@ import java.util.List;
 public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     // notifications are on by default
-    boolean isNotificationOn = true;
+    boolean isNotificationOn;
     List<Setting> settings;
     Fragment currentFragment;
 
@@ -63,14 +65,15 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             toggleNotifications = (Switch)itemView.findViewById(R.id.settings_toggle);
         }
     }
-    public SettingsRVAdapter(List<Setting> settings, Fragment currentFragment){
+    public SettingsRVAdapter(List<Setting> settings, Fragment currentFragment, boolean isNotificationOn){
         this.settings = settings;
         this.currentFragment = currentFragment;
+        this.isNotificationOn = isNotificationOn;
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 2;
     }
 
     @Override
@@ -114,19 +117,16 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         if (i == 1){
             ((NotifSettingsViewHolder) viewHolder).settingName.setText(settings.get(i).name);
             ((NotifSettingsViewHolder) viewHolder).settingPhoto.setImageResource(settings.get(i).photoId);
-            ((NotifSettingsViewHolder) viewHolder).toggleNotifications.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // notifications are on, toggle off
-                    if (isNotificationOn) {
-                        isNotificationOn = false;
-                    } else {
-                        // notifications are off, toggle on
-                        isNotificationOn = true;
-
-                    }
+            ((NotifSettingsViewHolder) viewHolder).toggleNotifications.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    UserFirebase.updateNotificationToggle(isChecked);
                 }
             });
+
+            if (isNotificationOn)
+                ((NotifSettingsViewHolder) viewHolder).toggleNotifications.setChecked(true);
+            else
+                ((NotifSettingsViewHolder) viewHolder).toggleNotifications.setChecked(false);
         }
 
         else{

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.Shared.Setting;
@@ -44,10 +45,10 @@ public class SettingsFragment extends Fragment {
         settings = new ArrayList<>();
         settings.add(new Setting("Change Password", R.drawable.setting_pass));
         settings.add(new Setting("Notifications", R.drawable.notifications));
-        settings.add(new Setting("Delete Account", R.drawable.delete));
+        //settings.add(new Setting("Delete Account", R.drawable.delete));
 
 
-        adapter = new SettingsRVAdapter(settings, this);
+        adapter = new SettingsRVAdapter(settings, this, UserFirebase.thisUser.getNotificationToggle());
         rv.setAdapter(adapter);
 
         return v;

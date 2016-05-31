@@ -131,6 +131,13 @@ public class UserFirebase {
         ref.child(UserFirebase.uId).updateChildren(map);
     }
 
+    public static void updateNotificationToggle(boolean toggle) {
+        final Firebase ref = new Firebase("https://eventory.firebaseio.com/users/");
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("notification_toggle", String.valueOf(toggle));
+        ref.child(UserFirebase.uId).updateChildren(map);
+    }
 
     public void getAnotherUser(String userId) {
 
