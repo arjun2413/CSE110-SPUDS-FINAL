@@ -3288,8 +3288,9 @@ containing a value of this type.
         public static final int drawer_logo=0x7f0e015e;
         public static final int editEventDelete=0x7f0e00e9;
         public static final int editEventDone=0x7f0e00e8;
-        public static final int edit_description=0x7f0e00ec;
-        public static final int edit_full_name=0x7f0e00eb;
+        public static final int edit_description=0x7f0e00ed;
+        public static final int edit_error_message=0x7f0e00eb;
+        public static final int edit_full_name=0x7f0e00ec;
         public static final int edit_profile_picture=0x7f0e00ea;
         public static final int edit_query=0x7f0e0084;
         public static final int email=0x7f0e0093;
@@ -3298,7 +3299,6 @@ containing a value of this type.
         public static final int enterAlways=0x7f0e0016;
         public static final int enterAlwaysCollapsed=0x7f0e0017;
         public static final int errorMessage=0x7f0e0094;
-        public static final int error_message=0x7f0e00ee;
         public static final int eventDate=0x7f0e00dc;
         public static final int eventDescription=0x7f0e00e4;
         public static final int eventImage=0x7f0e00d4;
@@ -3516,7 +3516,7 @@ containing a value of this type.
         public static final int touch_outside=0x7f0e00b0;
         public static final int transparent_overlay=0x7f0e00f2;
         public static final int up=0x7f0e000a;
-        public static final int update_button=0x7f0e00ed;
+        public static final int update_button=0x7f0e00ee;
         public static final int upload=0x7f0e00d5;
         public static final int useLogo=0x7f0e0015;
         public static final int user_description=0x7f0e0114;

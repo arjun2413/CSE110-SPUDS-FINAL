@@ -36,6 +36,7 @@ public class  EditProfileFragment extends Fragment {
     EditText editFullName;
     EditText editDescription;
     Fragment editProfileFragment;
+    TextView errorMessage;
 
     User user;
     String picturepush;
@@ -74,12 +75,16 @@ public class  EditProfileFragment extends Fragment {
         TextView upload = (TextView) view.findViewById(R.id.update_button);
         upload.setTypeface(raleway_medium);
 
+
+
         updateButton = (Button) view.findViewById(R.id.update_button);
         editProfilePictureButton = (ImageButton) view.findViewById(R.id.edit_profile_picture);
         editFullName = (EditText) view.findViewById(R.id.edit_full_name);
         editDescription = (EditText) view.findViewById(R.id.edit_description);
         pictureView = (ImageButton) view.findViewById(R.id.edit_profile_picture);
-
+        errorMessage = (TextView) view.findViewById(R.id.edit_error_message);
+        //TODO: font ppl pls do :)
+        //errorMessage.setTypeface(raleway_light);
 
         pictureView.setOnClickListener(new View.OnClickListener() {
 
@@ -214,53 +219,59 @@ public class  EditProfileFragment extends Fragment {
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO (M): Push this data
-                ;      //Full Name to update to db
-                //editCollege.getText().toString();       //College text to update to db
-                //editMajor.getText().toString();         //Major text to update to db
-                ;   //description to update to db
+
+                if (editFullName.getText().toString().equals("")) {
+                    errorMessage.setText(getString(R.string.errorEmptyFields));
+                } else {
+
+                    // TODO (M): Push this data
+                    ;      //Full Name to update to db
+                    //editCollege.getText().toString();       //College text to update to db
+                    //editMajor.getText().toString();         //Major text to update to db
+                    ;   //description to update to db
 
 
-                User user = new User(editFullName.getText().toString(),
-                        editDescription.getText().toString(),
-                        picturepush);
+                    User user = new User(editFullName.getText().toString(),
+                            editDescription.getText().toString(),
+                            picturepush);
 
-                //("EditProfilementasdfasdf", "imagefile" + user.getPicture());
+                    //("EditProfilementasdfasdf", "imagefile" + user.getPicture());
 
-                UserFirebase.updateUser(user);
-                final UserFirebase userFirebase = new UserFirebase();
+                    UserFirebase.updateUser(user);
+                    final UserFirebase userFirebase = new UserFirebase();
 
-                userFirebase.getMyAccountDetails();
+                    userFirebase.getMyAccountDetails();
 
-                System.out.println("asdf" + "ingetuserdetailsloginactivity");
+                    System.out.println("asdf" + "ingetuserdetailsloginactivity");
 
 
-                new Thread(new Runnable() {
+                    new Thread(new Runnable() {
 
-                    @Override
-                    public void run() {
+                        @Override
+                        public void run() {
 
-                        while (!userFirebase.threadCheck) {
-                            try {
-                                Thread.sleep(75);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                            while (!userFirebase.threadCheck) {
+                                try {
+                                    Thread.sleep(75);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
                             }
 
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ((MainActivity) getActivity()).setupProfileDrawer();
+                                    getActivity().getSupportFragmentManager().popBackStack();
+                                }
+                            });
                         }
+                    }).start();
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                ((MainActivity) getActivity()).setupProfileDrawer();
-                                getActivity().getSupportFragmentManager().popBackStack();
-                            }
-                        });
-                    }
-                }).start();
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
-
+                }
             }
         });
 

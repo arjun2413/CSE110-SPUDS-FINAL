@@ -105,6 +105,7 @@ public class ProfileFragment extends Fragment {
         }
 
 
+
         overrideFonts(view.getContext(),view);
 
         Typeface raleway_medium = Typeface.createFromAsset(getActivity().getAssets(),  "Raleway-Medium.ttf");
