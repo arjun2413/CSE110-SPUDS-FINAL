@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 
 
 public class CreateCommentFragment extends Fragment {
@@ -115,4 +115,10 @@ public class CreateCommentFragment extends Fragment {
         catch (Exception e) {
         }
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).removeSearchToolbar();
+    }
+
 }

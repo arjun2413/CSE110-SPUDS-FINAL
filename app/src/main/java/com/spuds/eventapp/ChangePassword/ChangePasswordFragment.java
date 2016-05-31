@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 
 public class ChangePasswordFragment extends Fragment {
 
@@ -227,6 +228,10 @@ public class ChangePasswordFragment extends Fragment {
         catch (Exception e) {
         }
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).removeSearchToolbar();
+    }
 
 }

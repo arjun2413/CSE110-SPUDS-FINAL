@@ -2,9 +2,7 @@ package com.spuds.eventapp.FilteredCategoryFeed;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,12 +16,11 @@ import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
+import com.spuds.eventapp.Shared.MainActivity;
 
 import java.util.ArrayList;
 
 public class CategoryFeedTabsFragment extends Fragment {
-
-    CategoryFeedViewPagerAdapter categoryFeedViewPagerAdapter;
 
     private ArrayList<Event> events;
     private ArrayList<String> cat;
@@ -58,24 +55,31 @@ public class CategoryFeedTabsFragment extends Fragment {
         Log.v("cattypecattype", "cattye" + catType);
         if( catType.equals(getString(R.string.cat_food))) {
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Food");
+            ((MainActivity)getActivity()).searchType = getString(R.string.cat_food);
         }
         else if( catType.equals(getString(R.string.cat_social))) {
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Social");
+            ((MainActivity)getActivity()).searchType = getString(R.string.cat_social);
         }
         else if( catType.equals(getString(R.string.cat_concerts))) {
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Concerts");
+            ((MainActivity)getActivity()).searchType = getString(R.string.cat_concerts);
         }
         else if( catType.equals(getString(R.string.cat_sports))) {
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Sports");
+            ((MainActivity)getActivity()).searchType = getString(R.string.cat_sports);
         }
         else if( catType.equals(getString(R.string.cat_student_orgs))) {
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Student Orgs");
+            ((MainActivity)getActivity()).searchType = getString(R.string.cat_student_orgs);
         }
         else if( catType.equals(getString(R.string.cat_academic))) {
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Academic");
+            ((MainActivity)getActivity()).searchType = getString(R.string.cat_academic);
         }
         else if(catType.equals(getString(R.string.cat_free))){
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Free");
+            ((MainActivity)getActivity()).searchType = getString(R.string.cat_free);
         }
         else {
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Poop");
@@ -167,51 +171,17 @@ public class CategoryFeedTabsFragment extends Fragment {
 
     }
 
-    private void tabs(View view) {
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.profile_tabs);
-        final ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
-
-        viewPager.setAdapter(categoryFeedViewPagerAdapter);
-        viewPager.setOffscreenPageLimit(3);
-
-        final TabLayout.Tab newFilter = tabLayout.newTab();
-        final TabLayout.Tab hotFilter = tabLayout.newTab();
-        final TabLayout.Tab happeningNowFilter = tabLayout.newTab();
-
-        newFilter.setText("New");
-        hotFilter.setText("Hot");
-        happeningNowFilter.setText("Now");
-
-        tabLayout.addTab(newFilter, 0);
-        tabLayout.addTab(hotFilter, 1);
-        tabLayout.addTab(happeningNowFilter, 2);
-
-
-        //tabLayout.setTabTextColors(ContextCompat.getColorStateList(this, R.color.tab_selector));
-        //tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.indicator));
-
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.v("WAOW", "ONREHAHASUME");
+        ((MainActivity)getActivity()).addSearchToolbar();
+    }
 
 }

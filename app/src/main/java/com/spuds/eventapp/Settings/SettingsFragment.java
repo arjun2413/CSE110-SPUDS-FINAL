@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.Shared.Setting;
 
 import java.util.ArrayList;
@@ -56,5 +57,10 @@ public class SettingsFragment extends Fragment {
         super.onAttach(context);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).removeSearchToolbar();
+    }
 
 }

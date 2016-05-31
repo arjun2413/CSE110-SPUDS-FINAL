@@ -17,6 +17,7 @@ import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
+import com.spuds.eventapp.Shared.MainActivity;
 
 import java.util.ArrayList;
 
@@ -131,6 +132,14 @@ public class SubscriptionFeedFragment extends Fragment {
         catch (Exception e) {
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).addSearchToolbar();
+        ((MainActivity)getActivity()).searchType = getString(R.string.fragment_my_sub_feed);
+    }
+
 }
 
 

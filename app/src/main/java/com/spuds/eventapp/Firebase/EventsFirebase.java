@@ -1001,8 +1001,9 @@ public class EventsFirebase {
     }
 
     public static boolean threadCheckSubEvent;
-
-    public void getSubEventList(final ArrayList<SubEvent> subEvents) {
+    public static ArrayList<SubEvent> subEvents;
+    public void getSubEventList() {
+        subEvents = new ArrayList<>();
         threadCheckSubEvent = false;
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/events");
         Query queryRef = myFirebaseRef.orderByKey();

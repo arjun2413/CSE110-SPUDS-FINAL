@@ -466,4 +466,10 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).removeSearchToolbar();
+    }
+
 }

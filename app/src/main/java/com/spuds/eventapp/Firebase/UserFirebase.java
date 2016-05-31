@@ -727,7 +727,9 @@ public class UserFirebase {
     }
 
     public static boolean threadCheckSubUser;
-    public void getSubUserList(final ArrayList<SubUser> subUsers) {
+    public static ArrayList<SubUser> subUsers;
+    public void getSubUserList() {
+        subUsers = new ArrayList<>();
         threadCheckSubUser = false;
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/users");
         Query queryRef = myFirebaseRef.orderByKey();

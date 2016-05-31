@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.Shared.User;
 
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public class InvitePeopleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.recyler_no_refresh, container, false);
+        View view = inflater.inflate(R.layout.recycler_no_refresh, container, false);
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Invite People");
         final RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv);
@@ -139,6 +139,13 @@ public class InvitePeopleFragment extends Fragment {
 
         }
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).addSearchToolbar();
+        ((MainActivity)getActivity()).searchType = getString(R.string.fragment_invite_people);
     }
 
 }

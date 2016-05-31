@@ -6,15 +6,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.spuds.eventapp.Firebase.UserFirebase;
+import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Event;
-import com.spuds.eventapp.Shared.Subscription;
+import com.spuds.eventapp.Shared.MainActivity;
 
 import java.util.ArrayList;
 
@@ -24,7 +23,8 @@ import java.util.ArrayList;
 public class SearchEventsFragment extends Fragment {
     private ArrayList<Event> events;
     public SearchEventsRVAdapter adapter;
-    UserFirebase userFirebase;
+    EventsFirebase eventsFirebase;
+    String eventId;
 
     public SearchEventsFragment() {
         // Required empty public constructor
@@ -33,7 +33,9 @@ public class SearchEventsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //userFirebase = new UserFirebase();
+        eventsFirebase = new EventsFirebase();
+        Bundle bundle = getArguments();
+        eventId = bundle.getString(getString(R.string.event_id));
 
     }
 
@@ -41,7 +43,7 @@ public class SearchEventsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.recycler, container, false);
+        View v = inflater.inflate(R.layout.recycler_no_refresh, container, false);
         final RecyclerView rv=(RecyclerView) v.findViewById(R.id.rv);
 
         events = new ArrayList<>();
@@ -54,39 +56,42 @@ public class SearchEventsFragment extends Fragment {
         adapter = new SearchEventsRVAdapter(events, this, "Search Events Fragment");
         rv.setAdapter(adapter);
 
-        /*
+        eventsFirebase.getEventDetails(eventId);
+
+
         new Thread(new Runnable() {
-            //TODO: Change firebase calls to events instead of subscriptions
 
             @Override
             public void run() {
-                while (userFirebase.numSubscriptions > events.size() || !userFirebase.getSubscriptionsThreadCheck) {
-                    //("sublist", "numsubs" + userFirebase.numSubscriptions);
-                    //("sublist", "subscriptions size" + events.size());
+                while (!EventsFirebase.detailsThreadCheck) {
                     try {
+                        //("sleepingthread","fam");
+
                         Thread.sleep(70);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
+
+                EventsFirebase.eventDetailsEvent.setEventId(eventId);
+
+                events.add(EventsFirebase.eventDetailsEvent);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
-                        rv.setAdapter(adapter);
+                        adapter.notifyItemInserted(0);
                     }
                 });
+
             }
         }).start();
-        */
-
-
 
         //calls the function to refresh the page.
-        refreshing(v);
+        //refreshing(v);
 
         return v;
     }
+
     //TODO: Needs database to finish
     public void refreshing(View view) {
         final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
@@ -140,5 +145,11 @@ public class SearchEventsFragment extends Fragment {
         super.onAttach(context);
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).addSearchToolbar();
+    }
 
 }

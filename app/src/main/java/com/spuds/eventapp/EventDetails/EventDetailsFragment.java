@@ -64,7 +64,6 @@ public class EventDetailsFragment extends Fragment {
     CommentsRVAdapter adapter;
     List<Comment> comments;
     boolean ownEvent;
-    boolean first = true;
     EventsFirebase eventsFirebase;
     boolean canClickGoing = true;
 
@@ -641,6 +640,12 @@ public class EventDetailsFragment extends Fragment {
         }
         catch (Exception e) {
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).removeSearchToolbar();
     }
 
 }

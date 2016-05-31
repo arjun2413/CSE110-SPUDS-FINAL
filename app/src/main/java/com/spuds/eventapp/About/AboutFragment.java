@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 
 
 public class AboutFragment extends Fragment {
@@ -64,5 +65,10 @@ public class AboutFragment extends Fragment {
         }
         catch (Exception e) {
         }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).removeSearchToolbar();
     }
 }

@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 
 public class HomeFeedTabsFragment extends Fragment {
 
@@ -31,9 +33,10 @@ public class HomeFeedTabsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_feed_tabs, container, false);
         tabs(view);
 
-        overrideFonts(view.getContext(),view);
+        overrideFonts(view.getContext(), view);
         return view;
     }
+
     private void tabs(View view) {
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.profile_tabs);
         final ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
@@ -73,7 +76,8 @@ public class HomeFeedTabsFragment extends Fragment {
             public void onTabReselected(TabLayout.Tab tab) {
 
             }
-        });    }
+        });
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -97,10 +101,19 @@ public class HomeFeedTabsFragment extends Fragment {
             } else if (v instanceof TextView) {
                 ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "Raleway-Medium.ttf"));
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.v("test", "heretest");
+        ((MainActivity)getActivity()).addSearchToolbar();
+        ((MainActivity)getActivity()).searchType = getString(R.string.fragment_home_feed);
+
+    }
+
 }
 
 
