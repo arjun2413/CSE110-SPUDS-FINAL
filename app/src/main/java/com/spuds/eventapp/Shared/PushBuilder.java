@@ -37,7 +37,7 @@ public class PushBuilder extends AppCompatActivity{
             gcm - the global GCM
      */
     public PushBuilder(String pushType, String id_event, String host_name, String id_item, GoogleCloudMessaging gcm_) {
-        Log.d("Building", "building the " + pushType);
+        //("Building", "building the " + pushType);
         this.gcm = gcm_;
         this.message = new Bundle();
         this.message.putString("action", pushType);
@@ -56,7 +56,7 @@ public class PushBuilder extends AppCompatActivity{
             gcm - global GCM
     */
     public PushBuilder(ArrayList<String> ids, String id, String host_name, String id_host, GoogleCloudMessaging gcm_) {
-        Log.d("Building", "building the invite");
+        //("Building", "building the invite");
         this.gcm = gcm_;
         this.message = new Bundle();
         this.message.putString("action", "invite");
@@ -67,8 +67,8 @@ public class PushBuilder extends AppCompatActivity{
     }
 
     public void sendNotification() {
-        Log.d("Send Notification", "trying to send");
-        Log.d("Bundle values", this.message.toString());
+        //("Send Notification", "trying to send");
+        //("Bundle values", this.message.toString());
         this.contactGCM(this.message, this.gcm);
     }
 
@@ -81,17 +81,17 @@ public class PushBuilder extends AppCompatActivity{
                 if (gcm == null) {
                     try {
                         regid = gcm.register(SENDER_ID);
-                        Log.d("regid = ", regid.toString());
+                        //("regid = ", regid.toString());
                     } catch (IOException ex) {
-                        Log.d("ERRORWITHGCM", "gcm");
+                        //("ERRORWITHGCM", "gcm");
                         return "Error :" + ex.getMessage();
                     }
                 }
                 // try to send
                 try {
-                    Log.d("gggcm", gcm.toString());
+                    //("gggcm", gcm.toString());
                     regid = gcm.register(SENDER_ID);
-                    Log.d("REEED", regid.toString());
+                    //("REEED", regid.toString());
                     gcm.send(SENDER_ID + "@gcm.googleapis.com", "messageID", data);
                 }
                 catch (IOException e) {

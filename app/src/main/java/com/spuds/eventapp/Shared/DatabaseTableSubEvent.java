@@ -32,7 +32,7 @@ public class DatabaseTableSubEvent {
 
     public DatabaseTableSubEvent(Context context, ArrayList<SubEvent> events) {
         mDatabaseOpenHelper = new DatabaseOpenHelper(context,events);
-        Log.d("Create SQLite Table","DatabaseTable ctor called");
+        //("Create SQLite Table","DatabaseTable ctor called");
     }
 
     /**/
@@ -55,16 +55,16 @@ public class DatabaseTableSubEvent {
             mHelperEventsList = events;
             mHelperContext.deleteDatabase(DATABASE_NAME);
             mDatabase = getWritableDatabase();
-            Log.d("Create SQLite Table","DatabaseOpenHelper ctor called");
+            //("Create SQLite Table","DatabaseOpenHelper ctor called");
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
             System.err.println("Running DbOH's onCreate");
             mDatabase = db;
-            Log.d("Create SQLite Table","onCreate for SQLiteDatabase called");
+            //("Create SQLite Table","onCreate for SQLiteDatabase called");
             mDatabase.execSQL(FTS_TABLE_CREATE);
-            Log.d("Create SQLite Table","mDatabase initialized");
+            //("Create SQLite Table","mDatabase initialized");
             loadDictionary();
         }
 
@@ -84,7 +84,7 @@ public class DatabaseTableSubEvent {
         //Should be run only onCreate, further shit is by update.
         private void loadDictionary() {
             System.err.println("Running DbOH's loadDictionary");
-            Log.d("Create SQLite Table","loadDictionary called");
+            //("Create SQLite Table","loadDictionary called");
             //final ArrayList<SubEvent> ev = mHelperEventsList;
             //TODO: Populate using EventsFirebase.java iterator
             //loop to add shit to arraylist
@@ -127,7 +127,7 @@ public class DatabaseTableSubEvent {
             initialValues.put(COL_EVENT_NAME,T_col_event_name); //the one searchable query
             initialValues.put(COL_EVENT_ID,T_col_event_id);
 
-            Log.d("Create SQLite Table","Word Added");
+            //("Create SQLite Table","Word Added");
 
             return mDatabase.insert(FTS_VIRTUAL_TABLE, null, initialValues);
         }
@@ -136,7 +136,7 @@ public class DatabaseTableSubEvent {
         //end result, mDatabase should be fully formed virtual database
 
         public String getTableAsString(SQLiteDatabase db, String tableName) {
-            Log.d(TAG, "getTableAsString called");
+            //(TAG, "getTableAsString called");
             String tableString = String.format("Table %s:\n", tableName);
             Cursor allRows  = db.rawQuery("SELECT * FROM " + tableName, null);
             if (allRows.moveToFirst() ){

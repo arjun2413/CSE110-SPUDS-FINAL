@@ -100,7 +100,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                             check[0] = accountFirebase.getThreadCheck();
                             //wait for query
                             while (check[0] == 0) {
-                                if (counter > 200) {
+                                if (counter > 100) {
                                     error = 4;
                                     break;
                                 }
@@ -124,6 +124,15 @@ public class ResetPasswordActivity extends AppCompatActivity {
                                 else {
                                     error = 3;
                                 }
+                            }
+                            else if (error == 4) {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        String message = "Something went wrong. Possible network error.";
+                                        errorMessage.setText(message);
+                                    }
+                                });
                             }
                             System.out.println("int error status is: " + error);
                             System.out.println("thread2 has finished");
