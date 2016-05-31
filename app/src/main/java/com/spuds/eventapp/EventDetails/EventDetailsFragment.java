@@ -393,6 +393,9 @@ public class EventDetailsFragment extends Fragment {
 
                 Bundle bundle = new Bundle();
                 bundle.putString(getString(R.string.event_id), eventId);
+
+                invitePeopleFragment.setArguments(bundle);
+
                 // Add Event Details Fragment to fragment manager
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_frame_layout, invitePeopleFragment)
