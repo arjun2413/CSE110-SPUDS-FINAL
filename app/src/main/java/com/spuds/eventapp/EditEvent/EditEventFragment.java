@@ -18,7 +18,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,6 +28,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
@@ -36,6 +36,7 @@ import com.spuds.eventapp.Shared.CategoryTextButton;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventDate;
 import com.spuds.eventapp.Shared.MainActivity;
+import com.spuds.eventapp.Shared.PushBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -239,11 +240,11 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
         //existing categories on this event is good.
         ArrayList<String> existingCateg = event.getCategories();
-        Log.v("size", "size: " + event.getCategories().size());
+        //("size", "size: " + event.getCategories().size());
 
         for (int i = 0; i < existingCateg.size(); ++i) {
 
-            Log.v("category", "category: " + existingCateg.get(i));
+            //("category", "category: " + existingCateg.get(i));
 
 
             switch(existingCateg.get(i)) {
@@ -291,8 +292,11 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                                 // TODO (C): Big issue, must refresh all feeds or else will get null
                                 // TODO      pointer exceptions when clicking the event again when it doesn't
                                 // TODO      even exist
+
+                                EventsFirebase eventsFirebase = new EventsFirebase();
+                                eventsFirebase.deleteEvent(event.getEventId());
+
                                 // Pop this fragment from backstack
-                                getActivity().getSupportFragmentManager().popBackStack();
                                 getActivity().getSupportFragmentManager().popBackStack();
                             }
                         })
@@ -310,56 +314,37 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         editEventDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String eventNameString = eventName.getText().toString();
-                String eventDateString = eventDate.getText().toString();
-                String eventLocationString = eventLocation.getText().toString();
-                String eventDescriptionString = eventDescription.getText().toString();
 
-                boolean addImage = false;
+                EventsFirebase eventsFirebase = new EventsFirebase();
+                String result = "";
+                if (((MainActivity) getActivity()).picture != null)
+                    result = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
 
-                /* TODO get the image of the event
-                Matrix uploadedEventImage = eventImage.getImageMatrix()
+                EditEventForm form = new EditEventForm(eventName,eventDate,eventTime, spinner, eventLocation,eventDescription, result, event.getEventId());
 
-                if (uploadedEventImage != null) {
-                    addImage = true;
+                if (!form.allFilled()) {
+                    errorMissingMessage.setVisibility(View.VISIBLE);
                 }
-                */
-
-                if (eventNameString == null | eventDateString == null |
-                        eventLocationString == null | eventDescriptionString == null) {
-                    // TODO return error
+                else if (!form.correctDate()) {
+                    errorTimeMessage.setVisibility(View.VISIBLE);
                 }
                 else {
-                    // TODO send to database the event details (in a method)
+                    eventsFirebase.updateEvent(form, adapter);
 
+                    // Update Event Notification
+                    GoogleCloudMessaging gcm = ((MainActivity) getActivity()).gcm;
+                    PushBuilder push_builder = new PushBuilder("update", event.getEventId(), UserFirebase.thisUser.getName(), UserFirebase.uId, gcm);
+                    push_builder.sendNotification();
 
-                    EventsFirebase eventsFirebase = new EventsFirebase();
-                    String result = "";
-                    if (((MainActivity) getActivity()).picture != null)
-                        result = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
+                    getActivity().getSupportFragmentManager().popBackStack();
+                    errorMissingMessage.setVisibility(View.INVISIBLE);
+                    errorTimeMessage.setVisibility(View.INVISIBLE);
 
-                    EditEventForm form = new EditEventForm(eventName,eventDate,eventTime, spinner, eventLocation,eventDescription, result, event.getEventId());
-
-                    if (!form.allFilled()) {
-                        //TODO: form not all filled error
-                        Log.v("ERROR", getString(R.string.errorEmptyFields));
-                        errorMissingMessage.setVisibility(View.VISIBLE);
-                    }
-                    else if (!form.correctDate()) {
-                        //TODO: date incorrect format error
-                        Log.v("ERROR", getString(R.string.errorInvalidTime));
-                        errorTimeMessage.setVisibility(View.VISIBLE);
-                    }
-                    else {
-                        eventsFirebase.updateEvent(form, adapter);
-                        getActivity().getSupportFragmentManager().popBackStack();
-                        errorMissingMessage.setVisibility(View.INVISIBLE);
-                        errorTimeMessage.setVisibility(View.INVISIBLE);
-
-                    }
                 }
+
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+
             }
 
 
@@ -462,6 +447,12 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         }
         catch (Exception e) {
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).removeSearchToolbar();
     }
 
 }

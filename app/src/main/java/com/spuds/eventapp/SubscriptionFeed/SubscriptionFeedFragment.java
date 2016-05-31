@@ -1,51 +1,43 @@
 package com.spuds.eventapp.SubscriptionFeed;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
+import com.spuds.eventapp.Shared.MainActivity;
 
 import java.util.ArrayList;
-import java.util.List;
-
 
 public class SubscriptionFeedFragment extends Fragment {
 
-    private List<Event> events;
+    private ArrayList<Event> events;
     public EventsFeedRVAdapter adapter;
-
-    String tabType;
+    EventsFirebase eventsFirebase;
 
     public SubscriptionFeedFragment() {
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Bundle extras = getArguments();
-        tabType = extras.getString(getString(R.string.tab_tag));
-
-        // TODO (M): Get arraylist of events based on tab type [new, hot, now]
-        // Fake data
         events = new ArrayList<>();
-        ArrayList<String> categories = new ArrayList<>();
-        categories.add("Social");
-        categories.add("Concert");
-
-        events.add(new Event("1", "2", "Sun God Festival", "spr lame", "RIMAC Field", "04/20/2016|16:20", 1054,
-                "", categories, "UCSD"));
-        events.add(new Event("2", "2", "Foosh Show", "spr funny", "Muir", "04/20/2016|16:20", 51,
-                "", categories, "Foosh Improv Comedy Club"));
+        eventsFirebase = new EventsFirebase(events, 0, null);
+        eventsFirebase.createSubFeed();
     }
 
     @Override
@@ -53,7 +45,7 @@ public class SubscriptionFeedFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recycler, container, false);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Subscription Feed");
-        RecyclerView rv=(RecyclerView) view.findViewById(R.id.rv);
+        final RecyclerView rv=(RecyclerView) view.findViewById(R.id.rv);
 
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
@@ -62,17 +54,92 @@ public class SubscriptionFeedFragment extends Fragment {
         adapter = new EventsFeedRVAdapter(events, this, getString(R.string.fragment_my_sub_feed));
         rv.setAdapter(adapter);
 
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (events.size() == 0) {
+                    try {
+                        Thread.sleep(70);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        rv.setAdapter(adapter);
+                    }
+                });
+            }
+        }).start();
+        //call refreshing function
+        setupRefresh(view);
+
         return view;
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void setupRefresh(View view) {
+        final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+        mySwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        events.clear();
+
+                        eventsFirebase.createSubFeed();
+
+                        new Thread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                while (events.size() == 0) {
+                                    try {
+                                        Thread.sleep(70);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        adapter.notifyDataSetChanged();
+                                        mySwipeRefreshLayout.setRefreshing(false);
+
+                                    }
+                                });
+                            }
+                        }).start();
+                    }
+                }
+        );
 
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof TextView) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "Raleway-Medium.ttf"));
+            }
+        }
+        catch (Exception e) {
+        }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).addSearchToolbar();
+        ((MainActivity)getActivity()).searchType = getString(R.string.fragment_my_sub_feed);
+    }
+
 }
+
+

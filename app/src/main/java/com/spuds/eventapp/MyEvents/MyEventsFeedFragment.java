@@ -7,7 +7,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -98,15 +97,15 @@ public class MyEventsFeedFragment extends Fragment {
 
                         eventsFirebase.createEL();
 
-                        Log.v("refresh", "here");
+                        //("refresh", "here");
                         new Thread(new Runnable() {
 
                             @Override
                             public void run() {
-                                Log.v("refresh", "hereherehere");
+                                //("refresh", "hereherehere");
 
                                 while (events.size() == 0) {
-                                    //Log.v("refresh", "size: " + events.size());
+                                    ////("refresh", "size: " + events.size());
                                     try {
                                         Thread.sleep(70);
                                     } catch (InterruptedException e) {
@@ -114,12 +113,12 @@ public class MyEventsFeedFragment extends Fragment {
                                     }
                                 }
 
-                                Log.v("refresh", "here2");
+                                //("refresh", "here2");
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run()
                                     {
-                                        Log.v("refresh", "here3");
+                                        //("refresh", "here3");
 
                                         adapter.notifyDataSetChanged();
                                         mySwipeRefreshLayout.setRefreshing(false);
@@ -154,6 +153,7 @@ public class MyEventsFeedFragment extends Fragment {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
 
 

@@ -1,11 +1,9 @@
 package com.spuds.eventapp.Login;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -238,7 +236,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 while (!userFirebase.threadCheck) {
                     try {
-                        Thread.sleep(75);
+                        Thread.sleep(200);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -247,10 +245,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-                Log.v("userdetals", "test:" + userFirebase.uId);
+                //("userdetals", "test:" + userFirebase.uId);
 
 
-                Log.v("userdetals", "test:" + userFirebase.thisUser.getName());
+                //("userdetals", "test:" + userFirebase.thisUser.getName());
                 userFirebase.threadCheck = false;
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
 

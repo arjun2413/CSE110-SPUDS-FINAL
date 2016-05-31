@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,8 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.spuds.eventapp.Firebase.EventsFirebase;
+import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
+import com.spuds.eventapp.Shared.PushBuilder;
 import com.spuds.eventapp.Shared.User;
 
 import java.util.ArrayList;
@@ -24,10 +27,9 @@ public class InvitePeopleFragment extends Fragment {
 
     ArrayList<User> followers;
     ArrayList<User> invited;
-
     InvitePeopleRVAdapter adapter;
-
     EventsFirebase eventsFirebase;
+    String eventId;
 
     public InvitePeopleFragment() {
         // Required empty public constructor
@@ -41,17 +43,18 @@ public class InvitePeopleFragment extends Fragment {
         // TODO (M): remember when loading do not override the followers arraylist, add to it
         followers = new ArrayList<>();
         invited = new ArrayList<>();
-        Log.v("firebasecall", "ipf");
         eventsFirebase = new EventsFirebase();
         eventsFirebase.getFollowers(followers);
-        Log.v("firebasecallafter", "ipf");
+
+        Bundle bundle = getArguments();
+        eventId = bundle.getString(getString(R.string.event_id));
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.recyler_no_refresh, container, false);
+        View view = inflater.inflate(R.layout.recycler_no_refresh, container, false);
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Invite People");
         final RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv);
@@ -67,26 +70,26 @@ public class InvitePeopleFragment extends Fragment {
             @Override
             public void run() {
                 while (eventsFirebase.numFollowers > followers.size() || !eventsFirebase.followersThreadCheck) {
-                    Log.v("inviteppl", "numfollowers" + eventsFirebase.numFollowers);
-                    Log.v("inviteppl", "followers size" + followers.size());
+                    //("inviteppl", "numfollowers" + eventsFirebase.numFollowers);
+                    //("inviteppl", "followers size" + followers.size());
                     try {
                         Thread.sleep(70);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
+
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.v("inviteppl",""+ followers.size());
                         adapter.notifyDataSetChanged();
                         rv.setAdapter(adapter);
                     }
                 });
             }
+
         }).start();
 
-        //calling refresh function
         return view;
     }
     @Override
@@ -127,8 +130,16 @@ public class InvitePeopleFragment extends Fragment {
 
             case R.id.done:
                 if (invited.size() != 0) {
-                    // TODO (M): Send invited array to database & do notification
-                    // Pop this fragment from backstack
+                    GoogleCloudMessaging gcm = ((MainActivity) getActivity()).gcm;
+                    ArrayList<String> inviteNotif = new ArrayList<>();
+
+                    for (User user : invited) {
+                        inviteNotif.add(user.getUserId());
+                    }
+
+                    PushBuilder push_builder = new PushBuilder(inviteNotif, eventId, UserFirebase.thisUser.getName(), UserFirebase.uId, gcm);
+                    push_builder.sendNotification();
+
                 }
                 getActivity().getSupportFragmentManager().popBackStack();
                 return true;
@@ -139,6 +150,13 @@ public class InvitePeopleFragment extends Fragment {
 
         }
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).addSearchToolbar();
+        ((MainActivity)getActivity()).searchType = getString(R.string.fragment_invite_people);
     }
 
 }

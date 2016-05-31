@@ -13,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -171,7 +170,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                 }
                 else {
                     final String eventId = eventsFirebase.createEvent(form, adapter);
-                    Log.v("createevent:", "eventid: " + eventId);
+                    //("createevent:", "eventid: " + eventId);
 
                     EventsFirebase ef = new EventsFirebase();
                     ef.getEventDetails(eventId);
@@ -183,7 +182,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                         public void run() {
                             while (!EventsFirebase.detailsThreadCheck) {
                                 try {
-                                    Log.v("sleepingthread","fam");
+                                    //("sleepingthread","fam");
 
                                     Thread.sleep(70);
                                 } catch (InterruptedException e) {
@@ -439,6 +438,12 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         }
         catch (Exception e) {
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).removeSearchToolbar();
     }
 
 }

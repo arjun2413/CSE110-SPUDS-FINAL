@@ -11,7 +11,6 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -116,8 +115,8 @@ public class  EditProfileFragment extends Fragment {
 
                                 /*pictureView.setImageURI(null);
                                 pictureView.setImageURI(((MainActivity) getActivity()).picture);
-                                Log.v("EditProfileFragment", "here");
-                                Log.v("EditProfileFragment", ((MainActivity) getActivity()).picture.toString());
+                                //("EditProfileFragment", "here");
+                                //("EditProfileFragment", ((MainActivity) getActivity()).picture.toString());
                                 pictureView.invalidate();*/
 
                                 String imageFile = UserFirebase.convert(getActivity(),((MainActivity) getActivity()).picture);
@@ -133,7 +132,7 @@ public class  EditProfileFragment extends Fragment {
 
                                     if (src != null) {
 
-                                        Log.v("EditProfileFragment", "imagefile" + imageFile);
+                                        //("EditProfileFragment", "imagefile" + imageFile);
                                         RoundedBitmapDrawable dr =
                                                 RoundedBitmapDrawableFactory.create(getActivity().getResources(), src);
 
@@ -226,7 +225,7 @@ public class  EditProfileFragment extends Fragment {
                         editDescription.getText().toString(),
                         picturepush);
 
-                Log.v("EditProfilementasdfasdf", "imagefile" + user.getPicture());
+                //("EditProfilementasdfasdf", "imagefile" + user.getPicture());
 
                 UserFirebase.updateUser(user);
                 final UserFirebase userFirebase = new UserFirebase();
@@ -293,6 +292,12 @@ public class  EditProfileFragment extends Fragment {
         }
         catch (Exception e) {
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).removeSearchToolbar();
     }
 
 }

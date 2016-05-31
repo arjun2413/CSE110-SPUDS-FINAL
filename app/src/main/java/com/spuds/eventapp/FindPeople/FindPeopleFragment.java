@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.Shared.User;
 
 import java.util.ArrayList;
@@ -88,6 +89,13 @@ public class FindPeopleFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).addSearchToolbar();
+        ((MainActivity)getActivity()).searchType = getString(R.string.fragment_find_people);
     }
 
 }

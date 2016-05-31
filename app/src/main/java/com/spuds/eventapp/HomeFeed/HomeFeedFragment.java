@@ -19,6 +19,7 @@ import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
+import com.spuds.eventapp.Shared.MainActivity;
 
 import java.util.ArrayList;
 
@@ -54,6 +55,7 @@ public class HomeFeedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.v("WAOW", "oncreateview");
         View view = inflater.inflate(R.layout.recycler, container, false);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("EVENTORY");
 
@@ -72,7 +74,7 @@ public class HomeFeedFragment extends Fragment {
             public void run() {
                 while (events.size() == 0) {
                     try {
-                        Thread.sleep(70);
+                        Thread.sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -90,7 +92,7 @@ public class HomeFeedFragment extends Fragment {
         setupRefresh(view);
         return view;
     }
-    //TODO: Needs database to finish
+
     public void setupRefresh(View view) {
         final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         mySwipeRefreshLayout.setOnRefreshListener(
@@ -101,15 +103,15 @@ public class HomeFeedFragment extends Fragment {
 
                         eventsFirebase.createEL();
 
-                        Log.v("refresh", "here");
+                        //("refresh", "here");
                         new Thread(new Runnable() {
 
                             @Override
                             public void run() {
-                                Log.v("refresh", "hereherehere");
+                                //("refresh", "hereherehere");
 
                                 while (events.size() == 0) {
-                                    //Log.v("refresh", "size: " + events.size());
+                                    ////("refresh", "size: " + events.size());
                                     try {
                                         Thread.sleep(70);
                                     } catch (InterruptedException e) {
@@ -117,12 +119,12 @@ public class HomeFeedFragment extends Fragment {
                                     }
                                 }
 
-                                Log.v("refresh", "here2");
+                                //("refresh", "here2");
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run()
                                     {
-                                        Log.v("refresh", "here3");
+                                        //("refresh", "here3");
 
                                         adapter.notifyDataSetChanged();
                                         mySwipeRefreshLayout.setRefreshing(false);
@@ -167,8 +169,14 @@ public class HomeFeedFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.v("test", "heretest");
+        ((MainActivity)getActivity()).addSearchToolbar();
+        ((MainActivity)getActivity()).searchType = getString(R.string.fragment_home_feed);
 
-
+    }
 }
 
 

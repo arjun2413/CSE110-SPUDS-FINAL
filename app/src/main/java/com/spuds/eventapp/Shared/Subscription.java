@@ -16,4 +16,11 @@ public class Subscription {
         this.follow = follow;
     }
 
+    public Subscription(User user, boolean follow) {
+        this.userId = user.getUserId();
+        this.name = user.getName();
+        this.picture = user.getPicture();
+        this.follow = follow;
+    }
+
 }

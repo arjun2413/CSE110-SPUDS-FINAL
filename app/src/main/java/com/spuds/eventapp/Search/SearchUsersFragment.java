@@ -1,6 +1,7 @@
 package com.spuds.eventapp.Search;
 
-import android.content.Context;
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,7 +14,8 @@ import android.view.ViewGroup;
 
 import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
-import com.spuds.eventapp.Shared.Subscription;
+import com.spuds.eventapp.Shared.MainActivity;
+import com.spuds.eventapp.Shared.UserSearchResult;
 
 import java.util.ArrayList;
 
@@ -21,9 +23,10 @@ import java.util.ArrayList;
  * Created by David on 5/28/16.
  */
 public class SearchUsersFragment extends Fragment {
-    private ArrayList<Subscription> users;
+    private ArrayList<UserSearchResult> users;
     public SearchUsersRVAdapter adapter;
     UserFirebase userFirebase;
+    String userId;
 
     public SearchUsersFragment() {
         // Required empty public constructor
@@ -32,59 +35,94 @@ public class SearchUsersFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //userFirebase = new UserFirebase();
 
+        Bundle bundle = getArguments();
+        userId = bundle.getString(getString(R.string.user_id));
+        Log.v("useriduserid", "" + userId);
+        userFirebase = new UserFirebase();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.recycler, container, false);
-        final RecyclerView rv=(RecyclerView) v.findViewById(R.id.rv);
+        View v = inflater.inflate(R.layout.recycler_no_refresh, container, false);
+        final RecyclerView rv = (RecyclerView) v.findViewById(R.id.rv);
 
-        users = new ArrayList<>();
-        //userFirebase.getSubscriptions(users);
 
         LinearLayoutManager llm = new LinearLayoutManager(v.getContext());
         rv.setLayoutManager(llm);
 
+        users = new ArrayList<>();
 
         adapter = new SearchUsersRVAdapter(users, this);
         rv.setAdapter(adapter);
 
-        new Thread(new Runnable() {
+        if (userId.equals(UserFirebase.uId)) {
 
-            @Override
-            public void run() {
-                while (userFirebase.numSubscriptions > users.size() || !userFirebase.getSubscriptionsThreadCheck) {
-                    Log.v("sublist", "numsubs" + userFirebase.numSubscriptions);
-                    Log.v("sublist", "subscriptions size" + users.size());
-                    try {
-                        Thread.sleep(70);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+            users.add(new UserSearchResult(UserFirebase.thisUser, false));
+            adapter.notifyItemInserted(0);
+
+        } else {
+            userFirebase.getAnotherUser(userId);
+
+            new Thread(new Runnable() {
+
+                @Override
+                public void run() {
+                    while (!userFirebase.threadCheckAnotherUser) {
+                        try {
+                            Thread.sleep(77);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
                     }
+                    userFirebase.isSubscribed(userFirebase.anotherUser.getUserId());
+                    new Thread(new Runnable() {
+                        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+                        @Override
+                        public void run() {
+                            Log.d("idIsGoing2", String.valueOf(userFirebase.idIsSubscribed));
+                            while (userFirebase.idIsSubscribed == 0) {
+                                Log.d("profilehere", "profilehere");
+                                try {
+                                    Thread.sleep(75);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+
+                            boolean following;
+                            if (userFirebase.idIsSubscribed == 1)
+                                following = false;
+                            else
+                                following = true;
+
+                            users.add(new UserSearchResult(userFirebase.anotherUser, following));
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    adapter.notifyItemInserted(0);
+
+                                }
+                            });
+                        }
+                    }).start();
+
                 }
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+            }).start();
 
-                        rv.setAdapter(adapter);
-                    }
-                });
-            }
-        }).start();
-
-
+        }
 
 
         //calls the function to refresh the page.
-        refreshing(v);
+        //refreshing(v);
 
         return v;
     }
-    //TODO: Needs database to finish
+
     public void refreshing(View view) {
         final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         mySwipeRefreshLayout.setOnRefreshListener(
@@ -93,46 +131,71 @@ public class SearchUsersFragment extends Fragment {
                     public void onRefresh() {
                         users.clear();
 
-                        userFirebase.getSubscriptions(users);
+                        if (userId.equals(UserFirebase.uId)) {
 
-                        Log.v("refresh", "here");
-                        new Thread(new Runnable() {
+                            users.add(new UserSearchResult(userFirebase.anotherUser, false));
+                            adapter.notifyItemInserted(0);
 
-                            @Override
-                            public void run() {
-                                Log.v("refresh", "hereherehere");
 
-                                while (userFirebase.numSubscriptions > users.size() || !userFirebase.getSubscriptionsThreadCheck) {
-                                    //Log.v("refresh", "size: " + events.size());
-                                    try {
-                                        Thread.sleep(70);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
+                        } else {
+                            userFirebase.getAnotherUser(userId);
+
+                            new Thread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    while (!userFirebase.threadCheckAnotherUser) {
+                                        try {
+                                            Thread.sleep(77);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+
                                     }
+                                    userFirebase.isSubscribed(userFirebase.anotherUser.getUserId());
+                                    new Thread(new Runnable() {
+                                        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+                                        @Override
+                                        public void run() {
+                                            Log.d("idIsGoing2", String.valueOf(userFirebase.idIsSubscribed));
+                                            while (userFirebase.idIsSubscribed == 0) {
+                                                Log.d("profilehere", "profilehere");
+                                                try {
+                                                    Thread.sleep(75);
+                                                } catch (InterruptedException e) {
+                                                    e.printStackTrace();
+                                                }
+
+                                            }
+
+                                            boolean following;
+                                            if (userFirebase.idIsSubscribed == 1)
+                                                following = false;
+                                            else
+                                                following = true;
+
+                                            users.add(new UserSearchResult(userFirebase.anotherUser, following));
+                                            getActivity().runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    adapter.notifyItemInserted(0);
+
+                                                }
+                                            });
+                                        }
+                                    }).start();
+
                                 }
-
-                                Log.v("refresh", "here2");
-                                getActivity().runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run()
-                                    {
-                                        Log.v("refresh", "here3");
-
-                                        adapter.notifyDataSetChanged();
-                                        mySwipeRefreshLayout.setRefreshing(false);
-
-                                    }
-                                });
-                            }
-                        }).start();
+                            }).start();
+                        }
                     }
-                }
-        );
-    }
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+                });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).addSearchToolbar();
+    }
 
 }

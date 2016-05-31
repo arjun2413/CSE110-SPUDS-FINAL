@@ -51,14 +51,14 @@ public class UserFirebase {
         threadCheck = false;
 
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/users");
-        Log.v("asdfuhoh", uId);
+        //("asdfuhoh", uId);
         Query queryRef = ref.child(uId);
 
         queryRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot snapshot, String previousChild) {
-                Log.v("asdf test", "snapshot" + snapshot.getValue());
-                Log.v("asdf test", "snapshot" + snapshot.getKey());
+                //("asdf test", "snapshot" + snapshot.getValue());
+                //("asdf test", "snapshot" + snapshot.getKey());
 
                 switch (snapshot.getKey()) {
 
@@ -131,6 +131,13 @@ public class UserFirebase {
         ref.child(UserFirebase.uId).updateChildren(map);
     }
 
+    public static void updateNotificationToggle(boolean toggle) {
+        final Firebase ref = new Firebase("https://eventory.firebaseio.com/users/");
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("notification_toggle", String.valueOf(toggle));
+        ref.child(UserFirebase.uId).updateChildren(map);
+    }
 
     public void getAnotherUser(String userId) {
 
@@ -233,7 +240,7 @@ public class UserFirebase {
 
         try {
 
-            Log.v("look!", "before decoding");
+            //("look!", "before decoding");
 
             InputStream stream = context.getContentResolver().openInputStream(uri);
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -243,14 +250,14 @@ public class UserFirebase {
 
             options.inSampleSize = calculateInSampleSize(options, 200, 200);
 
-            Log.v("look!", "sample size: " + options.inSampleSize);
+            //("look!", "sample size: " + options.inSampleSize);
 
             // Decode bitmap with inSampleSize set
             options.inJustDecodeBounds = false;
             InputStream stream1 = context.getContentResolver().openInputStream(uri);
             bitmap = BitmapFactory.decodeStream(stream1, null, options);
 
-            Log.v("look!", "after decoding");
+            //("look!", "after decoding");
 
 
 
@@ -321,9 +328,12 @@ public class UserFirebase {
 
     String id = null;
     public static boolean subscribeThreadCheck = false;
+    public boolean firebaseProblem;
 
     public void subscribe(final String otherUserid, final boolean subscribe) {
         final String otherUid = otherUserid;
+        subscribeThreadCheck = false;
+
 
         if (subscribe) {
             final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
@@ -336,49 +346,90 @@ public class UserFirebase {
             //Query queryRef = ref.orderByChild("email").equalTo(email);
             ref.push().setValue(map);
 
-            //update user table #subscribed
+            increaseAmtFollowers(otherUserid);
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while(!increaseNumFollowThreadCheck) {
+                        try {
+                            Thread.sleep(75);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    //update user table #subscribed
+                    subscribeThreadCheck = true;
+
+
+                }
+            }).start();
+
+
 
         } else {
             final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
 
 
+            firebaseProblem = false;
 
             final ValueEventListener valueEventListener = new ValueEventListener() {
 
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
-                    HashMap<String, Object> values = (HashMap<String, Object>) snapshot.getValue();
-                    if (values != null) {
-                        for (Map.Entry<String, Object> entry : values.entrySet()) {
-                            Log.v("Userfirebase asdf", " key" + entry.getKey());
+                    if (!firebaseProblem) {
+                        firebaseProblem = true;
+                        HashMap<String, Object> values = (HashMap<String, Object>) snapshot.getValue();
+                        if (values != null) {
+                            for (Map.Entry<String, Object> entry : values.entrySet()) {
+                                //("Userfirebase asdf", " key" + entry.getKey());
 
-                            boolean first = false;
-                            for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
+                                boolean first = false;
+                                for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
 
-                                Log.v("Userfirebase asdf", " entry value key" + entry2.getKey());
-                                Log.v("Userfirebase asdf", " entry value value" + entry2.getValue());
+                                    //("Userfirebase asdf", " entry value key" + entry2.getKey());
+                                    //("Userfirebase asdf", " entry value value" + entry2.getValue());
 
-                                if (entry2.getKey().equals("following_id")) {
-                                    if (entry2.getValue().equals(otherUserid)) {
-                                        first = true;
+                                    if (entry2.getKey().equals("following_id")) {
+                                        if (entry2.getValue().equals(otherUserid)) {
+                                            first = true;
+                                        }
                                     }
-                                }
 
 
-                                if (entry2.getKey().equals("user_id") && first) {
-                                    if (entry2.getValue().equals(uId)) {
-                                        id = entry.getKey();
+                                    if (entry2.getKey().equals("user_id") && first) {
+                                        if (entry2.getValue().equals(uId)) {
+                                            id = entry.getKey();
+                                        }
                                     }
+
+
                                 }
-
-
                             }
+
+                            //("userfirebase test", "id: " + id);
+                            decNumFollowing(otherUserid);
+
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    while (!decNumFollowingThreadCheck) {
+                                        try {
+                                            Thread.sleep(75);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+
+                                    //update user table #subscribed
+                                    if (id != null)
+                                        ref.child(id).removeValue();
+                                    subscribeThreadCheck = true;
+
+                                }
+                            }).start();
                         }
-
-                        Log.v("userfirebase test", "id: " + id);
-
-                        ref.child(id).removeValue();
-                        subscribeThreadCheck = true;
                     }
                 }
 
@@ -467,6 +518,7 @@ public class UserFirebase {
     public static int idIsSubscribed = 0;
 
     public void isSubscribed(final String userId) {
+        idIsSubscribed = 0;
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
         final ValueEventListener valueEventListener = new ValueEventListener() {
 
@@ -475,17 +527,19 @@ public class UserFirebase {
                 String id = "";
                 HashMap<String, Object> values = (HashMap<String, Object>) snapshot.getValue();
                 if (values != null) {
-                    boolean first = false;
-                    boolean second = false;
+
 
                     for (Map.Entry<String, Object> entry : values.entrySet()) {
-                        Log.v("Userfirebase asdf", " key" + entry.getKey());
+                        //("Userfirebase asdf", " key" + entry.getKey());
 
 
                         for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
 
-                            Log.v("Userfirebase asdf", " entry value key" + entry2.getKey());
-                            Log.v("Userfirebase asdf", " entry value value" + entry2.getValue());
+                            boolean first = false;
+                            boolean second = false;
+
+                            //Log.v("Userfirebase asdf", " entry value key" + entry2.getKey());
+                            //Log.v("Userfirebase asdf", " entry value value" + entry2.getValue());
 
 
                             if (entry2.getKey().equals("following_id")) {
@@ -500,16 +554,17 @@ public class UserFirebase {
                                 }
                             }
 
+                            if (second) {
+                                idIsSubscribed = 2;
+                            }
 
                         }
 
                     }
 
-                    if (second) {
-                        idIsSubscribed = 2;
-                    } else {
+                    if (idIsSubscribed != 2)
                         idIsSubscribed = 1;
-                    }
+
 
                     isSubscribedThreadCheck = true;
 
@@ -562,15 +617,15 @@ public class UserFirebase {
 
                     ArrayList<String> users = new ArrayList<>();
                     for (Map.Entry<String, Object> entry : values.entrySet()) {
-                        Log.v("subsfirebase", " key" + entry.getKey());
+                        //("subsfirebase", " key" + entry.getKey());
 
 
                         String followingId = "";
                         boolean following = false;
                         for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
 
-                            Log.v("subsfirebase", " entry value key" + entry2.getKey());
-                            Log.v("subsfirebase", " entry value value" + entry2.getValue());
+                            //("subsfirebase", " entry value key" + entry2.getKey());
+                            //("subsfirebase", " entry value value" + entry2.getValue());
 
 
                             if (entry2.getKey().equals("following_id")) {
@@ -599,8 +654,8 @@ public class UserFirebase {
                     recTest(users, subscriptions);
                     /*for (String userId: users) {
                         getAnotherUser(userId);
-                        Log.v("userfirebasesubs", "numsubs " + numSubscriptions);
-                        Log.v("userfirebasesubs", "followingId " + followingId);
+                        //("userfirebasesubs", "numsubs " + numSubscriptions);
+                        //("userfirebasesubs", "followingId " + followingId);
 
 
                         //asynchronous
@@ -621,7 +676,7 @@ public class UserFirebase {
                                 subscriptions.add(new Subscription(anotherUser.getUserId(),
                                         anotherUser.getName(), anotherUser.getPicture(),
                                         true));
-                                Log.v("userfirebasesubs", anotherUser.getName() + " was added");
+                                //("userfirebasesubs", anotherUser.getName() + " was added");
 
                             }
                         }).start();
@@ -666,7 +721,7 @@ public class UserFirebase {
                 subscriptions.add(new Subscription(anotherUser.getUserId(),
                         anotherUser.getName(), anotherUser.getPicture(),
                         true));
-                Log.v("userfirebasesubs", anotherUser.getName() + " was added");
+                //("userfirebasesubs", anotherUser.getName() + " was added");
 
                 users.remove(0);
 
@@ -679,7 +734,9 @@ public class UserFirebase {
     }
 
     public static boolean threadCheckSubUser;
-    public void getSubUserList(final ArrayList<SubUser> subUsers) {
+    public static ArrayList<SubUser> subUsers;
+    public void getSubUserList() {
+        subUsers = new ArrayList<>();
         threadCheckSubUser = false;
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/users");
         Query queryRef = myFirebaseRef.orderByKey();
@@ -689,7 +746,7 @@ public class UserFirebase {
             public void onChildAdded(DataSnapshot snapshot, String previousChild) {
 
                 SubUser subUser  = new SubUser();
-                Log.v("asdfjkl;", snapshot.getKey());
+                //("asdfjkl;", snapshot.getKey());
 
                 subUser.setUserId(snapshot.getKey());
 
@@ -729,6 +786,102 @@ public class UserFirebase {
             }
         });
     }
+
+
+    public static boolean increaseNumFollowThreadCheck;
+    public static int numFollowing;
+    /* Purpose: Increases the amount of followers by 1 */
+    public void increaseAmtFollowers(final String userId) {
+        increaseNumFollowThreadCheck = false;
+        final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/users");
+        Query queryRef = myFirebaseRef.child(userId);
+        Log.d("Here6", "here");
+        queryRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Log.d("Here9", "here");
+                //Checks if it is number_going that we are changing
+                if (dataSnapshot.getKey().equals("number_following")) {
+                    //gets the string and changes it to an int
+                    numFollowing = Integer.parseInt(String.valueOf(dataSnapshot.getValue()));
+                    Log.d("Here", "here");
+                    Log.d("how many1", String.valueOf(numFollowing));
+                    myFirebaseRef.child(userId).child("number_following").setValue(String.valueOf(++numFollowing));
+                }
+
+                increaseNumFollowThreadCheck = true;
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+        Log.d("how many", String.valueOf(numFollowing));
+    }
+
+    public static boolean decNumFollowingThreadCheck;
+    public void decNumFollowing(final String userId) {
+        decNumFollowingThreadCheck = false;
+        final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/users");
+        Query queryRef = myFirebaseRef.child(userId);
+        Log.d("Here7", "here");
+
+        queryRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                Log.d("Here9", "here");
+
+                if (dataSnapshot.getKey().equals("number_following")) {
+                    numFollowing = Integer.parseInt(String.valueOf(dataSnapshot.getValue()));
+                    myFirebaseRef.child(userId).child("number_following").setValue(String.valueOf(--numFollowing));
+                }
+
+                decNumFollowingThreadCheck = true;
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+        Log.d("how many", String.valueOf(numFollowing));
+    }
+
 
 
 }

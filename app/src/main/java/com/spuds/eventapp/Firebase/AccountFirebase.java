@@ -4,8 +4,6 @@ package com.spuds.eventapp.Firebase;
  * Created by Arjun on 5/5/16.
  */
 
-import android.content.Context;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.firebase.client.AuthData;
@@ -14,7 +12,6 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.spuds.eventapp.ChangePassword.ChangePasswordForm;
 
 import java.util.HashMap;
@@ -60,7 +57,7 @@ public class AccountFirebase {
                     @Override
                     public void onError(FirebaseError firebaseError) {
                         // error encountered
-                        Log.v("AccountFirebase:CA:", firebaseError.getMessage());
+                        //("AccountFirebase:CA:", firebaseError.getMessage());
                     }
 
                 }
@@ -68,6 +65,7 @@ public class AccountFirebase {
 
         );
     }
+
     public int status = 0;
     public void logIn(final String email, String password) {
 
@@ -77,7 +75,7 @@ public class AccountFirebase {
         ref.authWithPassword(email, password, new Firebase.AuthResultHandler() {
             @Override
             public void onAuthenticated(AuthData authData) {
-                Log.v("AccountFirebase", "Successful Log In");
+                //("AccountFirebase", "Successful Log In");
 
                 UserFirebase.uId = authData.getUid();
 
@@ -91,8 +89,8 @@ public class AccountFirebase {
             //https://www.firebase.com/docs/java-api/javadoc/com/firebase/client/FirebaseError.html
             @Override
             public void onAuthenticationError(FirebaseError firebaseError) {
-                Log.v("AccountFirebase", "ERROR Logging In");
-                Log.v("accountfirebase", firebaseError.toString());
+                //("AccountFirebase", "ERROR Logging In");
+                //("accountfirebase", firebaseError.toString());
                 System.out.println("FirebaseError Code: " + firebaseError.getCode());
                 if (!firebaseError.toString().equals("FirebaseError: Due to another authentication attempt, this authentication attempt was aborted before it could complete.")) {
                     status = 2;
@@ -104,7 +102,7 @@ public class AccountFirebase {
 
     public void changePass(ChangePasswordForm form) {
         threadCheck = 0;
-        Log.v("email", form.getEmail());
+        //("email", form.getEmail());
         Firebase ref = new Firebase("https://eventory.firebaseio.com");
         ref.changePassword(form.getEmail(), form.getCurrent(), form.getNext(), new Firebase.ResultHandler() {
             @Override
@@ -118,7 +116,7 @@ public class AccountFirebase {
             public void onError(FirebaseError firebaseError) {
                 // error encountered
                 threadCheck = 2;
-                Log.v("AccountFirebase:CP:", firebaseError.getMessage());
+                //("AccountFirebase:CP:", firebaseError.getMessage());
             }
         });
     }
@@ -134,7 +132,7 @@ public class AccountFirebase {
             @Override
             public void onError(FirebaseError firebaseError) {
                 // error encountered
-                Log.v("AccountFirebase", "ERROR Resetting Password");
+                //("AccountFirebase", "ERROR Resetting Password");
             }
         });
     }

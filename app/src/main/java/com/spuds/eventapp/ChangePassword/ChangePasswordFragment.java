@@ -1,5 +1,6 @@
 package com.spuds.eventapp.ChangePassword;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -10,12 +11,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 
 public class ChangePasswordFragment extends Fragment {
 
@@ -190,6 +193,9 @@ public class ChangePasswordFragment extends Fragment {
                     sys_message.setText(getError());
                 }
 
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+
             }
         });
 
@@ -222,6 +228,10 @@ public class ChangePasswordFragment extends Fragment {
         catch (Exception e) {
         }
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).removeSearchToolbar();
+    }
 
 }

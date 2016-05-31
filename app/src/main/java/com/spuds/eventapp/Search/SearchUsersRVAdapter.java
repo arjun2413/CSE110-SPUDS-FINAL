@@ -25,7 +25,7 @@ import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
-import com.spuds.eventapp.Shared.Subscription;
+import com.spuds.eventapp.Shared.UserSearchResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,52 +33,189 @@ import java.util.List;
 /**
  * Created by David on 5/28/16.
  */
-public class SearchUsersRVAdapter extends RecyclerView.Adapter<SearchUsersRVAdapter.SubViewHolder>{
+public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     public Fragment currentFragment;
-    List<Subscription> users;
+    List<UserSearchResult> users;
 
-    public SearchUsersRVAdapter(ArrayList<Subscription> users, SearchUsersFragment searchUsersFragment) {
+    public SearchUsersRVAdapter(ArrayList<UserSearchResult> users, SearchUsersFragment searchUsersFragment) {
         this.users = users;
         this.currentFragment = searchUsersFragment;
     }
 
+    public static class SubViewHolder extends RecyclerView.ViewHolder {
+        CardView card;
+        TextView subName;
+        ImageView subPhoto;
+        Button toggleFollow;
+        boolean canClick = true;
+
+        SubViewHolder(View itemView) {
+            super(itemView);
+            card = (CardView) itemView.findViewById(R.id.cv);
+            subName = (TextView) itemView.findViewById(R.id.sub_name);
+            subPhoto = (ImageView) itemView.findViewById(R.id.sub_photo);
+            toggleFollow = (Button) itemView.findViewById(R.id.follow_toggle);
+        }
+    }
+
+    public static class OwnViewHolder extends RecyclerView.ViewHolder {
+        CardView card;
+        TextView subName;
+        ImageView subPhoto;
+
+        OwnViewHolder(View itemView) {
+            super(itemView);
+            card = (CardView) itemView.findViewById(R.id.cv);
+            subName = (TextView) itemView.findViewById(R.id.sub_name);
+            subPhoto = (ImageView) itemView.findViewById(R.id.sub_photo);
+        }
+    }
+
     @Override
-    public SubViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_my_subscriptions, parent, false);
-        overrideFonts(v.getContext(),v);
-        SubViewHolder svh = new SubViewHolder(v);
-        return svh;
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v;
+        RecyclerView.ViewHolder vh;
+        if (viewType == 1) {
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user_search_result, parent, false);
+            overrideFonts(v.getContext(), v);
+            vh = new SubViewHolder(v);
+        } else {
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_own_user_search_result, parent, false);
+            overrideFonts(v.getContext(), v);
+            vh = new OwnViewHolder(v);
+        }
+
+        return vh;
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void onBindViewHolder(final SubViewHolder subViewHolder, final int i) {
-        final Subscription currentSub = users.get(i);
-        subViewHolder.subName.setText(users.get(i).name);
+    public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int i) {
+        final UserSearchResult currentSearchResult = users.get(i);
 
-        //subViewHolder.subPhoto.setImageResource(subscriptions.get(i).photoId);
+        if (viewHolder instanceof  OwnViewHolder) {
+            OwnViewHolder ownViewHolder = (OwnViewHolder) viewHolder;
+            ownViewHolder.subName.setText(users.get(i).name);
 
+            if (currentSearchResult.picture != null && currentSearchResult.picture != "") {
+                Bitmap src = null;
+                try {
+                    byte[] imageAsBytes = Base64.decode(currentSearchResult.picture, Base64.DEFAULT);
+                    src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+                } catch (OutOfMemoryError e) {
+                    System.err.println(e.toString());
+                }
 
-        if (currentSub.picture != null && currentSub.picture != "") {
-            Bitmap src = null;
-            try {
-                byte[] imageAsBytes = Base64.decode(currentSub.picture, Base64.DEFAULT);
-                src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-            } catch(OutOfMemoryError e) {
-                System.err.println(e.toString());
-            }
+                if (src != null) {
+                    try {
+                        RoundedBitmapDrawable dr =
+                                RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+                        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
+                        ownViewHolder.subPhoto.setImageDrawable(dr);
+                    } catch (OutOfMemoryError e) {
+                        System.err.println(e.toString());
+                    }
 
-            if (src != null) {
+                } else {
+                    try {
+                        src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
 
-                RoundedBitmapDrawable dr =
-                        RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
-                dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
-                subViewHolder.subPhoto.setImageDrawable(dr);
-
+                        RoundedBitmapDrawable circularBitmapDrawable =
+                                RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+                        circularBitmapDrawable.setCircular(true);
+                        circularBitmapDrawable.setAntiAlias(true);
+                        ownViewHolder.subPhoto.setImageDrawable(circularBitmapDrawable);
+                    } catch (OutOfMemoryError e) {
+                        System.err.println(e.toString());
+                    }
+                }
             } else {
                 try {
-                    src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
+                    Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
+
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+                    circularBitmapDrawable.setCircular(true);
+                    circularBitmapDrawable.setAntiAlias(true);
+                    ownViewHolder.subPhoto.setImageDrawable(circularBitmapDrawable);
+                } catch (OutOfMemoryError e) {
+                    System.err.println(e.toString());
+                }
+            }
+
+            ownViewHolder.card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                    Fragment profileFragment = new ProfileFragment();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString(currentFragment.getString(R.string.profile_type),
+                            currentFragment.getString(R.string.profile_type_owner));
+
+                    profileFragment.setArguments(bundle);
+
+                    currentFragment.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((MainActivity)currentFragment.getActivity()).removeSearchToolbar();
+                        }
+                    });
+
+                    currentFragment.getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_frame_layout, profileFragment)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .addToBackStack(currentFragment.getString(R.string.fragment_profile))
+                            .commit();
+
+
+                }
+            });
+
+        } else {
+            final SubViewHolder subViewHolder = (SubViewHolder) viewHolder;
+            subViewHolder.subName.setText(users.get(i).name);
+
+            //subViewHolder.subPhoto.setImageResource(subscriptions.get(i).photoId);
+
+
+            if (currentSearchResult.picture != null && currentSearchResult.picture != "") {
+                Bitmap src = null;
+                try {
+                    byte[] imageAsBytes = Base64.decode(currentSearchResult.picture, Base64.DEFAULT);
+                    src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+                } catch (OutOfMemoryError e) {
+                    System.err.println(e.toString());
+                }
+
+                if (src != null) {
+                    try {
+                        RoundedBitmapDrawable dr =
+                                RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+                        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
+                        subViewHolder.subPhoto.setImageDrawable(dr);
+                    } catch (OutOfMemoryError e) {
+                        System.err.println(e.toString());
+                    }
+
+                } else {
+                    try {
+                        src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
+
+                        RoundedBitmapDrawable circularBitmapDrawable =
+                                RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
+                        circularBitmapDrawable.setCircular(true);
+                        circularBitmapDrawable.setAntiAlias(true);
+                        subViewHolder.subPhoto.setImageDrawable(circularBitmapDrawable);
+                    } catch (OutOfMemoryError e) {
+                        System.err.println(e.toString());
+                    }
+                }
+            } else {
+                try {
+                    Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
 
                     RoundedBitmapDrawable circularBitmapDrawable =
                             RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
@@ -89,90 +226,98 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<SearchUsersRVAdap
                     System.err.println(e.toString());
                 }
             }
-        } else {
-            try {
-                Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
 
-                RoundedBitmapDrawable circularBitmapDrawable =
-                        RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
-                circularBitmapDrawable.setCircular(true);
-                circularBitmapDrawable.setAntiAlias(true);
-                subViewHolder.subPhoto.setImageDrawable(circularBitmapDrawable);
-            } catch (OutOfMemoryError e) {
-                System.err.println(e.toString());
-            }
-        }
+            subViewHolder.toggleFollow.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
 
-        subViewHolder.toggleFollow.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
+            subViewHolder.toggleFollow.setOnClickListener(new View.OnClickListener() {
+                @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+                @Override
+                public void onClick(View v) {
 
-        subViewHolder.toggleFollow.setOnClickListener(new View.OnClickListener() {
-            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onClick(View v) {
-                UserFirebase userFirebase = new UserFirebase();
-                // already following this user
-                if (currentSub.follow){
-                    currentSub.follow = false;
-                    subViewHolder.toggleFollow.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_unselected));
-                    userFirebase.subscribe(users.get(i).userId, false);
-                }
-                else{
-                    currentSub.follow = true;
-                    subViewHolder.toggleFollow.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
-                    userFirebase.subscribe(users.get(i).userId, true);
+                    if (subViewHolder.canClick) {
 
-                }
-            }
-        });
+                        subViewHolder.canClick = false;
 
-        subViewHolder.card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                final UserFirebase userFirebase = new UserFirebase();
-                userFirebase.getAnotherUser(currentSub.userId);
-
-                new Thread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        while (!userFirebase.threadCheckAnotherUser) {
-                            try {
-                                Thread.sleep(77);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                        final UserFirebase userFirebase = new UserFirebase();
+                        // already following this user
+                        if (currentSearchResult.follow) {
+                            currentSearchResult.follow = false;
+                            userFirebase.subscribe(users.get(i).userId, false);
+                        } else {
+                            currentSearchResult.follow = true;
+                            userFirebase.subscribe(users.get(i).userId, true);
 
                         }
 
-                        startProfileFragment(userFirebase);
+                        new Thread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                while (!userFirebase.subscribeThreadCheck) {
+                                    try {
+                                        Thread.sleep(70);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                currentFragment.getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (currentSearchResult.follow) {
+                                            subViewHolder.toggleFollow.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
+                                        } else {
+                                            subViewHolder.toggleFollow.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_unselected));
+                                        }
+
+                                        subViewHolder.canClick = true;
+
+                                    }
+                                });
+
+                                //subscribeThreadCheck = false;
+
+                            }
+                        }).start();
 
                     }
-                }).start();
+                }
+            });
+
+            subViewHolder.card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    final UserFirebase userFirebase = new UserFirebase();
+                    userFirebase.getAnotherUser(currentSearchResult.userId);
+
+                    new Thread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            while (!userFirebase.threadCheckAnotherUser) {
+                                try {
+                                    Thread.sleep(77);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+
+                            startProfileFragment(userFirebase);
+
+                        }
+                    }).start();
 
 
-            }
-        });
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
         return users.size();
-    }
-
-    public static class SubViewHolder extends RecyclerView.ViewHolder {
-        CardView card;
-        TextView subName;
-        ImageView subPhoto;
-        Button toggleFollow;
-
-        SubViewHolder(View itemView) {
-            super(itemView);
-            card = (CardView) itemView.findViewById(R.id.cv);
-            subName = (TextView) itemView.findViewById(R.id.sub_name);
-            subPhoto = (ImageView) itemView.findViewById(R.id.sub_photo);
-            toggleFollow = (Button) itemView.findViewById(R.id.follow_toggle);
-        }
     }
 
     private void startProfileFragment(final UserFirebase userFirebase) {
@@ -222,6 +367,16 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<SearchUsersRVAdap
         }
         catch (Exception e) {
         }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+
+        if (users.get(position).userId.equals(UserFirebase.uId))
+            return 0;
+        else
+            return 1;
+
     }
 }
 

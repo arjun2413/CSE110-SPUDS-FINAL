@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 
 
 public class MyEventsTabsFragment extends Fragment {
@@ -99,6 +100,14 @@ public class MyEventsTabsFragment extends Fragment {
         }
         catch (Exception e) {
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).addSearchToolbar();
+        ((MainActivity)getActivity()).searchType = getString(R.string.fragment_my_events);
+
     }
 
 }

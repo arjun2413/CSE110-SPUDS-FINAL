@@ -43,6 +43,7 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
         TextView subName;
         ImageView subPhoto;
         Button toggleFollow;
+        boolean canClick = true;
 
         SubViewHolder(View itemView) {
             super(itemView);
@@ -132,17 +133,52 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
-                UserFirebase userFirebase = new UserFirebase();
-                // already following this user
-                if (currentSub.follow){
-                    currentSub.follow = false;
-                    subViewHolder.toggleFollow.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_unselected));
-                    userFirebase.subscribe(subscriptions.get(i).userId, false);
-                }
-                else{
-                    currentSub.follow = true;
-                    subViewHolder.toggleFollow.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
-                    userFirebase.subscribe(subscriptions.get(i).userId, true);
+
+                if (subViewHolder.canClick) {
+
+                    subViewHolder.canClick = false;
+
+                    final UserFirebase userFirebase = new UserFirebase();
+                    // already following this user
+                    if (currentSub.follow) {
+                        currentSub.follow = false;
+                        userFirebase.subscribe(subscriptions.get(i).userId, false);
+                    } else {
+                        currentSub.follow = true;
+                        userFirebase.subscribe(subscriptions.get(i).userId, true);
+
+                    }
+
+                    new Thread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            while (!userFirebase.subscribeThreadCheck) {
+                                try {
+                                    Thread.sleep(70);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            currentFragment.getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (currentSub.follow) {
+                                        subViewHolder.toggleFollow.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
+                                    } else {
+                                        subViewHolder.toggleFollow.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_unselected));
+                                    }
+
+                                    subViewHolder.canClick = true;
+
+                                }
+                            });
+
+                            //subscribeThreadCheck = false;
+
+                        }
+                    }).start();
 
                 }
             }

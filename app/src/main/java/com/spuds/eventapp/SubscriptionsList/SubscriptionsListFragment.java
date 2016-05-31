@@ -7,13 +7,13 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.Shared.Subscription;
 
 import java.util.ArrayList;
@@ -42,8 +42,8 @@ public class SubscriptionsListFragment extends Fragment {
         View v = inflater.inflate(R.layout.recycler, container, false);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Subscriptions");
         final RecyclerView rv=(RecyclerView) v.findViewById(R.id.rv);
-
         subscriptions = new ArrayList<>();
+
         userFirebase.getSubscriptions(subscriptions);
 
         LinearLayoutManager llm = new LinearLayoutManager(v.getContext());
@@ -58,8 +58,8 @@ public class SubscriptionsListFragment extends Fragment {
             @Override
             public void run() {
                 while (userFirebase.numSubscriptions > subscriptions.size() || !userFirebase.getSubscriptionsThreadCheck) {
-                    Log.v("sublist", "numsubs" + userFirebase.numSubscriptions);
-                    Log.v("sublist", "subscriptions size" + subscriptions.size());
+                    //("sublist", "numsubs" + userFirebase.numSubscriptions);
+                    //("sublist", "subscriptions size" + subscriptions.size());
                     try {
                         Thread.sleep(70);
                     } catch (InterruptedException e) {
@@ -76,15 +76,11 @@ public class SubscriptionsListFragment extends Fragment {
             }
         }).start();
 
-
-
-
-        //calls the function to refresh the page.
         refreshing(v);
 
         return v;
     }
-    //TODO: Needs database to finish
+
     public void refreshing(View view) {
         final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         mySwipeRefreshLayout.setOnRefreshListener(
@@ -95,15 +91,15 @@ public class SubscriptionsListFragment extends Fragment {
 
                         userFirebase.getSubscriptions(subscriptions);
 
-                        Log.v("refresh", "here");
+                        //("refresh", "here");
                         new Thread(new Runnable() {
 
                             @Override
                             public void run() {
-                                Log.v("refresh", "hereherehere");
+                                //("refresh", "hereherehere");
 
                                 while (userFirebase.numSubscriptions > subscriptions.size() || !userFirebase.getSubscriptionsThreadCheck) {
-                                    //Log.v("refresh", "size: " + events.size());
+                                    ////("refresh", "size: " + events.size());
                                     try {
                                         Thread.sleep(70);
                                     } catch (InterruptedException e) {
@@ -111,12 +107,12 @@ public class SubscriptionsListFragment extends Fragment {
                                     }
                                 }
 
-                                Log.v("refresh", "here2");
+                                //("refresh", "here2");
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run()
                                     {
-                                        Log.v("refresh", "here3");
+                                        //("refresh", "here3");
 
                                         adapter.notifyDataSetChanged();
                                         mySwipeRefreshLayout.setRefreshing(false);
@@ -132,6 +128,13 @@ public class SubscriptionsListFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).addSearchToolbar();
+        ((MainActivity)getActivity()).searchType = getString(R.string.fragment_my_sub);
     }
 
 }
