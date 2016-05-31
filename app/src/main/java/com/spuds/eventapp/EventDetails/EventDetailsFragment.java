@@ -391,6 +391,9 @@ public class EventDetailsFragment extends Fragment {
             public void onClick(View v) {
                 ((MainActivity) getActivity()).addSearchToolbar();
                 InvitePeopleFragment invitePeopleFragment = new InvitePeopleFragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putString(getString(R.string.event_id), eventId);
                 // Add Event Details Fragment to fragment manager
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_frame_layout, invitePeopleFragment)
@@ -621,9 +624,6 @@ public class EventDetailsFragment extends Fragment {
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(getString(R.string.fragment_profile))
                 .commit();
-
-
-
     }
 
     private void overrideFonts(final Context context, final View v) {
@@ -637,8 +637,7 @@ public class EventDetailsFragment extends Fragment {
             } else if (v instanceof TextView ) {
                 ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "raleway-regular.ttf"));
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
         }
     }
 

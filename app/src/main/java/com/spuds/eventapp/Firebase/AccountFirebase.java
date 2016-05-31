@@ -4,8 +4,6 @@ package com.spuds.eventapp.Firebase;
  * Created by Arjun on 5/5/16.
  */
 
-import android.content.Context;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.firebase.client.AuthData;
@@ -14,7 +12,6 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.spuds.eventapp.ChangePassword.ChangePasswordForm;
 
 import java.util.HashMap;
@@ -68,6 +65,7 @@ public class AccountFirebase {
 
         );
     }
+
     public int status = 0;
     public void logIn(final String email, String password) {
 

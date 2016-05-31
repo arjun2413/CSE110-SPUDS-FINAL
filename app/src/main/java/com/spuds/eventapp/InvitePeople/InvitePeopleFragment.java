@@ -12,9 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.spuds.eventapp.Firebase.EventsFirebase;
+import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
+import com.spuds.eventapp.Shared.PushBuilder;
 import com.spuds.eventapp.Shared.User;
 
 import java.util.ArrayList;
@@ -24,10 +27,9 @@ public class InvitePeopleFragment extends Fragment {
 
     ArrayList<User> followers;
     ArrayList<User> invited;
-
     InvitePeopleRVAdapter adapter;
-
     EventsFirebase eventsFirebase;
+    String eventId;
 
     public InvitePeopleFragment() {
         // Required empty public constructor
@@ -41,10 +43,11 @@ public class InvitePeopleFragment extends Fragment {
         // TODO (M): remember when loading do not override the followers arraylist, add to it
         followers = new ArrayList<>();
         invited = new ArrayList<>();
-        //("firebasecall", "ipf");
         eventsFirebase = new EventsFirebase();
         eventsFirebase.getFollowers(followers);
-        //("firebasecallafter", "ipf");
+
+        Bundle bundle = getArguments();
+        eventId = bundle.getString(getString(R.string.event_id));
 
     }
 
@@ -75,18 +78,18 @@ public class InvitePeopleFragment extends Fragment {
                         e.printStackTrace();
                     }
                 }
+
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //("inviteppl",""+ followers.size());
                         adapter.notifyDataSetChanged();
                         rv.setAdapter(adapter);
                     }
                 });
             }
+
         }).start();
 
-        //calling refresh function
         return view;
     }
     @Override
@@ -127,8 +130,16 @@ public class InvitePeopleFragment extends Fragment {
 
             case R.id.done:
                 if (invited.size() != 0) {
-                    // TODO (M): Send invited array to database & do notification
-                    // Pop this fragment from backstack
+                    GoogleCloudMessaging gcm = ((MainActivity) getActivity()).gcm;
+                    ArrayList<String> inviteNotif = new ArrayList<>();
+
+                    for (User user : invited) {
+                        inviteNotif.add(user.getUserId());
+                    }
+
+                    PushBuilder push_builder = new PushBuilder(inviteNotif, eventId, UserFirebase.thisUser.getName(), UserFirebase.uId, gcm);
+                    push_builder.sendNotification();
+
                 }
                 getActivity().getSupportFragmentManager().popBackStack();
                 return true;
