@@ -1,29 +1,5 @@
 [
     {
-        "outputFile": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\akalathil\\Documents\\testpls\\CSE110-SPUDS-FINAL2\\app\\build\\intermediates\\res\\merged\\debug\\values-w360dp-v13\\values-w360dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 54,
-                    "endOffset": 105
-                },
-                "from": {
-                    "file": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\akalathil\\Documents\\testpls\\CSE110-SPUDS-FINAL2\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\values-w360dp-v13\\values-w360dp-v13.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 54,
-                        "endOffset": 105
-                    }
-                }
-            }
-        ]
-    },
-    {
         "outputFile": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\David\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\C:\\Users\\tina\\CSE110\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-w360dp-v13\\values-w360dp-v13.xml",
         "map": [
             {
@@ -72,30 +48,6 @@
         ]
     },
     {
-        "outputFile": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\David\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\C:\\Users\\Reggie\\StudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-w360dp-v13\\values-w360dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 54,
-                    "endOffset": 105
-                },
-                "from": {
-                    "file": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\David\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\C:\\Users\\Reggie\\StudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\values-w360dp-v13\\values-w360dp-v13.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 54,
-                        "endOffset": 105
-                    }
-                }
-            }
-        ]
-    },
-    {
         "outputFile": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\David\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-w360dp-v13\\values-w360dp-v13.xml",
         "map": [
             {
@@ -120,6 +72,54 @@
         ]
     },
     {
+        "outputFile": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\akalathil\\Documents\\testpls\\CSE110-SPUDS-FINAL2\\app\\build\\intermediates\\res\\merged\\debug\\values-w360dp-v13\\values-w360dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 54,
+                    "endOffset": 105
+                },
+                "from": {
+                    "file": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\akalathil\\Documents\\testpls\\CSE110-SPUDS-FINAL2\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\values-w360dp-v13\\values-w360dp-v13.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 54,
+                        "endOffset": 105
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/values-w360dp-v13/values-w360dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 54,
+                    "endOffset": 105
+                },
+                "from": {
+                    "file": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/values-w360dp-v13/values-w360dp-v13.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 54,
+                        "endOffset": 105
+                    }
+                }
+            }
+        ]
+    },
+    {
         "outputFile": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/values-w360dp-v13/values-w360dp-v13.xml",
         "map": [
             {
@@ -132,6 +132,30 @@
                 },
                 "from": {
                     "file": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/values-w360dp-v13/values-w360dp-v13.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 54,
+                        "endOffset": 105
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\David\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\C:\\Users\\Reggie\\StudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-w360dp-v13\\values-w360dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 54,
+                    "endOffset": 105
+                },
+                "from": {
+                    "file": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\David\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\C:\\Users\\Reggie\\StudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\values-w360dp-v13\\values-w360dp-v13.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

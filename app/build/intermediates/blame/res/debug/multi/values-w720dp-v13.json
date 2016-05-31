@@ -1,53 +1,5 @@
 [
     {
-        "outputFile": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\akalathil\\Documents\\testpls\\CSE110-SPUDS-FINAL2\\app\\build\\intermediates\\res\\merged\\debug\\values-w720dp-v13\\values-w720dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 76,
-                    "endOffset": 127
-                },
-                "from": {
-                    "file": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\akalathil\\Documents\\testpls\\CSE110-SPUDS-FINAL2\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\values-w720dp-v13\\values-w720dp-v13.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 76,
-                        "endOffset": 127
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\David\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\C:\\Users\\tina\\CSE110\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-w720dp-v13\\values-w720dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 76,
-                    "endOffset": 127
-                },
-                "from": {
-                    "file": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\David\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\C:\\Users\\tina\\CSE110\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\values-w720dp-v13\\values-w720dp-v13.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 76,
-                        "endOffset": 127
-                    }
-                }
-            }
-        ]
-    },
-    {
         "outputFile": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\David\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\C:\\Users\\Reggie\\StudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-w720dp-v13\\values-w720dp-v13.xml",
         "map": [
             {
@@ -72,7 +24,7 @@
         ]
     },
     {
-        "outputFile": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/values-w720dp-v13/values-w720dp-v13.xml",
+        "outputFile": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\akalathil\\Documents\\testpls\\CSE110-SPUDS-FINAL2\\app\\build\\intermediates\\res\\merged\\debug\\values-w720dp-v13\\values-w720dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -83,7 +35,31 @@
                     "endOffset": 127
                 },
                 "from": {
-                    "file": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/values-w720dp-v13/values-w720dp-v13.xml",
+                    "file": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\akalathil\\Documents\\testpls\\CSE110-SPUDS-FINAL2\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\values-w720dp-v13\\values-w720dp-v13.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 76,
+                        "endOffset": 127
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\Karen\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-w720dp-v13\\values-w720dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 76,
+                    "endOffset": 127
+                },
+                "from": {
+                    "file": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\Karen\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\values-w720dp-v13\\values-w720dp-v13.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -120,7 +96,7 @@
         ]
     },
     {
-        "outputFile": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\Karen\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-w720dp-v13\\values-w720dp-v13.xml",
+        "outputFile": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/values-w720dp-v13/values-w720dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -131,7 +107,55 @@
                     "endOffset": 127
                 },
                 "from": {
-                    "file": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\Karen\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\values-w720dp-v13\\values-w720dp-v13.xml",
+                    "file": "/Users/tina/CSE110/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/values-w720dp-v13/values-w720dp-v13.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 76,
+                        "endOffset": 127
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\David\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\C:\\Users\\tina\\CSE110\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\res\\merged\\debug\\values-w720dp-v13\\values-w720dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 76,
+                    "endOffset": 127
+                },
+                "from": {
+                    "file": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/C:\\Users\\David\\AndroidStudioProjects\\CSE110-SPUDS-FINAL\\C:\\Users\\tina\\CSE110\\CSE110-SPUDS-FINAL\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\values-w720dp-v13\\values-w720dp-v13.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 76,
+                        "endOffset": 127
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/res/merged/debug/values-w720dp-v13/values-w720dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 76,
+                    "endOffset": 127
+                },
+                "from": {
+                    "file": "/Users/David/AndroidStudioProjects/CSE110-SPUDS-FINAL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/values-w720dp-v13/values-w720dp-v13.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

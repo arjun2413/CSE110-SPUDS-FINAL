@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity
        /* TextView title = (TextView) toolbar.findViewById(R.id.tv_toolbar);
         title.setText("EVENTORY");*/
         setSupportActionBar(toolbar);
-       // getSupportActionBar().setDisplayShowTitleEnabled(false);
+        // getSupportActionBar().setDisplayShowTitleEnabled(false);
         overrideFonts(toolbar.getContext(),toolbar);
 
     }
@@ -323,6 +323,8 @@ public class MainActivity extends AppCompatActivity
         params = (RelativeLayout.LayoutParams) search.getLayoutParams();
 
     }
+    RelativeLayout.LayoutParams params;
+
 
     void findCatFeedEvent(final String searchTerm) {
         new Thread(new Runnable() {
@@ -459,29 +461,14 @@ public class MainActivity extends AppCompatActivity
                         for (String name: columnNames) {
                             //retVal += String.format("%s: %s\n", name, cursor.getString(cursor.getColumnIndex(name)));
                             if(name.equals("USER_ID")){
-
+                                //Return to outside world
+                                if(cursor == null){
+                                    Log.d("Search","Cursor is null");
+                                }
                                 Log.d("Search","Int is: "+cursor.getColumnIndex(name));
                                 searchResult.clear();
                                 searchResult.add(cursor.getString(cursor.getColumnIndex(name)));
                                 Log.v("searcherseultevent", "" + searchResult);
-                        Log.d("Search","Starting Search");
-                        Cursor cursor = databaseTable.getUserNameMatches(searchTerm, null);
-                        String retVal = "";
-                        if (cursor != null && cursor.moveToFirst() ){
-                            String[] columnNames = cursor.getColumnNames();
-                            do {
-                                //Searched results have been found
-                                for (String name: columnNames) {
-                                    //retVal += String.format("%s: %s\n", name, cursor.getString(cursor.getColumnIndex(name)));
-                                    if(name.equals("USER_ID")){
-                                        //Return to outside world
-                                        if(cursor == null){
-                                            Log.d("Search","Cursor is null");
-                                        }
-                                        Log.d("Search","Int is: "+cursor.getColumnIndex(name));
-                                        searchResult.clear();
-                                        searchResult.add(cursor.getString(cursor.getColumnIndex(name)));
-                                        Log.v("searcherseultevent", "" + searchResult);
 
                                 char[] userIdCharArray = searchResult.toString().toCharArray();
 
@@ -511,7 +498,7 @@ public class MainActivity extends AppCompatActivity
                     } while (cursor.moveToNext());
                 }
                 else{
-                    Log.d("Search","Nothing found.");
+                    Log.d("Search", "Nothing found.");
                     SearchUsersFragment searchUsersFragment = new SearchUsersFragment();
 
                     getSupportFragmentManager().beginTransaction()
@@ -527,6 +514,7 @@ public class MainActivity extends AppCompatActivity
         }).start();
 
     }
+
 
     void findAnyEvent(final String searchTerm) {
         Log.v("inwhere", "infindanyevent");
@@ -641,7 +629,6 @@ public class MainActivity extends AppCompatActivity
         }).start();
     }
 
-    RelativeLayout.LayoutParams params;
 
     public void removeSearchToolbar() {
         Log.v("test", "heretest" + "removesearchtoolbar");
@@ -898,7 +885,7 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
 
-                super.onBackPressed();
+            super.onBackPressed();
 
         }
         //removeSearchToolbar();
