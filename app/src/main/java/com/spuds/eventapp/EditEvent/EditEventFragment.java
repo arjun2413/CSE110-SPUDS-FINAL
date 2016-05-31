@@ -332,13 +332,13 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                     eventsFirebase.updateEvent(form, adapter);
 
                     // Update Event Notification
-                    GoogleCloudMessaging gcm = ((MainActivity) getActivity()).gcm;
+                    /*GoogleCloudMessaging gcm = ((MainActivity) getActivity()).gcm;
                     PushBuilder push_builder = new PushBuilder("update", event.getEventId(), UserFirebase.thisUser.getName(), UserFirebase.uId, gcm);
                     push_builder.sendNotification();
 
                     getActivity().getSupportFragmentManager().popBackStack();
                     errorMissingMessage.setVisibility(View.INVISIBLE);
-                    errorTimeMessage.setVisibility(View.INVISIBLE);
+                    errorTimeMessage.setVisibility(View.INVISIBLE);*/
 
                 }
 

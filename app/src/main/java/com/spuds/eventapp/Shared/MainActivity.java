@@ -250,9 +250,15 @@ public class MainActivity extends AppCompatActivity
                 Log.v("searchtype", searchType);
                 if (searchType.equals(getString(R.string.fragment_home_feed))) {
                     Log.v("wtrwtwa", searchType);
+
                     findAnyEvent(searchTerm);
+
                 } else if (searchType.equals(getString(R.string.fragment_find_people)) || searchType.equals(getString(R.string.fragment_invite_people))) {
+                    Log.v("wtrwtwa", searchType);
                     findAnyUser(searchTerm);
+
+
+
                 } else if (searchType.equals(getString(R.string.fragment_my_events))) {
 
                 } else if (searchType.equals(getString(R.string.fragment_my_sub_feed))) {
@@ -286,6 +292,7 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onSearchOpened() {
+                Log.v("onsearchopen", "here");
                 UserFirebase userFirebase = new UserFirebase();
                 userFirebase.getSubUserList();
 
@@ -314,6 +321,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     void findAnyUser(final String searchTerm) {
+        Log.v("searchtype", "here");
         new Thread(new Runnable() {
 
             @Override
@@ -325,6 +333,7 @@ public class MainActivity extends AppCompatActivity
                         e.printStackTrace();
                     }
                 }
+                testUsersList = UserFirebase.subUsers;
                 //check what users are there
                 for(SubUser s : testUsersList){
                     Log.d("CreateTable",s.getUserId());
@@ -363,6 +372,7 @@ public class MainActivity extends AppCompatActivity
                                             Log.d("Search","Cursor is null");
                                         }
                                         Log.d("Search","Int is: "+cursor.getColumnIndex(name));
+                                        //searchResult.clear();
                                         searchResult.add(cursor.getString(cursor.getColumnIndex(name)));
                                         Log.v("searcherseultevent", "" + searchResult);
 
@@ -421,6 +431,9 @@ public class MainActivity extends AppCompatActivity
                         e.printStackTrace();
                     }
                 }
+
+                testEventsList = EventsFirebase.subEvents;
+
                 //check what events are there
                 for(SubEvent s : testEventsList){
                     Log.d("CreateTable",s.getEventId());
