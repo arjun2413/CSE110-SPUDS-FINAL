@@ -73,7 +73,7 @@ public class InvitePeopleFragment extends Fragment {
                     //("inviteppl", "numfollowers" + eventsFirebase.numFollowers);
                     //("inviteppl", "followers size" + followers.size());
                     try {
-                        Thread.sleep(70);
+                        Thread.sleep(Integer.parseInt(getString(R.string.sleepTime)));
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

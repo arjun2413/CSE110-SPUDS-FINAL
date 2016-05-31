@@ -184,7 +184,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                                 try {
                                     //("sleepingthread","fam");
 
-                                    Thread.sleep(70);
+                                    Thread.sleep(Integer.parseInt(getString(R.string.sleepTime)));
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
@@ -234,7 +234,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                     public void run() {
                         while (((MainActivity) getActivity()).picture == null) {
                             try {
-                                Thread.sleep(75);
+                                Thread.sleep(Integer.parseInt(getString(R.string.sleepTime)));
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }

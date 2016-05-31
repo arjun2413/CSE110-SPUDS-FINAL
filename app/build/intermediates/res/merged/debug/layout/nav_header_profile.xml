@@ -22,7 +22,7 @@
         android:onClick="goToProfile"
         android:layout_centerHorizontal="true"
         android:background="#00ffffff"
-        android:src="@drawable/profilepicture" />
+        android:src="@drawable/profile_pic_icon" />
 
     <TextView
         android:id="@+id/user_name"

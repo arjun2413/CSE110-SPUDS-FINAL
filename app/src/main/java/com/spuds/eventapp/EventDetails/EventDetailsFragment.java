@@ -504,7 +504,7 @@ public class EventDetailsFragment extends Fragment {
                                                 while (!eventsFirebase.notGoingThreadCheck || !eventsFirebase.goingToEventThreadCheck) {
                                                     //Log.v("EDF", "not going while loop");
                                                     try {
-                                                        Thread.sleep(77);
+                                                        Thread.sleep(Integer.parseInt(getString(R.string.sleepTime)));
                                                     } catch (InterruptedException e) {
                                                         e.printStackTrace();
                                                     }
