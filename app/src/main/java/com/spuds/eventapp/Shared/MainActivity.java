@@ -369,6 +369,7 @@ public class MainActivity extends AppCompatActivity
                                             Log.d("Search","Cursor is null");
                                         }
                                         Log.d("Search","Int is: "+cursor.getColumnIndex(name));
+                                        searchResult.clear();
                                         searchResult.add(cursor.getString(cursor.getColumnIndex(name)));
                                         Log.v("searcherseultevent", "" + searchResult);
 
