@@ -77,7 +77,7 @@ public class CreateEventRVAdapter extends RecyclerView.Adapter<CreateEventRVAdap
 
             @Override
             public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
-                Log.d("SmoothCheckBox", String.valueOf(isChecked));
+                //("SmoothCheckBox", String.valueOf(isChecked));
 
                 System.out.println("count"+ counter);
                 if (isChecked) {
@@ -145,7 +145,7 @@ public class CreateEventRVAdapter extends RecyclerView.Adapter<CreateEventRVAdap
 
                     }
                 }
-                Log.d("SmoothCheckBox2", String.valueOf(categoryList));
+                //("SmoothCheckBox2", String.valueOf(categoryList));
                 getList();
             }
 
@@ -160,7 +160,7 @@ public class CreateEventRVAdapter extends RecyclerView.Adapter<CreateEventRVAdap
     }
 
     public ArrayList<String> getList(){
-        Log.d("SmoothCheckBox3", String.valueOf(categoryList));
+        //("SmoothCheckBox3", String.valueOf(categoryList));
         return categoryList;
     }
 

@@ -165,10 +165,16 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 accountFirebase.logIn(email.toString(), password.toString());
-
+                                int counter = 0;
                                 while (accountFirebase.status == 0) {
+
                                     try {
+                                        counter++;
                                         Thread.sleep(75);
+                                        System.out.println("Waiting: " + counter);
+                                        if (counter == 100) {
+                                            accountFirebase.status = 3;
+                                        }
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     }
@@ -180,6 +186,10 @@ public class LoginActivity extends AppCompatActivity {
                                         if(accountFirebase.status == 2) {
                                             String message = "Incorrect email or password.";
                                             errorMessage.setText(getString(R.string.errorLoginPass));
+                                        }
+                                        else if (accountFirebase.status == 3) {
+                                            String message = "Network error.";
+                                            errorMessage.setText(message);
                                         }
                                     }
                                 });
