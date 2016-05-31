@@ -823,7 +823,7 @@ public class MainActivity extends AppCompatActivity
                             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(i);
                             //startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                            //getFragmentManager().popBackStack(null, android.app.FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                            //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                         }
                     })
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

@@ -1765,7 +1765,10 @@ public class EventsFirebase {
                         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                             for (DataSnapshot child1 : dataSnapshot.getChildren()) {
                                 if (String.valueOf(child1.getValue()).equals(eventID)) {
-                                    ref.child("events_registrations").child(String.valueOf(registration.getValue())).removeValue();
+                                    //ref.child("events_registrations").child(String.valueOf(registration.getValue())).removeValue();
+                                    Firebase tempRef = new Firebase("https://eventory.firebaseio.com" + "/events_registrations/" + String.valueOf(dataSnapshot.getKey()));
+                                    //System.out.println("datasnapshotkey: " + String.valueOf(dataSnapshot.getKey()));
+                                    tempRef.removeValue();
                                 }
                             }
                         }

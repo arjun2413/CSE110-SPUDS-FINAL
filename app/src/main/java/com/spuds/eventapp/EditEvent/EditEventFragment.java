@@ -1,8 +1,10 @@
 package com.spuds.eventapp.EditEvent;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -295,9 +297,20 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
                                 EventsFirebase eventsFirebase = new EventsFirebase();
                                 eventsFirebase.deleteEvent(event.getEventId());
+                                System.out.println("event_id: " + event.getEventId());
+                                System.out.println(getFragmentManager().getBackStackEntryCount());
+                                //int fragId = getFragmentManager().getBackStackEntryCount();
+                                //getFragmentManager().getBackStackEntryAt(fragId).getId();
 
                                 // Pop this fragment from backstack
-                                getActivity().getSupportFragmentManager().popBackStack();
+                                //getActivity().getSupportFragmentManager().popBackStack();
+                                //lol idk why that 1 is there or why it works but this pops stack back to homefeed
+                                //getFragmentManager().popBackStack(1, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                                //startActivity(new Intent(getActivity(), MainActivity.class));
+                                Intent i = new Intent(getActivity(), MainActivity.class);
+                                // set the new task and clear flags
+                                //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(i);
                             }
                         })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

@@ -43,11 +43,6 @@
 
         </activity>
 
-        <activity android:name=".ForgotPasswordActivity.ForgotPasswordActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            >
-            </activity>
         <activity android:name=".SignUp.SignUpActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"

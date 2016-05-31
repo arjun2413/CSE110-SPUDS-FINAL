@@ -42,7 +42,8 @@ public class AccountFirebase {
                         System.out.println("Successfully created user account with uid: " + result.get("uid") + " | " + result.get("provider"));
                         // Authentication just completed successfully smile emoticon
                         Map<String, String> map = new HashMap<String, String>();
-                        map.put("provider", ref.getAuth().getProvider());
+                        //map.put("provider", ref.getAuth().getProvider());
+                        map.put("provider", "password");
                         map.put("name", name);
                         map.put("email", email);
                         map.put("description", "");
