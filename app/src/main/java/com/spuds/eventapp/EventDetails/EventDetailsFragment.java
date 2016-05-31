@@ -643,6 +643,7 @@ public class EventDetailsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        refreshListener.onRefresh();
         ((MainActivity)getActivity()).removeSearchToolbar();
     }
 

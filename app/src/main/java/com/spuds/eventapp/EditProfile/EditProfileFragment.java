@@ -107,16 +107,19 @@ public class  EditProfileFragment extends Fragment {
                     public void run() {
                         while (((MainActivity) getActivity()).picture == null) {
                             try {
-                                Thread.sleep(75);
+                                Thread.sleep(300);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
+                            if (((MainActivity) getActivity()).picture == null) {
+                                break;
+                            }
 
                         }
-
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+
 
                                 /*pictureView.setImageURI(null);
                                 pictureView.setImageURI(((MainActivity) getActivity()).picture);
@@ -124,7 +127,7 @@ public class  EditProfileFragment extends Fragment {
                                 //("EditProfileFragment", ((MainActivity) getActivity()).picture.toString());
                                 pictureView.invalidate();*/
 
-                                String imageFile = UserFirebase.convert(getActivity(),((MainActivity) getActivity()).picture);
+                                String imageFile = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
                                 picturepush = imageFile;
                                 if (imageFile != null) {
                                     Bitmap src = null;

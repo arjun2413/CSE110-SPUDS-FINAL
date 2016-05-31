@@ -26,6 +26,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,6 +64,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
     private TextView errorMissingMessage;
     private TextView errorDateMessage;
     private TextView errorTimeMessage;
+    private ScrollView scrollView;
 
 
 
@@ -172,6 +174,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         eventDescription = (EditText) view.findViewById(R.id.eventDescription);
         editEventDelete = (Button) view.findViewById(R.id.editEventDelete);
         editEventDone = (Button) view.findViewById(R.id.editEventDone);
+        scrollView = (ScrollView) view.findViewById(R.id.scrollView);
         rv =(RecyclerView) view.findViewById(R.id.rv_categories);
         scb = (SmoothCheckBox) view.findViewById(R.id.category_scb);
         editEventFields = new ArrayList<String>();
@@ -334,12 +337,59 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                     result = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
 
                 EditEventForm form = new EditEventForm(eventName,eventDate,eventTime, spinner, eventLocation,eventDescription, result, event.getEventId());
+                errorMissingMessage.setVisibility(View.INVISIBLE);
+                errorTimeMessage.setVisibility(View.INVISIBLE);
+                errorDateMessage.setVisibility(View.INVISIBLE);
+                int check = 0;
+                int timeCheck = 0;
+                int dateCheck = 0;
+                String date = "";
+                String time = "";
 
-                if (!form.allFilled()) {
+                if (!form.allFilled() || eventTime.getText().toString().equals("") || eventDate.getText().toString().equals("")) {
                     errorMissingMessage.setVisibility(View.VISIBLE);
+                    check = 213;
                 }
-                else if (!form.correctDate()) {
+                if (check != 213) {
+                    dateCheck = form.correctDate();
+                    timeCheck = form.correctTime();
+                }
+                if (check != 0 || dateCheck != 0 || timeCheck!= 0) {
+                    System.out.println("Date format is wrong");
+                    switch (dateCheck) {
+                        case 0:
+                            date = "";
+                            break;
+                        case 1:
+                            date = getString(R.string.errorDateFormat);
+                            break;
+                        case 2:
+                            date = getString(R.string.errorIntegerInput);
+                            break;
+                        case 3:
+                            date = getString(R.string.errorInvalidDate);
+                            break;
+                    }
+                    switch (timeCheck){
+                        case 0:
+                            time = "";
+                            break;
+                        case 4:
+                            //TODO: Reggie, specify event time format in strings.xml file
+                            time = getString(R.string.errorTimeFormat);
+                            break;
+                        case 5:
+                            time = getString(R.string.errorIntegerInput);
+                            break;
+                        case 6:
+                            time = getString(R.string.errorInvalidTime);
+                            break;
+                    }
+                    errorDateMessage.setText(date);
+                    errorTimeMessage.setText(time);
+                    errorDateMessage.setVisibility(View.VISIBLE);
                     errorTimeMessage.setVisibility(View.VISIBLE);
+                    scrollView.fullScroll(ScrollView.FOCUS_UP);
                 }
                 else {
                     eventsFirebase.updateEvent(form, adapter);
@@ -350,8 +400,10 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                     push_builder.sendNotification();
 
                     getActivity().getSupportFragmentManager().popBackStack();
+
                     errorMissingMessage.setVisibility(View.INVISIBLE);
                     errorTimeMessage.setVisibility(View.INVISIBLE);
+                    errorDateMessage.setVisibility(View.INVISIBLE);
 
                 }
 
@@ -395,28 +447,30 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
                     @Override
                     public void run() {
-                        while (((MainActivity) getActivity()).picture == null) {
-                            try {
-                                Thread.sleep(75);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                            while (((MainActivity) getActivity()).picture == null) {
+                                try {
+                                    Thread.sleep(300);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
+
+
                             }
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    eventImage.setImageURI(null);
+                                    eventImage.setImageURI(((MainActivity) getActivity()).picture);
+                                    eventImage.invalidate();
+
+
+                                }
+                            });
 
                         }
-
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                eventImage.setImageURI(null);
-                                eventImage.setImageURI(((MainActivity) getActivity()).picture);
-                                eventImage.invalidate();
-
-
-                            }
-                        });
-
-                    }
                 }).start();
             }
         });

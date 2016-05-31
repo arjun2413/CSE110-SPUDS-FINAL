@@ -117,7 +117,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                 int check = 0;
                 int timeCheck = 0;
                 int dateCheck = 0;
-                String message = "";
+
                 String date = "";
                 String time = "";
 
