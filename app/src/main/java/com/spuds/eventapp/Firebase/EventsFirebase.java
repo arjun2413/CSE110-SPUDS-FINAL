@@ -482,7 +482,7 @@ public class EventsFirebase {
                         }
 
                     }
-                    eventsList.add(0, newEvent);
+                    //eventsList.add(0, newEvent);
                 }
 
                 @Override
@@ -1113,7 +1113,7 @@ public class EventsFirebase {
                     if (categoryList.get(i) == "Academic") {
                         map.put("catAcademic", "true");
                     }
-                    if (categoryList.get(i) == "Campus Organizations") {
+                    if (categoryList.get(i) == "Student Orgs") {
                         map.put("catCampus", "true");
                     }
                     if (categoryList.get(i) == "Concerts") {
