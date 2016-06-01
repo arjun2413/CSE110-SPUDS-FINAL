@@ -206,8 +206,6 @@ public class EventsFirebase {
 
     public Event createEL() {
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com");
-
-        ////("refresh", "createEl");
         final Query[] queries = new Query[1];
         Query queryRef = myFirebaseRef.orderByKey();
         Query queryRef2 = myFirebaseRef.orderByKey();
@@ -472,7 +470,7 @@ public class EventsFirebase {
                     currentDate = df.format(dateobj);
 
 
-                    /*if (tabFilter != null && (tabFilter.equals(tabHot) || tabFilter.equals(tabNew))) {
+                    if (tabFilter != null && (tabFilter.equals(tabHot) || tabFilter.equals(tabNew))) {
                         if (currentDate.compareTo(newEvent.getDate()) < 0) {
                             eventsList.add(0, newEvent);
                         }
@@ -483,8 +481,8 @@ public class EventsFirebase {
                             eventsList.add(newEvent);
                         }
 
-                    }*/
-                    eventsList.add(0, newEvent);
+                    }
+                    //eventsList.add(0, newEvent);
                 }
 
                 @Override
@@ -509,6 +507,138 @@ public class EventsFirebase {
             });
         }
         return item;
+    }
+
+    public static ArrayList<SubEvent> myEventsSubEventList;
+    public void getMyEventsList() {
+        myEventsSubEventList = new ArrayList<>();
+        final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com");
+        final Query[] queries = new Query[1];
+        Query queryRef = myFirebaseRef.orderByKey();
+        Query queryRef2 = myFirebaseRef.orderByKey();
+        queries[0] = queryRef;
+
+        queryRef2 = myFirebaseRef.child("events_registrations").orderByChild("user_id").equalTo(UserFirebase.uId);
+        queryRef = myFirebaseRef.child("events").orderByChild("host_id").equalTo(UserFirebase.uId);
+
+        queryRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot snapshot, String previousChild) {
+
+                SubEvent newEvent = new SubEvent();
+
+                ////("refresh", "" + eventsList.size());
+
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    //Log.d("lmao", String.valueOf(child));
+                    switch (child.getKey()) {
+                        case "event_name":
+                            newEvent.setEventName(String.valueOf(child.getValue()));
+                            break;
+                    }
+
+                    newEvent.setEventId(snapshot.getKey());
+                }
+
+                myEventsSubEventList.add(0, newEvent);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+        queryRef2.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot snapshot, String previousChild) {
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    if(child.getKey().equals("event_id")) {
+                        queries[0] = myFirebaseRef.child("events").orderByKey().equalTo(String.valueOf(child.getValue()));
+                        queries[0].addChildEventListener(new ChildEventListener() {
+                            @Override
+                            public void onChildAdded(DataSnapshot snapshot, String previousChild) {
+
+                                SubEvent newEvent = new SubEvent();
+
+                                for (DataSnapshot child : snapshot.getChildren()) {
+                                    switch (child.getKey()) {
+                                        case "event_name":
+                                            newEvent.setEventName(String.valueOf(child.getValue()));
+                                            break;
+                                    }
+
+                                    newEvent.setEventId(snapshot.getKey());
+                                }
+
+
+
+                                myEventsSubEventList.add(newEvent);
+
+                            }
+
+                            @Override
+                            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                            }
+
+                            @Override
+                            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                            }
+
+                            @Override
+                            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                            }
+
+                            @Override
+                            public void onCancelled(FirebaseError firebaseError) {
+
+                            }
+                        });
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
     }
 
     public static boolean detailsThreadCheck;
@@ -573,7 +703,7 @@ public class EventsFirebase {
 
                     //Log.d("eventsfbasdf", String.valueOf(snapshot.getKey()));
                 }
-                newEvent.setEventId(snapshot.getKey());
+                newEvent.setEventId(eventId);
 
                 newEvent.setCategories(a);
 
@@ -983,7 +1113,7 @@ public class EventsFirebase {
                     if (categoryList.get(i) == "Academic") {
                         map.put("catAcademic", "true");
                     }
-                    if (categoryList.get(i) == "Campus Organizations") {
+                    if (categoryList.get(i) == "Student Orgs") {
                         map.put("catCampus", "true");
                     }
                     if (categoryList.get(i) == "Concerts") {
@@ -1635,7 +1765,10 @@ public class EventsFirebase {
                         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                             for (DataSnapshot child1 : dataSnapshot.getChildren()) {
                                 if (String.valueOf(child1.getValue()).equals(eventID)) {
-                                    ref.child("events_registrations").child(String.valueOf(registration.getValue())).removeValue();
+                                    //ref.child("events_registrations").child(String.valueOf(registration.getValue())).removeValue();
+                                    Firebase tempRef = new Firebase("https://eventory.firebaseio.com" + "/events_registrations/" + String.valueOf(dataSnapshot.getKey()));
+                                    //System.out.println("datasnapshotkey: " + String.valueOf(dataSnapshot.getKey()));
+                                    tempRef.removeValue();
                                 }
                             }
                         }
@@ -1684,5 +1817,229 @@ public class EventsFirebase {
             }
         });
     }
+
+    public static ArrayList<SubEvent> searchSubFeedList;
+    public void createSearchSubFeedList() {
+        searchSubFeedList = new ArrayList<>();
+
+        final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com");
+
+        //("refg", "createSubFeed");
+        final Query[] queries = new Query[2];
+        Query queryRef = myFirebaseRef.orderByKey();
+        Query queryRef1 = myFirebaseRef.orderByKey();
+        Query queryRef2 = myFirebaseRef.child("user_following").orderByChild("user_id").equalTo(UserFirebase.uId);
+        queries[0] = queryRef;
+        queries[1] = queryRef1;
+
+        //System.out.println("metro " + tabFilter + " | " + tabGoing + " | " + tabFilter.equals(tabGoing));
+        queryRef2.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot snapshot, String previousChild) {
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    //Log.v("bruh", snapshot.getKey());
+                    if (child.getKey().equals("following_id")) {
+                        //Log.v("sss", String.valueOf(child.getValue()));
+                        queries[1] = myFirebaseRef.child("events_registrations").orderByChild("user_id").equalTo(String.valueOf(child.getValue()));
+                        queries[1].addChildEventListener(new ChildEventListener() {
+                            public void onChildAdded(DataSnapshot snapshot, String previousChild) {
+                                //Log.v("dead", snapshot.getKey());
+                                for (DataSnapshot child : snapshot.getChildren()) {
+                                    if (child.getKey().equals("event_id")) {
+                                        queries[0] = myFirebaseRef.child("events").orderByKey().equalTo(String.valueOf(child.getValue()));
+                                        queries[0].addChildEventListener(new ChildEventListener() {
+                                            @Override
+                                            public void onChildAdded(DataSnapshot snapshot, String previousChild) {
+
+                                                SubEvent newEvent = new SubEvent();
+
+                                                String date = "";
+                                                for (DataSnapshot child : snapshot.getChildren()) {
+                                                    switch (child.getKey()) {
+                                                        case "date":
+                                                            date = String.valueOf(child.getValue());
+                                                            break;
+                                                        case "event_name":
+                                                            newEvent.setEventName(String.valueOf(child.getValue()));
+                                                            break;
+                                                    }
+                                                    newEvent.setEventId(snapshot.getKey());
+                                                }
+
+
+                                                // used to get the current time
+                                                String currentDate;
+                                                SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd | HH:mm");
+                                                Date dateobj = new Date();
+                                                currentDate = df.format(dateobj);
+
+                                                if (currentDate.compareTo(date) < 0){
+                                                    searchSubFeedList.add(newEvent);
+                                                    /*for(int i=0; i<eventsList.size(); i++){
+                                                        Log.v("bleh",String.valueOf(eventsList.get(i)));
+                                                    }*/
+                                                }
+
+                                            }
+
+                                            @Override
+                                            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                                            }
+
+                                            @Override
+                                            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                                            }
+
+                                            @Override
+                                            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                                            }
+
+                                            @Override
+                                            public void onCancelled(FirebaseError firebaseError) {
+
+                                            }
+                                        });
+                                    }
+
+                                }
+
+                            }
+
+                            @Override
+                            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                            }
+
+                            @Override
+                            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                            }
+
+                            @Override
+                            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                            }
+
+                            @Override
+                            public void onCancelled(FirebaseError firebaseError) {
+
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+    }
+
+    public static ArrayList<SubEvent> subEventCatList;
+    public void getSubEventCatList(String catFilter) {
+        subEventCatList = new ArrayList<>();
+        final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com");
+        Query queryRef = myFirebaseRef.orderByKey();
+
+        if(catFilter != null) {
+            switch (catFilter) {
+                case catAcademic:
+                    queryRef = myFirebaseRef.child("events").orderByChild("catAcademic").equalTo("true");
+                    break;
+                case catCampus:
+                    queryRef = myFirebaseRef.child("events").orderByChild("catCampus").equalTo("true");
+                    break;
+                case catConcerts:
+                    queryRef = myFirebaseRef.child("events").orderByChild("catConcerts").equalTo("true");
+                    break;
+                case catFood:
+                    queryRef = myFirebaseRef.child("events").orderByChild("catFood").equalTo("true");
+                    break;
+                case catFree:
+                    queryRef = myFirebaseRef.child("events").orderByChild("catFree").equalTo("true");
+                    break;
+                case catSocial:
+                    queryRef = myFirebaseRef.child("events").orderByChild("catSocial").equalTo("true");
+                    break;
+                case catSports:
+                    queryRef = myFirebaseRef.child("events").orderByChild("catSports").equalTo("true");
+                    break;
+            }
+        }
+
+        queryRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot snapshot, String previousChild) {
+
+                SubEvent newEvent = new SubEvent();
+
+                String date = "";
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    switch (child.getKey()) {
+                        case "date":
+                            date = String.valueOf(child.getValue());
+                            break;
+                        case "event_name":
+                            newEvent.setEventName(String.valueOf(child.getValue()));
+                            break;
+                    }
+
+                    newEvent.setEventId(snapshot.getKey());
+                }
+
+                // used to get the current time
+                String currentDate;
+                SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd | HH:mm");
+                Date dateobj = new Date();
+                currentDate = df.format(dateobj);
+
+                if (currentDate.compareTo(date) < 0) {
+                    subEventCatList.add(newEvent);
+                }
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+    }
+
 
 }

@@ -29,6 +29,7 @@ public class HomeFeedFragment extends Fragment {
     public EventsFeedRVAdapter adapter;
     String tabType;
     RecyclerView rv;
+    private View view;
 
     EventsFirebase eventsFirebase;
 
@@ -37,6 +38,7 @@ public class HomeFeedFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.v("OnCreate_call", "onCreate");
         //Firebase.setAndroidContext();
         super.onCreate(savedInstanceState);
 
@@ -48,15 +50,16 @@ public class HomeFeedFragment extends Fragment {
         // TODO (M): Get arraylist of events based on tab type [new, hot, now]
         // Fake data
         eventsFirebase = new EventsFirebase(events, 0, tabType);
-        eventsFirebase.createEL();
+        /*events.clear();
+        eventsFirebase.createEL();*/
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.v("WAOW", "oncreateview");
-        View view = inflater.inflate(R.layout.recycler, container, false);
+        Log.v("onCreateView_call", "oncreateview");
+        view = inflater.inflate(R.layout.recycler, container, false);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("EVENTORY");
 
         rv = (RecyclerView) view.findViewById(R.id.rv);
@@ -172,7 +175,9 @@ public class HomeFeedFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.v("test", "heretest");
+        events.clear();
+        eventsFirebase.createEL();
+        Log.v("onResume_call", "heretest");
         ((MainActivity)getActivity()).addSearchToolbar();
         ((MainActivity)getActivity()).searchType = getString(R.string.fragment_home_feed);
 

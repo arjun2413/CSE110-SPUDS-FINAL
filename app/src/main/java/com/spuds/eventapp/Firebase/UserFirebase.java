@@ -130,6 +130,7 @@ public class UserFirebase {
 
         //Query queryRef = ref.orderByChild("email").equalTo(email);
         ref.child(UserFirebase.uId).updateChildren(map);
+
     }
 
     public static void updateNotificationToggle(boolean toggle) {
@@ -891,6 +892,108 @@ public class UserFirebase {
         Log.d("how many", String.valueOf(numFollowing));
     }
 
+
+    public static boolean getSearchSubsThreadCheck;
+    public static int numSearchSubs;
+    public void getSearchSubs(final ArrayList<SubUser> subscriptions) {
+        getSearchSubsThreadCheck = false;
+        numSearchSubs = 0;
+        final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
+
+        final ValueEventListener valueEventListener = new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                String id = "";
+                HashMap<String, Object> values = (HashMap<String, Object>) snapshot.getValue();
+                if (values != null) {
+
+                    ArrayList<String> users = new ArrayList<>();
+                    for (Map.Entry<String, Object> entry : values.entrySet()) {
+                        //("subsfirebase", " key" + entry.getKey());
+
+
+                        String followingId = "";
+                        boolean following = false;
+                        for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
+
+                            //("subsfirebase", " entry value key" + entry2.getKey());
+                            //("subsfirebase", " entry value value" + entry2.getValue());
+
+
+                            if (entry2.getKey().equals("following_id")) {
+                                followingId = String.valueOf(entry2.getValue());
+                            }
+
+                            if (entry2.getKey().equals("user_id")) {
+                                if (entry2.getValue().equals(UserFirebase.uId)) {
+                                    following = true;
+                                }
+                            }
+
+
+                        }
+
+                        if (following) {
+
+                            ++numSearchSubs;
+                            users.add(followingId);
+
+                        }
+
+
+                    }
+
+                    recTestSubUser(users, subscriptions);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+
+        };
+
+        ref.addValueEventListener(valueEventListener);
+    }
+
+    void recTestSubUser(final ArrayList<String> users, final ArrayList<SubUser> subscriptions) {
+        if (users.size() == 0) {
+            getSearchSubsThreadCheck = true;
+            return;
+        }
+
+        getAnotherUser(users.get(0));
+
+        //asynchronous
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (!threadCheckAnotherUser) {
+                    try {
+                        Thread.sleep(77);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+
+                subscriptions.add(new SubUser(anotherUser.getUserId(),
+                        anotherUser.getName()));
+
+                users.remove(0);
+
+                recTestSubUser(users, subscriptions);
+
+
+            }
+        }).start();
+
+    }
 
 
 }

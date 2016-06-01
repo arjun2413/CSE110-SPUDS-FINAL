@@ -95,6 +95,8 @@ public class MainActivity extends AppCompatActivity
     ArrayList<SubEvent> testEventsList;
     ArrayList<SubUser> testUsersList;
     ArrayList <String> searchResult;
+    ArrayList <SubUser> subscriptions;
+    ArrayList<SubEvent> myEventsList;
     NavigationView navigationView;
     View headerView;
     TextView name;
@@ -110,9 +112,6 @@ public class MainActivity extends AppCompatActivity
         //af.authCheck();
 
         //getFragmentManager().popBackStack(null, android.app.FragmentManager.POP_BACK_STACK_INCLUSIVE);
-
-        /*  TextView title = (TextView) findViewById(R.id.tv_toolbar);
-        title.setText("EVENTORY");*/
 
         setupNotifications(); // set up GCM values
 
@@ -226,7 +225,7 @@ public class MainActivity extends AppCompatActivity
        /* TextView title = (TextView) toolbar.findViewById(R.id.tv_toolbar);
         title.setText("EVENTORY");*/
         setSupportActionBar(toolbar);
-       // getSupportActionBar().setDisplayShowTitleEnabled(false);
+        // getSupportActionBar().setDisplayShowTitleEnabled(false);
         overrideFonts(toolbar.getContext(),toolbar);
 
     }
@@ -252,41 +251,20 @@ public class MainActivity extends AppCompatActivity
                 //Toast.makeText(MainActivity.this, searchTerm +" Searched", Toast.LENGTH_LONG).show();
 
 
-                // TODO (C): Finish
                 Log.v("searchtype", searchType);
                 if (searchType.equals(getString(R.string.fragment_home_feed))) {
                     Log.v("wtrwtwa", searchType);
-
                     findAnyEvent(searchTerm);
-
                 } else if (searchType.equals(getString(R.string.fragment_find_people)) || searchType.equals(getString(R.string.fragment_invite_people))) {
-                    Log.v("wtrwtwa", searchType);
                     findAnyUser(searchTerm);
-
-
-
                 } else if (searchType.equals(getString(R.string.fragment_my_events))) {
-
+                    findMyEventsEvent(searchTerm);
                 } else if (searchType.equals(getString(R.string.fragment_my_sub_feed))) {
-
+                    findMySubFeedEvent(searchTerm);
                 } else if (searchType.equals(getString(R.string.fragment_my_sub))) {
-
+                    findSubUsers(searchTerm);
                 } else {
-                    if (searchType.equals(getString(R.string.cat_academic))) {
-
-                    } else if (searchType.equals(getString(R.string.cat_student_orgs))) {
-
-                    } else if (searchType.equals(getString(R.string.cat_concerts))) {
-
-                    } else if (searchType.equals(getString(R.string.cat_food))) {
-
-                    } else if (searchType.equals(getString(R.string.cat_free))) {
-
-                    } else if (searchType.equals(getString(R.string.cat_social))) {
-
-                    } else if (searchType.equals(getString(R.string.cat_sports))) {
-
-                    }
+                    findCatFeedEvent(searchTerm);
                 }
             }
 
@@ -298,12 +276,32 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onSearchOpened() {
-                Log.v("onsearchopen", "here");
-                UserFirebase userFirebase = new UserFirebase();
-                userFirebase.getSubUserList();
 
-                EventsFirebase eventsFirebase = new EventsFirebase();
-                eventsFirebase.getSubEventList();
+                if (searchType.equals(getString(R.string.fragment_home_feed))) {
+                    EventsFirebase eventsFirebase = new EventsFirebase();
+                    eventsFirebase.getSubEventList();
+                } else if (searchType.equals(getString(R.string.fragment_find_people)) || searchType.equals(getString(R.string.fragment_invite_people))) {
+                    UserFirebase userFirebase = new UserFirebase();
+                    userFirebase.getSubUserList();
+                } else if (searchType.equals(getString(R.string.fragment_my_events))) {
+                    // TODO (M):
+                    EventsFirebase eventsFirebase = new EventsFirebase();
+                    eventsFirebase.getMyEventsList();
+                } else if (searchType.equals(getString(R.string.fragment_my_sub_feed))) {
+                    // TODO (M):
+                    EventsFirebase eventsFirebase = new EventsFirebase();
+                    eventsFirebase.createSearchSubFeedList();
+                } else if (searchType.equals(getString(R.string.fragment_my_sub))) {
+
+                    subscriptions = new ArrayList<SubUser>();
+                    UserFirebase userFirebase = new UserFirebase();
+                    userFirebase.getSearchSubs(subscriptions);
+
+                } else {
+                    EventsFirebase eventsFirebase = new EventsFirebase();
+                    eventsFirebase.getSubEventCatList(searchType);
+                }
+
             }
 
             @Override
@@ -325,9 +323,92 @@ public class MainActivity extends AppCompatActivity
         params = (RelativeLayout.LayoutParams) search.getLayoutParams();
 
     }
+    RelativeLayout.LayoutParams params;
+
+
+    void findCatFeedEvent(final String searchTerm) {
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (EventsFirebase.subEventCatList.size() == 0) {
+                    try {
+                        Thread.sleep(70);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                testEventsList = EventsFirebase.subEventCatList;
+                searchEvent(searchTerm);
+
+            }
+        }).start();
+    }
+
+    void findMySubFeedEvent(final String searchTerm) {
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (EventsFirebase.searchSubFeedList.size() == 0) {
+                    try {
+                        Thread.sleep(70);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                testEventsList = EventsFirebase.searchSubFeedList;
+                searchEvent(searchTerm);
+
+            }
+        }).start();
+    }
+
+    void findMyEventsEvent(final String searchTerm) {
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (EventsFirebase.myEventsSubEventList.size() == 0) {
+                    try {
+                        Thread.sleep(70);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                testEventsList = EventsFirebase.myEventsSubEventList;
+                searchEvent(searchTerm);
+            }
+        }).start();
+    }
+
+    void findSubUsers(final String searchTerm) {
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (UserFirebase.numSearchSubs > subscriptions.size() || !UserFirebase.getSearchSubsThreadCheck) {
+                    //("sublist", "numsubs" + userFirebase.numSubscriptions);
+                    //("sublist", "subscriptions size" + subscriptions.size());
+                    try {
+                        Thread.sleep(70);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                testUsersList = subscriptions;
+                searchUser(searchTerm);
+
+
+            }
+        }).start();
+    }
 
     void findAnyUser(final String searchTerm) {
-        Log.v("searchtype", "here");
         new Thread(new Runnable() {
 
             @Override
@@ -339,90 +420,101 @@ public class MainActivity extends AppCompatActivity
                         e.printStackTrace();
                     }
                 }
+
                 testUsersList = UserFirebase.subUsers;
-                //check what users are there
-                for(SubUser s : testUsersList){
-                    Log.d("CreateTable",s.getUserId());
-                    Log.d("CreateTable",s.getName());
-                }
-
-
-                final DatabaseTableSubUser databaseTable = new DatabaseTableSubUser(getApplicationContext(),testUsersList);
-                Log.d("CreateTable","AFTER DB called");
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        while(!DatabaseTableSubUser.threadDone){
-
-                            try{
-                                Log.d("ThreadDebug","try block");
-                                Thread.sleep(750);
-                            } catch (InterruptedException e){
-                                e.printStackTrace();
-                            }
-                        }
-
-                        Log.d("Search","Starting Search");
-                        Cursor cursor = databaseTable.getUserNameMatches(searchTerm, null);
-                        String retVal = "";
-                        if (cursor != null && cursor.moveToFirst() ){
-                            String[] columnNames = cursor.getColumnNames();
-                            do {
-                                //Searched results have been found
-                                for (String name: columnNames) {
-                                    //retVal += String.format("%s: %s\n", name, cursor.getString(cursor.getColumnIndex(name)));
-                                    if(name.equals("USER_ID")){
-                                        //Return to outside world
-                                        if(cursor == null){
-                                            Log.d("Search","Cursor is null");
-                                        }
-                                        Log.d("Search","Int is: "+cursor.getColumnIndex(name));
-                                        searchResult.clear();
-                                        searchResult.add(cursor.getString(cursor.getColumnIndex(name)));
-                                        Log.v("searcherseultevent", "" + searchResult);
-
-                                        char[] userIdCharArray = searchResult.toString().toCharArray();
-
-                                        String userId = "";
-                                        for (int i = 1; i < userIdCharArray.length - 1; i++) {
-                                            userId += userIdCharArray[i];
-                                        }
-                                        Log.v("userId=", userId);
-                                        SearchUsersFragment searchUsersFragment = new SearchUsersFragment();
-
-                                        Bundle bundle = new Bundle();
-                                        bundle.putString(getString(R.string.user_id), userId);
-
-                                        searchUsersFragment.setArguments(bundle);
-
-                                        // Add Event Details Fragment to fragment manager
-                                        getSupportFragmentManager().beginTransaction()
-                                                .replace(R.id.fragment_frame_layout, searchUsersFragment)
-                                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                                                .addToBackStack("Search People Fragment")
-                                                .commit();
-                                    }
-
-                                }
-                                retVal += "\n";
-                                Log.d("Search","Result found in Loop");
-                            } while (cursor.moveToNext());
-                        }
-                        else{
-                            Log.d("Search","Nothing found.");
-                        }
-                        Log.d("Search","RESULTS: "+retVal);
-                        //System.err.println(retVal);
-                        //Log.d("Search","RESULT: "+cursor.getString(cursor.getColumnIndex(cursor.getColumnNames()[1])));
-                    }
-                }).start();
-
-
+                searchUser(searchTerm);
 
             }
         }).start();
     }
+
+    void searchUser(final String searchTerm) {
+        for(SubUser s : testUsersList){
+            Log.d("CreateTable",s.getUserId());
+            Log.d("CreateTable",s.getName());
+        }
+
+
+        final DatabaseTableSubUser databaseTable = new DatabaseTableSubUser(getApplicationContext(),testUsersList);
+        Log.d("CreateTable","AFTER DB called");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(!DatabaseTableSubUser.threadDone){
+
+                    try{
+                        Log.d("ThreadDebug","try block");
+                        Thread.sleep(750);
+                    } catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+
+                Log.d("Search","Starting Search");
+                Cursor cursor = databaseTable.getUserNameMatches(searchTerm, null);
+                String retVal = "";
+                if (cursor != null && cursor.moveToFirst() ){
+                    String[] columnNames = cursor.getColumnNames();
+                    do {
+                        //Searched results have been found
+                        for (String name: columnNames) {
+                            //retVal += String.format("%s: %s\n", name, cursor.getString(cursor.getColumnIndex(name)));
+                            if(name.equals("USER_ID")){
+                                //Return to outside world
+                                if(cursor == null){
+                                    Log.d("Search","Cursor is null");
+                                }
+                                Log.d("Search","Int is: "+cursor.getColumnIndex(name));
+                                searchResult.clear();
+                                searchResult.add(cursor.getString(cursor.getColumnIndex(name)));
+                                Log.v("searcherseultevent", "" + searchResult);
+
+                                char[] userIdCharArray = searchResult.toString().toCharArray();
+
+                                String userId = "";
+                                for (int i = 1; i < userIdCharArray.length - 1; i++) {
+                                    userId += userIdCharArray[i];
+                                }
+                                Log.v("userId=", userId);
+                                SearchUsersFragment searchUsersFragment = new SearchUsersFragment();
+
+                                Bundle bundle = new Bundle();
+                                bundle.putString(getString(R.string.user_id), userId);
+
+                                searchUsersFragment.setArguments(bundle);
+
+                                // Add Event Details Fragment to fragment manager
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragment_frame_layout, searchUsersFragment)
+                                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                        .addToBackStack("Search People Fragment")
+                                        .commit();
+                            }
+
+                        }
+                        retVal += "\n";
+                        Log.d("Search","Result found in Loop");
+                    } while (cursor.moveToNext());
+                }
+                else{
+                    Log.d("Search", "Nothing found.");
+                    SearchUsersFragment searchUsersFragment = new SearchUsersFragment();
+
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_frame_layout, searchUsersFragment)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .addToBackStack("Search People Fragment")
+                            .commit();
+                }
+                Log.d("Search","RESULTS: "+retVal);
+                //System.err.println(retVal);
+                //Log.d("Search","RESULT: "+cursor.getString(cursor.getColumnIndex(cursor.getColumnNames()[1])));
+            }
+        }).start();
+
+    }
+
 
     void findAnyEvent(final String searchTerm) {
         Log.v("inwhere", "infindanyevent");
@@ -439,94 +531,104 @@ public class MainActivity extends AppCompatActivity
                 }
 
                 testEventsList = EventsFirebase.subEvents;
-
-
-                //check what events are there
-                for(SubEvent s : testEventsList){
-                    Log.d("CreateTable",s.getEventId());
-                    Log.d("CreateTable",s.getEventName());
-                }
-
-
-                final DatabaseTableSubEvent databaseTable = new DatabaseTableSubEvent(getApplicationContext(),testEventsList);
-                Log.d("CreateTable","AFTER DB called");
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        while(!DatabaseTableSubEvent.threadDone){
-
-                            try{
-                                Log.d("ThreadDebug","try block");
-                                Thread.sleep(750);
-                            } catch (InterruptedException e){
-                                e.printStackTrace();
-                            }
-                        }
-
-                        Log.d("Search","Starting Search");
-                        Cursor cursor = databaseTable.getEventNameMatches(searchTerm, null);
-                        String retVal = "";
-                        if (cursor != null && cursor.moveToFirst() ){
-                            String[] columnNames = cursor.getColumnNames();
-                            do {
-                                //Searched results have been found
-                                for (String name: columnNames) {
-                                    //retVal += String.format("%s: %s\n", name, cursor.getString(cursor.getColumnIndex(name)));
-                                    if(name.equals("EVENT_ID")){
-                                        //Return to outside world
-                                        if(cursor == null){
-                                            Log.d("Search","Cursor is null");
-                                        }
-                                        Log.d("Search","Int is: "+cursor.getColumnIndex(name));
-                                        searchResult.add(cursor.getString(cursor.getColumnIndex(name)));
-
-                                        Log.v("searcherseultevent", "" + searchResult);
-
-                                        char[] eventIdCharArray = searchResult.toString().toCharArray();
-
-                                        String eventId = "";
-                                        for (int i = 1; i < eventIdCharArray.length - 1; i++) {
-                                            eventId += eventIdCharArray[i];
-                                        }
-
-                                        SearchEventsFragment searchEventsFragment = new SearchEventsFragment();
-
-                                        Bundle bundle = new Bundle();
-                                        bundle.putString(getString(R.string.event_id), eventId);
-
-                                        searchEventsFragment.setArguments(bundle);
-
-                                        // Add Event Details Fragment to fragment manager
-                                        getSupportFragmentManager().beginTransaction()
-                                                .replace(R.id.fragment_frame_layout, searchEventsFragment)
-                                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                                                .addToBackStack("Search Event Fragment")
-                                                .commit();
-
-                                    }
-
-                                }
-                                retVal += "\n";
-                                Log.d("Search","Result found in Loop");
-                            } while (cursor.moveToNext());
-                        }
-                        else{
-                            Log.d("Search","Nothing found.");
-                        }
-                        Log.d("Search","RESULTS: "+retVal);
-                        //System.err.println(retVal);
-                        //Log.d("Search","RESULT: "+cursor.getString(cursor.getColumnIndex(cursor.getColumnNames()[1])));
-                    }
-                }).start();
-
-
+                searchEvent(searchTerm);
 
             }
         }).start();
     }
 
-    RelativeLayout.LayoutParams params;
+    void searchEvent(final String searchTerm) {
+        //check what events are there
+        for(SubEvent s : testEventsList){
+            Log.d("CreateTable",s.getEventId());
+            Log.d("CreateTable",s.getEventName());
+        }
+
+
+        final DatabaseTableSubEvent databaseTable = new DatabaseTableSubEvent(getApplicationContext(),testEventsList);
+        Log.d("CreateTable","AFTER DB called");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(!DatabaseTableSubEvent.threadDone){
+
+                    try{
+                        Log.d("ThreadDebug","try block");
+                        Thread.sleep(750);
+                    } catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+
+                Log.d("Search","Starting Search");
+                Cursor cursor = databaseTable.getEventNameMatches(searchTerm, null);
+                String retVal = "";
+                if (cursor != null && cursor.moveToFirst() ){
+                    String[] columnNames = cursor.getColumnNames();
+                    do {
+                        //Searched results have been found
+                        for (String name: columnNames) {
+                            //retVal += String.format("%s: %s\n", name, cursor.getString(cursor.getColumnIndex(name)));
+                            if(name.equals("EVENT_ID")){
+                                //Return to outside world
+                                if(cursor == null){
+                                    Log.d("Search","Cursor is null");
+                                }
+                                Log.d("Search","Int is: "+cursor.getColumnIndex(name));
+                                searchResult.clear();
+                                searchResult.add(cursor.getString(cursor.getColumnIndex(name)));
+
+                                Log.v("searcherseultevent", "" + searchResult);
+
+                                char[] eventIdCharArray = searchResult.toString().toCharArray();
+
+                                String eventId = "";
+                                for (int i = 1; i < eventIdCharArray.length - 1; i++) {
+                                    eventId += eventIdCharArray[i];
+                                }
+
+                                SearchEventsFragment searchEventsFragment = new SearchEventsFragment();
+
+                                Bundle bundle = new Bundle();
+                                bundle.putString(getString(R.string.event_id), eventId);
+
+                                searchEventsFragment.setArguments(bundle);
+
+                                // Add Event Details Fragment to fragment manager
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragment_frame_layout, searchEventsFragment)
+                                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                        .addToBackStack("Search Event Fragment")
+                                        .commit();
+
+                            }
+
+                        }
+                        retVal += "\n";
+                        Log.d("Search","Result found in Loop");
+                    } while (cursor.moveToNext());
+                }
+                else{
+                    Log.d("Search","Nothing found.");
+
+                    SearchEventsFragment searchEventsFragment = new SearchEventsFragment();
+
+                    // Add Event Details Fragment to fragment manager
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_frame_layout, searchEventsFragment)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .addToBackStack("Search Event Fragment")
+                            .commit();
+
+                }
+                Log.d("Search","RESULTS: "+retVal);
+                //System.err.println(retVal);
+                //Log.d("Search","RESULT: "+cursor.getString(cursor.getColumnIndex(cursor.getColumnNames()[1])));
+            }
+        }).start();
+    }
+
 
     public void removeSearchToolbar() {
         Log.v("test", "heretest" + "removesearchtoolbar");
@@ -721,7 +823,7 @@ public class MainActivity extends AppCompatActivity
                             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(i);
                             //startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                            //getFragmentManager().popBackStack(null, android.app.FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                            //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                         }
                     })
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -783,7 +885,7 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
 
-                super.onBackPressed();
+            super.onBackPressed();
 
         }
         //removeSearchToolbar();

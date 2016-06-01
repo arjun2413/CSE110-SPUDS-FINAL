@@ -37,7 +37,8 @@ public class SearchUsersFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         Bundle bundle = getArguments();
-        userId = bundle.getString(getString(R.string.user_id));
+        if (bundle != null)
+            userId = bundle.getString(getString(R.string.user_id));
         Log.v("useriduserid", "" + userId);
         userFirebase = new UserFirebase();
     }
@@ -58,62 +59,64 @@ public class SearchUsersFragment extends Fragment {
         adapter = new SearchUsersRVAdapter(users, this);
         rv.setAdapter(adapter);
 
-        if (userId.equals(UserFirebase.uId)) {
+        if (userId != null) {
+            if (userId.equals(UserFirebase.uId)) {
 
-            users.add(new UserSearchResult(UserFirebase.thisUser, false));
-            adapter.notifyItemInserted(0);
+                users.add(new UserSearchResult(UserFirebase.thisUser, false));
+                adapter.notifyItemInserted(0);
 
-        } else {
-            userFirebase.getAnotherUser(userId);
+            } else {
+                userFirebase.getAnotherUser(userId);
 
-            new Thread(new Runnable() {
+                new Thread(new Runnable() {
 
-                @Override
-                public void run() {
-                    while (!userFirebase.threadCheckAnotherUser) {
-                        try {
-                            Thread.sleep(77);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                    userFirebase.isSubscribed(userFirebase.anotherUser.getUserId());
-                    new Thread(new Runnable() {
-                        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-                        @Override
-                        public void run() {
-                            Log.d("idIsGoing2", String.valueOf(userFirebase.idIsSubscribed));
-                            while (userFirebase.idIsSubscribed == 0) {
-                                Log.d("profilehere", "profilehere");
-                                try {
-                                    Thread.sleep(75);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-
+                    @Override
+                    public void run() {
+                        while (!userFirebase.threadCheckAnotherUser) {
+                            try {
+                                Thread.sleep(77);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
                             }
 
-                            boolean following;
-                            if (userFirebase.idIsSubscribed == 1)
-                                following = false;
-                            else
-                                following = true;
-
-                            users.add(new UserSearchResult(userFirebase.anotherUser, following));
-                            getActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    adapter.notifyItemInserted(0);
+                        }
+                        userFirebase.isSubscribed(userFirebase.anotherUser.getUserId());
+                        new Thread(new Runnable() {
+                            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+                            @Override
+                            public void run() {
+                                Log.d("idIsGoing2", String.valueOf(userFirebase.idIsSubscribed));
+                                while (userFirebase.idIsSubscribed == 0) {
+                                    Log.d("profilehere", "profilehere");
+                                    try {
+                                        Thread.sleep(75);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
 
                                 }
-                            });
-                        }
-                    }).start();
 
-                }
-            }).start();
+                                boolean following;
+                                if (userFirebase.idIsSubscribed == 1)
+                                    following = false;
+                                else
+                                    following = true;
 
+                                users.add(new UserSearchResult(userFirebase.anotherUser, following));
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        adapter.notifyItemInserted(0);
+
+                                    }
+                                });
+                            }
+                        }).start();
+
+                    }
+                }).start();
+
+            }
         }
 
 

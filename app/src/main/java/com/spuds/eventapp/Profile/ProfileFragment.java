@@ -238,7 +238,6 @@ public class ProfileFragment extends Fragment {
 
                     Log.d("idsubProfileFragment", String.valueOf(userFirebase.idIsSubscribed));
 
-
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

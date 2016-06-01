@@ -35,9 +35,6 @@ public class SubscriptionFeedFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        events = new ArrayList<>();
-        eventsFirebase = new EventsFirebase(events, 0, null);
-        eventsFirebase.createSubFeed();
     }
 
     @Override
@@ -50,6 +47,9 @@ public class SubscriptionFeedFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
+        events = new ArrayList<>();
+        eventsFirebase = new EventsFirebase(events, 0, null);
+        eventsFirebase.createSubFeed();
 
         adapter = new EventsFeedRVAdapter(events, this, getString(R.string.fragment_my_sub_feed));
         rv.setAdapter(adapter);
