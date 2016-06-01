@@ -59,6 +59,7 @@ public class EventDetailsFragment extends Fragment {
     // Reference to itself
     Fragment eventDetailsFragment;
     boolean going;
+    boolean first = true;
     // Comments
     RecyclerView rv;
     CommentsRVAdapter adapter;
@@ -66,7 +67,7 @@ public class EventDetailsFragment extends Fragment {
     boolean ownEvent;
     EventsFirebase eventsFirebase;
     boolean canClickGoing = true;
-
+    boolean allowRefresh = false;
 
     public EventDetailsFragment() {}
 
@@ -222,6 +223,7 @@ public class EventDetailsFragment extends Fragment {
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                             .addToBackStack("Edit Event Fragment")
                             .commit();
+                            allowRefresh = true;
                 }
             });
         }
@@ -395,7 +397,6 @@ public class EventDetailsFragment extends Fragment {
                 bundle.putString(getString(R.string.event_id), eventId);
 
                 invitePeopleFragment.setArguments(bundle);
-
                 // Add Event Details Fragment to fragment manager
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_frame_layout, invitePeopleFragment)
@@ -580,11 +581,11 @@ public class EventDetailsFragment extends Fragment {
     }
 
 
-    /*@Override
+    @Override
     public void onResume(){
         super.onResume();
         //("WAOW", "ONRESUME");
-        /*if (!first) {
+        if (!first) {
             mySwipeRefreshLayout.post(new Runnable() {
                 @Override public void run() {
                     // directly call onRefresh() method
@@ -592,9 +593,9 @@ public class EventDetailsFragment extends Fragment {
                 }
             });
         } else
-            first = false;*/
+            first = false;
 
-    //}
+    }
 
     @Override
     public void onDetach() {
@@ -643,11 +644,12 @@ public class EventDetailsFragment extends Fragment {
         }
     }
 
-    @Override
+    /*@Override
     public void onResume() {
         super.onResume();
+        if (allowRefresh)
         refreshListener.onRefresh();
         ((MainActivity)getActivity()).removeSearchToolbar();
-    }
+    } */
 
 }
