@@ -470,7 +470,7 @@ public class EventsFirebase {
                     currentDate = df.format(dateobj);
 
 
-                    /*if (tabFilter != null && (tabFilter.equals(tabHot) || tabFilter.equals(tabNew))) {
+                    if (tabFilter != null && (tabFilter.equals(tabHot) || tabFilter.equals(tabNew))) {
                         if (currentDate.compareTo(newEvent.getDate()) < 0) {
                             eventsList.add(0, newEvent);
                         }
@@ -481,8 +481,8 @@ public class EventsFirebase {
                             eventsList.add(newEvent);
                         }
 
-                    }*/
-                    eventsList.add(0, newEvent);
+                    }
+                    //eventsList.add(0, newEvent);
                 }
 
                 @Override
@@ -1113,7 +1113,7 @@ public class EventsFirebase {
                     if (categoryList.get(i) == "Academic") {
                         map.put("catAcademic", "true");
                     }
-                    if (categoryList.get(i) == "Campus Organizations") {
+                    if (categoryList.get(i) == "Student Orgs") {
                         map.put("catCampus", "true");
                     }
                     if (categoryList.get(i) == "Concerts") {
