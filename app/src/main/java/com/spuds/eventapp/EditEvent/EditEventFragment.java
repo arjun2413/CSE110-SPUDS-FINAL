@@ -453,8 +453,9 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
-
-
+                                if (((MainActivity) getActivity()).picture == null) {
+                                    break;
+                                }
 
                             }
 
