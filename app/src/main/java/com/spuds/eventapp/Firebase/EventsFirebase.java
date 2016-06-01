@@ -703,7 +703,7 @@ public class EventsFirebase {
 
                     //Log.d("eventsfbasdf", String.valueOf(snapshot.getKey()));
                 }
-                newEvent.setEventId(snapshot.getKey());
+                newEvent.setEventId(eventId);
 
                 newEvent.setCategories(a);
 
