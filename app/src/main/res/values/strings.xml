@@ -51,10 +51,10 @@
     <string name="password_change_success">Password Changed</string>
     <string name="comment_submit_success">Comment Submitted</string>
 
-    <string name="missing_fields_error">Error #: Not All Fields Completed</string>
-    <string name="incorrect_password_error">Error #: Incorrect Password</string>
-    <string name="invalid_password_error">Error #: Invalid Password</string>
-    <string name="mismatched_fields_error">Error #: Fields Do Not Match</string>
+    <string name="missing_fields_error">Not All Fields Completed</string>
+    <string name="incorrect_password_error">Incorrect Password</string>
+    <string name="invalid_password_error">Invalid Password</string>
+    <string name="mismatched_fields_error">Fields Do Not Match</string>
 
 
     <string name="profile_type">Profile Type</string>
@@ -86,25 +86,25 @@
     <string name="cat_concerts">Concerts Category</string>
     <string name="cat_student_orgs">Student Orgs Category</string>
 
-    <string name="errorEmptyFields">ERROR: Not all required fields are filled</string>
-    <string name="errorEmptyName">ERROR: Name is required</string>
-    <string name="errorPassMismatch">ERROR: Password mismatch</string>
-    <string name="errorInvalidEmail">ERROR: A ucsd.edu email is required</string>
-    <string name="errorEmailUsedBefore">ERROR: Email has already been used before</string>
-    <string name="errorNoEmail">ERROR: Email not found</string>
-    <string name="errorWrongPass">ERROR: Incorrect password</string>
-    <string name="errorSamePass">ERROR: New password must be different from old password</string>
-    <string name="errorEmptyComment">ERROR: No comment made</string>
-    <string name="errorCategories">ERROR: More than 3 categories have been selected</string>
-    <string name="errorLoginPass">ERROR: Invalid login details</string>
-    <string name="errorFatal">ERROR: Something went wrong!</string>
-    <string name="errorDateFormat">ERROR: Date must be in mm/dd/yy</string>
-    <string name="errorInvalidDate">ERROR: Date must exist</string>
-    <string name="errorIntegerInput">ERROR: Input must be integers</string>
-    <string name="errorTimeFormat">ERROR: Time must be in _____</string>
-    <string name="errorInvalidTime">ERROR: Time must exist</string>
+    <string name="errorEmptyFields">Not all required fields are filled</string>
+    <string name="errorEmptyName">Name is required</string>
+    <string name="errorPassMismatch">Password mismatch</string>
+    <string name="errorInvalidEmail">A ucsd.edu email is required</string>
+    <string name="errorEmailUsedBefore">Email has already been used before</string>
+    <string name="errorNoEmail">Email not found</string>
+    <string name="errorWrongPass">Incorrect password</string>
+    <string name="errorSamePass">New password must be different from old password</string>
+    <string name="errorEmptyComment">No comment made</string>
+    <string name="errorCategories">More than 3 categories have been selected</string>
+    <string name="errorLoginPass">Invalid login details</string>
+    <string name="errorFatal">Something went wrong!</string>
+    <string name="errorDateFormat">Date must be in mm/dd/yy</string>
+    <string name="errorInvalidDate">Date must exist</string>
+    <string name="errorIntegerInput">Input must be integers</string>
+    <string name="errorTimeFormat">Incorrect time format</string>
+    <string name="errorInvalidTime">Time must exist</string>
 
 
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
     <string name="sleepTime">300</string>
 </resources>

@@ -1132,7 +1132,7 @@ public class EventsFirebase {
                         map.put("catSports", "true");
                     }
                 }
-
+                Log.d("theID", String.valueOf(form.getEventId()));
                 ref.child("events").child(form.getEventId()).setValue(map);
             }
         }).start();
