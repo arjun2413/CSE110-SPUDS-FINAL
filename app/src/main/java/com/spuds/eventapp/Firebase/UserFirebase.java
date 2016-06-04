@@ -322,8 +322,16 @@ public class UserFirebase {
         ByteArrayOutputStream bYtE = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bYtE);
         bitmap.recycle();
-        byte[] byteArray = bYtE.toByteArray();
-        return Base64.encodeToString(byteArray, Base64.DEFAULT);
+        String result;
+
+        try {
+            byte[] byteArray = bYtE.toByteArray();
+            result = Base64.encodeToString(byteArray, Base64.DEFAULT);
+        } catch (OutOfMemoryError e ){
+            System.err.println(e.toString());
+            result = null;
+        }
+        return result;
 
         // TODO (M): Upload picture
     }
