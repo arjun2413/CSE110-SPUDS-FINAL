@@ -11,7 +11,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -33,7 +32,6 @@ import com.spuds.eventapp.Shared.Comment;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.MainActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 public class EventDetailsFragment extends Fragment {
     // Holds event details
@@ -62,7 +60,6 @@ public class EventDetailsFragment extends Fragment {
     boolean first = true;
     // Comments
     RecyclerView rv;
-    CommentsRVAdapter adapter;
     List<Comment> comments;
     boolean ownEvent;
     EventsFirebase eventsFirebase;
@@ -147,7 +144,6 @@ public class EventDetailsFragment extends Fragment {
 
         setUpEventInformation(view);
         setupEditEvent();
-        setUpComments(view);
         setupRefresh(view);
         return view;
     }
@@ -188,7 +184,6 @@ public class EventDetailsFragment extends Fragment {
                                 //("wtf", event.getEventId());
                                 setUpEventInformation(view);
                                 setupEditEvent();
-                                setUpComments(view);
                                 mySwipeRefreshLayout.setRefreshing(false);
                             }
                         });
@@ -204,6 +199,7 @@ public class EventDetailsFragment extends Fragment {
     }
 
     void setupEditEvent() {
+
         if (ownEvent) {
             buttonEditEvent.setVisibility(View.VISIBLE);
 
@@ -561,24 +557,7 @@ public class EventDetailsFragment extends Fragment {
 
     }
 
-    void setUpComments(View view) {
-        rv = (RecyclerView) view.findViewById(R.id.rv);
-        //Set type of layout manager
-        LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
-        rv.setLayoutManager(llm);
-        // TODO (M): Get comments from database
-        comments = new ArrayList<>();
-        comments.add(new Comment("1", null, "Tina Nguyen", "tina.jpg", "05.06.16", "I'm the bestest", false));
-        comments.add(new Comment("2", null, "Reggie Wu", "reggie.jpg", "05.06.16", "This event is fun!", false));
-        comments.add(new Comment("1", null, "Tina Nguyen", "tina.jpg", "05.06.16", "I'm the bestest", false));
-        comments.add(new Comment("2", null, "Reggie Wu", "reggie.jpg", "05.06.16", "This event is fun!", false));
-        comments.add(new Comment("1", null, "Tina Nguyen", "tina.jpg", "05.06.16", "I'm the bestest", false));
-        comments.add(new Comment("2", null, "Reggie Wu", "reggie.jpg", "05.06.16", "This event is fun!", false));
-        // Create adapter for comments
-        adapter = new CommentsRVAdapter(comments, this);
-        // Attach adapter to RecyclerView
-        rv.setAdapter(adapter);
-    }
+
 
 
     @Override

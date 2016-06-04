@@ -63,7 +63,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
 
 
     private List<CategoryTextButton> categories;
-    public CreateEventRVAdapter adapter;
+    public CreateEventCategoryRVAdapter adapter;
 
     private CreateEventForm makeForm(){
         String result = "";
@@ -338,7 +338,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         categories.add(new CategoryTextButton("FREE", free_scb));
         */
 
-        adapter = new CreateEventRVAdapter(categories, this);
+        adapter = new CreateEventCategoryRVAdapter(categories, this);
         rv.setAdapter(adapter);
 
 

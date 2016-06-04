@@ -221,6 +221,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(currentFragment.getString(R.string.event_details), events.get(test));
+                Log.v("arvindarvind", "" + events.get(test).getEventId());
                 eventDetailsFragment.setArguments(bundle);
 
                 // Makes sure the fragment being hidden is the tabs fragment which includes each page fragment,

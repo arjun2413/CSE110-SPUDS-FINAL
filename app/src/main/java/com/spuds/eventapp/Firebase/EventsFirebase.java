@@ -8,11 +8,10 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
+import com.spuds.eventapp.CreateEvent.CreateEventCategoryRVAdapter;
 import com.spuds.eventapp.CreateEvent.CreateEventForm;
-import com.spuds.eventapp.CreateEvent.CreateEventRVAdapter;
 import com.spuds.eventapp.EditEvent.EditEventForm;
 import com.spuds.eventapp.EditEvent.EditEventRVAdapter;
-import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
 import com.spuds.eventapp.Shared.SubEvent;
@@ -72,7 +71,7 @@ public class EventsFirebase {
 
     ArrayList<String> categoryList;
 
-    public String createEvent(CreateEventForm form, CreateEventRVAdapter adapter) {
+    public String createEvent(CreateEventForm form, CreateEventCategoryRVAdapter adapter) {
 
         categoryList = adapter.getList();
 
@@ -321,8 +320,8 @@ public class EventsFirebase {
                                                 break;
                                         }
 
-                                        newEvent.setEventId(snapshot.getKey());
                                     }
+                                    newEvent.setEventId(snapshot.getKey());
 
                                     newEvent.setCategories(a);
                                     a = new ArrayList<String>();
@@ -456,8 +455,10 @@ public class EventsFirebase {
                         }
 
                         //Log.d("eventsfbasdf", String.valueOf(snapshot.getKey()));
-                        newEvent.setEventId(snapshot.getKey());
                     }
+                    newEvent.setEventId(snapshot.getKey());
+
+                    Log.v("arvindarvindarvind", newEvent.getEventId());
 
                     newEvent.setCategories(a);
                     a = new ArrayList<String>();
