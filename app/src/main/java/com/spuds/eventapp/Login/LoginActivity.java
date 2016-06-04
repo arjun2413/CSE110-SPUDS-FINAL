@@ -71,13 +71,13 @@ public class LoginActivity extends AppCompatActivity {
         accountFirebase = new AccountFirebase();
         signInFunc();
         signUpFunc();
-        forgotPassFunc();
+        resetPassFunc();
 
 
     }
 
 
-    public void signUpFunc(){
+    public void signUpFunc() {
         //create a button for the sign up
         final Button signUp = (Button) findViewById(R.id.register);
 
@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void forgotPassFunc() {
+    public void resetPassFunc() {
         //create a button for the forgot password
         final Button forgotPass = (Button) findViewById(R.id.forgot_password);
         //set a on click listener to see when the button is clicked

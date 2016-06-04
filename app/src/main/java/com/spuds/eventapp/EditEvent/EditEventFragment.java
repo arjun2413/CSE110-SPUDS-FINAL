@@ -1,7 +1,6 @@
 package com.spuds.eventapp.EditEvent;
 
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -131,7 +130,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         Log.d("edvalue", String.valueOf(eD.month));
         Log.d("edvalue", String.valueOf(eD.day));
 
-        getPageElements(view);
+        setupWindow(view);
         setupWindow();
 
         setupEditTime(view);
@@ -165,7 +164,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
             spinner.setSelection(1);
 
     }
-    protected void getPageElements(View view) {
+    protected void setupWindow(View view) {
         eventImage = (ImageView) view.findViewById(R.id.eventImage);
         eventName = (EditText) view.findViewById(R.id.eventName);
         eventDate = (EditText) view.findViewById(R.id.eventDate);

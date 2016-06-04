@@ -4,9 +4,6 @@ package com.spuds.eventapp.Firebase;
  * Created by Arjun on 5/5/16.
  */
 
-import android.app.FragmentManager;
-import android.content.Context;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.firebase.client.AuthData;
@@ -137,6 +134,7 @@ public class AccountFirebase {
             }
         });
     }
+
     public void resetPass(String email) {
         Firebase ref = new Firebase("https://eventory.firebaseio.com");
         ref.resetPassword(email, new Firebase.ResultHandler() {
@@ -153,42 +151,11 @@ public class AccountFirebase {
             }
         });
     }
-    public void removingAccount() {
-        Firebase ref = new Firebase("https://eventory.firebaseio.com");
-        ref.removeUser("bobtony@firebase.com", "correcthorsebatterystaple", new Firebase.ResultHandler() {
-            @Override
-            public void onSuccess() {
-                // user removed
-            }
-
-            @Override
-            public void onError(FirebaseError firebaseError) {
-                // error encountered
-            }
-        });
-    }
 
     public String getUserEmail(){
         Firebase ref = new Firebase("https://eventory.firebaseio.com");
         String data = (String) ref.getAuth().getProviderData().get("email");
         return data;
-    }
-
-    public void authCheck() {
-        Firebase ref = new Firebase("https://eventory.firebaseio.com");
-        ref.addAuthStateListener(new Firebase.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(AuthData authData) {
-                if (authData != null) {
-                    // user is logged in
-                    System.out.println("LOGGED_IN_AUTHCHEKC");
-                } else {
-                    // user is not logged in
-                    System.out.println("LOGGED_OUT_AUTHCHECK");
-
-                }
-            }
-        });
     }
 
     /*

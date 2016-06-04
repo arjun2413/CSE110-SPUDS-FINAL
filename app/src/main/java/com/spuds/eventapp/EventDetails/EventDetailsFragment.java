@@ -21,7 +21,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.spuds.eventapp.CreateComment.CreateCommentFragment;
 import com.spuds.eventapp.EditEvent.EditEventFragment;
 import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.Firebase.UserFirebase;
@@ -367,22 +366,6 @@ public class EventDetailsFragment extends Fragment {
 
         eventCategories.setText(categories);
 
-        // Click listener for the Add Comment button
-        addComment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Creates Create Comment Fragment
-                CreateCommentFragment createCommentFragment = new CreateCommentFragment();
-                String createCommentFragmentTag = getString(R.string.fragment_create_comment);
-                ((MainActivity) getActivity()).removeSearchToolbar();
-                // Adds Create Comment Fragment to fragment manager
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_frame_layout, createCommentFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(createCommentFragmentTag)
-                        .commit();
-            }
-        });
         invitePeople.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

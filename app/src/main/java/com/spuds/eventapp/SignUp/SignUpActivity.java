@@ -1,12 +1,9 @@
 package com.spuds.eventapp.SignUp;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -15,12 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.Login.LoginActivity;
 import com.spuds.eventapp.R;
-import com.spuds.eventapp.Shared.MainActivity;
-import com.spuds.eventapp.Shared.RegistrationService;
 
 //Created by youngjinyun
 
@@ -46,20 +40,6 @@ public class SignUpActivity extends AppCompatActivity {
     int[] userCheck;
     AccountFirebase accountFirebase;
     TextView[] arrayMsg;
-
-    /*---------------------------------------------------------------------------
-       Function Name:       isValidEmail
-       Description:         Checks to make sure email follows email address format
-       Input:               CharSequence
-       Output:              boolean
-       ---------------------------------------------------------------------------*/
-    public final static boolean isValidEmail(CharSequence target) {
-        if (target == null)
-            return false;
-
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
-    }
-
 
     /*---------------------------------------------------------------------------
    Function Name:       onCreate
