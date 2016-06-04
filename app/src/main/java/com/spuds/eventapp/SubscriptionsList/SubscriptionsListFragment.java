@@ -1,3 +1,5 @@
+
+
 package com.spuds.eventapp.SubscriptionsList;
 
 import android.content.Context;
@@ -17,17 +19,31 @@ import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.Shared.Subscription;
 
 import java.util.ArrayList;
-
-
+/*---------------------------------------------------------------------------
+Class Name:                SubscriptionsListFragment
+Description:               Contains information about Subscriptions List
+---------------------------------------------------------------------------*/
 public class SubscriptionsListFragment extends Fragment {
     private ArrayList<Subscription> subscriptions;
     public SubscriptionsListRVAdapter adapter;
     UserFirebase userFirebase;
 
+    /*---------------------------------------------------------------------------
+    Function Name:                SubscriptionsListFragment
+    Description:                  Required default no-argument constructor
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public SubscriptionsListFragment() {
         // Required empty public constructor
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreate
+    Description:                  called when the fragment is created
+    Input:                        Bundle savedInstanceState
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +51,14 @@ public class SubscriptionsListFragment extends Fragment {
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateView()
+    Description:                  Inflates View layout and sets fonts programmatically
+    Input:                        LayoutInflater inflater - inflates layout
+                                  ViewGroup container - parent view group
+                                  Bundle savedInstanceState
+    Output:                       View to be inflated
+    ---------------------------------------------------------------------------*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,14 +66,16 @@ public class SubscriptionsListFragment extends Fragment {
         View v = inflater.inflate(R.layout.recycler, container, false);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Subscriptions");
         final RecyclerView rv=(RecyclerView) v.findViewById(R.id.rv);
+        //create array list to hold a user's subscriptions
         subscriptions = new ArrayList<>();
 
+        //get the subscriptions from firebase
         userFirebase.getSubscriptions(subscriptions);
 
         LinearLayoutManager llm = new LinearLayoutManager(v.getContext());
         rv.setLayoutManager(llm);
 
-
+        //create and set an adapter
         adapter = new SubscriptionsListRVAdapter(subscriptions, this);
         rv.setAdapter(adapter);
 
@@ -81,6 +107,12 @@ public class SubscriptionsListFragment extends Fragment {
         return v;
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                refreshing
+    Description:                  called when user pulls down to refresh the page
+    Input:                        View view
+    Output:                       View
+    ---------------------------------------------------------------------------*/
     public void refreshing(View view) {
         final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         mySwipeRefreshLayout.setOnRefreshListener(
@@ -125,11 +157,15 @@ public class SubscriptionsListFragment extends Fragment {
                 }
         );
     }
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
 
+
+    /*---------------------------------------------------------------------------
+    Function Name:                onResume()
+    Description:                  called every time the About Fragment comes into view
+                                 remove the search toolbar
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onResume() {
         super.onResume();

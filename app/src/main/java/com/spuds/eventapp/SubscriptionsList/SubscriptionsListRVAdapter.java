@@ -33,6 +33,10 @@ import java.util.List;
 /**
  * Created by David on 4/22/16.
  */
+/*---------------------------------------------------------------------------
+Class Name:                SubscriptionsListRVAdapter
+Description:               Contains information about Subscriptions List
+---------------------------------------------------------------------------*/
 public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<SubscriptionsListRVAdapter.SubViewHolder>{
 
     public Fragment currentFragment;

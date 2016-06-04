@@ -6,6 +6,11 @@ import java.util.ArrayList;
 /**
  * Created by tina on 4/16/16.
  */
+
+/*---------------------------------------------------------------------------
+Class Name:                Event
+Description:               This class describes a Event object
+---------------------------------------------------------------------------*/
 public class Event implements Serializable {
     private String eventId;
     private String hostId;
@@ -20,9 +25,25 @@ public class Event implements Serializable {
 
     public Event() {}
 
+
+     /*---------------------------------------------------------------------------
+     Function Name:                Event
+     Description:                  Constructor
+     Input:                        String eventId,
+                                   String hostId,
+                                   String eventName,
+                                   String description,
+                                   String location,
+                                   String date,
+                                   int attendees,
+                                   String picture,
+                                   ArrayList<String> categories,
+                                   String hostName
+     Output:                       None.
+     ---------------------------------------------------------------------------*/
      public Event(String eventId, String hostId, String eventName, String description,
                   String location, String date, int attendees, String picture,
-                  ArrayList<String>  categories, String hostName) {
+                  ArrayList<String> categories, String hostName) {
          this.setEventId(eventId);
          this.setHostId(hostId);
          this.setEventName(eventName);
@@ -35,6 +56,7 @@ public class Event implements Serializable {
          this.setHostName(hostName);
     }
 
+    /* getters and setters */
     public void setEventId(String eventId) {
         this.eventId = eventId;
     }
