@@ -43,7 +43,6 @@ public class UserFirebase {
     public static User thisUser = new User();
     public User anotherUser;
 
-
     public UserFirebase() {
         anotherUser = new User();
     }
@@ -52,14 +51,11 @@ public class UserFirebase {
         threadCheck = false;
 
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/users");
-        //("asdfuhoh", uId);
         Query queryRef = ref.child(uId);
 
         queryRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot snapshot, String previousChild) {
-                //("asdf test", "snapshot" + snapshot.getValue());
-                //("asdf test", "snapshot" + snapshot.getKey());
 
                 switch (snapshot.getKey()) {
 
@@ -81,9 +77,6 @@ public class UserFirebase {
                     case "picture":
                         thisUser.setPicture(String.valueOf(snapshot.getValue()));
                         break;
-                    default:
-                        Log.d("asdf", "userfirebasedefault " + snapshot.getKey());
-
                 }
 
                 thisUser.setUserId(uId);
@@ -128,9 +121,7 @@ public class UserFirebase {
         if (user.getPicture() != null && user.getPicture() != "")
             map.put("picture", user.getPicture());
 
-        //Query queryRef = ref.orderByChild("email").equalTo(email);
         ref.child(UserFirebase.uId).updateChildren(map);
-
     }
 
     public static void updateNotificationToggle(boolean toggle) {
@@ -205,8 +196,8 @@ public class UserFirebase {
 
     }
 
-    public static int calculateInSampleSize(
-            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+    public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+
         // Raw height and width of image
         final int height = options.outHeight;
         final int width = options.outWidth;
@@ -236,7 +227,7 @@ public class UserFirebase {
         if (uri == null)
             return "";
         Bitmap bitmap = null;
-        int bitmapWidth, bitmapHeight;//whatdoidowithmylife
+        int bitmapWidth, bitmapHeight;
 
         double scale;
 

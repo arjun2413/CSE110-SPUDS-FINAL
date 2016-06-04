@@ -69,7 +69,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
 
     private List<CategoryTextButton> categories;
-    public EditEventRVAdapter adapter;
+    public EditEventCategoryRVAdapter adapter;
 
     public EditEventFragment() {
         // Required empty public constructor
@@ -280,7 +280,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
 
-        adapter = new EditEventRVAdapter(categories, this, existingCateg);
+        adapter = new EditEventCategoryRVAdapter(categories, this, existingCateg);
         rv.setAdapter(adapter);
 
 

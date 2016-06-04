@@ -1,9 +1,12 @@
 package com.spuds.eventapp.SignUp;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -12,12 +15,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.Login.LoginActivity;
 import com.spuds.eventapp.R;
+import com.spuds.eventapp.Shared.MainActivity;
+import com.spuds.eventapp.Shared.RegistrationService;
 
 //Created by youngjinyun
-
+/*---------------------------------------------------------------------------
+Class Name:                SignUpActivity.java
+Description:               Controller class for Signing Up for new Account
+---------------------------------------------------------------------------*/
 public class SignUpActivity extends AppCompatActivity {
 
     //Submit button, catalyst for any action on page
@@ -42,11 +51,11 @@ public class SignUpActivity extends AppCompatActivity {
     TextView[] arrayMsg;
 
     /*---------------------------------------------------------------------------
-   Function Name:       onCreate
-   Description:         Sets up Firebase, fonts typefaces, and flags
-   Input:               Bundle
-   Output:              none
-   ---------------------------------------------------------------------------*/
+    Function Name:       onCreate
+    Description:         Sets up Firebase, fonts typefaces, and flags
+    Input:               Bundle
+    Output:              none
+    ---------------------------------------------------------------------------*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

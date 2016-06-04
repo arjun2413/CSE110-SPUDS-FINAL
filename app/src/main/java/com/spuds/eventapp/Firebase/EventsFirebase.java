@@ -11,7 +11,7 @@ import com.firebase.client.ValueEventListener;
 import com.spuds.eventapp.CreateEvent.CreateEventCategoryRVAdapter;
 import com.spuds.eventapp.CreateEvent.CreateEventForm;
 import com.spuds.eventapp.EditEvent.EditEventForm;
-import com.spuds.eventapp.EditEvent.EditEventRVAdapter;
+import com.spuds.eventapp.EditEvent.EditEventCategoryRVAdapter;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
 import com.spuds.eventapp.Shared.SubEvent;
@@ -1006,7 +1006,7 @@ public class EventsFirebase {
 
     public static int going = 0;
 
-    public void updateEvent(final EditEventForm form, EditEventRVAdapter adapter) {
+    public void updateEvent(final EditEventForm form, EditEventCategoryRVAdapter adapter) {
         if (a != null) {
             for (int i = 0; i < a.size(); i++) {
                 Log.v("reg", a.get(i));
