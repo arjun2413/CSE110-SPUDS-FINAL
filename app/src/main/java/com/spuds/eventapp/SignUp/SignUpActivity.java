@@ -22,6 +22,8 @@ import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.Shared.RegistrationService;
 
+//Created by youngjinyun
+
 public class SignUpActivity extends AppCompatActivity {
 
     //Submit button, catalyst for any action on page
@@ -45,7 +47,12 @@ public class SignUpActivity extends AppCompatActivity {
     AccountFirebase accountFirebase;
     TextView[] arrayMsg;
 
-
+    /*---------------------------------------------------------------------------
+       Function Name:       isValidEmail
+       Description:         Checks to make sure email follows email address format
+       Input:               CharSequence
+       Output:              boolean
+       ---------------------------------------------------------------------------*/
     public final static boolean isValidEmail(CharSequence target) {
         if (target == null)
             return false;
@@ -53,26 +60,29 @@ public class SignUpActivity extends AppCompatActivity {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 
+
+    /*---------------------------------------------------------------------------
+   Function Name:       onCreate
+   Description:         Sets up Firebase, fonts typefaces, and flags
+   Input:               Bundle
+   Output:              none
+   ---------------------------------------------------------------------------*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
-        //("Create signup", "Creating right now");
-
-        //Hide Action Bar and Status Bar
-        //View decorView = getWindow().getDecorView();
-        // Hide the status bar.
-        //int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        //decorView.setSystemUiVisibility(uiOptions);
+        //get the Activity window, add params to WindowManager
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        //set up Firebase tokens
         Firebase.setAndroidContext(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        //Set up typefaces for different fonts
         Typeface custom_font = Typeface.createFromAsset(getAssets(),  "name_font.ttf");
-        Typeface raleway_light = Typeface.createFromAsset(getAssets(),  "raleway-light.ttf");
+        Typeface raleway_light = Typeface.createFromAsset(getAssets(), "raleway-light.ttf");
 
+        //Initialize header TextView from View and set it to custom font
         TextView header = (TextView)findViewById(R.id.signup_header);
         header.setTypeface(custom_font);
 
@@ -98,11 +108,15 @@ public class SignUpActivity extends AppCompatActivity {
         signupPassword2 = (EditText)findViewById(R.id.signup_password_2);
         signupPassword2.setTypeface(raleway_light);
 
+        //Change Error Message TextView's font to custom font
         errorMessage = (TextView) findViewById(R.id.errorMessage);
         errorMessage.setTypeface(raleway_light);
 
+        //Initialize flag array
         userCheck = new int[1];
+        //initialize a new account in Firebase
         accountFirebase = new AccountFirebase();
+        //initialize array for textview for setting to error message
         arrayMsg = new TextView[1];
 
 
@@ -110,16 +124,18 @@ public class SignUpActivity extends AppCompatActivity {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //default initializations
                 userCheck[0] = 0;
                 arrayMsg[0] = errorMessage;
 
-
+                //Make sure that user-entered name, email, password, confirm password are not blank
                 if (signupName.getText().toString().equals("") || signupEmail.getText().toString().equals("") ||
                         signupPassword1.getText().toString().equals("") || signupPassword2.getText().toString().equals("")) {
                     errorMessage.setText(getString(R.string.errorEmptyFields));
 
                     error = false;
                 }
+                //Make sure that password and confirmed password match
                 else if (!(signupPassword1.getText().toString()).equals(signupPassword2.getText().toString())) {
                     //reveal Invalid Password Match text
                     errorMessage.setText(getString(R.string.errorPassMismatch));
@@ -132,9 +148,11 @@ public class SignUpActivity extends AppCompatActivity {
                     //set error flag to FALSE since there is an error now
                     error = false;
                 }
+                //if there are no local errors, check for database error
                 else{
                     //correct error flag to true, everything is good now
                     String message = "Loading...";
+                    //set message to email already in use error
                     errorMessage.setText(message);
                     accountFirebase.checkEmail(signupEmail.getText().toString(), arrayMsg, "That email is already signed up.", true);
                     error = true;
@@ -142,48 +160,42 @@ public class SignUpActivity extends AppCompatActivity {
 
                 //If everything is good, then proceed to database query
                 if(error) {
-                    //TODO Check if email is taken already with database
-
-                    //TODO If email isn't taken already, go through with account creation
-                    //HERE WE PLAY WITH MORE THREADS SIGH
+                    //Create a new thread for the purpose of querying Firebase for account information.
                     class myThread implements Runnable{
 
                         @Override
+                        //run the thread
                         public void run() {
                             int counter = 0;
-                            System.out.println("thread start");
                             userCheck[0] = accountFirebase.getThreadCheck();
 
                             //wait for query
                             while (userCheck[0] == 0) {
                                 if (counter > 200) {
-                                    //things break
+                                    //break after 200 ms
                                     break;
                                 }
                                 try {
-                                    System.out.println("I slept for " + counter);
+                                    //sleep for 100 ms
                                     Thread.sleep(100);
+                                    //increment counter
                                     counter++;
+                                    //set flag to result of accountFirebase method
                                     userCheck[0] = accountFirebase.getThreadCheck();
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
                             }
+                            //if no errors, create an account in Firebase
                             if (userCheck[0] == 2) {
                                 accountFirebase.createAccount(signupEmail.getText().toString(),
                                         signupPassword1.getText().toString(), signupName.getText().toString());
-                                //When done, leave this page and go to main screen.
-                                //Make these console logs instead route to database.
-                                //("signup_name", signupName.getText().toString());
-                                //("signup_email", signupEmail.getText().toString());
-                                //("signupPassword", signupPassword1.getText().toString());
-                                //accountFirebase = new AccountFirebase();
                                 startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-                                //(AppCompatActivity)getActivity().getSupportFragmentManager().popBackStack();
                             }
                         }
 
                     }
+                    //set up and start threads
                     Runnable r = new myThread();
                     Thread t = new Thread(r);
                     t.start();
