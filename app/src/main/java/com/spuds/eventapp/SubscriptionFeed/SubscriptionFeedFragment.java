@@ -1,7 +1,5 @@
 package com.spuds.eventapp.SubscriptionFeed;
 
-import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.R;
@@ -115,22 +112,6 @@ public class SubscriptionFeedFragment extends Fragment {
                 }
         );
 
-    }
-
-    private void overrideFonts(final Context context, final View v) {
-        try {
-            if (v instanceof ViewGroup) {
-                ViewGroup vg = (ViewGroup) v;
-                for (int i = 0; i < vg.getChildCount(); i++) {
-                    View child = vg.getChildAt(i);
-                    overrideFonts(context, child);
-                }
-            } else if (v instanceof TextView) {
-                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "Raleway-Medium.ttf"));
-            }
-        }
-        catch (Exception e) {
-        }
     }
 
     @Override
