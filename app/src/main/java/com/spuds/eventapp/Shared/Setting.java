@@ -13,7 +13,7 @@ public class Setting {
     public int photoId;
 
     /*---------------------------------------------------------------------------
-    Function Name:                Comment
+    Function Name:                Setting
     Description:                  Constructor
     Input:                        String name,
                                   int photoId

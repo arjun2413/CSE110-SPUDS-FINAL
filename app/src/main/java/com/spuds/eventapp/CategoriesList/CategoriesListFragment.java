@@ -18,7 +18,7 @@ import com.spuds.eventapp.Shared.MainActivity;
 
 /*---------------------------------------------------------------------------
 Class Name:                CategoriesListFragment
-Description:               Contains information about software developers
+Description:               Contains information Categories List
 ---------------------------------------------------------------------------*/
 public class CategoriesListFragment extends Fragment {
     public String categoryType;

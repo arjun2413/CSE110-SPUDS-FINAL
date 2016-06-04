@@ -5,6 +5,11 @@ import android.util.Log;
 /**
  * Created by tina on 5/13/16.
  */
+
+/*---------------------------------------------------------------------------
+Class Name:                Notification
+Description:               This class describes a Notification object.
+---------------------------------------------------------------------------*/
 public class Notification {
     private final static String TYPE_REPLY = "Reply Notification";
     private final static String TYPE_INVITE = "Invite Notification";
@@ -30,6 +35,18 @@ public class Notification {
     public String month = "";
     public String day = "";
 
+    /*---------------------------------------------------------------------------
+    Function Name:                Notification
+    Description:                  Constructor
+    Input:                        String notificationType, 
+                                  String eventId, 
+                                  String userId, 
+                                  String picture,
+                                  String host, 
+                                  String date, 
+                                  String eventName
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     // Event update & Invitation Notification
     public Notification(String notificationType, String eventId, String userId, String picture,
                         String host, String date, String eventName) {
@@ -47,7 +64,19 @@ public class Notification {
         updateDateValues();
     }
 
-    // Comment
+    /*---------------------------------------------------------------------------
+    Function Name:                Notification
+    Description:                  Constructor
+    Input:                        String notificationType, 
+                                  String eventId, 
+                                  String userId, 
+                                  String picture,
+                                  String host, 
+                                  String date, 
+                                  String eventName,
+                                  String commentDescription
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public Notification(String notificationType, String eventId, String userId, String picture,
                         String host, String date, String eventName, String commentDescription) {
 
@@ -65,6 +94,14 @@ public class Notification {
 
     }
 
+
+    /*---------------------------------------------------------------------------
+    Function Name:                updateActionText
+    Description:                  updates the actionText fielddepending on the 
+                                  type of notification 
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     void updateActionText() {
         switch (notificationType) {
             case TYPE_REPLY:
@@ -79,8 +116,13 @@ public class Notification {
         }
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                updateDateValues
+    Description:                  updates the values for dates.
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     void updateDateValues() {
-
         EventDate eventDateObject = new EventDate(date);
         Log.e("EventDate" , "date: " + date);
 

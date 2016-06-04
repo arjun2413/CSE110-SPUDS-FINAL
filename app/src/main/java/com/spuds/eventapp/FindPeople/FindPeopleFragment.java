@@ -20,15 +20,33 @@ import com.spuds.eventapp.Shared.User;
 
 import java.util.ArrayList;
 
-
+/*---------------------------------------------------------------------------
+Class Name:                FindPeopleFragment
+Description:               Fragment that contains information about the
+                           find people screen (search for users)
+---------------------------------------------------------------------------*/
 public class FindPeopleFragment extends Fragment {
     ArrayList<User> people;
     FindPeopleRVAdapter adapter;
 
+
+    /*---------------------------------------------------------------------------
+    Function Name:                FindPeopleFragment
+    Description:                  Required default no-argument constructor
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public FindPeopleFragment() {
         // Required empty public constructor
     }
 
+
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreate()
+    Description:                  Called each time fragment is created
+    Input:                        Bundle savedInstanceState
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +60,14 @@ public class FindPeopleFragment extends Fragment {
         }
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateView()
+    Description:                  Inflates View layout and sets fonts programmatically
+    Input:                        LayoutInflater inflater - inflates layout
+                                  ViewGroup container - parent view group
+                                  Bundle savedInstanceState
+    Output:                       View to be inflated
+    ---------------------------------------------------------------------------*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,6 +87,13 @@ public class FindPeopleFragment extends Fragment {
         refreshing(view);
         return view;
     }
+
+    /*---------------------------------------------------------------------------
+    Function Name:                refreshing()
+    Description:                  called every time the screen is refreshed
+    Input:                        View view: the view to be refreshed
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     //TODO: Needs database to finish
     public void refreshing(View view) {
         SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
@@ -74,23 +107,26 @@ public class FindPeopleFragment extends Fragment {
     }
 
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateOptionsMenu()
+    Description:                  called every time the system starts the activity
+                                  to show items in the app bar
+    Input:                        View view: the view to be refreshed
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.removeItem(R.id.action_create_event);
         //ginflater.inflate(R.menu.invite_people, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
-    
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
+    /*---------------------------------------------------------------------------
+    Function Name:                onResume()
+    Description:                  called every time the fragment is resumed
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onResume() {
         super.onResume();

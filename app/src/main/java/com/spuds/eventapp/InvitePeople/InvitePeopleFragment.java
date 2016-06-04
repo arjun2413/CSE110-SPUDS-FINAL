@@ -22,7 +22,10 @@ import com.spuds.eventapp.Shared.User;
 
 import java.util.ArrayList;
 
-
+/*---------------------------------------------------------------------------
+Class Name:                InvitePeopleFragment
+Description:               Contains information Invite People Fragment
+---------------------------------------------------------------------------*/
 public class InvitePeopleFragment extends Fragment {
 
     ArrayList<User> followers;
@@ -31,10 +34,22 @@ public class InvitePeopleFragment extends Fragment {
     EventsFirebase eventsFirebase;
     String eventId;
 
+    /*---------------------------------------------------------------------------
+    Function Name:                InvitePeopleFragment
+    Description:                  Required default no-argument constructor
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public InvitePeopleFragment() {
         // Required empty public constructor
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreate()
+    Description:                  Called each time fragment is created
+    Input:                        Bundle savedInstanceState
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +66,14 @@ public class InvitePeopleFragment extends Fragment {
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateView()
+    Description:                  Inflates View layout and sets fonts programmatically
+    Input:                        LayoutInflater inflater - inflates layout
+                                  ViewGroup container - parent view group
+                                  Bundle savedInstanceState
+    Output:                       View to be inflated
+    ---------------------------------------------------------------------------*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -92,6 +115,14 @@ public class InvitePeopleFragment extends Fragment {
 
         return view;
     }
+
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateOptionsMenu()
+    Description:                  creates the stuff on the toolbar
+    Input:                        Menu menu
+                                  MenuInflater inflater - inflates layout
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.removeItem(R.id.action_create_event);
@@ -99,6 +130,12 @@ public class InvitePeopleFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onOptionsItemSelected()
+    Description:                  called when the user selects soemthing from the options bar
+    Input:                        MenuItem item
+    Output:                       boolean
+    ---------------------------------------------------------------------------*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
@@ -152,6 +189,12 @@ public class InvitePeopleFragment extends Fragment {
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onResume()
+    Description:                  called when fragment is refreshed
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onResume() {
         super.onResume();
