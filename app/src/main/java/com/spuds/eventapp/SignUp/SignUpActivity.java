@@ -23,7 +23,10 @@ import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.Shared.RegistrationService;
 
 //Created by youngjinyun
-
+/*---------------------------------------------------------------------------
+Class Name:                SignUpActivity.java
+Description:               Controller class for Signing Up for new Account
+---------------------------------------------------------------------------*/
 public class SignUpActivity extends AppCompatActivity {
 
     //Submit button, catalyst for any action on page
@@ -48,25 +51,11 @@ public class SignUpActivity extends AppCompatActivity {
     TextView[] arrayMsg;
 
     /*---------------------------------------------------------------------------
-       Function Name:       isValidEmail
-       Description:         Checks to make sure email follows email address format
-       Input:               CharSequence
-       Output:              boolean
-       ---------------------------------------------------------------------------*/
-    public final static boolean isValidEmail(CharSequence target) {
-        if (target == null)
-            return false;
-
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
-    }
-
-
-    /*---------------------------------------------------------------------------
-   Function Name:       onCreate
-   Description:         Sets up Firebase, fonts typefaces, and flags
-   Input:               Bundle
-   Output:              none
-   ---------------------------------------------------------------------------*/
+    Function Name:       onCreate
+    Description:         Sets up Firebase, fonts typefaces, and flags
+    Input:               Bundle
+    Output:              none
+    ---------------------------------------------------------------------------*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
