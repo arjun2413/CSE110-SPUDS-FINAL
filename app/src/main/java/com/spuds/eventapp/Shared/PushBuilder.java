@@ -3,8 +3,6 @@ package com.spuds.eventapp.Shared;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import java.io.IOException;
@@ -13,31 +11,28 @@ import java.util.ArrayList;
 /**
  * Created by Jonathan on 5/13/16.
  */
+/*---------------------------------------------------------------------------
+   Class Name:                PushBuilder
+   Description:               Class to make sending notifications easier
+   ---------------------------------------------------------------------------*/
 public class PushBuilder extends AppCompatActivity{
 
     private Bundle message;
-
     String SENDER_ID = "39404161192";
     GoogleCloudMessaging gcm;
     String regid;
 
-    /*
-        Constructor for both Reply and Update Notifications
-        REPLY Params:
-            pushType - string of the type of action, in this case "reply"
-            id_event - the Firebase id of the event
-            host_name - the String of the host name of the replier
-            id_item - the Firebase ID of the comment
-            gcm - the global GCM
-        UPDATE Params:
-            pushType - string of the type of action, in this case "update"
-            id_event - the Firebase id of the event that's being updated
-            host_name - the String of the owner of the event that's being updated
-            id_item - the Firebase ID of the owner of the event
-            gcm - the global GCM
-     */
+    /*---------------------------------------------------------------------------
+   Function Name:                PushBuilder
+   Description:                  Constructor for a PushBuilder object for updating events
+   Input:                        String pushType - the type of push
+                                 String id_event - the Firebase id of the event
+                                 String host_name - the String of owner of the event that's being updated
+                                 String id_item - the Firebase id of the owner of the event
+                                 GoogleCloudMessaging gcm_ - the Google Cloud Messaging object
+   Output:                       None.
+   ---------------------------------------------------------------------------*/
     public PushBuilder(String pushType, String id_event, String host_name, String id_item, GoogleCloudMessaging gcm_) {
-        Log.d("Building", "building the " + pushType);
         this.gcm = gcm_;
         this.message = new Bundle();
         this.message.putString("action", pushType);
@@ -46,17 +41,18 @@ public class PushBuilder extends AppCompatActivity{
         this.message.putString("item_id", id_item);
     }
 
-    /*
-        Constructor for invites
-        Params:
-            ids - an Array list of user ids
-            id - the Firebase id of the event
-            host_name - the String name of the host of the event
-            id_host - the Firebase id of the inviter
-            gcm - global GCM
-    */
+
+    /*---------------------------------------------------------------------------
+   Function Name:                PushBuilder
+   Description:                  Constructor for a PushBuilder object for inviting users
+   Input:                        ArrayList<String> ids - an array list of user ids
+                                 String id - the Firebase id of the event
+                                 String host_name - the String name of teh host of the event
+                                 String id_host - the Firebase id of the inviter
+                                 GoogleCloudMessaging gcm_ - the Google Cloud Messaging object
+   Output:                       None.
+   ---------------------------------------------------------------------------*/
     public PushBuilder(ArrayList<String> ids, String id, String host_name, String id_host, GoogleCloudMessaging gcm_) {
-        Log.d("Building", "building the invite");
         this.gcm = gcm_;
         this.message = new Bundle();
         this.message.putString("action", "invite");
@@ -66,32 +62,39 @@ public class PushBuilder extends AppCompatActivity{
         this.message.putString("host_id", id_host);
     }
 
+    /*---------------------------------------------------------------------------
+   Function Name:                sendNotification()
+   Description:                  Sends a the bundle notification to the GCM service
+   Input:                        None
+   Output:                       None
+   ---------------------------------------------------------------------------*/
     public void sendNotification() {
-        Log.d("Send Notification", "trying to send");
-        Log.d("Bundle values", this.message.toString());
-       // this.contactGCM(this.message, this.gcm);
+        this.contactGCM(this.message, this.gcm);
     }
 
-/*
+    /*---------------------------------------------------------------------------
+    Function Name:                conctactGCM()
+    Description:                  The code that contacts the GCM service
+    Input:                        final Bundle data - the bundle of info to be sent
+                                  final GoogleCloudMessaging gcm - the Google Cloud Messaging object
+    Output:                       None
+    ---------------------------------------------------------------------------*/
     private void contactGCM(final Bundle data, final GoogleCloudMessaging gcm) {
         new AsyncTask<Void, Void, String>() {
             @Override
+            // async task for the background
             protected String doInBackground(Void... params) {
                 String result = "";
                 if (gcm == null) {
+                    // try to register the ID for sending
                     try {
                         regid = gcm.register(SENDER_ID);
-                        Log.d("regid = ", regid.toString());
                     } catch (IOException ex) {
-                        Log.d("ERRORWITHGCM", "gcm");
                         return "Error :" + ex.getMessage();
                     }
                 }
                 // try to send
                 try {
-                    Log.d("gggcm", gcm.toString());
-                    regid = gcm.register(SENDER_ID);
-                    Log.d("REEED", regid.toString());
                     gcm.send(SENDER_ID + "@gcm.googleapis.com", "messageID", data);
                 }
                 catch (IOException e) {
@@ -101,5 +104,6 @@ public class PushBuilder extends AppCompatActivity{
                 return result;
             }
         }.execute();
-    } */
+    }
+
 }
