@@ -124,17 +124,13 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                 if (!form.allFilled() || eventTime.getText().toString().equals("") || eventDate.getText().toString().equals("")) {
                     fieldMessage.setVisibility(View.VISIBLE);
                     check = FILLED;
-
-                    System.out.println("Fill out all the forms");
                 }
                 if (check != FILLED) {
                     dateCheck = form.correctDate();
                     timeCheck = form.correctTime();
                 }
 
-
                 if (check != 0 || dateCheck != 0 || timeCheck!= 0) {
-                    System.out.println("Date format is wrong");
                     switch (dateCheck) {
                         case 0:
                             date = "";
@@ -154,7 +150,6 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                             time = "";
                             break;
                         case 4:
-                            //TODO: Reggie, specify event time format in strings.xml file
                             time = getString(R.string.errorTimeFormat);
                             break;
                         case 5:
@@ -170,11 +165,9 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                 }
                 else {
                     final String eventId = eventsFirebase.createEvent(form, adapter);
-                    //("createevent:", "eventid: " + eventId);
 
                     EventsFirebase ef = new EventsFirebase();
                     ef.getEventDetails(eventId);
-
 
                     new Thread(new Runnable() {
 
@@ -182,8 +175,6 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                         public void run() {
                             while (!EventsFirebase.detailsThreadCheck) {
                                 try {
-                                    //("sleepingthread","fam");
-
                                     Thread.sleep(Integer.parseInt(getString(R.string.sleepTime)));
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
@@ -206,8 +197,6 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                         }
                     }).start();
 
-
-
                 }
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
@@ -219,12 +208,6 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
             @Override
             public void onClick(View v) {
                 ((MainActivity) getActivity()).picture = null;
-
-                // For camera
-                //UploadPictureDialogFragment dialogFragment = new UploadPictureDialogFragment();
-
-                //dialogFragment.show(getFragmentManager(), "Add a Picture");
-
 
                 ((MainActivity) getActivity()).pickImage(false);
 
@@ -256,11 +239,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                                 }
 
                                 if (src != null) {
-
                                     eventImage.setImageBitmap(src);
-                                /*eventImage.setImageURI(null);
-                                eventImage.setImageURI(((MainActivity) getActivity()).picture);
-                                eventImage.invalidate();*/
                                 }
 
                             }
@@ -278,14 +257,26 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         // Required empty public constructor
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreate()
+    Description:                  Called each time fragment is created
+    Input:                        Bundle savedInstanceState
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((MainActivity) getActivity()).picture = null;
-
-
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateView()
+    Description:                  Inflates View layout and sets fonts programmatically
+    Input:                        LayoutInflater inflater - inflates layout
+                                  ViewGroup container - parent view group
+                                  Bundle savedInstanceState
+    Output:                       View to be inflated
+    ---------------------------------------------------------------------------*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -324,19 +315,6 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         categories.add(new CategoryTextButton("STUDENT ORGS", false));
         categories.add(new CategoryTextButton("ACADEMIC", false));
         categories.add(new CategoryTextButton("FREE", false));
-
-
-        /*
-        // Is this necessary?
-        // TODO: create multiple scbs
-        categories.add(new CategoryTextButton("FOOD", food_scb));
-        categories.add(new CategoryTextButton("SOCIAL", social_scb));
-        categories.add(new CategoryTextButton("CONCERTS", concerts_scb));
-        categories.add(new CategoryTextButton("SPORTS", sports_scb));
-        categories.add(new CategoryTextButton("CAMPUS ORGANIZATIONS", campus_organizations_scb));
-        categories.add(new CategoryTextButton("ACADEMIC", academic_scb));
-        categories.add(new CategoryTextButton("FREE", free_scb));
-        */
 
         adapter = new CreateEventCategoryRVAdapter(categories, this);
         rv.setAdapter(adapter);
