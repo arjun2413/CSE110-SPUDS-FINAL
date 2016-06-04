@@ -5,6 +5,10 @@ import java.io.Serializable;
 /**
  * Created by tina on 5/7/16.
  */
+/*---------------------------------------------------------------------------
+Class Name:                User
+Description:               This class describes a User object
+---------------------------------------------------------------------------*/
 public class User implements Serializable {
     private String userId;
     private String name;
@@ -15,13 +19,42 @@ public class User implements Serializable {
     private String picture;
     private boolean subscribed;
 
+    /*---------------------------------------------------------------------------
+    Function Name:                User
+    Description:                  Default constructor
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public User() {}
+
+    /*---------------------------------------------------------------------------
+    Function Name:                User
+    Description:                  Constructor
+    Input:                        String name,
+                                  String description,
+                                  String picture
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public User(String name, String description, String picture) {
         this.setName(name);
         this.setDescription(description);
         this.setPicture(picture);
 
     }
+
+    /*---------------------------------------------------------------------------
+    Function Name:                User
+    Description:                  Constructor
+    Input:                        String userId,
+                                  String name,
+                                  String description,
+                                  boolean notificationToggle,
+                                  int numberFollowing,
+                                  int numberHosting,
+                                  String picture,
+                                  boolean subscribed
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public User(String userId, String name, String description, boolean notificationToggle, int numberFollowing,
                 int numberHosting, String picture, boolean subscribed) {
 
@@ -36,6 +69,7 @@ public class User implements Serializable {
 
     }
 
+    /* getters and setters */
     public String getUserId() {
         return userId;
     }

@@ -5,20 +5,38 @@ import java.io.Serializable;
 /**
  * Created by tina on 5/7/16.
  */
+
+/*---------------------------------------------------------------------------
+Class Name:                SubUser
+Description:               This class describes a SubUser object
+---------------------------------------------------------------------------*/
 public class SubUser implements Serializable {
     private String userId;
     private String name;
 
+
+    /*---------------------------------------------------------------------------
+    Function Name:                SubUser
+    Description:                  Default constructor
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public SubUser() {}
-    public SubUser(String name, String description, String picture) {
-        this.setName(name);
-    }
+
+    /*---------------------------------------------------------------------------
+    Function Name:                SubUser
+    Description:                  Default constructor
+    Input:                        String userId,
+                                  String name: the name of the subUser
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public SubUser(String userId, String name) {
 
         this.setUserId(userId);
         this.setName(name);
     }
 
+    /* getters and setters */
     public String getUserId() {
         return userId;
     }
