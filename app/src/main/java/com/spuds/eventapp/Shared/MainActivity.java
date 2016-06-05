@@ -11,8 +11,6 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -27,7 +25,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -63,9 +60,7 @@ import com.spuds.eventapp.SubscriptionFeed.SubscriptionFeedFragment;
 import com.spuds.eventapp.SubscriptionsList.SubscriptionsListFragment;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /*---------------------------------------------------------------------------
 Class Name:                MainActivity
@@ -102,6 +97,8 @@ public class MainActivity extends AppCompatActivity
     ArrayList<SubUser> testUsersList;
     ArrayList <String> searchResult;
     ArrayList <SubUser> subscriptions;
+    // Reference to the view's object information for search
+    RelativeLayout.LayoutParams params;
 
     // Boolean checking if this is created for the first time
     boolean first = true;
@@ -309,21 +306,18 @@ public class MainActivity extends AppCompatActivity
         // Initialize search result searchResultList
         final ArrayList<SearchResult> searchResultList = new ArrayList<SearchResult>();
 
-        // S
+        // Set the searchables arraylist
         search.setSearchables(searchResultList);
 
+        // Set up the search listener
         search.setSearchListener(new SearchBox.SearchListener() {
 
-
-
+            // When the user clicks the "enter" or "search" button on their keybaord to search
             @Override
             public void onSearch(final String searchTerm) {
-                //Toast.makeText(MainActivity.this, searchTerm +" Searched", Toast.LENGTH_LONG).show();
 
-
-                Log.v("searchtype", searchType);
+                // Depending on the search type; call the corresponding method for search
                 if (searchType.equals(getString(R.string.fragment_home_feed))) {
-                    Log.v("wtrwtwa", searchType);
                     findAnyEvent(searchTerm);
                 } else if (searchType.equals(getString(R.string.fragment_find_people)) || searchType.equals(getString(R.string.fragment_invite_people))) {
                     findAnyUser(searchTerm);
@@ -338,29 +332,36 @@ public class MainActivity extends AppCompatActivity
                 }
             }
 
+            //React to a result being clicked
             @Override
             public void onResultClick(SearchResult result) {
-                //React to a result being clicked
             }
 
-
+            // When a person clicks the search bar, the search opens
             @Override
             public void onSearchOpened() {
-
+                // Depending on the fragment currently in/search type, call the
+                // corresponding model method to get the information in an arraylist
                 if (searchType.equals(getString(R.string.fragment_home_feed))) {
+
                     EventsFirebase eventsFirebase = new EventsFirebase();
                     eventsFirebase.getSubEventList();
+
                 } else if (searchType.equals(getString(R.string.fragment_find_people)) || searchType.equals(getString(R.string.fragment_invite_people))) {
+
                     UserFirebase userFirebase = new UserFirebase();
                     userFirebase.getSubUserList();
+
                 } else if (searchType.equals(getString(R.string.fragment_my_events))) {
-                    // TODO (M):
+
                     EventsFirebase eventsFirebase = new EventsFirebase();
                     eventsFirebase.getMyEventsList();
+
                 } else if (searchType.equals(getString(R.string.fragment_my_sub_feed))) {
-                    // TODO (M):
+
                     EventsFirebase eventsFirebase = new EventsFirebase();
                     eventsFirebase.createSearchSubFeedList();
+
                 } else if (searchType.equals(getString(R.string.fragment_my_sub))) {
 
                     subscriptions = new ArrayList<SubUser>();
@@ -368,39 +369,54 @@ public class MainActivity extends AppCompatActivity
                     userFirebase.getSearchSubs(subscriptions);
 
                 } else {
+
                     EventsFirebase eventsFirebase = new EventsFirebase();
                     eventsFirebase.getSubEventCatList(searchType);
+
                 }
 
             }
 
+            // When a person clears the search bar
             @Override
             public void onSearchCleared() {
 
             }
 
+            // When a person closes the search bar
             @Override
             public void onSearchClosed() {
 
             }
 
+            // When a person changes the input inside the searchbar
             @Override
             public void onSearchTermChanged(String s) {
 
             }
 
         });
+
+        // Get the information about the actual layout/view object for search
         params = (RelativeLayout.LayoutParams) search.getLayoutParams();
 
     }
-    RelativeLayout.LayoutParams params;
 
-
+    /*---------------------------------------------------------------------------
+    Function Name:                findCatFeedEvent()
+    Description:                  Gets the information for the category feed
+    Input:                        final String searchTerm - term searched by the user
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     void findCatFeedEvent(final String searchTerm) {
+
+        // Checks if firebase is done getting the events
         new Thread(new Runnable() {
 
             @Override
             public void run() {
+
+                //If the category feed list is empty, wait
                 while (EventsFirebase.subEventCatList.size() == 0) {
                     try {
                         Thread.sleep(70);
@@ -409,18 +425,30 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
 
+                // Assign the list of events from database to testEventsList
                 testEventsList = EventsFirebase.subEventCatList;
+
+                // Actually get search results for with the data from the database
                 searchEvent(searchTerm);
 
             }
         }).start();
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                findCatFeedEvent()
+    Description:                  Gets the information for the my subscriptions feed
+    Input:                        final String searchTerm - term searched by the user
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     void findMySubFeedEvent(final String searchTerm) {
+
+        // Checks if firebase is done getting the events
         new Thread(new Runnable() {
 
             @Override
             public void run() {
+                //If the subscriptions feed list is empty, wait
                 while (EventsFirebase.searchSubFeedList.size() == 0) {
                     try {
                         Thread.sleep(70);
@@ -429,18 +457,30 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
 
+                // Assign the list of events from database to testEventsList
                 testEventsList = EventsFirebase.searchSubFeedList;
+
+                // Actually get search results for with the data from the database
                 searchEvent(searchTerm);
 
             }
         }).start();
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                findMyEventsEvent()
+    Description:                  Gets the information for the my events feed
+    Input:                        final String searchTerm - term searched by the user
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     void findMyEventsEvent(final String searchTerm) {
+
+        // Checks if firebase is done getting the events
         new Thread(new Runnable() {
 
             @Override
             public void run() {
+                //If the my events feed list is empty, wait
                 while (EventsFirebase.myEventsSubEventList.size() == 0) {
                     try {
                         Thread.sleep(70);
@@ -449,149 +489,29 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
 
+                // Assign the list of events from database to testEventsList
                 testEventsList = EventsFirebase.myEventsSubEventList;
+
+                // Actually get search results for with the data from the database
                 searchEvent(searchTerm);
             }
         }).start();
     }
 
-    void findSubUsers(final String searchTerm) {
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                while (UserFirebase.numSearchSubs > subscriptions.size() || !UserFirebase.getSearchSubsThreadCheck) {
-                    //("sublist", "numsubs" + userFirebase.numSubscriptions);
-                    //("sublist", "subscriptions size" + subscriptions.size());
-                    try {
-                        Thread.sleep(70);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                testUsersList = subscriptions;
-                searchUser(searchTerm);
-
-
-            }
-        }).start();
-    }
-
-    void findAnyUser(final String searchTerm) {
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                while (!UserFirebase.threadCheckSubUser) {
-                    try {
-                        Thread.sleep(70);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                testUsersList = UserFirebase.subUsers;
-                searchUser(searchTerm);
-
-            }
-        }).start();
-    }
-
-    void searchUser(final String searchTerm) {
-        for(SubUser s : testUsersList){
-            Log.d("CreateTable",s.getUserId());
-            Log.d("CreateTable",s.getName());
-        }
-
-
-        final DatabaseTableSubUser databaseTable = new DatabaseTableSubUser(getApplicationContext(),testUsersList);
-        Log.d("CreateTable","AFTER DB called");
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(!DatabaseTableSubUser.threadDone){
-
-                    try{
-                        Log.d("ThreadDebug","try block");
-                        Thread.sleep(750);
-                    } catch (InterruptedException e){
-                        e.printStackTrace();
-                    }
-                }
-
-                Log.d("Search","Starting Search");
-                Cursor cursor = databaseTable.getUserNameMatches(searchTerm, null);
-                String retVal = "";
-                if (cursor != null && cursor.moveToFirst() ){
-                    String[] columnNames = cursor.getColumnNames();
-                    do {
-                        //Searched results have been found
-                        for (String name: columnNames) {
-                            //retVal += String.format("%s: %s\n", name, cursor.getString(cursor.getColumnIndex(name)));
-                            if(name.equals("USER_ID")){
-                                //Return to outside world
-                                if(cursor == null){
-                                    Log.d("Search","Cursor is null");
-                                }
-                                Log.d("Search","Int is: "+cursor.getColumnIndex(name));
-                                searchResult.clear();
-                                searchResult.add(cursor.getString(cursor.getColumnIndex(name)));
-                                Log.v("searcherseultevent", "" + searchResult);
-
-                                char[] userIdCharArray = searchResult.toString().toCharArray();
-
-                                String userId = "";
-                                for (int i = 1; i < userIdCharArray.length - 1; i++) {
-                                    userId += userIdCharArray[i];
-                                }
-                                Log.v("userId=", userId);
-                                SearchUsersFragment searchUsersFragment = new SearchUsersFragment();
-
-                                Bundle bundle = new Bundle();
-                                bundle.putString(getString(R.string.user_id), userId);
-
-                                searchUsersFragment.setArguments(bundle);
-
-                                // Add Event Details Fragment to fragment manager
-                                getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.fragment_frame_layout, searchUsersFragment)
-                                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                                        .addToBackStack("Search People Fragment")
-                                        .commit();
-                            }
-
-                        }
-                        retVal += "\n";
-                        Log.d("Search","Result found in Loop");
-                    } while (cursor.moveToNext());
-                }
-                else{
-                    Log.d("Search", "Nothing found.");
-                    SearchUsersFragment searchUsersFragment = new SearchUsersFragment();
-
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_frame_layout, searchUsersFragment)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                            .addToBackStack("Search People Fragment")
-                            .commit();
-                }
-                Log.d("Search","RESULTS: "+retVal);
-                //System.err.println(retVal);
-                //Log.d("Search","RESULT: "+cursor.getString(cursor.getColumnIndex(cursor.getColumnNames()[1])));
-            }
-        }).start();
-
-    }
-
-
+    /*---------------------------------------------------------------------------
+    Function Name:                findAnyEvent()
+    Description:                  Gets the information for all events
+    Input:                        final String searchTerm - term searched by the user
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     void findAnyEvent(final String searchTerm) {
-        Log.v("inwhere", "infindanyevent");
+
+        // Checks if firebase is done getting the events
         new Thread(new Runnable() {
 
             @Override
             public void run() {
+                //If the my events list is empty, wait
                 while (!EventsFirebase.threadCheckSubEvent) {
                     try {
                         Thread.sleep(70);
@@ -600,91 +520,245 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
 
+                // Assign the list of events from database to testEventsList
                 testEventsList = EventsFirebase.subEvents;
+
+                // Actually get search results for with the data from the database
                 searchEvent(searchTerm);
 
             }
         }).start();
     }
 
-    void searchEvent(final String searchTerm) {
-        //check what events are there
-        for(SubEvent s : testEventsList){
-            Log.d("CreateTable",s.getEventId());
-            Log.d("CreateTable",s.getEventName());
-        }
+    /*---------------------------------------------------------------------------
+    Function Name:                findSubUsers()
+    Description:                  Gets the information for users subscribed to in teh database
+    Input:                        final String searchTerm - term searched by the user
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
+    void findSubUsers(final String searchTerm) {
 
-
-        final DatabaseTableSubEvent databaseTable = new DatabaseTableSubEvent(getApplicationContext(),testEventsList);
-        Log.d("CreateTable","AFTER DB called");
-
+        // Checks if firebase is done getting the users
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while(!DatabaseTableSubEvent.threadDone){
 
+                // While the backend/model is still getting all the users
+                while (UserFirebase.numSearchSubs > subscriptions.size() || !UserFirebase.getSearchSubsThreadCheck) {
+
+                    try {
+                        Thread.sleep(70);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                // Assign the list of users subscribed to from database to testUsersList
+                testUsersList = subscriptions;
+
+                // Actually get search results for with the data from the database
+                searchUser(searchTerm);
+            }
+        }).start();
+    }
+
+    /*---------------------------------------------------------------------------
+    Function Name:                findAnyUser()
+    Description:                  Gets the information for any user to in the database
+    Input:                        final String searchTerm - term searched by the user
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
+    void findAnyUser(final String searchTerm) {
+
+        // Checks if firebase is done getting the users
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                // While the backend/model is still getting all the users
+                while (!UserFirebase.threadCheckSubUser) {
+                    try {
+                        Thread.sleep(70);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                // Assign the list of users subscribed to from database to testUsersList
+                testUsersList = UserFirebase.subUsers;
+
+                // Actually get search results for with the data from the database
+                searchUser(searchTerm);
+
+            }
+        }).start();
+    }
+
+    /*---------------------------------------------------------------------------
+    Function Name:                searchUser()
+    Description:                  Adds the user information to a virtual table and
+                                  gets one search result
+    Input:                        final String searchTerm - term searched by the user
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
+    void searchUser(final String searchTerm) {
+
+        final DatabaseTableSubUser databaseTable = new DatabaseTableSubUser(getApplicationContext(),testUsersList);
+
+        // Checks if database table is done setting up the database table
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                // While setting up the virtual table is not done, wait
+                while(!DatabaseTableSubUser.threadDone){
                     try{
-                        Log.d("ThreadDebug","try block");
                         Thread.sleep(750);
                     } catch (InterruptedException e){
                         e.printStackTrace();
                     }
                 }
 
-                Log.d("Search","Starting Search");
-                Cursor cursor = databaseTable.getEventNameMatches(searchTerm, null);
-                String retVal = "";
+                // Find a user that matches the search term
+                Cursor cursor = databaseTable.getUserNameMatches(searchTerm, null);
+
                 if (cursor != null && cursor.moveToFirst() ){
+
                     String[] columnNames = cursor.getColumnNames();
+
                     do {
-                        //Searched results have been found
+
+                        // Search through all the columns
                         for (String name: columnNames) {
-                            //retVal += String.format("%s: %s\n", name, cursor.getString(cursor.getColumnIndex(name)));
-                            if(name.equals("EVENT_ID")){
-                                //Return to outside world
-                                if(cursor == null){
-                                    Log.d("Search","Cursor is null");
-                                }
-                                Log.d("Search","Int is: "+cursor.getColumnIndex(name));
+
+                            // If is the user id column
+                            if(name.equals("USER_ID")){
+
+                                // Clear the previous searches, add the user id to the search result
                                 searchResult.clear();
                                 searchResult.add(cursor.getString(cursor.getColumnIndex(name)));
 
-                                Log.v("searcherseultevent", "" + searchResult);
+                                // Parse the string to get everything except the brackets
+                                char[] userIdCharArray = searchResult.toString().toCharArray();
+                                String userId = "";
+                                for (int i = 1; i < userIdCharArray.length - 1; i++) {
+                                    userId += userIdCharArray[i];
+                                }
 
+                                // Create search users fragment
+                                SearchUsersFragment searchUsersFragment = new SearchUsersFragment();
+
+                                // Pass the user id to the search users fragment
+                                Bundle bundle = new Bundle();
+                                bundle.putString(getString(R.string.user_id), userId);
+
+                                searchUsersFragment.setArguments(bundle);
+
+                                // Change the screen to search users fragment
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragment_frame_layout, searchUsersFragment)
+                                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                        .addToBackStack("Search People Fragment")
+                                        .commit();
+                            }
+
+                        }
+                    } while (cursor.moveToNext());
+                }
+                // No search results found
+                else{
+
+                    // Change the screen to an empty search users fragment
+                    SearchUsersFragment searchUsersFragment = new SearchUsersFragment();
+
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_frame_layout, searchUsersFragment)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .addToBackStack("Search People Fragment")
+                            .commit();
+                }
+
+            }
+        }).start();
+
+    }
+
+    /*---------------------------------------------------------------------------
+    Function Name:                searchEvent()
+    Description:                  Adds the user information to a virtual table and
+                                  gets one search result
+    Input:                        final String searchTerm - term searched by the user
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
+    void searchEvent(final String searchTerm) {
+
+        final DatabaseTableSubEvent databaseTable = new DatabaseTableSubEvent(getApplicationContext(),testEventsList);
+
+        // Checks if database table is done setting up the database table
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                // While setting up the virtual table is not done, wait
+                while(!DatabaseTableSubEvent.threadDone){
+                    try{
+                        Thread.sleep(750);
+                    } catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+
+                // Find an event that matches the search term
+                Cursor cursor = databaseTable.getEventNameMatches(searchTerm, null);
+
+                // If an event has been found that matches the search term
+                if (cursor != null && cursor.moveToFirst() ){
+                    String[] columnNames = cursor.getColumnNames();
+                    do {
+
+                        // Search through all the columns
+                        for (String name: columnNames) {
+
+                            // If the column is equal to the event id
+                            if(name.equals("EVENT_ID")){
+
+                                // Clear the previous searches, add the user id to the search result
+                                searchResult.clear();
+                                searchResult.add(cursor.getString(cursor.getColumnIndex(name)));
+
+                                // Parse the string to get everything except the brackets
                                 char[] eventIdCharArray = searchResult.toString().toCharArray();
-
                                 String eventId = "";
                                 for (int i = 1; i < eventIdCharArray.length - 1; i++) {
                                     eventId += eventIdCharArray[i];
                                 }
 
+                                // Create search events fragment
                                 SearchEventsFragment searchEventsFragment = new SearchEventsFragment();
 
+                                // Pass the user id to the search events fragment
                                 Bundle bundle = new Bundle();
                                 bundle.putString(getString(R.string.event_id), eventId);
 
                                 searchEventsFragment.setArguments(bundle);
 
-                                // Add Event Details Fragment to fragment manager
+                                // Change the screen to search events fragment
                                 getSupportFragmentManager().beginTransaction()
                                         .replace(R.id.fragment_frame_layout, searchEventsFragment)
                                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                                         .addToBackStack("Search Event Fragment")
                                         .commit();
-
                             }
 
                         }
-                        retVal += "\n";
-                        Log.d("Search","Result found in Loop");
                     } while (cursor.moveToNext());
                 }
+                // If an event has not been found that matches the search term
                 else{
-                    Log.d("Search","Nothing found.");
 
                     SearchEventsFragment searchEventsFragment = new SearchEventsFragment();
 
-                    // Add Event Details Fragment to fragment manager
+                    // Change the screen to an empty search events fragment
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragment_frame_layout, searchEventsFragment)
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -692,65 +766,99 @@ public class MainActivity extends AppCompatActivity
                             .commit();
 
                 }
-                Log.d("Search","RESULTS: "+retVal);
-                //System.err.println(retVal);
-                //Log.d("Search","RESULT: "+cursor.getString(cursor.getColumnIndex(cursor.getColumnNames()[1])));
             }
         }).start();
     }
 
 
+    /*---------------------------------------------------------------------------
+    Function Name:                removeSearchToolbar()
+    Description:                  Removes the search bar
+    Input:                        final String searchTerm - term searched by the user
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public void removeSearchToolbar() {
-        Log.v("test", "heretest" + "removesearchtoolbar");
 
+        // If the search view exists remove the search bar
         if (findViewById(R.id.search) != null)
             ((ViewManager) search.getParent()).removeView(search);
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                addSearchToolbar()
+    Description:                  Adds the search bar
+    Input:                        final String searchTerm - term searched by the user
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public void addSearchToolbar() {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        // If the search view exists add the search bar
         if (findViewById(R.id.search) == null)
             ((ViewManager) toolbar.getParent()).addView(search, params);
 
+        // TODO: NEW RESET LOGO TEXT DEPENDING IF SEARCH EVENT OR USER
+        // Set the text for the search bar
         search.setLogoText("Search for Events");
+
+        // Set custom fonts for all the textviews
         overrideFonts(toolbar.getContext(),toolbar);
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                setupDrawer()
+    Description:                  Sets up the drawer
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     void setupDrawer() {
+        // Find the views required to set up the drawer
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        overrideFonts(toolbar.getContext(),toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-
+        // Init action bar toggle for nav. drawer
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        // Connects the action bar toggle to the drawer
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        // Set custom fonts for all the textviews
         overrideFonts(navigationView.getContext(),navigationView);
+
+        // Sets the listener for navigation drawer to this
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.home);
 
+        // Set custom fonts for all the textviews
+        overrideFonts(toolbar.getContext(),toolbar);
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                setupFragments()
+    Description:                  Sets up the fragments for the drawer and home
+                                  fragment to show up
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     void setupFragments() {
+
+        // Have references to the fragment manager and transactions
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         //Checks if home fragment has been committed already
         currentFragment = fragmentManager.findFragmentByTag(getString(R.string.home));
 
+        // If fragments have not been created yet
         if (currentFragment == null) {
 
-            // TODO (M): POST request to get account information
-            // ex: who subscribing to, first 10 for each feed, profile information
-            // sending information to respective fragments
-            // talk about what to load first, what to load later
-
+            // Initialize all fragments having to do with the navigation bar
             homeFeedTabsFragment = new HomeFeedTabsFragment();
             notificationsFragment = new NotificationsFragment();
             categoriesListFragment = new CategoriesListFragment();
@@ -761,6 +869,8 @@ public class MainActivity extends AppCompatActivity
             aboutFragment = new AboutFragment();
             settingsFragment = new SettingsFragment();
 
+            // Add all the fragments to the fragment transaction to be added, hidden,
+            // except the home feed
             fragmentTransaction
                     .add(R.id.fragment_frame_layout, settingsFragment, getString(R.string.settings))
                     .hide(settingsFragment)
@@ -780,12 +890,16 @@ public class MainActivity extends AppCompatActivity
                     .hide(notificationsFragment)
                     .commit();
 
+            // Add the home feed and commit to make the home feed show up to the user
             fragmentManager.beginTransaction()
                     .add(R.id.fragment_frame_layout, homeFeedTabsFragment, getString(R.string.home))
                     .addToBackStack(getString(R.string.fragment_profile))
                     .commit();
 
+            // Reset current fragment
             currentFragment = homeFeedTabsFragment;
+
+        // If fragments have not been created already
         } else {
             homeFeedTabsFragment = (HomeFeedTabsFragment) currentFragment;
             notificationsFragment = (NotificationsFragment) getSupportFragmentManager().
@@ -805,7 +919,7 @@ public class MainActivity extends AppCompatActivity
             settingsFragment = (SettingsFragment) getSupportFragmentManager().
                     findFragmentByTag(getString(R.string.settings));
 
-
+            // Hide all the fragments from view of the user
             fragmentTransaction
                     .hide(notificationsFragment)
                     .hide(categoriesListFragment)
@@ -819,6 +933,13 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onNavigationItemSelected()
+    Description:                  Sets up the fragments for the drawer and home
+                                  fragment to show up
+    Input:                        MenuItem item
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
@@ -826,7 +947,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         String title = item.getTitle().toString();
 
+        //Reference to new fragment to be shown to the user
         Fragment newFragment = null;
+
+        // Depending on the id, add or remove the search toolbar,
+        // update the search type, and update the newFragment variable
         if (id == R.id.home) {
 
             addSearchToolbar();
@@ -879,31 +1004,36 @@ public class MainActivity extends AppCompatActivity
             removeSearchToolbar();
             newFragment = settingsFragment;
 
+        // If the user chooses logout
         } else if (id == R.id.logOut) {
+
+            // Create a new alert dialog for logout
             new AlertDialog.Builder(this)
                     .setTitle("Log Out")
                     .setMessage("Are you sure you want to log out?")
                     .setPositiveButton("Log Out", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
+
+                            // Call logout call to account ifrebase
                             af.logout();
+
+                            // Start the intent to go to the main activity
                             Intent i = new Intent(MainActivity.this, LoginActivity.class);
-                            // set the new task and clear flags
                             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(i);
-                            //startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                            //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                         }
                     })
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                         }
                     })
-                    //.setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
         }
 
+        // If a person has selected to go to a new fragment
         if (newFragment != null) {
-            //("MainActivity", "newFragment != null switching to " + title);
+
+            // Switch to the new fragment/show it to user
             getSupportFragmentManager().beginTransaction()
                     .show(newFragment)
                     .replace(R.id.fragment_frame_layout, newFragment)
@@ -916,21 +1046,32 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
+        // Change all the textviews to the custom font
         overrideFonts(drawer.getContext(),drawer);
 
         return true;
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                goToProfile()
+    Description:                  Allows the user to go to the profile
+    Input:                        View view
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public void goToProfile(View view) {
+
+        // Create the profile fragment
         Fragment profileFragment = new ProfileFragment();
 
+        // Create a new bundle to send profile type to the profile fragment
         Bundle bundle = new Bundle();
         bundle.putString(getString(R.string.profile_type), getString(R.string.profile_type_owner));
-
         profileFragment.setArguments(bundle);
 
+        // Remove the search toolbar for the next fragmnet
         removeSearchToolbar();
-        // Add Event Details Fragment to fragment manager
+
+        // Switch to the profile fragment
         getSupportFragmentManager().beginTransaction()
                 .show(profileFragment)
                 .replace(R.id.fragment_frame_layout, profileFragment)
@@ -941,36 +1082,60 @@ public class MainActivity extends AppCompatActivity
         // Close drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
+        // Change all the textviews to the custom font
         overrideFonts(drawer.getContext(),drawer);
 
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onBackPressed()
+    Description:                  When the back button is pressed, make sure
+                                  the navigation drawer is closed
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        // If the drawer is open, close it
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-
             super.onBackPressed();
-
         }
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateOptionsMenu()
+    Description:                  Inflate the menu with the create event plus button
+    Input:                        Menu menu
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu that has the create event plus button
         getMenuInflater().inflate(R.menu.action_bar_main, menu);
         return true;
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onOptionsItemSelected()
+    Description:                  Inflate the menu with the create event plus button
+    Input:                        MenuItem item
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_create_event) {
+            // Create new create event fragment
             CreateEventFragment createEventFragment = new CreateEventFragment();
 
             removeSearchToolbar();
-            // Add Event Details Fragment to fragment manager
+
+            // Add create event fragment to fragment manager
             this.getSupportFragmentManager().beginTransaction()
                     .show(createEventFragment)
                     .replace(R.id.fragment_frame_layout, createEventFragment)
@@ -978,76 +1143,71 @@ public class MainActivity extends AppCompatActivity
                     .addToBackStack(getString(R.string.fragment_create_event))
                     .commit();
         }
+
         // Must be left empty so onOptionsItemSelected will be called in subsequent fragments
         return super.onOptionsItemSelected(item);
 
     }
 
-    // for pictures
+    // For pictures
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
-    Uri fileUri;
-
-    public boolean useCamera() {
-
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), "Eventory");
-
-
-        // Create a media file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File mediaFile;
-
-        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-                "IMG_"+ timeStamp + ".jpg");
-
-        fileUri = Uri.fromFile(mediaFile);
-
-
-        // start the image capture Intent
-        startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-
-        return true;
-    }
-
     private static final int REQUEST_CODE = 1;
+    private boolean square; // if the picture should be square
 
-    private boolean square;
+    /*---------------------------------------------------------------------------
+    Function Name:                pickImage()
+    Description:                  Inflate the menu with the create event plus button
+    Input:                        boolean square
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public boolean pickImage(boolean square) {
 
+        // Update square boolean
         this.square = square;
-        Crop.pickImage(this);
 
+        // Start picking an image
+        Crop.pickImage(this);
 
         return true;
     }
 
-
+    /*---------------------------------------------------------------------------
+    Function Name:                onActivityResult()
+    Description:                  After another activity has started and has finished
+    Input:                        int requestCode
+                                  int resultCode
+                                  Intent result
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
+
+        // If the activity resulted is picked and was successful
         if (requestCode == Crop.REQUEST_PICK && resultCode == RESULT_OK) {
+
             beginCrop(result.getData());
+
         } else if (requestCode == Crop.REQUEST_CROP) {
+
             handleCrop(resultCode, result);
+
         }
 
-
+        // If the activity that just ended captured an image
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 
+            // If the user picked an image successfully
             if (resultCode == RESULT_OK) {
-
-                ////(TAG, "Image saved to:\n" + fileUri);
 
                 Uri uri = result.getData();
 
-                //("square", String.valueOf(square));
+                // Crop the picture as a square for the circle, otherwise crop a rectangle
                 if (square)
                     Crop.of(uri, picture).asSquare().start(this);
                 else
                     Crop.of(uri, picture).withAspect(2, 1).start(this);
 
-
+            // If the user has cancelled
             } else if (resultCode == RESULT_CANCELED) {
                 View view = findViewById(android.R.id.content);
                 Snackbar.make(view, "Image capture failed", Snackbar.LENGTH_LONG).show();
@@ -1059,27 +1219,41 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        // w/o crop
+        // Get a picture without crop and was succesfsul update picture varaible
         if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-
-            Uri uri = result.getData();
-
-            picture = uri;
+            picture = result.getData();
         }
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                beginCrop()
+    Description:                  Start cropping
+    Input:                        Uri source
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     private void beginCrop(Uri source) {
+
+        // Get the destination uri
         Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
 
+        // Crop the picture as a square for the circle, otherwise crop a rectangle
         if (square)
             Crop.of(source, destination).asSquare().start(this);
         else
             Crop.of(source, destination).withAspect(2, 1).start(this);
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                handleCrop()
+    Description:                  Get the output from cropping
+    Input:                        int resultCode
+                                  Intent result
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     private void handleCrop(int resultCode, Intent result) {
 
+        // If the result is ok, update picture; otherwise make a toast there was an error
         if (resultCode == RESULT_OK) {
             picture = Crop.getOutput(result);
 
@@ -1088,19 +1262,38 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                overrideFonts()
+    Description:                  Sets fonts for all TextViews
+    Input:                        final Context context
+                                  final View v
+    Output:                       View to be inflated
+    ---------------------------------------------------------------------------*/
     private void overrideFonts(final Context context, final View v) {
         try {
+
+            // If the view is a ViewGroup
             if (v instanceof ViewGroup) {
+
                 ViewGroup vg = (ViewGroup) v;
+
+                // Iterate through ViewGroup children
                 for (int i = 0; i < vg.getChildCount(); i++) {
                     View child = vg.getChildAt(i);
+
+                    // Call method again for each child
                     overrideFonts(context, child);
                 }
+
+                // If the view is a TextView set the font
             } else if (v instanceof TextView) {
-                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "Raleway-Medium.ttf"));
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "raleway-regular.ttf"));
             }
+
         }
         catch (Exception e) {
+            // Print out error if one is encountered
+            System.err.println(e.toString());
         }
     }
 
