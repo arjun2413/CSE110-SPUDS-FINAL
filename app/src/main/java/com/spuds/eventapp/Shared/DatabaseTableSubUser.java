@@ -201,9 +201,6 @@ public class DatabaseTableSubUser{
         }
     }
 
-
-
-
     //Start of SEARCH METHODs
     /*---------------------------------------------------------------------------
     Function Name:                getUserNameMatches()

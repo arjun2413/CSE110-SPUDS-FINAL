@@ -108,9 +108,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Firebase.setAndroidContext(this);
         af = new AccountFirebase();
-        //af.authCheck();
 
-        //getFragmentManager().popBackStack(null, android.app.FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
         setupNotifications(); // set up GCM values
 
@@ -135,7 +133,6 @@ public class MainActivity extends AppCompatActivity
 
         Intent i = new Intent(this, RegistrationService.class);
         startService(i);
-        //("intent", i.toString());
 
         new Thread(new Runnable() {
 
@@ -1045,14 +1042,5 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
-  /*  public void setActionBarTitle(String title){
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-       /* setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(title);
-        toolbar.setTitle(title);
-        //getActionBar().setTitle(title);
-    }*/
 
 }

@@ -17,9 +17,6 @@ public class EventDate {
                                "September","October","November","December"};
 
 
-    //real quick: add option for users to enter 12-hour time
-    //bro arvind
-
     //ctor
     public EventDate(String date) {
 

@@ -180,14 +180,6 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
         if (events.get(i).getPicture() != null && events.get(i).getPicture() != "") {
             String imageFile = events.get(i).getPicture();
             Bitmap src = null;
-            /*if (imageFile != null && imageFile != "") {
-                try {
-                    byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-                    src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-                } catch (OutOfMemoryError e) {
-                    System.err.println(e.toString());
-                }
-            }*/
 
             if (src != null)
                 eventViewHolder.eventPic.setImageBitmap(src);
@@ -308,12 +300,6 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
                     tabFragmentTag = currentFragment.getString(R.string.category_feed);
                 }
 
-                /*if (!tabFragmentTag.equals("")) {
-                    //make if else statements for all fragments that have tags
-                    currentFragment = currentFragment.getActivity().getSupportFragmentManager()
-                            .findFragmentByTag(tabFragmentTag);
-                }*/
-
 
                 ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
                 // Add Event Details Fragment to fragment manager
@@ -326,109 +312,10 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
             }
         });
 
-        //("rvadapter", "b4 thread");
-
-
-        /*eventViewHolder.buttonGoing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //("Here1", "herepls");
-
-
-                if (going) {
-
-                    //("edgoing", " true");
-
-                    /currentFragment.getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            eventViewHolder.buttonGoing.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_unselected));
-                        }
-                    });
-                    eventsFirebase.notGoingToAnEvent(events.get(i).getEventId());
-                    eventsFirebase.deleteEventRegistration(events.get(i).getEventId());
-
-                    going = false;
-
-                } else {
-
-                    //("edgoing", " false");
-                    currentFragment.getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            eventViewHolder.buttonGoing.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
-                        }
-                    });
-
-                    eventsFirebase.notGoingToAnEvent(events.get(i).getEventId());
-
-                    eventsFirebase.goingToAnEvent(events.get(i).getEventId());
-                    going = true;
-
-                }
-
-            }
-        });*/
-        /*if (i == events.size() - 1) {
-            recTest();
-        }
-
-        buttons.add(eventViewHolder.buttonGoing);*/
-
 
     }
 
     ArrayList<Button> buttons = new ArrayList<>();
-
-    /*void recTest() {
-
-        if (buttons.size() == 0) return;
-
-        eventsFirebase.isGoing(events.get(events.size() - buttons.size()).getEventId());
-
-        new Thread(new Runnable() {
-            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void run() {
-                //("rvadapterisisgoing", String.valueOf(eventsFirebase.idIsGoing));
-                while (eventsFirebase.idIsGoing == 0) {
-                    //("rvadapter", "areHere");
-                    try {
-                        Thread.sleep(75);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                if (eventsFirebase.idIsGoing == 1) {
-                    going = false;
-                    currentFragment.getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (buttons.size() == 0) return;
-                            buttons.get(0).setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_unselected));
-                            buttons.remove(0);
-
-                        }
-                    });
-                } else {
-                    going = true;
-                    currentFragment.getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (buttons.size() == 0) return;
-                            buttons.get(0).setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
-                            buttons.remove(0);
-
-                        }
-                    });
-
-                }
-
-                recTest();
-            }
-        }).start();
-    }*/
 
 
     /*---------------------------------------------------------------------------
@@ -499,8 +386,6 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(currentFragment.getString(R.string.fragment_profile))
                 .commit();
-
-
 
     }
 

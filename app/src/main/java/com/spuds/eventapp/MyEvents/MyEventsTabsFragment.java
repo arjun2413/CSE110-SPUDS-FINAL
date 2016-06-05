@@ -52,10 +52,6 @@ public class MyEventsTabsFragment extends Fragment {
         tabLayout.addTab(going, 0);
         tabLayout.addTab(hosting, 1);
 
-
-        //tabLayout.setTabTextColors(ContextCompat.getColorStateList(this, R.color.tab_selector));
-        //tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.indicator));
-
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

@@ -216,7 +216,6 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
                                 }
                             });
 
-                            //subscribeThreadCheck = false;
 
                         }
                     }).start();

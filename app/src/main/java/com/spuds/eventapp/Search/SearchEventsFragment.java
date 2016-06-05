@@ -134,31 +134,15 @@ public class SearchEventsFragment extends Fragment {
                     public void onRefresh() {
                         events.clear();
 
-                        //("refresh", "here");
                         new Thread(new Runnable() {
 
                             @Override
                             public void run() {
-                                //("refresh", "hereherehere");
 
-                                /*
-                                while (userFirebase.numSubscriptions > events.size() || !userFirebase.getSubscriptionsThreadCheck) {
-                                    ////("refresh", "size: " + events.size());
-                                    try {
-                                        Thread.sleep(70);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                                */
-
-                                //("refresh", "here2");
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run()
                                     {
-                                        //("refresh", "here3");
-
                                         adapter.notifyDataSetChanged();
                                         mySwipeRefreshLayout.setRefreshing(false);
 
