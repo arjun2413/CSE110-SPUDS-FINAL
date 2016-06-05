@@ -264,7 +264,6 @@ public class AccountFirebase {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("registration_id", token);
 
-        //Query queryRef = ref.orderByChild("email").equalTo(email);
         ref.child(UserFirebase.uId).updateChildren(map);
     }
 }

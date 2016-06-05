@@ -7,6 +7,11 @@ import java.util.GregorianCalendar;
 /**
  * Created by tina on 5/13/16.
  */
+
+/*---------------------------------------------------------------------------
+   Class Name: EventDate
+   Description: Class that converts date for use in forms
+---------------------------------------------------------------------------*/
 public class EventDate {
 
     GregorianCalendar gregorianCalendar;
@@ -15,17 +20,9 @@ public class EventDate {
     String minute;
     private String[] months = {"January","February","March","April","May","June","July","August",
                                "September","October","November","December"};
-
-
-    //ctor
+    //Constructor that converts the string date into EventDate
     public EventDate(String date) {
-
-        Log.e("EventDate" , "date: " + date);
-
-        //Check for proper date form
-        // TODO validate string not working
         if(validateString(date)) {
-
             //Use substring to parse each snippet of string.
             this.year = Integer.parseInt(date.substring(0,2));
             this.month = Integer.parseInt(date.substring(3,5));
@@ -45,19 +42,16 @@ public class EventDate {
 
             if (String.valueOf(this.minute).length() == 1)
                 this.minute += "0";
-
-        }
-        else {
-            //("Improper", "string value for date");
         }
     }
 
-    public String get24Time(){
-        return this.hour + ":" + this.minute;
-    }
-
+    /*---------------------------------------------------------------------------
+     Function Name: get12Time
+     Description: Converts the time to 12 hour time AM or PM
+     Input: None
+     Output: String - the 12 hour time
+    ---------------------------------------------------------------------------*/
     public String get12Time() {
-
         if(this.hour < 12 ){
             return this.hour + ":" + this.minute + " AM";
         }
@@ -65,22 +59,15 @@ public class EventDate {
             int a = this.hour - 12;
             return a + ":" + this.minute + " PM";
         }
-
     }
 
-    public String get12TimeMinusAMPM() {
-        if(this.hour < 12 ){
-            return this.hour + ":" + this.minute;
-        }
-        else{
-            int a = this.hour - 12;
-            return a + ":" + this.minute;
-        }
-    }
-
-    // TODO probably wrong
+    /*---------------------------------------------------------------------------
+     Function Name: getAMPM
+     Description: Determines if time is AM or PM
+     Input: None
+     Output: String - AM or PM
+    ---------------------------------------------------------------------------*/
     public String getAMPM() {
-        //("AMPM", String.valueOf(this.hour));
         if(this.hour < 12 ){
             return "AM";
         }
@@ -89,15 +76,23 @@ public class EventDate {
         }
     }
 
+    /*---------------------------------------------------------------------------
+     Function Name: getDate
+     Description: getter method for the date
+     Input: None
+     Output: String - date in month day year format
+    ---------------------------------------------------------------------------*/
     public String getDate() {
         int a = this.month;
         return months[a] + " " + this.day + ", " + this.year;
     }
 
-    public String getDateLong(){
-        return this.month + "/" + this.day + "/" + this.year;
-    }
-
+    /*---------------------------------------------------------------------------
+     Function Name: getMonth
+     Description: returns the month in either uppercase or lowercase
+     Input: boolean upperCase - true if uppercase
+     Output: String - month in either uppercase or lowercase
+    ---------------------------------------------------------------------------*/
     public String getMonth(boolean upperCase) {
         //return lower case month
         if (!upperCase) {
@@ -109,12 +104,23 @@ public class EventDate {
         }
     }
 
+    /*---------------------------------------------------------------------------
+     Function Name: getDay
+     Description: getter method for day
+     Input: None
+     Output: String - day
+    ---------------------------------------------------------------------------*/
     public String getDay() {
         return Integer.toString(this.day);
     }
 
+    /*---------------------------------------------------------------------------
+     Function Name: validateString
+     Description: checks the format of the string date
+     Input: String s - string to check
+     Output: boolean - true if valid, false if not
+    ---------------------------------------------------------------------------*/
     private boolean validateString(String s){
-        //("YEEZY", s);
         //use RegEx to ensure correct format. If it is in correct form, return true.
         if(s.matches("\\d{2}/\\d{2}/\\d{2} \\| \\d{2}:\\d{2}")){
             return true;

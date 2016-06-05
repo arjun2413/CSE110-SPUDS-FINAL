@@ -137,6 +137,7 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
             OwnViewHolder ownViewHolder = (OwnViewHolder) viewHolder;
             ownViewHolder.subName.setText(users.get(i).name);
 
+            // If the picture has been initialized
             if (currentSearchResult.picture != null && currentSearchResult.picture != "") {
                 //attempt to convert the image string into a bitmap
                 Bitmap src = null;
@@ -146,6 +147,7 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
                 } catch (OutOfMemoryError e) {
                     System.err.println(e.toString());
                 }
+
                 //if the bitmap was created successfully
                 if (src != null) {
                     //change the bitmap into a circle
@@ -158,14 +160,19 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
                         System.err.println(e.toString());
                     }
 
+                //if the bitmap was not created successfully
                 } else {
                     try {
+                        // Create a bitmap from default profile pic icon
                         src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
 
+                        // Change the bitmap to a circle
                         RoundedBitmapDrawable circularBitmapDrawable =
                                 RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
                         circularBitmapDrawable.setCircular(true);
                         circularBitmapDrawable.setAntiAlias(true);
+
+                        // Load the stock profile pic icon circle image to the user picture view for the user
                         ownViewHolder.subPhoto.setImageDrawable(circularBitmapDrawable);
                     } catch (OutOfMemoryError e) {
                         System.err.println(e.toString());
@@ -173,13 +180,16 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
                 }
             } else {
                 try {
+                    // Get bitmap from stock profile pic
                     Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
 
+                    // Change the bitmap to a circle
                     RoundedBitmapDrawable circularBitmapDrawable =
                             RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
                     circularBitmapDrawable.setCircular(true);
                     circularBitmapDrawable.setAntiAlias(true);
-                    //set the view for the picture to the new circle picture
+
+                    // Load the stock profile pic icon circle image to the user picture view for the user
                     ownViewHolder.subPhoto.setImageDrawable(circularBitmapDrawable);
                 } catch (OutOfMemoryError e) {
                     System.err.println(e.toString());
@@ -191,8 +201,10 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
                 @Override
                 public void onClick(View v) {
 
+                    // If the card is picked, start the profile fragment
                     Fragment profileFragment = new ProfileFragment();
 
+                    // Send in type of profile to the profile fragment
                     Bundle bundle = new Bundle();
                     bundle.putString(currentFragment.getString(R.string.profile_type),
                             currentFragment.getString(R.string.profile_type_owner));

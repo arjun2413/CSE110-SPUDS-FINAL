@@ -10,19 +10,15 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spuds.eventapp.EventDetails.EventDetailsFragment;
-import com.spuds.eventapp.Firebase.EventsFirebase;
 import com.spuds.eventapp.Firebase.UserFirebase;
-import com.spuds.eventapp.Profile.ProfileFeedFragment;
 import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.Event;
@@ -79,8 +75,6 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
     List<Event> events;
     Fragment currentFragment;
     String tagCurrentFragment;
-    String tabType;
-    String userId;
 
     /*---------------------------------------------------------------------------
     Function Name:                SubscriptionsListRVAdapter
@@ -121,9 +115,6 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
         return evh;
     }
 
-    EventsFirebase eventsFirebase = new EventsFirebase();
-    boolean going = false;
-
 
     /*---------------------------------------------------------------------------
     Function Name:                onBindViewHolder()
@@ -136,58 +127,29 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
     @Override
     public void onBindViewHolder(final EventViewHolder eventViewHolder, final int i) {
 
-        final int index = i;
-        // Add card See More... for profile fragment
-        if (tagCurrentFragment.equals(currentFragment.getString(R.string.fragment_profile)) && i == 3) {
-            eventViewHolder.seeMore.setVisibility(View.VISIBLE);
-
-            //DEPRECATED
-            ((ViewManager)eventViewHolder.eventPic.getParent()).removeView(eventViewHolder.eventPic);
-            ((ViewManager)eventViewHolder.eventName.getParent()).removeView(eventViewHolder.eventName);
-            ((ViewManager)eventViewHolder.eventLocation.getParent()).removeView(eventViewHolder.eventLocation);
-            ((ViewManager)eventViewHolder.eventAttendees.getParent()).removeView(eventViewHolder.eventAttendees);
-            ((ViewManager)eventViewHolder.eventCategories.getParent()).removeView(eventViewHolder.eventCategories);
-            ((ViewManager)eventViewHolder.monthDate.getParent()).removeView(eventViewHolder.monthDate);
-            ((ViewManager)eventViewHolder.dayDate.getParent()).removeView(eventViewHolder.dayDate);
-
-            //set set on click listener for event card
-            eventViewHolder.card.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ProfileFeedFragment profileFeedFragment = new ProfileFeedFragment();
-
-                    Bundle bundle = new Bundle();
-                    bundle.putString(currentFragment.getString(R.string.tab_tag), tabType);
-                    bundle.putString(currentFragment.getString(R.string.user_id), userId);
-
-                    profileFeedFragment.setArguments(bundle);
-
-                    ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
-                    // Add Event Details Fragment to fragment manager
-                    currentFragment.getFragmentManager().beginTransaction()
-                            .show(profileFeedFragment)
-                            .replace(R.id.fragment_frame_layout, profileFeedFragment)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                            .addToBackStack(currentFragment.getString(R.string.fragment_profile_feed))
-                            .commit();
-                }
-            });
-
-            return;
-        }
-
-
         if (events.get(i).getPicture() != null && events.get(i).getPicture() != "") {
             String imageFile = events.get(i).getPicture();
             Bitmap src = null;
 
-            if (src != null)
+            try {
+                byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+            } catch (OutOfMemoryError e) {
+                System.err.println(e.toString());
+            }
+            // If it was created successfully, set image bitmap
+            if (src != null) {
                 eventViewHolder.eventPic.setImageBitmap(src);
+            }
+            // If it was not created successfully, set image bitmap to default wine and dine
             else
                 eventViewHolder.eventPic.setImageResource(R.drawable.wineanddine);
+        // If no picture exists, set image bitmap to default wine and dine
         } else {
             eventViewHolder.eventPic.setImageResource(R.drawable.wineanddine);
         }
+
+        // Set the event information to corresponding views
         eventViewHolder.eventName.setText(events.get(i).getEventName());
         eventViewHolder.eventLocation.setText(events.get(i).getLocation());
         eventViewHolder.eventAttendees.setText(String.valueOf(events.get(i).getAttendees()));

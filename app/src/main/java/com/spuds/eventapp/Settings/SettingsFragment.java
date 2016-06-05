@@ -1,6 +1,5 @@
 package com.spuds.eventapp.Settings;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -71,9 +70,6 @@ public class SettingsFragment extends Fragment {
 
         //add the two cards to the settings page
         settings.add(new Setting("Change Password", R.drawable.setting_pass));
-        settings.add(new Setting("Notifications", R.drawable.notifications));
-
-
 
         adapter = new SettingsRVAdapter(settings, this, UserFirebase.thisUser.getNotificationToggle());
         rv.setAdapter(adapter);

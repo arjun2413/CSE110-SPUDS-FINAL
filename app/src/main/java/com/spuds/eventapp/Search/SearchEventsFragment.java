@@ -1,9 +1,7 @@
 package com.spuds.eventapp.Search;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -114,45 +112,8 @@ public class SearchEventsFragment extends Fragment {
             }).start();
 
         }
-        //calls the function to refresh the page.
-        //setupRefresh(v);
 
         return v;
-    }
-
-    /*---------------------------------------------------------------------------
-    Function Name:                refreshing
-    Description:                  called when user pulls down to refresh the page
-    Input:                        View view
-    Output:                       View
-    ---------------------------------------------------------------------------*/
-    public void refreshing(View view) {
-        final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
-        mySwipeRefreshLayout.setOnRefreshListener(
-                new SwipeRefreshLayout.OnRefreshListener() {
-                    @Override
-                    public void onRefresh() {
-                        events.clear();
-
-                        new Thread(new Runnable() {
-
-                            @Override
-                            public void run() {
-
-                                getActivity().runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run()
-                                    {
-                                        adapter.notifyDataSetChanged();
-                                        mySwipeRefreshLayout.setRefreshing(false);
-
-                                    }
-                                });
-                            }
-                        }).start();
-                    }
-                }
-        );
     }
 
     /*---------------------------------------------------------------------------

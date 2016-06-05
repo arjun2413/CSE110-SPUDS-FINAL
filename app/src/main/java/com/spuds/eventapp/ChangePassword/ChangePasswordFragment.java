@@ -262,5 +262,4 @@ public class ChangePasswordFragment extends Fragment {
         super.onResume();
         ((MainActivity)getActivity()).removeSearchToolbar();
     }
-
 }
