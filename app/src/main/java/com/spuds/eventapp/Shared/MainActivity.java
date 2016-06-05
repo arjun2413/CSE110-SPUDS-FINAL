@@ -67,9 +67,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/*---------------------------------------------------------------------------
+Class Name:                MainActivity
+Description:               Initializes and controls all the fragments,
+                           takes care of image picking, search, navigation
+                           drawer
+---------------------------------------------------------------------------*/
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    // Reference to all fragments having to do with navigation drawer
     Fragment currentFragment;
     HomeFeedTabsFragment homeFeedTabsFragment;
     NotificationsFragment notificationsFragment;
@@ -80,25 +87,30 @@ public class MainActivity extends AppCompatActivity
     SubscriptionFeedFragment subscriptionFeedFragment;
     AboutFragment aboutFragment;
     SettingsFragment settingsFragment;
+
+    // Navigtion drawer: Profile
+    View headerView;
+    NavigationView navigationView;
+    TextView name;
+    public Uri picture;
     ImageView profilePic;
 
+    // Search
     SearchBox search;
-    boolean first = true;
-
-    // notification stuff
-    public String token;
-    public GoogleCloudMessaging gcm;
-
     public String searchType;
-    public Uri picture;
     ArrayList<SubEvent> testEventsList;
     ArrayList<SubUser> testUsersList;
     ArrayList <String> searchResult;
     ArrayList <SubUser> subscriptions;
-    ArrayList<SubEvent> myEventsList;
-    NavigationView navigationView;
-    View headerView;
-    TextView name;
+
+    // Boolean checking if this is created for the first time
+    boolean first = true;
+
+    // Notifications
+    public String token;
+    public GoogleCloudMessaging gcm;
+
+    // Reference to backend get account information
     AccountFirebase af;
 
     @Override
@@ -108,9 +120,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Firebase.setAndroidContext(this);
         af = new AccountFirebase();
-        //af.authCheck();
-
-        //getFragmentManager().popBackStack(null, android.app.FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
         setupNotifications(); // set up GCM values
 
@@ -120,27 +129,35 @@ public class MainActivity extends AppCompatActivity
         setupDrawer();
         setupProfileDrawer();
 
-        searchResult = new ArrayList<String>();
+        // Initialize array lists for search
+        searchResult = new ArrayList<>();
         testUsersList = UserFirebase.subUsers;
         testEventsList = EventsFirebase.subEvents;
 
     }
 
-    // sets up GCM for the phone to use
+    /*---------------------------------------------------------------------------
+    Function Name:                setupNotifications()
+    Description:                  Sets up GCM for the phone to use
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     void setupNotifications() {
+        // If gcm has not been initialized yet, initialize it
         if (gcm == null) {
             gcm = GoogleCloudMessaging.getInstance(getApplicationContext());
-            //("GCM", gcm.toString());
         }
 
+        // Create a new intent service for registration service and start it
         Intent i = new Intent(this, RegistrationService.class);
         startService(i);
-        //("intent", i.toString());
 
+        // Checks if registration service token has been initailized
         new Thread(new Runnable() {
 
             @Override
             public void run() {
+                // If not intialized it, wait
                 while (RegistrationService.token == null) {
                     try {
                         Thread.sleep(75);
@@ -148,38 +165,56 @@ public class MainActivity extends AppCompatActivity
                         e.printStackTrace();
                     }
                 }
+
+                // Set instance variable for the token
                 token = RegistrationService.token;
-                //("Token = ", token);
 
-
+                // Push the token to backend
                 af.pushRegistrationId(token);
 
             }
         }).start();
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                setupProfileDrawer()
+    Description:                  Sets up the user information in the drawer
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public void setupProfileDrawer() {
 
+        // If this is run for the first time
         if (first) {
+
+            // Get view objects having to do with user info in drawer
             navigationView = (NavigationView) findViewById(R.id.nav_view);
-            overrideFonts(navigationView.getContext(), navigationView);
             headerView = navigationView.inflateHeaderView(R.layout.nav_header_profile);
+
+            // Set the fonts for all views in the drawer
+            overrideFonts(navigationView.getContext(), navigationView);
             overrideFonts(headerView.getContext(), headerView);
+
+            // Initialize view objects having to do with the profile
             name = (TextView) headerView.findViewById(R.id.user_name);
             profilePic = (ImageView) headerView.findViewById(R.id.profile_pic);
+
+            // Reset first inst. variable
             first = false;
         }
 
+        // If the name exists, set the name in the navigation drawer
         if (name != null) {
             name.setText(UserFirebase.thisUser.getName());
         }
 
-        //rounded photo, crashes when you re-run for some reason
-
+        // Reference to the string user image
         String imageFile = UserFirebase.thisUser.getPicture();
 
+        // If the image exists
         if (imageFile != null) {
 
+            // Try changing the picture into a bitmap
             Bitmap src = null;
             try {
                 byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
@@ -188,58 +223,93 @@ public class MainActivity extends AppCompatActivity
                 System.err.println(e.toString());
             }
 
+            // If the bitmap was created successfully
             if (src != null) {
+
+                // Change the bitmap to a circle
                 RoundedBitmapDrawable circularBitmapDrawable =
                         RoundedBitmapDrawableFactory.create(getResources(), src);
                 circularBitmapDrawable.setCircular(true);
                 circularBitmapDrawable.setAntiAlias(true);
+
+                // Load the circle image to the picture view for the user
                 profilePic.setImageDrawable(circularBitmapDrawable);
+            // If the bitmap was not created successfully
             } else {
+
+                // try to get bitmap from default profile pic icon
                 try {
                     src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
 
+                    // Create a circle from previous bitmap
                     RoundedBitmapDrawable circularBitmapDrawable =
                             RoundedBitmapDrawableFactory.create(getResources(), src);
                     circularBitmapDrawable.setCircular(true);
                     circularBitmapDrawable.setAntiAlias(true);
+
+                    // Load the stock profile pic icon circle image to the picture view for the user
                     profilePic.setImageDrawable(circularBitmapDrawable);
                 } catch(OutOfMemoryError e) {
                     System.err.println(e.toString());
                 }
             }
+        // If the user does not have a profile picture
         } else {
+            // Get bitmap from default profile pic icon
             Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
 
+            // Create a circle from previous bitmap
             RoundedBitmapDrawable circularBitmapDrawable =
                     RoundedBitmapDrawableFactory.create(getResources(), src);
             circularBitmapDrawable.setCircular(true);
             circularBitmapDrawable.setAntiAlias(true);
+
+            // Load the stock profile pic icon circle image to the picture view for the user
             profilePic.setImageDrawable(circularBitmapDrawable);
         }
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                setupMainToolbar()
+    Description:                  Sets up toolbar as action bar and set font
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     void setupMainToolbar() {
 
+        // Create reference to toolbar setting it as default action bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-       /* TextView title = (TextView) toolbar.findViewById(R.id.tv_toolbar);
-        title.setText("EVENTORY");*/
         setSupportActionBar(toolbar);
-        // getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        // Change font of action bar
         overrideFonts(toolbar.getContext(),toolbar);
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                setupSearchToolbar()
+    Description:                  Takes care of search depending on what fragment
+                                  currently in
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     void setupSearchToolbar() {
+
+        // Initialize search object
         search = (SearchBox) findViewById(R.id.searchbox);
+
+        // Set fonts for all objects having to do with search
         overrideFonts(search.getContext(),search);
 
+        // Set text, color, and log for the search bar
         search.setLogoText("Search for Events");
         search.setLogoTextColor(Color.parseColor("#bfbfbf"));
         search.setDrawerLogo(R.drawable.search);
 
-        final ArrayList<SearchResult> list = new ArrayList<SearchResult>();
+        // Initialize search result searchResultList
+        final ArrayList<SearchResult> searchResultList = new ArrayList<SearchResult>();
 
-        search.setSearchables(list);
+        search.setSearchables(searchResultList);
 
         search.setSearchListener(new SearchBox.SearchListener() {
 
@@ -885,8 +955,6 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
 
         }
-        //removeSearchToolbar();
-
     }
 
     @Override
@@ -1019,14 +1087,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void pickImageWithoutCrop() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        startActivityForResult(intent, REQUEST_CODE);
-    }
-
     private void overrideFonts(final Context context, final View v) {
         try {
             if (v instanceof ViewGroup) {
@@ -1042,15 +1102,5 @@ public class MainActivity extends AppCompatActivity
         catch (Exception e) {
         }
     }
-
-
-  /*  public void setActionBarTitle(String title){
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-       /* setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(title);
-        toolbar.setTitle(title);
-        //getActionBar().setTitle(title);
-    }*/
 
 }

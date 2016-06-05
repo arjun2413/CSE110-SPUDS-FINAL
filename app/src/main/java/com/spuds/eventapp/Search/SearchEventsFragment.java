@@ -90,7 +90,7 @@ public class SearchEventsFragment extends Fragment {
 
         }
         //calls the function to refresh the page.
-        //refreshing(v);
+        //setupRefresh(v);
 
         return v;
     }

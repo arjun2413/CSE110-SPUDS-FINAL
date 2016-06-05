@@ -11,7 +11,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,15 +26,21 @@ import com.spuds.eventapp.Firebase.UserFirebase;
 import com.spuds.eventapp.InvitePeople.InvitePeopleFragment;
 import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
-import com.spuds.eventapp.Shared.Comment;
 import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.MainActivity;
 
-import java.util.List;
+/*---------------------------------------------------------------------------
+Class Name:                EventDetailsFragment
+Description:               Sets up screen for the user to see event details
+---------------------------------------------------------------------------*/
 public class EventDetailsFragment extends Fragment {
+
     // Holds event details
     Event event;
     String eventId;
+    boolean ownEvent;
+    boolean going;
+
     // Views for event details
     ImageView eventPic;
     TextView eventName;
@@ -55,56 +60,86 @@ public class EventDetailsFragment extends Fragment {
 
     // Reference to itself
     Fragment eventDetailsFragment;
-    boolean going;
+
+
+    // Checks if first time creating event details fragment
     boolean first = true;
-    // Comments
-    RecyclerView rv;
-    List<Comment> comments;
-    boolean ownEvent;
+
+    // Reference to backend
     EventsFirebase eventsFirebase;
+
+    // Prevent user from spamming going utton
     boolean canClickGoing = true;
     boolean allowRefresh = false;
 
+    /*---------------------------------------------------------------------------
+    Function Name:                EventDetailsFragment
+    Description:                  Required default no-argument constructor
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public EventDetailsFragment() {}
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreate()
+    Description:                  Called each time fragment is created
+    Input:                        Bundle savedInstanceState
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Attempt to get events from previous fragment
         Bundle extras = getArguments();
         event = (Event) extras.getSerializable(getString(R.string.event_details));
-        if (event == null) {
-            eventId = extras.getString(getString(R.string.event_id));
-            //("eventsfirebasepushref", "eventisnullid is" + eventId);
-            // TODO: Fetch event using eventId
-            EventsFirebase ef = new EventsFirebase();
-            event = ef.getEventDetails(eventId);
 
+        // If unsuccessful getting event details
+        if (event == null) {
+
+            // Get the event id from the previous fragment
+            eventId = extras.getString(getString(R.string.event_id));
+
+            //Fetch event using eventId
+            eventsFirebase = new EventsFirebase();
+            event = eventsFirebase.getEventDetails(eventId);
+        // If successfull set event id
         } else
             eventId = event.getEventId();
 
+        // Start call to see if the user is going to this event
         eventsFirebase = new EventsFirebase();
-        //eventsFirebase.goingToAnEvent(eventId);
         eventsFirebase.isGoing(eventId);
 
-        eventDetailsFragment = this;
-
-
+        // Set instance variables
         if (event.getHostId().equals(UserFirebase.uId))
             ownEvent = true;
+        eventDetailsFragment = this;
+
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateView()
+    Description:                  Inflates View layout and sets fonts programmatically
+                                  Sets up click listeners for possible user input
+    Input:                        LayoutInflater inflater - inflates layout
+                                  ViewGroup container - parent view group
+                                  Bundle savedInstanceState
+    Output:                       View to be inflated
+    ---------------------------------------------------------------------------*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflates layout into view for the user
         View view = inflater.inflate(R.layout.fragment_event_details, container, false);
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(event.getEventName());
+        // Set all fonts for all textviews
         overrideFonts(view.getContext(),view);
 
+        // Typeface/font for the textviews
         Typeface raleway_medium = Typeface.createFromAsset(getActivity().getAssets(),  "Raleway-Medium.ttf");
 
-        //title font
+        // Sets the following text views to the specified font in the layout
         TextView name = (TextView) view.findViewById(R.id.event_name);
         name.setTypeface(raleway_medium);
 
@@ -124,7 +159,9 @@ public class EventDetailsFragment extends Fragment {
         going.setTypeface(raleway_medium);
 
         Button invite = (Button) view.findViewById(R.id.button_invite_people);
+        invite.setTypeface(raleway_medium);
 
+        // Setup view objects on this layout to be manipulated
         eventPic = (ImageView) view.findViewById(R.id.event_pic);
         eventName = (TextView) view.findViewById(R.id.event_name);
         eventLocation = (TextView) view.findViewById(R.id.event_loc);
@@ -139,50 +176,66 @@ public class EventDetailsFragment extends Fragment {
         buttonGoingOrEdit = (Button) view.findViewById(R.id.button_going);
         buttonEditEvent = (ImageButton) view.findViewById(R.id.button_edit_event);
 
-        invite.setTypeface(raleway_medium);
+        // Sets the title bar to the event name
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(event.getEventName());
 
-        setUpEventInformation(view);
+        setUpEventInformation();
         setupEditEvent();
         setupRefresh(view);
+
         return view;
     }
+
+    /*---------------------------------------------------------------------------
+    Function Name:                setupRefresh()
+    Description:                  Sets up allowing the user to refresh
+    Input:                        final View view
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public void setupRefresh(final View view) {
+
+        // Refresh layout object initialized
         mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+
+        // On refresh listener - if the user refreshes
         refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
 
-                //("refresh", "here");
+                // Get the event details for the event again from the database
                 EventsFirebase ef = new EventsFirebase();
                 EventsFirebase.detailsThreadCheck = false;
-                //("eventsfirebasepushref22", eventId);
                 ef.getEventDetails(eventId);
 
-
+                // A thread to check if the data has been pulled to the database
                 new Thread(new Runnable() {
 
                     @Override
                     public void run() {
+
+                        // While method to get event details is being executed wait for it to finish
                         while (!EventsFirebase.detailsThreadCheck) {
                             try {
-                                //("EDF","getting new evnet details with eventid" + eventId);
-
                                 Thread.sleep(70);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                         }
 
+                        // Change the views on the ui thread
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+
+                                // Update the event object with new event details
                                 event = EventsFirebase.eventDetailsEvent;
-                                //("wtf", event.getEventId());
-                                //("wtf", event.getDescription());
-                                //("wtf", event.getEventId());
-                                setUpEventInformation(view);
+
+                                // Update/setup again the event details and edit event
+                                setUpEventInformation();
                                 setupEditEvent();
+
+                                // Stop the refresh icon
                                 mySwipeRefreshLayout.setRefreshing(false);
                             }
                         });
@@ -193,26 +246,41 @@ public class EventDetailsFragment extends Fragment {
         };
 
 
+        // Set the refresh listener to the refresh layout
         mySwipeRefreshLayout.setOnRefreshListener(refreshListener);
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                setupEditEvet()
+    Description:                  Sets up allowing the user (owner) to edit the event
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     void setupEditEvent() {
 
+        // Only if the event is the user's
         if (ownEvent) {
+
+            // Make the edit event visible
             buttonEditEvent.setVisibility(View.VISIBLE);
 
+            // If the user clicks on the edit event button, direct user to edit event fragment
             buttonEditEvent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     EditEventFragment editEventFragment = new EditEventFragment();
 
+                    // Send the event details to the edit event fragment
                     Bundle bundle = new Bundle();
                     bundle.putSerializable(getString(R.string.event_details), event);
                     editEventFragment.setArguments(bundle);
 
+                    // Remove the search bar for edit event
                     ((MainActivity) getActivity()).removeSearchToolbar();
-                    // Add Event Details Fragment to fragment manager
+
+                    // Start the edit event fragment
                     getActivity().getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragment_frame_layout, editEventFragment)
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -224,23 +292,34 @@ public class EventDetailsFragment extends Fragment {
         }
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                setUpEventInformation()
+    Description:                  Sets up allowing the user (owner) to edit the event
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    void setUpEventInformation(View view) {
-        //Log.d("EDF", "setupeventinformation was called");
+    void setUpEventInformation() {
+
+        // Set up event name and location for the event
         eventName.setText(event.getEventName());
+        eventLocation.setText(event.getLocation());
+
+        // When host of the event is clicked
         eventHost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //("eventsfeedrvadapter", "eventhostclicked");
 
+                // Get the user information from the database
                 final UserFirebase userFirebase = new UserFirebase();
-
                 userFirebase.getAnotherUser(event.getHostId());
 
+                // A thread to check if the data has been pulled to the database
                 new Thread(new Runnable() {
 
                     @Override
                     public void run() {
+                        // While method to get user details is being executed wait for it to finish
                         while (!userFirebase.threadCheckAnotherUser) {
                             try {
                                 Thread.sleep(77);
@@ -249,17 +328,16 @@ public class EventDetailsFragment extends Fragment {
                             }
 
                         }
-                        //("eventsfeedrvadapter", "returned from firebase");
 
-
+                        // Switch to the profile fragment
                         startProfileFragment(userFirebase);
 
                     }
                 }).start();
             }
         });
-        eventLocation.setText(event.getLocation());
 
+        // TODO COMMENT
         String originalString = event.getDate();
         char[] c = originalString.toCharArray();
         char temp = c[0];
@@ -346,14 +424,14 @@ public class EventDetailsFragment extends Fragment {
         tempDay = tempDay + ", ";
         String tempYear = "20" + swappedString.substring(6,8);
         swappedString = tempMonth + tempDay + tempYear + tempTime;
-        //EventDate eD = new EventDate(event.getDate());
+
+        // Set text views for the following event information
         eventDate.setText(swappedString);
-        //eventTime.setText(eD.get12Time());
         eventAttendees.setText(String.valueOf(event.getAttendees()));
         eventHost.setText(event.getHostName());
         eventDescription.setText(event.getDescription());
 
-        // Categories
+        // TODO COMMETN Categories
         String categories = "";
         System.out.println("size" + event.getCategories().size());
         if(event.getCategories() != null && event.getCategories().size() != 0) {
@@ -363,20 +441,28 @@ public class EventDetailsFragment extends Fragment {
             }
             categories += event.getCategories().get(event.getCategories().size() - 1);
         }
+        // TODO END OF COMMENT TODO
 
+        // Set text views for the following event information: categories
         eventCategories.setText(categories);
 
+        // On click listener for the invite people button
         invitePeople.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // Add the search bar into view
                 ((MainActivity) getActivity()).addSearchToolbar();
+
+                // Initialize invite people fragment
                 InvitePeopleFragment invitePeopleFragment = new InvitePeopleFragment();
 
+                // Sending the event id to the invite people fragment
                 Bundle bundle = new Bundle();
                 bundle.putString(getString(R.string.event_id), eventId);
-
                 invitePeopleFragment.setArguments(bundle);
-                // Add Event Details Fragment to fragment manager
+
+                // Switch to the invite people fragment into view for the user
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_frame_layout, invitePeopleFragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -385,68 +471,69 @@ public class EventDetailsFragment extends Fragment {
             }
         });
 
-
-
+        // Check if the user is going to the event by making a GET request to the database
         eventsFirebase.isGoing(eventId);
 
+        // A thread to check if the data has been pulled from the database
         new Thread(new Runnable() {
             @Override
             public void run() {
 
-
+                // While the get request is getting if the user is going to this event
                 while (eventsFirebase.idIsGoing == 0) {
-                    //Log.d("EDF", "finding idisgoing");
                     try {
                         Thread.sleep(75);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    //Log.d("idIsGoing", String.valueOf(eventsFirebase.idIsGoing));
-
                 }
 
+                // Set the going variable according to the databse
                 if (eventsFirebase.idIsGoing == 1) {
                     going = false;
-                    //Log.d("EDF", "idisgoing = 1");
                 } else {
                     going = true;
-                    //Log.d("EDF", "idisgoing = 2");
                 }
 
-
-
+                // Based if the user is going to the event or not, update views on the ui thread
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
 
+                        // Setup color of going button
                         if (going)
                             buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
                         else
                             buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
 
+                        // If the going button is clicked
                         buttonGoingOrEdit.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                //Log.d("EDF", "clicking~");
 
+                                // Stop user from clicking
                                 if (canClickGoing) {
                                     canClickGoing = false;
 
+                                    // If the user is going to the event
                                     if (going) {
 
-                                        //Log.d("EDF", " going true");
-                                        //buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
+                                        // Reset thread check bool variables having to do with going
                                         eventsFirebase.notGoingThreadCheck = false;
                                         eventsFirebase.deleteThreadCheck = false;
+
+                                        // Update database user is not going to event
                                         eventsFirebase.notGoingToAnEvent(eventId);
                                         eventsFirebase.deleteEventRegistration(eventId);
 
+                                        // A thread to check if the data has been pushed to the database
                                         new Thread(new Runnable() {
 
                                             @Override
                                             public void run() {
+
+                                                // While the post request is processing
                                                 while (!eventsFirebase.notGoingThreadCheck || !eventsFirebase.deleteThreadCheck) {
-                                                    //Log.v("EDF", "going while loops");
                                                     try {
                                                         Thread.sleep(77);
                                                     } catch (InterruptedException e) {
@@ -455,14 +542,14 @@ public class EventDetailsFragment extends Fragment {
 
                                                 }
 
+                                                // Reset instance variables having to do with going
                                                 canClickGoing = true;
                                                 going = false;
 
+                                                // Refresh the event
                                                 mySwipeRefreshLayout.post(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        //Log.v("EDF", "swiperefresh1");
-                                                        // directly call onRefresh() method
                                                         refreshListener.onRefresh();
                                                     }
 
@@ -470,21 +557,24 @@ public class EventDetailsFragment extends Fragment {
 
                                             }
                                         }).start();
-
+                                    // If the user is going to the event
                                     } else {
-                                        //Log.v("EDF", "not going");
+                                        // Reset thread check bool variables having to do with going
                                         eventsFirebase.notGoingThreadCheck = false;
                                         eventsFirebase.goingToEventThreadCheck = false;
+
+                                        // Update database user is going to event
                                         eventsFirebase.notGoingToAnEvent(eventId);
                                         eventsFirebase.goingToAnEvent(eventId);
 
+                                        // A thread to check if the data has been pushed to the database
                                         new Thread(new Runnable() {
 
                                             @Override
                                             public void run() {
 
+                                                // While the post request is processing wait
                                                 while (!eventsFirebase.notGoingThreadCheck || !eventsFirebase.goingToEventThreadCheck) {
-                                                    //Log.v("EDF", "not going while loop");
                                                     try {
                                                         Thread.sleep(Integer.parseInt(getString(R.string.sleepTime)));
                                                     } catch (InterruptedException e) {
@@ -492,11 +582,11 @@ public class EventDetailsFragment extends Fragment {
                                                     }
 
                                                 }
-
+                                                // Reset instance variables having to do with going
                                                 canClickGoing = true;
                                                 going = true;
 
-                                                //buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
+                                                // Refresh the event
                                                 mySwipeRefreshLayout.post(new Runnable() {
                                                     @Override
                                                     public void run() {
@@ -518,14 +608,13 @@ public class EventDetailsFragment extends Fragment {
             }
         }).start();
 
-
-
+        // Get the image string from event details
         String imageFile = event.getPicture();
 
-        //("ag7", "imageFile = " + imageFile);
-
+        // If the image file exists
         if (imageFile != null && imageFile != "") {
 
+            // Attempt to get bitmap from imagefile
             Bitmap src = null;
             try {
                 byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
@@ -534,56 +623,72 @@ public class EventDetailsFragment extends Fragment {
                 System.err.println(e.toString());
             }
 
+            // If successful, set the event picture view to the bitmap
             if (src != null)
                 eventPic.setImageBitmap(src);
         }
 
     }
 
-
-
-
+    /*---------------------------------------------------------------------------
+    Function Name:                onResume()
+    Description:                  Every time the this fragment comes into view
+                                  remove the search toolbar and refresh the page
+    Input:                        None.
+    Output:                       None.
+   ---------------------------------------------------------------------------*/
     @Override
     public void onResume(){
         super.onResume();
-        //("WAOW", "ONRESUME");
+
+        // Remove the search bar
+        ((MainActivity)getActivity()).removeSearchToolbar();
+
+        // Only if it isn't the first time this fragment is being created
         if (!first) {
+
+            // Refresh this fragment/update event details
             mySwipeRefreshLayout.post(new Runnable() {
                 @Override public void run() {
-                    // directly call onRefresh() method
                     refreshListener.onRefresh();
                 }
             });
+
+        // Set first to false after this method is run once
         } else
             first = false;
 
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
+    /*---------------------------------------------------------------------------
+    Function Name:                startProfileFragment()
+    Description:                  Switches the view to the profile fragment
+                                  passing in the required fields
+    Input:                        final UserFirebase userFirebase
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     private void startProfileFragment(final UserFirebase userFirebase) {
 
+        // Create a new profile fragment
         Fragment profileFragment = new ProfileFragment();
 
+        // Pass in the type of the profile
         Bundle bundle = new Bundle();
         bundle.putString(getString(R.string.profile_type),
                 getString(R.string.profile_type_other));
-
-
+        // Pass in details of the user to profile
         bundle.putSerializable(getString(R.string.user_details), userFirebase.anotherUser);
-
         profileFragment.setArguments(bundle);
 
+        // Remove the search bar for profile
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 ((MainActivity)getActivity()).removeSearchToolbar();
             }
         });
-        // Add Event Details Fragment to fragment manager
+
+        // Bring the profile into view for the user
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_frame_layout, profileFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -591,27 +696,39 @@ public class EventDetailsFragment extends Fragment {
                 .commit();
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                overrideFonts()
+    Description:                  Sets fonts for all TextViews
+    Input:                        final Context context
+                                  final View v
+    Output:                       View to be inflated
+    ---------------------------------------------------------------------------*/
     private void overrideFonts(final Context context, final View v) {
         try {
+
+            // If the view is a ViewGroup
             if (v instanceof ViewGroup) {
+
                 ViewGroup vg = (ViewGroup) v;
+
+                // Iterate through ViewGroup children
                 for (int i = 0; i < vg.getChildCount(); i++) {
                     View child = vg.getChildAt(i);
+
+                    // Call method again for each child
                     overrideFonts(context, child);
                 }
-            } else if (v instanceof TextView ) {
+
+                // If the view is a TextView set the font
+            } else if (v instanceof TextView) {
                 ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "raleway-regular.ttf"));
             }
-        } catch (Exception e) {
+
+        }
+        catch (Exception e) {
+            // Print out error if one is encountered
+            System.err.println(e.toString());
         }
     }
-
-    /*@Override
-    public void onResume() {
-        super.onResume();
-        if (allowRefresh)
-        refreshListener.onRefresh();
-        ((MainActivity)getActivity()).removeSearchToolbar();
-    } */
 
 }

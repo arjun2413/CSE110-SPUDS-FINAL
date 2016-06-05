@@ -14,17 +14,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spuds.eventapp.EventDetails.EventDetailsFragment;
-import com.spuds.eventapp.Firebase.EventsFirebase;
-import com.spuds.eventapp.Firebase.UserFirebase;
-import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -102,9 +97,6 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         EventViewHolder evh = new EventViewHolder(v);
         return evh;
     }
-
-    EventsFirebase eventsFirebase = new EventsFirebase();
-    boolean going = false;
 
     @Override
     public void onBindViewHolder(final EventViewHolder eventViewHolder, final int i) {
@@ -240,12 +232,6 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
                     tabFragmentTag = currentFragment.getString(R.string.category_feed);
                 }
 
-                /*if (!tabFragmentTag.equals("")) {
-                    //make if else statements for all fragments that have tags
-                    currentFragment = currentFragment.getActivity().getSupportFragmentManager()
-                            .findFragmentByTag(tabFragmentTag);
-                }*/
-
 
                 ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
                 // Add Event Details Fragment to fragment manager
@@ -258,111 +244,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             }
         });
 
-        //("rvadapter", "b4 thread");
-
-
-        /*eventViewHolder.buttonGoing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //("Here1", "herepls");
-
-
-                if (going) {
-
-                    //("edgoing", " true");
-
-                    /currentFragment.getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            eventViewHolder.buttonGoing.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_unselected));
-                        }
-                    });
-                    eventsFirebase.notGoingToAnEvent(events.get(i).getEventId());
-                    eventsFirebase.deleteEventRegistration(events.get(i).getEventId());
-
-                    going = false;
-
-                } else {
-
-                    //("edgoing", " false");
-                    currentFragment.getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            eventViewHolder.buttonGoing.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
-                        }
-                    });
-
-                    eventsFirebase.notGoingToAnEvent(events.get(i).getEventId());
-
-                    eventsFirebase.goingToAnEvent(events.get(i).getEventId());
-                    going = true;
-
-                }
-
-            }
-        });*/
-        /*if (i == events.size() - 1) {
-            recTest();
-        }
-
-        buttons.add(eventViewHolder.buttonGoing);*/
-
-
     }
-
-    ArrayList<Button> buttons = new ArrayList<>();
-
-    /*void recTest() {
-
-        if (buttons.size() == 0) return;
-
-        eventsFirebase.isGoing(events.get(events.size() - buttons.size()).getEventId());
-
-        new Thread(new Runnable() {
-            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void run() {
-                //("rvadapterisisgoing", String.valueOf(eventsFirebase.idIsGoing));
-                while (eventsFirebase.idIsGoing == 0) {
-                    //("rvadapter", "areHere");
-                    try {
-                        Thread.sleep(75);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                if (eventsFirebase.idIsGoing == 1) {
-                    going = false;
-                    currentFragment.getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (buttons.size() == 0) return;
-                            buttons.get(0).setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_unselected));
-                            buttons.remove(0);
-
-                        }
-                    });
-                } else {
-                    going = true;
-                    currentFragment.getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (buttons.size() == 0) return;
-                            buttons.get(0).setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
-                            buttons.remove(0);
-
-                        }
-                    });
-
-                }
-
-                recTest();
-            }
-        }).start();
-    }*/
-
-
 
     @Override
     public int getItemCount() {
@@ -384,36 +266,5 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         catch (Exception e) {
         }
     }
-
-    private void startProfileFragment(final UserFirebase userFirebase) {
-
-        Fragment profileFragment = new ProfileFragment();
-
-        Bundle bundle = new Bundle();
-        bundle.putString(currentFragment.getString(R.string.profile_type),
-                currentFragment.getString(R.string.profile_type_other));
-
-
-        bundle.putSerializable(currentFragment.getString(R.string.user_details), userFirebase.anotherUser);
-
-        profileFragment.setArguments(bundle);
-
-        currentFragment.getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ((MainActivity)currentFragment.getActivity()).removeSearchToolbar();
-            }
-        });
-        // Add Event Details Fragment to fragment manager
-        currentFragment.getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_frame_layout, profileFragment)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .addToBackStack(currentFragment.getString(R.string.fragment_profile))
-                .commit();
-
-
-
-    }
-
 
 }

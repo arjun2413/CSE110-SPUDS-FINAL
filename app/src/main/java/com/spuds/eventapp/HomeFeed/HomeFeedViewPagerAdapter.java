@@ -10,22 +10,48 @@ import com.spuds.eventapp.R;
 /**
  * Created by tina on 4/30/16.
  */
+
+/*---------------------------------------------------------------------------
+Class Name:                HomeFeedViewPagerAdapter
+Description:               Sets up adapter for tabs: creates new home feeds
+                           new/hot/now for each tab/page
+---------------------------------------------------------------------------*/
 public class HomeFeedViewPagerAdapter extends FragmentStatePagerAdapter {
 
+    // Reference to fragment instantiated from
     Fragment homeFeedTabsFragment;
 
+    /*---------------------------------------------------------------------------
+    Function Name:                HomeFeedViewPagerAdapter()
+    Description:                  Initalizing instance variables
+    Input:                        FragmentManager fm - reference to fragment manager
+                                  Fragment homeFeedTabsFragment - reference
+                                    to fragment instantiated from
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public HomeFeedViewPagerAdapter(FragmentManager fm, Fragment homeFeedTabsFragment) {
         super(fm);
+
         this.homeFeedTabsFragment = homeFeedTabsFragment;
     }
 
-    //TODO: Create different fragments passing in filter
+    /*---------------------------------------------------------------------------
+    Function Name:                getItem()
+    Description:                  Called each time fragment is created; gets
+                                  information passed to this fragment
+    Input:                        int position - which tab to instantiated
+                                    based on position
+    Output:                       Fragment - home feed fragment to be instantiated
+    ---------------------------------------------------------------------------*/
     @Override
     public Fragment getItem(int position) {
+
+        // Create new home feed fragment
         HomeFeedFragment homeFeedFragment = new HomeFeedFragment();
 
         Bundle bundle = new Bundle();
 
+        // Based on the position, put in the tab type in the bundle for the home feed
         switch (position) {
             // New
             case 0:
@@ -44,11 +70,18 @@ public class HomeFeedViewPagerAdapter extends FragmentStatePagerAdapter {
                 break;
         }
 
+        // Set the arguments for the bundle to the home feed fragment
         homeFeedFragment.setArguments(bundle);
 
         return homeFeedFragment;
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                getCount()
+    Description:                  Return how many tabs there are
+    Input:                        None
+    Output:                       int - how many tabs there are
+    ---------------------------------------------------------------------------*/
     @Override
     public int getCount() {
         return 3;
