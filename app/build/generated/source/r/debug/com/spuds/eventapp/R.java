@@ -3636,8 +3636,9 @@ containing a value of this type.
     public static final class menu {
         public static final int action_bar_main=0x7f0f0000;
         public static final int activity_main_drawer=0x7f0f0001;
-        public static final int dashboard=0x7f0f0002;
-        public static final int invite_people=0x7f0f0003;
+        public static final int create_event_blank=0x7f0f0002;
+        public static final int dashboard=0x7f0f0003;
+        public static final int invite_people=0x7f0f0004;
     }
     public static final class mipmap {
         public static final int ic_launcher=0x7f030000;

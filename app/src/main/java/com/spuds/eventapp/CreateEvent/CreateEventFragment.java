@@ -13,7 +13,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -298,6 +301,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         ((MainActivity) getActivity()).picture = null;
     }
 
@@ -394,6 +398,21 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         done.setTypeface(raleway_medium);
 
         return view;
+    }
+
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateOptionsMenu()
+    Description:                  creates the stuff on the toolbar
+    Input:                        Menu menu
+                                  MenuInflater inflater - inflates layout
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        Log.v("assdas", "asd");
+        menu.removeItem(R.id.action_create_event);
+        inflater.inflate(R.menu.create_event_blank, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
