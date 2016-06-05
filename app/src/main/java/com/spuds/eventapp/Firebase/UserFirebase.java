@@ -34,29 +34,55 @@ import java.util.Map;
 /**
  * Created by tina on 5/2/16.
  */
+/*---------------------------------------------------------------------------
+Class Name:             UserFirebase
+Description:            Contains relevant methods for interacting with User
+                        information with Firebase
+---------------------------------------------------------------------------*/
 public class UserFirebase {
 
+    //declare and instantiate variables
     public boolean threadCheck = false;
     public boolean threadCheckAnotherUser = false;
-
     public static String uId;
     public static User thisUser = new User();
     public User anotherUser;
 
+    /*---------------------------------------------------------------------------
+    Constructor Name:           UserFirebase
+    Description:                Create a new User
+    ---------------------------------------------------------------------------*/
     public UserFirebase() {
         anotherUser = new User();
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                getMyAccountDetails
+    Description:                  Fetch information from Firebase
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public void getMyAccountDetails() {
+        //Thread flag
         threadCheck = false;
 
+        //declare and initialize Firebase object (custom URL) and Query object
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/users");
         Query queryRef = ref.child(uId);
 
+        //add child event listener
         queryRef.addChildEventListener(new ChildEventListener() {
+            /*---------------------------------------------------------------------------
+            Function Name:                  onChildAdded()
+            Description:                    for each child, extract user details
+            Input:                          DataSnapshot snapshot - snapshot of data from Firebase
+                                            String previousChild - string of previous child object
+            Output:                         None.
+            ---------------------------------------------------------------------------*/
             @Override
             public void onChildAdded(DataSnapshot snapshot, String previousChild) {
 
+                //switch case for name, desc, notifications, number_following, number_hosting, picture info retrieval
                 switch (snapshot.getKey()) {
 
                     case "name":
@@ -81,49 +107,82 @@ public class UserFirebase {
 
                 thisUser.setUserId(uId);
 
-                threadCheck = true;
+                threadCheck = true; //set threadcheck flag
 
             }
 
+            /*---------------------------------------------------------------------------
+            Function Name:              onChildChanged
+            Description:                Just an unused overriden method
+            Input:                      DataSnapshot, String
+            Output:                     None.
+            ---------------------------------------------------------------------------*/
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
             }
-
+            /*---------------------------------------------------------------------------
+            Function Name:              onChildRemoved
+            Description:                Just an unused overriden method
+            Input:                      DataSnapshot, String
+            Output:                     None.
+            ---------------------------------------------------------------------------*/
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
 
             }
-
+            /*---------------------------------------------------------------------------
+            Function Name:              onChildMoved
+            Description:                Just an unused overriden method
+            Input:                      DataSnapshot, String
+            Output:                     None.
+            ---------------------------------------------------------------------------*/
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
             }
-
+            /*---------------------------------------------------------------------------
+            Function Name:              onCancelled
+            Description:                Just an unused overriden method
+            Input:                      DataSnapshot, String
+            Output:                     None.
+            ---------------------------------------------------------------------------*/
             @Override
             public void onCancelled(FirebaseError firebaseError) {
 
             }
         });
-
-
-
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:              updateUser
+    Description:                updates User information
+    Input:                      User user - user to update
+    Output:                     None.
+    ---------------------------------------------------------------------------*/
     public static void updateUser(User user) {
 
+        //initialize new Firebase obj for query
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/users/");
 
+        //Map to hold provider, name, description in a sort of tuple
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("provider", ref.getAuth().getProvider());
         map.put("name", user.getName());
         map.put("description", user.getDescription());
+        //get picture info
         if (user.getPicture() != null && user.getPicture() != "")
             map.put("picture", user.getPicture());
 
         ref.child(UserFirebase.uId).updateChildren(map);
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:              updateNotificationToggle
+    Description:                updates Notificaiton toggle in Firebase
+    Input:                      boolean - which way to toggle
+    Output:                     None.
+    ---------------------------------------------------------------------------*/
     public static void updateNotificationToggle(boolean toggle) {
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/users/");
 
@@ -132,6 +191,12 @@ public class UserFirebase {
         ref.child(UserFirebase.uId).updateChildren(map);
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:              getAnotherUser
+    Description:                retrieve another user from Firebase
+    Input:                      String userId - user ID of user to retrieve
+    Output:                     None.
+    ---------------------------------------------------------------------------*/
     public void getAnotherUser(String userId) {
 
         final String finalUserId = userId;
@@ -196,6 +261,12 @@ public class UserFirebase {
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:              calculateInSampleSize
+    Description:                updates User information
+    Input:                      User user - user to update
+    Output:                     None.
+    ---------------------------------------------------------------------------*/
     public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
 
         // Raw height and width of image
@@ -219,10 +290,13 @@ public class UserFirebase {
         return inSampleSize;
     }
 
-
-
-
-
+    /*---------------------------------------------------------------------------
+    Function Name:              convert
+    Description:                convert picture
+    Input:                      Context - where input is
+                                URI - URI reference
+    Output:                     String
+    ---------------------------------------------------------------------------*/
     public static String convert(Context context, Uri uri) {
         if (uri == null)
             return "";
@@ -233,26 +307,17 @@ public class UserFirebase {
 
         try {
 
-            //("look!", "before decoding");
-
             InputStream stream = context.getContentResolver().openInputStream(uri);
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             bitmap = BitmapFactory.decodeStream(stream, null, options);
 
-
             options.inSampleSize = calculateInSampleSize(options, 200, 200);
-
-            //("look!", "sample size: " + options.inSampleSize);
 
             // Decode bitmap with inSampleSize set
             options.inJustDecodeBounds = false;
             InputStream stream1 = context.getContentResolver().openInputStream(uri);
             bitmap = BitmapFactory.decodeStream(stream1, null, options);
-
-            //("look!", "after decoding");
-
-
 
             stream.close();
 
@@ -305,11 +370,6 @@ public class UserFirebase {
         // Correct bitmap to be uploaded
         bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
 
-       /* ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, stream);
-        byte[] byte_arr = stream.toByteArray();
-        return Base64.encodeBytes(byte_arr);*/
-
         ByteArrayOutputStream bYtE = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bYtE);
         bitmap.recycle();
@@ -324,7 +384,6 @@ public class UserFirebase {
         }
         return result;
 
-        // TODO (M): Upload picture
     }
 
     String id = null;
@@ -344,7 +403,6 @@ public class UserFirebase {
             map.put("user_id", uId);
             map.put("following_id", otherUid);
 
-            //Query queryRef = ref.orderByChild("email").equalTo(email);
             ref.push().setValue(map);
 
             increaseAmtFollowers(otherUserid);
@@ -359,19 +417,14 @@ public class UserFirebase {
                             e.printStackTrace();
                         }
                     }
-
                     //update user table #subscribed
                     subscribeThreadCheck = true;
-
 
                 }
             }).start();
 
-
-
         } else {
             final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
-
 
             firebaseProblem = false;
 
@@ -384,13 +437,9 @@ public class UserFirebase {
                         HashMap<String, Object> values = (HashMap<String, Object>) snapshot.getValue();
                         if (values != null) {
                             for (Map.Entry<String, Object> entry : values.entrySet()) {
-                                //("Userfirebase asdf", " key" + entry.getKey());
 
                                 boolean first = false;
                                 for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
-
-                                    //("Userfirebase asdf", " entry value key" + entry2.getKey());
-                                    //("Userfirebase asdf", " entry value value" + entry2.getValue());
 
                                     if (entry2.getKey().equals("following_id")) {
                                         if (entry2.getValue().equals(otherUserid)) {
@@ -408,8 +457,6 @@ public class UserFirebase {
 
                                 }
                             }
-
-                            //("userfirebase test", "id: " + id);
                             decNumFollowing(otherUserid);
 
                             new Thread(new Runnable() {
@@ -434,12 +481,15 @@ public class UserFirebase {
                     }
                 }
 
+                /*---------------------------------------------------------------------------
+                Function Name:              onCancelled
+                Description:                Unused Overridden method
+                Input:                      FirebaseError
+                Output:                     None.
+                ---------------------------------------------------------------------------*/
                 @Override
                 public void onCancelled (FirebaseError firebaseError){
-
                 }
-
-
             };
 
 
@@ -457,19 +507,18 @@ public class UserFirebase {
                             e.printStackTrace();
                         }
                     }
-
                     ref.removeEventListener(valueEventListener);
-                    //subscribeThreadCheck = false;
-
                 }
             }).start();
-
-
         }
-
-
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:              updateNumberHosting
+    Description:                update number hosting
+    Input:                      none
+    Output:                     None.
+    ---------------------------------------------------------------------------*/
     public void updateNumberHosting() {
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/users");
 
@@ -488,21 +537,42 @@ public class UserFirebase {
 
             }
 
+            /*---------------------------------------------------------------------------
+            Function Name:              onChildChanged
+            Description:                unused overriden method
+            Input:                      DataSnapshot, String
+            Output:                     None.
+            ---------------------------------------------------------------------------*/
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
             }
-
+            /*---------------------------------------------------------------------------
+            Function Name:              onChildRemoved
+            Description:                unused overriden method
+            Input:                      DataSnapshot, String
+            Output:                     None.
+            ---------------------------------------------------------------------------*/
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
 
             }
-
+            /*---------------------------------------------------------------------------
+            Function Name:              onChildMoved
+            Description:                unused overriden method
+            Input:                      DataSnapshot, String
+            Output:                     None.
+            ---------------------------------------------------------------------------*/
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
             }
-
+            /*---------------------------------------------------------------------------
+            Function Name:              onCancelled
+            Description:                unused overriden method
+            Input:                      DataSnapshot, String
+            Output:                     None.
+            ---------------------------------------------------------------------------*/
             @Override
             public void onCancelled(FirebaseError firebaseError) {
 
@@ -511,13 +581,15 @@ public class UserFirebase {
 
     }
 
-
-
-
-
     public static boolean isSubscribedThreadCheck = false;
     public static int idIsSubscribed = 0;
 
+    /*---------------------------------------------------------------------------
+    Function Name:              isSubscribed
+    Description:                checks if user is subscribed to user
+    Input:                      String userId - userId to check
+    Output:                     None.
+    ---------------------------------------------------------------------------*/
     public void isSubscribed(final String userId) {
         idIsSubscribed = 0;
         Log.v("bren", String.valueOf(idIsSubscribed));
@@ -530,39 +602,26 @@ public class UserFirebase {
                 HashMap<String, Object> values = (HashMap<String, Object>) snapshot.getValue();
                 if (values != null) {
 
-
                     for (Map.Entry<String, Object> entry : values.entrySet()) {
-                        //("Userfirebase asdf", " key" + entry.getKey());
 
                         boolean first = false;
                         for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
 
-
                             boolean second = false;
 
-                            //Log.v("Userfirebase asdf", " entry value key" + entry2.getKey());
-                            //Log.v("Userfirebase asdf", " entry value value" + entry2.getValue());
-
-
                             if (entry2.getKey().equals("following_id")) {
-                                Log.v("pho dude1", String.valueOf(entry2.getValue()));
                                 if (entry2.getValue().equals(userId)) {
-                                    Log.v("pho dude2", "I WANNA");
                                     first = true;
                                 }
                             }
 
-                            Log.v("pho dude7", entry2.getKey() + entry2.getKey().equals("user_id") + first);
                             if (entry2.getKey().equals("user_id") && first) {
-                                Log.v("pho dude3", "I WANNA");
                                 if (entry2.getValue().equals(UserFirebase.uId)) {
-                                    Log.v("pho dude4", "I WANNA");
                                     second = true;
                                 }
                             }
 
                             if (second) {
-                                Log.v("pho dude5", "I WANNA");
                                 idIsSubscribed = 2;
                             }
 
@@ -571,16 +630,20 @@ public class UserFirebase {
                     }
 
                     if (idIsSubscribed != 2) {
-                        Log.v("TAKE IT OFF", "I WANNA");
                         idIsSubscribed = 1;
                     }
-
 
                     isSubscribedThreadCheck = true;
 
                 }
             }
 
+            /*---------------------------------------------------------------------------
+            Function Name:              onCancelled
+            Description:                unused overriden method
+            Input:                      DataSnapshot, String
+            Output:                     None.
+            ---------------------------------------------------------------------------*/
             @Override
             public void onCancelled(FirebaseError firebaseError) {
 
@@ -612,6 +675,12 @@ public class UserFirebase {
 
     public static boolean getSubscriptionsThreadCheck;
     public int numSubscriptions;
+    /*---------------------------------------------------------------------------
+    Function Name:              getSubscriptions
+    Description:                get subscriptions list
+    Input:                      ArrayList<Subscription>
+    Output:                     None.
+    ---------------------------------------------------------------------------*/
     public void getSubscriptions(final ArrayList<Subscription> subscriptions) {
         getSubscriptionsThreadCheck = false;
         numSubscriptions = 0;
@@ -619,6 +688,12 @@ public class UserFirebase {
 
         final ValueEventListener valueEventListener = new ValueEventListener() {
 
+            /*---------------------------------------------------------------------------
+            Function Name:              onDataChange
+            Description:                detects if something changed
+            Input:                      DataSnapshot - snapshot of data from Fb
+            Output:                     None.
+            ---------------------------------------------------------------------------*/
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 String id = "";
@@ -627,16 +702,10 @@ public class UserFirebase {
 
                     ArrayList<String> users = new ArrayList<>();
                     for (Map.Entry<String, Object> entry : values.entrySet()) {
-                        //("subsfirebase", " key" + entry.getKey());
-
 
                         String followingId = "";
                         boolean following = false;
                         for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
-
-                            //("subsfirebase", " entry value key" + entry2.getKey());
-                            //("subsfirebase", " entry value value" + entry2.getValue());
-
 
                             if (entry2.getKey().equals("following_id")) {
                                 followingId = String.valueOf(entry2.getValue());
@@ -676,6 +745,12 @@ public class UserFirebase {
         ref.addValueEventListener(valueEventListener);
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:              recTest
+    Description:                test recreation
+    Input:                      ArrayList<String>, ArrayList<Subs>
+    Output:                     None.
+    ---------------------------------------------------------------------------*/
     void recTest(final ArrayList<String> users, final ArrayList<Subscription> subscriptions) {
         if (users.size() == 0) {
             getSubscriptionsThreadCheck = true;
@@ -715,6 +790,12 @@ public class UserFirebase {
 
     public static boolean threadCheckSubUser;
     public static ArrayList<SubUser> subUsers;
+    /*---------------------------------------------------------------------------
+    Function Name:              getSubUserList
+    Description:                get list of sub users
+    Input:                      None
+    Output:                     None.
+    ---------------------------------------------------------------------------*/
     public void getSubUserList() {
         subUsers = new ArrayList<>();
         threadCheckSubUser = false;
@@ -726,12 +807,10 @@ public class UserFirebase {
             public void onChildAdded(DataSnapshot snapshot, String previousChild) {
 
                 SubUser subUser  = new SubUser();
-                //("asdfjkl;", snapshot.getKey());
 
                 subUser.setUserId(snapshot.getKey());
 
                 for (DataSnapshot child : snapshot.getChildren()) {
-                    //Log.d("lmao", String.valueOf(child));
                     switch (child.getKey()) {
                         case "name":
                             subUser.setName(String.valueOf(child.getValue()));
@@ -770,22 +849,23 @@ public class UserFirebase {
 
     public static boolean increaseNumFollowThreadCheck;
     public static int numFollowing;
-    /* Purpose: Increases the amount of followers by 1 */
+    /*---------------------------------------------------------------------------
+    Function Name:              increaseAmtFollowers
+    Description:                Purpose: Increases the amount of followers by 1
+    Input:                      String userId
+    Output:                     None.
+    ---------------------------------------------------------------------------*/
     public void increaseAmtFollowers(final String userId) {
         increaseNumFollowThreadCheck = false;
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/users");
         Query queryRef = myFirebaseRef.child(userId);
-        Log.d("Here6", "here");
         queryRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Log.d("Here9", "here");
                 //Checks if it is number_going that we are changing
                 if (dataSnapshot.getKey().equals("number_following")) {
                     //gets the string and changes it to an int
                     numFollowing = Integer.parseInt(String.valueOf(dataSnapshot.getValue()));
-                    Log.d("Here", "here");
-                    Log.d("how many1", String.valueOf(numFollowing));
                     myFirebaseRef.child(userId).child("number_following").setValue(String.valueOf(++numFollowing));
                 }
 
@@ -818,17 +898,20 @@ public class UserFirebase {
     }
 
     public static boolean decNumFollowingThreadCheck;
+    /*---------------------------------------------------------------------------
+    Function Name:              decNumFollowing
+    Description:                get num of ppl following
+    Input:                      String userId
+    Output:                     None.
+    ---------------------------------------------------------------------------*/
     public void decNumFollowing(final String userId) {
         decNumFollowingThreadCheck = false;
         final Firebase myFirebaseRef = new Firebase("https://eventory.firebaseio.com/users");
         Query queryRef = myFirebaseRef.child(userId);
-        Log.d("Here7", "here");
 
         queryRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                Log.d("Here9", "here");
 
                 if (dataSnapshot.getKey().equals("number_following")) {
                     numFollowing = Integer.parseInt(String.valueOf(dataSnapshot.getValue()));
@@ -839,6 +922,7 @@ public class UserFirebase {
 
             }
 
+            //unused overridden methods
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
@@ -859,12 +943,17 @@ public class UserFirebase {
 
             }
         });
-        Log.d("how many", String.valueOf(numFollowing));
     }
 
 
     public static boolean getSearchSubsThreadCheck;
     public static int numSearchSubs;
+    /*---------------------------------------------------------------------------
+    Function Name:              getSearchSubs
+    Description:                get searched subs
+    Input:                      ArrayList<SubUser>
+    Output:                     None.
+    ---------------------------------------------------------------------------*/
     public void getSearchSubs(final ArrayList<SubUser> subscriptions) {
         getSearchSubsThreadCheck = false;
         numSearchSubs = 0;
@@ -880,16 +969,10 @@ public class UserFirebase {
 
                     ArrayList<String> users = new ArrayList<>();
                     for (Map.Entry<String, Object> entry : values.entrySet()) {
-                        //("subsfirebase", " key" + entry.getKey());
-
 
                         String followingId = "";
                         boolean following = false;
                         for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
-
-                            //("subsfirebase", " entry value key" + entry2.getKey());
-                            //("subsfirebase", " entry value value" + entry2.getValue());
-
 
                             if (entry2.getKey().equals("following_id")) {
                                 followingId = String.valueOf(entry2.getValue());
@@ -901,16 +984,13 @@ public class UserFirebase {
                                 }
                             }
 
-
                         }
 
                         if (following) {
-
                             ++numSearchSubs;
                             users.add(followingId);
 
                         }
-
 
                     }
 
@@ -929,6 +1009,12 @@ public class UserFirebase {
         ref.addValueEventListener(valueEventListener);
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:              recTestSubUser
+    Description:                tester method
+    Input:                      ArrayList<String>, ArrayList<SubUser>
+    Output:                     None.
+    ---------------------------------------------------------------------------*/
     void recTestSubUser(final ArrayList<String> users, final ArrayList<SubUser> subscriptions) {
         if (users.size() == 0) {
             getSearchSubsThreadCheck = true;
