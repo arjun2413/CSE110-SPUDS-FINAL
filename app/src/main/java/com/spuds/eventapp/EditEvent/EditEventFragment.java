@@ -48,6 +48,10 @@ import java.util.List;
 
 import cn.refactor.library.SmoothCheckBox;
 
+/*---------------------------------------------------------------------------
+Class Name:                EditEventFragment
+Description:               Contains information about EditEventFragment
+---------------------------------------------------------------------------*/
 public class EditEventFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     private ImageView eventImage;
     private EditText eventName;
@@ -74,10 +78,22 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
     private List<CategoryTextButton> categories;
     public EditEventCategoryRVAdapter adapter;
 
+    /*---------------------------------------------------------------------------
+    Function Name:                EditEventFragment
+    Description:                  Required default no-argument constructor
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public EditEventFragment() {
         // Required empty public constructor
     }
 
+   /*---------------------------------------------------------------------------
+    Function Name:                onCreate
+    Description:                  called when the fragment is created
+    Input:                        Bundle savedInstanceState
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +104,14 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         event = (Event) extras.getSerializable(getString(R.string.event_details));
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateView()
+    Description:                  Inflates View layout and sets fonts programmatically
+    Input:                        LayoutInflater inflater - inflates layout
+                                  ViewGroup container - parent view group
+                                  Bundle savedInstanceState
+    Output:                       View to be inflated
+    ---------------------------------------------------------------------------*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -135,6 +159,12 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         return view;
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                setupEditTime()
+    Description:                  allows user to edit time
+    Input:                        View view
+    Output:                       None
+    ---------------------------------------------------------------------------*/
     void setupEditTime(View view) {
         // Spinner element
         spinner = (Spinner) view.findViewById(R.id.spinner);
@@ -161,6 +191,13 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
             spinner.setSelection(1);
 
     }
+
+    /*---------------------------------------------------------------------------
+    Function Name:                setupWindow()
+    Description:                  sets up the screen and initalizes all the fields
+    Input:                        View view
+    Output:                       None
+    ---------------------------------------------------------------------------*/
     protected void setupWindow(View view) {
         eventImage = (ImageView) view.findViewById(R.id.eventImage);
         eventName = (EditText) view.findViewById(R.id.eventName);
@@ -232,7 +269,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         //an arraylist of category text buttons
         categories = new ArrayList<>();
 
-
+        //adding the categories to the list
         categories.add(new CategoryTextButton("FOOD", false));
         categories.add(new CategoryTextButton("SOCIAL", false));
         categories.add(new CategoryTextButton("CONCERTS", false));
@@ -291,24 +328,12 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                         .setMessage("Are you sure you want delete this event?")
                         .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                // TODO (M): Delete event
-                                // TODO (C): Big issue, must refresh all feeds or else will get null
-                                // TODO      pointer exceptions when clicking the event again when it doesn't
-                                // TODO      even exist
-
                                 EventsFirebase eventsFirebase = new EventsFirebase();
                                 eventsFirebase.deleteEvent(event.getEventId());
-                                //int fragId = getFragmentManager().getBackStackEntryCount();
-                                //getFragmentManager().getBackStackEntryAt(fragId).getId();
-
                                 // Pop this fragment from backstack
-                                //getActivity().getSupportFragmentManager().popBackStack();
-                                //lol idk why that 1 is there or why it works but this pops stack back to homefeed
-                                //getFragmentManager().popBackStack(1, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                                //startActivity(new Intent(getActivity(), MainActivity.class));
+
                                 Intent i = new Intent(getActivity(), MainActivity.class);
                                 // set the new task and clear flags
-                                //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(i);
                             }
                         })
@@ -316,12 +341,17 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                             public void onClick(DialogInterface dialog, int which) {
                             }
                         })
-                        //.setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
             }
         });
     }
 
+   /*---------------------------------------------------------------------------
+    Function Name:                setupWindow()
+    Description:                  sets up the screen and initalizes all the fields
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     protected void setupWindow() {
         editEventDone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -333,6 +363,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                     result = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
 
                 EditEventForm form = new EditEventForm(eventName,eventDate,eventTime, spinner, eventLocation,eventDescription, result, event.getEventId());
+                //make the error messages invisible
                 errorMissingMessage.setVisibility(View.INVISIBLE);
                 errorTimeMessage.setVisibility(View.INVISIBLE);
                 errorDateMessage.setVisibility(View.INVISIBLE);
@@ -380,6 +411,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                             time = getString(R.string.errorInvalidTime);
                             break;
                     }
+                    //set the error messages
                     errorDateMessage.setText(date);
                     errorTimeMessage.setText(time);
                     errorDateMessage.setVisibility(View.VISIBLE);
@@ -396,12 +428,14 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
                     getActivity().getSupportFragmentManager().popBackStack();
 
+                    //hide the error messages
                     errorMissingMessage.setVisibility(View.INVISIBLE);
                     errorTimeMessage.setVisibility(View.INVISIBLE);
                     errorDateMessage.setVisibility(View.INVISIBLE);
 
                 }
 
+                //hide the keyboard
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
@@ -478,6 +512,17 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         });
     }
 
+
+    /*---------------------------------------------------------------------------
+    Function Name:                onItemSelected()
+    Description:                  Callback method to be invoked when an item in 
+                                  this view has been selected
+    Input:                        AdapterView<?> parent, 
+                                  View view, 
+                                  int position, 
+                                  long id
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
@@ -491,17 +536,13 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         // TODO Auto-generated method stub
     }
 
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
+    /*---------------------------------------------------------------------------
+    Function Name:                overrideFonts()
+    Description:                  Sets fonts for all TextViews
+    Input:                        final Context context
+                                  final View v
+    Output:                       View to be inflated
+    ---------------------------------------------------------------------------*/
     private void overrideFonts(final Context context, final View v) {
         try {
             if (v instanceof ViewGroup) {
@@ -518,6 +559,12 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         }
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onResume()
+    Description:                  called every time the fragment is resumed
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onResume() {
         super.onResume();
