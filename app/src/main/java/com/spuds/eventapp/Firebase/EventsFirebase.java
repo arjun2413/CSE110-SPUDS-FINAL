@@ -197,10 +197,6 @@ public class EventsFirebase {
         return pushRef.getKey();
     }
 
-    public void editEvent() {
-
-    }
-
     Event item;
 
     public Event createEL() {

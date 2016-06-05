@@ -21,10 +21,23 @@ import java.util.ArrayList;
 /**
  * Created by David on 5/22/16.
  */
+
+/*---------------------------------------------------------------------------
+Class Name:                FindPeopleRVAdapter
+Description:               Adapts information from an Array List about find people
+                           into the Recycler View
+---------------------------------------------------------------------------*/
 public class FindPeopleRVAdapter extends RecyclerView.Adapter<FindPeopleRVAdapter.FindPeopleViewHolder> {
+
+    //array list of users
 	ArrayList<User> people;
     Fragment fragment;
 
+
+    /*---------------------------------------------------------------------------
+    Class Name:                FindPeopleViewHolder
+    Description:               Holds all the elements necessary for a person card
+    ---------------------------------------------------------------------------*/
     public static class FindPeopleViewHolder extends RecyclerView.ViewHolder {
 		
 		CardView card;
@@ -42,12 +55,26 @@ public class FindPeopleRVAdapter extends RecyclerView.Adapter<FindPeopleRVAdapte
 
         }
     }
-
+    /*---------------------------------------------------------------------------
+    Function Name:                FindPeopleRVAdapter
+    Description:                  Constructor
+    Input:                        ArrayList<User> people: holds information for categories
+                                  Fragment currentFragment: fragment RVAdapter instantiated.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public FindPeopleRVAdapter(ArrayList<User> people, Fragment fragment) {
         this.people = people;
         this.fragment = fragment;
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateViewHolder()
+    Description:                  Necessary method to override: Defines the layout
+                                  and type of each view holder
+    Input:                        ViewGroup viewGroup
+                                  int viewType
+    Output:                       FindPeopleViewHolder
+    ---------------------------------------------------------------------------*/
 	@Override
     public FindPeopleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     	View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_find_people, parent, false);
@@ -55,7 +82,14 @@ public class FindPeopleRVAdapter extends RecyclerView.Adapter<FindPeopleRVAdapte
         return fvh;
     }
 
-
+    /*---------------------------------------------------------------------------
+    Function Name:                onBindViewHolder()
+    Description:                  Necessary method to override: Binds information
+                                  to each view holder at position i
+    Input:                        CategoryViewHolder categoryViewHolder
+                                  int i - position of the item in the RecyclerView
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onBindViewHolder(FindPeopleViewHolder holder, int position) {
     	final int i = position;
@@ -84,6 +118,13 @@ public class FindPeopleRVAdapter extends RecyclerView.Adapter<FindPeopleRVAdapte
         holder.inviteeName.setText(people.get(position).getName());
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                getItemCount()
+    Description:                  Necessary method to override: How many items
+                                  in the RecyclerView
+    Input:                        None
+    Output:                       int: number of cards/items
+    ---------------------------------------------------------------------------*/
     @Override
     public int getItemCount() {
         return people.size();

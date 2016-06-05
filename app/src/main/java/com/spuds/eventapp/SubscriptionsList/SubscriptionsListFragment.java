@@ -161,8 +161,7 @@ public class SubscriptionsListFragment extends Fragment {
 
     /*---------------------------------------------------------------------------
     Function Name:                onResume()
-    Description:                  called every time the About Fragment comes into view
-                                 remove the search toolbar
+    Description:                  called every time the fragment is resumed
     Input:                        None.
     Output:                       None.
     ---------------------------------------------------------------------------*/

@@ -14,7 +14,7 @@ import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
 
 /*---------------------------------------------------------------------------
-Class Name:                About Fragment
+Class Name:                AboutFragment
 Description:               Fragment that contains information about software
                            developers
 ---------------------------------------------------------------------------*/

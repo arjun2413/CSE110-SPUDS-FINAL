@@ -309,7 +309,7 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    private void tabs(View view) {
+    private void tabs(  View view) {
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.profile_tabs);
         final ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
 

@@ -39,7 +39,10 @@ public class CreateEventCategoryRVAdapter extends RecyclerView.Adapter<CreateEve
                                   Fragment currentFragment
                                         - fragment RVAdapter instantiated from
 
-    Input:                        None.
+    Input:                        List<CategoryTextButton> categories - contains
+                                  information about categories for create event
+                                  Fragment currentFragment - reference to fragment
+                                  that created this object
     Output:                       None.
     ---------------------------------------------------------------------------*/
     public CreateEventCategoryRVAdapter(List<CategoryTextButton> categories, Fragment currentFragment){
