@@ -56,7 +56,6 @@ public class SearchUsersFragment extends Fragment {
         Bundle bundle = getArguments();
         if (bundle != null)
             userId = bundle.getString(getString(R.string.user_id));
-        Log.v("useriduserid", "" + userId);
         userFirebase = new UserFirebase();
     }
 

@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -233,6 +234,9 @@ public class EventDetailsFragment extends Fragment {
                                 // Update/setup again the event details and edit event
                                 setUpEventInformation();
                                 setupEditEvent();
+
+                                // Reset can click going
+                                canClickGoing = true;
 
                                 // Stop the refresh icon
                                 mySwipeRefreshLayout.setRefreshing(false);
@@ -500,11 +504,11 @@ public class EventDetailsFragment extends Fragment {
                     public void run() {
 
                         // Setup color of going button
-                        if (going)
+                        if (going) {
                             buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
-                        else
+                        } else {
                             buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
-
+                        }
                         // If the going button is clicked
                         buttonGoingOrEdit.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -542,7 +546,6 @@ public class EventDetailsFragment extends Fragment {
                                                 }
 
                                                 // Reset instance variables having to do with going
-                                                canClickGoing = true;
                                                 going = false;
 
                                                 // Refresh the event
@@ -582,7 +585,6 @@ public class EventDetailsFragment extends Fragment {
 
                                                 }
                                                 // Reset instance variables having to do with going
-                                                canClickGoing = true;
                                                 going = true;
 
                                                 // Refresh the event

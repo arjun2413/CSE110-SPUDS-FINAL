@@ -592,7 +592,6 @@ public class UserFirebase {
     ---------------------------------------------------------------------------*/
     public void isSubscribed(final String userId) {
         idIsSubscribed = 0;
-        Log.v("bren", String.valueOf(idIsSubscribed));
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
         final ValueEventListener valueEventListener = new ValueEventListener() {
 

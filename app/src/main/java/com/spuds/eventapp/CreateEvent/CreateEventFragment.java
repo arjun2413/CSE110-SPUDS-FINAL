@@ -397,7 +397,6 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     ---------------------------------------------------------------------------*/
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        Log.v("assdas", "asd");
         menu.removeItem(R.id.action_create_event);
         inflater.inflate(R.menu.create_event_blank, menu);
         super.onCreateOptionsMenu(menu, inflater);
