@@ -20,8 +20,11 @@ import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.R;
 import com.spuds.eventapp.Shared.MainActivity;
 
+/*---------------------------------------------------------------------------
+   Class Name: ChangePasswordFragment
+   Description: Contains methods related to the change password functionality
+---------------------------------------------------------------------------*/
 public class ChangePasswordFragment extends Fragment {
-
 
     //parts of the fragment
     private EditText current_pw;
@@ -45,29 +48,60 @@ public class ChangePasswordFragment extends Fragment {
         // Required empty public constructor
     }
 
+    /*---------------------------------------------------------------------------
+         Function Name: onCreate
+         Description: sets up the change password screen
+         Input: Bundle savedInstanceState
+         Output: None
+    ---------------------------------------------------------------------------*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /*---------------------------------------------------------------------------
+         Function Name: getUserInputs
+         Description: gets the user inputs from the fields
+         Input: AccountFirebase af - reference to the accountFirebase class
+         Output: ChangePasswordForm - a form containing all inputs
+    ---------------------------------------------------------------------------*/
     private ChangePasswordForm getUserInputs( AccountFirebase af ){
         String email = af.getUserEmail();
         return new ChangePasswordForm(email,current_pw,new_pw,confirm_pw);
     }
 
+    /*---------------------------------------------------------------------------
+         Function Name: appendError
+         Description: adds to the error string
+         Input: String error - the error message to be added
+         Output: None
+    ---------------------------------------------------------------------------*/
     private void appendError(String error){
         error_string = error_string + error;
     }
 
+    /*---------------------------------------------------------------------------
+         Function Name: restartError
+         Description: resets the error string
+         Input: None
+         Output: None
+    ---------------------------------------------------------------------------*/
     private void restartError(){
         error_string = "";
         sys_message.setText("");
     }
 
+    //getter method for error message
     private String getError(){
         return error_string;
     }
 
+    /*---------------------------------------------------------------------------
+         Function Name: onCreateView
+         Description: sets up the change password screen, containing logic checks
+         Input: LayoutInflater, ViewGroup, Bundle
+         Output: View
+    ---------------------------------------------------------------------------*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,24 +117,24 @@ public class ChangePasswordFragment extends Fragment {
         Button change = (Button) view.findViewById(R.id.change_button);
         change.setTypeface(raleway_medium);
 
-
+        //xml elements
         current_pw = (EditText) view.findViewById(R.id.current_password);
         new_pw = (EditText) view.findViewById(R.id.new_password);
         confirm_pw = (EditText) view.findViewById(R.id.confirm_password);
         changeButton = (Button) view.findViewById(R.id.change_button);
         sys_message = (TextView) view.findViewById(R.id.system_message);
 
+        //ref to accountfirebase class
         final AccountFirebase af = new AccountFirebase();
 
         changeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //TODO: move error checking logic to model file.
                 //Logic:
-                //      2. check if first field matches user password
-                //      3. check if second field fulfills all password requirements
-                //      5. show snackbar on success or error message accordingly.
+                //      1. check if first field matches user password
+                //      2. check if second field fulfills all password requirements
+                //      3. show snackbar on success or error message accordingly.
 
                 ChangePasswordForm form = getUserInputs(af);
 
@@ -110,13 +144,10 @@ public class ChangePasswordFragment extends Fragment {
                 //checks if an error has been found
                 boolean is_error = false;
 
-                Log.v("is_error 1:" , String.valueOf(is_error));
                 if(!form.allFilled()) {
                     appendError(getString(R.string.errorEmptyFields));
                     is_error = true;
-                    Log.v("is_error 2:" , String.valueOf(is_error));
                 }
-
                 //checks if second and third fields are the same
                 if(!form.matchingPw()){
                     if(is_error) {
@@ -124,28 +155,19 @@ public class ChangePasswordFragment extends Fragment {
                     }
                     appendError(getString(R.string.errorPassMismatch));
                     is_error = true;
-                    Log.v("is_error 3:" , String.valueOf(is_error));
                 }
-
-                else if(!form.diffPw()){
+                else if(!form.diffPw()){    //check if new pass different from old pass
                     if(is_error){
                         appendError("\n");
                     }
                     appendError(getString(R.string.errorSamePass));
                     is_error = true;
-                    Log.v("is_error 4:" , String.valueOf(is_error));
                 }
 
                 //pops up a snackbar with successful change message if no error was found
                 if(!is_error) {
-                    Log.v("is_error 4:" , String.valueOf(is_error));
                     af.changePass(form);
 
-                    // Pop this fragment from backstack
-                    //getActivity().getSupportFragmentManager().popBackStack();
-
-
-                    //TODO: need to test if snackbar works properly
                     new Thread(new Runnable() {
 
                         @Override
@@ -159,19 +181,14 @@ public class ChangePasswordFragment extends Fragment {
                                 }
                             }
 
-
                             if (af.getThreadCheck() == 1) {
-                                Log.v("password: ", "matches top");
-
                                 Snackbar snackbar = Snackbar.make
                                         (view, getString(R.string.password_change_success),
                                                 Snackbar.LENGTH_LONG);
                                 snackbar.show();
                                 getActivity().getSupportFragmentManager().popBackStack();
-                                Log.v("password: ", "matches bottom");
                             }
                             else{
-                                Log.v("password: ", "does not match top");
                                 appendError("Incorrect Password");
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
@@ -180,7 +197,6 @@ public class ChangePasswordFragment extends Fragment {
                                     }
                                 });
 
-                                Log.v("password: ", "does not match bottom");
                             }
                             setThread_running(false);
                         }
@@ -188,19 +204,14 @@ public class ChangePasswordFragment extends Fragment {
                     while(getThread_running()){
                         //stalls until thread above ends so user can't click
                     }
-                    Log.v("finished: ", "both threads");
 
 
                 }
                 else {
-                    //show concatenated error messages
-
                     sys_message.setText(getError());
                 }
-
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
-
             }
         });
 
@@ -208,16 +219,22 @@ public class ChangePasswordFragment extends Fragment {
     }
 
 
+    //required super method calls
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
     }
-
     @Override
     public void onDetach() {
         super.onDetach();
     }
 
+    /*---------------------------------------------------------------------------
+         Function Name: overrideFonts
+         Description: overrides the fonts on the page
+         Input: context, view
+         Output: none
+    ---------------------------------------------------------------------------*/
     private void overrideFonts(final Context context, final View v) {
         try {
             if (v instanceof ViewGroup) {
@@ -233,6 +250,13 @@ public class ChangePasswordFragment extends Fragment {
         catch (Exception e) {
         }
     }
+
+    /*---------------------------------------------------------------------------
+         Function Name: onResume
+         Description: super call to onResume, removes search toolbar
+         Input: none
+         Output: none
+    ---------------------------------------------------------------------------*/
     @Override
     public void onResume() {
         super.onResume();

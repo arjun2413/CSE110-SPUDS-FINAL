@@ -1,9 +1,7 @@
 package com.spuds.eventapp.ResetPassword;
 
-import android.accounts.Account;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,8 +14,12 @@ import com.firebase.client.Firebase;
 import com.spuds.eventapp.Firebase.AccountFirebase;
 import com.spuds.eventapp.Login.LoginActivity;
 import com.spuds.eventapp.R;
-import com.spuds.eventapp.SignUp.SignUpActivity;
 
+/*---------------------------------------------------------------------------
+   Class Name: ResetPasswordActivity
+   Description: Contains all methods that contribute to the reset
+            password functionality
+---------------------------------------------------------------------------*/
 public class ResetPasswordActivity extends AppCompatActivity {
 
     private EditText input;
@@ -25,17 +27,18 @@ public class ResetPasswordActivity extends AppCompatActivity {
     private TextView errorMessage;
     private int error;
     private String message;
-    private TextView[] fun;
+    private TextView[] textArray;
 
 
+    /*---------------------------------------------------------------------------
+     Function Name: onCreate
+     Description: Sets up the reset password page
+     Input: Bundle savedInstanceState -
+     Output: None
+    ---------------------------------------------------------------------------*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //Hide Action Bar and Status Bar
-        //View decorView = getWindow().getDecorView();
-        // Hide the status bar.
-        //int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        //decorView.setSystemUiVisibility(uiOptions);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         Firebase.setAndroidContext(this);
@@ -49,15 +52,15 @@ public class ResetPasswordActivity extends AppCompatActivity {
         TextView tx = (TextView)findViewById(R.id.app_name);
         tx.setTypeface(custom_font);
 
+        //xml elements
         input = (EditText)findViewById(R.id.email);
         send = (Button) findViewById(R.id.send_password);
         errorMessage = (TextView) findViewById(R.id.errorMessage);
-        fun = new TextView[1];
-        fun[0] = errorMessage;
 
+        //errormessage array to use in checkEmail
+        textArray = new TextView[1];
+        textArray[0] = errorMessage;
 
-        //TODO when errormessage is made
-        //final TextView errorMessage = (TextView) findViewById(R.id.errorMessage);
         errorMessage.setTypeface(raleway_light);
         input.setTypeface(raleway_light);
         send.setTypeface(raleway_light);
@@ -67,12 +70,11 @@ public class ResetPasswordActivity extends AppCompatActivity {
             public void onClick(View v) {
                 error = 0;
                 final AccountFirebase accountFirebase = new AccountFirebase();
-                //TODO: move error checking logic to model file.
                 //Logic:
                 //      1. check if all fields are entered.
-                //      2. check if first is an email
-                //      3. check if first field exists in the database
-                //      5. show snackbar on success or error message accordingly, but ignore number 4
+                //      2. check if email ends in @ucsd.edu
+                //      3. check if email exists in database
+                //      4. if email exists, call Firebase's resetPassword, which sends email
                 String message = "";
                 if(input.getText().length() > 0){
                     final int[] check = new int[1];
@@ -81,9 +83,9 @@ public class ResetPasswordActivity extends AppCompatActivity {
                     final String email = input.getText().toString();
                     final String valid = "@ucsd.edu";
 
-
                     //here we are playing with threads!
                     class myThread2 implements Runnable{
+                        public static final int TIMEDOUT = 4;
                         public String emailCheck;
                         public String isValid;
                         public AccountFirebase af;
@@ -96,16 +98,14 @@ public class ResetPasswordActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             int counter = 0;
-                            System.out.println("thread2 start");
                             check[0] = accountFirebase.getThreadCheck();
                             //wait for query
                             while (check[0] == 0) {
                                 if (counter > 100) {
-                                    error = 4;
+                                    error = TIMEDOUT;
                                     break;
                                 }
                                 try {
-                                    System.out.println("I slept for " + counter);
                                     Thread.sleep(100);
                                     counter++;
                                     check[0] = accountFirebase.getThreadCheck();
@@ -113,11 +113,9 @@ public class ResetPasswordActivity extends AppCompatActivity {
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
-
                             }
                             if (emailCheck.endsWith(isValid) && error == 0){
-                                if (check[0] == 1) {
-                                    System.out.println("Checking");
+                                if (check[0] == 1) {    //success, email exists
                                     af.resetPass(emailCheck);
                                     startActivity(new Intent(ResetPasswordActivity.this, LoginActivity.class));
                                 }
@@ -125,7 +123,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                                     error = 3;
                                 }
                             }
-                            else if (error == 4) {
+                            else if (error == TIMEDOUT) {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -134,67 +132,53 @@ public class ResetPasswordActivity extends AppCompatActivity {
                                     }
                                 });
                             }
-                            System.out.println("int error status is: " + error);
-                            System.out.println("thread2 has finished");
                         }
                     }
-
 
                     Runnable r2 = new myThread2(email, valid, accountFirebase);
                     Thread cool2 = new Thread(r2);
 
                     if (email.endsWith(valid)) {
-                        accountFirebase.checkEmail(email, fun, "That email is not signed up.", false);
+                        accountFirebase.checkEmail(email, textArray, "That email is not signed up.", false);
                         cool2.start();
                     }
                     else {
                         error = 2;
                     }
-
                 }
                 else {
                     error = 1;
                 }
 
-                System.out.println("Error status is: " + error);
                 switch(error) {
-                    case 1:
+                    case 1: //not all fields filled
                         if(errorMessage != null) {
                             errorMessage.setText(getString(R.string.errorEmptyFields));
                         }
                         break;
-                    case 2:
+                    case 2: //invalid email
                         if (errorMessage != null) {
                             errorMessage.setText(getString(R.string.errorInvalidEmail));
                         }
                         break;
-                    case 3:
+                    case 3: //email not found
                         if (errorMessage != null) {
                             errorMessage.setText(getString(R.string.errorNoEmail));
                         }
                         break;
-                    case 4:
+                    case 4: //timed out error
                         if (errorMessage != null) {
                             errorMessage.setText(getString(R.string.errorFatal));
                         }
                         break;
-                    default:
-                        message = "Loading...";
+                    default:    //this will show if query is not fast enough
+                        message = getString(R.string.loading);
                         if (errorMessage != null) {
                             errorMessage.setText(message);
                         }
                         break;
-
                 }
-
-
-
             }//end of onClick
         });
     }
-    /*public void setMessage(TextView text, String message){
-        if (text != null) {
-            text.setText(message);
-        }
-    }*/
 }

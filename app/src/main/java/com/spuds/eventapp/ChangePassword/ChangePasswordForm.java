@@ -5,6 +5,12 @@ import android.widget.EditText;
 /**
  * Created by qtmluong on 5/12/2016.
  */
+
+/*---------------------------------------------------------------------------
+   Class Name: ChangePasswordForm
+   Description: Class that contains the forms that the user inputs when
+            changing password.
+---------------------------------------------------------------------------*/
 public class ChangePasswordForm {
 
     private String email;
@@ -19,36 +25,41 @@ public class ChangePasswordForm {
         confirm = confirm_pw.getText().toString();
     }
 
+    /*---------------------------------------------------------------------------
+     Function Name: allFilled
+     Description: Checks if all fields have an input
+     Input: None
+     Output: true on all filled, false if not
+    ---------------------------------------------------------------------------*/
     public boolean allFilled(){
-        if(current.length()>0 && next.length()>0 && confirm.length()>0){
-
-            return true;
-        }
-        else{
-            return false;
-        }
+        return (current.length()>0 && next.length()>0 && confirm.length()>0);
     }
 
+    /*---------------------------------------------------------------------------
+     Function Name: matchingPw
+     Description: checks if the next and confirm fields are the same
+     Input: None
+     Output: true if passwords match, false if not
+    ---------------------------------------------------------------------------*/
     public boolean matchingPw(){
-        System.err.println("next: "+next);
-        System.err.println("confirm: "+confirm);
-        System.err.println(next.equals(confirm));
         return next.equals(confirm);
     }
 
+    /*---------------------------------------------------------------------------
+     Function Name: diffPw
+     Description: Checks if the current password is different from the next
+     Input: None
+     Output: true if different, false if not
+    ---------------------------------------------------------------------------*/
     public boolean diffPw(){
-        System.err.println("current: " + current);
-        System.err.println("next: " + next);
-        System.err.println(current.equals(next));
         return !current.equals(next);
     }
 
+    //Getter methods
     public String getEmail(){ return email; }
-
     public String getCurrent(){
         return current;
     }
-
     public String getNext(){
         return next;
     }

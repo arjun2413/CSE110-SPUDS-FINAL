@@ -6,6 +6,11 @@ import android.widget.Spinner;
 /**
  * Created by qtmluong on 5/15/2016.
  */
+
+/*---------------------------------------------------------------------------
+   Class Name: EditEventForm
+   Description: contains the user's inputs in the fields
+---------------------------------------------------------------------------*/
 public class EditEventForm {
     private String name;
     private String date;
@@ -14,6 +19,7 @@ public class EditEventForm {
     private String picture;
     private String eventId;
 
+    //constructor setting all variables
     public EditEventForm(EditText event_name, EditText event_date, EditText event_time, Spinner spinner, EditText event_location, EditText event_description, String picture, String eventId){
         name = event_name.getText().toString();
         date = event_date.getText().toString() + " | " + event_time.getText().toString() + spinner.getSelectedItem().toString();;
@@ -23,38 +29,42 @@ public class EditEventForm {
         this.setEventId(eventId);
     }
 
+    //getter methods
     public String getName(){
         return name;
     }
-
     public String getDate(){
         return date;
     }
-
     public String getLocation(){
         return location;
     }
-
     public String getDescription(){
         return description;
     }
-
     public String getPicture() {
         return picture;
     }
 
+    /*---------------------------------------------------------------------------
+     Function Name: signInFunc
+     Description: Checks if all fields are filled out
+     Input: None
+     Output: true if all filled, false if not
+    ---------------------------------------------------------------------------*/
     public boolean allFilled(){
-        if(name.length()>0 && date.length()>0 && location.length()>0){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return (name.length()>0 && date.length()>0 && location.length()>0);
     }
+
+    /*---------------------------------------------------------------------------
+         Function Name: correctDate
+         Description: checks if the date is correct format and exists
+                    see createEventFragment for magic number error explanations
+         Input: none
+         Output: 0 on success, >0 depending on the type of error
+    ---------------------------------------------------------------------------*/
     public int correctDate() {
         int month, day;
-
-        System.out.println("date is: " + date);
         if (date.length() < 14) { //magic number : 'MM/DD/YY | 7AM' is 14 chars (not counting quotes)
             return 1;
         }
@@ -65,7 +75,6 @@ public class EditEventForm {
 
         //get the MM/DD/YY form
         String tempDate = date.substring(0,8);
-        System.out.println(tempDate);
 
         //check for integers and mm/dd/yy format
         if (tempDate.length() != 8) { //length of mm/dd/yy
@@ -97,21 +106,23 @@ public class EditEventForm {
                 return 3;
             }
         }
-
-        //check time
+        //return 0 for success if pass all tests
         return 0;
-
-
-        //return true;
     }
 
     /* TIME SHOULD BE EITHER:
      * 1. 1 through 12 (no colon)
      * 2. 8:00 (with colon)
      *      with hour 1-12, minute 00-59
-     *
-     * Returns a int based on error;
      */
+
+    /*---------------------------------------------------------------------------
+         Function Name: correctTime
+         Description: checks if the time is correct format and exists
+                    see createEventFragment for magic number explanations
+         Input: none
+         Output: 0 on success, >0 depending on the type of error
+    ---------------------------------------------------------------------------*/
     public int correctTime() {
         if (date.length() < 14) {   //see correctDate for magic number
             return 1;
@@ -128,11 +139,9 @@ public class EditEventForm {
             time = date.substring(index+2, timeEnd - 2);
         }
         else return 1;
-        System.out.println("time is: " + time);
 
         //index of :
         colon = time.indexOf(':');
-        System.out.println("COLON INDEX AT: " + colon);
         if (colon > 0 && colon != time.length()-1) {    //this check is for if there's a :
             hour = time.substring(0, colon);    //hour part
             minute = time.substring(colon+1);     //minute part
@@ -163,20 +172,36 @@ public class EditEventForm {
         }
         else return 4;
 
-
+        //return 0 for success if passed all tests
         return 0;
     }
-    //months with 31 days
+
+    /*---------------------------------------------------------------------------
+         Function Name: has31
+         Description: helper method for months with 31 days
+         Input: int m - integer corresponding to month
+         Output: true if month # has 31 days
+    ---------------------------------------------------------------------------*/
     private boolean has31(int m) {
         return (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12);
     }
 
-    //months with 30 days
+    /*---------------------------------------------------------------------------
+         Function Name: has30
+         Description: helper method for months with 30 days
+         Input: int m - integer corresponding to month
+         Output: true if month # has 30 days
+    ---------------------------------------------------------------------------*/
     private boolean has30(int m) {
         return (m == 4 || m == 6 || m == 9 || m == 11);
     }
 
-    //helper string isInteger check
+    /*---------------------------------------------------------------------------
+         Function Name: isInteger
+         Description: checks if a string is an integer
+         Input: String s - the string to check
+         Output: true if the string is an integer
+    ---------------------------------------------------------------------------*/
     private boolean isInteger(String s) {
         if (s == null) {
             return false;
@@ -192,10 +217,10 @@ public class EditEventForm {
         return true;
     }
 
+    //getter and setter for eventId
     public String getEventId() {
         return eventId;
     }
-
     public void setEventId(String eventId) {
         this.eventId = eventId;
     }
