@@ -65,9 +65,6 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
     private TextView errorTimeMessage;
     private ScrollView scrollView;
 
-
-
-
     private List<CategoryTextButton> categories;
     public EditEventCategoryRVAdapter adapter;
 
@@ -123,16 +120,10 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         Button delete = (Button) view.findViewById(R.id.editEventDelete);
         delete.setTypeface(raleway_medium);
 
-
         eD = new EventDate(event.getDate());
-        Log.d("edvalue", String.valueOf(eD.hour));
-        Log.d("edvalue", String.valueOf(eD.year));
-        Log.d("edvalue", String.valueOf(eD.month));
-        Log.d("edvalue", String.valueOf(eD.day));
 
         setupWindow(view);
         setupWindow();
-
         setupEditTime(view);
 
         return view;
@@ -149,7 +140,6 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         List<String> categories = new ArrayList<String>();
         categories.add("AM");
         categories.add("PM");
-
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, categories);
@@ -232,8 +222,6 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
         //an arraylist of category text buttons
         categories = new ArrayList<>();
-
-
         categories.add(new CategoryTextButton("FOOD", false));
         categories.add(new CategoryTextButton("SOCIAL", false));
         categories.add(new CategoryTextButton("CONCERTS", false));
@@ -244,13 +232,8 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
         //existing categories on this event is good.
         ArrayList<String> existingCateg = event.getCategories();
-        //("size", "size: " + event.getCategories().size());
 
         for (int i = 0; i < existingCateg.size(); ++i) {
-
-            //("category", "category: " + existingCateg.get(i));
-
-
             switch(existingCateg.get(i)) {
 
                 case "Food":
@@ -283,7 +266,6 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         adapter = new EditEventCategoryRVAdapter(categories, this, existingCateg);
         rv.setAdapter(adapter);
 
-
         editEventDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -299,8 +281,6 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
                                 EventsFirebase eventsFirebase = new EventsFirebase();
                                 eventsFirebase.deleteEvent(event.getEventId());
-                                System.out.println("event_id: " + event.getEventId());
-                                System.out.println(getFragmentManager().getBackStackEntryCount());
                                 //int fragId = getFragmentManager().getBackStackEntryCount();
                                 //getFragmentManager().getBackStackEntryAt(fragId).getId();
 
@@ -374,7 +354,6 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                             time = "";
                             break;
                         case 4:
-                            //TODO: Reggie, specify event time format in strings.xml file
                             time = getString(R.string.errorTimeFormat);
                             break;
                         case 5:
@@ -455,21 +434,16 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                                 if (((MainActivity) getActivity()).picture == null) {
                                     break;
                                 }
-
                             }
 
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-
                                     eventImage.setImageURI(null);
                                     eventImage.setImageURI(((MainActivity) getActivity()).picture);
                                     eventImage.invalidate();
-
-
                                 }
                             });
-
                         }
                 }).start();
             }
@@ -494,7 +468,6 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
     public void onAttach(Context context) {
         super.onAttach(context);
     }
-
     @Override
     public void onDetach() {
         super.onDetach();

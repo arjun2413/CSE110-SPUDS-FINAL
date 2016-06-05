@@ -65,14 +65,24 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     private List<CategoryTextButton> categories;
     public CreateEventCategoryRVAdapter adapter;
 
+    /*---------------------------------------------------------------------------
+         Function Name: makeForm
+         Description: makes the form for all the fields
+         Input: None
+         Output: CreateEventForm
+    ---------------------------------------------------------------------------*/
     private CreateEventForm makeForm(){
         String result = "";
         if (((MainActivity) getActivity()).picture != null)
         result = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
         return new CreateEventForm(eventName,eventDate,eventTime, spinner, eventLocation,eventDescription, result);
-
     }
-
+    /*---------------------------------------------------------------------------
+         Function Name: getEventDetails
+         Description: assigns all of the xml elements
+         Input: View
+         Output: none
+    ---------------------------------------------------------------------------*/
     protected void getEventDetails(View view) {
         eventImage = (ImageView) view.findViewById(R.id.eventImage);
         eventName = (EditText) view.findViewById(R.id.eventName);
@@ -91,14 +101,18 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         buttonInvite = (Button) view.findViewById(R.id.event_invite);
     }
 
-
+    /*---------------------------------------------------------------------------
+         Function Name: setupWindow
+         Description: sets up the create event page, with all of the logic
+         Input: none
+         Output: none
+    ---------------------------------------------------------------------------*/
     protected void setupWindow() {
         buttonInvite.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {   //leads to the invite page
                 ((MainActivity) getActivity()).addSearchToolbar();
                 InvitePeopleFragment invitePeopleFragment = new InvitePeopleFragment();
-                // Add Event Details Fragment to fragment manager
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_frame_layout, invitePeopleFragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -107,6 +121,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
             }
         });
 
+        //ref to eventsfirebase class
         final EventsFirebase eventsFirebase = new EventsFirebase(null, 0, null, null, null);
         editEventDone.setOnClickListener(new View.OnClickListener() {
             @Override
