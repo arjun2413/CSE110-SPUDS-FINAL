@@ -454,7 +454,7 @@ public class EventsFirebase {
                     }
                     newEvent.setEventId(snapshot.getKey());
 
-                    Log.v("arvindarvindarvind", newEvent.getEventId());
+                    //Log.v("arvindarvindarvind", newEvent.getEventId());
 
                     newEvent.setCategories(a);
                     a = new ArrayList<String>();

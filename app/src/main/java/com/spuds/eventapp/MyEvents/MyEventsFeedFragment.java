@@ -104,7 +104,6 @@ public class MyEventsFeedFragment extends Fragment {
             @Override
             public void run() {
 
-                // While the events is empty wait
                 while (events.size() == 0) {
                     try {
                         Thread.sleep(70);

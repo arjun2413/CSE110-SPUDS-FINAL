@@ -10,28 +10,31 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spuds.eventapp.EventDetails.EventDetailsFragment;
-import com.spuds.eventapp.Firebase.EventsFirebase;
-import com.spuds.eventapp.Firebase.UserFirebase;
-import com.spuds.eventapp.Profile.ProfileFragment;
 import com.spuds.eventapp.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by tina on 4/16/16.
  */
+/*---------------------------------------------------------------------------
+Class Name:                EventsFeedRVAdapter
+Description:               Adapts information from an Array List about events
+                           into the Recycler View
+---------------------------------------------------------------------------*/
 public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapter.EventViewHolder> {
 
+    /*---------------------------------------------------------------------------
+    Class Name:                EventViewHolder
+    Description:               Holds all the views for the card for event feed
+    ---------------------------------------------------------------------------*/
     public static class EventViewHolder extends RecyclerView.ViewHolder {
 
         CardView card;
@@ -45,8 +48,12 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
         TextView monthDate, dayDate;
         TextView eventTime;
 
-
-
+        /*---------------------------------------------------------------------------
+        Function Name:                EventViewHolder
+        Description:                  Initializes all views for this card
+        Input:                        View itemView
+        Output:                       None.
+        ---------------------------------------------------------------------------*/
         EventViewHolder(View itemView) {
             super(itemView);
             card = (CardView) itemView.findViewById(R.id.cv);
@@ -60,57 +67,77 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             monthDate = (TextView) itemView.findViewById(R.id.date_month);
             dayDate = (TextView) itemView.findViewById(R.id.date_day);
             eventTime = (TextView) itemView.findViewById(R.id.event_time);
-
-
         }
 
     }
 
+    // Holds all events
     List<Event> events;
-    Fragment currentFragment;
-    String tagCurrentFragment;
-    String tabType;
-    String userId;
 
+    // Reference to this fragment
+    Fragment currentFragment;
+
+    // Reference to the tag for the current fragment
+    String tagCurrentFragment;
+
+    /*---------------------------------------------------------------------------
+    Function Name:                EventsFeedRVAdapter
+    Description:                  Contructor to initialize the instance variables
+    Input:                        List<Event> events - holds events for feed
+                                  Fragment currentFragment -  fragment that contains the feed
+                                  String tagCurrentFragment - type of tab for this feed
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public EventsFeedRVAdapter(List<Event> events, Fragment currentFragment, String tagCurrentFragment){
         this.events = events;
         this.currentFragment = currentFragment;
         this.tagCurrentFragment = tagCurrentFragment;
     }
 
-    public EventsFeedRVAdapter(List<Event> events, Fragment currentFragment, String tagCurrentFragment, String tabType, String userId) {
-        this.events = events;
-        this.currentFragment = currentFragment;
-        this.tagCurrentFragment = tagCurrentFragment;
-        this.tabType = tabType;
-        this.userId = userId;
-    }
-
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateViewHolder()
+    Description:                  Necessary method to override: Defines the layout
+                                  and type of each view holder
+    Input:                        ViewGroup viewGroup
+                                  int viewType
+    Output:                       int - number of cards/items
+    ---------------------------------------------------------------------------*/
     @Override
     public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        //Change the view of this font!!!
+        // Inflates the view for the feed
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_event_feed, viewGroup, false);
-        //Typeface raleway_light = Typeface.createFromAsset(v.getContext().getAssets(),  "raleway-light.ttf");
+
+        // Make the textviews into the custom font
         overrideFonts(v.getContext(),v);
 
+        // Set the font for the folloiwng text views
         Typeface raleway_medium = Typeface.createFromAsset(viewGroup.getContext().getAssets(),  "Raleway-Medium.ttf");
 
-        //title font
         TextView name = (TextView) v.findViewById(R.id.event_name);
         name.setTypeface(raleway_medium);
 
+        // Create the new event view holder to return
         EventViewHolder evh = new EventViewHolder(v);
         return evh;
     }
 
-    EventsFirebase eventsFirebase = new EventsFirebase();
-    boolean going = false;
-
+    /*---------------------------------------------------------------------------
+    Function Name:                onBindViewHolder()
+    Description:                  Necessary method to override: Binds information
+                                  to each view holder at position i
+    Input:                        CategoryViewHolder categoryViewHolder
+                                  int i - position of the item in the RecyclerView
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onBindViewHolder(final EventViewHolder eventViewHolder, final int i) {
 
+        // If the event picture isn't null or an empty string
         if (events.get(i).getPicture() != null && events.get(i).getPicture() != "") {
+            // Get the image file string
             String imageFile = events.get(i).getPicture();
+
+            // Attempt the create a bitmpa from the imagefile
             Bitmap src = null;
             if (imageFile != null && imageFile != "") {
                 try {
@@ -121,13 +148,19 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
                 }
             }
 
+            // If the bitmap was created successfully, update event picture
             if (src != null)
                 eventViewHolder.eventPic.setImageBitmap(src);
+            // If the bitmap was created unsuccessfully, don't update event picture view
             else
                 eventViewHolder.eventPic.setImageResource(R.drawable.wineanddine);
+
+        // If there is no event picture, update event picture view
         } else {
             eventViewHolder.eventPic.setImageResource(R.drawable.wineanddine);
         }
+
+        // Update the following views with correct event information
         eventViewHolder.eventName.setText(events.get(i).getEventName());
         eventViewHolder.eventLocation.setText(events.get(i).getLocation());
         eventViewHolder.eventAttendees.setText(String.valueOf(events.get(i).getAttendees()));
@@ -173,8 +206,9 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
                 d = "D E C";
                 break;
         }
-        eventViewHolder.monthDate.setText(d);
 
+        // Update the following views with correct event information
+        eventViewHolder.monthDate.setText(d);
         eventViewHolder.dayDate.setText(String.valueOf(events.get(i).getDate().substring(6,8)));
 
         String tempString = events.get(i).getDate().substring(11, events.get(i).getDate().length());
@@ -199,6 +233,7 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             sub = numb + col + "AM";
         }
 
+        // Set the event time with correct event information
         eventViewHolder.eventTime.setText(sub);
 
         // Categories
@@ -210,10 +245,13 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
             categories += events.get(i).getCategories().get(events.get(i).getCategories().size() - 1);
         }
 
+        // Set the event categories with correct event information
         eventViewHolder.eventCategories.setText(categories);
 
+        // Reference to position i
         final int test = i;
 
+        // On click listener for the card
         eventViewHolder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -221,13 +259,13 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
                 // Pass the event object in a bundle to pass to Event Details Fragment
                 Fragment eventDetailsFragment = new EventDetailsFragment();
 
+                // Pass event details to event details fragment
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(currentFragment.getString(R.string.event_details), events.get(test));
-                Log.v("arvindarvind", "" + events.get(test).getEventId());
                 eventDetailsFragment.setArguments(bundle);
 
                 // Makes sure the fragment being hidden is the tabs fragment which includes each page fragment,
-                // not just one of the view page fragments
+                // not just one of the view page fragments by specifying tab fragment tag if there is a tab fragment
                 String tabFragmentTag = "";
                 if (tagCurrentFragment.equals(currentFragment.getString(R.string.fragment_home_feed))) {
                     tabFragmentTag = currentFragment.getString(R.string.home);
@@ -240,15 +278,12 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
                     tabFragmentTag = currentFragment.getString(R.string.category_feed);
                 }
 
-                /*if (!tabFragmentTag.equals("")) {
-                    //make if else statements for all fragments that have tags
-                    currentFragment = currentFragment.getActivity().getSupportFragmentManager()
-                            .findFragmentByTag(tabFragmentTag);
-                }*/
 
-
+                // Remove the search bar for event details
                 ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
-                // Add Event Details Fragment to fragment manager
+
+
+                // Add Event Details Fragment to fragment manager / show it to the viewer
                 currentFragment.getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_frame_layout, eventDetailsFragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -260,60 +295,50 @@ public class EventsFeedRVAdapter extends RecyclerView.Adapter<EventsFeedRVAdapte
 
     }
 
-    ArrayList<Button> buttons = new ArrayList<>();
-
-
-
+    /*---------------------------------------------------------------------------
+    Function Name:                getItemCount()
+    Description:                  Gets the number of items in recycler - the events list
+    Input:                        None
+    Output:                       int - number of items in recyclerview
+    ---------------------------------------------------------------------------*/
     @Override
     public int getItemCount() {
         return events.size();
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                overrideFonts()
+    Description:                  Sets fonts for all TextViews
+    Input:                        final Context context
+                                  final View v
+    Output:                       View to be inflated
+    ---------------------------------------------------------------------------*/
     private void overrideFonts(final Context context, final View v) {
         try {
+
+            // If the view is a ViewGroup
             if (v instanceof ViewGroup) {
+
                 ViewGroup vg = (ViewGroup) v;
+
+                // Iterate through ViewGroup children
                 for (int i = 0; i < vg.getChildCount(); i++) {
                     View child = vg.getChildAt(i);
+
+                    // Call method again for each child
                     overrideFonts(context, child);
                 }
-            } else if (v instanceof TextView ) {
+
+                // If the view is a TextView set the font
+            } else if (v instanceof TextView) {
                 ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "raleway-regular.ttf"));
             }
+
         }
         catch (Exception e) {
+            // Print out error if one is encountered
+            System.err.println(e.toString());
         }
     }
-
-    private void startProfileFragment(final UserFirebase userFirebase) {
-
-        Fragment profileFragment = new ProfileFragment();
-
-        Bundle bundle = new Bundle();
-        bundle.putString(currentFragment.getString(R.string.profile_type),
-                currentFragment.getString(R.string.profile_type_other));
-
-
-        bundle.putSerializable(currentFragment.getString(R.string.user_details), userFirebase.anotherUser);
-
-        profileFragment.setArguments(bundle);
-
-        currentFragment.getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ((MainActivity)currentFragment.getActivity()).removeSearchToolbar();
-            }
-        });
-        // Add Event Details Fragment to fragment manager
-        currentFragment.getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_frame_layout, profileFragment)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .addToBackStack(currentFragment.getString(R.string.fragment_profile))
-                .commit();
-
-
-
-    }
-
 
 }
