@@ -13,7 +13,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -21,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
@@ -58,6 +62,8 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     private TextView timeMessage;
     private ScrollView scrollView;
     private Button buttonInvite;
+    private ImageButton uploadButton;
+    private TextView uploadText;
 
     private ArrayList editEventFields;
 
@@ -66,22 +72,24 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     public CreateEventCategoryRVAdapter adapter;
 
     /*---------------------------------------------------------------------------
-         Function Name: makeForm
-         Description: makes the form for all the fields
-         Input: None
-         Output: CreateEventForm
+    Function Name:                makeForm()
+    Description:                  instantiates a CreateEventForm for new event
+    Input:                        None.
+    Output:                       None.
     ---------------------------------------------------------------------------*/
     private CreateEventForm makeForm(){
         String result = "";
         if (((MainActivity) getActivity()).picture != null)
         result = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
         return new CreateEventForm(eventName,eventDate,eventTime, spinner, eventLocation,eventDescription, result);
+
     }
+
     /*---------------------------------------------------------------------------
-         Function Name: getEventDetails
-         Description: assigns all of the xml elements
-         Input: View
-         Output: none
+    Function Name:                getEventDetails()
+    Description:                  Instantiating instance variables from xml file
+    Input:                        View view
+    Output:                       None.
     ---------------------------------------------------------------------------*/
     protected void getEventDetails(View view) {
         eventImage = (ImageView) view.findViewById(R.id.eventImage);
@@ -99,20 +107,23 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         scrollView = (ScrollView) view.findViewById(R.id.scrollView);
         editEventFields = new ArrayList<String>();
         buttonInvite = (Button) view.findViewById(R.id.event_invite);
+        uploadButton = (ImageButton) view.findViewById(R.id.image);
+        uploadText = (TextView) view.findViewById(R.id.upload);
     }
 
     /*---------------------------------------------------------------------------
-         Function Name: setupWindow
-         Description: sets up the create event page, with all of the logic
-         Input: none
-         Output: none
+    Function Name:                setupWindow()
+    Description:                  Sets up window for items to be clicked/filled out and error messages
+    Input:                        None.
+    Output:                       None.
     ---------------------------------------------------------------------------*/
     protected void setupWindow() {
         buttonInvite.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {   //leads to the invite page
+            public void onClick(View v) {
                 ((MainActivity) getActivity()).addSearchToolbar();
                 InvitePeopleFragment invitePeopleFragment = new InvitePeopleFragment();
+                // Add Event Details Fragment to fragment manager
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_frame_layout, invitePeopleFragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -122,6 +133,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         });
 
         //ref to eventsfirebase class
+        //initialize EventsFirebase object
         final EventsFirebase eventsFirebase = new EventsFirebase(null, 0, null, null, null);
         editEventDone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,6 +148,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                 String date = "";
                 String time = "";
 
+                //check if form is all filled out properly
                 if (!form.allFilled() || eventTime.getText().toString().equals("") || eventDate.getText().toString().equals("")) {
                     fieldMessage.setVisibility(View.VISIBLE);
                     check = FILLED;
@@ -145,6 +158,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                     timeCheck = form.correctTime();
                 }
 
+                //error messages for date
                 if (check != 0 || dateCheck != 0 || timeCheck!= 0) {
                     switch (dateCheck) {
                         case 0:
@@ -160,6 +174,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                             date = getString(R.string.errorInvalidDate);
                             break;
                     }
+                    //error messages for time
                     switch (timeCheck){
                         case 0:
                             time = "";
@@ -178,12 +193,14 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                     timeMessage.setText(time);
                     scrollView.fullScroll(ScrollView.FOCUS_UP);
                 }
+                //creates event and inputs in database using eventsFirebase method
                 else {
                     final String eventId = eventsFirebase.createEvent(form, adapter);
 
                     EventsFirebase ef = new EventsFirebase();
                     ef.getEventDetails(eventId);
 
+                    //new thread to put app to sleep and give time for event details to be updated
                     new Thread(new Runnable() {
 
                         @Override
@@ -196,6 +213,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                                 }
                             }
 
+                            //set Event ID for specific event created
                             EventsFirebase.eventDetailsEvent.setEventId(eventId);
 
                             EventDetailsFragment eventDetailsFragment = new EventDetailsFragment();
@@ -255,6 +273,8 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
 
                                 if (src != null) {
                                     eventImage.setImageBitmap(src);
+                                    uploadButton.setVisibility(View.GONE);
+                                    uploadText.setVisibility(View.GONE);
                                 }
 
                             }
@@ -281,6 +301,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         ((MainActivity) getActivity()).picture = null;
     }
 
@@ -308,18 +329,6 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         getEventDetails(view);
 
         setupWindow();
-
-        final SmoothCheckBox scb = (SmoothCheckBox) view.findViewById(R.id.category_scb);
-
-        /*
-        // NULL POINTER ERROR
-        scb.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
-                //("SmoothCheckBox", String.valueOf(isChecked));
-            }
-        });
-        */
 
         categories = new ArrayList<>();
 
@@ -389,6 +398,21 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         done.setTypeface(raleway_medium);
 
         return view;
+    }
+
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateOptionsMenu()
+    Description:                  creates the stuff on the toolbar
+    Input:                        Menu menu
+                                  MenuInflater inflater - inflates layout
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        Log.v("assdas", "asd");
+        menu.removeItem(R.id.action_create_event);
+        inflater.inflate(R.menu.create_event_blank, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override

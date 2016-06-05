@@ -131,9 +131,7 @@ public class  EditProfileFragment extends Fragment {
 
                     @Override
                     public void run() {
-
-                        // Keep checking if the user is done picking a picture
-                        while (((MainActivity) getActivity()).picture == null) {
+                        while ((getActivity() != null) && ((MainActivity) getActivity()).picture == null) {
                             try {
                                 Thread.sleep(300);
                             } catch (InterruptedException e) {
@@ -142,12 +140,13 @@ public class  EditProfileFragment extends Fragment {
                             if (((MainActivity) getActivity()).picture == null) {
                                 break;
                             }
-                        }
 
+                        }
                         // After the user has finished picking a picture
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
+                        if ((getActivity() != null) && ((MainActivity) getActivity()).picture != null) {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
 
                                 // Convert the picture from main activity to a string using convert()
                                 String imageFile = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
@@ -206,9 +205,10 @@ public class  EditProfileFragment extends Fragment {
                                     editProfilePictureButton.setImageDrawable(circularBitmapDrawable);
                                 }
 
-                            }
-                        });
+                                }
+                            });
 
+                        }
                     }
                 }).start();
 
@@ -262,6 +262,7 @@ public class  EditProfileFragment extends Fragment {
         Typeface custom_font = Typeface.createFromAsset(getActivity().getAssets(),  "raleway-light.ttf");
         editFullName.setTypeface(custom_font);
         editDescription.setTypeface(custom_font);
+
         editFullName.setText(user.getName());
         editDescription.setText(user.getDescription());
 
