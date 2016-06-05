@@ -1335,8 +1335,9 @@ int layout select_dialog_singlechoice_material 0x7f040059
 int layout support_simple_spinner_dropdown_item 0x7f04005a
 int menu action_bar_main 0x7f0f0000
 int menu activity_main_drawer 0x7f0f0001
-int menu dashboard 0x7f0f0002
-int menu invite_people 0x7f0f0003
+int menu create_event_blank 0x7f0f0002
+int menu dashboard 0x7f0f0003
+int menu invite_people 0x7f0f0004
 int mipmap ic_launcher 0x7f030000
 int mipmap logo 0x7f030001
 int raw gtm_analytics 0x7f070000

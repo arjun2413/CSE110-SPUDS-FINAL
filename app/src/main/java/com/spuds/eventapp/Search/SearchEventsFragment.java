@@ -20,19 +20,36 @@ import java.util.ArrayList;
 /**
  * Created by David on 5/28/16.
  */
+/*---------------------------------------------------------------------------
+Class Name:                SearchEventsFragment
+Description:               Contains information about SearchEventsFragment
+---------------------------------------------------------------------------*/
 public class SearchEventsFragment extends Fragment {
     private ArrayList<Event> events;
     public SearchEventsRVAdapter adapter;
     EventsFirebase eventsFirebase;
     String eventId;
 
+    /*---------------------------------------------------------------------------
+    Function Name:                SearchEventsFragment
+    Description:                  Required default no-argument constructor
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public SearchEventsFragment() {
         // Required empty public constructor
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreate
+    Description:                  called when the fragment is created
+    Input:                        Bundle savedInstanceState
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //create a bundle to pass data to other classes
         eventsFirebase = new EventsFirebase();
         Bundle bundle = getArguments();
         if (bundle != null)
@@ -40,6 +57,14 @@ public class SearchEventsFragment extends Fragment {
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateView()
+    Description:                  Inflates View layout and sets fonts programmatically
+    Input:                        LayoutInflater inflater - inflates layout
+                                  ViewGroup container - parent view group
+                                  Bundle savedInstanceState
+    Output:                       View to be inflated
+    ---------------------------------------------------------------------------*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,7 +74,7 @@ public class SearchEventsFragment extends Fragment {
 
         events = new ArrayList<>();
 
-
+        //set layout manager to be a linear layout
         LinearLayoutManager llm = new LinearLayoutManager(v.getContext());
         rv.setLayoutManager(llm);
 
@@ -95,7 +120,12 @@ public class SearchEventsFragment extends Fragment {
         return v;
     }
 
-    //TODO: Needs database to finish
+    /*---------------------------------------------------------------------------
+    Function Name:                refreshing
+    Description:                  called when user pulls down to refresh the page
+    Input:                        View view
+    Output:                       View
+    ---------------------------------------------------------------------------*/
     public void refreshing(View view) {
         final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         mySwipeRefreshLayout.setOnRefreshListener(
@@ -104,34 +134,15 @@ public class SearchEventsFragment extends Fragment {
                     public void onRefresh() {
                         events.clear();
 
-                        //TODO: Get events from firebase
-
-                        //("refresh", "here");
                         new Thread(new Runnable() {
 
                             @Override
                             public void run() {
-                                //("refresh", "hereherehere");
 
-                                //TODO: Change firebase calls to events instead of subscriptions
-                                /*
-                                while (userFirebase.numSubscriptions > events.size() || !userFirebase.getSubscriptionsThreadCheck) {
-                                    ////("refresh", "size: " + events.size());
-                                    try {
-                                        Thread.sleep(70);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                                */
-
-                                //("refresh", "here2");
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run()
                                     {
-                                        //("refresh", "here3");
-
                                         adapter.notifyDataSetChanged();
                                         mySwipeRefreshLayout.setRefreshing(false);
 
@@ -143,12 +154,13 @@ public class SearchEventsFragment extends Fragment {
                 }
         );
     }
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
 
-
+    /*---------------------------------------------------------------------------
+    Function Name:                onResume()
+    Description:                  called every time the fragment is resumed
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onResume() {
         super.onResume();

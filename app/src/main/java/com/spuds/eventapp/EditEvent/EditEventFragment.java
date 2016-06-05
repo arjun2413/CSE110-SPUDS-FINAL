@@ -1,6 +1,7 @@
 package com.spuds.eventapp.EditEvent;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -24,6 +26,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
@@ -64,8 +67,8 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
     private TextView errorDateMessage;
     private TextView errorTimeMessage;
     private ScrollView scrollView;
-
-
+    private ImageButton uploadButton;
+    private TextView uploadText;
 
 
     private List<CategoryTextButton> categories;
@@ -123,16 +126,10 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         Button delete = (Button) view.findViewById(R.id.editEventDelete);
         delete.setTypeface(raleway_medium);
 
-
         eD = new EventDate(event.getDate());
-        Log.d("edvalue", String.valueOf(eD.hour));
-        Log.d("edvalue", String.valueOf(eD.year));
-        Log.d("edvalue", String.valueOf(eD.month));
-        Log.d("edvalue", String.valueOf(eD.day));
 
         setupWindow(view);
         setupWindow();
-
         setupEditTime(view);
 
         return view;
@@ -140,7 +137,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
     void setupEditTime(View view) {
         // Spinner element
-         spinner = (Spinner) view.findViewById(R.id.spinner);
+        spinner = (Spinner) view.findViewById(R.id.spinner);
 
         // Spinner click listener
         spinner.setOnItemSelectedListener(this);
@@ -176,6 +173,8 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         scrollView = (ScrollView) view.findViewById(R.id.scrollView);
         rv =(RecyclerView) view.findViewById(R.id.rv_categories);
         scb = (SmoothCheckBox) view.findViewById(R.id.category_scb);
+        uploadButton = (ImageButton) view.findViewById(R.id.image);
+        uploadText = (TextView) view.findViewById(R.id.upload);
         editEventFields = new ArrayList<String>();
 
         errorMissingMessage = (TextView) view.findViewById(R.id.missingMessage);
@@ -299,8 +298,6 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
                                 EventsFirebase eventsFirebase = new EventsFirebase();
                                 eventsFirebase.deleteEvent(event.getEventId());
-                                System.out.println("event_id: " + event.getEventId());
-                                System.out.println(getFragmentManager().getBackStackEntryCount());
                                 //int fragId = getFragmentManager().getBackStackEntryCount();
                                 //getFragmentManager().getBackStackEntryAt(fragId).getId();
 
@@ -374,7 +371,6 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                             time = "";
                             break;
                         case 4:
-                            //TODO: Reggie, specify event time format in strings.xml file
                             time = getString(R.string.errorTimeFormat);
                             break;
                         case 5:
@@ -425,8 +421,11 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                 System.err.println(e.toString());
             }
 
-            if (src != null)
+            if (src != null) {
                 eventImage.setImageBitmap(src);
+                uploadButton.setVisibility(View.GONE);
+                uploadText.setVisibility(View.GONE);
+            }
         }
 
         eventImage.setOnClickListener(new View.OnClickListener() {
@@ -434,43 +433,46 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
             public void onClick(View v) {
                 ((MainActivity) getActivity()).picture = null;
 
-                // For camera
-                //UploadPictureDialogFragment dialogFragment = new UploadPictureDialogFragment();
-
-                //dialogFragment.show(getFragmentManager(), "Add a Picture");
-
-
                 ((MainActivity) getActivity()).pickImage(false);
 
                 new Thread(new Runnable() {
 
                     @Override
                     public void run() {
-                            while (((MainActivity) getActivity()).picture == null) {
-                                try {
-                                    Thread.sleep(300);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                                if (((MainActivity) getActivity()).picture == null) {
-                                    break;
-                                }
 
+                        while ((getActivity() != null) && ((MainActivity) getActivity()).picture == null) {
+                            try {
+                                Thread.sleep(300);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
                             }
+                        }
+                        if((getActivity() != null) && ((MainActivity) getActivity()).picture != null) {
 
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
 
-                                    eventImage.setImageURI(null);
-                                    eventImage.setImageURI(((MainActivity) getActivity()).picture);
-                                    eventImage.invalidate();
+                                    String imageFile2 = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
 
+                                    Bitmap src2 = null;
+                                    try {
+                                        byte[] imageAsBytes = Base64.decode(imageFile2, Base64.DEFAULT);
+                                        src2 = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+                                    } catch (OutOfMemoryError e) {
+                                        System.err.println(e.toString());
+                                    }
 
+                                    if (src2 != null) {
+                                        eventImage.setImageBitmap(src2);
+                                        uploadButton.setVisibility(View.GONE);
+                                        uploadText.setVisibility(View.GONE);
+                                    }
                                 }
                             });
-
                         }
+
+                    }
                 }).start();
             }
         });

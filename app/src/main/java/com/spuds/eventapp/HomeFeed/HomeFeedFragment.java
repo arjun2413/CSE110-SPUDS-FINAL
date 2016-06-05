@@ -64,6 +64,8 @@ public class HomeFeedFragment extends Fragment {
 
         // Init eventsFirebase reference
         eventsFirebase = new EventsFirebase(events, 0, tabType);
+
+
     }
 
     /*---------------------------------------------------------------------------
@@ -149,7 +151,7 @@ public class HomeFeedFragment extends Fragment {
 
                                 // While the events is empty wait
                                 while (events.size() == 0) {
-                                    ////("refresh", "size: " + events.size());
+
                                     try {
                                         Thread.sleep(Integer.parseInt(getString(R.string.sleepTime)));
                                     } catch (InterruptedException e) {

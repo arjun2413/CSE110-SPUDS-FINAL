@@ -29,9 +29,7 @@ public class NotificationsFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        /*Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        TextView title = (TextView) toolbar.findViewById(R.id.tv_toolbar);
-        title.setText("Notifications");*/
+
         super.onCreate(savedInstanceState);
 
         notificationList = new ArrayList<Notification>();
@@ -66,7 +64,7 @@ public class NotificationsFragment extends Fragment {
 
         return view;
     }
-    //TODO: Needs database to finish
+
     public void refreshing(View view) {
         SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         mySwipeRefreshLayout.setOnRefreshListener(

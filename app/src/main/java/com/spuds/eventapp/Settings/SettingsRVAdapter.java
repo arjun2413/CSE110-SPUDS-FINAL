@@ -29,13 +29,25 @@ import java.util.List;
 /**
  * Created by David on 5/12/16.
  */
+
+/*---------------------------------------------------------------------------
+Class Name:                SettingsRVAdapter
+Description:               Contains information about the Settings page
+---------------------------------------------------------------------------*/
 public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
-    // notifications are on by default
+    //notifications are on by default
     boolean isNotificationOn;
+    //list of settings cards
     List<Setting> settings;
+    //the current fragment
     Fragment currentFragment;
 
+
+    /*---------------------------------------------------------------------------
+    Class Name:                SettingsViewHolder
+    Description:               Holds all the elements necessary for a settings card
+    ---------------------------------------------------------------------------*/
     public static class SettingsViewHolder extends RecyclerView.ViewHolder{
         CardView card;
         ImageView settingPhoto;
@@ -51,6 +63,11 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     }
 
+    /*---------------------------------------------------------------------------
+    Class Name:                SettingsViewHolder
+    Description:               Holds all the elements necessary for the 
+                               notifications toggle settings card
+    ---------------------------------------------------------------------------*/
     public static class NotifSettingsViewHolder extends RecyclerView.ViewHolder{
         CardView card;
         ImageView settingPhoto;
@@ -65,17 +82,42 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             toggleNotifications = (Switch)itemView.findViewById(R.id.settings_toggle);
         }
     }
+
+    /*---------------------------------------------------------------------------
+    Function Name:                SettingsRVAdapter
+    Description:                  Constructor
+    Input:                        List<User> settings: array list of settings
+                                  Fragment currentFragment
+                                  boolean isNotificationOn: determines if notifcations
+                                  are toggled on 
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public SettingsRVAdapter(List<Setting> settings, Fragment currentFragment, boolean isNotificationOn){
         this.settings = settings;
         this.currentFragment = currentFragment;
         this.isNotificationOn = isNotificationOn;
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                getItemCount()
+    Description:                  Necessary method to override: How many items
+                                  in the RecyclerView. Should always be 2 for now
+    Input:                        None
+    Output:                       int: number of cards/items
+    ---------------------------------------------------------------------------*/
     @Override
     public int getItemCount() {
         return 2;
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateViewHolder()
+    Description:                  Necessary method to override: Defines the layout
+                                  and type of each view holder
+    Input:                        ViewGroup viewGroup
+                                  int viewType
+    Output:                       InviteViewHolder
+    ---------------------------------------------------------------------------*/
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View v;
@@ -93,7 +135,13 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     }
 
-
+    /*---------------------------------------------------------------------------
+    Function Name:                getItemViewType()
+    Description:                  gets the type of View that will be created by 
+                                  getView() for the specified item.
+    Input:                        int position
+    Output:                       int
+    ---------------------------------------------------------------------------*/
     @Override
     public int getItemViewType(int position) {
 
@@ -112,9 +160,19 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onBindViewHolder()
+    Description:                  Necessary method to override: Binds information
+                                  to each view holder at position i
+    Input:                        InviteViewHolder holder
+                                  int position: position of the item in the RecyclerView
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        //i == 1, so the second settings card, which is notification toggle
         if (i == 1){
+            //set the fields
             ((NotifSettingsViewHolder) viewHolder).settingName.setText(settings.get(i).name);
             ((NotifSettingsViewHolder) viewHolder).settingPhoto.setImageResource(settings.get(i).photoId);
             ((NotifSettingsViewHolder) viewHolder).toggleNotifications.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -122,7 +180,7 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     UserFirebase.updateNotificationToggle(isChecked);
                 }
             });
-
+            //toggle notification 
             if (isNotificationOn)
                 ((NotifSettingsViewHolder) viewHolder).toggleNotifications.setChecked(true);
             else
@@ -171,7 +229,6 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                     public void onClick(DialogInterface dialog, int which) {
                                     }
                                 })
-                                //.setIcon(android.R.drawable.ic_dialog_alert)
                                 .show();
                     }
                 });
@@ -180,6 +237,13 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                overrideFonts()
+    Description:                  used to override fonts
+    Input:                        Context context: the context we care about
+                                  View v: the view we care about 
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     private void overrideFonts(final Context context, final View v) {
         try {
             if (v instanceof ViewGroup) {
