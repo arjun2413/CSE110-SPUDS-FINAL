@@ -38,8 +38,6 @@ public class HomeFeedFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.v("OnCreate_call", "onCreate");
-        //Firebase.setAndroidContext();
         super.onCreate(savedInstanceState);
 
         Bundle extras = getArguments();
@@ -50,8 +48,7 @@ public class HomeFeedFragment extends Fragment {
         // TODO (M): Get arraylist of events based on tab type [new, hot, now]
         // Fake data
         eventsFirebase = new EventsFirebase(events, 0, tabType);
-        /*events.clear();
-        eventsFirebase.createEL();*/
+
 
     }
 
@@ -106,15 +103,13 @@ public class HomeFeedFragment extends Fragment {
 
                         eventsFirebase.createEL();
 
-                        //("refresh", "here");
                         new Thread(new Runnable() {
 
                             @Override
                             public void run() {
-                                //("refresh", "hereherehere");
 
                                 while (events.size() == 0) {
-                                    ////("refresh", "size: " + events.size());
+
                                     try {
                                         Thread.sleep(Integer.parseInt(getString(R.string.sleepTime)));
                                     } catch (InterruptedException e) {
@@ -122,12 +117,10 @@ public class HomeFeedFragment extends Fragment {
                                     }
                                 }
 
-                                //("refresh", "here2");
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run()
                                     {
-                                        //("refresh", "here3");
 
                                         adapter.notifyDataSetChanged();
                                         mySwipeRefreshLayout.setRefreshing(false);
@@ -177,7 +170,6 @@ public class HomeFeedFragment extends Fragment {
         super.onResume();
         events.clear();
         eventsFirebase.createEL();
-        Log.v("onResume_call", "heretest");
         ((MainActivity)getActivity()).addSearchToolbar();
         ((MainActivity)getActivity()).searchType = getString(R.string.fragment_home_feed);
 

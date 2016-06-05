@@ -37,8 +37,6 @@ public class CategoryFeedFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
         catType = bundle.getString(getString(R.string.category_bundle));
-        ////("jkl;", ""+catType);
-        //categoryFeedViewPagerAdapter = new CategoryFeedViewPagerAdapter(getChildFragmentManager(), this, catType);
 
         events = new ArrayList<>();
 
@@ -85,9 +83,6 @@ public class CategoryFeedFragment extends Fragment {
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Poop");
         }
 
-        //View view = inflater.inflate(R.layout.fragment_feed_tabs, container, false);
-        //tabs(view);
-
         View view = inflater.inflate(R.layout.recycler, container, false);
 
         final RecyclerView rv=(RecyclerView) view.findViewById(R.id.rv);
@@ -124,7 +119,6 @@ public class CategoryFeedFragment extends Fragment {
         return view;
     }
 
-    //TODO: Needs database to finish
     public void refreshing(View view) {
         final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         mySwipeRefreshLayout.setOnRefreshListener(
@@ -135,15 +129,12 @@ public class CategoryFeedFragment extends Fragment {
 
                         eventsFirebase.createEL();
 
-                        //("refresh", "here");
                         new Thread(new Runnable() {
 
                             @Override
                             public void run() {
-                                //("refresh", "hereherehere");
-
                                 while (events.size() == 0) {
-                                    ////("refresh", "size: " + events.size());
+
                                     try {
                                         Thread.sleep(Integer.parseInt(getString(R.string.sleepTime)));
                                     } catch (InterruptedException e) {
@@ -151,12 +142,10 @@ public class CategoryFeedFragment extends Fragment {
                                     }
                                 }
 
-                                //("refresh", "here2");
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run()
                                     {
-                                        //("refresh", "here3");
 
                                         adapter.notifyDataSetChanged();
                                         mySwipeRefreshLayout.setRefreshing(false);
@@ -180,7 +169,6 @@ public class CategoryFeedFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.v("WAOW", "ONREHAHASUME");
         ((MainActivity)getActivity()).addSearchToolbar();
     }
 

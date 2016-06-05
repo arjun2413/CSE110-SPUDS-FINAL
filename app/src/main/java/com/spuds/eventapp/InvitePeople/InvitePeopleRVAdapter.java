@@ -173,14 +173,6 @@ public class InvitePeopleRVAdapter extends RecyclerView.Adapter<InvitePeopleRVAd
 
         holder.followerName.setText(followers.get(position).getName());
 
-        // TODO: colors
-        /*
-        //What is selectAll? How do you select all?
-        if (selectAll)
-            holder.scb.setChecked(true, true);
-        else
-            holder.scb.setChecked(false, true);
-        */
     }
 
     /*---------------------------------------------------------------------------

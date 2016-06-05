@@ -19,7 +19,6 @@ public class HomeFeedViewPagerAdapter extends FragmentStatePagerAdapter {
         this.homeFeedTabsFragment = homeFeedTabsFragment;
     }
 
-    //TODO: Create different fragments passing in filter
     @Override
     public Fragment getItem(int position) {
         HomeFeedFragment homeFeedFragment = new HomeFeedFragment();

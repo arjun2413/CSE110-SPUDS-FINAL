@@ -57,9 +57,6 @@ public class HomeFeedTabsFragment extends Fragment {
         tabLayout.addTab(happeningNowFilter, 2);
 
 
-        //tabLayout.setTabTextColors(ContextCompat.getColorStateList(this, Color.WHITE));
-        //tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.indicator));
-
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

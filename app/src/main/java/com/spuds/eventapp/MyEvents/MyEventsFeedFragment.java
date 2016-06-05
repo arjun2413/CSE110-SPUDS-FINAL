@@ -86,7 +86,6 @@ public class MyEventsFeedFragment extends Fragment {
         return view;
     }
 
-    //TODO: Needs database to finish
     public void refreshing(View view) {
         final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         mySwipeRefreshLayout.setOnRefreshListener(

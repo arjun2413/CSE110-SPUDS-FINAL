@@ -428,17 +428,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     }
 
     public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
-    }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
     }
 
     private void overrideFonts(final Context context, final View v) {

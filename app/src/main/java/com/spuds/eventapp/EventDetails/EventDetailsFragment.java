@@ -427,15 +427,12 @@ public class EventDetailsFragment extends Fragment {
                         buttonGoingOrEdit.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                //Log.d("EDF", "clicking~");
 
                                 if (canClickGoing) {
                                     canClickGoing = false;
 
                                     if (going) {
 
-                                        //Log.d("EDF", " going true");
-                                        //buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_unselected));
                                         eventsFirebase.notGoingThreadCheck = false;
                                         eventsFirebase.deleteThreadCheck = false;
                                         eventsFirebase.notGoingToAnEvent(eventId);
@@ -461,7 +458,6 @@ public class EventDetailsFragment extends Fragment {
                                                 mySwipeRefreshLayout.post(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        //Log.v("EDF", "swiperefresh1");
                                                         // directly call onRefresh() method
                                                         refreshListener.onRefresh();
                                                     }
@@ -472,7 +468,6 @@ public class EventDetailsFragment extends Fragment {
                                         }).start();
 
                                     } else {
-                                        //Log.v("EDF", "not going");
                                         eventsFirebase.notGoingThreadCheck = false;
                                         eventsFirebase.goingToEventThreadCheck = false;
                                         eventsFirebase.notGoingToAnEvent(eventId);
@@ -496,11 +491,10 @@ public class EventDetailsFragment extends Fragment {
                                                 canClickGoing = true;
                                                 going = true;
 
-                                                //buttonGoingOrEdit.setBackgroundTintList(getResources().getColorStateList(R.color.color_selected));
                                                 mySwipeRefreshLayout.post(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        //Log.v("EDF", "swiperefresh2");
+
                                                         // directly call onRefresh() method
                                                         refreshListener.onRefresh();
                                                     }
@@ -522,7 +516,6 @@ public class EventDetailsFragment extends Fragment {
 
         String imageFile = event.getPicture();
 
-        //("ag7", "imageFile = " + imageFile);
 
         if (imageFile != null && imageFile != "") {
 
@@ -546,7 +539,7 @@ public class EventDetailsFragment extends Fragment {
     @Override
     public void onResume(){
         super.onResume();
-        //("WAOW", "ONRESUME");
+
         if (!first) {
             mySwipeRefreshLayout.post(new Runnable() {
                 @Override public void run() {
@@ -605,13 +598,5 @@ public class EventDetailsFragment extends Fragment {
         } catch (Exception e) {
         }
     }
-
-    /*@Override
-    public void onResume() {
-        super.onResume();
-        if (allowRefresh)
-        refreshListener.onRefresh();
-        ((MainActivity)getActivity()).removeSearchToolbar();
-    } */
 
 }

@@ -126,7 +126,6 @@ public class SearchEventsFragment extends Fragment {
     Input:                        View view
     Output:                       View
     ---------------------------------------------------------------------------*/
-    //TODO: Needs database to finish
     public void refreshing(View view) {
         final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         mySwipeRefreshLayout.setOnRefreshListener(
@@ -135,8 +134,6 @@ public class SearchEventsFragment extends Fragment {
                     public void onRefresh() {
                         events.clear();
 
-                        //TODO: Get events from firebase
-
                         //("refresh", "here");
                         new Thread(new Runnable() {
 
@@ -144,7 +141,6 @@ public class SearchEventsFragment extends Fragment {
                             public void run() {
                                 //("refresh", "hereherehere");
 
-                                //TODO: Change firebase calls to events instead of subscriptions
                                 /*
                                 while (userFirebase.numSubscriptions > events.size() || !userFirebase.getSubscriptionsThreadCheck) {
                                     ////("refresh", "size: " + events.size());

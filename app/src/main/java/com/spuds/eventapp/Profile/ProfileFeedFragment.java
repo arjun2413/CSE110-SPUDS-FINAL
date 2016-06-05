@@ -119,7 +119,7 @@ public class ProfileFeedFragment extends Fragment {
 
         return view;
     }
-    //TODO: Needs database to finish
+
     public void refreshing(View view) {
         SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         mySwipeRefreshLayout.setOnRefreshListener(
