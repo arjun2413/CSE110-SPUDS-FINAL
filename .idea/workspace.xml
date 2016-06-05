@@ -36,28 +36,9 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6f44674-b6a9-4986-8af6-959b586998d8" name="Default" comment="Comment">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_public_feed.xml" afterPath="" />
+    <list default="true" id="d6f44674-b6a9-4986-8af6-959b586998d8" name="Default" comment="Merge">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditProfile/EditProfileFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditProfile/EditProfileFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EventDetails/EventDetailsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EventDetails/EventDetailsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/FilteredCategoryFeed/CategoryFeedFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/FilteredCategoryFeed/CategoryFeedFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/HomeFeed/HomeFeedFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/HomeFeed/HomeFeedFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/HomeFeed/HomeFeedViewPagerAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/HomeFeed/HomeFeedViewPagerAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/MyEvents/MyEventsFeedFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/MyEvents/MyEventsFeedFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/MyEvents/MyEventsTabsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/MyEvents/MyEventsTabsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/MyEvents/MyEventsViewPagerAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/MyEvents/MyEventsViewPagerAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Notifications/NotificationsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Notifications/NotificationsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Profile/ProfileFeedFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Profile/ProfileFeedFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Profile/ProfileFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Profile/ProfileFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Profile/ProfileViewPagerAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Profile/ProfileViewPagerAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Search/SearchEventsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Search/SearchEventsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Search/SearchUsersFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Search/SearchUsersFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/EventsFeedRVAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/EventsFeedRVAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SubscriptionsList/SubscriptionsListFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SubscriptionsList/SubscriptionsListFragment.java" />
     </list>
     <ignored path="CSE110-SPUDS-FINAL.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,9 +62,75 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6174334">
-              <caret line="310" column="0" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.5060241">
+              <caret line="308" column="16" selection-start-line="308" selection-start-column="16" selection-end-line="308" selection-end-column="16" />
+              <folding>
+                <element signature="e#5896#6505#0" expanded="true" />
+                <element signature="e#6504#6505#0" expanded="true" />
+                <element signature="e#12307#12321#0" expanded="true" />
+                <element signature="e#12733#12771#0" expanded="true" />
+                <element signature="e#12917#12957#0" expanded="true" />
+                <element signature="e#12980#13022#0" expanded="true" />
+                <element signature="e#13117#13155#0" expanded="true" />
+                <element signature="e#13256#13296#0" expanded="true" />
+                <element signature="e#13398#13433#0" expanded="true" />
+                <element signature="e#13845#13883#0" expanded="true" />
+                <element signature="e#14061#14101#0" expanded="true" />
+                <element signature="e#14124#14166#0" expanded="true" />
+                <element signature="e#14335#14373#0" expanded="true" />
+                <element signature="e#14584#14624#0" expanded="true" />
+                <element signature="e#14843#14878#0" expanded="true" />
+                <element signature="e#15741#16221#0" expanded="true" />
+                <element signature="e#16220#16221#0" expanded="true" />
+                <element signature="e#16313#16797#0" expanded="true" />
+                <element signature="e#16796#16797#0" expanded="true" />
+                <element signature="e#16888#17377#0" expanded="true" />
+                <element signature="e#17376#17377#0" expanded="true" />
+                <element signature="e#17463#18132#0" expanded="true" />
+                <element signature="e#18131#18132#0" expanded="true" />
+                <element signature="e#18217#18676#0" expanded="true" />
+                <element signature="e#18675#18676#0" expanded="true" />
+                <element signature="e#19071#22827#0" expanded="true" />
+                <element signature="e#21225#21252#0" expanded="true" />
+                <element signature="e#22826#22827#0" expanded="true" />
+                <element signature="e#22959#23426#0" expanded="true" />
+                <element signature="e#23425#23426#0" expanded="true" />
+                <element signature="e#23871#27660#0" expanded="true" />
+                <element signature="e#25980#26008#0" expanded="true" />
+                <element signature="e#27659#27660#0" expanded="true" />
+                <element signature="e#28562#28593#0" expanded="true" />
+                <element signature="e#28595#28627#0" expanded="true" />
+                <element signature="e#29289#29313#0" expanded="true" />
+                <element signature="e#30299#30327#0" expanded="true" />
+                <element signature="e#30441#30466#0" expanded="true" />
+                <element signature="e#30588#30624#0" expanded="true" />
+                <element signature="e#30751#30781#0" expanded="true" />
+                <element signature="e#30909#30942#0" expanded="true" />
+                <element signature="e#31072#31101#0" expanded="true" />
+                <element signature="e#31228#31256#0" expanded="true" />
+                <element signature="e#31384#31417#0" expanded="true" />
+                <element signature="e#31622#31646#0" expanded="true" />
+                <element signature="e#31684#31720#0" expanded="true" />
+                <element signature="e#32025#32058#0" expanded="true" />
+                <element signature="e#32190#32218#0" expanded="true" />
+                <element signature="e#32346#32375#0" expanded="true" />
+                <element signature="e#32513#32546#0" expanded="true" />
+                <element signature="e#32670#32700#0" expanded="true" />
+                <element signature="e#32836#32872#0" expanded="true" />
+                <element signature="e#32986#33011#0" expanded="true" />
+                <element signature="e#33131#33159#0" expanded="true" />
+                <element signature="e#33968#34006#0" expanded="true" />
+                <element signature="e#34419#34457#0" expanded="true" />
+                <element signature="e#34613#34648#0" expanded="true" />
+                <element signature="e#34867#34907#0" expanded="true" />
+                <element signature="e#35117#35157#0" expanded="true" />
+                <element signature="e#35693#36418#0" expanded="true" />
+                <element signature="e#36417#36418#0" expanded="true" />
+                <element signature="e#37585#37617#0" expanded="true" />
+                <element signature="e#37619#37657#0" expanded="true" />
+                <element signature="e#38067#38103#0" expanded="true" />
+                <element signature="e#39425#39466#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -92,7 +139,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditProfile/EditProfileFragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="256" column="25" selection-start-line="256" selection-start-column="0" selection-end-line="257" selection-end-column="0" />
+              <caret line="256" column="25" selection-start-line="256" selection-start-column="25" selection-end-line="256" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -114,7 +161,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/EventsFeedRVAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="252" column="0" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
+              <caret line="300" column="0" selection-start-line="300" selection-start-column="0" selection-end-line="300" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -4476,28 +4523,32 @@
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/android_crop_1_0_1.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_23_3_0.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_1_1.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_3_0.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/cardview_v7_23_3_0.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/design_23_3_0.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/mediarouter_v7_22_2_0.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/play_services_analytics_8_3_0.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/play_services_appindexing_8_3_0.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/play_services_appstate_8_3_0.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/play_services_base_8_3_0.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/play_services_basement_8_3_0.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/play_services_cast_8_3_0.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/play_services_drive_8_3_0.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/play_services_games_8_3_0.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/play_services_identity_8_3_0.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/play_services_measurement_8_3_0.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/play_services_nearby_8_3_0.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/play_services_panorama_8_3_0.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/play_services_safetynet_8_3_0.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/play_services_vision_8_3_0.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/play_services_wallet_8_3_0.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/play_services_wearable_8_3_0.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/recyclerview_v7_23_3_0.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/support_annotations_23_1_1.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/support_annotations_23_3_0.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/support_v4_23_1_1.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/support_v4_23_3_0.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/support_vector_drawable_23_3_0.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/misc.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/modules.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/app.iml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/generated/source/r/debug/com/spuds/eventapp/R.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-af.json</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-am.json</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-ar.json</PATH>
@@ -4631,39 +4682,20 @@
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/mipmap-xxhdpi-v4.json</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/mipmap-xxxhdpi-v4.json</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/xml.json</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/About/AboutFragment.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/CategoriesList/CategoriesListFragment.class</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/ChangePassword/ChangePasswordFragment$1.class</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/ChangePassword/ChangePasswordFragment.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/CreateComment/CreateCommentFragment.class</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/CreateEvent/CreateEventFragment.class</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/EditEvent/EditEventFragment$1.class</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/EditEvent/EditEventFragment.class</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/EditProfile/EditProfileFragment.class</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/EventDetails/EventDetailsFragment.class</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/FindPeople/FindPeopleFragment.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/HomeFeed/HomeFeedFragment.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment$1.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/HomeFeed/HomeFeedTabsFragment.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/HomeFeed/HomeFeedViewPagerAdapter.class</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Login/LoginActivity$1.class</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Login/LoginActivity.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/MyEvents/MyEventsFeedFragment.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/MyEvents/MyEventsTabsFragment$1.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/MyEvents/MyEventsTabsFragment.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/MyEvents/MyEventsViewPagerAdapter.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Notifications/NotificationsFragment.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Profile/ProfileFragment.class</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Settings/SettingsFragment.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Shared/Event.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Shared/EventsFeedRVAdapter$EventViewHolder.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Shared/EventsFeedRVAdapter.class</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Shared/MainActivity$1.class</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Shared/MainActivity$2.class</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Shared/MainActivity.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/Shared/Subscription.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SignUp/SignUpActivity$1.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SignUp/SignUpActivity.class</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedFragment.class</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListFragment.class</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter$SubViewHolder.class</PATH>
@@ -4674,19 +4706,47 @@
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAssets/merger.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugShaders/merger.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/fragment_event_details.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/res/resources-debug-androidTest.ap_</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/ChangePassword/ChangePasswordForm.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/ChangePassword/ChangePasswordFragment.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/CreateEvent/CreateEventForm.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/CreateEvent/CreateEventFragment.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditEvent/EditEventForm.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditEvent/EditEventFragment.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Firebase/EventsFirebase.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditProfile/EditProfileFragment.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/FindPeople/FindPeopleFragment.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/FindPeople/FindPeopleRVAdapter.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Firebase/AccountFirebase.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Firebase/UserFirebase.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/HomeFeed/HomeFeedFragment.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/InvitePeople/InvitePeopleFragment.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/InvitePeople/InvitePeopleRVAdapter.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Login/LoginActivity.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Notifications/NotificationsFragment.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/ResetPassword/ResetPasswordActivity.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Search/SearchEventsFragment.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Search/SearchEventsRVAdapter.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Search/SearchUsersFragment.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Search/SearchUsersRVAdapter.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Settings/SettingsFragment.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Settings/SettingsRVAdapter.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/DatabaseTable.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/DatabaseTableSubEvent.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/DatabaseTableSubUser.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/EventDate.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/EventsFeedRVAdapter.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/NotificationsListenerService.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/Notification.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/PushBuilder.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/RegistrationService.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/TokenRefreshListenerService.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SignUp/SignUpActivity.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/Setting.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SubscriptionFeed/SubscriptionFeedFragment.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SubscriptionsList/SubscriptionsListFragment.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/SubscriptionsList/SubscriptionsListRVAdapter.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/res/layout/fragment_event_details.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/local.properties</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
@@ -4695,7 +4755,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditEvent/EditEventCategoryRVAdapter.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/res/menu/create_event_blank.xml</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -4703,7 +4763,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditEvent/EditEventRVAdapter.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/build/intermediates/classes/debug/com/spuds/eventapp/CreateComment/CreateCommentFragment.class</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -5257,7 +5317,13 @@
       <option name="project" value="LOCAL" />
       <updated>1465083257238</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Comment">
+      <created>1465108702590</created>
+      <option name="number" value="00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1465108702590</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -5271,7 +5337,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -5287,11 +5353,11 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.325723" sideWeight="0.4969651" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.325723" sideWeight="0.4969651" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32724506" sideWeight="0.4939302" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33279485" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -5340,9 +5406,9 @@
     <MESSAGE value="Fixed update event, subfeed, and now" />
     <MESSAGE value="Comments" />
     <MESSAGE value="Comments &amp; Method changes" />
-    <MESSAGE value="Merge" />
     <MESSAGE value="Comment" />
-    <option name="LAST_COMMIT_MESSAGE" value="Comment" />
+    <MESSAGE value="Merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -5407,8 +5473,6 @@
           <caret line="92" column="36" selection-start-line="92" selection-start-column="36" selection-end-line="92" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="false" />
-            <element signature="e#2284#7760#0" expanded="false" />
-            <element signature="e#7759#7760#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -5457,10 +5521,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2845787">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="e#868#869#0" expanded="false" />
-            <element signature="e#918#919#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5477,9 +5538,7 @@
         <state vertical-scroll-proportion="-7.192691">
           <caret line="176" column="45" selection-start-line="176" selection-start-column="45" selection-end-line="176" selection-end-column="45" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#12943#16925#0" expanded="true" />
-            <element signature="e#16924#16925#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -5559,8 +5618,7 @@
           <caret line="638" column="80" selection-start-line="632" selection-start-column="4" selection-end-line="638" selection-end-column="80" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8256#10062#0" expanded="true" />
-            <element signature="e#10061#10062#0" expanded="true" />
+            <element signature="e#10061#10062#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -5570,7 +5628,7 @@
         <state vertical-scroll-proportion="0.33222592">
           <caret line="172" column="29" selection-start-line="172" selection-start-column="21" selection-end-line="172" selection-end-column="29" />
           <folding>
-            <element signature="e#9567#9568#0" expanded="true" />
+            <element signature="e#9567#9568#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -5660,14 +5718,7 @@
         <state vertical-scroll-proportion="1.1744186">
           <caret line="433" column="81" selection-start-line="433" selection-start-column="81" selection-end-line="433" selection-end-column="81" />
           <folding>
-            <element signature="e#3137#3169#0" expanded="true" />
-            <element signature="e#3267#3305#0" expanded="true" />
-            <element signature="e#3360#3392#0" expanded="true" />
-            <element signature="e#4693#4731#0" expanded="true" />
-            <element signature="e#9861#9893#0" expanded="true" />
-            <element signature="e#10331#10372#0" expanded="true" />
-            <element signature="e#18266#18859#0" expanded="true" />
-            <element signature="e#18858#18859#0" expanded="true" />
+            <element signature="e#3137#3169#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -5768,7 +5819,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/EventsFeedRVAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="252" column="0" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
+          <caret line="300" column="0" selection-start-line="300" selection-start-column="0" selection-end-line="300" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -5784,16 +5835,82 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/EditProfile/EditProfileFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="256" column="25" selection-start-line="256" selection-start-column="0" selection-end-line="257" selection-end-column="0" />
+          <caret line="256" column="25" selection-start-line="256" selection-start-column="25" selection-end-line="256" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spuds/eventapp/Shared/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6174334">
-          <caret line="310" column="0" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.5060241">
+          <caret line="308" column="16" selection-start-line="308" selection-start-column="16" selection-end-line="308" selection-end-column="16" />
+          <folding>
+            <element signature="e#5896#6505#0" expanded="true" />
+            <element signature="e#6504#6505#0" expanded="true" />
+            <element signature="e#12307#12321#0" expanded="true" />
+            <element signature="e#12733#12771#0" expanded="true" />
+            <element signature="e#12917#12957#0" expanded="true" />
+            <element signature="e#12980#13022#0" expanded="true" />
+            <element signature="e#13117#13155#0" expanded="true" />
+            <element signature="e#13256#13296#0" expanded="true" />
+            <element signature="e#13398#13433#0" expanded="true" />
+            <element signature="e#13845#13883#0" expanded="true" />
+            <element signature="e#14061#14101#0" expanded="true" />
+            <element signature="e#14124#14166#0" expanded="true" />
+            <element signature="e#14335#14373#0" expanded="true" />
+            <element signature="e#14584#14624#0" expanded="true" />
+            <element signature="e#14843#14878#0" expanded="true" />
+            <element signature="e#15741#16221#0" expanded="true" />
+            <element signature="e#16220#16221#0" expanded="true" />
+            <element signature="e#16313#16797#0" expanded="true" />
+            <element signature="e#16796#16797#0" expanded="true" />
+            <element signature="e#16888#17377#0" expanded="true" />
+            <element signature="e#17376#17377#0" expanded="true" />
+            <element signature="e#17463#18132#0" expanded="true" />
+            <element signature="e#18131#18132#0" expanded="true" />
+            <element signature="e#18217#18676#0" expanded="true" />
+            <element signature="e#18675#18676#0" expanded="true" />
+            <element signature="e#19071#22827#0" expanded="true" />
+            <element signature="e#21225#21252#0" expanded="true" />
+            <element signature="e#22826#22827#0" expanded="true" />
+            <element signature="e#22959#23426#0" expanded="true" />
+            <element signature="e#23425#23426#0" expanded="true" />
+            <element signature="e#23871#27660#0" expanded="true" />
+            <element signature="e#25980#26008#0" expanded="true" />
+            <element signature="e#27659#27660#0" expanded="true" />
+            <element signature="e#28562#28593#0" expanded="true" />
+            <element signature="e#28595#28627#0" expanded="true" />
+            <element signature="e#29289#29313#0" expanded="true" />
+            <element signature="e#30299#30327#0" expanded="true" />
+            <element signature="e#30441#30466#0" expanded="true" />
+            <element signature="e#30588#30624#0" expanded="true" />
+            <element signature="e#30751#30781#0" expanded="true" />
+            <element signature="e#30909#30942#0" expanded="true" />
+            <element signature="e#31072#31101#0" expanded="true" />
+            <element signature="e#31228#31256#0" expanded="true" />
+            <element signature="e#31384#31417#0" expanded="true" />
+            <element signature="e#31622#31646#0" expanded="true" />
+            <element signature="e#31684#31720#0" expanded="true" />
+            <element signature="e#32025#32058#0" expanded="true" />
+            <element signature="e#32190#32218#0" expanded="true" />
+            <element signature="e#32346#32375#0" expanded="true" />
+            <element signature="e#32513#32546#0" expanded="true" />
+            <element signature="e#32670#32700#0" expanded="true" />
+            <element signature="e#32836#32872#0" expanded="true" />
+            <element signature="e#32986#33011#0" expanded="true" />
+            <element signature="e#33131#33159#0" expanded="true" />
+            <element signature="e#33968#34006#0" expanded="true" />
+            <element signature="e#34419#34457#0" expanded="true" />
+            <element signature="e#34613#34648#0" expanded="true" />
+            <element signature="e#34867#34907#0" expanded="true" />
+            <element signature="e#35117#35157#0" expanded="true" />
+            <element signature="e#35693#36418#0" expanded="true" />
+            <element signature="e#36417#36418#0" expanded="true" />
+            <element signature="e#37585#37617#0" expanded="true" />
+            <element signature="e#37619#37657#0" expanded="true" />
+            <element signature="e#38067#38103#0" expanded="true" />
+            <element signature="e#39425#39466#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

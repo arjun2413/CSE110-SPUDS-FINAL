@@ -309,6 +309,7 @@ public class MainActivity extends AppCompatActivity
         // Initialize search result searchResultList
         final ArrayList<SearchResult> searchResultList = new ArrayList<SearchResult>();
 
+        // S
         search.setSearchables(searchResultList);
 
         search.setSearchListener(new SearchBox.SearchListener() {
