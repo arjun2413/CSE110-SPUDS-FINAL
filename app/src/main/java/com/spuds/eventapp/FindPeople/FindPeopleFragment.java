@@ -94,7 +94,6 @@ public class FindPeopleFragment extends Fragment {
     Input:                        View view: the view to be refreshed
     Output:                       None.
     ---------------------------------------------------------------------------*/
-    //TODO: Needs database to finish
     public void refreshing(View view) {
         SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         mySwipeRefreshLayout.setOnRefreshListener(

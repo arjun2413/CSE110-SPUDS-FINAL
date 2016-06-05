@@ -22,16 +22,33 @@ import java.util.ArrayList;
 /**
  * Created by David on 5/28/16.
  */
+
+/*---------------------------------------------------------------------------
+Class Name:                SearchUsersFragment
+Description:               Contains information about SearchUsersFragment
+---------------------------------------------------------------------------*/
 public class SearchUsersFragment extends Fragment {
     private ArrayList<UserSearchResult> users;
     public SearchUsersRVAdapter adapter;
     UserFirebase userFirebase;
     String userId;
 
+    /*---------------------------------------------------------------------------
+    Function Name:                SearchEventsFragment
+    Description:                  Required default no-argument constructor
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public SearchUsersFragment() {
         // Required empty public constructor
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreate
+    Description:                  called when the fragment is created
+    Input:                        Bundle savedInstanceState
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +60,14 @@ public class SearchUsersFragment extends Fragment {
         userFirebase = new UserFirebase();
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateView()
+    Description:                  Inflates View layout and sets fonts programmatically
+    Input:                        LayoutInflater inflater - inflates layout
+                                  ViewGroup container - parent view group
+                                  Bundle savedInstanceState
+    Output:                       View to be inflated
+    ---------------------------------------------------------------------------*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -121,11 +146,17 @@ public class SearchUsersFragment extends Fragment {
 
 
         //calls the function to refresh the page.
-        //refreshing(v);
+        //setupRefresh(v);
 
         return v;
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                refreshing
+    Description:                  called when user pulls down to refresh the page
+    Input:                        View view
+    Output:                       View
+    ---------------------------------------------------------------------------*/
     public void refreshing(View view) {
         final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         mySwipeRefreshLayout.setOnRefreshListener(
@@ -195,6 +226,12 @@ public class SearchUsersFragment extends Fragment {
                 });
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onResume()
+    Description:                  called every time the fragment is resumed
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onResume() {
         super.onResume();

@@ -108,7 +108,7 @@ public class SubscriptionsListFragment extends Fragment {
     }
 
     /*---------------------------------------------------------------------------
-    Function Name:                refreshing
+    Function Name:                setupRefresh
     Description:                  called when user pulls down to refresh the page
     Input:                        View view
     Output:                       View

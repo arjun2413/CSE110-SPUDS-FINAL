@@ -33,16 +33,33 @@ import java.util.List;
 /**
  * Created by David on 5/28/16.
  */
+
+/*---------------------------------------------------------------------------
+Class Name:                SearchUsersRVAdapter
+Description:               Contains information about SearchUsersRVAdapter
+---------------------------------------------------------------------------*/
 public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     public Fragment currentFragment;
     List<UserSearchResult> users;
 
+    /*---------------------------------------------------------------------------
+    Function Name:                SearchUsersRVAdapter
+    Description:                  Constructor
+    Input:                        List<User> users: array list of users
+                                  Fragment currentFragment: fragment RVAdapter instantiated
+                                  String tagCurrentFragment
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public SearchUsersRVAdapter(ArrayList<UserSearchResult> users, SearchUsersFragment searchUsersFragment) {
         this.users = users;
         this.currentFragment = searchUsersFragment;
     }
 
+    /*---------------------------------------------------------------------------
+    Class Name:                SubViewHolder
+    Description:               Holds all the elements necessary for an subscribers
+    ---------------------------------------------------------------------------*/
     public static class SubViewHolder extends RecyclerView.ViewHolder {
         CardView card;
         TextView subName;
@@ -59,6 +76,11 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
+
+    /*---------------------------------------------------------------------------
+    Class Name:                OwnViewHolder
+    Description:               Holds all the elements necessary for the owner
+    ---------------------------------------------------------------------------*/
     public static class OwnViewHolder extends RecyclerView.ViewHolder {
         CardView card;
         TextView subName;
@@ -72,6 +94,14 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateViewHolder()
+    Description:                  Necessary method to override: Defines the layout
+                                  and type of each view holder
+    Input:                        ViewGroup viewGroup
+                                  int viewType
+    Output:                       EventViewHolder
+    ---------------------------------------------------------------------------*/
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v;
@@ -89,16 +119,26 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
         return vh;
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onBindViewHolder()
+    Description:                  Necessary method to override: Binds information
+                                  to each view holder at position i
+    Input:                        RecyclerView.ViewHolder viewHolder
+                                  int i: position of the item in the RecyclerView
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int i) {
         final UserSearchResult currentSearchResult = users.get(i);
 
+        //get the picture from the follower
         if (viewHolder instanceof  OwnViewHolder) {
             OwnViewHolder ownViewHolder = (OwnViewHolder) viewHolder;
             ownViewHolder.subName.setText(users.get(i).name);
 
             if (currentSearchResult.picture != null && currentSearchResult.picture != "") {
+                //attempt to convert the image string into a bitmap
                 Bitmap src = null;
                 try {
                     byte[] imageAsBytes = Base64.decode(currentSearchResult.picture, Base64.DEFAULT);
@@ -106,8 +146,9 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
                 } catch (OutOfMemoryError e) {
                     System.err.println(e.toString());
                 }
-
+                //if the bitmap was created successfully
                 if (src != null) {
+                    //change the bitmap into a circle
                     try {
                         RoundedBitmapDrawable dr =
                                 RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
@@ -138,16 +179,17 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
                             RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
                     circularBitmapDrawable.setCircular(true);
                     circularBitmapDrawable.setAntiAlias(true);
+                    //set the view for the picture to the new circle picture
                     ownViewHolder.subPhoto.setImageDrawable(circularBitmapDrawable);
                 } catch (OutOfMemoryError e) {
                     System.err.println(e.toString());
                 }
             }
 
+            //set on click listener for own card
             ownViewHolder.card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
 
                     Fragment profileFragment = new ProfileFragment();
 
@@ -182,6 +224,7 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 
             if (currentSearchResult.picture != null && currentSearchResult.picture != "") {
+                //attempt to convert the image string into a bitmap
                 Bitmap src = null;
                 try {
                     byte[] imageAsBytes = Base64.decode(currentSearchResult.picture, Base64.DEFAULT);
@@ -189,9 +232,10 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
                 } catch (OutOfMemoryError e) {
                     System.err.println(e.toString());
                 }
-
+                //if the bitmap was created successfully
                 if (src != null) {
                     try {
+                        //change the bitmap into a circle
                         RoundedBitmapDrawable dr =
                                 RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
                         dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
@@ -208,6 +252,7 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
                                 RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
                         circularBitmapDrawable.setCircular(true);
                         circularBitmapDrawable.setAntiAlias(true);
+                        //set the view for the picture to the new circle picture
                         subViewHolder.subPhoto.setImageDrawable(circularBitmapDrawable);
                     } catch (OutOfMemoryError e) {
                         System.err.println(e.toString());
@@ -221,14 +266,16 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
                             RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
                     circularBitmapDrawable.setCircular(true);
                     circularBitmapDrawable.setAntiAlias(true);
+                    //set the view for the picture to the new circle picture
                     subViewHolder.subPhoto.setImageDrawable(circularBitmapDrawable);
                 } catch (OutOfMemoryError e) {
                     System.err.println(e.toString());
                 }
             }
-
+            //change the color of the follow button
             subViewHolder.toggleFollow.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
 
+            //on click listener for the follow button
             subViewHolder.toggleFollow.setOnClickListener(new View.OnClickListener() {
                 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
                 @Override
@@ -246,7 +293,6 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
                         } else {
                             currentSearchResult.follow = true;
                             userFirebase.subscribe(users.get(i).userId, true);
-
                         }
 
                         new Thread(new Runnable() {
@@ -274,16 +320,14 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                                     }
                                 });
-
                                 //subscribeThreadCheck = false;
-
                             }
                         }).start();
-
                     }
                 }
             });
 
+            //set on click listener for subscriber card
             subViewHolder.card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -301,29 +345,38 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
-
                             }
-
                             startProfileFragment(userFirebase);
-
                         }
                     }).start();
-
-
                 }
             });
         }
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                getItemCount()
+    Description:                  Necessary method to override: How many items
+                                  in the RecyclerView
+    Input:                        None
+    Output:                       int: number of cards/items
+    ---------------------------------------------------------------------------*/
     @Override
     public int getItemCount() {
         return users.size();
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                startProfileFragment()
+    Description:                  Switches the view to the profile fragment
+                                  passing in the required fields
+    Input:                        final UserFirebase userFirebase
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     private void startProfileFragment(final UserFirebase userFirebase) {
-
+        //create a new profile fragment
         Fragment profileFragment = new ProfileFragment();
-
+        //pass in the type of the profile
         Bundle bundle = new Bundle();
         bundle.putString(currentFragment.getString(R.string.profile_type),
                 currentFragment.getString(R.string.profile_type_other));
@@ -348,11 +401,25 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onAttachedToRecyclerView()
+    Description:                  Called by RecyclerView when it starts observing this Adapter
+    Input:                        RecyclerView recyclerView
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
 
+
+    /*---------------------------------------------------------------------------
+    Function Name:                overrideFonts()
+    Description:                  used to override fonts
+    Input:                        Context context: the context we care about
+                                  View v: the view we care about
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     private void overrideFonts(final Context context, final View v) {
         try {
             if (v instanceof ViewGroup) {
@@ -369,6 +436,13 @@ public class SearchUsersRVAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                getItemViewType()
+    Description:                  gets the type of View that will be created by
+                                  getView() for the specified item.
+    Input:                        int position
+    Output:                       int
+    ---------------------------------------------------------------------------*/
     @Override
     public int getItemViewType(int position) {
 

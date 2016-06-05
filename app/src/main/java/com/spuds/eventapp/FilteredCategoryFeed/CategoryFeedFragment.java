@@ -1,13 +1,11 @@
 package com.spuds.eventapp.FilteredCategoryFeed;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,39 +18,72 @@ import com.spuds.eventapp.Shared.MainActivity;
 
 import java.util.ArrayList;
 
+/*---------------------------------------------------------------------------
+Class Name:                CategoriesListFragment
+Description:               Sets up screen for listing feed for the specified
+                           category
+---------------------------------------------------------------------------*/
 public class CategoryFeedFragment extends Fragment {
 
+    // Holds events for the feed
     private ArrayList<Event> events;
-    private ArrayList<String> cat;
+    // Adapter to transfer events to the layout/screen/view
     public EventsFeedRVAdapter adapter;
-    String tabType;
+
+    // Reference to category type
     String catType;
+
+    // Reference to database calls
     EventsFirebase eventsFirebase;
+
+    /*---------------------------------------------------------------------------
+    Function Name:                CategoryFeedFragment
+    Description:                  Required default no-argument constructor
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public CategoryFeedFragment() {
         // Required empty public constructor
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreate()
+    Description:                  Called each time fragment is created
+    Input:                        Bundle savedInstanceState
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle bundle = getArguments();
-        catType = bundle.getString(getString(R.string.category_bundle));
-        ////("jkl;", ""+catType);
-        //categoryFeedViewPagerAdapter = new CategoryFeedViewPagerAdapter(getChildFragmentManager(), this, catType);
 
+        // Init events arraylist
         events = new ArrayList<>();
 
-        // TODO (M): Get arraylist of events based on tab type [new, hot, now]
-        // Fake data
-        eventsFirebase = new EventsFirebase(events, 0, tabType, catType, adapter);
+        // Get category type from previous fragment
+        Bundle bundle = getArguments();
+        catType = bundle.getString(getString(R.string.category_bundle));
+
+
+        // Get array list of events based on category type from database
+        eventsFirebase = new EventsFirebase(events, 0, "", catType, adapter);
         eventsFirebase.createEL();
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateView()
+    Description:                  Inflates View layout and sets fonts programmatically
+                                  Also sets up toolbar and recyclerview
+    Input:                        LayoutInflater inflater - inflates layout
+                                  ViewGroup container - parent view group
+                                  Bundle savedInstanceState
+    Output:                       View to be inflated
+    ---------------------------------------------------------------------------*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Log.v("cattypecattype", "cattye" + catType);
+        // Setup action bar based on the category type and setup search bar by specifying search
+        // type category
         if( catType.equals(getString(R.string.cat_food))) {
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Food");
             ((MainActivity)getActivity()).searchType = getString(R.string.cat_food);
@@ -85,20 +116,20 @@ public class CategoryFeedFragment extends Fragment {
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Poop");
         }
 
-        //View view = inflater.inflate(R.layout.fragment_feed_tabs, container, false);
-        //tabs(view);
-
+        // Inflate the recycler layout
         View view = inflater.inflate(R.layout.recycler, container, false);
 
+        // Set up recycler view to have a linear layout
         final RecyclerView rv=(RecyclerView) view.findViewById(R.id.rv);
-
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
 
+        // Create the adapter and set the recyclerview adapter to this adapter
         adapter = new EventsFeedRVAdapter(events, this, getString(R.string.fragment_category_feed));
         rv.setAdapter(adapter);
 
+        // A thread to check if the an event has been added to the event list
         new Thread(new Runnable() {
 
             @Override
@@ -110,38 +141,48 @@ public class CategoryFeedFragment extends Fragment {
                         e.printStackTrace();
                     }
                 }
+
+                // Once the events list is no longer empty
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+
+                        // Set the adapter to the recycler view to show events to the user
                         rv.setAdapter(adapter);
                     }
                 });
             }
         }).start();
 
-        //call refreshing function
-        refreshing(view);
+        setupRefresh(view);
         return view;
     }
 
-    //TODO: Needs database to finish
-    public void refreshing(View view) {
+    /*---------------------------------------------------------------------------
+    Function Name:                setupRefresh()
+    Description:                  Sets up allowing the user to refresh
+    Input:                        final View view
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
+    public void setupRefresh(View view) {
+        // Layout view object for setupRefresh
         final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+
         mySwipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
+                        // Clear the events list
                         events.clear();
 
+                        // Get the events again from the database
                         eventsFirebase.createEL();
 
-                        //("refresh", "here");
+                        // A thread to check if the an event has been added to the event list
                         new Thread(new Runnable() {
 
                             @Override
                             public void run() {
-                                //("refresh", "hereherehere");
-
                                 while (events.size() == 0) {
                                     ////("refresh", "size: " + events.size());
                                     try {
@@ -151,14 +192,17 @@ public class CategoryFeedFragment extends Fragment {
                                     }
                                 }
 
-                                //("refresh", "here2");
+                                // Once the events list is no longer empty
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run()
                                     {
-                                        //("refresh", "here3");
 
+                                        // Notify the adapter the data has changed
+                                        // updating it to the user
                                         adapter.notifyDataSetChanged();
+
+                                        // Stop refresh icon from showing up
                                         mySwipeRefreshLayout.setRefreshing(false);
 
                                     }
@@ -171,16 +215,16 @@ public class CategoryFeedFragment extends Fragment {
 
     }
 
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
+    /*---------------------------------------------------------------------------
+        Function Name:                onResume()
+        Description:                  Every time the this fragment comes into view
+                                      remove the search toolbar
+        Input:                        None.
+        Output:                       None.
+       ---------------------------------------------------------------------------*/
     @Override
     public void onResume() {
         super.onResume();
-        Log.v("WAOW", "ONREHAHASUME");
         ((MainActivity)getActivity()).addSearchToolbar();
     }
 

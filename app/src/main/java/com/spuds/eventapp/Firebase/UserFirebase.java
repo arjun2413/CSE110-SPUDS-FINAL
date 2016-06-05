@@ -662,35 +662,6 @@ public class UserFirebase {
                     }
 
                     recTest(users, subscriptions);
-                    /*for (String userId: users) {
-                        getAnotherUser(userId);
-                        //("userfirebasesubs", "numsubs " + numSubscriptions);
-                        //("userfirebasesubs", "followingId " + followingId);
-
-
-                        //asynchronous
-                        new Thread(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                while (!threadCheckAnotherUser) {
-                                    try {
-                                        Thread.sleep(77);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                }
-
-
-                                subscriptions.add(new Subscription(anotherUser.getUserId(),
-                                        anotherUser.getName(), anotherUser.getPicture(),
-                                        true));
-                                //("userfirebasesubs", anotherUser.getName() + " was added");
-
-                            }
-                        }).start();
-                    }*/
 
                 }
             }
@@ -731,7 +702,6 @@ public class UserFirebase {
                 subscriptions.add(new Subscription(anotherUser.getUserId(),
                         anotherUser.getName(), anotherUser.getPicture(),
                         true));
-                //("userfirebasesubs", anotherUser.getName() + " was added");
 
                 users.remove(0);
 

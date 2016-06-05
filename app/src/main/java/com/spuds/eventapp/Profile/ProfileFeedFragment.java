@@ -1,6 +1,5 @@
 package com.spuds.eventapp.Profile;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -16,37 +15,60 @@ import com.spuds.eventapp.Shared.Event;
 import com.spuds.eventapp.Shared.EventsFeedRVAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
+/*---------------------------------------------------------------------------
+Class Name:                ProfileFeedFragment
+Description:               Sets up screen for the going/hosting feed on the profile
+---------------------------------------------------------------------------*/
 public class ProfileFeedFragment extends Fragment {
 
-    List<Event> firstFourEvents;
+    // Contains all event information
     ArrayList<Event> events;
 
+    // Reference to user id and tab type
     String userId;
     String tabType;
 
-    EventsFeedRVAdapter adapter;
+    // Reference to backend/model methods
     EventsFirebase eventsFirebase;
-    boolean boolCheck;
+    // Adapter for connecting the information for events to the view/laout
+    EventsFeedRVAdapter adapter;
 
+    /*---------------------------------------------------------------------------
+    Function Name:                HomeFeedFragment
+    Description:                  Required default no-argument constructor
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public ProfileFeedFragment() {
         // Required empty public constructor
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreate()
+    Description:                  Called each time fragment is created; gets
+                                  information passed to this fragment; intializes
+                                  instance variables; sets up recycler view to show
+                                  event information to the user
+    Input:                        Bundle savedInstanceState
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Initialize events arraylist
         events = new ArrayList<>();
 
+        // Get user and tab information from bundle passed into this fragment
         Bundle extras = getArguments();
-
         userId = extras.getString(getString(R.string.user_id));
         tabType = extras.getString(getString(R.string.tab_tag));
 
+        // Init events firebase reference
         eventsFirebase = new EventsFirebase(events, 0, null);
 
+        // Call the methods to firebase to get events for going and hosting tabs
         if (tabType.equals(getString(R.string.tab_going))) {
             eventsFirebase.getEventsGoingList(userId);
         } else {
@@ -55,26 +77,39 @@ public class ProfileFeedFragment extends Fragment {
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateView()
+    Description:                  Inflates View layout and sets fonts programmatically
+                                  Also sets up recycler view for feed and toolbar
+    Input:                        LayoutInflater inflater - inflates layout
+                                  ViewGroup container - parent view group
+                                  Bundle savedInstanceState
+    Output:                       View to be inflated
+    ---------------------------------------------------------------------------*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflates layout recycler for the profile feed
         View view = inflater.inflate(R.layout.recycler, container, false);
 
+        // Sets up requirements for recycler view for the feed: layout manager
         final RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv);
-
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
+
+        // Adapter for the recycler view
         adapter = new EventsFeedRVAdapter(events, this, getString(R.string.fragment_profile_feed));
         rv.setAdapter(adapter);
 
-
-
+        // If the tab for the profile feed is going
         if (tabType.equals(getString(R.string.tab_going))) {
+            // Wait until the events from the database start filling the events array list
             new Thread(new Runnable() {
                 @Override
                 public void run() {
 
+                    // While the getting the events for going, wait
                     while (!eventsFirebase.goingListThreadCheck) {
                         try {
                             Thread.sleep(75);
@@ -86,16 +121,21 @@ public class ProfileFeedFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            // Notify to the adapter that the events has changed
                             adapter.notifyDataSetChanged();
                         }
                     });
+
                 }
             }).start();
+
+        // If the tab for the profile feed is hosting
         } else {
+            // Wait until the events from the database start filling the events array list
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-
+                    // While the getting the events for hosting, wait
                     while (!eventsFirebase.hostingListThreadCheck) {
                         try {
                             Thread.sleep(75);
@@ -107,6 +147,7 @@ public class ProfileFeedFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            // notify the adapter that the data has changed
                             adapter.notifyDataSetChanged();
                         }
                     });
@@ -114,14 +155,22 @@ public class ProfileFeedFragment extends Fragment {
             }).start();
         }
 
-        //calls the function to refresh the page.
-        refreshing(view);
+        setupRefresh(view);
 
         return view;
     }
-    //TODO: Needs database to finish
-    public void refreshing(View view) {
+
+    /*---------------------------------------------------------------------------
+    Function Name:                setupRefresh()
+    Description:                  Sets up allowing the user to refresh
+    Input:                        final View view
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
+    public void setupRefresh(View view) {
+        // Init refresh layout
         SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+
+        // Set a refresh listener
         mySwipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
@@ -130,10 +179,5 @@ public class ProfileFeedFragment extends Fragment {
                 }
         );
     }
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
 
 }

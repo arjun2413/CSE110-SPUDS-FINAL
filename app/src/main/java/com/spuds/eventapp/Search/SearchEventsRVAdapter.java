@@ -34,6 +34,11 @@ import java.util.List;
 /**
  * Created by tina on 4/16/16.
  */
+
+/*---------------------------------------------------------------------------
+Class Name:                SearchEventsRVAdapter
+Description:               Contains information about SearchEventsRVAdapter
+---------------------------------------------------------------------------*/
 public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAdapter.EventViewHolder> {
 
     public static class EventViewHolder extends RecyclerView.ViewHolder {
@@ -49,6 +54,10 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
         TextView monthDate, dayDate;
         TextView eventTime;
 
+    /*---------------------------------------------------------------------------
+    Class Name:                EventViewHolder
+    Description:               Holds all the elements necessary for an event
+    ---------------------------------------------------------------------------*/
         EventViewHolder(View itemView) {
             super(itemView);
             card = (CardView) itemView.findViewById(R.id.cv);
@@ -73,20 +82,28 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
     String tabType;
     String userId;
 
+    /*---------------------------------------------------------------------------
+    Function Name:                SubscriptionsListRVAdapter
+    Description:                  Constructor
+    Input:                        List<User> events: array list of events
+                                  Fragment currentFragment: fragment RVAdapter instantiated
+                                  String tagCurrentFragment
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public SearchEventsRVAdapter(List<Event> events, Fragment currentFragment, String tagCurrentFragment){
         this.events = events;
         this.currentFragment = currentFragment;
         this.tagCurrentFragment = tagCurrentFragment;
     }
 
-    public SearchEventsRVAdapter(List<Event> events, Fragment currentFragment, String tagCurrentFragment, String tabType, String userId) {
-        this.events = events;
-        this.currentFragment = currentFragment;
-        this.tagCurrentFragment = tagCurrentFragment;
-        this.tabType = tabType;
-        this.userId = userId;
-    }
-
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateViewHolder()
+    Description:                  Necessary method to override: Defines the layout
+                                  and type of each view holder
+    Input:                        ViewGroup viewGroup
+                                  int i
+    Output:                       EventViewHolder
+    ---------------------------------------------------------------------------*/
     @Override
     public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         //Change the view of this font!!!
@@ -107,6 +124,15 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
     EventsFirebase eventsFirebase = new EventsFirebase();
     boolean going = false;
 
+
+    /*---------------------------------------------------------------------------
+    Function Name:                onBindViewHolder()
+    Description:                  Necessary method to override: Binds information
+                                  to each view holder at position i
+    Input:                        EventViewHolder eventViewHolder
+                                  int i: position of the item in the RecyclerView
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onBindViewHolder(final EventViewHolder eventViewHolder, final int i) {
 
@@ -115,7 +141,7 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
         if (tagCurrentFragment.equals(currentFragment.getString(R.string.fragment_profile)) && i == 3) {
             eventViewHolder.seeMore.setVisibility(View.VISIBLE);
 
-
+            //DEPRECATED
             ((ViewManager)eventViewHolder.eventPic.getParent()).removeView(eventViewHolder.eventPic);
             ((ViewManager)eventViewHolder.eventName.getParent()).removeView(eventViewHolder.eventName);
             ((ViewManager)eventViewHolder.eventLocation.getParent()).removeView(eventViewHolder.eventLocation);
@@ -124,7 +150,7 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
             ((ViewManager)eventViewHolder.monthDate.getParent()).removeView(eventViewHolder.monthDate);
             ((ViewManager)eventViewHolder.dayDate.getParent()).removeView(eventViewHolder.dayDate);
 
-
+            //set set on click listener for event card
             eventViewHolder.card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -154,14 +180,6 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
         if (events.get(i).getPicture() != null && events.get(i).getPicture() != "") {
             String imageFile = events.get(i).getPicture();
             Bitmap src = null;
-            /*if (imageFile != null && imageFile != "") {
-                try {
-                    byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-                    src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-                } catch (OutOfMemoryError e) {
-                    System.err.println(e.toString());
-                }
-            }*/
 
             if (src != null)
                 eventViewHolder.eventPic.setImageBitmap(src);
@@ -215,8 +233,9 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
                 d = "D E C";
                 break;
         }
+        //set the month
         eventViewHolder.monthDate.setText(d);
-
+        //set the day
         eventViewHolder.dayDate.setText(String.valueOf(events.get(i).getDate().substring(6,8)));
 
         String tempString = events.get(i).getDate().substring(11, events.get(i).getDate().length());
@@ -255,7 +274,7 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
         eventViewHolder.eventCategories.setText(categories);
 
         final int test = i;
-
+        //set on click listener for the entire event card
         eventViewHolder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -281,12 +300,6 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
                     tabFragmentTag = currentFragment.getString(R.string.category_feed);
                 }
 
-                /*if (!tabFragmentTag.equals("")) {
-                    //make if else statements for all fragments that have tags
-                    currentFragment = currentFragment.getActivity().getSupportFragmentManager()
-                            .findFragmentByTag(tabFragmentTag);
-                }*/
-
 
                 ((MainActivity) currentFragment.getActivity()).removeSearchToolbar();
                 // Add Event Details Fragment to fragment manager
@@ -299,117 +312,31 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
             }
         });
 
-        //("rvadapter", "b4 thread");
-
-
-        /*eventViewHolder.buttonGoing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //("Here1", "herepls");
-
-
-                if (going) {
-
-                    //("edgoing", " true");
-
-                    /currentFragment.getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            eventViewHolder.buttonGoing.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_unselected));
-                        }
-                    });
-                    eventsFirebase.notGoingToAnEvent(events.get(i).getEventId());
-                    eventsFirebase.deleteEventRegistration(events.get(i).getEventId());
-
-                    going = false;
-
-                } else {
-
-                    //("edgoing", " false");
-                    currentFragment.getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            eventViewHolder.buttonGoing.setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
-                        }
-                    });
-
-                    eventsFirebase.notGoingToAnEvent(events.get(i).getEventId());
-
-                    eventsFirebase.goingToAnEvent(events.get(i).getEventId());
-                    going = true;
-
-                }
-
-            }
-        });*/
-        /*if (i == events.size() - 1) {
-            recTest();
-        }
-
-        buttons.add(eventViewHolder.buttonGoing);*/
-
 
     }
 
     ArrayList<Button> buttons = new ArrayList<>();
 
-    /*void recTest() {
 
-        if (buttons.size() == 0) return;
-
-        eventsFirebase.isGoing(events.get(events.size() - buttons.size()).getEventId());
-
-        new Thread(new Runnable() {
-            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void run() {
-                //("rvadapterisisgoing", String.valueOf(eventsFirebase.idIsGoing));
-                while (eventsFirebase.idIsGoing == 0) {
-                    //("rvadapter", "areHere");
-                    try {
-                        Thread.sleep(75);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                if (eventsFirebase.idIsGoing == 1) {
-                    going = false;
-                    currentFragment.getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (buttons.size() == 0) return;
-                            buttons.get(0).setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_unselected));
-                            buttons.remove(0);
-
-                        }
-                    });
-                } else {
-                    going = true;
-                    currentFragment.getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (buttons.size() == 0) return;
-                            buttons.get(0).setBackgroundTintList(currentFragment.getResources().getColorStateList(R.color.color_selected));
-                            buttons.remove(0);
-
-                        }
-                    });
-
-                }
-
-                recTest();
-            }
-        }).start();
-    }*/
-
-
-
+    /*---------------------------------------------------------------------------
+    Function Name:                getItemCount()
+    Description:                  Necessary method to override: How many items
+                                  in the RecyclerView
+    Input:                        None
+    Output:                       int: number of cards/items
+    ---------------------------------------------------------------------------*/
     @Override
     public int getItemCount() {
         return events.size();
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                overrideFonts()
+    Description:                  used to override fonts
+    Input:                        Context context: the context we care about
+                                  View v: the view we care about
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     private void overrideFonts(final Context context, final View v) {
         try {
             if (v instanceof ViewGroup) {
@@ -426,15 +353,23 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
         }
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                startProfileFragment()
+    Description:                  Switches the view to the profile fragment
+                                  passing in the required fields
+    Input:                        final UserFirebase userFirebase
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     private void startProfileFragment(final UserFirebase userFirebase) {
 
+        // Create a new profile fragment
         Fragment profileFragment = new ProfileFragment();
-
+        // Pass in the type of the profile
         Bundle bundle = new Bundle();
         bundle.putString(currentFragment.getString(R.string.profile_type),
                 currentFragment.getString(R.string.profile_type_other));
 
-
+        // Pass in details of the user to profile
         bundle.putSerializable(currentFragment.getString(R.string.user_details), userFirebase.anotherUser);
 
         profileFragment.setArguments(bundle);
@@ -451,8 +386,6 @@ public class SearchEventsRVAdapter extends RecyclerView.Adapter<SearchEventsRVAd
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(currentFragment.getString(R.string.fragment_profile))
                 .commit();
-
-
 
     }
 

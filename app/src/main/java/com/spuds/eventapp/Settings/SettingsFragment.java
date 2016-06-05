@@ -72,7 +72,7 @@ public class SettingsFragment extends Fragment {
         //add the two cards to the settings page
         settings.add(new Setting("Change Password", R.drawable.setting_pass));
         settings.add(new Setting("Notifications", R.drawable.notifications));
-        //settings.add(new Setting("Delete Account", R.drawable.delete));
+
 
 
         adapter = new SettingsRVAdapter(settings, this, UserFirebase.thisUser.getNotificationToggle());

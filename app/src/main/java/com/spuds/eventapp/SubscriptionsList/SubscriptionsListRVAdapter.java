@@ -95,7 +95,7 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
                                   and type of each view holder
     Input:                        ViewGroup viewGroup
                                   int viewType
-    Output:                       InviteViewHolder
+    Output:                       SubViewHolder
     ---------------------------------------------------------------------------*/
     @Override
     public SubViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
@@ -216,7 +216,6 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
                                 }
                             });
 
-                            //subscribeThreadCheck = false;
 
                         }
                     }).start();
@@ -262,7 +261,6 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
     Input:                        final UserFirebase userFirebase
     Output:                       None.
     ---------------------------------------------------------------------------*/
-
     private void startProfileFragment(final UserFirebase userFirebase) {
 
         //create a new profile fragment

@@ -229,7 +229,6 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                     public void onClick(DialogInterface dialog, int which) {
                                     }
                                 })
-                                //.setIcon(android.R.drawable.ic_dialog_alert)
                                 .show();
                     }
                 });

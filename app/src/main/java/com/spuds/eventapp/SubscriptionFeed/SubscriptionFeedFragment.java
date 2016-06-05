@@ -97,7 +97,7 @@ public class SubscriptionFeedFragment extends Fragment {
                 });
             }
         }).start();
-        //call refreshing function
+        //call setupRefresh function
         setupRefresh(view);
 
         return view;

@@ -156,12 +156,12 @@ public class InvitePeopleRVAdapter extends RecyclerView.Adapter<InvitePeopleRVAd
             public void onClick(View v) {
                 // TODO: colors
                 if (!invited.contains(followers.get(i))) {
-
+                    //toggle the color  of the button
                     holder.inviteButton.setBackgroundTintList(fragment.getResources().getColorStateList(R.color.color_selected));
                     invited.add(followers.get(i));
 
                 } else {
-
+                    //toggle the color  of the button
                     holder.inviteButton.setBackgroundTintList(fragment.getResources().getColorStateList(R.color.color_unselected));
                     invited.remove(followers.get(i));
 
@@ -173,14 +173,6 @@ public class InvitePeopleRVAdapter extends RecyclerView.Adapter<InvitePeopleRVAd
 
         holder.followerName.setText(followers.get(position).getName());
 
-        // TODO: colors
-        /*
-        //What is selectAll? How do you select all?
-        if (selectAll)
-            holder.scb.setChecked(true, true);
-        else
-            holder.scb.setChecked(false, true);
-        */
     }
 
     /*---------------------------------------------------------------------------

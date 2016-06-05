@@ -93,8 +93,7 @@ public class InvitePeopleFragment extends Fragment {
             @Override
             public void run() {
                 while (eventsFirebase.numFollowers > followers.size() || !eventsFirebase.followersThreadCheck) {
-                    //("inviteppl", "numfollowers" + eventsFirebase.numFollowers);
-                    //("inviteppl", "followers size" + followers.size());
+
                     try {
                         Thread.sleep(Integer.parseInt(getString(R.string.sleepTime)));
                     } catch (InterruptedException e) {
@@ -140,30 +139,6 @@ public class InvitePeopleFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
-
-           /*case R.id.select_all:
-                if (!adapter.selectAll) {
-
-                    for (int i = 0; i < followers.size(); ++i) {
-                        if (!invited.contains(followers.get(i))) {
-                            invited.add(followers.get(i));
-                        }
-                    }
-                    adapter.selectAll = true;
-                    adapter.notifyDataSetChanged();
-
-                } else {
-
-                    for (int i = 0; i < followers.size(); ++i) {
-                        if (!invited.contains(followers.get(i))) {
-                            invited.remove(followers.get(i));
-                        }
-                    }
-                    adapter.selectAll = false;
-                    adapter.notifyDataSetChanged();
-
-                }
-                return true;*/
 
             case R.id.done:
                 if (invited.size() != 0) {

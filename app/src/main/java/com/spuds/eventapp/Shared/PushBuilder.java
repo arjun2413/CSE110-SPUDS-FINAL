@@ -3,6 +3,8 @@ package com.spuds.eventapp.Shared;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import java.io.IOException;
@@ -60,6 +62,8 @@ public class PushBuilder extends AppCompatActivity{
         this.message.putString("event_id", id);
         this.message.putString("host", host_name);
         this.message.putString("host_id", id_host);
+        Log.d("Bundle", this.message.toString());
+
     }
 
     /*---------------------------------------------------------------------------
@@ -69,6 +73,7 @@ public class PushBuilder extends AppCompatActivity{
    Output:                       None
    ---------------------------------------------------------------------------*/
     public void sendNotification() {
+        Log.d("Bundle values", this.message.toString());
         this.contactGCM(this.message, this.gcm);
     }
 
@@ -89,17 +94,22 @@ public class PushBuilder extends AppCompatActivity{
                     // try to register the ID for sending
                     try {
                         regid = gcm.register(SENDER_ID);
+                        Log.d("regid", "d");
                     } catch (IOException ex) {
+                        Log.d("ERROR", "ma");
                         return "Error :" + ex.getMessage();
                     }
                 }
                 // try to send
                 try {
+                    Log.d("tryna", "send");
+                    Log.d("data", data.toString());
                     gcm.send(SENDER_ID + "@gcm.googleapis.com", "messageID", data);
                 }
                 catch (IOException e) {
                     e.printStackTrace();
                     result = "Error : " + e.getMessage();
+                    Log.d("Here", "we messed up");
                 }
                 return result;
             }
