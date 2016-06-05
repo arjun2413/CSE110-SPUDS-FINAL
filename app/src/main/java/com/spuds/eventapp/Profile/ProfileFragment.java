@@ -70,7 +70,6 @@ public class ProfileFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         Bundle extras = getArguments();
         profileType = extras.getString(getString(R.string.profile_type));
 
@@ -88,6 +87,8 @@ public class ProfileFragment extends Fragment {
         userFirebase = new UserFirebase();
 
         profileFragment = this;
+
+        //userFirebase.subscribe("ccb8cf3d-a5df-4e00-abf2-1a1f8b5006ff", true);
 
     }
 
@@ -113,13 +114,6 @@ public class ProfileFragment extends Fragment {
         //title font
         TextView name = (TextView) view.findViewById(R.id.user_name);
         name.setTypeface(raleway_medium);
-
-        /*TextView hosting = (TextView) view.findViewById(R.id.label_events_hosting);
-        hosting.setTypeface(raleway_medium);
-
-        TextView going = (TextView) view.findViewById(R.id.label_events_going);
-        going.setTypeface(raleway_medium);
-        */
 
         Button subscribe = (Button) view.findViewById(R.id.button_subscribe);
         subscribe.setTypeface(raleway_medium);
@@ -227,7 +221,7 @@ public class ProfileFragment extends Fragment {
                 public void run() {
                     Log.d("idIsGoing2",String.valueOf(userFirebase.idIsSubscribed));
                     while (userFirebase.idIsSubscribed == 0) {
-                        Log.d("profilehere", "profilehere");
+                        //Log.d("profilehere", "profilehere");
                         try {
                             Thread.sleep(75);
                         } catch (InterruptedException e) {
@@ -242,6 +236,7 @@ public class ProfileFragment extends Fragment {
                         @Override
                         public void run() {
 
+                            Log.v("striprn", String.valueOf(userFirebase.idIsSubscribed));
                             if (userFirebase.idIsSubscribed == 1) {
                                 user.setSubscribed(false);
                             } else {

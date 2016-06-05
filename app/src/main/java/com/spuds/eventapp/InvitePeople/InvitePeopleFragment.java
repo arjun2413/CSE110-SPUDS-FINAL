@@ -198,8 +198,8 @@ public class InvitePeopleFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        ((MainActivity)getActivity()).addSearchToolbar();
-        ((MainActivity)getActivity()).searchType = getString(R.string.fragment_invite_people);
+        ((MainActivity)getActivity()).removeSearchToolbar();
+
     }
 
 }
