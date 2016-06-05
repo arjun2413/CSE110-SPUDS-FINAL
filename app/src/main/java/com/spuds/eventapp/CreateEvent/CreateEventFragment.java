@@ -43,8 +43,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.refactor.library.SmoothCheckBox;
-
-
+/*---------------------------------------------------------------------------
+Class Name:                CreateEventFragment
+Description:               Contains information about CreateEventFragment
+---------------------------------------------------------------------------*/
 public class CreateEventFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     public static final int FILLED = 213;
@@ -189,6 +191,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
                             time = getString(R.string.errorInvalidTime);
                             break;
                     }
+                    //set date and time
                     dateMessage.setText(date);
                     timeMessage.setText(time);
                     scrollView.fullScroll(ScrollView.FOCUS_UP);
@@ -329,7 +332,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         getEventDetails(view);
 
         setupWindow();
-
+        //create categories list
         categories = new ArrayList<>();
 
         categories.add(new CategoryTextButton("FOOD", false));
@@ -431,6 +434,13 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                overrideFonts()
+    Description:                  Sets fonts for all TextViews
+    Input:                        final Context context
+                                  final View v
+    Output:                       View to be inflated
+    ---------------------------------------------------------------------------*/
     private void overrideFonts(final Context context, final View v) {
         try {
             if (v instanceof ViewGroup) {
@@ -447,6 +457,13 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         }
     }
 
+
+    /*---------------------------------------------------------------------------
+    Function Name:                onResume()
+    Description:                  called every time the fragment is resumed
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onResume() {
         super.onResume();
