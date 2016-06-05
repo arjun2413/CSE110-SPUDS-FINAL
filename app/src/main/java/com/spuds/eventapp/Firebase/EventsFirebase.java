@@ -155,11 +155,21 @@ public class EventsFirebase {
             }
         }
 
-        if(swappedString.indexOf(':') == -1) {
-            swappedString = swappedString.substring(0, 11) + numb + ":00";
+        if(String.valueOf(numb).length() == 1) {
+            if (swappedString.indexOf(':') == -1) {
+                swappedString = swappedString.substring(0, 11) + "0" + numb + ":00";
+            }
+            else {
+                swappedString = swappedString.substring(0, 11) + "0" +numb + tempString.substring(tempString.indexOf(':'), tempString.length() - 2);
+            }
         }
         else {
-            swappedString = swappedString.substring(0, 11) + numb + tempString.substring(tempString.indexOf(':'), tempString.length()-2);
+            if (swappedString.indexOf(':') == -1) {
+                swappedString = swappedString.substring(0, 11) + numb + ":00";
+            }
+            else {
+                swappedString = swappedString.substring(0, 11) + numb + tempString.substring(tempString.indexOf(':'), tempString.length() - 2);
+            }
         }
 
         //map to push to database
@@ -766,7 +776,7 @@ public class EventsFirebase {
                     //gets the string and changes it to an int
                     attendees = Integer.parseInt(String.valueOf(dataSnapshot.getValue()));
                     attendees++;
-                    myFirebaseRef.child(eventId).child("number_going").setValue(String.valueOf(attendees));
+                    myFirebaseRef.child(eventId).child("number_going").setValue(attendees);
 
                     Map<String, String> map = new HashMap<String, String>();
                     map.put("user_id", UserFirebase.uId);
@@ -815,7 +825,7 @@ public class EventsFirebase {
                 if (dataSnapshot.getKey().equals("number_going")) {
                     attendees = Integer.parseInt(String.valueOf(dataSnapshot.getValue()));
                     attendees--;
-                    myFirebaseRef.child(eventId).child("number_going").setValue(String.valueOf(attendees));
+                    myFirebaseRef.child(eventId).child("number_going").setValue(attendees);
                 }
                 notGoingThreadCheck = true;
             }
@@ -1054,10 +1064,21 @@ public class EventsFirebase {
                     }
                 }
 
-                if (swappedString.indexOf(':') == -1) {
-                    swappedString = swappedString.substring(0, 11) + numb + ":00";
-                } else {
-                    swappedString = swappedString.substring(0, 11) + numb + tempString.substring(tempString.indexOf(':'), tempString.length() - 2);
+                if(String.valueOf(numb).length() == 1) {
+                    if (swappedString.indexOf(':') == -1) {
+                        swappedString = swappedString.substring(0, 11) + "0" + numb + ":00";
+                    }
+                    else {
+                        swappedString = swappedString.substring(0, 11) + "0" +numb + tempString.substring(tempString.indexOf(':'), tempString.length() - 2);
+                    }
+                }
+                else {
+                    if (swappedString.indexOf(':') == -1) {
+                        swappedString = swappedString.substring(0, 11) + numb + ":00";
+                    }
+                    else {
+                        swappedString = swappedString.substring(0, 11) + numb + tempString.substring(tempString.indexOf(':'), tempString.length() - 2);
+                    }
                 }
                 Map<String, Object> map = new HashMap<String, Object>();
                 map.put("host_id", UserFirebase.uId);

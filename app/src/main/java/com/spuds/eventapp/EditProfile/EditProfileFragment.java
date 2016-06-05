@@ -137,9 +137,7 @@ public class EditProfileFragment extends Fragment {
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
-                            if (((MainActivity) getActivity()).picture == null) {
-                                break;
-                            }
+
 
                         }
                         // After the user has finished picking a picture
@@ -150,6 +148,7 @@ public class EditProfileFragment extends Fragment {
 
                                 // Convert the picture from main activity to a string using convert()
                                 String imageFile = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
+
 
                                 // If the image has been chosen by the user
                                 if (imageFile != null) {
@@ -204,6 +203,7 @@ public class EditProfileFragment extends Fragment {
                                     // Set the view for the profile picture to the stock circle picture
                                     editProfilePictureButton.setImageDrawable(circularBitmapDrawable);
                                 }
+                                    user.setPicture(imageFile);
 
                                 }
                             });
@@ -216,15 +216,14 @@ public class EditProfileFragment extends Fragment {
         });
 
         // Keeps track of the user's picture
-        final String imageFile = user.getPicture();
 
         // If the user has a profile picture
-        if (imageFile != null) {
+        if (user.getPicture() != null) {
 
             // Try changing the picture into a bitmap
             Bitmap src = null;
             try {
-                byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                byte[] imageAsBytes = Base64.decode(user.getPicture(), Base64.DEFAULT);
                 src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
             } catch (OutOfMemoryError e) {
                 System.err.println(e.toString());
@@ -279,9 +278,9 @@ public class EditProfileFragment extends Fragment {
                 } else {
 
                     // Create user object from the user inputted data
-                    User user = new User(editFullName.getText().toString(),
+                    user = new User(editFullName.getText().toString(),
                             editDescription.getText().toString(),
-                            imageFile);
+                            user.getPicture());
 
                     // Push the new user information to the database
                     UserFirebase.updateUser(user);

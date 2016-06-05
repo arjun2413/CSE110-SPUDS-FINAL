@@ -152,8 +152,7 @@ public class EventDetailsFragment extends Fragment {
         TextView categories = (TextView) view.findViewById(R.id.text_categories);
         categories.setTypeface(raleway_medium);
 
-        TextView comments = (TextView) view.findViewById(R.id.comments_text);
-        comments.setTypeface(raleway_medium);
+
 
         Button going = (Button) view.findViewById(R.id.button_going);
         going.setTypeface(raleway_medium);
@@ -171,7 +170,7 @@ public class EventDetailsFragment extends Fragment {
         eventCategories = (TextView) view.findViewById(R.id.event_categories);
         eventHost = (TextView) view.findViewById(R.id.event_host);
         eventDescription = (TextView) view.findViewById(R.id.event_description);
-        addComment = (Button) view.findViewById(R.id.button_add_comment);
+
         invitePeople = (Button) view.findViewById(R.id.button_invite_people);
         buttonGoingOrEdit = (Button) view.findViewById(R.id.button_going);
         buttonEditEvent = (ImageButton) view.findViewById(R.id.button_edit_event);

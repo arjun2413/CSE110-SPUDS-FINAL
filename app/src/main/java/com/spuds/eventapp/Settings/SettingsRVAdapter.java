@@ -107,7 +107,7 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     ---------------------------------------------------------------------------*/
     @Override
     public int getItemCount() {
-        return 2;
+        return 1;
     }
 
     /*---------------------------------------------------------------------------
@@ -120,18 +120,10 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     ---------------------------------------------------------------------------*/
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View v;
-        switch(viewType){
-            case 1:
-                v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_settings_notif, viewGroup, false);
-                overrideFonts(v.getContext(),v);
-                return new NotifSettingsViewHolder(v);
-
-            default:
-                v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_settings, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_settings, viewGroup, false);
                 overrideFonts(v.getContext(),v);
                 return new SettingsViewHolder(v);
-        }
+
 
     }
 
@@ -145,18 +137,8 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public int getItemViewType(int position) {
 
-        switch (position) {
+        return 0;
 
-            case 0:
-                return 0;
-            case 1:
-                return 1;
-            case 2:
-                return 2;
-            default:
-                return 0;
-
-        }
 
     }
 
@@ -171,7 +153,7 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         //i == 1, so the second settings card, which is notification toggle
-        if (i == 1){
+      /*  if (i == 1){
             //set the fields
             ((NotifSettingsViewHolder) viewHolder).settingName.setText(settings.get(i).name);
             ((NotifSettingsViewHolder) viewHolder).settingPhoto.setImageResource(settings.get(i).photoId);
@@ -186,12 +168,12 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             else
                 ((NotifSettingsViewHolder) viewHolder).toggleNotifications.setChecked(false);
         }
-
-        else{
+*/
+  //      else{
             ((SettingsViewHolder) viewHolder).settingName.setText(settings.get(i).name);
             ((SettingsViewHolder) viewHolder).settingPhoto.setImageResource(settings.get(i).photoId);
 
-        }
+    //    }*/
 
 
         switch (i) {
@@ -209,27 +191,6 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                                 .addToBackStack(currentFragment.getString(R.string.fragment_change_password))
                                 .commit();
-                    }
-                });
-                break;
-            case 2:
-                ((SettingsViewHolder) viewHolder).card.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        new AlertDialog.Builder(currentFragment.getActivity())
-                                .setTitle("Delete Account")
-                                .setMessage("Are you sure you want to delete your account?")
-                                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        // TODO (M): Delete account
-                                        currentFragment.startActivity(new Intent(currentFragment.getActivity(), LoginActivity.class));
-                                    }
-                                })
-                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                    }
-                                })
-                                .show();
                     }
                 });
                 break;

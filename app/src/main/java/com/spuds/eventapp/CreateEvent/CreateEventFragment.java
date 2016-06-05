@@ -63,7 +63,6 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     private TextView dateMessage;
     private TextView timeMessage;
     private ScrollView scrollView;
-    private Button buttonInvite;
     private ImageButton uploadButton;
     private TextView uploadText;
 
@@ -108,7 +107,6 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         timeMessage = (TextView) view.findViewById(R.id.timeErrorMessage);
         scrollView = (ScrollView) view.findViewById(R.id.scrollView);
         editEventFields = new ArrayList<String>();
-        buttonInvite = (Button) view.findViewById(R.id.event_invite);
         uploadButton = (ImageButton) view.findViewById(R.id.image);
         uploadText = (TextView) view.findViewById(R.id.upload);
     }
@@ -120,19 +118,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
     Output:                       None.
     ---------------------------------------------------------------------------*/
     protected void setupWindow() {
-        buttonInvite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity) getActivity()).addSearchToolbar();
-                InvitePeopleFragment invitePeopleFragment = new InvitePeopleFragment();
-                // Add Event Details Fragment to fragment manager
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_frame_layout, invitePeopleFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack("fragment_invite_people")
-                        .commit();
-            }
-        });
+
 
         //ref to eventsfirebase class
         //initialize EventsFirebase object
@@ -394,8 +380,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
         TextView cat = (TextView) view.findViewById(R.id.event_categories);
         cat.setTypeface(raleway_medium);
 
-        Button invite = (Button) view.findViewById(R.id.event_invite);
-        invite.setTypeface(raleway_medium);
+
 
         Button done = (Button) view.findViewById(R.id.editEventDone);
         done.setTypeface(raleway_medium);

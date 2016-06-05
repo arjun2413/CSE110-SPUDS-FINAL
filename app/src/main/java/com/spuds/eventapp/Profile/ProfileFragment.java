@@ -101,6 +101,7 @@ public class ProfileFragment extends Fragment {
 
         // Init reference to this fragment
         profileFragment = this;
+        //userFirebase.subscribe("36feb266-5827-4d77-bf32-9f49493c751f", true );
 
     }
 
