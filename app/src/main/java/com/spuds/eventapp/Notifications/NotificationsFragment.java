@@ -81,7 +81,7 @@ public class NotificationsFragment extends Fragment {
         rv.setLayoutManager(llm);
         rv.setAdapter(notificationsRVAdapter);
 
-        //call refreshing function
+        //call setupRefresh function
         refreshing(view);
 
         return view;

@@ -30,7 +30,7 @@ import com.spuds.eventapp.Shared.User;
 Class Name:                EditProfileFragment
 Description:               Sets up screen for the user to edit the profile
 ---------------------------------------------------------------------------*/
-public class  EditProfileFragment extends Fragment {
+public class EditProfileFragment extends Fragment {
 
     // Views for edit profile layout
     ImageView pictureView;
@@ -107,7 +107,7 @@ public class  EditProfileFragment extends Fragment {
         TextView upload = (TextView) view.findViewById(R.id.update_button);
         upload.setTypeface(raleway_medium);
 
-        // Setup view objects on this layout to be manipualated
+        // Setup view objects on this layout to be manipulated
         updateButton = (Button) view.findViewById(R.id.update_button);
         editProfilePictureButton = (ImageButton) view.findViewById(R.id.edit_profile_picture);
         editFullName = (EditText) view.findViewById(R.id.edit_full_name);
@@ -221,7 +221,7 @@ public class  EditProfileFragment extends Fragment {
         // If the user has a profile picture
         if (imageFile != null) {
 
-            //Try changing the picture into a bitmap
+            // Try changing the picture into a bitmap
             Bitmap src = null;
             try {
                 byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
