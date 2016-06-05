@@ -158,7 +158,7 @@ public class CreateEventForm {
                 }
             }
         }
-        else if (colon == -1){  //if theres no :
+        else if (colon == -1){  //if theres no ':'
             if (isInteger(time)) {
                 intHour = Integer.parseInt(time);
             }

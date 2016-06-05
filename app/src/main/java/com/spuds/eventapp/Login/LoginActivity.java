@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         accountFirebase = new AccountFirebase();
         signInFunc();       //sets up sign in functionality
         signUpFunc();       //sets up sign up functionality
-        resetPassFunc();   //sets up forgot pass functionality
+        resetPassFunc();    //sets up forgot pass functionality
     }
 
     /*---------------------------------------------------------------------------

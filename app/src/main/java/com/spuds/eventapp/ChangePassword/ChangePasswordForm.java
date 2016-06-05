@@ -18,6 +18,7 @@ public class ChangePasswordForm {
     private String next;
     private String confirm;
 
+    //Constructor that takes and sets all variables
     public ChangePasswordForm(String user_email, EditText current_pw, EditText next_pw, EditText confirm_pw){
         email = user_email;
         current = current_pw.getText().toString();
