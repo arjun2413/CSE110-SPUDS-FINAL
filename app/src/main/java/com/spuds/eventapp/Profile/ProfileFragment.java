@@ -39,6 +39,7 @@ public class ProfileFragment extends Fragment {
 
     // Reference to profile type: own or other
     String profileType;
+    String userId;
 
     // View objects to be manipulated
     ImageView userImage;

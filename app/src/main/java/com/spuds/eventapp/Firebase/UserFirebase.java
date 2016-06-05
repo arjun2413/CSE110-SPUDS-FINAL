@@ -520,6 +520,7 @@ public class UserFirebase {
 
     public void isSubscribed(final String userId) {
         idIsSubscribed = 0;
+        Log.v("bren", String.valueOf(idIsSubscribed));
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/user_following");
         final ValueEventListener valueEventListener = new ValueEventListener() {
 
@@ -533,10 +534,10 @@ public class UserFirebase {
                     for (Map.Entry<String, Object> entry : values.entrySet()) {
                         //("Userfirebase asdf", " key" + entry.getKey());
 
-
+                        boolean first = false;
                         for (Map.Entry<String, Object> entry2 : ((HashMap<String, Object>) entry.getValue()).entrySet()) {
 
-                            boolean first = false;
+
                             boolean second = false;
 
                             //Log.v("Userfirebase asdf", " entry value key" + entry2.getKey());
@@ -544,18 +545,24 @@ public class UserFirebase {
 
 
                             if (entry2.getKey().equals("following_id")) {
+                                Log.v("pho dude1", String.valueOf(entry2.getValue()));
                                 if (entry2.getValue().equals(userId)) {
+                                    Log.v("pho dude2", "I WANNA");
                                     first = true;
                                 }
                             }
 
+                            Log.v("pho dude7", entry2.getKey() + entry2.getKey().equals("user_id") + first);
                             if (entry2.getKey().equals("user_id") && first) {
+                                Log.v("pho dude3", "I WANNA");
                                 if (entry2.getValue().equals(UserFirebase.uId)) {
+                                    Log.v("pho dude4", "I WANNA");
                                     second = true;
                                 }
                             }
 
                             if (second) {
+                                Log.v("pho dude5", "I WANNA");
                                 idIsSubscribed = 2;
                             }
 
@@ -563,8 +570,10 @@ public class UserFirebase {
 
                     }
 
-                    if (idIsSubscribed != 2)
+                    if (idIsSubscribed != 2) {
+                        Log.v("TAKE IT OFF", "I WANNA");
                         idIsSubscribed = 1;
+                    }
 
 
                     isSubscribedThreadCheck = true;
