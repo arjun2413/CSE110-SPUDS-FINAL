@@ -18,22 +18,24 @@ import com.spuds.eventapp.ResetPassword.ResetPasswordActivity;
 import com.spuds.eventapp.Shared.MainActivity;
 import com.spuds.eventapp.SignUp.SignUpActivity;
 
+/*---------------------------------------------------------------------------
+   Class Name: LoginActivity
+   Description: Contains all methods related to login functionality
+---------------------------------------------------------------------------*/
 public class LoginActivity extends AppCompatActivity {
     private AccountFirebase accountFirebase;
     private TextView errorMessage;
 
-    String token;
-
+    /*---------------------------------------------------------------------------
+     Function Name: onCreate
+     Description: Sets up the login page and all the buttons
+     Input: Bundle savedInstanceState
+     Output: None
+    ---------------------------------------------------------------------------*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        //Hide Action Bar and Status Bar
-        //View decorView = getWindow().getDecorView();
-        // Hide the status bar.
-        //int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        //decorView.setSystemUiVisibility(uiOptions);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         Firebase.setAndroidContext(this);
@@ -66,35 +68,41 @@ public class LoginActivity extends AppCompatActivity {
         Button registerButton = (Button) findViewById(R.id.register);
         registerButton.setTypeface(raleway_light);
 
-
-        //a function to allow the user to sign in
         accountFirebase = new AccountFirebase();
-        signInFunc();
-        signUpFunc();
-        forgotPassFunc();
-
-
+        signInFunc();       //sets up sign in functionality
+        signUpFunc();       //sets up sign up functionality
+        resetPassFunc();   //sets up forgot pass functionality
     }
 
-
+    /*---------------------------------------------------------------------------
+     Function Name: signUpFunc
+     Description: Sets up the sign up button, which when clicked leads to the
+                sign up page
+     Input: None
+     Output: None
+    ---------------------------------------------------------------------------*/
     public void signUpFunc(){
         //create a button for the sign up
         final Button signUp = (Button) findViewById(R.id.register);
-
         if(signUp != null) {
-
             //set a on click listener to see when the button is clicked
             signUp.setOnClickListener(new View.OnClickListener() {
                 //what happens when the button is clicked
                 public void onClick(View v) {
                     startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
-
                 }
             });
         }
     }
 
-    public void forgotPassFunc() {
+    /*---------------------------------------------------------------------------
+     Function Name: resetPassFunc
+     Description: Sets up the forgotpassword button, which leads to the
+                resetpassword page
+     Input: None
+     Output: None
+    ---------------------------------------------------------------------------*/
+    public void resetPassFunc() {
         //create a button for the forgot password
         final Button forgotPass = (Button) findViewById(R.id.forgot_password);
         //set a on click listener to see when the button is clicked
@@ -103,13 +111,17 @@ public class LoginActivity extends AppCompatActivity {
                 //what happens when the button is clicked
                 public void onClick(View v) {
                     startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
-
                 }
             });
         }
     }
 
-
+    /*---------------------------------------------------------------------------
+     Function Name: signInFunc
+     Description: Sets up the sign in functionality with all the logic
+     Input: None
+     Output: None
+    ---------------------------------------------------------------------------*/
     public void signInFunc() {
         //create a button for the sign in
         final Button signIn = (Button) findViewById(R.id.signIn);
@@ -119,11 +131,17 @@ public class LoginActivity extends AppCompatActivity {
             signIn.setOnClickListener(new View.OnClickListener() {
                 //what happens when the button is clicked
                 public void onClick(View v) {
-
                     //get the user input for email field
                     String email = getEmail();
                     //get user input for password field
                     String password = getPassword();
+
+                    /*  STEPS:
+                     *  1. Check if fields are filled
+                     *  2. Check if email is valid ucsd email
+                     *  3. Calls login method from accountfirebase
+                     *  4. Returns success or prints error messages
+                     */
 
                     //make sure that something is entered for email and password
                     if (email.equals("") || password.equals("")) {
@@ -138,21 +156,8 @@ public class LoginActivity extends AppCompatActivity {
                             errorMessage.setText(getString(R.string.errorInvalidEmail));
                         }
                     }
-                    //check if email is in database
-                    //check if password is correct
-                    //email and password match and are correct
-                    //Switch to the Main Activity
-                    //else{
-                    //TODO:
-                    //Pass through an id of the user [coding decision: should we pass image first and last name?]
                     else{
-                        Object time = new Object();
-
                         errorMessage.setText(getString(R.string.loading));
-
-
-
-
 
                         class myThread implements Runnable{
                             public String email;
@@ -164,27 +169,23 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             @Override
                             public void run() {
-                                accountFirebase.logIn(email.toString(), password.toString());
+                                accountFirebase.logIn(email, password);
                                 int counter = 0;
                                 while (accountFirebase.status == 0) {
-
                                     try {
                                         counter++;
                                         Thread.sleep(75);
-                                        System.out.println("Waiting: " + counter);
                                         if (counter == 100) {
                                             accountFirebase.status = 3;
                                         }
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     }
-
                                 }
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
                                         if(accountFirebase.status == 2) {
-                                            String message = "Incorrect email or password.";
                                             errorMessage.setText(getString(R.string.errorLoginPass));
                                         }
                                         else if (accountFirebase.status == 3) {
@@ -193,27 +194,27 @@ public class LoginActivity extends AppCompatActivity {
                                         }
                                     }
                                 });
-
                                 if (accountFirebase.status == 1) {
-                                    System.out.println("Logging in now");
                                     getUserDetails();
-
                                 }
-
                             }
                         }
-
                         Runnable r = new myThread(email, password);
                         Thread t = new Thread(r);
                         t.start();
-
                         accountFirebase.status = 0;
                     }
                 }
             });
-
         }
     }
+
+    /*---------------------------------------------------------------------------
+     Function Name: getEmail
+     Description: getter method for email field
+     Input: None
+     Output: String - email
+    ---------------------------------------------------------------------------*/
     public String getEmail(){
         EditText email = (EditText) findViewById(R.id.email);
         if(email != null) {
@@ -221,6 +222,13 @@ public class LoginActivity extends AppCompatActivity {
         }
         return "";
     }
+
+    /*---------------------------------------------------------------------------
+     Function Name: getPassword
+     Description: getter method for password field
+     Input: None
+     Output: String - password
+    ---------------------------------------------------------------------------*/
     public String getPassword() {
         EditText password = (EditText) findViewById(R.id.password);
         if(password != null) {
@@ -231,40 +239,29 @@ public class LoginActivity extends AppCompatActivity {
 
     UserFirebase userFirebase = new UserFirebase();
 
+    /*---------------------------------------------------------------------------
+     Function Name: getUserDetails
+     Description: gets the user details to log in with
+     Input: None
+     Output: None
+    ---------------------------------------------------------------------------*/
     void getUserDetails() {
-
-
         userFirebase.getMyAccountDetails();
-
-        System.out.println("asdf" + "ingetuserdetailsloginactivity");
-
-
         new Thread(new Runnable() {
 
             @Override
             public void run() {
-
                 while (!userFirebase.threadCheck) {
                     try {
                         Thread.sleep(200);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
                 }
-
-
-
-                //("userdetals", "test:" + userFirebase.uId);
-
-
-                //("userdetals", "test:" + userFirebase.thisUser.getName());
                 userFirebase.threadCheck = false;
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
-
             }
         }).start();
-
         accountFirebase.status = 0;
     }
 }

@@ -4,9 +4,6 @@ package com.spuds.eventapp.Firebase;
  * Created by Arjun on 5/5/16.
  */
 
-import android.app.FragmentManager;
-import android.content.Context;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.firebase.client.AuthData;
@@ -19,140 +16,144 @@ import com.spuds.eventapp.ChangePassword.ChangePasswordForm;
 
 import java.util.HashMap;
 import java.util.Map;
-
-/**
- * Created by Arjun on 5/5/16.
- */
+/*---------------------------------------------------------------------------
+   Class Name: AccountFirebase
+   Description: Contains all methods that interact with the database, and
+                that have to do with account functionality.
+   ---------------------------------------------------------------------------*/
 public class AccountFirebase {
+    public static final String PROVIDER_TYPE_PASS = "password";
+    public static final String MULTIPLE_ATTEMPTS = "FirebaseError: Due to another authentication attempt, this authentication attempt was aborted before it could complete.";
     private int threadCheck = 0;
-    //private Query queryRef;
+    public int status = 0;
     String token;
 
+    //empty constructor
     public AccountFirebase() {}
 
+    /*---------------------------------------------------------------------------
+     Function Name: createAccount
+     Description: Creates an account, and pushes the data to the users table
+                in the database.
+     Input: String email - the email of the account to create
+            String password - the password of the account to create
+            String name - the name of the user to create
+     Output: None
+    ---------------------------------------------------------------------------*/
     public void createAccount(final String email, String password, final String name) {
-
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
-        ref.createUser(email, password, new Firebase.ValueResultHandler<Map<String, Object>>()
+        ref.createUser(email, password, new Firebase.ValueResultHandler<Map<String, Object>>() {
+            @Override
+            public void onSuccess (Map < String, Object > result){
+                Map<String, String> map = new HashMap<String, String>();
+                //provider: email+password
+                map.put("provider", PROVIDER_TYPE_PASS);
+                map.put("name", name);
+                map.put("email", email);
+                map.put("description", "");
+                map.put("notification_toggle", "true");
+                map.put("number_following", "0");
+                map.put("number_hosting", "0");
+                map.put("picture", "");
+                map.put("registration_id", token);
 
+                ref.child("users").child(String.valueOf(result.get("uid"))).setValue(map);
+                UserFirebase.uId = String.valueOf(result.get("uid"));
+            }
 
-                {
-                    @Override
-                    public void onSuccess (Map < String, Object > result){
-                        System.out.println("Successfully created user account with uid: " + result.get("uid") + " | " + result.get("provider"));
-                        // Authentication just completed successfully smile emoticon
-                        Map<String, String> map = new HashMap<String, String>();
-                        //map.put("provider", ref.getAuth().getProvider());
-                        map.put("provider", "password");
-                        map.put("name", name);
-                        map.put("email", email);
-                        map.put("description", "");
-                        map.put("notification_toggle", "true");
-                        map.put("number_following", "0");
-                        map.put("number_hosting", "0");
-                        map.put("picture", "");
-                        map.put("registration_id", token);
-
-
-                        ref.child("users").child(String.valueOf(result.get("uid"))).setValue(map);
-
-                        UserFirebase.uId = String.valueOf(result.get("uid"));
-                    }
-
-                    @Override
-                    public void onError(FirebaseError firebaseError) {
-                        // error encountered
-                        //("AccountFirebase:CA:", firebaseError.getMessage());
-                    }
-
-                }
-
-
+            @Override
+            public void onError(FirebaseError firebaseError) {
+            }
+        }
         );
     }
 
-    public int status = 0;
+    /*---------------------------------------------------------------------------
+     Function Name: logIn
+     Description: Checks the login information of the user
+     Input: String email - the email of the account to log in
+            String password - the password of the account to log in
+     Output: None
+    ---------------------------------------------------------------------------*/
     public void logIn(final String email, String password) {
-
+        //status used in login to check when method finishes;
         status = 0;
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
-
         ref.authWithPassword(email, password, new Firebase.AuthResultHandler() {
             @Override
             public void onAuthenticated(AuthData authData) {
-                //("AccountFirebase", "Successful Log In");
-
                 UserFirebase.uId = authData.getUid();
-
                 status = 1;
-                System.out.println("onAuthenticated_Success");
-
-                // Authentication just completed successfully smile emoticon
-
             }
 
             //https://www.firebase.com/docs/java-api/javadoc/com/firebase/client/FirebaseError.html
             @Override
             public void onAuthenticationError(FirebaseError firebaseError) {
-                //("AccountFirebase", "ERROR Logging In");
-                //("accountfirebase", firebaseError.toString());
-                System.out.println("FirebaseError Code: " + firebaseError.getCode());
                 if (firebaseError.getCode() == -24) {
                     status = 3;
-                }
-                else if (!firebaseError.toString().equals("FirebaseError: Due to another authentication attempt, this authentication attempt was aborted before it could complete.")) {
+                } else if (!firebaseError.toString().equals(MULTIPLE_ATTEMPTS)) {
                     status = 2;
                 }
-
             }
-
         });
     }
 
+    /*---------------------------------------------------------------------------
+     Function Name: logout
+     Description: Logs the user out by calling Firebase unauth
+     Input: None
+     Output: None
+    ---------------------------------------------------------------------------*/
     public void logout() {
         final Firebase ref = new Firebase("https://eventory.firebaseio.com");
-        System.out.println(ref.getAuth());
         ref.unauth();
-        System.out.println(ref.getAuth());
-        //("Logout", "LOGGEDOUT");
     }
 
+    /*---------------------------------------------------------------------------
+     Function Name: changePass
+     Description: Changes the user's password using Firebase API
+     Input: ChangePasswordForm form - a form containing the change password fields
+     Output: None
+    ---------------------------------------------------------------------------*/
     public void changePass(ChangePasswordForm form) {
         threadCheck = 0;
-        //("email", form.getEmail());
         Firebase ref = new Firebase("https://eventory.firebaseio.com");
         ref.changePassword(form.getEmail(), form.getCurrent(), form.getNext(), new Firebase.ResultHandler() {
             @Override
             public void onSuccess() {
                 // password changed
                 threadCheck = 1;
-                System.out.println("Password Changed");
             }
 
             @Override
             public void onError(FirebaseError firebaseError) {
                 // error encountered
                 threadCheck = 2;
-                //("AccountFirebase:CP:", firebaseError.getMessage());
             }
         });
     }
+    /*---------------------------------------------------------------------------
+     Function Name: resetPass
+     Description: Calls the reset password from Firebase API, which sends an
+                email to the user's email
+     Input: String email - the email of the account
+     Output: None
+    ---------------------------------------------------------------------------*/
     public void resetPass(String email) {
         Firebase ref = new Firebase("https://eventory.firebaseio.com");
         ref.resetPassword(email, new Firebase.ResultHandler() {
             @Override
             public void onSuccess() {
                 // password reset email sent
-                System.out.println("Successfully sent email");
             }
 
             @Override
             public void onError(FirebaseError firebaseError) {
-                // error encountered
-                //("AccountFirebase", "ERROR Resetting Password");
             }
         });
     }
+
+    /*  unimplemented delete account functionality
     public void removingAccount() {
         Firebase ref = new Firebase("https://eventory.firebaseio.com");
         ref.removeUser("bobtony@firebase.com", "correcthorsebatterystaple", new Firebase.ResultHandler() {
@@ -166,14 +167,20 @@ public class AccountFirebase {
                 // error encountered
             }
         });
-    }
+    }*/
 
+    /*---------------------------------------------------------------------------
+     Function Name: getUserEmail
+     Description: Checks the email of the current logged in user.
+     Input: None
+     Output: String - email of the user currently logged in
+    ---------------------------------------------------------------------------*/
     public String getUserEmail(){
         Firebase ref = new Firebase("https://eventory.firebaseio.com");
-        String data = (String) ref.getAuth().getProviderData().get("email");
-        return data;
+        return (String) ref.getAuth().getProviderData().get("email");
     }
 
+    /* unimplemented authorization check
     public void authCheck() {
         Firebase ref = new Firebase("https://eventory.firebaseio.com");
         ref.addAuthStateListener(new Firebase.AuthStateListener() {
@@ -189,27 +196,27 @@ public class AccountFirebase {
                 }
             }
         });
-    }
+    } */
 
-    /*
-     * FUNCTION NAME: checkEmail
-     *
-     * PARAMETERS:
-     * String email - the email we are checking in the database
-     * TextView[] tArray - put your errorMessage textview into an array of size 1, and pass that in. If no error messages, just pass in null
-     * String error - the error message you want to print on failure
-     * boolean errorOnExist - pass true if the error is printed when email exists in database, false otherwise
-     *
-     * RESULT:
-     * threadCheck will set to 1 if found, and set to 2 if not found. call getThreadCheck() to check
-     */
+    /*---------------------------------------------------------------------------
+     Function Name: checkEmail
+     Description: Queries the firebase users table, checking if the email is
+                already signed up
+     Input: String email - the email to check in the database
+          TextView[] tArray - an array containing the TextView that will hold the
+            error message
+          String error - the error message to print on failure
+          boolean errorOnExist - true if the error is printed when email
+            exists in database, false otherwise
+     Output: None - threadCheck will set to 1 if found, and set to 2 if not found.
+    ---------------------------------------------------------------------------*/
     public void checkEmail(final String email, final TextView[] tArray, final String error, final boolean errorOnExist) {
+        //to be used in Activity files to check if query is finished
         threadCheck = 0;
         Firebase ref = new Firebase("https://eventory.firebaseio.com/users");
+
+        //creates a query that checks if email exitst
         Query queryRef = ref.orderByChild("email").startAt(email).endAt(email);
-        System.out.println(queryRef);
-//        Firebase ref = new Firebase("https://dinosaur-facts.firebaseio.com/dinosaurs");
-//        Query queryRef = ref.orderByKey();
 
         //https://www.firebase.com/docs/android/guide/retrieving-data.html
         queryRef.addValueEventListener(new ValueEventListener() {
@@ -220,44 +227,44 @@ public class AccountFirebase {
                     if (tArray[0] != null && errorOnExist) {
                         tArray[0].setText(error);
                     }
-                    System.out.println("FOUND");
                 }
                 else {
                     threadCheck = 2;
                     if (tArray[0] != null && !errorOnExist) {
                         tArray[0].setText(error);
                     }
-                    System.out.println("NOTFOUND");
                 }
             }
-
             @Override
             public void onCancelled(FirebaseError firebaseError) {
-                //("CheckEmailError:", firebaseError.getMessage());
             }
-
-
-            // ....
         });
-
-
-        //System.out.println(status + " | " + threadCheck);
-        //return threadCheck;
     }
+
+    /*---------------------------------------------------------------------------
+     Function Name: getThreadCheck
+     Description: Returns the value of threadCheck, used to determine if a
+                query is finished querying
+     Input: None
+     Output: int - value of threadCheck, usually 0 when query still in progress
+    ---------------------------------------------------------------------------*/
     public int getThreadCheck() {
         return threadCheck;
     }
 
+    /*---------------------------------------------------------------------------
+     Function Name: pushRegistrationId
+     Description: pushes a registration id for a user, for use with notifications
+     Input: String token - registration id to be pushed
+     Output: None
+    ---------------------------------------------------------------------------*/
     public void pushRegistrationId(String token) {
         final Firebase ref = new Firebase("https://eventory.firebaseio.com/users");
-
 
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("registration_id", token);
 
         //Query queryRef = ref.orderByChild("email").equalTo(email);
         ref.child(UserFirebase.uId).updateChildren(map);
-
     }
-
 }

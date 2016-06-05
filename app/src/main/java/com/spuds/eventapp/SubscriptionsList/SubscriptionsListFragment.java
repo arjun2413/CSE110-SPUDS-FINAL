@@ -119,33 +119,28 @@ public class SubscriptionsListFragment extends Fragment {
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
+                        //clearing the subscriptions list
                         subscriptions.clear();
-
+                        //getting the subscriptions from firebase
                         userFirebase.getSubscriptions(subscriptions);
 
-                        //("refresh", "here");
                         new Thread(new Runnable() {
 
                             @Override
                             public void run() {
-                                //("refresh", "hereherehere");
+                               
 
                                 while (userFirebase.numSubscriptions > subscriptions.size() || !userFirebase.getSubscriptionsThreadCheck) {
-                                    ////("refresh", "size: " + events.size());
                                     try {
                                         Thread.sleep(70);
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     }
                                 }
-
-                                //("refresh", "here2");
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run()
                                     {
-                                        //("refresh", "here3");
-
                                         adapter.notifyDataSetChanged();
                                         mySwipeRefreshLayout.setRefreshing(false);
 
@@ -161,8 +156,7 @@ public class SubscriptionsListFragment extends Fragment {
 
     /*---------------------------------------------------------------------------
     Function Name:                onResume()
-    Description:                  called every time the About Fragment comes into view
-                                 remove the search toolbar
+    Description:                  called every time the fragment is resumed
     Input:                        None.
     Output:                       None.
     ---------------------------------------------------------------------------*/

@@ -126,16 +126,10 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
         Button delete = (Button) view.findViewById(R.id.editEventDelete);
         delete.setTypeface(raleway_medium);
 
-
         eD = new EventDate(event.getDate());
-        Log.d("edvalue", String.valueOf(eD.hour));
-        Log.d("edvalue", String.valueOf(eD.year));
-        Log.d("edvalue", String.valueOf(eD.month));
-        Log.d("edvalue", String.valueOf(eD.day));
 
-        getPageElements(view);
+        setupWindow(view);
         setupWindow();
-
         setupEditTime(view);
 
         return view;
@@ -167,7 +161,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
             spinner.setSelection(1);
 
     }
-    protected void getPageElements(View view) {
+    protected void setupWindow(View view) {
         eventImage = (ImageView) view.findViewById(R.id.eventImage);
         eventName = (EditText) view.findViewById(R.id.eventName);
         eventDate = (EditText) view.findViewById(R.id.eventDate);
@@ -304,8 +298,6 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
 
                                 EventsFirebase eventsFirebase = new EventsFirebase();
                                 eventsFirebase.deleteEvent(event.getEventId());
-                                System.out.println("event_id: " + event.getEventId());
-                                System.out.println(getFragmentManager().getBackStackEntryCount());
                                 //int fragId = getFragmentManager().getBackStackEntryCount();
                                 //getFragmentManager().getBackStackEntryAt(fragId).getId();
 
@@ -339,8 +331,6 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                 String result = "";
                 if (((MainActivity) getActivity()).picture != null)
                     result = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
-                else
-                    result = "";
 
                 EditEventForm form = new EditEventForm(eventName,eventDate,eventTime, spinner, eventLocation,eventDescription, result, event.getEventId());
                 errorMissingMessage.setVisibility(View.INVISIBLE);
@@ -381,7 +371,6 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                             time = "";
                             break;
                         case 4:
-                            //TODO: Reggie, specify event time format in strings.xml file
                             time = getString(R.string.errorTimeFormat);
                             break;
                         case 5:
@@ -410,6 +399,7 @@ public class EditEventFragment extends Fragment implements AdapterView.OnItemSel
                     errorMissingMessage.setVisibility(View.INVISIBLE);
                     errorTimeMessage.setVisibility(View.INVISIBLE);
                     errorDateMessage.setVisibility(View.INVISIBLE);
+
                 }
 
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);

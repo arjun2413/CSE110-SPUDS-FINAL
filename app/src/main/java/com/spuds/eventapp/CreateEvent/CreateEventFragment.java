@@ -129,6 +129,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
             }
         });
 
+        //ref to eventsfirebase class
         //initialize EventsFirebase object
         final EventsFirebase eventsFirebase = new EventsFirebase(null, 0, null, null, null);
         editEventDone.setOnClickListener(new View.OnClickListener() {
@@ -136,6 +137,7 @@ public class CreateEventFragment extends Fragment implements AdapterView.OnItemS
             public void onClick(View v) {
                 CreateEventForm form = makeForm();
                 fieldMessage.setVisibility(View.INVISIBLE);
+                boolean addImage = false;
                 int check = 0;
                 int timeCheck = 0;
                 int dateCheck = 0;
