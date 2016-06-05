@@ -105,7 +105,7 @@ public class  EditProfileFragment extends Fragment {
 
                     @Override
                     public void run() {
-                        while (((MainActivity) getActivity()).picture == null) {
+                        while ((getActivity() != null) && ((MainActivity) getActivity()).picture == null) {
                             try {
                                 Thread.sleep(300);
                             } catch (InterruptedException e) {
@@ -116,38 +116,42 @@ public class  EditProfileFragment extends Fragment {
                             }
 
                         }
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
+                        if ((getActivity() != null) && ((MainActivity) getActivity()).picture != null) {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
 
 
-                                /*pictureView.setImageURI(null);
-                                pictureView.setImageURI(((MainActivity) getActivity()).picture);
-                                //("EditProfileFragment", "here");
-                                //("EditProfileFragment", ((MainActivity) getActivity()).picture.toString());
-                                pictureView.invalidate();*/
+                                    String imageFile = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
+                                    picturepush = imageFile;
+                                    if (imageFile != null) {
+                                        Bitmap src = null;
+                                        try {
+                                            byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
+                                            src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+                                        } catch (OutOfMemoryError e) {
+                                            System.err.println(e.toString());
+                                        }
 
-                                String imageFile = UserFirebase.convert(getActivity(), ((MainActivity) getActivity()).picture);
-                                picturepush = imageFile;
-                                if (imageFile != null) {
-                                    Bitmap src = null;
-                                    try {
-                                        byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
-                                        src = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-                                    } catch (OutOfMemoryError e) {
-                                        System.err.println(e.toString());
-                                    }
+                                        if (src != null) {
 
-                                    if (src != null) {
+                                            //("EditProfileFragment", "imagefile" + imageFile);
+                                            RoundedBitmapDrawable dr =
+                                                    RoundedBitmapDrawableFactory.create(getActivity().getResources(), src);
 
-                                        //("EditProfileFragment", "imagefile" + imageFile);
-                                        RoundedBitmapDrawable dr =
-                                                RoundedBitmapDrawableFactory.create(getActivity().getResources(), src);
+                                            dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
+                                            pictureView.setImageDrawable(dr);
+                                        } else {
+                                            src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
 
-                                        dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
-                                        pictureView.setImageDrawable(dr);
+                                            RoundedBitmapDrawable circularBitmapDrawable =
+                                                    RoundedBitmapDrawableFactory.create(getResources(), src);
+                                            circularBitmapDrawable.setCircular(true);
+                                            circularBitmapDrawable.setAntiAlias(true);
+                                            editProfilePictureButton.setImageDrawable(circularBitmapDrawable);
+                                        }
                                     } else {
-                                        src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
+                                        Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
 
                                         RoundedBitmapDrawable circularBitmapDrawable =
                                                 RoundedBitmapDrawableFactory.create(getResources(), src);
@@ -155,19 +159,11 @@ public class  EditProfileFragment extends Fragment {
                                         circularBitmapDrawable.setAntiAlias(true);
                                         editProfilePictureButton.setImageDrawable(circularBitmapDrawable);
                                     }
-                                } else {
-                                    Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
 
-                                    RoundedBitmapDrawable circularBitmapDrawable =
-                                            RoundedBitmapDrawableFactory.create(getResources(), src);
-                                    circularBitmapDrawable.setCircular(true);
-                                    circularBitmapDrawable.setAntiAlias(true);
-                                    editProfilePictureButton.setImageDrawable(circularBitmapDrawable);
                                 }
+                            });
 
-                            }
-                        });
-
+                        }
                     }
                 }).start();
 

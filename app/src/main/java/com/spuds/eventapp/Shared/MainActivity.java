@@ -985,9 +985,11 @@ public class MainActivity extends AppCompatActivity
             } else if (resultCode == RESULT_CANCELED) {
                 View view = findViewById(android.R.id.content);
                 Snackbar.make(view, "Image capture failed", Snackbar.LENGTH_LONG).show();
+                picture = Uri.EMPTY;
             } else {
                 View view = findViewById(android.R.id.content);
                 Snackbar.make(view, "Image capture failed", Snackbar.LENGTH_LONG).show();
+                picture = Uri.EMPTY;
             }
 
 
