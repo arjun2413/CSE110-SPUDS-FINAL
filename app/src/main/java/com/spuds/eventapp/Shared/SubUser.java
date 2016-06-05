@@ -14,7 +14,6 @@ public class SubUser implements Serializable {
     private String userId;
     private String name;
 
-
     /*---------------------------------------------------------------------------
     Function Name:                SubUser
     Description:                  Default constructor

@@ -33,7 +33,10 @@ import java.util.List;
  * Created by tina on 5/13/16.
  */
 
-
+/*---------------------------------------------------------------------------
+Class Name:                NotificationsRVAdapter
+Description:               Contains information about NotificationsRVAdapter
+---------------------------------------------------------------------------*/
 public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final static String TYPE_REPLY = "Reply Notification";
@@ -41,7 +44,10 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private final static String TYPE_UPDATE = "Update Notification";
 
 
-
+  /*---------------------------------------------------------------------------
+    Class Name:                UpdateViewHolder
+    Description:               Holds all the elements necessary for an updated event
+    ---------------------------------------------------------------------------*/
     public static class UpdateViewHolder extends RecyclerView.ViewHolder {
 
         CardView card;
@@ -67,6 +73,10 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
+  /*---------------------------------------------------------------------------
+    Class Name:                InviteViewHolder
+    Description:               Holds all the elements necessary for an invite card
+    ---------------------------------------------------------------------------*/
     public static class InviteViewHolder extends RecyclerView.ViewHolder {
 
         CardView card;
@@ -93,6 +103,10 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
+  /*---------------------------------------------------------------------------
+    Class Name:                ReplyViewHolder
+    Description:               Holds all the elements necessary for an reply
+    ---------------------------------------------------------------------------*/
     public static class ReplyViewHolder extends RecyclerView.ViewHolder {
 
         CardView card;
@@ -128,12 +142,29 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     List<Notification> notificationsList;
     Fragment currentFragment;
 
+    /*---------------------------------------------------------------------------
+    Function Name:                NotificationsRVAdapter
+    Description:                  Constructor
+    Input:                        List<Notification> notificationsList: array list of
+                                  notifications
+                                  Fragment currentFragment: fragment RVAdapter instantiated.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public NotificationsRVAdapter(List<Notification> notificationsList, Fragment currentFragment) {
 
         this.notificationsList = notificationsList;
         this.currentFragment = currentFragment;
 
     }
+
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateViewHolder()
+    Description:                  Necessary method to override: Defines the layout
+                                  and type of each view holder
+    Input:                        ViewGroup viewGroup
+                                  int viewType
+    Output:                       SubViewHolder
+    ---------------------------------------------------------------------------*/
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View v = null;
@@ -186,6 +217,13 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                getItemViewType()
+    Description:                  gets the type of View that will be created by 
+                                  getView() for the specified item.
+    Input:                        int position
+    Output:                       int
+    ---------------------------------------------------------------------------*/
     @Override
     public int getItemViewType(int position) {
 
@@ -199,11 +237,17 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 return 2;
             default:
                 return 0;
-
         }
-
     }
 
+   /*---------------------------------------------------------------------------
+    Function Name:                onBindViewHolder()
+    Description:                  Necessary method to override: Binds information
+                                  to each view holder at position i
+    Input:                        SubViewHolder subViewHolder
+                                  int i: position of the item in the RecyclerView
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
@@ -223,11 +267,16 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 break;
             default:
                 break;
-
         }
-
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                holderUpdate()
+    Description:
+    Input:                        NotificationsRVAdapter.UpdateViewHolder holder:
+                                  final Notification noti:
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     void holderUpdate(NotificationsRVAdapter.UpdateViewHolder holder, final Notification noti) {
 
         holder.host.setText(noti.host);
@@ -298,6 +347,14 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     }
 
+
+    /*---------------------------------------------------------------------------
+    Function Name:                holderInvite()
+    Description:
+    Input:                        NotificationsRVAdapter.InviteViewHolder holder:
+                                  final Notification noti:
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     void holderInvite(NotificationsRVAdapter.InviteViewHolder holder, final Notification noti) {
         holder.host.setText(noti.host);
         holder.eventName.setText(noti.eventName);
@@ -393,6 +450,13 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                ReplyViewHolder()
+    Description:
+    Input:                        NotificationsRVAdapter.ReplyViewHolder holder:
+                                  final Notification noti:
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     void holderReply(NotificationsRVAdapter.ReplyViewHolder holder, final Notification noti) {
         holder.host.setText(noti.host);
         holder.eventName.setText(noti.eventName);
@@ -489,11 +553,25 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                getItemCount()
+    Description:                  Necessary method to override: How many items
+                                  in the RecyclerView
+    Input:                        None
+    Output:                       int: number of cards/items
+    ---------------------------------------------------------------------------*/
     @Override
     public int getItemCount() {
         return notificationsList.size();
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                overrideFonts()
+    Description:                  used to override fonts
+    Input:                        Context context: the context we care about
+                                  View v: the view we care about 
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     private void overrideFonts(final Context context, final View v) {
         try {
             if (v instanceof ViewGroup) {
@@ -510,6 +588,14 @@ public class NotificationsRVAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
+    
+    /*---------------------------------------------------------------------------
+    Function Name:                startProfileFragment()
+    Description:                  Switches the view to the profile fragment
+                                  passing in the required fields
+    Input:                        final UserFirebase userFirebase
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     private void startProfileFragment(final UserFirebase userFirebase) {
 
         Fragment profileFragment = new ProfileFragment();
