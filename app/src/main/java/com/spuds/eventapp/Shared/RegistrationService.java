@@ -7,6 +7,7 @@ import android.util.Log;
 import com.google.android.gms.gcm.GcmPubSub;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
+import com.spuds.eventapp.R;
 
 import java.io.IOException;
 
@@ -45,7 +46,7 @@ public class RegistrationService extends IntentService {
         // try to register
         try {
             String registrationToken = myID.getToken(
-                    String.valueOf(Integer.parseInt("2131165253")),
+                    getString(R.string.gcm_defaultSenderId),
                     GoogleCloudMessaging.INSTANCE_ID_SCOPE,
                     null
             );
