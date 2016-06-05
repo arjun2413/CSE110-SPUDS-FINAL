@@ -211,6 +211,7 @@ public class ProfileFragment extends Fragment {
             }
         // If the user does not have a profile picture
         } else {
+            // Get bitmap from stock profile pic
             Bitmap src = BitmapFactory.decodeResource(getResources(), R.drawable.profile_pic_icon);
 
             // Change the bitmap to a circle
