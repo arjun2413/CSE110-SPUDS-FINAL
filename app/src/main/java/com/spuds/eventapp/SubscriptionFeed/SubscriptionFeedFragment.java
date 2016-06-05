@@ -18,22 +18,46 @@ import com.spuds.eventapp.Shared.MainActivity;
 
 import java.util.ArrayList;
 
+/*---------------------------------------------------------------------------
+Class Name:                SubscriptionFeedFragment
+Description:               Contains information about Subscription Feed Fragment
+---------------------------------------------------------------------------*/
 public class SubscriptionFeedFragment extends Fragment {
 
     private ArrayList<Event> events;
     public EventsFeedRVAdapter adapter;
     EventsFirebase eventsFirebase;
 
+    /*---------------------------------------------------------------------------
+    Function Name:                SubscriptionFeedFragment
+    Description:                  Required default no-argument constructor
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public SubscriptionFeedFragment() {
+        //required
     }
 
-
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreate()
+    Description:                  Called each time fragment is created
+    Input:                        Bundle savedInstanceState
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateView()
+    Description:                  Inflates View layout and sets fonts programmatically
+    Input:                        LayoutInflater inflater - inflates layout
+                                  ViewGroup container - parent view group
+                                  Bundle savedInstanceState
+    Output:                       View to be inflated
+    ---------------------------------------------------------------------------*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,10 +65,13 @@ public class SubscriptionFeedFragment extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Subscription Feed");
         final RecyclerView rv=(RecyclerView) view.findViewById(R.id.rv);
 
+        //set the layout manager to be a linear one
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
+        //initialize events list
         events = new ArrayList<>();
+        //create eventsFirebase object
         eventsFirebase = new EventsFirebase(events, 0, null);
         eventsFirebase.createSubFeed();
 
@@ -76,6 +103,12 @@ public class SubscriptionFeedFragment extends Fragment {
         return view;
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                setupRefresh()
+    Description:                  used to implement the swipe down to refresh functionality
+    Input:                        View view: the view to be refreshed
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public void setupRefresh(View view) {
         final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         mySwipeRefreshLayout.setOnRefreshListener(
@@ -114,6 +147,12 @@ public class SubscriptionFeedFragment extends Fragment {
 
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onResume()
+    Description:                  called when fragment is resumed
+    Input:                        None.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onResume() {
         super.onResume();

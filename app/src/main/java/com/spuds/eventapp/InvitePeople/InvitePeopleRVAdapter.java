@@ -113,6 +113,7 @@ public class InvitePeopleRVAdapter extends RecyclerView.Adapter<InvitePeopleRVAd
         //get the picture from the follower
         String imageFile = followers.get(i).getPicture();
         if (imageFile != "" && imageFile != null) {
+            //attempt to convert the image string into a bitmap
             Bitmap src = null;
             try {
                 byte[] imageAsBytes = Base64.decode(imageFile, Base64.DEFAULT);
@@ -120,7 +121,9 @@ public class InvitePeopleRVAdapter extends RecyclerView.Adapter<InvitePeopleRVAd
             } catch (OutOfMemoryError e) {
                 System.err.println(e.toString());
             }
+            //if the bitmap was created successfully
             if (src != null) {
+                //change the bitmap into a circle
                 RoundedBitmapDrawable circularBitmapDrawable =
                         RoundedBitmapDrawableFactory.create(fragment.getResources(), src);
                 circularBitmapDrawable.setCircular(true);
@@ -133,9 +136,11 @@ public class InvitePeopleRVAdapter extends RecyclerView.Adapter<InvitePeopleRVAd
                         RoundedBitmapDrawableFactory.create(fragment.getResources(), src);
                 circularBitmapDrawable.setCircular(true);
                 circularBitmapDrawable.setAntiAlias(true);
+                //set the view for the picture to the new circle picture
                 holder.photo.setImageDrawable(circularBitmapDrawable);
             }
         } else {
+            //convert the stock profile picture icon into a bitmap
             Bitmap src = BitmapFactory.decodeResource(fragment.getResources(), R.drawable.profile_pic_icon);
 
             RoundedBitmapDrawable circularBitmapDrawable =

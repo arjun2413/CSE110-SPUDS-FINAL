@@ -41,8 +41,13 @@ Description:               Contains information about Subscriptions List
 public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<SubscriptionsListRVAdapter.SubViewHolder>{
 
     public Fragment currentFragment;
+    //list holding all subscriptions
     List<Subscription> subscriptions;
 
+    /*---------------------------------------------------------------------------
+    Class Name:                SubViewHolder
+    Description:               Holds all the elements necessary for a subscription
+    ---------------------------------------------------------------------------*/
     public static class SubViewHolder extends RecyclerView.ViewHolder {
         CardView card;
         TextView subName;
@@ -60,18 +65,38 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
     }
 
 
-
+    /*---------------------------------------------------------------------------
+    Function Name:                SubscriptionsListRVAdapter
+    Description:                  Constructor
+    Input:                        List<User> followers: array list of subscriptions
+                                  Fragment currentFragment: fragment RVAdapter instantiated.
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     public SubscriptionsListRVAdapter(List<Subscription> subscriptions, Fragment currentFragment){
         this.subscriptions = subscriptions;
         this.currentFragment = currentFragment;
     }
 
-
+    /*---------------------------------------------------------------------------
+    Function Name:                getItemCount()
+    Description:                  Necessary method to override: How many items
+                                  in the RecyclerView
+    Input:                        None
+    Output:                       int: number of cards/items
+    ---------------------------------------------------------------------------*/
     @Override
     public int getItemCount() {
         return subscriptions.size();
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onCreateViewHolder()
+    Description:                  Necessary method to override: Defines the layout
+                                  and type of each view holder
+    Input:                        ViewGroup viewGroup
+                                  int viewType
+    Output:                       InviteViewHolder
+    ---------------------------------------------------------------------------*/
     @Override
     public SubViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_my_subscriptions, viewGroup, false);
@@ -80,6 +105,14 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
         return svh;
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                onBindViewHolder()
+    Description:                  Necessary method to override: Binds information
+                                  to each view holder at position i
+    Input:                        SubViewHolder subViewHolder
+                                  int i: position of the item in the RecyclerView
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(final SubViewHolder subViewHolder, final int i) {
@@ -90,6 +123,7 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
 
 
         if (currentSub.picture != null && currentSub.picture != "") {
+            //attempt to convert the image string into a bitmap
             Bitmap src = null;
             try {
                 byte[] imageAsBytes = Base64.decode(currentSub.picture, Base64.DEFAULT);
@@ -97,9 +131,9 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
             } catch(OutOfMemoryError e) {
                 System.err.println(e.toString());
             }
-
+            //if the mitmap was created successfully
             if (src != null) {
-
+                //change the bitmap into a circle
                 RoundedBitmapDrawable dr =
                         RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
                 dr.setCornerRadius(Math.max(src.getWidth(), src.getHeight()) / 2.0f);
@@ -113,6 +147,7 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
                             RoundedBitmapDrawableFactory.create(currentFragment.getResources(), src);
                     circularBitmapDrawable.setCircular(true);
                     circularBitmapDrawable.setAntiAlias(true);
+                    //set the view for the picture to the new circle picture
                     subViewHolder.subPhoto.setImageDrawable(circularBitmapDrawable);
                 } catch (OutOfMemoryError e) {
                     System.err.println(e.toString());
@@ -120,6 +155,7 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
             }
         } else {
             try {
+                //convert the picture into a bitmap
                 Bitmap src = BitmapFactory.decodeResource(currentFragment.getResources(), R.drawable.profile_pic_icon);
 
                 RoundedBitmapDrawable circularBitmapDrawable =
@@ -219,19 +255,28 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
         });
     }
 
+    /*---------------------------------------------------------------------------
+    Function Name:                startProfileFragment()
+    Description:                  Switches the view to the profile fragment
+                                  passing in the required fields
+    Input:                        final UserFirebase userFirebase
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
+
     private void startProfileFragment(final UserFirebase userFirebase) {
 
+        //create a new profile fragment
         Fragment profileFragment = new ProfileFragment();
-
+        //pass in the type of the profile
         Bundle bundle = new Bundle();
         bundle.putString(currentFragment.getString(R.string.profile_type),
                 currentFragment.getString(R.string.profile_type_other));
 
-
+        //pass in details of the user to profile
         bundle.putSerializable(currentFragment.getString(R.string.user_details), userFirebase.anotherUser);
 
         profileFragment.setArguments(bundle);
-
+        
         currentFragment.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -245,16 +290,29 @@ public class SubscriptionsListRVAdapter extends RecyclerView.Adapter<Subscriptio
                 .addToBackStack(currentFragment.getString(R.string.fragment_profile))
                 .commit();
 
-
-
     }
 
 
+
+    /*---------------------------------------------------------------------------
+    Function Name:                onAttachedToRecyclerView()
+    Description:                  Called by RecyclerView when it starts observing this Adapter
+    Input:                        RecyclerView recyclerView
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
 
+
+    /*---------------------------------------------------------------------------
+    Function Name:                overrideFonts()
+    Description:                  used to override fonts
+    Input:                        Context context: the context we care about
+                                  View v: the view we care about 
+    Output:                       None.
+    ---------------------------------------------------------------------------*/
     private void overrideFonts(final Context context, final View v) {
         try {
             if (v instanceof ViewGroup) {

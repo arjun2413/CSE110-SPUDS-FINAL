@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 /*---------------------------------------------------------------------------
 Class Name:                InvitePeopleFragment
-Description:               Contains information Invite People Fragment
+Description:               Contains information about Invite People Fragment
 ---------------------------------------------------------------------------*/
 public class InvitePeopleFragment extends Fragment {
 
@@ -191,7 +191,7 @@ public class InvitePeopleFragment extends Fragment {
 
     /*---------------------------------------------------------------------------
     Function Name:                onResume()
-    Description:                  called when fragment is refreshed
+    Description:                  called when fragment is resumed
     Input:                        None.
     Output:                       None.
     ---------------------------------------------------------------------------*/
